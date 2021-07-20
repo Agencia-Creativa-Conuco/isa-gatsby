@@ -17,7 +17,11 @@
   "dependencies": {
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
+    "@osirispp/frontity-layout": "^1.0.9",
+    "@react-spring/web": "^9.2.1",
     "gatsby": "^3.9.1",
+    "gatsby-background-image": "^1.5.3",
+    "gatsby-image": "^3.9.0",
     "gatsby-plugin-emotion": "^6.9.0",
     "gatsby-plugin-gatsby-cloud": "^2.9.1",
     "gatsby-plugin-google-analytics": "^3.9.0",
@@ -28,8 +32,11 @@
     "gatsby-source-filesystem": "^3.9.0",
     "gatsby-source-wordpress": "^5.9.2",
     "gatsby-transformer-sharp": "^3.9.0",
+    "polished": "^4.1.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "react-slick": "^0.28.1",
+    "slick-carousel": "^1.8.1"
   }
 }
