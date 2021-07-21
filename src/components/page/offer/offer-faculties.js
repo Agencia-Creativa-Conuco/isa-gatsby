@@ -27,7 +27,7 @@ const Item = connect(
         return (
             <Col size={12} sizeMD={isCareer? 12 : isMain? 12 : 6 }>
                 <Component>
-                    <Link link={link} noDecoration>
+                    <Link to={link} noDecoration>
                         <Title 
                             color={isCareer?colors.text.base:colors.primary.dark} 
                             bgHover={colors.gray.light}

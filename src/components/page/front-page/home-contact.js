@@ -36,7 +36,7 @@ const HomeContact = ({ page }) =>{
                                 <Input type="email" placeholder="Correo Electronico"/>
                                 <Input type="tel" placeholder="Numero de telefono"/>
                                 <Input type="text" placeholder="Mensaje"/>
-                                <StyledLink link="#" cta>ENTRAR</StyledLink>
+                                <StyledLink to="#" cta>ENTRAR</StyledLink>
                             </Form>
                         </Content>
                     </Col>

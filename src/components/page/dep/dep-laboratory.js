@@ -31,7 +31,7 @@ const DEPLaboratory = ({ state }) =>{
                                     <DivTitle color={colors.white}>
                                         <SectionTitle color={colors.white}>{ item.title }</SectionTitle>
                                         <Title>{ item.copy }</Title>
-                                        <ServiceLink color={colors.blue.base} link='/'> { item.services }  </ServiceLink>
+                                        <ServiceLink color={colors.blue.base} to='/'> { item.services }  </ServiceLink>
                                     </DivTitle>
                                 </Col>
                             </Row>
@@ -42,7 +42,7 @@ const DEPLaboratory = ({ state }) =>{
                                 <DivTitle color={colors.white}>
                                     <SectionTitle color={colors.white}>{ item.title }</SectionTitle>
                                     <Title>{ item.copy }</Title>
-                                      <ServiceLink color={colors.blue.base} link='/'> { item.services } </ServiceLink>
+                                      <ServiceLink color={colors.blue.base} to='/'> { item.services } </ServiceLink>
                                 </DivTitle>
                             </Col>
                             <Col noGutters size={12} sizeMD={6}>

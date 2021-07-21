@@ -64,7 +64,7 @@ const DIPProcess = ({ state }) =>{
                                 size={12}
                                 sizeMD={isPrincipal?12:4}
                             >
-                                <Link link={link} noDecoration>
+                                <Link to={link} noDecoration>
                                     <Project>
                                         <Row>
                                             <Col size={12} sizeMD={isPrincipal? 6: 12} >

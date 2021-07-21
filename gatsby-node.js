@@ -34,7 +34,7 @@ const createSinglePages = async ({ posts, gatsbyUtilities }) =>
   Promise.all(
     posts.map(({ previous, post, next }) =>
       // createPage is an action passed to createPages
-      // See https://www.gatsbyjs.com/docs/actions#createPage for more info
+      // See https://www.gatsbyjs.com/docs/actions#createPage for more info 
       gatsbyUtilities.actions.createPage({
         // Use the WordPress uri as the Gatsby page path
         // This is a good idea so that internal links and menus work 👍
@@ -90,7 +90,7 @@ async function createBlogPostArchive({ posts, gatsbyUtilities }) {
           // we want the first page to be "/" and any additional pages
           // to be numbered.
           // "/blog/2" for example
-          return page === 1 ? `/` : `/blog/${page}`
+          return page === 1 ? `/blog` : `/blog/${page}`
         }
 
         return null
@@ -169,6 +169,23 @@ async function getNodes({ graphql, reporter }) {
           }
         }
       }
+      allWpProject(sort: { fields: [date], order: DESC }) {
+        edges {
+          previous {
+            id
+          }
+          # note: this is a GraphQL alias. It renames "node" to "post" for this query
+          # We're doing this because this "node" is a post! It makes our code more readable further down the line.
+          post: node {
+            __typename
+            id
+            uri
+          }
+          next {
+            id
+          }
+        }
+      }
     }
   `)
 
@@ -183,5 +200,6 @@ async function getNodes({ graphql, reporter }) {
   return [
     ...graphqlResult.data.allWpPost.edges,
     ...graphqlResult.data.allWpPage.edges,
+    ...graphqlResult.data.allWpProject.edges,
   ]
 }

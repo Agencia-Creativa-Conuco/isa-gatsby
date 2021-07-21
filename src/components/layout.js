@@ -1,19 +1,46 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { Global } from '@emotion/react';
+import styled from '@emotion/styled';
+import { graphql, useStaticQuery } from 'gatsby';
 
 import globalStyles from '../components/styles/global-styles';
 import FontFace from "../components/styles/font-faces";
 import Header from './header';
+import { set } from 'lodash';
 
 const Layout = ({ children }) => {
+
+    const {
+        wp: {
+            generalSettings: settings
+        }
+    } = useStaticQuery( graphql`
+        query MyQuery {
+            wp {
+                id
+                generalSettings {
+                dateFormat
+                description
+                email
+                language
+                startOfWeek
+                timeFormat
+                timezone
+                title
+                url
+                }
+            }
+        }
+    ` );
+
     return ( 
         <>
 
             <Helmet>
                 
-                <title>ISA WEB</title>
-                <meta name="description" content="UNIVERSIDAD ISA" />
+                <title>{settings.title}</title>
+                <meta name="description" content={settings.description} />
 
                 {/* FONTS */}
                 {/* <link rel="preconnect" href="https://fonts.googleapis.com" /> */}
@@ -24,13 +51,19 @@ const Layout = ({ children }) => {
 
             <FontFace />
 
-            <Global styles={ globalStyles() } />
+            <Global styles={ globalStyles({ settings }) } />
 
             <Header />
 
-            { children }
+            <Main>
+                { children }
+            </Main>
         </>
      );
 }
  
 export default Layout;
+
+const Main = styled.main`
+    overflow: hidden;
+`;

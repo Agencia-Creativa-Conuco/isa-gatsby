@@ -5,7 +5,7 @@ import { Container, Section, Row, Col, mq} from "../../layout/index";
 import FeaturedMedia from "../../featured-media";
 import Link from "../../link";
 import {LeftArrowIcon} from "../../icons";
-import { useStaticQuery } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 
 import {Spring, animated} from "@react-spring/web";
 import colors from "../../styles/colors";
@@ -28,7 +28,7 @@ const Item = ({ item })=>{
         return (
             <Col size={12} sizeMD={isCareer? 12 : isMain? 12 : 6 }>
                 <Component>
-                    <Link link={link} noDecoration>
+                    <Link to={link} noDecoration>
                         <Title 
                             color={isCareer?colors.text.base:colors.primary.dark} 
                             bgHover={colors.gray.light}
@@ -200,7 +200,7 @@ const HomeOffer = ({ page, faculties, careers }) =>{
 
                                 return !(type === "career")?(
                                     <Col size={6} sizeLG mxAuto noGutters key={index}>
-                                        <StyledLink link={link}>
+                                        <StyledLink to={link}>
                                             <MenuItem 
                                                 onClick={(e) => setView( isActive? 0 : index )}
                                                 active={isActive}

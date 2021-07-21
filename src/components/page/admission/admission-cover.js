@@ -6,7 +6,7 @@ import Link from "../../link";
 import colors from '../../styles/colors';
 import { graphql, useStaticQuery } from 'gatsby';
 
-const AdmissionCover = ({}) =>{
+const AdmissionCover = ({ page }) =>{
 
     //Consultar y optener logo.svg
     const { image } = useStaticQuery( graphql`
@@ -21,6 +21,11 @@ const AdmissionCover = ({}) =>{
         }
     `);
 
+    const {
+        title,
+        featuredImage,
+    } = page;
+
     return (
         <Section spaceNone>
             <Container fluid noGutters>
@@ -33,7 +38,7 @@ const AdmissionCover = ({}) =>{
                         <DivLogo decoBg={colors.secondary.light}>
                             <DecoLogo decoBg={colors.secondary.light}>
                             <Logo
-                                media={image}
+                                media={featuredImage.node.localFile}
                                 alt="Admisiones Universidad ISA"
                                 size="100%"
                                 sizeXL="90%"
@@ -55,12 +60,12 @@ const AdmissionCover = ({}) =>{
                                     mlAuto
                                 >
                                     <Content decoBg={colors.secondary.light}>
-                                        <SectionTitle>Estudia Con Nosotros</SectionTitle>
+                                        <SectionTitle>{title}</SectionTitle>
 
                                         <Copy>Sigue estos pasos y estudia con nosotros, aplica para vivir una experiencia educativa de calidad que marcará un antes y un después en tu carrera profesional. ¿Estás listo?</Copy>
 
                                         <StyledLink 
-                                            link={"#"}
+                                            to={"#"}
                                             paddingX="7rem"
                                             cta
                                         >Aplicar</StyledLink>

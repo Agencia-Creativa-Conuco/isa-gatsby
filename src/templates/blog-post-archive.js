@@ -3,8 +3,8 @@ import Layout from "../components/layout";
 import { graphql } from "gatsby";
 
 export const query = graphql`
-  query($id: String!) {
-    allWpPost( filter: { id: { eq: $id } }) {
+  query {
+    allWpPost {
       nodes {
         id: databaseId
         title

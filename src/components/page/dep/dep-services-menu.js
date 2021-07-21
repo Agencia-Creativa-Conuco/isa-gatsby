@@ -46,7 +46,7 @@ const DEPServicesMenu = ({ state, libraries }) =>{
                                     
                                     return(
                                         <Col size={6} sizeMD='auto' key={index} > 
-                                            <Link link={stringify({path:parse(state.router.link).path, hash:"#contenido"})} noDecoration>
+                                            <Link to={stringify({path:parse(state.router.link).path, hash:"#contenido"})} noDecoration>
                                                 <Option 
                                                     decoBG={colors.blue.base}    
                                                     onClick={ (e) => setView( view == index ? view : index ) }

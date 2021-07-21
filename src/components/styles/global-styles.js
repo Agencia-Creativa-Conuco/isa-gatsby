@@ -5,14 +5,16 @@ import slickcss from "slick-carousel/slick/slick.css";
 import slickcssTheme from "slick-carousel/slick/slick-theme.css";
 import colors from "./colors";
 
-const auxiliarCSS = () => {
+const auxiliarCSS = ({ settings }) => {
+
   // Get Gutenberg css url
-  // const apiURL = new URL(state.source.url);
+  const apiURL = new URL(settings.url);
   
-  // const blockStyle = apiURL.origin + "/wp-includes/css/dist/block-library/style.min.css";
-  // const blockTheme = apiURL.origin + "/wp-includes/css/dist/block-library/theme.min.css";
+  const blockStyle = apiURL.origin + "/wp-includes/css/dist/block-library/style.min.css";
+  const blockTheme = apiURL.origin + "/wp-includes/css/dist/block-library/theme.min.css";
   
   return css`
+    @import "${blockStyle}";
     ${slickcss}
     ${slickcssTheme}
   `
@@ -428,9 +430,9 @@ const tableStyles = () => css`
   }
 `;
 
-const globalStyle = () =>
+const globalStyle = (props) =>
   css([
-    auxiliarCSS(),
+    auxiliarCSS(props),
     cssReset,
     normalize,
     documentSetup(),

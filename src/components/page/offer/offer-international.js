@@ -33,7 +33,7 @@ const OfferInternational = ({ state,libraries }) =>{
                                      <Html2React 
                                        html={ offer_international_copy }
                                          />
-                                     <StyledLink link="#" cta>CONOCER MAS</StyledLink>
+                                     <StyledLink to="#" cta>CONOCER MAS</StyledLink>
                             </DivTitle>
                         </Col>
                         <Col size={12} sizeMD={5} orderMD={1}>

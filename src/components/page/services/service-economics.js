@@ -55,7 +55,7 @@ const ServiceEconomics = ({ state,libraries }) =>{
                                         <Html2React 
                                             html={ service_economics_copy }
                                         />
-                                        <StyledLink link="#" cta>APLICAR</StyledLink>
+                                        <StyledLink to="#" cta>APLICAR</StyledLink>
                                     </DivTitle>
                                 </Col>
                             </Row>

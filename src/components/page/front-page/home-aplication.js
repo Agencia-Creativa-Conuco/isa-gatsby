@@ -47,7 +47,7 @@ const HomeAplication = ({ page }) =>{
 
                                 {
                                     parseInt(aplicationCta)?(
-                                        <Link link={aplicationCtaUrl} cta>
+                                        <Link to={aplicationCtaUrl} cta>
                                             {aplicationCtaText}
                                         </Link>
                                     ):null

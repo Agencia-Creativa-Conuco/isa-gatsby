@@ -5,6 +5,7 @@ import Link from '../../link';
 import { Container, Section, Row, Col, mq} from "../../layout/index";
 import Carousel from "react-slick";
 import colors from "../../styles/colors";
+import CTA from '../../cta';
 
 import FeaturedMedia from '../../featured-media';
 
@@ -48,9 +49,9 @@ const HomeCover = ({ page, slides }) =>{
                                                 {copy}
                                             </Copy>
                                             <LinkBox>
-                                                <StyledLink link={page.uri} cta>
+                                                <CTA to={page.uri}>
                                                     Conocer Mas
-                                                </StyledLink>
+                                                </CTA>
                                             </LinkBox>
                                         </Content>
                                     </Col>
@@ -131,16 +132,6 @@ const Copy = styled.div``;
 
 const LinkBox = styled.div`
     margin: 3rem 0;
-`;
-
-const StyledLink = styled(Link)`
-    /* margin-bottom: 3rem;
-    display: inline-block; */
-
-    /* ${mq.md}{
-        margin-top: 3rem;
-        margin-bottom: 1rem;
-    } */
 `;
 
 const Media = styled.div`

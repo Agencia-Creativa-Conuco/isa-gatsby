@@ -1,12 +1,13 @@
 import * as React from "react"
 import Layout from "../components/layout";
 import { graphql } from "gatsby";
+import PostTemplate from "../components/post/news/news";
 
 export const query = graphql`
   query($id: String!) {
     allWpPost( filter: { id: { eq: $id } }) {
       nodes {
-        id: databaseId
+        id
         title
         content
         excerpt
@@ -27,7 +28,7 @@ export const query = graphql`
         }
         author {
           node {
-            id: databaseId
+            id
             name
             uri
             slug
@@ -35,7 +36,7 @@ export const query = graphql`
         }
         categories {
           nodes {
-            id: databaseId
+            id
             name
             slug
             link
@@ -44,7 +45,7 @@ export const query = graphql`
         }
         tags {
           nodes {
-            id: databaseId
+            id
             name
             slug
             link
@@ -59,22 +60,17 @@ export const query = graphql`
 // markup
 const Post = ({data}) => {
 
-    const {
-        allWpPost: {
-            nodes: posts
-        }
-    } = data;
-    
-    const [ post ] = posts;
-
-    const {
-        title,
-        content
-    } = post;
+  const {
+      allWpPost: {
+          nodes: posts
+      }
+  } = data;
+  
+  const [ post ] = posts;
 
   return (
       <Layout>
-        <h1>{title}</h1>
+        <PostTemplate {...{post}} />
       </Layout>
   )
 }

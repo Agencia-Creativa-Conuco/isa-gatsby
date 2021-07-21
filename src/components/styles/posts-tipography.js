@@ -1,7 +1,7 @@
 import {css} from "@emotion/react";
-import mq from "@osirispp/frontity-layout/mq";
+import { mq } from "../layout/index";
 
-export const h1 = `
+export const h1 = css`
     font-size: 2.2rem;
     ${mq.sm}{
         font-size: 2.4rem;
@@ -17,7 +17,7 @@ export const h1 = `
     }
 `;
 
-export const h2 = `
+export const h2 = css`
     font-size: 2rem;
     ${mq.sm}{
         font-size: 2.2rem;
@@ -33,7 +33,7 @@ export const h2 = `
     }   
 `;
 
-export const h3 = `
+export const h3 = css`
     font-size: 1.9rem;
     ${mq.sm}{
         font-size: 2rem;
@@ -49,7 +49,7 @@ export const h3 = `
     }
 `;
 
-export const h4 = `
+export const h4 = css`
     font-size: 1.8rem;
     ${mq.sm}{
         font-size: 1.9rem;
@@ -65,7 +65,7 @@ export const h4 = `
     }
 `;
 
-export const h5 = `
+export const h5 = css`
     font-size: 1.7rem;
     ${mq.sm}{
         font-size: 1.8rem;
@@ -81,7 +81,7 @@ export const h5 = `
     }
 `;
 
-export const h6 = `
+export const h6 = css`
     font-size: 1.6rem;
     ${mq.sm}{
         font-size: 1.7rem;

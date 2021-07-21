@@ -27,6 +27,7 @@ const ResourcesList = ({
 }) => {
 
     const resources = items.filter((resource)=>{
+
         const {
             resource_type
         } = resource;
@@ -60,12 +61,19 @@ const ResourcesList = ({
                 <Row>
                 {
                     resources.length? resources.map((item,index) =>{
+
+                        const {
+                            title,
+                            featuredImage,
+                            uri
+                        } = item;
+
                         return(
                         <Col key={index} size="auto" mxAuto>
                             <ResourceCard
-                                title={item.title.rendered}
-                                icon={item.featured_media}
-                                link={item.file.url}
+                                title={title}
+                                icon={featuredImage}
+                                to={uri}    
                                 color={resourceColor}
                             />
                         </Col>

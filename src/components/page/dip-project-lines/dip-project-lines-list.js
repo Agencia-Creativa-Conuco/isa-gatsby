@@ -79,7 +79,7 @@ const DIPGeneral = ({ state }) =>{
                                                     
                                                     <Row>
                                                         <Col>
-                                                            <Link link={link} noDecoration>
+                                                            <Link to={link} noDecoration>
                                                                 <DepartamentName>{title.rendered}</DepartamentName>
                                                             </Link>
                                                         </Col>
@@ -97,7 +97,7 @@ const DIPGeneral = ({ state }) =>{
                                                                 return (
                                                                     <Col size={12} sizeMD={6} key={index}>
                                                                         <Project color={colors.gray.base} colorHover={colors.secondary.base}>
-                                                                            <StyledLink link={link} noDecoration>
+                                                                            <StyledLink to={link} noDecoration>
                                                                                 <ProjectName>{title.rendered}</ProjectName>
                                                                             </StyledLink>
                                                                         </Project>

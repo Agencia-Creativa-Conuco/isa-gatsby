@@ -36,7 +36,7 @@ const OffterFacultiesDate = ({ state }) =>{
                                             return (
                                                 <Col size="auto" key={index} css={cardCol}>
                                                     <Card>
-                                                        <CardLink  link={item.link} noDecoration>
+                                                        <CardLink  to={item.link} noDecoration>
                                                             <TitleCard color={colors.gray.base} >{  item.title.rendered } </TitleCard>
                                                         </CardLink>
                                                     </Card>

@@ -51,7 +51,7 @@ const Cover = ({ state, libraries }) =>{
                                         {
                                             parseInt(about_cover_cta)?(
                                                 <Link 
-                                                    link={about_cover_cta_url}
+                                                    to={about_cover_cta_url}
                                                     color={colors.blue.dark}
                                                     cta
                                                 >

@@ -131,7 +131,7 @@ const DIPGeneral = ({ state }) =>{
                                                             <FacultyName>{faculty.title.rendered}</FacultyName>
                                                         ):null
                                                     }
-                                                    <Link link={link} noDecoration>
+                                                    <Link to={link} noDecoration>
                                                         <DepartamentName>{title.rendered}</DepartamentName>
                                                     </Link>
                                                     <DepartamentProjects>
@@ -145,7 +145,7 @@ const DIPGeneral = ({ state }) =>{
 
                                                             return (
                                                                 <Project key={index} color={colors.gray.base} colorHover={colors.secondary.base}>
-                                                                    <StyledLink link={link} noDecoration>
+                                                                    <StyledLink to={link} noDecoration>
                                                                         <ProjectName>{title.rendered}</ProjectName>
                                                                     </StyledLink>
                                                                 </Project>

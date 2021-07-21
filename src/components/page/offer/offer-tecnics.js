@@ -31,7 +31,7 @@ const OfferTecnics = ({ state,libraries }) =>{
                             <Html2React 
                                 html={ offer_tecnics_copy }
                             />
-                            <StyledLink link="#" cta>CONOCER MAS</StyledLink>
+                            <StyledLink to="#" cta>CONOCER MAS</StyledLink>
                         </DivTitle>
                         <DecoCol decoBg={colors.blue.base}/>
                     </Col>

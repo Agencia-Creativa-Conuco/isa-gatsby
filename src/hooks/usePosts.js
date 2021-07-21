@@ -8,7 +8,7 @@ const usePosts = () => {
         {
             allWpPost {
               nodes {
-                id: databaseId
+                id
                 title
                 content
                 excerpt
@@ -29,7 +29,7 @@ const usePosts = () => {
                 }
                 author {
                   node {
-                    id: databaseId
+                    id
                     name
                     uri
                     slug
@@ -37,7 +37,7 @@ const usePosts = () => {
                 }
                 categories {
                   nodes {
-                    id: databaseId
+                    id
                     name
                     slug
                     link
@@ -46,7 +46,7 @@ const usePosts = () => {
                 }
                 tags {
                   nodes {
-                    id: databaseId
+                    id
                     name
                     slug
                     link

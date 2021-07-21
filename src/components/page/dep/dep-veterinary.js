@@ -31,7 +31,7 @@ const DEPVeterinary = ({ state, libraries }) =>{
                                 <Copy> { projects_veterinary_copy } </Copy>
                                 <Row>
                                     <Col size={12} css={stylesCol}>
-                                    <ServiceLink color={colors.blue.base} link='/'> { projects_veterinary_subTitle } </ServiceLink>
+                                    <ServiceLink color={colors.blue.base} to='/'> { projects_veterinary_subTitle } </ServiceLink>
                                     </Col>
                                     <Row >
                                             {projects_veterinary_group.map((item, index)=>{

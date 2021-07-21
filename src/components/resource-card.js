@@ -7,17 +7,16 @@ import { Row, Col } from "./layout/index";
 import {h5} from "./styles/tipography";
 import cta from "./styles/cta";
 import FeaturedMedia from "./featured-media"
+import colors from "./styles/colors";
 
 const ResourceCard = ({
     state, actions, libraries, 
     title, link, icon, color=state.theme.colors.primary.dark
 }) => {
     
-    const {colors} = state.theme;
-
     return (
         <Card>
-            <DownloadLink link={link} noDecoration download>
+            <DownloadLink to={link} noDecoration download>
                 <Row>
                     <Col>
                         <ResourceName color={color}>{title}</ResourceName>

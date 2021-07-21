@@ -2,6 +2,7 @@ import React from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import {  Section, Container, Row, Col, mq } from "../../layout/index";
+import CTA from '../../cta';
 
 import FeaturedMedia from "../../featured-media";
 import Link from "../../link";
@@ -60,7 +61,7 @@ const HomeProjects = ({ projects, page }) =>{
                                                             <SlideTitle>{title}</SlideTitle>
                                                             <Excerpt dangerouslySetInnerHTML={{ __html: excerpt }} />
                                                             <LinkBox>
-                                                                <Link link={link} cta>Conocer más</Link>
+                                                                <CTA to={link} >Conocer más</CTA>
                                                             </LinkBox>
                                                         </Col>
                                                     </Row>

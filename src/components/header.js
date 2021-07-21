@@ -1,20 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import colors from './styles/colors';
 import { Container, Row, Col } from './layout/index';
+import Nav from './nav';
+import MobileMenu from "./menu";
 
 const Header = () => {
 
     //Consultar y optener logo.svg
-    const { logo } = useStaticQuery( graphql`
+    const { logo, menu } = useStaticQuery( graphql`
         query {
+            
             logo: file(relativePath: {eq: "logo.svg"}) {
                 publicURL
             }
+
+            menu: wpMenu(name: {eq: "main"}) {
+              id
+              name
+              menuItems {
+                nodes {
+                  id
+                  label
+                  url
+                  target
+                  path
+                  parentId
+                  order
+                }
+              }
+            }
         }
     `);
+
+    const getHierarchicalItems = (
+      data = [],
+      { idKey = "id", parentKey = "parentId", childrenKey = "children" } = {}
+    ) => {
+      const tree = []
+      const childrenOf = {}
+      data.forEach(item => {
+        const newItem = { ...item }
+        const { [idKey]: id, [parentKey]: parentId = 0 } = newItem
+        childrenOf[id] = childrenOf[id] || []
+        newItem[childrenKey] = childrenOf[id]
+        parentId
+          ? (childrenOf[parentId] = childrenOf[parentId] || []).push(newItem)
+          : tree.push(newItem)
+      })
+      return tree
+    }
+
+    const menuItems = getHierarchicalItems(menu.menuItems.nodes);
+
+    const [ isMobileMenuOpen, toggleMobileMenu ] = useState(false);
 
     return ( 
         <HeaderWrapper 
@@ -38,14 +79,20 @@ const Header = () => {
                         <NavWrapper>
                             <Row alignCenter>
                                 <Col alignSelf="normal" noGutters lGuttersLG>
-                                    AQUI VA LA NAVEGACIÓN
-                                    {/* <Nav hideXS showLG/> */}
+                                    <Nav 
+                                      items={menuItems} 
+                                      {...{ isMobileMenuOpen }}
+                                      hideXS showLG
+                                    />
                                 </Col>
                                 <Col size="auto" mlAuto>
                                 <Gadgets>
                                     AQUI VAN LOS BOTONES
-                                    {/* <SearchButton />
-                                    <MobileMenu /> */}
+                                    {/* <SearchButton /> */}
+                                    <MobileMenu 
+                                      items={menuItems} 
+                                      {...{ isMobileMenuOpen, toggleMobileMenu }}
+                                    />
                                 </Gadgets>
                                 </Col>
                             </Row>

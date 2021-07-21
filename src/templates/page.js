@@ -1,10 +1,12 @@
-import * as React from "react"
+import * as React from "react";
 import Layout from "../components/layout";
 import { graphql } from "gatsby";
 
+import Admisiones from "../components/page/admission/admisiones";
+
 export const query = graphql`
-  query($id: String!) {
-    allWpPage( filter: { id: { eq: $id } }) {
+  query ($id: String!) {
+    allWpPage(filter: { id: { eq: $id } }) {
       nodes {
         id: databaseId
         title
@@ -13,6 +15,9 @@ export const query = graphql`
         link
         uri
         slug
+        resources {
+          ...WpPageToResourceConnectionFragment
+        }
         featuredImage {
           node {
             localFile {
@@ -27,29 +32,49 @@ export const query = graphql`
       }
     }
   }
+
+  fragment WpPageToResourceConnectionFragment on WpPageToResourceConnection {
+    nodes {
+      id
+      title
+      slug
+      uri
+      link
+      featuredImage {
+        node {
+          localFile {
+            sharp: childImageSharp {
+              fluid(maxWidth: 1200) {
+                ...GatsbyImageSharpFluid_withWebp
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 `;
 
 // markup
-const Post = ({data}) => {
+const Post = ({ data }) => {
+  const {
+    allWpPage: { nodes: pages },
+  } = data;
 
-    console.log(data)
-    const {
-        allWpPage: {
-            nodes: posts
-        }
-    } = data;
-    
-    const [ post ] = posts;
+  const [page] = pages;
 
-    const {
-        title,
-        content
-    } = post;
+  const { title, content, slug } = page;
+
+  if(slug === 'admisiones'){
+    return(
+      <Admisiones {...{page}}/>
+    )
+  }
 
   return (
-      <Layout>
-        <h1>{title}</h1>
-      </Layout>
-  )
-}
-export default Post
+    <Layout>
+      <h1>{title}</h1>
+    </Layout>
+  );
+};
+export default Post;

@@ -28,7 +28,7 @@ const AdmissionDownload = ({ state }) =>{
                             <CardLink>
 
                                 <StyledLink 
-                                    link={"#"}
+                                    to={"#"}
                                     cta
                                 >DESCARGAR</StyledLink>
 
@@ -50,7 +50,7 @@ const AdmissionDownload = ({ state }) =>{
                             <CardLink>
 
                                 <StyledLink 
-                                    link={"#"}
+                                    to={"#"}
                                     cta
                                 >DESCARGAR</StyledLink>
 

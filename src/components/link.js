@@ -1,47 +1,28 @@
 import React, { useEffect } from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import ctas from "./styles/cta";
-import { Link } from "gatsby";
-import colors from "./styles/colors";
+import { Link as GatsbyLink } from "gatsby";
 
-const LinkComponent = ({
-  state,
-  actions,
-  link,
-  className,
-  children,
-  rel,
-  cta,
-  color,
-  bgColor,
-  noDecoration,
-  download=false,
-  "aria-current": ariaCurrent,
-  onClick: onClickProp,
-}) => {
-
+const Link = ({ children, to, activeClassName, partiallyActive, ...other }) => {
+  // Tailor the following test to your environment.
+  // This example assumes that any internal link (intended for Gatsby)
+  // will start with exactly one slash, and that anything else is external.
+  const internal = /^\/(?!\/)/.test(to)
+  // Use Gatsby Link for internal links, and <a> for others
+  if (internal) {
+    return (
+      <GatsbyLink
+        to={to}
+        activeClassName={activeClassName}
+        partiallyActive={partiallyActive}
+        {...other}
+      >
+        {children}
+      </GatsbyLink>
+    )
+  }
   return (
-    <A
-      // ref={ref}
-      to={link}
-      className={className}
-      aria-current={ariaCurrent}
-      colors = {colors}
-      {...{noDecoration, download, bgColor, color, cta}}
-    >
+    <a href={to} {...other}>
       {children}
-    </A>
-  );
-};
-
-export default LinkComponent;
-
-const A = styled(Link)`
-  ${({cta}) => cta? ctas : null}
-  ${({noDecoration}) => noDecoration? 
-    css`
-      text-decoration: none;
-      color: inherit;
-    ` : css``}
-`;
+    </a>
+  )
+}
+export default Link

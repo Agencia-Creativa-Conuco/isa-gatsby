@@ -37,7 +37,7 @@ const DIPNews = ({ state }) =>{
 
                         return(
                             <Col key={index} size={12} sizeMD={6} sizeLG={4} mxMDAuto noGuttersLG>
-                                <StyledLink link={link}>
+                                <StyledLink to={link}>
                                     <Card>    
                                         <Media
                                             media={featured_media}

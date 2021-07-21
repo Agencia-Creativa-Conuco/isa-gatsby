@@ -35,7 +35,6 @@ const FeaturedMedia = ({
         //asigna color gris si se pasa bgColor sin valor
         bgColor: bgColor == true? colors.gray.light: bgColor,
       }}>
-        <Image alt so />
         {
           media.sharp? (
             <StyledImage
