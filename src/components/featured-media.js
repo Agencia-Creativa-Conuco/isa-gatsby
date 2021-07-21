@@ -138,6 +138,8 @@ const StyledImage = styled(Image)`
         position: absolute !important;
         left: 0;
         top: 0;
+        right: 0;
+        left: 0;
         `: 
       css`
         position: absolute !important;
