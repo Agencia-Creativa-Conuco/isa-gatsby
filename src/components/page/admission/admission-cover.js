@@ -5,21 +5,9 @@ import FeaturedMedia from "../../featured-media";
 import Link from "../../link";
 import colors from '../../styles/colors';
 import { graphql, useStaticQuery } from 'gatsby';
+import CTA from "../../cta";
 
 const AdmissionCover = ({ page }) =>{
-
-    //Consultar y optener logo.svg
-    const { image } = useStaticQuery( graphql`
-        query {
-            image: file(relativePath: {eq: "admisiones/cover.jpg"}) {
-                sharp: childImageSharp {
-                    fluid( maxWidth: 1200 ) {
-                        ...GatsbyImageSharpFluid_withWebp
-                    }
-                }
-            }
-        }
-    `);
 
     const {
         title,
@@ -64,11 +52,11 @@ const AdmissionCover = ({ page }) =>{
 
                                         <Copy>Sigue estos pasos y estudia con nosotros, aplica para vivir una experiencia educativa de calidad que marcará un antes y un después en tu carrera profesional. ¿Estás listo?</Copy>
 
-                                        <StyledLink 
+                                        <StyledCTA 
                                             to={"#"}
                                             paddingX="7rem"
                                             cta
-                                        >Aplicar</StyledLink>
+                                        >Aplicar</StyledCTA>
                                     </Content>
                                 </Col>
                             </Row>
@@ -124,7 +112,7 @@ const SectionTitle = styled.h1`
 
 const Copy = styled.p``;
 
-const StyledLink = styled(Link)`
+const StyledCTA = styled(CTA)`
 
     ${mq.md}{
         margin-top: 3rem;

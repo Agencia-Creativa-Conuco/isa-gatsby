@@ -1,5 +1,5 @@
 import { connect, css, styled } from "frontity";
-import { Container, Section, Row, Col, mq} from "@osirispp/frontity-layout";
+import { Container, Section, Row, Col, mq} from "../../layout/index";
 import FeaturedMedia from "../../featured-media";
 import Carousel from "react-slick";
 import {LeftArrowIcon, RightArrowIcon} from "../../icons";

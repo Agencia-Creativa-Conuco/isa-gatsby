@@ -4,6 +4,7 @@ import { css } from "@emotion/react";
 import Image from "gatsby-image";
 import {mq} from "./layout/index";
 import colors from "./styles/colors";
+import { getImage } from "gatsby-plugin-image";
 
 
 const FeaturedMedia = ({ 
@@ -36,10 +37,21 @@ const FeaturedMedia = ({
         bgColor: bgColor == true? colors.gray.light: bgColor,
       }}>
         {
-          media.sharp? (
+          media?.childImageSharp? (
             <StyledImage
-              fluid={media.sharp.fluid}
+              fluid={media.childImageSharp.fluid}
               alt={"texto alternativo"}
+              position={position}
+              isSized={isSized}
+              loading={loading}
+              fit={fit}
+            />
+          ) : media?.publicURL? (
+            <NormalImage
+              {...media}
+              alt={ media.alt }
+              src= { media.publicURL }
+              srcSet={ media.srcset }
               position={position}
               isSized={isSized}
               loading={loading}

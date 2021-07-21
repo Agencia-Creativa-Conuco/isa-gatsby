@@ -9,6 +9,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 
 import {Spring, animated} from "@react-spring/web";
 import colors from "../../styles/colors";
+import { getHierarchicalItems } from "../../inc/auxiliar";
 
 const Item = ({ item })=>{
     
@@ -107,50 +108,50 @@ const HomeOffer = ({ page, faculties, careers }) =>{
 
     
     //Consultar y optener logo.svg
-    const { logo } = useStaticQuery( graphql`
+    const { logo, menu } = useStaticQuery( graphql`
         query {
             logo: file(relativePath: {eq: "logo.svg"}) {
                 publicURL
             }
+
+            menu: wpMenu(name: {eq: "home_nav"}) {
+                id
+                name
+                menuItems {
+                  nodes {
+                    id
+                    label
+                    url
+                    target
+                    path
+                    parentId
+                    order
+                    wpFields {
+                        icon {
+                          id
+                          alt: altText
+                          full_url: sourceUrl
+                          srcset: srcSet 
+                          localFile {
+                            publicURL
+                            childImageSharp {
+                              fluid(maxWidth: 1200) {
+                                ...GatsbyImageSharpFluid_withWebp
+                              }
+                            }
+                          }           
+                        }
+                      }
+                  }
+                }
+            }
         }
     `);
 
-    
     const {
         navigationShow,
         navigationItems,
-        navigation = [
-            {
-                title: 'Admisiones',
-                content: 'este es un contenido de prueba',
-                icon: logo,
-                post: {
-                    link: '/admisiones',
-                    type: 'page'
-                }
-            },
-            {
-                title: 'Servicio Estudiantil',
-                content: 'este es un contenido de prueba',
-                icon: logo,
-                post: {
-                    link: '/servicio-al-estudiante',
-                    type: 'page'
-                }
-            },
-            {
-                title: 'Grado',
-                content: 'este es un contenido de prueba',
-                icon: logo,
-                post: careers.filter( career => career.slug === "grado")[0],
-            },
-            {
-                title: 'Postgrado',
-                content: 'este es un contenido de prueba',
-                icon: logo,
-                post: careers.filter( career => career.slug === "postgrado")[0],
-            }
-        ]
+        menuItems = getHierarchicalItems(menu.menuItems.nodes) 
     } = page;
 
 
@@ -173,7 +174,7 @@ const HomeOffer = ({ page, faculties, careers }) =>{
             .filter((faculty)=>faculty.children.length || faculty.careers.length)
     }
 
-    return navigation.length && navigationShow?(
+    return menuItems.length && navigationShow?(
         <Section
             css={sectionStyles} 
             spaceNone
@@ -182,42 +183,20 @@ const HomeOffer = ({ page, faculties, careers }) =>{
                 <Container>
                     <Row>
                         {
-                            navigation.map((item,index)=>{
+                            menuItems.map((item,index)=>{
 
                                 const {
-                                    icon,
-                                    title,
-                                    content,
-                                    post
+                                    label,
+                                    description,
+                                    wpFields: {
+                                        icon
+                                    }
                                 } = item;
 
-                                const {
-                                    link,
-                                    type
-                                } = post;
-                                
+                                console.log(icon)
                                 const isActive = view == index;
 
-                                return !(type === "career")?(
-                                    <Col size={6} sizeLG mxAuto noGutters key={index}>
-                                        <StyledLink to={link}>
-                                            <MenuItem 
-                                                onClick={(e) => setView( isActive? 0 : index )}
-                                                active={isActive}
-                                                bg={colors.primary.base}
-                                                bgHover={colors.gray.light}
-                                            >
-                                                <MenuItemBody>
-                                                    <IconWrapper bgColor={colors.gray.light}>
-                                                        <Icon media={{full_url:icon.publicURL}} size="100%" fit="initial" />
-                                                    </IconWrapper>
-                                                    <OfferTitle>{title}</OfferTitle>
-                                                    <OfferCopy>{content}</OfferCopy>
-                                                </MenuItemBody>
-                                            </MenuItem>
-                                        </StyledLink>
-                                    </Col>
-                                ):(
+                                return (
                                     <Col size={6} sizeLG mxAuto noGutters key={index}>
                                         <MenuItem 
                                             onClick={(e) => setView( isActive? null : index )}
@@ -227,10 +206,10 @@ const HomeOffer = ({ page, faculties, careers }) =>{
                                         >
                                             <MenuItemBody>
                                                 <IconWrapper bgColor={colors.gray.light}>
-                                                    <Icon media={{full_url:icon.publicURL}} size="100%" fit="initial"/>
+                                                    <Icon media={icon?.localFile} size="100%" fit="initial"/>
                                                 </IconWrapper>
-                                                <OfferTitle>{item.title}</OfferTitle>
-                                                <OfferCopy>{item.content}</OfferCopy>
+                                                <OfferTitle>{label}</OfferTitle>
+                                                <OfferCopy>{description}</OfferCopy>
                                             </MenuItemBody>
                                             <ExpandIcon
                                                 bgColor={isActive?"white":colors.primary.dark}
@@ -248,15 +227,15 @@ const HomeOffer = ({ page, faculties, careers }) =>{
 
                 </Container>
             </Navigation>
-            <Displayer as="div">
+            {/* <Displayer as="div">
                 {
-                    navigation.map((item, index) =>{
+                    menuItems.map((item, index) =>{
 
-                        if(item.post.type != "career"){
+                        if(post.type != "career"){
                             return null;
                         }
 
-                        const items = hierarchy({parent: 0, faculties, careers, grade: item.post.id});
+                        const items = hierarchy({parent: 0, faculties, careers, grade: post.id});
 
                         const isActive = view == index;
 
@@ -282,7 +261,7 @@ const HomeOffer = ({ page, faculties, careers }) =>{
                         
                     })
                 }
-            </Displayer>
+            </Displayer> */}
         </Section>
     ):null;
 
@@ -319,7 +298,7 @@ const MenuItem = styled.div`
         z-index: 1;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-description: space-between;
         ${mq.md}{
             min-height: 10rem;
             padding: 2.5rem 1.5rem;

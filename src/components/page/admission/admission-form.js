@@ -6,6 +6,7 @@ import { Container, Row, Col, mq} from "../../layout/index";
 import Link from "../../link";
 import colors from '../../styles/colors';
 import BackgroundImage from "gatsby-background-image";
+import CTA from "../../cta";
 
 const AdmissionForm = ({ state,libraries }) =>{
 
@@ -13,7 +14,7 @@ const AdmissionForm = ({ state,libraries }) =>{
     const { image } = useStaticQuery( graphql`
         query {
             image: file(relativePath: {eq: "admisiones/form.jpg"}) {
-                sharp: childImageSharp {
+                childImageSharp {
                     fluid( maxWidth: 1200 ) {
                         ...GatsbyImageSharpFluid_withWebp
                     }
@@ -21,9 +22,9 @@ const AdmissionForm = ({ state,libraries }) =>{
             }
         }
     `);
-    
+
     return (
-        <BackgroundImage Tag="section" fluid={image.sharp.fluid}>
+        <BackgroundImage Tag="section" fluid={image?.childImageSharp?.fluid}>
             <Container>
                 <Row>
                     <Col size="auto" css={css`background-color: ${colors.blue.dark};`}>
@@ -33,7 +34,7 @@ const AdmissionForm = ({ state,libraries }) =>{
                             <Input type="email" placeholder="Correo Electronico"/>
                             <Input type="tel" placeholder="Numero de telefono"/>
                             <Input type="text" placeholder="Mensaje"/>
-                            <StyledLink to="#" cta>ENTRAR</StyledLink>
+                            <StyledCTA to="#" cta>ENTRAR</StyledCTA>
                         </Form>
                     </Col>
                 </Row>
@@ -69,7 +70,7 @@ const Input = styled.input`
 `;
 
 
-const StyledLink = styled(Link)`
+const StyledCTA = styled(CTA)`
 
     ${mq.md}{
         margin-top: 3rem;

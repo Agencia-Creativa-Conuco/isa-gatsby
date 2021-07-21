@@ -14,10 +14,11 @@ const useSlides = () => {
                         featuredImage {
                             node {
                                 localFile {
-                                    sharp: childImageSharp {
+                                    childImageSharp {
                                         fluid( maxWidth: 1200 ) {
                                             ...GatsbyImageSharpFluid_withWebp
                                         }
+                                        gatsbyImageData
                                     }
                                 }
                             }

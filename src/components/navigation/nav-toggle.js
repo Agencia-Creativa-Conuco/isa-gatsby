@@ -1,6 +1,7 @@
-import { styled, css } from "frontity";
 import React from "react";
-import {mq} from "@osirispp/frontity-layout";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import {mq} from "../layout/index";
 
 // Base styling for all toggle buttons
 export const BaseToggle = styled.button`

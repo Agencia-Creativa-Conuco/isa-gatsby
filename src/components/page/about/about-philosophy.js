@@ -1,5 +1,5 @@
 import { connect, styled, css } from "frontity";
-import { Container, Section, Row, Col, mq} from "@osirispp/frontity-layout";
+import { Container, Section, Row, Col, mq} from "../../layout/index";
 import {useState} from "react";
 
 import {Spring, animated} from "@react-spring/web";

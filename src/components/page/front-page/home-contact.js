@@ -5,6 +5,7 @@ import { Container, Section, Row, Col, mq} from "../../layout/index";
 import FeaturedMedia from "../../featured-media";
 import Link from "../../link";
 import colors from "../../styles/colors";
+import CTA from "../../cta";
 
 const HomeContact = ({ page }) =>{
     
@@ -89,7 +90,7 @@ const Input = styled.input`
 `;
 
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(CTA)`
     margin-top: 2rem;
 `;
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { styled, css, connect } from "frontity";
-import {Section, Container, Row, Col, mq} from "@osirispp/frontity-layout";
+import {Section, Container, Row, Col, mq} from "../../layout/index";
 import FeaturedMedia from "../../../featured-media";
 import {  PhoneIcon, MailIcon  } from "../../../icons";
 import Link from "../../../link";

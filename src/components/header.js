@@ -6,6 +6,9 @@ import colors from './styles/colors';
 import { Container, Row, Col } from './layout/index';
 import Nav from './nav';
 import MobileMenu from "./menu";
+import SearchModal from "./search/search-modal";
+import SearchButton from "./search/search-button";
+import { getHierarchicalItems } from "./inc/auxiliar";
 
 const Header = () => {
 
@@ -35,27 +38,10 @@ const Header = () => {
         }
     `);
 
-    const getHierarchicalItems = (
-      data = [],
-      { idKey = "id", parentKey = "parentId", childrenKey = "children" } = {}
-    ) => {
-      const tree = []
-      const childrenOf = {}
-      data.forEach(item => {
-        const newItem = { ...item }
-        const { [idKey]: id, [parentKey]: parentId = 0 } = newItem
-        childrenOf[id] = childrenOf[id] || []
-        newItem[childrenKey] = childrenOf[id]
-        parentId
-          ? (childrenOf[parentId] = childrenOf[parentId] || []).push(newItem)
-          : tree.push(newItem)
-      })
-      return tree
-    }
-
     const menuItems = getHierarchicalItems(menu.menuItems.nodes);
 
     const [ isMobileMenuOpen, toggleMobileMenu ] = useState(false);
+    const [ isSearchModalOpen, toggleSearchModal ] = useState(false);
 
     return ( 
         <HeaderWrapper 
@@ -87,8 +73,7 @@ const Header = () => {
                                 </Col>
                                 <Col size="auto" mlAuto>
                                 <Gadgets>
-                                    AQUI VAN LOS BOTONES
-                                    {/* <SearchButton /> */}
+                                    <SearchButton {...{ isSearchModalOpen, toggleSearchModal }} />
                                     <MobileMenu 
                                       items={menuItems} 
                                       {...{ isMobileMenuOpen, toggleMobileMenu }}
@@ -102,7 +87,7 @@ const Header = () => {
                 </Col>
                 </Row>
             </Container>
-            {/* <SearchModal /> */}
+            <SearchModal {...{ isSearchModalOpen, toggleSearchModal }} />
         </HeaderWrapper>
     );
 }

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect, styled, css, Global} from "frontity";
 import Link from "../link";
 import FeaturedMedia from "../featured-media";
-import { Container, Row, Col, mq, Section} from "@osirispp/frontity-layout";
+import { Container, Row, Col, mq, Section} from "../layout/index";
 
 const PageComponent = ({ state, actions, libraries }) => {
   // Get information about the current URL.

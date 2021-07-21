@@ -1,6 +1,6 @@
 import React from "react";
 import { connect, styled, css } from "frontity";
-import {Section} from "@osirispp/frontity-layout";
+import {Section} from "../../layout/index";
 import AdmissionCover from "./admission-cover";
 import Calendar from "../../calendar";
 import AdmissionForm from "./admission-form";

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { connect, styled, css } from "frontity";
-import { Container, Row, Col, Section} from "@osirispp/frontity-layout";
+import { Container, Row, Col, Section} from "../../layout/index";
 import Carousel from "react-slick";
 import FeaturedMedia from "../../featured-media";
 import Link from "../../link";

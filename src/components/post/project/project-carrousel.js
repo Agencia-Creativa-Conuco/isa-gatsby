@@ -1,5 +1,5 @@
 import {connect, styled, css} from "frontity";
-import { mq,Row, Col, Section,mqVal } from "@osirispp/frontity-layout";
+import { mq,Row, Col, Section,mqVal } from "../../layout/index";
 import FeaturedMedia from "../../featured-media";
 import { React } from 'react';
 import Carousel from "react-slick";

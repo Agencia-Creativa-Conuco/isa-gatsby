@@ -17,7 +17,7 @@
   "dependencies": {
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
-    "@osirispp/frontity-layout": "^1.0.9",
+    "../../layout/index": "^1.0.9",
     "@react-spring/web": "^9.2.1",
     "gatsby": "^3.9.1",
     "gatsby-background-image": "^1.5.3",
