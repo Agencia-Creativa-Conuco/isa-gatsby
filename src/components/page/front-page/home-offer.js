@@ -120,7 +120,6 @@ const NavItem = ({item, isActive, setView}) => {
         children,
     } = item;
     
-    console.log(item)
     return (
         <MenuItem 
             onClick={(e) => setView( isActive? null : id )}

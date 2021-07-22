@@ -7,7 +7,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import globalStyles from '../components/styles/global-styles';
 import FontFace from "../components/styles/font-faces";
 import Header from './header';
-import { set } from 'lodash';
+import Footer from './footer';
 
 const Layout = ({ children }) => {
 
@@ -58,6 +58,8 @@ const Layout = ({ children }) => {
             <Main>
                 { children }
             </Main>
+
+            <Footer />
         </>
      );
 }

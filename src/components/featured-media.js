@@ -142,7 +142,7 @@ const StyledImage = styled(Image)`
         left: 0;
         `: 
       css`
-        position: absolute !important;
+        /* position: absolute !important; */
       `
     }
 
@@ -165,7 +165,7 @@ const NormalImage = styled.img`
         top: 0;
         `: 
       css`
-        position: absolute !important;
+        /* position: absolute !important; */
       `
     }
 
