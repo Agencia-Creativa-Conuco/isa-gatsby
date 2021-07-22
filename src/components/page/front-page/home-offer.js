@@ -11,46 +11,40 @@ import {Spring, animated} from "@react-spring/web";
 import colors from "../../styles/colors";
 import { getHierarchicalItems } from "../../inc/auxiliar";
 
-const Item = ({ item })=>{
+const Item = ({ item, ...other })=>{
     
         const {
-            title,
-            link,
-            parent,
-            type,
-            careers = [],
-            children = []
+            label,
+            url,
+            children = [],
         } = item;
 
-        const isMain = parent?false: true;
+        const {
+            level = 1
+        } = other;
+
+    const isMain = level == 1;
+
+    return (
+        <Col size={12} sizeMD={ isMain? 12 : level==2? 6 : 12 }>
+            <Component>
+                <StyledLink to={url}>
+                    <Title 
+                        color={ (level + 1) % 2 == 0 && level != 1? colors.text.base : colors.primary.dark } 
+                        bgHover={colors.gray.light}
+                        {...{isMain, level}}
+                    >{label}</Title>
+                </StyledLink>
+                {
+                    children.length?(
+                        <ItemList items={children} level={level + 1} />
+                    ):null
+                }
+            </Component>
+        </Col>
+    );
     
-        const isCareer = type === "career";
-    
-        return (
-            <Col size={12} sizeMD={isCareer? 12 : isMain? 12 : 6 }>
-                <Component>
-                    <Link to={link} noDecoration>
-                        <Title 
-                            color={isCareer?colors.text.base:colors.primary.dark} 
-                            bgHover={colors.gray.light}
-                            {...{isMain, isCareer}}
-                        >{title}</Title>
-                    </Link>
-                    {
-                        careers.length?(
-                            <ItemList items={careers} />
-                        ):null
-                    }
-                    {
-                        children.length?(
-                            <ItemList items={children} />
-                        ):null
-                    }
-                </Component>
-            </Col>
-        );
-    
-    }
+}
 
 const Component = styled.li`
     list-style: none;
@@ -59,7 +53,7 @@ const Component = styled.li`
 `
 
 const Title = styled.span`
-    ${({isMain, isCareer, color="blue", bgHover="lightgray"})=>css`
+    ${({isMain, level, color="blue", bgHover="lightgray"})=>css`
         color: ${color};
         padding: .5rem 1.5rem;
         text-transform: uppercase;
@@ -73,23 +67,27 @@ const Title = styled.span`
         }
         ${isMain?css`
             font-weight: 900;
-        `: isCareer? css`
-            text-transform: capitalize;
+        `: level % 2 != 0? css`
+            font-weight: normal;
         `: css`
-            /* font-weight: 300; */
+            font-weight: 300;
         `}
     `}
 `;
 
-const ItemList = ({items})=>{
+const ItemList = ({items, ...other })=>{
+
+    const {
+        level = 1
+    } = other;
 
     return (
         <Container noGutters>
-            <StyledRow as="ul">
+            <StyledRow as="ul" {...{level}} >
             {
                 items.map((item,index)=>{
                     return (
-                        <Item key={index} item={item} />
+                        <Item key={item.id} item={item} {...other} />
                     )
                 })
             }
@@ -99,13 +97,66 @@ const ItemList = ({items})=>{
 } 
 
 const StyledRow = styled(Row)`
-    padding: 0;
+    ${({level})=>css`
+        padding: 0;
+        ${level==2? css`margin-bottom: 2rem;` : css` margin-bottom: 0; `};
+        ${(level + 1) % 2 == 0 || (level + 1) == 3 ? css`
+            padding-left: 0;
+            `: css`
+            padding-left: 1rem;
+        `}
+    `}
 `;
+
+const NavItem = ({item, isActive, setView}) => {
+
+    const {
+        id,
+        label,
+        description,
+        wpFields: {
+            icon
+        },
+        children,
+    } = item;
+    
+    console.log(item)
+    return (
+        <MenuItem 
+            onClick={(e) => setView( isActive? null : id )}
+            active={isActive}
+            bg={colors.blue.base}
+            bgHover={colors.gray.light}
+        >
+            <MenuItemBody>
+                <IconWrapper bgColor={colors.gray.light}>
+                    <Icon media={icon?.localFile} size="100%" fit="initial"/>
+                </IconWrapper>
+                <OfferTitle>{label}</OfferTitle>
+                {
+                    description?(
+                        <OfferCopy>{description}</OfferCopy>
+                    ):null
+                }
+            </MenuItemBody>
+            {
+                children.length?(
+                    <ExpandIcon
+                        bgColor={isActive?"white":colors.primary.dark}
+                        color={isActive?colors.primary.dark:"white"}
+                        {...{isActive}}
+                    >
+                        <LeftArrowIcon/>
+                    </ExpandIcon>
+                ):null
+            }
+        </MenuItem>
+    );
+}
 
 const HomeOffer = ({ page, faculties, careers }) =>{
     
     const [view, setView] = useState();
-
     
     //Consultar y optener logo.svg
     const { logo, menu } = useStaticQuery( graphql`
@@ -121,6 +172,7 @@ const HomeOffer = ({ page, faculties, careers }) =>{
                   nodes {
                     id
                     label
+                    description
                     url
                     target
                     path
@@ -154,26 +206,6 @@ const HomeOffer = ({ page, faculties, careers }) =>{
         menuItems = getHierarchicalItems(menu.menuItems.nodes) 
     } = page;
 
-
-    const hierarchy = ({parent=0, faculties=[], careers=[], grade}) => {
-
-       return faculties
-            .filter((faculty)=>faculty.parent == parent)
-            .map((faculty)=>{
-
-                return {
-                    ...faculty,
-                    children: hierarchy({parent: faculty.id, faculties, careers, grade}),
-                    careers: careers.filter((career)=>{
-                        const [ careerFaculty ] = career.faculties;
-
-                        return careerFaculty && careerFaculty.id == faculty.id && career.parent == grade
-                    })
-                }
-            })
-            .filter((faculty)=>faculty.children.length || faculty.careers.length)
-    }
-
     return menuItems.length && navigationShow?(
         <Section
             css={sectionStyles} 
@@ -186,39 +218,22 @@ const HomeOffer = ({ page, faculties, careers }) =>{
                             menuItems.map((item,index)=>{
 
                                 const {
-                                    label,
-                                    description,
-                                    wpFields: {
-                                        icon
-                                    }
+                                    id,
+                                    url,
+                                    children
                                 } = item;
 
-                                console.log(icon)
-                                const isActive = view == index;
+                                const isActive = view == id;
 
-                                return (
-                                    <Col size={6} sizeLG mxAuto noGutters key={index}>
-                                        <MenuItem 
-                                            onClick={(e) => setView( isActive? null : index )}
-                                            active={isActive}
-                                            bg={colors.blue.base}
-                                            bgHover={colors.gray.light}
-                                        >
-                                            <MenuItemBody>
-                                                <IconWrapper bgColor={colors.gray.light}>
-                                                    <Icon media={icon?.localFile} size="100%" fit="initial"/>
-                                                </IconWrapper>
-                                                <OfferTitle>{label}</OfferTitle>
-                                                <OfferCopy>{description}</OfferCopy>
-                                            </MenuItemBody>
-                                            <ExpandIcon
-                                                bgColor={isActive?"white":colors.primary.dark}
-                                                color={isActive?colors.primary.dark:"white"}
-                                                {...{isActive}}
-                                            >
-                                                <LeftArrowIcon/>
-                                            </ExpandIcon>
-                                        </MenuItem>
+                                return children.length?(
+                                    <Col size={6} sizeLG={3} mxAuto noGutters key={index}>
+                                        <NavItem {...{item, isActive, setView}}/>
+                                    </Col>
+                                ):(
+                                    <Col size={6} sizeLG={3} mxAuto noGutters key={index}>
+                                        <StyledLink to={url}>
+                                            <NavItem {...{item, isActive, setView}}/>
+                                        </StyledLink>
                                     </Col>
                                 )
                             })
@@ -227,20 +242,19 @@ const HomeOffer = ({ page, faculties, careers }) =>{
 
                 </Container>
             </Navigation>
-            {/* <Displayer as="div">
+            <Displayer as="div">
                 {
                     menuItems.map((item, index) =>{
 
-                        if(post.type != "career"){
-                            return null;
-                        }
+                        const {
+                            id,
+                            children
+                        } = item;
 
-                        const items = hierarchy({parent: 0, faculties, careers, grade: post.id});
+                        const isActive = view == id;
 
-                        const isActive = view == index;
-
-                        return items.length > 0?(
-                            <DisplayerSection key={index} hidden={!isActive}>
+                        return children.length > 0?(
+                            <DisplayerSection key={id} hidden={!isActive}>
                                 <Spring
                                     reset={ isActive}
                                     from={{ marginTop: "-100%", opacity: 0}}
@@ -251,7 +265,7 @@ const HomeOffer = ({ page, faculties, careers }) =>{
                                 {
                                     styles =>(
                                         <Anim style={styles}>
-                                            <ItemList items={items}/>
+                                            <ItemList items={children}/>
                                         </Anim>
                                     )
                                 }
@@ -261,7 +275,7 @@ const HomeOffer = ({ page, faculties, careers }) =>{
                         
                     })
                 }
-            </Displayer> */}
+            </Displayer>
         </Section>
     ):null;
 
@@ -282,9 +296,7 @@ const Navigation = styled.div`
 
 const StyledLink = styled(Link)`
     text-decoration: none;
-    color: black;
-    display: block;
-    height: 100%;
+    color: inherit;
 `;
 
 const MenuItem = styled.div`
@@ -298,7 +310,7 @@ const MenuItem = styled.div`
         z-index: 1;
         display: flex;
         flex-direction: column;
-        justify-description: space-between;
+        justify-content: space-between;
         ${mq.md}{
             min-height: 10rem;
             padding: 2.5rem 1.5rem;
@@ -320,9 +332,6 @@ const MenuItem = styled.div`
             &:hover{
                 background-color: ${bgHover};
                 box-shadow: 0 0 0.5rem rgba(0,0,0,.15);
-            
-                ${OfferTitle}{
-                }   
             }
         `}
     `}
