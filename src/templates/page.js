@@ -3,6 +3,7 @@ import Layout from "../components/layout";
 import { graphql } from "gatsby";
 
 import Admisiones from "../components/page/admission/admisiones";
+import About from "../components/page/about/about";
 
 export const query = graphql`
   query ($id: String!) {
@@ -22,13 +23,78 @@ export const query = graphql`
           node {
             localFile {
               childImageSharp {
-                fluid(maxWidth: 1200) {
+                fluid(maxWidth: 1920) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }
           }
         }
+
+        about {
+          copy {
+            copy
+            cta {
+              target
+              title
+              url
+            }
+          }
+          
+          history {
+            content
+            title
+            year
+            image {
+              localFile {
+                publicURL
+                childImageSharp {
+                  fluid(maxWidth: 1920) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }
+          }
+
+          perfil {
+            name
+            jobtitle
+            content
+            photo {
+              localFile {
+                publicURL
+                childImageSharp {
+                  fluid(maxWidth: 1920) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }
+          }
+          
+          tabs {
+            content
+            title
+          }
+
+          campus {
+            titulo
+            images {
+              id
+              localFile {
+                publicURL
+                childImageSharp {
+                  fluid(maxWidth: 1920) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }
+          }
+
+        }
+
       }
     }
   }
@@ -44,7 +110,7 @@ export const query = graphql`
         node {
           localFile {
             childImageSharp {
-              fluid(maxWidth: 1200) {
+              fluid(maxWidth: 1920) {
                 ...GatsbyImageSharpFluid_withWebp
               }
             }
@@ -63,17 +129,20 @@ const Post = ({ data }) => {
 
   const [page] = pages;
 
-  const { title, content, slug } = page;
-
-  if(slug === 'admisiones'){
-    return(
-      <Admisiones {...{page}}/>
-    )
-  }
+  const { title, slug } = page;
 
   return (
     <Layout>
-      <h1>{title}</h1>
+      {
+        slug === 'admisiones'? (
+          <Admisiones {...{ page }}/>
+        ): slug === 'nosotros'? (
+          <About {...{ page }}/>
+        ) : (
+          <h1>{title}</h1>
+        )
+      }
+      
     </Layout>
   );
 };

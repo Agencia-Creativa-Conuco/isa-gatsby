@@ -1,9 +1,11 @@
 import React, {useEffect} from "react";
-import { connect, styled, css } from "frontity";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 import { Container,Row, Col, Section, mq, mqVal} from "../../layout/index";
 import Carousel from "react-slick";
 import FeaturedMedia from "../../featured-media";
 import {LeftArrowIcon, RightArrowIcon} from "../../icons";
+import colors from "../../styles/colors";
 
 const Arrows = (props => {
   
@@ -39,51 +41,20 @@ const Arrows = (props => {
   
 })
 
-const AboutHistory = ({ state, libraries, actions }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
+const AboutHistory = ({ page }) =>{
 
     const {
-        meta_box
+        about:{
+            history
+        },
     } = page;
 
-    const {
-        about_history_title,
-        about_history_items = [],
-    } = meta_box;
-
-    const mediaIds = about_history_items.map((item)=>{
-        const {
-            image
-        } = item;
-
-        return image;
-    })
-
-    const {colors} = state.theme;
-
-    useEffect( async ()=>{
-        const response = await libraries.source.api.get({
-            endpoint: `media`,
-            params: {
-                _embed: true,
-                include: mediaIds
-            }
-        });
-
-        await libraries.source.populate({
-            response,
-            state
-        });
-
-    },[]);
-
-    return data.isReady?(
+    return (
         <BgSection spaceNone bg={colors.gray.light}>
             <Container fluid>
                 <Row>
                     <Col>
-                        <SectionTitle>{about_history_title}</SectionTitle>   
+                        <SectionTitle>Nuestra Historia</SectionTitle>   
                     </Col>
                 </Row>
                 <Row>
@@ -106,13 +77,13 @@ const AboutHistory = ({ state, libraries, actions }) =>{
                             ]}
                         >
                         {
-                            about_history_items.map((item,index)=>{
+                            history.map((item,index)=>{
 
                                 const {
                                     title,
                                     year,
                                     image,
-                                    description
+                                    content,
                                 } = item;
 
                                 return(
@@ -127,10 +98,10 @@ const AboutHistory = ({ state, libraries, actions }) =>{
 
                                         <Card bg={colors.white}>
                                             {
-                                                state.source.attachment[image] && (
+                                                image && (
                                                     <CardMedia>
                                                         <FeaturedMedia
-                                                            media={image}
+                                                            media={image?.localFile}
                                                             size="100%"
                                                             bgColor={colors.gray.light}
                                                         />
@@ -138,7 +109,7 @@ const AboutHistory = ({ state, libraries, actions }) =>{
                                                 )
                                             }
                                             <CardTitle color={colors.blue.dark}>{title}</CardTitle>
-                                            <CardDescription>{description}</CardDescription>
+                                            <CardDescription>{content}</CardDescription>
                                         </Card>
                                     </Item>                        
                                 )
@@ -149,11 +120,11 @@ const AboutHistory = ({ state, libraries, actions }) =>{
                 </Row>
             </Container>
         </BgSection>
-    ):null;
+    );
 
 }
 
-export default connect(AboutHistory);
+export default AboutHistory;
 
 const SectionTitle = styled.h2`
     text-align: center;

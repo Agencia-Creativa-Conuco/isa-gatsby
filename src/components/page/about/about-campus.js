@@ -1,11 +1,14 @@
-import { connect, css, styled } from "frontity";
+import React from 'react';
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 import { Container, Section, Row, Col, mq} from "../../layout/index";
 import FeaturedMedia from "../../featured-media";
 import Carousel from "react-slick";
 import {LeftArrowIcon, RightArrowIcon} from "../../icons";
+import colors from '../../styles/colors';
 
 const Arrows = (props => {
-  
+
     const Arrow = styled.div`
       ${({bgColor="blue", color="white"})=>css`
         padding: 1rem;
@@ -42,24 +45,18 @@ const Arrows = (props => {
   
 })
 
-const AboutCampus = ({ state }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
+const AboutCampus = ({ page }) =>{
 
     const {
-        meta_box
+        about: {
+            campus: {
+                title,
+                images,
+            }
+        }
     } = page;
 
-    const {
-        about_campus_title = "Nuestro Campus",
-        about_campus_image
-    } = meta_box;
-
-    const {
-        colors
-    } = state.theme;
-    
-    return data.isReady && about_campus_image.length?(
+    return images?.length?(
         <Section spaceNone>
             <Container
                 fluid 
@@ -70,7 +67,7 @@ const AboutCampus = ({ state }) =>{
                         sizeLG={6}
                         mlAuto
                     >
-                        <SectionTitle>{ about_campus_title }</SectionTitle>
+                        <SectionTitle>{ title }</SectionTitle>
                     </Col>
                 </Row>
                 <Row>
@@ -80,11 +77,11 @@ const AboutCampus = ({ state }) =>{
                             nextArrow={<Arrows bgColor={"white"} color={colors.primary.dark}><RightArrowIcon/></Arrows>}
                         >
                         {
-                            about_campus_image.map((item,index) => {
+                            images.map((item,index) => {
                                 return (
                                     <FeaturedMedia 
                                         key={item.ID}
-                                        media={item}
+                                        media={item.localFile}
                                         size="56.25%"
                                         sizeXL="40%"
                                         bgColor={colors.gray.light}
@@ -100,7 +97,7 @@ const AboutCampus = ({ state }) =>{
 
 }
 
-export default connect(AboutCampus);
+export default AboutCampus;
 
 const colStyles = css`
     padding: 1.5rem;

@@ -1,30 +1,26 @@
-import { connect, styled, css } from "frontity";
+import React from 'react';
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 import { Container, Section, Row, Col, mq} from "../../layout/index";
 import FeaturedMedia from "../../featured-media";
 import Link from "../../link";
+import colors from "../../styles/colors";
+import CTA from '../../cta';
 
-const AboutCover = ({ state, libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
+const AboutCover = ({ page }) =>{
 
     const {
-        featured_media,
-        meta_box
+        featuredImage,
+        title,
+        about:{
+            copy:{
+                copy,
+                cta
+            }
+        },
     } = page;
 
-    const {
-        about_cover_copy,
-        about_cover_cta = 1,
-        about_cover_cta_text = "Conoce más",
-        about_cover_cta_url = libraries.source.stringify({
-            path: libraries.source.parse(state.router.link).path,
-            hash: "#rector"
-        })
-    } = meta_box;
-
-    const {colors} = state.theme;
-
-    return data.isReady?(
+    return (
         <Section spaceNone css={sectionStyles}>
             <Container  fluid  noGutters>
                 <Row alignCenter >
@@ -44,19 +40,18 @@ const AboutCover = ({ state, libraries }) =>{
                                 >
                                     <Content decoBg={colors.blue.base}>
                                     
-                                        <SectionTitle> {page.title.rendered} </SectionTitle>
-                                        <Copy>{ about_cover_copy} </Copy>
+                                        <SectionTitle> {title} </SectionTitle>
+                                        <Copy>{ copy } </Copy>
 
                                         
                                         {
-                                            parseInt(about_cover_cta)?(
-                                                <Link 
-                                                    to={about_cover_cta_url}
-                                                    color={colors.blue.dark}
-                                                    cta
+                                            cta.url && cta.title?(
+                                                <CTA 
+                                                    to={cta.url}
+                                                    target={cta.target}
                                                 >
-                                                    { about_cover_cta_text }
-                                                </Link>
+                                                    { cta.title }
+                                                </CTA>
                                             ):null
                                         }
                                     
@@ -76,7 +71,7 @@ const AboutCover = ({ state, libraries }) =>{
                     >
                         <Media decoBg={colors.blue.base}>
                             <Logo
-                                media={featured_media}
+                                media={featuredImage?.node?.localFile}
                                 size="100%"
                                 sizeXL="90%"
                                 bgColor
@@ -91,11 +86,11 @@ const AboutCover = ({ state, libraries }) =>{
                 </Row>
             </Container>
         </Section>
-    ):null;
+    );
 
 }
 
-export default connect(AboutCover);
+export default AboutCover;
 
 const sectionStyles = css`
     overflow: hidden;

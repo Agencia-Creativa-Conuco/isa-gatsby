@@ -47,7 +47,6 @@ const Footer = ({ state, libraries }) => {
       url_instagram = '/'
   } = menu
 
-  console.log(logo)
   return (
     <FooterWrapper>
       <Container fluid>

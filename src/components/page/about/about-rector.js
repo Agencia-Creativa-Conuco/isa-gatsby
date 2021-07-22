@@ -1,29 +1,25 @@
-import { connect, styled } from "frontity";
+import React from 'react';
+import styled from "@emotion/styled";
 import { Container, Section, Row, Col, mq} from "../../layout/index";
 import FeaturedMedia from "../../featured-media";
+import colors from '../../styles/colors';
 
-
-const AboutRector = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
+const AboutRector = ({ page }) =>{
 
     const {
-        meta_box
+        about: {
+            perfil: {
+                photo,
+                name,
+                jobtitle,
+                content,
+            }
+        }
     } = page;
 
-    const {
-        about_rector_image,
-        about_rector_copy,
-        about_rector_title = [
-            "Palabras del rector",
-            "Otras palabras"
-        ]
-    } = meta_box;
+    console.log(page)
 
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
-
-    return data.isReady?(
+    return (
         <BgSection id="rector" decoBg={colors.blue.base} spaceTopNone>
             <Container >
                 <Row alignCenter>
@@ -33,7 +29,7 @@ const AboutRector = ({ state,libraries }) =>{
                     >
                         <CubeRector decoBg={colors.blue.base}>
                             <FeaturedMedia
-                                media={about_rector_image}
+                                media={photo?.localFile}
                                 size="100%"
                                 rounded
                                 zIndex="1"
@@ -49,27 +45,20 @@ const AboutRector = ({ state,libraries }) =>{
                       >
                         <Content decoBg={colors.blue.base} >
                             <SectionTitle decoBg={colors.blue.base}> 
-                                {
-                                    about_rector_title.map((text, index)=>{
-                                        return(
-                                            <TitleText key={index}>{text}</TitleText>
-                                        )
-                                    })
-                                }
+                                <TitleText >{name}</TitleText>
+                                <TitleText >{jobtitle}</TitleText>
                             </SectionTitle>
-                            <Html2React 
-                                html={about_rector_copy}
-                            />
+                            <div dangerouslySetInnerHTML={{__html: content}} />
                         </Content>
                     </Col>
                 </Row>
             </Container>
         </BgSection>
-    ):null;
+    );
 
 }
 
-export default connect(AboutRector);
+export default AboutRector;
 
 const BgSection = styled(Section)`
 &::before{

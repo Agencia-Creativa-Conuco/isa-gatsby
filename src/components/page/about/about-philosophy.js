@@ -1,29 +1,26 @@
-import { connect, styled, css } from "frontity";
+import React from 'react';
 import { Container, Section, Row, Col, mq} from "../../layout/index";
 import {useState} from "react";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import colors from '../../styles/colors';
 
 import {Spring, animated} from "@react-spring/web";
 
-const AboutPhilosophy = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
+const AboutPhilosophy = ({ page }) =>{
 
     const {
-        meta_box
+        about:{
+            tabs
+        },
     } = page;
-
-    const {
-        about_philosophy_items = []
-    } = meta_box;
 
     // Index 0 by default
     const [view, setView] = useState( 0 );
 
     const handlerView = value => setView(value);
 
-    return data.isReady?(
+    return (
         <StyledSection spaceBottomNone bgColor={colors.blue.dark} decoBg={colors.blue.base}>
             <Container>
                 <DecoContainer bgColor={colors.gray.light}/>
@@ -39,10 +36,10 @@ const AboutPhilosophy = ({ state,libraries }) =>{
                             bgColor:colors.blue.dark
                         })}
                     >
-                        {about_philosophy_items.map( (item,i) => {
+                        {tabs.map( (item,i) => {
                                 const {
                                     title,
-                                    copy
+                                    content
                                 } = item;
 
                                 const isActive = view == i;
@@ -65,7 +62,7 @@ const AboutPhilosophy = ({ state,libraries }) =>{
                                                     active={isActive}
                                                 >
                                                     <CardTitle>{title}</CardTitle>
-                                                    <Html2React html={copy} />
+                                                    <div dangerouslySetInnerHTML={{__html: content}} />
                                                 </CardInfo>
                                             </animated.div>
                                         )
@@ -81,7 +78,7 @@ const AboutPhilosophy = ({ state,libraries }) =>{
                         mlAuto
                     >
                         <List bgColor={colors.gray.light} decoBg={colors.blue.dark}>
-                        {about_philosophy_items.map( (item,i) => {
+                        {tabs.map( (item,i) => {
                             
                             const {
                                 title
@@ -108,11 +105,11 @@ const AboutPhilosophy = ({ state,libraries }) =>{
                
             </Container>
         </StyledSection>
-    ):null;
+    );
 
 }
 
-export default connect(AboutPhilosophy);
+export default AboutPhilosophy;
 
 const StyledSection = styled(Section)`
     ${({bgColor="blue", decoBg="red"})=>css`
