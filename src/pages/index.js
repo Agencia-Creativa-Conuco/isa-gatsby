@@ -10,8 +10,6 @@ import useEvents from "../hooks/useEvents";
 import useResources from "../hooks/useResources";
 import usePersons from "../hooks/usePersons";
 
-import Image from "gatsby-image";
-
 import HomeCover from "../components/page/front-page/home-cover";
 import HomeOffer from "../components/page/front-page/home-offer";
 import HomeNews from "../components/page/front-page/home-news";

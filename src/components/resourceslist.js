@@ -26,14 +26,14 @@ const ResourcesList = ({
     items = []
 }) => {
 
-    const resources = items.filter((resource)=>{
+    const resources = items? items.filter((resource)=>{
 
         const {
             resource_type
         } = resource;
 
         return !filter.includes(resource_type);
-    })
+    }) : [];
 
     useEffect(()=>{
     }, []);
@@ -65,7 +65,13 @@ const ResourcesList = ({
                         const {
                             title,
                             featuredImage,
-                            uri
+                            resource : {
+                                file : {
+                                    localFile: {
+                                        publicURL
+                                    }
+                                }
+                            }
                         } = item;
 
                         return(
@@ -73,7 +79,7 @@ const ResourcesList = ({
                             <ResourceCard
                                 title={title}
                                 icon={featuredImage}
-                                to={uri}    
+                                to={publicURL}    
                                 color={resourceColor}
                             />
                         </Col>

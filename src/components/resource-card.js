@@ -11,12 +11,12 @@ import colors from "./styles/colors";
 
 const ResourceCard = ({
     state, actions, libraries, 
-    title, link, icon, color=state.theme.colors.primary.dark
+    title, to, icon, color=state.theme.colors.primary.dark
 }) => {
     
     return (
         <Card>
-            <DownloadLink to={link} noDecoration download>
+            <DownloadLink href={to} download>
                 <Row>
                     <Col>
                         <ResourceName color={color}>{title}</ResourceName>
@@ -57,7 +57,7 @@ const Card = styled.div`
     }
 `;
 
-const DownloadLink = styled(Link)`
+const DownloadLink = styled.a`
     padding: 15px;
     display: block;
     text-decoration: none;

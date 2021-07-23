@@ -17,8 +17,6 @@ const AboutRector = ({ page }) =>{
         }
     } = page;
 
-    console.log(page)
-
     return (
         <BgSection id="rector" decoBg={colors.blue.base} spaceTopNone>
             <Container >

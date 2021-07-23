@@ -6,8 +6,11 @@ import AboutHistory from "./about-history";
 import AboutRector from "./about-rector";
 import AboutCampus from "./about-campus";
 import AboutPhilosophy from "./about-philosophy";
+import ResourceList from "../../resourceslist";
 
 const About = ({ ...props }) => {
+
+  const { page } = props;
   // Load the post, but only if the data is ready.
   return (
     <Container>
@@ -16,6 +19,7 @@ const About = ({ ...props }) => {
       <AboutRector {...props} />
       <AboutPhilosophy {...props} />
       <AboutCampus {...props} />
+      <ResourceList items={ page.resources?.resourceRelationship } />
     </Container>
   );
 };

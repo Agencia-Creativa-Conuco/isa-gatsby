@@ -8,12 +8,21 @@ const useEvents = () => {
           {
             allWpEvent {
               nodes {
-                id: databaseId
+                id
                 title
                 link
                 uri
                 slug
                 date: eventDate
+                eventCategories {
+                  nodes {
+                    id
+                    slug
+                    name
+                    link
+                    uri
+                  }
+                }
               }
             }
           }
@@ -27,6 +36,7 @@ const useEvents = () => {
         uri: event.uri,
         link: event.link,
         date: event.date,
+        categories: event.eventCategories.nodes,
     }));
 }
  

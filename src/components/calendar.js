@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 import {Container, Row, Col, mq, Section} from "./layout/index";
 import colors from "./styles/colors";
 
-const Calendar = ({ events, title="Fechas de admisión", noEventsTitle}) => {
+const Calendar = ({ events = [], title="Fechas de admisión", noEventsTitle}) => {
 
     // Load the post, but only if the data is ready.
   return (noEventsTitle || events.length)? (

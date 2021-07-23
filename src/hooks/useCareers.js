@@ -50,7 +50,7 @@ const useCareers = () => {
         type: career.type.node.name,
         uri: career.uri,
         link: career.link,
-        parent: career.parent,
+        parent: career.parent || 0,
         faculties: career.faculties.nodes,
         featuredImage: career.featuredImage? career.featuredImage.node.localFile : null,
     }));

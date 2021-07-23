@@ -16,12 +16,10 @@ export const query = graphql`
         link
         uri
         slug
-        resources {
-          ...WpPageToResourceConnectionFragment
-        }
         featuredImage {
           node {
             localFile {
+              publicURL
               childImageSharp {
                 fluid(maxWidth: 1920) {
                   ...GatsbyImageSharpFluid_withWebp
@@ -95,27 +93,48 @@ export const query = graphql`
 
         }
 
-      }
-    }
-  }
+        events {
+          fieldGroupName
+          categories {
+            __typename
+            id
+            name
+            slug
+            link
+            uri
+          }
+        }
 
-  fragment WpPageToResourceConnectionFragment on WpPageToResourceConnection {
-    nodes {
-      id
-      title
-      slug
-      uri
-      link
-      featuredImage {
-        node {
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 1920) {
-                ...GatsbyImageSharpFluid_withWebp
+        resources {
+          resourceRelationship {
+            ... on WpResource {
+              id
+              title
+              featuredImage {
+                node {
+                  localFile {
+                    publicURL
+                    childImageSharp {
+                      fluid(maxWidth: 1920) {
+                        ...GatsbyImageSharpFluid_withWebp
+                      }
+                    }
+                  }
+                }
+              }
+              resource {
+                file {
+                  id
+                  localFile {
+                    id
+                    publicURL
+                  }
+                }
               }
             }
           }
         }
+
       }
     }
   }

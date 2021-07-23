@@ -1,34 +1,28 @@
-import { connect, styled, css } from "frontity";
+import React, { useState } from 'react';
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 import { Container, Section, Row, Col, mq} from "../../layout/index";
 import FeaturedMedia from "../../featured-media";
-import { useState } from "react";
 import {AdmissionRequisiteIcon} from "../../icons";
 import {h1,h2} from "../../styles/tipography";
 import {Spring, animated} from "@react-spring/web";
+import colors from "../../styles/colors";
+import useCareers from "../../../hooks/useCareers";
 
-const AdmissionInfo = ({ state }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
+const AdmissionInfo = ({ page }) =>{
     
-    const {
-        meta_box,
-        careers = []
-    } = page;
-
-    const { 
-        admission_requirements_show
-    } = meta_box;
+    //Obtiene los datos de los Careeras
+    const careers = useCareers();
 
     const grades = careers.filter((career)=>{
         return career.parent == 0;
     });
 
-    const {colors} = state.theme;
     const [view, setView] = useState(0);
 
     const handlerView = (value) => setView(value); 
 
-    return grades.length && parseInt(admission_requirements_show)?(
+    return grades.length ?(
         <Section spaceNone>
             <Container fluid notFluidXL sizeXL="192rem">
                 <Row>
@@ -132,7 +126,7 @@ const AdmissionInfo = ({ state }) =>{
 
 }
 
-export default connect(AdmissionInfo);
+export default AdmissionInfo;
 
 const Navigation = styled.ul`
     margin: 0 auto;
