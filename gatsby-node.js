@@ -186,6 +186,40 @@ async function getNodes({ graphql, reporter }) {
           }
         }
       }
+      allWpCareer(sort: { fields: [date], order: DESC }) {
+        edges {
+          previous {
+            id
+          }
+          # note: this is a GraphQL alias. It renames "node" to "post" for this query
+          # We're doing this because this "node" is a post! It makes our code more readable further down the line.
+          post: node {
+            __typename
+            id
+            uri
+          }
+          next {
+            id
+          }
+        }
+      }
+      allWpFaculty(sort: { fields: [date], order: DESC }) {
+        edges {
+          previous {
+            id
+          }
+          # note: this is a GraphQL alias. It renames "node" to "post" for this query
+          # We're doing this because this "node" is a post! It makes our code more readable further down the line.
+          post: node {
+            __typename
+            id
+            uri
+          }
+          next {
+            id
+          }
+        }
+      }
     }
   `)
 
@@ -201,5 +235,7 @@ async function getNodes({ graphql, reporter }) {
     ...graphqlResult.data.allWpPost.edges,
     ...graphqlResult.data.allWpPage.edges,
     ...graphqlResult.data.allWpProject.edges,
+    ...graphqlResult.data.allWpCareer.edges,
+    ...graphqlResult.data.allWpFaculty.edges,
   ]
 }

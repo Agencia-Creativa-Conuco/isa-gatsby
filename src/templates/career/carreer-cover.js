@@ -1,25 +1,23 @@
 import React from "react";
-import { styled, css, connect } from "frontity";
-import {Section, Container, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import {Section, Container, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
 import {darken,lighten} from "polished";
 
-const CareerCover = ({ state, libraries, actions, facultyColor, career })=>{
+const CareerCover = ({ career })=>{
 
     const {
-        featured_media,
-        main_faculty,
-        meta_box,
-        title
+        title,
+        featuredImage,
+        faculty,
+        cover: {
+            copy,
+            metadata,
+        }, 
     } = career;
-
-    const { 
-        career_cover_title, 
-        career_cover_copy, 
-        career_cover_gadget
-     } = meta_box;
-
-    const Html2React = libraries.html2react.Component;
+    
+    const facultyColor = faculty.color;
 
     return (
         <Section spaceNone css={sectionStyles({
@@ -31,7 +29,7 @@ const CareerCover = ({ state, libraries, actions, facultyColor, career })=>{
                     <Col size={12} sizeLG={6} noGutters>
                         <Media decoBgColor={lighten(0.15, facultyColor)}>
                             <FeaturedMedia 
-                                media={featured_media}
+                                media={featuredImage?.node?.localFile}
                                 size="56.25%"
                                 // sizeLG="60%"
                                 heightLG="100%"
@@ -49,20 +47,24 @@ const CareerCover = ({ state, libraries, actions, facultyColor, career })=>{
                                 <Row>
                                     <Col>
                                         <Content>
-                                            <Faculty color="#FFFFFF">{ main_faculty.title.rendered}</Faculty>
-                                            <Title>{ title.rendered }</Title>
-                                            <Copy>
-                                                <Html2React html={ career_cover_copy } />
-                                            </Copy>
+                                            <Faculty color="#FFFFFF">{ faculty?.title }</Faculty>
+                                            <Title>{ title }</Title>
+                                            <Copy dangerouslySetInnerHTML={{__html: copy}} />
                                             <Gadgets>
                                                 <Row justifyContent="space-around">
                                                     {
-                                                        career_cover_gadget.map((item, index)=>{
+                                                        metadata.map((item, index)=>{
+
+                                                            const {
+                                                                name,
+                                                                value
+                                                            } = item;
+
                                                             return(
                                                                 <Col size="auto" key={index}>
                                                                     <Gadget>
-                                                                        <GadgetName>{ item.name }</GadgetName>
-                                                                        <GadgetValue>{ item.value }</GadgetValue>
+                                                                        <GadgetName>{ name }</GadgetName>
+                                                                        <GadgetValue>{ value }</GadgetValue>
                                                                     </Gadget>
                                                                 </Col>
                                                             )
@@ -82,7 +84,7 @@ const CareerCover = ({ state, libraries, actions, facultyColor, career })=>{
     );
 }
 
-export default connect(CareerCover);
+export default CareerCover;
 
 const sectionStyles = ({
     bgColor="green",

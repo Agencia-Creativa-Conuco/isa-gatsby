@@ -1,13 +1,10 @@
 import * as React from "react";
 import Layout from "../components/layout";
 import { graphql } from "gatsby";
-import ProjectComponent from "./project/project-single";
-
-import Admisiones from "../components/page/admission/admisiones";
 
 export const query = graphql`
   query ($id: String!) {
-    allWpProject(filter: { id: { eq: $id } }) {
+    allWpFaculty(filter: { id: { eq: $id } }) {
       nodes {
         id
         title
@@ -16,20 +13,6 @@ export const query = graphql`
         link
         uri
         slug
-        coverCopy
-        images {
-          alt
-          caption
-          description
-          full_url
-          height
-          name
-          path
-          srcset
-          title
-          url
-          width
-        }
         featuredImage {
           node {
             localFile {
@@ -47,19 +30,22 @@ export const query = graphql`
 `;
 
 // markup
-const Project = ({ data }) => {
+const Faculty = ({ data }) => {
   const {
-    allWpProject: { nodes: projects },
+    allWpFaculty: { nodes: facultys },
   } = data;
 
-  const [project] = projects;
+  const [faculty] = facultys;
 
-  const { slug } = project;
+  const {
+    title
+  } = faculty;
 
   return (
     <Layout>
-      <ProjectComponent {...{ project }}/>
+      <h1>{title}</h1>
+      <div>AQUI VA EL COMPONENTE</div>
     </Layout>
   );
 };
-export default Project;
+export default Faculty;

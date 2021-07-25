@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "@emotion/styled";
-import {Section, Container, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
+import {Section, Container, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
 
 
-const NewsCover = ({ post })=>{
+const PostCover = ({ post })=>{
 
     const {
         title,
@@ -51,7 +51,7 @@ const NewsCover = ({ post })=>{
     );
 }
 
-export default NewsCover;
+export default PostCover;
 
 
 const ImageContainer = styled.div`

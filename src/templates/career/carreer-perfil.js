@@ -1,22 +1,25 @@
 import React from "react";
-import { styled, css, connect } from "frontity";
-import {Section, Container, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import {Section, Container, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
 
-const CareerPerfil = ({ state, libraries, actions, facultyColor, career })=>{
+const CareerPerfil = ({career })=>{
 
     const {
-        title,
-        meta_box
+        perfil,
+        faculty
     } = career;
 
-    const { 
-        career_perfil_title, 
-        career_perfil_copy, 
-        career_perfil_image
-     } = meta_box;
+    const {
+        image,
+        title,
+        content
+    } = perfil;
 
-    const Html2React = libraries.html2react.Component;
+    const facultyColor = faculty?.color;
+
+    console.log(image)
 
     return (
         <Section >
@@ -25,7 +28,7 @@ const CareerPerfil = ({ state, libraries, actions, facultyColor, career })=>{
                     <Col size={12} sizeLG={6} orderLG={2}>
                         <Media decoBgColor={facultyColor}>
                             <FeaturedMedia 
-                                media={ career_perfil_image }
+                                media={ image?.localFile }
                                 size="130%"
                                 bgColor
                             />
@@ -33,10 +36,8 @@ const CareerPerfil = ({ state, libraries, actions, facultyColor, career })=>{
                     </Col>
                     <Col size={12} sizeLG={6} orderLG={1}>
                         <Content>
-                            <Title color={facultyColor}>{career_perfil_title}</Title>
-                            <Description>
-                                <Html2React html={ career_perfil_copy } />
-                            </Description>
+                            <Title color={facultyColor}>{title}</Title>
+                            <Description dangerouslySetInnerHTML={{__html: content}} />
                         </Content>
                     </Col>
                 </Row>
@@ -45,7 +46,7 @@ const CareerPerfil = ({ state, libraries, actions, facultyColor, career })=>{
     );
 }
 
-export default connect(CareerPerfil);
+export default CareerPerfil;
 
 const Media = styled.div`
     ${({decoBgColor="green"})=>css`

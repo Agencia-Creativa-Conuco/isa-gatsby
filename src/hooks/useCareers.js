@@ -20,11 +20,6 @@ const useCareers = () => {
                     name
                   }
                 }
-                faculties {
-                  nodes {
-                    id: databaseId
-                  }
-                }
                 featuredImage {
                   node {
                     localFile {
@@ -51,7 +46,6 @@ const useCareers = () => {
         uri: career.uri,
         link: career.link,
         parent: career.parent || 0,
-        faculties: career.faculties.nodes,
         featuredImage: career.featuredImage? career.featuredImage.node.localFile : null,
     }));
 }

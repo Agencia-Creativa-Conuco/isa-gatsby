@@ -1,10 +1,10 @@
 import React from "react";
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import {Section, Container, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
-import { h2 } from "../../styles/posts-tipography";
-import colors from "../../styles/colors";
+import {Section, Container, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import { h2 } from "../../components/styles/posts-tipography";
+import colors from "../../components/styles/colors";
 
 const ProjectsCover = ({ project })=>{
 

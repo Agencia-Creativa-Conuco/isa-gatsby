@@ -1,8 +1,8 @@
 import React from "react";
 import styled from '@emotion/styled';
 import ProjectsCover from "./project-cover";
-import useProjects from "../../../hooks/useProjects";
-import Related from "../../related";
+import useProjects from "../../hooks/useProjects";
+import Related from "../../components/related";
 
 // import ProjectsCarrousel from "./project-carrousel";
 import ProjectsResume from "./project-resume";

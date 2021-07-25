@@ -1,7 +1,7 @@
 import * as React from "react"
 import Layout from "../components/layout";
 import { graphql } from "gatsby";
-import PostTemplate from "../components/post/news/news";
+import PostSingle from "./post/post-single";
 
 export const query = graphql`
   query($id: String!) {
@@ -70,7 +70,7 @@ const Post = ({data}) => {
 
   return (
       <Layout>
-        <PostTemplate {...{post}} />
+        <PostSingle {...{post}} />
       </Layout>
   )
 }
