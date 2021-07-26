@@ -47,7 +47,7 @@ const FacultyCover = ({ faculty })=>{
                         orderLG={2}
                         noGutters>
                             <FeaturedMedia 
-                                media={ featuredImage.node.localFile }
+                                media={ featuredImage }
                                 size="56.25%"
                                 sizeLG="80%"
                                 heightLG="100%"

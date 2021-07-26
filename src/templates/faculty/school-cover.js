@@ -1,46 +1,35 @@
 import React from "react";
-import { styled, css, connect } from "frontity";
-import {Section, Container, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../../featured-media";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import {Section, Container, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
 import {lighten, darken} from "polished";
+import colors from "../../components/styles/colors";
 
-const SchoolCover = ({ state, libraries })=>{
+const SchoolCover = ({ faculty, facultyColor })=>{
 
-    const data = state.source.get(state.router.link);
-    const school = state.source[data.type][data.id];
-    
     const {
-        featured_media,
-        meta_box,
-        main_faculty,
+        featuredImage,
         title,
-        content,
-    } = school;
-
-    const {
-        faculty_color = "#001F56"
-    } = main_faculty.meta_box;
-
-    const { colors } = state.theme;
-
-    const Html2React = libraries.html2react.Component;
+        cover: {
+            copy
+        }
+    } = faculty;
 
     return (
-        <SSection spaceNone bgColor={faculty_color || colors.primary.dark}>
+        <SSection spaceNone bgColor={facultyColor}>
             <FeaturedMedia 
-                media={ featured_media }
+                media={ featuredImage?.node?.localFile }
                 size="56.25%"   
                 sizeLG="45%"
                 bgColor
             /> 
-            <SContainer bgColor={lighten(0.15, faculty_color || colors.primary.dark)}>  
-                <Deco bgColor={lighten(0.15, faculty_color || colors.primary.dark)} bgColorBefore={lighten(0.03, faculty_color || colors.primary.dark)} bgColorAfter={lighten(0.03, faculty_color || colors.primary.dark)} />
+            <SContainer bgColor={lighten(0.15, facultyColor)}>  
+                <Deco bgColor={lighten(0.15, facultyColor)} bgColorBefore={lighten(0.03, facultyColor)} bgColorAfter={lighten(0.03, facultyColor)} />
                 <Row>
                     <Col>
-                        <Title> { title.rendered}</Title>
-                        <Copy>
-                            <Html2React html={content.rendered} />
-                        </Copy>   
+                        <Title> { title }</Title>
+                        <Copy dangerouslySetInnerHTML={{__html: copy}} />   
                     </Col>
                 </Row>
             </SContainer>
@@ -48,7 +37,7 @@ const SchoolCover = ({ state, libraries })=>{
     );
 }
 
-export default connect( SchoolCover );
+export default SchoolCover;
 
 const SSection = styled(Section)`
     ${({bgColor="darkblue"})=>css`

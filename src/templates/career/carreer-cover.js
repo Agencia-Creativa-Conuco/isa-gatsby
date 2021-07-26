@@ -29,7 +29,7 @@ const CareerCover = ({ career })=>{
                     <Col size={12} sizeLG={6} noGutters>
                         <Media decoBgColor={lighten(0.15, facultyColor)}>
                             <FeaturedMedia 
-                                media={featuredImage?.node?.localFile}
+                                media={featuredImage}
                                 size="56.25%"
                                 // sizeLG="60%"
                                 heightLG="100%"

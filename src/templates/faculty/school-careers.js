@@ -1,29 +1,26 @@
 import React from "react";
-import { styled, css, connect } from "frontity";
-import {Section, Container, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../../featured-media";
-import {  PhoneIcon, MailIcon  } from "../../../icons";
-import Link from "../../../link";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import {Section, Container, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import {  PhoneIcon, MailIcon  } from "../../components/icons";
+import Link from "../../components/link";
+import colors from "../../components/styles/colors";
+import useCareer from "../../hooks/useCareers";
+import useFaculty from "../../hooks/useFaculties";
 
-const SchoolCareers  = ({ state, libraries })=>{
+const SchoolCareers  = ({ faculty: school, facultyColor })=>{
 
-    const data = state.source.get(state.router.link);
-    const school = state.source[data.type][data.id];
-    
     const {
-        featured_media,
-        meta_box,
-        careers=[],
-        main_faculty
+        parent,
+        careers
     } = school;
 
-    const {
-        faculty_color
-    } = main_faculty.meta_box;
+    const careerList = useCareer().filter( item => careers.map( career=>career.id).includes(item.id) );
 
-    const { colors } = state.theme;
+    const [ faculty ] = useFaculty().filter( faculty => faculty.id == parent);
 
-    return (
+    return careerList.length?(
         <BGSection spaceTopNone bg={colors.green.base}>
             <Container>
                 <Row>
@@ -33,28 +30,28 @@ const SchoolCareers  = ({ state, libraries })=>{
                 </Row>
                 <Row>
                 {  
-                    careers.map((career,index)=>{
+                    careerList.map((career,index)=>{
 
                         const {
                             parent,
                             title,
-                            featured_media,
+                            featuredImage,
                             link
                         } = career;
 
-                        return parent != 0 ? 
+                        return parent? 
                         (
                             <Col size={6} sizeMD={6}  mxAuto key={index}>
-                                <Link to={link} noDecoration>
+                                <StyledLink to={link}>
                                     <Card>
                                         <FeaturedMedia 
-                                            media={ featured_media }
+                                            media={ featuredImage }
                                             size="100%"   
                                             bgColor
                                         /> 
-                                        <CardTitle color={faculty_color || colors.primary.dark }>{ title.rendered }</CardTitle>
+                                        <CardTitle color={facultyColor}>{ title }</CardTitle>
                                     </Card>
-                                </Link>
+                                </StyledLink>
                             </Col>
                         ):null;
                     })
@@ -62,10 +59,10 @@ const SchoolCareers  = ({ state, libraries })=>{
                 </Row>
             </Container>
         </BGSection>
-    );
+    ) : null;
 }
 
-export default connect( SchoolCareers );
+export default SchoolCareers;
 
 const BGSection = styled( Section )`
     position: relative;
@@ -87,6 +84,11 @@ const CardTitle = styled.h3`
     text-align:center;
     color:${props => props.color};
     text-transform: uppercase;
+`;
+
+const StyledLink = styled(Link)`
+    color: inherit;
+    text-decoration: none;
 `;
 
 

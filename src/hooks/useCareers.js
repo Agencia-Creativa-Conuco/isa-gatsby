@@ -3,23 +3,19 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 const useCareers = () => {
 
-    const resultado = useStaticQuery(
+    const data = useStaticQuery(
         graphql `
         {
             allWpCareer {
               nodes {
-                id: databaseId
+                id
                 title
+                content
                 date
                 link
                 uri
                 slug
-                parent: parentDatabaseId
-                type: contentType {
-                  node {
-                    name
-                  }
-                }
+                parentId
                 featuredImage {
                   node {
                     localFile {
@@ -31,23 +27,150 @@ const useCareers = () => {
                     }
                   }
                 }
+        
+                careerInfo {
+        
+                  facultyRelationship {
+                    ... on WpFaculty {
+                      id
+                      title
+                      parentId
+                      facultyInfo {
+                        type
+                        color
+                      }
+                    }
+                  }
+        
+                  cover {
+                    copy
+                    metadata {
+                      name
+                      value
+                    }
+                  }
+                  
+                  form {
+                    title
+                    image {
+                      localFile {
+                        publicURL
+                        childImageSharp {
+                          fluid(maxWidth: 1920) {
+                            ...GatsbyImageSharpFluid_withWebp
+                          }
+                        }
+                      }
+                    }
+                  }
+          
+                  perfil {
+                    title
+                    content
+                    image {
+                      localFile {
+                        publicURL
+                        childImageSharp {
+                          fluid(maxWidth: 1920) {
+                            ...GatsbyImageSharpFluid_withWebp
+                          }
+                        }
+                      }
+                    }
+                  }
+          
+                  requirements {
+                    requirement
+                    category {
+                      id
+                      name 
+                      slug
+                    }
+                  }
+          
+                  tabs {
+                    title
+                    content
+                  }
+        
+                }
+        
+                resources {
+                  resourceRelationship {
+                    ... on WpResource {
+                      id
+                      title
+                      featuredImage {
+                        node {
+                          localFile {
+                            publicURL
+                            childImageSharp {
+                              fluid(maxWidth: 1920) {
+                                ...GatsbyImageSharpFluid_withWebp
+                              }
+                            }
+                          }
+                        }
+                      }
+                      resource {
+                        type
+                        file {
+                          id
+                          localFile {
+                            id
+                            publicURL
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+        
               }
             }
           }
         `
     );
 
-    return resultado.allWpCareer.nodes.map( career => ({
+    const {
+      allWpCareer: { nodes: careersList },
+    } = data;
+
+    const careers = careersList.map( career => {
+
+      //Facultad y departamento vienen juntos en el mismo arreglo.
+      const faculties = career?.careerInfo?.facultyRelationship || [];
+      
+      //  Extraemos la facultad.
+      const [ faculty ] = faculties.filter( faculty => !faculty.parentId && faculty?.facultyInfo?.type === 'faculty' );
+      
+      return {
+        ...career,
+        faculty,
+      }
+    });
+
+    const resultado = careers.map( career => ({
         id: career.id,
         title: career.title,
         date: career.date,
         slug: career.slug,
-        type: career.type.node.name,
         uri: career.uri,
         link: career.link,
-        parent: career.parent || 0,
-        featuredImage: career.featuredImage? career.featuredImage.node.localFile : null,
-    }));
+        parent: career.parentId,
+        featuredImage: career?.featuredImage?.node?.localFile,
+        faculty: {
+          title: career?.faculty?.title,
+          color: career?.faculty?.facultyInfo?.color,
+        },
+        cover: career.careerInfo.cover,
+        perfil: career.careerInfo.perfil,
+        tabs: career.careerInfo.tabs,
+        form: career.careerInfo.form,
+        resources: career.resources.resourceRelationship,
+    }))
+
+    return resultado;
 }
  
 export default useCareers;

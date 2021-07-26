@@ -15,8 +15,6 @@ const Career = ({ career })=>{
         faculty
     } = career;
 
-    console.log(career)
-
     return (
         <Article>
             <Cover {...{career}}/>
