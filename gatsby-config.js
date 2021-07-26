@@ -7,7 +7,7 @@ module.exports = {
     {
       resolve: "gatsby-source-wordpress",
       options: {
-        url: "http://localhost:10026/graphql",
+        url: "http://localhost:10003/graphql",
       },
     },
     "gatsby-plugin-emotion",
