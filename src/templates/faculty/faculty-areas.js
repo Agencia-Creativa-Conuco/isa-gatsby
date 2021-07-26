@@ -1,25 +1,17 @@
-import { connect, styled, css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import Link from "../../link";
+import React from 'react';
+import styled from "@emotion/styled";
+import { Container, Section, Row, Col, mq} from "../../components/layout/index";
+import Link from "../../components/link";
+import colors from '../../components/styles/colors';
 
-
-const FcaultyAreasAcademic = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const faculty = state.source[data.type][data.id];
+const FcaultyAreasAcademic = ({ faculty }) =>{
     
     const { 
-        meta_box,
-        children,
+        children = [],
+        color
     } = faculty;
     
-    const {  
-        faculty_areas_title,
-        faculty_color
-    } = meta_box;
-    
-    const {colors} = state.theme;
-
-    return data.isReady && children.length?(
+    return children.length?(
         <SectionStyles spaceTopNone >
             <Container> 
                 <Row>
@@ -27,20 +19,26 @@ const FcaultyAreasAcademic = ({ state,libraries }) =>{
                         <Card>
                             <Row>      
                                 <Col size={12} noGutters>
-                                    <SectionTitle color={ faculty_color  } > { faculty_areas_title } </SectionTitle>
+                                    <SectionTitle color={ color  } > Areas Académicas </SectionTitle>
                                 </Col>
                                 <Col size={10} sizeMD={7} mxAuto   > 
                                     <List>
                                     {
                                         children.map((item, index)=>{
+                                            
+                                            const {
+                                                title,
+                                                uri,
+                                            } = item;
+
                                             return(
                                                 <Item key={index}>
                                                     <SLink 
-                                                        to={item.link}
-                                                        color={ faculty_color  } 
+                                                        to={uri}
+                                                        color={ color  } 
                                                         color2={colors.text.base}
                                                     >
-                                                        {item.title.rendered}
+                                                        {title}
                                                     </SLink>
                                                 </Item>
                                             )
@@ -58,7 +56,7 @@ const FcaultyAreasAcademic = ({ state,libraries }) =>{
 
 }
 
-export default connect( FcaultyAreasAcademic );
+export default FcaultyAreasAcademic;
 
 const SectionStyles =styled(Section)`
     margin-top: -10rem !important;

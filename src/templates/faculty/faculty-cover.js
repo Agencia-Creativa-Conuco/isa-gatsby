@@ -1,31 +1,19 @@
 import React from "react";
-import { styled, css, connect } from "frontity";
-import {Section, Container, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
+import styled from "@emotion/styled";
+import {Section, Container, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import colors from "../../components/styles/colors";
 
-
-const FacultyCover = ({ state, libraries })=>{
-
-    const data = state.source.get(state.router.link);
-
-    const faculty = state.source[data.type][data.id];
+const FacultyCover = ({ faculty })=>{
 
     const {
-        featured_media,
-        meta_box
+        title,
+        featuredImage,
+        color,
+        cover: {
+            copy
+        }
     } = faculty;
-
-
-    const {
-        colors
-    } = state.theme;
-
-    const {
-        faculty_cover_copy,
-        faculty_color
-    } = meta_box;
-
-    const Html2React = libraries.html2react.Component;
 
     return (
         <Section spaceNone >
@@ -36,16 +24,14 @@ const FacultyCover = ({ state, libraries })=>{
                         orderLG={1}
                         size={12}
                         sizeLG={6}
-                        color={ faculty_color || colors.primary.dark }      
+                        color={ color || colors.primary.dark }      
                     >
                         <Container noGutters>
                             <Row>
                                 <Col>
                                     <Wrapper as="div">
-                                        <Title color={colors.white}> {faculty.title.rendered}</Title>
-                                        <Content>  
-                                            <Html2React  html={ faculty_cover_copy }/>
-                                        </Content>    
+                                        <Title color={colors.white}> {title}</Title>
+                                        <Content dangerouslySetInnerHTML={{__html: copy}} />    
                                     </Wrapper>
                                 </Col>
                             </Row>
@@ -61,7 +47,7 @@ const FacultyCover = ({ state, libraries })=>{
                         orderLG={2}
                         noGutters>
                             <FeaturedMedia 
-                                media={ featured_media }
+                                media={ featuredImage.node.localFile }
                                 size="56.25%"
                                 sizeLG="80%"
                                 heightLG="100%"
@@ -74,7 +60,7 @@ const FacultyCover = ({ state, libraries })=>{
     );
 }
 
-export default connect(FacultyCover);
+export default FacultyCover;
 
 const ColStyles = styled( Col )`
     background-color:  ${props => props.color};

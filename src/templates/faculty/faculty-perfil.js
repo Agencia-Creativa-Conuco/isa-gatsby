@@ -1,26 +1,20 @@
-import { connect, styled, css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
+import React from 'react';
+import styled from "@emotion/styled";
+import { Container, Section, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import colors from "../../components/styles/colors";
 
-
-const FacultyPerfil = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const faculty= state.source[data.type][data.id];
+const FacultyPerfil = ({ faculty }) =>{
 
     const {
-        meta_box
+        color,
+        perfil: {
+            name,
+            jobtitle,
+            content,
+            photo
+        }
     } = faculty;
-
-    const {
-        faculty_perfil_image,
-        faculty_perfil_title,
-        faculty_perfil_jobtitle,
-        faculty_perfil_copy,
-        faculty_color,
-    } = meta_box;
-
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
 
     return (
         <BgSection color={colors.gray.light} spaceNone>
@@ -32,15 +26,15 @@ const FacultyPerfil = ({ state,libraries }) =>{
                         sizeLG={5} 
                         mxAuto
                         >
-                            <CubeDecano  decoBg={ faculty_color || colors.primary.dark }>
+                            <CubeDecano  decoBg={ color || colors.primary.dark }>
                                 <FeaturedMedia
-                                    media={ faculty_perfil_image }
+                                    media={ photo.localFile }
                                     size="100%"
                                     rounded
                                     zIndex="1"
                                     bgColor
                                 />
-                                <CubeDecano2 decoBg={ faculty_color || colors.primary.dark }/>
+                                <CubeDecano2 decoBg={ color || colors.primary.dark }/>
                             </CubeDecano>
                         </Col>
                         <Col
@@ -48,13 +42,11 @@ const FacultyPerfil = ({ state,libraries }) =>{
                             sizeLG={6}
                         >
                             <Content>
-                                <Title color={ faculty_color || colors.primary.dark }>
-                                    <JobTitle>{faculty_perfil_jobtitle}</JobTitle>
-                                    <Name>{faculty_perfil_title}</Name>
+                                <Title color={ color || colors.primary.dark }>
+                                    <JobTitle>{jobtitle}</JobTitle>
+                                    <Name>{name}</Name>
                                 </Title>
-                                <Html2React 
-                                    html={ faculty_perfil_copy }
-                                />
+                                <div dangerouslySetInnerHTML={{__html: content}} />
                             </Content>
                         </Col>
                     </Row>
@@ -65,7 +57,7 @@ const FacultyPerfil = ({ state,libraries }) =>{
 
 }
 
-export default connect( FacultyPerfil );
+export default FacultyPerfil;
 
 const BgSection = styled(Section)`
     background: ${props => props.color};

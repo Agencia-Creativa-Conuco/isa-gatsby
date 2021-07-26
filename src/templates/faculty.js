@@ -1,6 +1,7 @@
 import * as React from "react";
 import Layout from "../components/layout";
 import { graphql } from "gatsby";
+import FacultySingle from "./faculty/faculty-single";
 
 export const query = graphql`
   query ($id: String!) {
@@ -13,12 +14,82 @@ export const query = graphql`
         link
         uri
         slug
+        parentId
         featuredImage {
           node {
             localFile {
               childImageSharp {
                 fluid(maxWidth: 1920) {
                   ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
+        }
+
+        wpChildren {
+          nodes {
+            ... on WpFaculty {
+              id
+              title
+              slug
+              uri
+              link
+            }
+          }
+        }
+
+        facultyInfo {
+
+          color
+
+          cover {
+            copy
+          }
+          
+          perfil {
+            name
+            jobtitle
+            content
+            photo {
+              localFile {
+                publicURL
+                childImageSharp {
+                  fluid(maxWidth: 1920) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }
+          }
+
+        }
+
+        resources {
+          resourceRelationship {
+            ... on WpResource {
+              id
+              title
+              featuredImage {
+                node {
+                  localFile {
+                    publicURL
+                    childImageSharp {
+                      fluid(maxWidth: 1920) {
+                        ...GatsbyImageSharpFluid_withWebp
+                      }
+                    }
+                  }
+                }
+              }
+              resource {
+                type
+                file {
+                  id
+                  localFile {
+                    id
+                    publicURL
+                  }
                 }
               }
             }
@@ -31,20 +102,27 @@ export const query = graphql`
 
 // markup
 const Faculty = ({ data }) => {
+
   const {
-    allWpFaculty: { nodes: facultys },
+    allWpFaculty: { nodes: faculties },
   } = data;
 
-  const [faculty] = facultys;
+  const [facultyData] = faculties;
 
-  const {
-    title
-  } = faculty;
+  const faculty = {
+    title: facultyData.title,
+    parent: facultyData.parentId,
+    featuredImage: facultyData.featuredImage,
+    color: facultyData.facultyInfo.color,
+    cover: facultyData.facultyInfo.cover,
+    perfil: facultyData.facultyInfo.perfil,
+    resources: facultyData.resources.resourceRelationship,
+    children: facultyData.wpChildren.nodes,
+};
 
   return (
     <Layout>
-      <h1>{title}</h1>
-      <div>AQUI VA EL COMPONENTE</div>
+      <FacultySingle {...{faculty}} />
     </Layout>
   );
 };
