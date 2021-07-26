@@ -1,45 +1,50 @@
 
-import { connect, styled, css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import Link from "../../link";
+import React from 'react';
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { Container, Section, Row, Col, mq} from "../../components/layout/index";
+import Link from "../../components/link";
+import colors from "../../components/styles/colors";
+import BackgroundImage from "gatsby-background-image";
+import CTA from '../../components/cta';
 
-const CareerForm = ({ state, facultyColor, career }) =>{
+const CareerForm = ({ career }) =>{
     
     const {
-        meta_box,
+        faculty,
+        form: {
+            title,
+            image
+        }
     } = career;
-    
-    const { 
-        career_form_show,
-        career_form_title,
-        career_form_image,
-    } = meta_box;
-    
-    const {colors} = state.theme;
 
+    const facultyColor = faculty.color;
+    
     return (
-        <BGSection spaceNone bg={career_form_image?career_form_image.full_url:null}>
-            <Container>
-                <Row >
-                    <Col size="auto" css={css`background-color: ${facultyColor};`}> 
-                        <Form method="POST" action="/">
-                            <SectionTitle color={colors.white}>{career_form_title}</SectionTitle>
-                            <Input type="text" placeholder="Nombre"/>
-                            <Input type="email" placeholder="Correo Electronico"/>
-                            <Input type="tel" placeholder="Numero de telefono"/>
-                            <Input type="text" placeholder="Cuidad de reciencia"/>
-                            <Input type="textarea" placeholder="Programa de interes"/>
-                            <StyledLink to="#" cta>ENVIAR</StyledLink>
-                        </Form>
-                    </Col>
-                </Row>
-            </Container>
+        <BGSection spaceNone>
+            <BackgroundImage fluid={image.localFile.childImageSharp.fluid} >
+                <Container>
+                    <Row >
+                        <Col size="auto" css={css`background-color: ${facultyColor};`}> 
+                                <Form method="POST" action="/">
+                                    <SectionTitle color={colors.white}>{title}</SectionTitle>
+                                    <Input type="text" placeholder="Nombre"/>
+                                    <Input type="email" placeholder="Correo Electronico"/>
+                                    <Input type="tel" placeholder="Numero de telefono"/>
+                                    <Input type="text" placeholder="Cuidad de reciencia"/>
+                                    <Input type="textarea" placeholder="Programa de interes"/>
+                                    <CTA to="#" cta>ENVIAR</CTA>
+                                </Form>
+                        </Col>
+                    </Row>
+                </Container>
+            </BackgroundImage>
         </BGSection>
     );
 
 }
 
-export default connect(CareerForm);
+export default CareerForm;
 
 const BGSection = styled(Section)`
     background: url(${props => props.bg});

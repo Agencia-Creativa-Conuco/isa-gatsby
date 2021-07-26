@@ -22,17 +22,19 @@ const ResourcesList = ({
     small = false,
     medium = true,
     large = false,
-    filter = [],
+    exclude = [],
     items = []
 }) => {
 
-    const resources = items? items.filter((resource)=>{
+    const resources = items? items.filter((item)=>{
 
         const {
-            resource_type
-        } = resource;
+            resource: {
+                type
+            }
+        } = item;
 
-        return !filter.includes(resource_type);
+        return !exclude.includes(type);
     }) : [];
 
     useEffect(()=>{

@@ -1,39 +1,24 @@
 import React, {useState} from "react";
-import { styled, css, connect } from "frontity";
-import {Section, Container, Row, Col, mq} from "../../layout/index";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import {Section, Container, Row, Col, mq} from "../../components/layout/index";
 import {lighten, darken} from "polished";
-import FeaturedMedia from "../../featured-media";
+import FeaturedMedia from "../../components/featured-media";
+import colors from "../../components/styles/colors";
 
-const CareerCompetencies = ({ state, libraries, facultyColor, career })=>{
-
-    const {
-        meta_box
-    } = career;
-
-    const { 
-        career_competencies_title, 
-        career_competencies_group
-     } = meta_box;
-
-    const {
-        colors
-    } = state.theme;
-
-    const Html2React = libraries.html2react.Component;
+const CareerCompetencies = ({ career })=>{
 
     const [active, setActive] = useState(0);
 
+    const {
+        faculty,
+        tabs = []
+    } = career; 
+
+    const facultyColor = faculty.color;
+
     return (
         <Section>
-            <Section spaceNone as="div">
-                <Container>
-                    <Row>
-                        <Col>
-                            <Title color={facultyColor}>{ career_competencies_title }</Title>
-                        </Col>
-                    </Row>
-                </Container>
-            </Section>
             <Section spaceNone as="div" css={displayerSectionStyles({
                 bgColor: colors.gray.light,
                 bgDecoBig: darken(0.15,facultyColor),
@@ -44,10 +29,10 @@ const CareerCompetencies = ({ state, libraries, facultyColor, career })=>{
                         <Col size="auto" mxAuto>
                             <Navigation justifyContent="center">
                             {
-                                career_competencies_group.map((item,index)=>{
+                                tabs.map((item,index)=>{
 
                                     const {
-                                        name
+                                        title
                                     } = item;
 
                                     const isActive = index == active;
@@ -63,7 +48,7 @@ const CareerCompetencies = ({ state, libraries, facultyColor, career })=>{
                                                     onClick={(e) => {
                                                         setActive(index);
                                                     }}
-                                                >{name}</Tab>
+                                                >{title}</Tab>
                                             </NavItem>
                                         </Col>
                                     )
@@ -75,7 +60,7 @@ const CareerCompetencies = ({ state, libraries, facultyColor, career })=>{
                     <Displayer>
                         <Row>
                         {
-                            career_competencies_group .map((item, index)=>{
+                            tabs.map((item, index)=>{
 
                                 const {
                                     content
@@ -86,9 +71,7 @@ const CareerCompetencies = ({ state, libraries, facultyColor, career })=>{
                                 return (
                                     <Col key={index} size={12} hidden={!isActive}>
                                         <Content>
-                                            <Description>
-                                                <Html2React html={ content } />
-                                            </Description>
+                                            <Description dangerouslySetInnerHTML={{__html: content}} />
                                         </Content>
                                     </Col>
                                 )
@@ -102,7 +85,7 @@ const CareerCompetencies = ({ state, libraries, facultyColor, career })=>{
     );
 }
 
-export default connect(CareerCompetencies);
+export default CareerCompetencies;
 
 const displayerSectionStyles = ({
     bgColor="#F0F0F0",

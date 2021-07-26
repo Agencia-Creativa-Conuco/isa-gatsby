@@ -19,8 +19,6 @@ const CareerPerfil = ({career })=>{
 
     const facultyColor = faculty?.color;
 
-    console.log(image)
-
     return (
         <Section >
             <Container>

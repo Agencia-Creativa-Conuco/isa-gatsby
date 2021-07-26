@@ -123,6 +123,7 @@ export const query = graphql`
                 }
               }
               resource {
+                type
                 file {
                   id
                   localFile {

@@ -1,48 +1,59 @@
 import React from "react";
-import { styled, css, connect } from "frontity";
-import {Section, Container, Row, Col, mq} from "../../layout/index";
-import Link from "../../link";
-import {PensumIcon} from "../../icons";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import {Section, Container, Row, Col, mq} from "../../components/layout/index";
+import Link from "../../components/link";
+import {PensumIcon} from "../../components/icons";
 
-const CareerPensum = ({ state, facultyColor, career })=>{
+const CareerPensum = ({ career })=>{
 
     const {
-        meta_box,
+        faculty,
         resources = []
     } = career;
 
-    const pensums = resources.filter((resource)=>{
+    
+    const pensums = resources.filter((item)=>{
         
         const {
-            resource_type
-        } = resource;
+            resource: {
+                type
+            }
+        } = item;
+        
+        return type == "pensum";
+    });
 
-        return resource_type == "pensum";
-    })
+    const facultyColor = faculty.color;
 
     return pensums.length?(
         <Section css={sectionStyles}>
             <Container>
                 <Row>
                 {
-                    pensums.map((resource, index)=>{
+                    pensums.map((pensum, index)=>{
                         const{
                             title,
-                            file
-                        } = resource;
+                            resource: {
+                                file : {
+                                    localFile : {
+                                        publicURL
+                                    }
+                                }
+                            }
+                        } = pensum;
 
                         return(
                             <Col size={12} sizeSM="auto" mxAuto key={index}>
                                 <Card>
                                     <CardLink
-                                        to={file.url}
+                                        href={publicURL}
                                         download
-                                        noDecoration
                                     >
                                         <Row alignCenter>
                                             <Col>
                                                 <CardSpan color={facultyColor}>Descargar</CardSpan>
-                                                <CardTitle color={facultyColor}>{ title.rendered }</CardTitle>
+                                                <CardTitle color={facultyColor}>{ title }</CardTitle>
                                             </Col>
                                             <Col size="auto">
                                                 <CardIcon color={facultyColor}>
@@ -62,7 +73,7 @@ const CareerPensum = ({ state, facultyColor, career })=>{
     ):null;
 }
 
-export default connect(CareerPensum);
+export default CareerPensum;
 
 const sectionStyles = css`
     margin-top: -10rem;
@@ -82,9 +93,12 @@ const Card = styled.div`
     z-index: 2;
 `;
 
-const CardLink = styled(Link)`
+const CardLink = styled.a`
     padding: 1.5rem;
     display: block;
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
 `;
 
 const CardTitle = styled.h3`

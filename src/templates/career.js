@@ -93,6 +93,36 @@ export const query = graphql`
 
         }
 
+        resources {
+          resourceRelationship {
+            ... on WpResource {
+              id
+              title
+              featuredImage {
+                node {
+                  localFile {
+                    publicURL
+                    childImageSharp {
+                      fluid(maxWidth: 1920) {
+                        ...GatsbyImageSharpFluid_withWebp
+                      }
+                    }
+                  }
+                }
+              }
+              resource {
+                type
+                file {
+                  id
+                  localFile {
+                    id
+                    publicURL
+                  }
+                }
+              }
+            }
+          }
+        }
 
       }
     }
@@ -125,6 +155,7 @@ const Career = ({ data }) => {
       perfil: careerData.careerInfo.perfil,
       tabs: careerData.careerInfo.tabs,
       form: careerData.careerInfo.form,
+      resources: careerData.resources.resourceRelationship,
   };
 
   return (
