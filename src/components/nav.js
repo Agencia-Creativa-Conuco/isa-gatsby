@@ -141,18 +141,18 @@ const NavContainer = styled.nav`
     justify-content: flex-end;
     height: 100%;
     ${
-      props.hideXS && `${mq.xs}{display: none;}` ||
-      props.hideSM && `${mq.sm}{display: none;}` ||
-      props.hideMD && `${mq.md}{display: none;}` ||
-      props.hideLG && `${mq.lg}{display: none;}` ||
-      props.hideXL && `${mq.xl}{display: none;}` 
+      props.hideXS ? css`${mq.xs}{display: none;}` : 
+      props.hideSM ? css`${mq.sm}{display: none;}` :
+      props.hideMD ? css`${mq.md}{display: none;}` :
+      props.hideLG ? css`${mq.lg}{display: none;}` :
+      props.hideXL ? css`${mq.xl}{display: none;}` : css``
     }
     ${
-      props.showXS && `${mq.xs}{display: flex;}` ||
-      props.showSM && `${mq.sm}{display: flex;}` ||
-      props.showMD && `${mq.md}{display: flex;}` ||
-      props.showLG && `${mq.lg}{display: flex;}` ||
-      props.showXL && `${mq.xl}{display: flex;}` 
+      props.showXS ? css`${mq.xs}{display: flex;}` :
+      props.showSM ? css`${mq.sm}{display: flex;}` :
+      props.showMD ? css`${mq.md}{display: flex;}` :
+      props.showLG ? css`${mq.lg}{display: flex;}` :
+      props.showXL ? css`${mq.xl}{display: flex;}` : css ``
     }
   `}
 
