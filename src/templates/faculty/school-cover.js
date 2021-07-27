@@ -16,8 +16,6 @@ const SchoolCover = ({ school, faculty })=>{
         }
     } = school;
 
-    console.log(school)
-
     return (
         <SSection spaceNone bgColor={faculty.color}>
             <FeaturedMedia 
