@@ -167,7 +167,7 @@ const useCareers = () => {
         perfil: career.careerInfo.perfil,
         tabs: career.careerInfo.tabs,
         form: career.careerInfo.form,
-        resources: career.resources.resourceRelationship,
+        resources: career?.resources?.resourceRelationship || [],
     }))
 
     return resultado;

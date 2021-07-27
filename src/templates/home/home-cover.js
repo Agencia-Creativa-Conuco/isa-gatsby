@@ -1,17 +1,27 @@
 import React from 'react';
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import Link from '../../link';
-import { Container, Section, Row, Col, mq} from "../../layout/index";
+import { Container, Section, Row, Col, mq} from "../../components/layout/index";
 import Carousel from "react-slick";
-import colors from "../../styles/colors";
-import CTA from '../../cta';
+import colors from "../../components/styles/colors";
+import CTA from '../../components/cta';
 
-import FeaturedMedia from '../../featured-media';
+import FeaturedMedia from '../../components/featured-media';
 
 const HomeCover = ({ page, slides }) =>{
 
-    const items = slides;
+    const {
+        home: {
+            cover,
+        }
+    } = page;
+
+    const items = slides.length? slides : [ {
+        title: page.title,
+        copy: cover.copy,
+        featuredImage: page.featuredImage,
+        cta: cover.cta
+    } ];
 
     return (
         <StyledSection spaceNone bgDeco={colors.primary.dark}>
@@ -25,6 +35,7 @@ const HomeCover = ({ page, slides }) =>{
                         title,
                         copy,
                         featuredImage,
+                        cta
                     } = item;
 
                     return (
@@ -49,8 +60,8 @@ const HomeCover = ({ page, slides }) =>{
                                                 {copy}
                                             </Copy>
                                             <LinkBox>
-                                                <CTA to={page.uri}>
-                                                    Conocer Mas
+                                                <CTA to={cta.url} target={cta.target}>
+                                                    {cta.title}
                                                 </CTA>
                                             </LinkBox>
                                         </Content>

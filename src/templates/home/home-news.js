@@ -1,26 +1,25 @@
 import React from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
-import Link from "../../link";
-import colors from "../../styles/colors";
+import { Container, Section, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import Link from "../../components/link";
+import colors from "../../components/styles/colors";
 
 const HomeNews = ({ page, posts }) =>{
     
     const {
-        newsTitle,
-        newsShow
+        newsTitle = "Noticias Recientes",
     } = page;
 
     const news = posts;
 
-    return news.length > 0 && newsShow?(
+    return news.length > 0?(
         <Section>
             <Container>
                 <Row>
                     <Col>
-                        <Title>{newsTitle || "Noticias Recientes"}</Title>
+                        <Title>{newsTitle}</Title>
                     </Col>
                 </Row>
                 <Row>

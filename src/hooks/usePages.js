@@ -15,12 +15,57 @@ const usePages = () => {
                 link
                 uri
                 slug
+                isFrontPage
+                isPostsPage
                 featuredImage {
                   node {
                     localFile {
                       childImageSharp {
                         fluid(maxWidth: 1920) {
                           ...GatsbyImageSharpFluid_withWebp
+                        }
+                      }
+                    }
+                  }
+                }
+                
+                home {
+                  cover {
+                    copy
+                    cta {
+                      title
+                      url
+                      target
+                    }
+                  }
+                  ctaSection {
+                    title
+                    copy
+                    cta {
+                      target
+                      title
+                      url
+                    }
+                    image {
+                      localFile {
+                        publicURL
+                        childImageSharp {
+                          fluid(maxWidth: 1920) {
+                            ...GatsbyImageSharpFluid_withWebp
+                          }
+                        }
+                      }
+                    }
+                  }
+                  form {
+                    title
+                    image {
+                      localFile {
+                        publicURL
+                        childImageSharp {
+                          fluid(maxWidth: 1920) {
+                            ...GatsbyImageSharpFluid_withWebp
+                          }
                         }
                       }
                     }
@@ -148,7 +193,10 @@ const usePages = () => {
         slug: post.slug,
         uri: post.uri,
         link: post.link,
+        isFrontPage: post.isFrontPage,
+        isPostsPage: post.isPostsPage,
         featuredImage: post?.featuredImage?.node?.localFile,
+        home: post.home,
         about: post.about,
         events: {
           categories: post?.events?.categories || []

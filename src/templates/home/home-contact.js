@@ -1,27 +1,29 @@
 import React from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
-import Link from "../../link";
-import colors from "../../styles/colors";
-import CTA from "../../cta";
+import { Container, Section, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import colors from "../../components/styles/colors";
+import CTA from "../../components/cta";
 
 const HomeContact = ({ page }) =>{
     
     const {
-        contactShow,
-        contactImage,
-        contactTitle
+        home: {
+            form: {
+                title,
+                image
+            }
+        }
     }=page;
 
-    return contactShow?(
+    return (
         <Section spaceNone>
             <Container fluid notFluidXL sizeXL="192rem">
                 <Row alignCenter reverseLG>
                     <Col size={12} sizeLG={6} noGutters>
                         <Image
-                            media={contactImage}
+                            media={image}
                             size="56.25%"
                             sizeLG="120%"
                             sizeXL="100%"
@@ -31,7 +33,7 @@ const HomeContact = ({ page }) =>{
                     </Col>
                     <Col size={12} sizeLG={6}>
                         <Content bgDeco={colors.primary.light}>
-                            <SectionTitle> {contactTitle} </SectionTitle>
+                            <SectionTitle> {title} </SectionTitle>
                             <Form method="POST" action="/">
                                 <Input type="text" placeholder="Nombre"/>
                                 <Input type="email" placeholder="Correo Electronico"/>
@@ -44,7 +46,7 @@ const HomeContact = ({ page }) =>{
                 </Row>
             </Container>
         </Section>
-    ):null;
+    );
 
 }
 

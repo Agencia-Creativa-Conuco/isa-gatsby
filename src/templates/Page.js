@@ -4,7 +4,7 @@ import { graphql } from "gatsby";
 
 import Admisiones from "../components/page/admission/admisiones";
 import About from "../components/page/about/about";
-import Index from "../pages/index";
+import FrontPage from "./home/front-page";
 
 import usePages from "../hooks/usePages";
 
@@ -26,17 +26,17 @@ const Post = ({ data }) => {
 
   const [page] = usePages().filter( page => pages.map( item => item.id).includes( page.id ) );
 
-  const { title, slug } = page;
+  const { title, slug, isFrontPage } = page;
 
   return (
     <Layout>
       {
-        slug === 'admisiones'? (
+        isFrontPage? (
+          <FrontPage {...{ page }}/>
+        ) : slug === 'admisiones'? (
           <Admisiones {...{ page }}/>
         ) : slug === 'nosotros'? (
           <About {...{ page }}/>
-        ) : slug === 'isa'? (
-          <Index {...{ page }}/>
         ) : (
           <h1>ESTA ES LA PÁGINA:{title}</h1>
         )

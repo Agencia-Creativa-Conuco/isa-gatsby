@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
-import Link from "../../link";
-import {LeftArrowIcon} from "../../icons";
+import { Container, Section, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import Link from "../../components/link";
+import {LeftArrowIcon} from "../../components/icons";
 import { useStaticQuery, graphql } from 'gatsby';
 
 import {Spring, animated} from "@react-spring/web";
-import colors from "../../styles/colors";
-import { getHierarchicalItems } from "../../inc/auxiliar";
+import colors from "../../components/styles/colors";
+import { getHierarchicalItems } from "../../components/inc/auxiliar";
 
 const Item = ({ item, ...other })=>{
     
@@ -153,7 +153,7 @@ const NavItem = ({item, isActive, setView}) => {
     );
 }
 
-const HomeOffer = ({ page, faculties, careers }) =>{
+const HomeOffer = ({ page }) =>{
     
     const [view, setView] = useState();
     
@@ -200,12 +200,10 @@ const HomeOffer = ({ page, faculties, careers }) =>{
     `);
 
     const {
-        navigationShow,
-        navigationItems,
         menuItems = getHierarchicalItems(menu?.menuItems?.nodes) || []
     } = page;
 
-    return menuItems.length && navigationShow?(
+    return menuItems.length?(
         <Section
             css={sectionStyles} 
             spaceNone

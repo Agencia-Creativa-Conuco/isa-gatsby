@@ -1,24 +1,23 @@
 import React from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import {  Section, Container, Row, Col, mq } from "../../layout/index";
-import CTA from '../../cta';
+import {  Section, Container, Row, Col, mq } from "../../components/layout/index";
+import CTA from '../../components/cta';
 
-import FeaturedMedia from "../../featured-media";
-import Link from "../../link";
+import FeaturedMedia from "../../components/featured-media";
+import Link from "../../components/link";
 import Carousel from "react-slick";
-import colors from "../../styles/colors";
+import colors from "../../components/styles/colors";
 
-import {h1} from "../../styles/tipography";
+import {h1} from "../../components/styles/tipography";
 
 const HomeProjects = ({ projects, page }) =>{
     
     const {
-        projectTitle,
-        projectShow
+        projectTitle = "Proyectos de investigación",
     } = page;
 
-    return projects.length && projectShow?(
+    return projects.length?(
         <Section spaceNone>
             <Container fluid>
                 <Row>

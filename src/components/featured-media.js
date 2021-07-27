@@ -46,6 +46,15 @@ const FeaturedMedia = ({
               loading={loading}
               fit={fit}
             />
+          ) : media?.localFile?.childImageSharp? (
+            <StyledImage
+              fluid={media?.localFile?.childImageSharp.fluid}
+              alt={"texto alternativo"}
+              position={position}
+              isSized={isSized}
+              loading={loading}
+              fit={fit}
+            />
           ) : media?.publicURL? (
             <NormalImage
               {...media}

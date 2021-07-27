@@ -1,24 +1,27 @@
 import React from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
-import Link from "../../link";
-import colors from "../../styles/colors";
+import { Container, Section, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import colors from "../../components/styles/colors";
+import CTA from '../../components/cta';
 
 const HomeAplication = ({ page }) =>{
 
     const {
-        aplicationShow,
-        aplicationImage,
-        aplicationCopy,
-        aplicationCta,
-        aplicationCtaUrl,
-        aplicationCtaText,
-        aplicationTitle
+        home: {
+            ctaSection: {
+                title,
+                copy,
+                image,
+                cta
+            }
+        }
     } = page;
+
+    console.log(image)
     
-    return aplicationShow?(
+    return (
         <Section spaceNone css={sectionStyles({
             bgRoundDeco:colors.blue.dark,
             bgSquareDeco:colors.blue.light
@@ -30,7 +33,7 @@ const HomeAplication = ({ page }) =>{
                         <Col size={12} sizeSM={10} sizeLG={6} mxAuto>
                             <Media bgDeco={colors.primary.dark}>
                                 <Image
-                                    media={aplicationImage}
+                                    media={image}
                                     size="125%"
                                     position="50% 10%"
                                 />
@@ -39,17 +42,17 @@ const HomeAplication = ({ page }) =>{
                         <Col size={12} sizeLG={6} mlAuto>
                             <Content bg={colors.white} decoBg={colors.blue.dark}>
                                 <Title>
-                                    {aplicationTitle}
+                                    {title}
                                 </Title>
                                 <Description>
-                                    {aplicationCopy}
+                                    {copy}
                                 </Description>
 
                                 {
-                                    parseInt(aplicationCta)?(
-                                        <Link to={aplicationCtaUrl} cta>
-                                            {aplicationCtaText}
-                                        </Link>
+                                    cta?(
+                                        <CTA to={cta.url} target={cta.target} cta>
+                                            {cta.title}
+                                        </CTA>
                                     ):null
                                 }
                             </Content>
@@ -58,7 +61,7 @@ const HomeAplication = ({ page }) =>{
                 </Wrapper>
             </Container>
         </Section>
-    ):null;
+    );
 
 }
 
