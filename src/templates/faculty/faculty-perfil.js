@@ -28,7 +28,7 @@ const FacultyPerfil = ({ faculty }) =>{
                         >
                             <CubeDecano  decoBg={ color || colors.primary.dark }>
                                 <FeaturedMedia
-                                    media={ photo.localFile }
+                                    media={ photo }
                                     size="100%"
                                     rounded
                                     zIndex="1"
