@@ -4,6 +4,7 @@ import { graphql } from "gatsby";
 
 import Admisiones from "../components/page/admission/admisiones";
 import About from "../components/page/about/about";
+import Index from "../pages/index";
 
 export const query = graphql`
   query ($id: String!) {
@@ -158,8 +159,10 @@ const Post = ({ data }) => {
           <Admisiones {...{ page }}/>
         ): slug === 'nosotros'? (
           <About {...{ page }}/>
+        ) : slug === 'isa'? (
+          <Index {...{ page }}/>
         ) : (
-          <h1>{title}</h1>
+          <h1>ESTA ES LA PÁGINA:{title}</h1>
         )
       }
       

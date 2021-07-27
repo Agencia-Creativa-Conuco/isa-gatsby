@@ -202,7 +202,7 @@ const HomeOffer = ({ page, faculties, careers }) =>{
     const {
         navigationShow,
         navigationItems,
-        menuItems = getHierarchicalItems(menu.menuItems.nodes) 
+        menuItems = getHierarchicalItems(menu?.menuItems?.nodes) || []
     } = page;
 
     return menuItems.length && navigationShow?(
