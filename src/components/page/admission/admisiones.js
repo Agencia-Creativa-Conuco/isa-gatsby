@@ -2,7 +2,6 @@ import * as React from "react"
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
-import Layout from "../../layout";
 import { Section } from "../../layout/index";
 import useEvents from "../../../hooks/useEvents";
 

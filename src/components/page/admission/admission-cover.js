@@ -26,7 +26,7 @@ const AdmissionCover = ({ page }) =>{
                         <DivLogo decoBg={colors.secondary.light}>
                             <DecoLogo decoBg={colors.secondary.light}>
                             <Logo
-                                media={featuredImage.node.localFile}
+                                media={featuredImage}
                                 alt="Admisiones Universidad ISA"
                                 size="100%"
                                 sizeXL="90%"
