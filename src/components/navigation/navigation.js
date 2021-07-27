@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import NavList from "./nav-list";
-import { Container,  Row,Col, mq} from "../layout/index";
+import { Container, Row, Col} from "../layout/index";
 /**
  * Navigation Component
  *
@@ -38,7 +38,7 @@ const Navigation = ({
           ):(
           items.map( (item, index) => {
             const {children, label, url} = item;
-            const isLink = url != "#";
+            const isLink = url !== "#";
 
             return children?(
               <StyledCol key={index} {...{size, sizeSM, sizeMD, sizeLG, sizeXL, mxAuto}}>

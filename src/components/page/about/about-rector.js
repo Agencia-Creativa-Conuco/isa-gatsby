@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "@emotion/styled";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
+import { Container, Section, Row, Col} from "../../layout/index";
 import FeaturedMedia from "../../featured-media";
 import colors from '../../styles/colors';
 

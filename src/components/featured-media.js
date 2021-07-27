@@ -4,8 +4,6 @@ import { css } from "@emotion/react";
 import Image from "gatsby-image";
 import {mq} from "./layout/index";
 import colors from "./styles/colors";
-import { getImage } from "gatsby-plugin-image";
-
 
 const FeaturedMedia = ({ 
   state, media, position, className, bgColor,
@@ -21,7 +19,7 @@ const FeaturedMedia = ({
     return null;
   }
 
-  const isCustom = typeof media === "object";
+  // const isCustom = typeof media === "object";
   
   const isSized = height || heightSM || heightMD || heightLG || heightXL || size || sizeSM || sizeMD || sizeLG || sizeXL;
 
@@ -34,7 +32,7 @@ const FeaturedMedia = ({
         size, sizeSM, sizeMD, sizeLG, sizeXL, 
         position, className, zIndex,
         //asigna color gris si se pasa bgColor sin valor
-        bgColor: bgColor == true? colors.gray.light: bgColor,
+        bgColor: bgColor === true? colors.gray.light: bgColor,
       }}>
         {
           media?.childImageSharp? (
@@ -110,31 +108,31 @@ ${({
     position: relative;
     ${bgColor? css`background-color: ${bgColor};`:css``}
     z-index: ${zIndex};
-    ${size && size != true? `padding-bottom: ${size};`: ""}
+    ${size && size !== true? `padding-bottom: ${size};`: ""}
     ${mq.sm}{
-      ${sizeSM && sizeSM != true? `padding-bottom: ${sizeSM};`: ""}
+      ${sizeSM && sizeSM !== true? `padding-bottom: ${sizeSM};`: ""}
     }
     ${mq.md}{
-      ${sizeMD && sizeMD != true? `padding-bottom: ${sizeMD};`: ""}
+      ${sizeMD && sizeMD !== true? `padding-bottom: ${sizeMD};`: ""}
     }
     ${mq.lg}{
-      ${sizeLG && sizeLG != true? `padding-bottom: ${sizeLG};`: ""}
+      ${sizeLG && sizeLG !== true? `padding-bottom: ${sizeLG};`: ""}
     }
     ${mq.xl}{
-      ${sizeXL && sizeXL != true? `padding-bottom: ${sizeXL};`: ""}
+      ${sizeXL && sizeXL !== true? `padding-bottom: ${sizeXL};`: ""}
     }
-    ${height && height != true? `height: ${height};`: ""}
+    ${height && height !== true? `height: ${height};`: ""}
     ${mq.sm}{
-      ${heightSM && heightSM != true? `height: ${heightSM};`: ""}
+      ${heightSM && heightSM !== true? `height: ${heightSM};`: ""}
     }
     ${mq.md}{
-      ${heightMD && heightMD != true? `height: ${heightMD};`: ""}
+      ${heightMD && heightMD !== true? `height: ${heightMD};`: ""}
     }
     ${mq.lg}{
-      ${heightLG && heightLG != true? `height: ${heightLG};`: ""}
+      ${heightLG && heightLG !== true? `height: ${heightLG};`: ""}
     }
     ${mq.xl}{
-      ${heightXL && heightXL != true? `height: ${heightXL};`: ""}
+      ${heightXL && heightXL !== true? `height: ${heightXL};`: ""}
     }
   `}
 `;
@@ -159,8 +157,8 @@ const StyledImage = styled(Image)`
     height: 100%;
     width: 100%;
     object-fit: ${fit};
-    ${fit == 'initial'? css`width: auto; height: auto;`:css``}
-    ${position && position !=true? css`object-position: ${position};`: css``}
+    ${fit === 'initial'? css`width: auto; height: auto;`:css``}
+    ${position && position !==true? css`object-position: ${position};`: css``}
   `}
 `;
 
@@ -182,7 +180,7 @@ const NormalImage = styled.img`
     height: 100%;
     width: 100%;
     object-fit: ${fit};
-    ${fit == 'initial'? css`width: auto; height: auto;`:css``}
-    ${position && position !=true? css`object-position: ${position};`: css``}
+    ${fit === 'initial'? css`width: auto; height: auto;`:css``}
+    ${position && position !==true? css`object-position: ${position};`: css``}
   `}
 `;

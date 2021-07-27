@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link as GatsbyLink } from "gatsby";
 
 const Link = ({ children, to, activeClassName, partiallyActive, ...other }) => {

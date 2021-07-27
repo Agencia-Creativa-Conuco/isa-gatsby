@@ -1,7 +1,6 @@
 import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import Link from "./link";
 import { DownloadIcon } from "./icons";
 import { Row, Col } from "./layout/index";
 import {h5} from "./styles/tipography";

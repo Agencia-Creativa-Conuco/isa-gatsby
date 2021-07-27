@@ -11,7 +11,7 @@ const auxiliarCSS = ({ settings }) => {
   const apiURL = new URL(settings.url);
   
   const blockStyle = apiURL.origin + "/wp-includes/css/dist/block-library/style.min.css";
-  const blockTheme = apiURL.origin + "/wp-includes/css/dist/block-library/theme.min.css";
+  // const blockTheme = apiURL.origin + "/wp-includes/css/dist/block-library/theme.min.css";
   
   return css`
     @import "${blockStyle}";

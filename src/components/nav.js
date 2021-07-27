@@ -19,7 +19,7 @@ const Nav = ({ items = [], isMobileMenuOpen , hideXS, hideSM, hideMD, hideLG, hi
  
   //Show submenu
   const menuToggle = (item, event) =>{
-    if(itemActive && item.ID == itemActive.ID){
+    if(itemActive && item.ID === itemActive.ID){
       hideMenu();
     }
     else if(item.children){
@@ -80,7 +80,7 @@ const Nav = ({ items = [], isMobileMenuOpen , hideXS, hideSM, hideMD, hideLG, hi
           <NavItem key={item.id} align="right" colors={colors} bold>
             {/* If link url is the current page, add `aria-current` for a11y */}
             {
-              children.length && (
+              children.length ? (
                 <NavItemTag 
                   aria-current={isCurrentPage ? "page" : undefined}
                   onClick={(e)=>{menuToggle(item,e)}}
@@ -88,7 +88,7 @@ const Nav = ({ items = [], isMobileMenuOpen , hideXS, hideSM, hideMD, hideLG, hi
                   >
                   {label}
                 </NavItemTag>
-              ) || (
+              ) : (
                 <NavItemLink 
                   to={url} 
                   aria-current={isCurrentPage ? "page" : undefined}
@@ -122,7 +122,7 @@ const Nav = ({ items = [], isMobileMenuOpen , hideXS, hideSM, hideMD, hideLG, hi
                 itemBorderColor="white"
                 isMain
                 size={12} sizeSM={6} sizeLG={4} 
-                hidden={itemActive == item.id?false:true}
+                hidden={itemActive === item.id?false:true}
               />
             ):null
           })

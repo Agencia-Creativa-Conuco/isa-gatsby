@@ -13,7 +13,7 @@ const Project  = ({ project })=>{
 
     const projects = useProjects();
 
-    const relatedProjects = projects.filter( (item, index) => item.id != project.id).slice(0,3);
+    const relatedProjects = projects.filter( (item, index) => item.id !== project.id).slice(0,3);
 
     return(  
         <Article key={project.id}>

@@ -9,7 +9,7 @@ const Post = ({ post })=>{
 
     const posts = usePosts();
 
-    const relatedPosts = posts.filter( (item, index) => item.id != post.id).slice(0,3);
+    const relatedPosts = posts.filter( item => item.id !== post.id).slice(0,3);
 
     return(
         

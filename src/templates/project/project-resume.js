@@ -1,6 +1,6 @@
 import React from "react";
 import styled from '@emotion/styled';
-import {Section, Container, Row, Col, mq} from "../../components/layout/index";
+import {Section, Container, Row, Col} from "../../components/layout/index";
 import colors from "../../components/styles/colors";
 
 const ProjectsResume = ({ project })=>{

@@ -1,18 +1,14 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import {Section, Container, Row, Col, mq} from "../../components/layout/index";
+import {Section, Container, Row, Col} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
-import {  PhoneIcon, MailIcon  } from "../../components/icons";
 import Link from "../../components/link";
 import colors from "../../components/styles/colors";
 import useCareer from "../../hooks/useCareers";
-import useFaculty from "../../hooks/useFaculties";
 
 const SchoolCareers  = ({ school, faculty })=>{
 
     const {
-        parent,
         careers
     } = school;
 

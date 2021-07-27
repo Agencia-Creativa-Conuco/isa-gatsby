@@ -3,8 +3,7 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import {Section, Container, Row, Col, mq} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
-import {lighten, darken} from "polished";
-import colors from "../../components/styles/colors";
+import {lighten} from "polished";
 
 const SchoolCover = ({ school, faculty })=>{
 

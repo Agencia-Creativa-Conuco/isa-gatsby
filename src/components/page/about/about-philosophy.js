@@ -42,7 +42,7 @@ const AboutPhilosophy = ({ page }) =>{
                                     content
                                 } = item;
 
-                                const isActive = view == i;
+                                const isActive = view === i;
 
                                 return(
                                     <Spring
@@ -84,7 +84,7 @@ const AboutPhilosophy = ({ page }) =>{
                                 title
                             } = item;
 
-                            const isActive = view == i;
+                            const isActive = view === i;
                             
                             return(
                                 <Item 

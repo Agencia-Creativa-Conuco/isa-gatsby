@@ -28,7 +28,7 @@ const SearchModal = ({ isSearchModalOpen, toggleSearchModal }) => {
   useFocusTrap(containerRef, isSearchModalOpen);
 
   // Format the query to remove trailing spaces and replace space with "+"
-  const formatQuery = (query) => query.trim().replace(" ", "+").toLowerCase();
+  // const formatQuery = (query) => query.trim().replace(" ", "+").toLowerCase();
 
   const handleSubmit = (event) => {
     // Prevent page navigation

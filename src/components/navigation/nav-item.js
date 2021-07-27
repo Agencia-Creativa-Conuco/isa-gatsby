@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import ResizeObserver from 'resize-observer-polyfill'
-import {useSpring, animated, a} from "@react-spring/web";
+import {useSpring, animated} from "@react-spring/web";
 import Link from "../link";
 import NavList from "./nav-list";
 import {LeftArrowMenuIcon} from "../icons";
@@ -40,7 +40,7 @@ const NavItem = ({
     
     const hasChildren = children.length >0;
     const isCurrentPage = false;
-    const isLink = url != "#";
+    const isLink = url !== "#";
     
     const [isOpen, setOpen] = useState(defaultOpen)
     const previous = usePrevious(isOpen)

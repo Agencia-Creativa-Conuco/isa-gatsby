@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import {Section, Container, Row, Col, mq} from "../../components/layout/index";
 import {lighten, darken} from "polished";
-import FeaturedMedia from "../../components/featured-media";
 import colors from "../../components/styles/colors";
 
 const CareerCompetencies = ({ career })=>{
@@ -35,7 +34,7 @@ const CareerCompetencies = ({ career })=>{
                                         title
                                     } = item;
 
-                                    const isActive = index == active;
+                                    const isActive = index === active;
 
                                     return (
                                         <Col key={index} size={12} sizeSM="auto" noGutters>
@@ -66,7 +65,7 @@ const CareerCompetencies = ({ career })=>{
                                     content
                                 } = item;
 
-                                const isActive = index == active;
+                                const isActive = index === active;
 
                                 return (
                                     <Col key={index} size={12} hidden={!isActive}>
@@ -169,14 +168,14 @@ const Content = styled.div`
     }
 `;
 
-const Title = styled.h2`
-    ${({color="green"})=>css`
-        color: ${color};
-        text-transform: uppercase;
-        margin-bottom: 4rem;
-        text-align: center;
-    `}
-`;
+// const Title = styled.h2`
+//     ${({color="green"})=>css`
+//         color: ${color};
+//         text-transform: uppercase;
+//         margin-bottom: 4rem;
+//         text-align: center;
+//     `}
+// `;
 
 const Description = styled.div`
     margin-bottom: 3rem;

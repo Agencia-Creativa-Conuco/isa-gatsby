@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { graphql, useStaticQuery } from "gatsby";
 import AboutCover from "./about-cover";
 import AboutHistory from "./about-history";
 import AboutRector from "./about-rector";

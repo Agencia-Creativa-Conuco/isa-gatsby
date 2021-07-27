@@ -2,9 +2,7 @@ import React from 'react';
 import styled from "@emotion/styled";
 import { Container, Section, Row, Col, mq} from "../../layout/index";
 import FeaturedMedia from "../../featured-media";
-import Link from "../../link";
 import colors from '../../styles/colors';
-import { graphql, useStaticQuery } from 'gatsby';
 import CTA from "../../cta";
 
 const AdmissionCover = ({ page }) =>{

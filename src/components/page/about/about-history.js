@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { Container,Row, Col, Section, mq, mqVal} from "../../layout/index";

@@ -11,7 +11,7 @@ const School= ({ faculty: school })=>{
         parent,
     } = school;
 
-    const [ faculty ] = useFaculty().filter( faculty => faculty.id == parent);
+    const [ faculty ] = useFaculty().filter( faculty => faculty.id === parent);
 
     return (
         <Article >

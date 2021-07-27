@@ -99,10 +99,10 @@ const AboutCampus = ({ page }) =>{
 
 export default AboutCampus;
 
-const colStyles = css`
-    padding: 1.5rem;
-    margin-top: -1.5rem;
-`;
+// const colStyles = css`
+//     padding: 1.5rem;
+//     margin-top: -1.5rem;
+// `;
 
 const SectionTitle = styled.h2`
     text-align: center;

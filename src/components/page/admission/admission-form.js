@@ -3,7 +3,6 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { graphql, useStaticQuery } from 'gatsby';
 import { Container, Row, Col, mq} from "../../layout/index";
-import Link from "../../link";
 import colors from '../../styles/colors';
 import BackgroundImage from "gatsby-background-image";
 import CTA from "../../cta";

@@ -23,14 +23,14 @@ const Item = ({ item, ...other })=>{
             level = 1
         } = other;
 
-    const isMain = level == 1;
+    const isMain = level === 1;
 
     return (
-        <Col size={12} sizeMD={ isMain? 12 : level==2? 6 : 12 }>
+        <Col size={12} sizeMD={ isMain? 12 : level===2? 6 : 12 }>
             <Component>
                 <StyledLink to={url}>
                     <Title 
-                        color={ (level + 1) % 2 == 0 && level != 1? colors.text.base : colors.primary.dark } 
+                        color={ (level + 1) % 2 === 0 && level !== 1? colors.text.base : colors.primary.dark } 
                         bgHover={colors.gray.light}
                         {...{isMain, level}}
                     >{label}</Title>
@@ -67,7 +67,7 @@ const Title = styled.span`
         }
         ${isMain?css`
             font-weight: 900;
-        `: level % 2 != 0? css`
+        `: level % 2 !== 0? css`
             font-weight: normal;
         `: css`
             font-weight: 300;
@@ -99,8 +99,8 @@ const ItemList = ({items, ...other })=>{
 const StyledRow = styled(Row)`
     ${({level})=>css`
         padding: 0;
-        ${level==2? css`margin-bottom: 2rem;` : css` margin-bottom: 0; `};
-        ${(level + 1) % 2 == 0 || (level + 1) == 3 ? css`
+        ${level===2? css`margin-bottom: 2rem;` : css` margin-bottom: 0; `};
+        ${(level + 1) % 2 === 0 || (level + 1) === 3 ? css`
             padding-left: 0;
             `: css`
             padding-left: 1rem;
@@ -158,12 +158,8 @@ const HomeOffer = ({ page }) =>{
     const [view, setView] = useState();
     
     //Consultar y optener logo.svg
-    const { logo, menu } = useStaticQuery( graphql`
+    const { menu } = useStaticQuery( graphql`
         query {
-            logo: file(relativePath: {eq: "logo.svg"}) {
-                publicURL
-            }
-
             menu: wpMenu(name: {eq: "home_nav"}) {
                 id
                 name
@@ -220,7 +216,7 @@ const HomeOffer = ({ page }) =>{
                                     children
                                 } = item;
 
-                                const isActive = view == id;
+                                const isActive = view === id;
 
                                 return children.length?(
                                     <Col size={6} sizeLG={3} mxAuto noGutters key={index}>
@@ -248,7 +244,7 @@ const HomeOffer = ({ page }) =>{
                             children
                         } = item;
 
-                        const isActive = view == id;
+                        const isActive = view === id;
 
                         return children.length > 0?(
                             <DisplayerSection key={id} hidden={!isActive}>

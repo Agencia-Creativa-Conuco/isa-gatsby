@@ -69,7 +69,7 @@ const Post = ({data}) => {
 
     const {
         title,
-        content
+        // content
     } = post;
 
   return (

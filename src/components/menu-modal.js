@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import Nav from "./nav-movile";
 import {mq} from "./layout/index";
 import {fadeIn} from "./styles/animations";
 import Navigation from "./navigation/navigation";

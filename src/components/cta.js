@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from './link';
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import ctaStyles from './styles/cta';
 

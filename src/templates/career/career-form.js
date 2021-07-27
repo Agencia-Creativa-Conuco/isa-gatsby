@@ -1,9 +1,7 @@
-
 import React from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { Container, Section, Row, Col, mq} from "../../components/layout/index";
-import Link from "../../components/link";
 import colors from "../../components/styles/colors";
 import BackgroundImage from "gatsby-background-image";
 import CTA from '../../components/cta';
@@ -76,16 +74,5 @@ const Input = styled.input`
     border: none;
     margin: 1.5rem auto;
     max-width: 100%;
-
-
-    // ${mq.lg}{
-        padding: 2rem 6rem;
-    // }
-`;
-
-
-const StyledLink = styled(Link)`
-    ${mq.md}{
-        margin-top: 3rem;
-    }
+    padding: 2rem 6rem;
 `;

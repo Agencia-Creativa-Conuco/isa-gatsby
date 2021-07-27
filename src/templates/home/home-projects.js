@@ -5,9 +5,7 @@ import {  Section, Container, Row, Col, mq } from "../../components/layout/index
 import CTA from '../../components/cta';
 
 import FeaturedMedia from "../../components/featured-media";
-import Link from "../../components/link";
 import Carousel from "react-slick";
-import colors from "../../components/styles/colors";
 
 import {h1} from "../../components/styles/tipography";
 

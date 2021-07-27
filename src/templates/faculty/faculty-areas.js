@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "@emotion/styled";
-import { Container, Section, Row, Col, mq} from "../../components/layout/index";
+import { Container, Section, Row, Col} from "../../components/layout/index";
 import Link from "../../components/link";
 import colors from '../../components/styles/colors';
 

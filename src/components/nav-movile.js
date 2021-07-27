@@ -23,7 +23,7 @@ const Nav = ({
 
   //Show submenu
   const menuToggle = (item, event) =>{
-    if(itemActive && item.ID == itemActive.ID){
+    if(itemActive && item.ID === itemActive.ID){
       actions.theme.hideMenu();
     }
     else if(item.child_items){
@@ -40,7 +40,7 @@ const Nav = ({
       const incomingURL = new URL(url);
       const parsedURL = libraries.source.parse(url);
 
-      if(incomingURL.domain == localURL.domain){
+      if(incomingURL.domain === localURL.domain){
         const {path,page,query,hash} = parsedURL;
         link = libraries.source.stringify({
           ...{path,page,query,hash}
@@ -101,7 +101,7 @@ const Nav = ({
           menu.items.map( (itemP, index) =>{
 
             return itemP.child_items ? (
-              <Row key={index} as="section" visible={itemActive && itemP.ID == itemActive.ID} css={rowStyles}>
+              <Row key={index} as="section" visible={itemActive && itemP.ID === itemActive.ID} css={rowStyles}>
               {
                 itemP.child_items.map( (item) => {
                   const link = getURL(item.url);
@@ -113,7 +113,7 @@ const Nav = ({
                         {/* If link url is the current page, add `aria-current` for a11y */}
                         {
                           item.title != "#"?(
-                            link=="#"?(
+                            link==="#"?(
                               <NavItemTag 
                                 aria-current={isCurrentPage ? "page" : undefined}
                               >
@@ -142,7 +142,7 @@ const Nav = ({
                                     <NavItem colors={state.theme.colors} align="left">
                                       {/* If link url is the current page, add `aria-current` for a11y */}
                                       {
-                                        link == "#" && (
+                                        link === "#" && (
                                           <NavItemTag 
                                             aria-current={isCurrentPage ? "page" : undefined}
                                           >

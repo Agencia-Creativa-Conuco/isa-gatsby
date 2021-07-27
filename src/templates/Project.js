@@ -3,8 +3,6 @@ import Layout from "../components/layout";
 import { graphql } from "gatsby";
 import ProjectComponent from "./project/project-single";
 
-import Admisiones from "../components/page/admission/admisiones";
-
 export const query = graphql`
   query ($id: String!) {
     allWpProject(filter: { id: { eq: $id } }) {
@@ -53,8 +51,6 @@ const Project = ({ data }) => {
   } = data;
 
   const [project] = projects;
-
-  const { slug } = project;
 
   return (
     <Layout>

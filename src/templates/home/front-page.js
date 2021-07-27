@@ -8,18 +8,12 @@ import HomeOffer from "./home-offer";
 import HomeNews from "./home-news";
 import Calendar from "../../components/calendar";
 
-import useInicio from "../../hooks/useInicio";
 import useSlides from "../../hooks/useSlides";
 import usePosts from "../../hooks/usePosts";
 import useProjects from "../../hooks/useProjects";
-import useFaculties from "../../hooks/useFaculties";
-import useCareers from "../../hooks/useCareers";
 import useEvents from "../../hooks/useEvents";
 
 const FrontPage = ({ page }) => {
-
-  //Obtiene los datos de la página de inicio
-  // const [page] = useInicio();
 
   //Obtiene los datos de los slides
   const slides = useSlides();
@@ -29,12 +23,6 @@ const FrontPage = ({ page }) => {
 
   //Obtiene los datos de los Proyectos
   const projects = useProjects();
-
-  //Obtiene los datos de los Facultades
-  const faculties = useFaculties();
-
-  //Obtiene los datos de los Careeras
-  const careers = useCareers();
 
   //Obtiene los datos de los Eventos
   const events = useEvents();

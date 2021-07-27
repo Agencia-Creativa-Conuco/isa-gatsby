@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { Container, Section, Row, Col, mq} from "../../layout/index";
 import FeaturedMedia from "../../featured-media";
-import Link from "../../link";
 import colors from "../../styles/colors";
 import CTA from '../../cta';
 
