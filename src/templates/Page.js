@@ -33,8 +33,10 @@ const Post = ({ data }) => {
       {
         slug === 'admisiones'? (
           <Admisiones {...{ page }}/>
-        ): slug === 'nosotros'? (
+        ) : slug === 'nosotros'? (
           <About {...{ page }}/>
+        ) : slug === 'isa'? (
+          <Index {...{ page }}/>
         ) : (
           <h1>ESTA ES LA PÁGINA:{title}</h1>
         )

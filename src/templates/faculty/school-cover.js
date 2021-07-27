@@ -6,7 +6,7 @@ import FeaturedMedia from "../../components/featured-media";
 import {lighten, darken} from "polished";
 import colors from "../../components/styles/colors";
 
-const SchoolCover = ({ faculty, facultyColor })=>{
+const SchoolCover = ({ school, faculty })=>{
 
     const {
         featuredImage,
@@ -14,18 +14,20 @@ const SchoolCover = ({ faculty, facultyColor })=>{
         cover: {
             copy
         }
-    } = faculty;
+    } = school;
+
+    console.log(school)
 
     return (
-        <SSection spaceNone bgColor={facultyColor}>
+        <SSection spaceNone bgColor={faculty.color}>
             <FeaturedMedia 
                 media={ featuredImage?.node?.localFile }
                 size="56.25%"   
                 sizeLG="45%"
                 bgColor
             /> 
-            <SContainer bgColor={lighten(0.15, facultyColor)}>  
-                <Deco bgColor={lighten(0.15, facultyColor)} bgColorBefore={lighten(0.03, facultyColor)} bgColorAfter={lighten(0.03, facultyColor)} />
+            <SContainer bgColor={lighten(0.15, faculty.color)}>  
+                <Deco bgColor={lighten(0.15, faculty.color)} bgColorBefore={lighten(0.03, faculty.color)} bgColorAfter={lighten(0.03, faculty.color)} />
                 <Row>
                     <Col>
                         <Title> { title }</Title>

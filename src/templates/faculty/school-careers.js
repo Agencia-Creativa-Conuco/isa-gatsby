@@ -9,7 +9,7 @@ import colors from "../../components/styles/colors";
 import useCareer from "../../hooks/useCareers";
 import useFaculty from "../../hooks/useFaculties";
 
-const SchoolCareers  = ({ faculty: school, facultyColor })=>{
+const SchoolCareers  = ({ school, faculty })=>{
 
     const {
         parent,
@@ -17,8 +17,6 @@ const SchoolCareers  = ({ faculty: school, facultyColor })=>{
     } = school;
 
     const careerList = useCareer().filter( item => careers.map( career=>career.id).includes(item.id) );
-
-    const [ faculty ] = useFaculty().filter( faculty => faculty.id == parent);
 
     return careerList.length?(
         <BGSection spaceTopNone bg={colors.green.base}>
@@ -49,7 +47,7 @@ const SchoolCareers  = ({ faculty: school, facultyColor })=>{
                                             size="100%"   
                                             bgColor
                                         /> 
-                                        <CardTitle color={facultyColor}>{ title }</CardTitle>
+                                        <CardTitle color={faculty.color}>{ title }</CardTitle>
                                     </Card>
                                 </StyledLink>
                             </Col>

@@ -13,12 +13,10 @@ const School= ({ faculty: school })=>{
 
     const [ faculty ] = useFaculty().filter( faculty => faculty.id == parent);
 
-    const facultyColor = faculty.color;
-
     return (
         <Article >
-            <SchoolCover {...{faculty, facultyColor}} />
-            <SchoolCareers {...{faculty, facultyColor}} />
+            <SchoolCover {...{school, faculty}} />
+            <SchoolCareers {...{school, faculty}} />
             {/* <Contact color={faculty_color || colors.primary.dark} bgColor={colors.gray.light} /> */}
         </Article>
     );
