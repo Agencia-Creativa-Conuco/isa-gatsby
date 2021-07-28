@@ -28,6 +28,8 @@ const useCareers = () => {
                 }
         
                 careerInfo {
+
+                  type
         
                   facultyRelationship {
                     ... on WpFaculty {
@@ -158,6 +160,7 @@ const useCareers = () => {
         link: career.link,
         parent: career.parentId,
         featuredImage: career?.featuredImage?.node?.localFile,
+        type: career.careerInfo.type,
         faculty: {
           title: career?.faculty?.title,
           color: career?.faculty?.facultyInfo?.color,
@@ -166,6 +169,7 @@ const useCareers = () => {
         perfil: career.careerInfo.perfil,
         tabs: career.careerInfo.tabs,
         form: career.careerInfo.form,
+        requirements: career.careerInfo.requirements || [],
         resources: career?.resources?.resourceRelationship || [],
     }))
 

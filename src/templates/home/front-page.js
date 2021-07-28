@@ -27,7 +27,6 @@ const FrontPage = ({ page }) => {
   //Obtiene los datos de los Eventos
   const events = useEvents();
 
-  console.log(posts)
   // Load the post, but only if the data is ready.
   return (
     <>

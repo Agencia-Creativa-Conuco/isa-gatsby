@@ -8,7 +8,7 @@ import useEvents from "../../../hooks/useEvents";
 import AdmissionCover from "./admission-cover";
 import AdmissionForm from "./admission-form";
 import ResourceList from "../../../components/resourceslist";
-// import AdmissionInfo from "./admission-info";
+import AdmissionInfo from "./admission-info";
 import Calendar from "../../../components/calendar";
 import colors from "../../../components/styles/colors";
 
@@ -28,7 +28,7 @@ const Admisiones = ({page}) => {
       <CalendarSection bgColor={colors.gray.light} spaceNone>
           <Calendar events={filteredEvents} />
       </CalendarSection>
-      {/* <AdmissionInfo {...{ page }} /> */}
+      <AdmissionInfo {...{ page }} />
       <AdmissionForm />
       <ResourceList items={ page.resources?.resourceRelationship } />
     </Container>

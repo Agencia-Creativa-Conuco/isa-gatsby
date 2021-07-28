@@ -1,30 +1,30 @@
 import React, { useState } from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
-import {AdmissionRequisiteIcon} from "../../icons";
-import {h1,h2} from "../../styles/tipography";
+import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
+import {AdmissionRequisiteIcon} from "../../../components/icons";
+import {h2} from "../../../components/styles/tipography";
 import {Spring, animated} from "@react-spring/web";
-import colors from "../../styles/colors";
+import colors from "../../../components/styles/colors";
 import useCareers from "../../../hooks/useCareers";
+import useRequirementsCategories from '../../../hooks/useRequirementsCategories';
 
 const AdmissionInfo = ({ page }) =>{
     
     //Obtiene los datos de los Careeras
     const careers = useCareers();
 
+    const categories = useRequirementsCategories();
+
     const grades = careers.filter((career)=>{
-        return career.parent == 0;
+        return !career.parent && career.type === "grade";
     });
 
     const [view, setView] = useState(0);
 
-    const handlerView = (value) => setView(value); 
-
     return grades.length ?(
         <Section spaceNone>
-            <Container fluid notFluidXL sizeXL="192rem">
+            <Container fluid>
                 <Row>
 
                     <Col 
@@ -47,16 +47,21 @@ const AdmissionInfo = ({ page }) =>{
                                     {
                                         grades.map((grade,index)=>{
 
-                                            const isActive = view == index;
+                                            const isActive = view === index;
+
+                                            const {
+                                                title,
+                                                id
+                                            } = grade;
 
                                             return (
                                                 <Item 
-                                                    key={index}
+                                                    key={id}
                                                     color={isActive?"white":colors.secondary.dark}
                                                     onClick={() => setView(index)}
                                                     {...{isActive}}
                                                 >
-                                                    <ItemName>{grade.title.rendered}</ItemName>
+                                                    <ItemName>{title}</ItemName>
                                                 </Item>
                                             )
                                         })
@@ -79,10 +84,13 @@ const AdmissionInfo = ({ page }) =>{
                                 grades.map((grade,index)=>{
 
                                     const {
-                                        career_requirements = [],
-                                    } = grade.meta_box;
+                                        requirements = [],
+                                        id
+                                    } = grade;
 
-                                    const isActive = view == index;
+                                    const isActive = view === index;
+
+                                    console.log(id, view, isActive)
 
                                     return (
                                     <Spring
@@ -96,18 +104,41 @@ const AdmissionInfo = ({ page }) =>{
                                     {
                                         styles =>(
                                             <animated.div style={styles}>
-                                                <DisplayerSection key={index} hidden={view != index}>
-                                                    <DisplayerSectionTitle color={colors.secondary.dark}>Requisitos de {grade.title.rendered}</DisplayerSectionTitle>
-                                                    <Requirements>
+                                                <DisplayerSection key={index} hidden={view !== index}>
+                                                    <DisplayerSectionTitle color={colors.secondary.dark}>Requisitos de {grade.title}</DisplayerSectionTitle>
+                                                    
+                                                    <Groups>
                                                     {
-                                                        career_requirements.map((requirement, index)=>{
-                                                            const {name} = requirement;
-                                                            return (
-                                                                <Requirement key={index} color={colors.secondary.dark}>{name}</Requirement>
-                                                            );
+                                                        categories.map((group,index)=>{
+
+                                                            const {
+                                                                id, 
+                                                                name
+                                                            } = group;
+
+                                                            const catRequirements = requirements.filter( item => {
+                                                                return item.category.map( category => category.id ).includes(id);
+                                                            })
+
+                                                            return catRequirements.length? (
+                                                                <Group key={id} color={colors.secondary.dark}>
+                                                                    <GroupName>{name}</GroupName>
+                                                                    <Requirements>
+                                                                    {
+                                                                        catRequirements.map((item, index)=>{
+                                                                            const {requirement} = item;
+                                                                            return (
+                                                                                <Requirement key={index} color={colors.secondary.dark}>{requirement}</Requirement>
+                                                                            );
+                                                                        })
+                                                                    }
+                                                                    </Requirements>
+                                                                </Group>
+                                                            ): null
                                                         })
                                                     }
-                                                    </Requirements>
+                                                    </Groups>
+                                                    
                                                 </DisplayerSection>
                                             </animated.div>
                                         )
@@ -185,6 +216,21 @@ const DisplayerSectionTitle = styled.h3`
         font-weight: 900;
         margin-top: 0;
     `}
+`;
+
+const Groups = styled.ul``;
+
+const Group = styled.li`
+    ${({color="green"})=>css`
+        color: ${color};
+        list-style: none;
+    `}
+`;
+
+const GroupName = styled.h3`
+    text-transform: uppercase;
+    font-weight: 600;
+    color: inherit;
 `;
 
 const Requirements = styled.ul``;
