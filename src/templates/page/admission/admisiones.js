@@ -2,15 +2,15 @@ import * as React from "react"
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
-import { Section } from "../../layout/index";
+import { Section } from "../../../components/layout/index";
 import useEvents from "../../../hooks/useEvents";
 
 import AdmissionCover from "./admission-cover";
 import AdmissionForm from "./admission-form";
-import ResourceList from "../../resourceslist";
+import ResourceList from "../../../components/resourceslist";
 // import AdmissionInfo from "./admission-info";
-import Calendar from "../../calendar";
-import colors from "../../styles/colors";
+import Calendar from "../../../components/calendar";
+import colors from "../../../components/styles/colors";
 
 // markup
 const Admisiones = ({page}) => {

@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { Container, Section, Row, Col, mq} from "../../components/layout/index";
 import Carousel from "react-slick";
 import colors from "../../components/styles/colors";
-import CTA from '../../components/cta';
+import Cta from '../../components/cta';
 
 import FeaturedMedia from '../../components/featured-media';
 
@@ -60,9 +60,9 @@ const HomeCover = ({ page, slides }) =>{
                                                 {copy}
                                             </Copy>
                                             <LinkBox>
-                                                <CTA to={cta.url} target={cta.target}>
+                                                <Cta to={cta.url} target={cta.target}>
                                                     {cta.title}
-                                                </CTA>
+                                                </Cta>
                                             </LinkBox>
                                         </Content>
                                     </Col>

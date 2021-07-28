@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container,Row, Col, Section, mq, mqVal} from "../../layout/index";
+import { Container,Row, Col, Section, mq, mqVal} from "../../../components/layout/index";
 import Carousel from "react-slick";
-import FeaturedMedia from "../../featured-media";
-import {LeftArrowIcon, RightArrowIcon} from "../../icons";
-import colors from "../../styles/colors";
+import FeaturedMedia from "../../../components/featured-media";
+import {LeftArrowIcon, RightArrowIcon} from "../../../components/icons";
+import colors from "../../../components/styles/colors";
 
 const Arrows = (props => {
   

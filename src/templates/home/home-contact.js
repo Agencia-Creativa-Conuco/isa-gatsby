@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 import { Container, Section, Row, Col, mq} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
 import colors from "../../components/styles/colors";
-import CTA from "../../components/cta";
+import Cta from "../../components/cta";
 
 const HomeContact = ({ page }) =>{
     
@@ -92,7 +92,7 @@ const Input = styled.input`
 `;
 
 
-const StyledLink = styled(CTA)`
+const StyledLink = styled(Cta)`
     margin-top: 2rem;
 `;
 

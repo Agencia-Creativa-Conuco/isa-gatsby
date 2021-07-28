@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
-import colors from "../../styles/colors";
-import CTA from '../../cta';
+import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from "../../../components/styles/colors";
+import Cta from '../../../components/cta';
 
 const AboutCover = ({ page }) =>{
 
+    console.log(page)
     const {
         featuredImage,
         title,
         about:{
-            copy:{
+            cover:{
                 copy,
                 cta
             }
@@ -45,12 +46,12 @@ const AboutCover = ({ page }) =>{
                                         
                                         {
                                             cta.url && cta.title?(
-                                                <CTA 
+                                                <Cta 
                                                     to={cta.url}
                                                     target={cta.target}
                                                 >
                                                     { cta.title }
-                                                </CTA>
+                                                </Cta>
                                             ):null
                                         }
                                     
@@ -70,7 +71,7 @@ const AboutCover = ({ page }) =>{
                     >
                         <Media decoBg={colors.blue.base}>
                             <Logo
-                                media={featuredImage?.node?.localFile}
+                                media={featuredImage}
                                 size="100%"
                                 sizeXL="90%"
                                 bgColor

@@ -2,8 +2,8 @@ import * as React from "react";
 import Layout from "../components/layout";
 import { graphql } from "gatsby";
 
-import Admisiones from "../components/page/admission/admisiones";
-import About from "../components/page/about/about";
+import Admisiones from "./page/admission/admisiones";
+import About from "./page/about/about";
 import FrontPage from "./home/front-page";
 
 import usePages from "../hooks/usePages";

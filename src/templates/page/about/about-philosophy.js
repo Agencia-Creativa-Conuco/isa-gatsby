@@ -1,9 +1,9 @@
 import React from 'react';
-import { Container, Section, Row, Col, mq} from "../../layout/index";
+import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
 import {useState} from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import colors from '../../styles/colors';
+import colors from '../../../components/styles/colors';
 
 import {Spring, animated} from "@react-spring/web";
 

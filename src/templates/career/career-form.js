@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 import { Container, Section, Row, Col, mq} from "../../components/layout/index";
 import colors from "../../components/styles/colors";
 import BackgroundImage from "gatsby-background-image";
-import CTA from '../../components/cta';
+import Cta from '../../components/cta';
 
 const CareerForm = ({ career }) =>{
     
@@ -31,7 +31,7 @@ const CareerForm = ({ career }) =>{
                                     <Input type="tel" placeholder="Numero de telefono"/>
                                     <Input type="text" placeholder="Cuidad de reciencia"/>
                                     <Input type="textarea" placeholder="Programa de interes"/>
-                                    <CTA to="#" cta>ENVIAR</CTA>
+                                    <Cta to="#" cta>ENVIAR</Cta>
                                 </Form>
                         </Col>
                     </Row>

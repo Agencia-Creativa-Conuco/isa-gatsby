@@ -60,7 +60,7 @@ const Nav = ({ items = [], isMobileMenuOpen , hideXS, hideSM, hideMD, hideLG, hi
           // Unbind the event listener on clean up
           document.removeEventListener("mousedown", handleClickOutside);
       };
-  }, [ref]);
+  }, [ref, isMobileMenuOpen]);
 
   return items.length?(
     <NavContainer ref={ref} {...{hideXS, hideSM, hideMD, hideLG, hideXL, showXS, showSM, showMD, showLG, showXL, ...other}}>

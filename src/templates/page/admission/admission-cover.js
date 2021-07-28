@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from "@emotion/styled";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
-import colors from '../../styles/colors';
-import CTA from "../../cta";
+import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from '../../../components/styles/colors';
+import Cta from "../../../components/cta";
 
 const AdmissionCover = ({ page }) =>{
 
@@ -110,7 +110,7 @@ const SectionTitle = styled.h1`
 
 const Copy = styled.p``;
 
-const StyledCTA = styled(CTA)`
+const StyledCTA = styled(Cta)`
 
     ${mq.md}{
         margin-top: 3rem;

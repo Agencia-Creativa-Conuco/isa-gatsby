@@ -20,7 +20,7 @@ const useFocusEffect = (initialFocusRef, isOpen) => {
         activeElementRef.current.focus();
       }
     }
-  }, [isOpen]);
+  }, [isOpen, initialFocusRef]);
 };
 
 export default useFocusEffect;

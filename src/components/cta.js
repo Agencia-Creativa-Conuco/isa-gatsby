@@ -3,7 +3,7 @@ import Link from './link';
 import styled from '@emotion/styled';
 import ctaStyles from './styles/cta';
 
-const CTA = ({ 
+const Cta = ({ 
     to, children, 
     color, bgColor, bgActiveColor, shadowColor, paddingX,
     ...other 
@@ -17,7 +17,7 @@ const CTA = ({
      );
 }
  
-export default CTA;
+export default Cta;
 
 const Span = styled.span`
     ${ctaStyles}

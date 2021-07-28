@@ -2,10 +2,10 @@ import React from 'react';
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { graphql, useStaticQuery } from 'gatsby';
-import { Container, Row, Col, mq} from "../../layout/index";
-import colors from '../../styles/colors';
+import { Container, Row, Col, mq} from "../../../components/layout/index";
+import colors from '../../../components/styles/colors';
 import BackgroundImage from "gatsby-background-image";
-import CTA from "../../cta";
+import Cta from "../../../components/cta";
 
 const AdmissionForm = ({ state,libraries }) =>{
 
@@ -69,7 +69,7 @@ const Input = styled.input`
 `;
 
 
-const StyledCTA = styled(CTA)`
+const StyledCTA = styled(Cta)`
 
     ${mq.md}{
         margin-top: 3rem;

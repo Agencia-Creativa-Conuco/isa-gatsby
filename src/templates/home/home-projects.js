@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import {  Section, Container, Row, Col, mq } from "../../components/layout/index";
-import CTA from '../../components/cta';
+import Cta from '../../components/cta';
 
 import FeaturedMedia from "../../components/featured-media";
 import Carousel from "react-slick";
@@ -58,7 +58,7 @@ const HomeProjects = ({ projects, page }) =>{
                                                             <SlideTitle>{title}</SlideTitle>
                                                             <Excerpt dangerouslySetInnerHTML={{ __html: excerpt }} />
                                                             <LinkBox>
-                                                                <CTA to={link} >Conocer más</CTA>
+                                                                <Cta to={link} >Conocer más</Cta>
                                                             </LinkBox>
                                                         </Col>
                                                     </Row>

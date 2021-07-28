@@ -48,7 +48,7 @@ function useFocusTrap(ref, isOpen) {
     if (isOpen && ref.current) {
       trapFocus(ref.current);
     }
-  }, [isOpen]);
+  }, [isOpen, ref]);
 }
 
 export default useFocusTrap;

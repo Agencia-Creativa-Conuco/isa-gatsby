@@ -72,7 +72,7 @@ const usePages = () => {
                 }
 
                 about {
-                  copy {
+                  cover {
                     copy
                     cta {
                       target
@@ -119,7 +119,7 @@ const usePages = () => {
                   }
         
                   campus {
-                    titulo
+                    title
                     images {
                       id
                       localFile {
@@ -136,7 +136,6 @@ const usePages = () => {
                 }
         
                 events {
-                  fieldGroupName
                   categories {
                     __typename
                     id
@@ -184,23 +183,29 @@ const usePages = () => {
         `
     );
     
-    return resultado.allWpPage.nodes.map( post => ({
-        id: post.id,
-        title: post.title,
-        content: post.content,
-        date: post.date,
-        slug: post.slug,
-        uri: post.uri,
-        link: post.link,
-        isFrontPage: post.isFrontPage,
-        isPostsPage: post.isPostsPage,
-        featuredImage: post?.featuredImage?.node?.localFile,
-        home: post.home,
-        about: post.about,
-        events: {
-          categories: post?.events?.categories || []
+    return resultado.allWpPage.nodes.map( page => ({
+        id: page.id,
+        title: page.title,
+        content: page.content,
+        date: page.date,
+        slug: page.slug,
+        uri: page.uri,
+        link: page.link,
+        isFrontPage: page.isFrontPage,
+        isPostsPage: page.isPostsPage,
+        featuredImage: page?.featuredImage?.node?.localFile,
+        home: page.home,
+        about: {
+          cover: page.about.cover,
+          history: page.about.history || [],
+          perfil: page.about.perfil,
+          tabs: page.about.tabs || [],
+          campus: page.about.campus,
         },
-        resources: post.resources,
+        events: {
+          categories: page?.events?.categories || []
+        },
+        resources: page.resources,
     }));
 }
  

@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 import { Container, Section, Row, Col, mq} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
 import colors from "../../components/styles/colors";
-import CTA from '../../components/cta';
+import Cta from '../../components/cta';
 
 const HomeAplication = ({ page }) =>{
 
@@ -50,9 +50,9 @@ const HomeAplication = ({ page }) =>{
 
                                 {
                                     cta?(
-                                        <CTA to={cta.url} target={cta.target} cta>
+                                        <Cta to={cta.url} target={cta.target} cta>
                                             {cta.title}
-                                        </CTA>
+                                        </Cta>
                                     ):null
                                 }
                             </Content>

@@ -5,7 +5,7 @@ import AboutHistory from "./about-history";
 import AboutRector from "./about-rector";
 import AboutCampus from "./about-campus";
 import AboutPhilosophy from "./about-philosophy";
-import ResourceList from "../../resourceslist";
+import ResourceList from "../../../components/resourceslist";
 
 const About = ({ ...props }) => {
 
