@@ -56,6 +56,7 @@ const usePages = () => {
                       }
                     }
                   }
+                  
                   form {
                     title
                     image {
@@ -68,6 +69,12 @@ const usePages = () => {
                         }
                       }
                     }
+                  }
+                }
+
+                offer {
+                  coverOffer {
+                    copy
                   }
                 }
 
@@ -195,6 +202,7 @@ const usePages = () => {
         isPostsPage: page.isPostsPage,
         featuredImage: page?.featuredImage?.node?.localFile,
         home: page.home,
+        offer: page.offer,
         about: {
           cover: page.about.cover,
           history: page.about.history || [],

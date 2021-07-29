@@ -12,8 +12,6 @@ const IndexPage = () => {
 
   const [page] = usePages().filter( page => page.id === frontPage.id );
 
-  console.log("ratat", page, frontPage)
-
   return (
       <Layout>
         <FrontPage {...{page}} />

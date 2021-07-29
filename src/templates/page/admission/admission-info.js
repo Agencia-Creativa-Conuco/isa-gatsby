@@ -90,8 +90,6 @@ const AdmissionInfo = ({ page }) =>{
 
                                     const isActive = view === index;
 
-                                    console.log(id, view, isActive)
-
                                     return (
                                     <Spring
                                         key={index} 
