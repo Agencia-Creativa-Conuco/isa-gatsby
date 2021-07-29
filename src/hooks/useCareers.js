@@ -175,7 +175,7 @@ const useCareers = () => {
         school: career.school,
         cover: career.careerInfo.cover,
         perfil: career.careerInfo.perfil,
-        tabs: career.careerInfo.tabs,
+        tabs: career.careerInfo.tabs || [],
         form: career.careerInfo.form,
         requirements: career.careerInfo.requirements || [],
         resources: career?.resources?.resourceRelationship || [],
