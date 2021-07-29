@@ -1,24 +1,23 @@
-import { connect, styled, css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
+import React from 'react';
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from "../../../components/styles/colors";
 
-const DIPCover = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
+const DIPCover = ({ page }) =>{
 
     const {
-        meta_box,
-        featured_media,
+        title,
+        featuredImage,
+        investigation:{
+            cover:{
+                copy
+            }
+        },
     } = page;
 
-    const {
-        research_cover_copy,
-    } = meta_box;
-
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
-
-    return data.isReady?(
+    return (
         <StyledSection spaceNone decoBg={colors.cta.base}>
             <Container noGutters fluid>
                 <Row alignCenter>
@@ -35,8 +34,8 @@ const DIPCover = ({ state,libraries }) =>{
                                     size={12}
                                     sizeMD={6}
                                 >
-                                    <Title> {page.title.rendered} </Title>
-                                    <Copy>{research_cover_copy}</Copy> 
+                                    <Title> { title } </Title>
+                                    <Copy>{ copy }</Copy> 
                                 </Col>
                             </Row>
                         </CopyContainer>
@@ -52,7 +51,7 @@ const DIPCover = ({ state,libraries }) =>{
                      >
                         <DecoLogo decoBg ={colors.blue.dark}>
                         <Logo
-                            media={featured_media}
+                            media={featuredImage}
                             size="100%"
                             sizeMD="100%"
                             sizeXL="90%"
@@ -63,11 +62,11 @@ const DIPCover = ({ state,libraries }) =>{
                 </Row>
             </Container>
         </StyledSection>
-    ):null;
+    );
 
 }
 
-export default connect(DIPCover);
+export default DIPCover;
 
 const StyledSection = styled(Section)`
     ${({ decoBg="blue" })=>css`
@@ -119,4 +118,4 @@ const DecoLogo = styled.div`
 
  }
 
-`
+`;

@@ -5,7 +5,7 @@ import { graphql } from "gatsby";
 import Admisiones from "./page/admission/admisiones";
 import About from "./page/about/about";
 import FrontPage from "./home/front-page";
-
+import DIP from "./page/dip";
 import usePages from "../hooks/usePages";
 
 export const query = graphql`
@@ -37,7 +37,9 @@ const Post = ({ data }) => {
           <Admisiones {...{ page }}/>
         ) : slug === 'nosotros'? (
           <About {...{ page }}/>
-        ) : (
+        ) : slug === 'investigacion'? (
+          <DIP  {...{ page }}/>
+        ): (
           <h1>ESTA ES LA PÁGINA:{title}</h1>
         )
       }

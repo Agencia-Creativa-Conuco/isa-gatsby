@@ -1,29 +1,25 @@
-import { connect, css, styled } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
-import Link from "../../link";
+import React from 'react';
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { Container, Section, Row, Col, mq } from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import Link from "../../../components/link";
+import colors from "../../../components/styles/colors";
 
-const DIPNews = ({ state }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const { colors} = state.theme;
-    // const news = state.source.get("/blog").items;
-    
-    const { 
-        meta_box,
-        news = []
+const DIPNews = ({ page, posts }) =>{
+ 
+    const {
+         newsTitle = "Noticias Recientes"
     } = page;
     
-    const { 
-        research_new_title 
-    } = meta_box;
+    const news = posts;
 
-    return data.isReady && news.length?(
+    return news.length?(
         <Section>
             <Container fluid>
                 <Row>
                     <Col>
-                        <SectionTitle> { research_new_title } </SectionTitle>
+                        <SectionTitle> { newsTitle } </SectionTitle>
                     </Col>
                 </Row>
                 <Row>
@@ -31,7 +27,7 @@ const DIPNews = ({ state }) =>{
 
                         const {
                             title,
-                            featured_media,
+                            featuredImage,
                             link
                         } = item
 
@@ -40,14 +36,14 @@ const DIPNews = ({ state }) =>{
                                 <StyledLink to={link}>
                                     <Card>    
                                         <Media
-                                            media={featured_media}
+                                            media={featuredImage}
                                             size="56.25%"
                                             sizeLG="100%"
                                             bgColor
                                         />
                                         <DivTitle bg={colors.blue.base}>
                                             <Title color={colors.white} size="2rem"> 
-                                                {title.rendered}
+                                                {title}
                                             </Title>
                                         </DivTitle>
                                     </Card>
@@ -62,7 +58,7 @@ const DIPNews = ({ state }) =>{
 
 }
 
-export default connect(DIPNews);
+export default DIPNews;
 
 const Card = styled.div`
     margin-bottom: 6rem;

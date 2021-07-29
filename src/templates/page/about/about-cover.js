@@ -8,7 +8,6 @@ import Cta from '../../../components/cta';
 
 const AboutCover = ({ page }) =>{
 
-    console.log(page)
     const {
         featuredImage,
         title,

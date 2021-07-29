@@ -1,29 +1,36 @@
 import React from "react";
-import { connect, styled } from "frontity";
-import ResearchCover from "./dip-cover";
-import ResearchProcess from "./dip-process";
-import ResearchNews from "./dip-news";
-import ResearchTeam from "./dip-team";
-import ResearchGeneral from "./dip-general";
+import styled from "@emotion/styled";
+import DIPCover from "./dip-cover";
+import DIPProcess from "./dip-process";
+import useProjects from "../../../hooks/useProjects";
+import usePersons from "../../../hooks/usePersons";
+import usePosts from "../../../hooks/usePosts";
+import DIPNews from "./dip-news"
+import DIPTeam from "./dip-team";
 
-const ResearchPage = ({ state }) => {
+const ResearchPage = ({ ...page }) => {
 
-  // Get information about the current URL.
-    const data = state.source.get(state.router.link);
+  //Obtiene los datos de las Persons
+  const persons = usePersons();
 
-  // Load the post, but only if the data is ready.
-    return data.isReady? (
+ //Obtiene los datos de los Posts
+ const posts = usePosts();
+
+//Obtiene los datos de los Proyectos
+const projects = useProjects();
+
+    return (
         <Container>
-            <ResearchCover />
-            <ResearchGeneral />
-            <ResearchProcess />
-            <ResearchTeam />
-            <ResearchNews />
+            <DIPCover { ...page } />
+             {/* <ResearchGeneral {...{ slides, page }} /> */}
+            <DIPProcess {...{page, projects}} />
+            <DIPTeam { ...{persons} } />
+            <DIPNews {...{ page, posts }} /> 
         </Container>
-    ) : null;
+    );
 };
 
-export default connect(ResearchPage);
+export default ResearchPage;
 
 const Container = styled.div`
     width: 100%;
