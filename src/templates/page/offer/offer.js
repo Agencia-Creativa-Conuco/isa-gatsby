@@ -2,8 +2,8 @@ import React from "react";
 import styled from "@emotion/styled";
 import OfferCover from "./offer-cover";
 import OfferFaculties from "./offer-faculties";
-// import OfferTecnics from "./offer-tecnics";
-// import OfferInternational from "./offer-international";
+import OfferTecnics from "./offer-tecnics";
+import OfferInternational from "./offer-international";
 // import OffterFacultiesDate from "./offter-date";
 
 const OfferPage = ({ page }) => {
@@ -13,8 +13,8 @@ const OfferPage = ({ page }) => {
         <Container>
             <OfferCover {...{page}} />
             <OfferFaculties {...{page}} />
-            {/* <OfferTecnics {...{page}} /> */}
-            {/* <OfferInternational {...{page}} /> */}
+            <OfferTecnics {...{page}} />
+            <OfferInternational {...{page}} />
             {/* <OffterFacultiesDate {...{page}} /> */}
         </Container>
     );

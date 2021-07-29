@@ -85,7 +85,6 @@ const AdmissionInfo = ({ page }) =>{
 
                                     const {
                                         requirements = [],
-                                        id
                                     } = grade;
 
                                     const isActive = view === index;

@@ -76,6 +76,49 @@ const usePages = () => {
                   coverOffer {
                     copy
                   }
+                  centerOffer {
+                    title
+                    content
+                    cta {
+                      title
+                      url
+                      target
+                    }
+                    image {
+                      localFile {
+                        publicURL
+                        childImageSharp {
+                          fluid(maxWidth: 1920) {
+                            ...GatsbyImageSharpFluid_withWebp
+                          }
+                        }
+                      }
+                    }
+                  }
+                  internationalOffer {
+                    content
+                    copy
+                    title
+                    image {
+                      localFile {
+                        publicURL
+                        childImageSharp {
+                          fluid(maxWidth: 1920) {
+                            ...GatsbyImageSharpFluid_withWebp
+                          }
+                        }
+                      }
+                    }
+                    cta {
+                      title
+                      url
+                      target
+                    }
+                    columns {
+                      content
+                      title
+                    }
+                  }
                 }
 
                 about {

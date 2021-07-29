@@ -1,22 +1,25 @@
-import { connect, styled,css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
-import Link from "../../link";
+import React from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { Container, Section, Row, Col} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from '../../../components/styles/colors';
+import Cta from '../../../components/cta';
 
-const OfferTecnics = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
+const OfferTecnics = ({ page }) =>{
 
-    const { meta_box } = page;
-    const { 
-            offer_tecnics_title,
-            offer_tecnics_copy,
-            offer_tecnics_image
-        } = meta_box;
+    const {
+        offer: {
+            centerOffer: {
+                title,
+                content,
+                image,
+                cta
+            }
+        }, 
+    } = page;
 
-    return data.isReady?(
+    return (
         <Section spaceNone css={css`background: ${colors.gray.light};`}>
             <Container fluid>
                 <Row>
@@ -27,11 +30,9 @@ const OfferTecnics = ({ state,libraries }) =>{
                         orderMD={1}
                     >
                         <DivTitle decoBg={colors.blue.base}>
-                            <SectionTitle decoBg={colors.blue.base}>{ offer_tecnics_title }</SectionTitle>
-                            <Html2React 
-                                html={ offer_tecnics_copy }
-                            />
-                            <StyledLink to="#" cta>CONOCER MAS</StyledLink>
+                            <SectionTitle decoBg={colors.blue.base}>{ title }</SectionTitle>
+                            <div dangerouslySetInnerHTML={{__html: content}} />
+                            <StyledLink to={cta.url} target={cta.target}>{cta.title}</StyledLink>
                         </DivTitle>
                         <DecoCol decoBg={colors.blue.base}/>
                     </Col>
@@ -43,7 +44,7 @@ const OfferTecnics = ({ state,libraries }) =>{
                         noGutters
                     >
                         <FeaturedMedia
-                            media={ offer_tecnics_image }
+                            media={ image }
                             size="56.26%"
                             heightMD="100%"
                             bgColor
@@ -52,11 +53,11 @@ const OfferTecnics = ({ state,libraries }) =>{
                 </Row>
             </Container>
         </Section>
-    ):null;
+    );
 
 }
 
-export default connect(OfferTecnics);
+export default OfferTecnics;
 
 const DivTitle = styled.div`
     max-width: 57rem;
@@ -80,7 +81,7 @@ const SectionTitle = styled.h2`
     margin-bottom: 4rem;
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(Cta)`
     margin-top: 2rem;
     margin-bottom: 3rem;
 `;
