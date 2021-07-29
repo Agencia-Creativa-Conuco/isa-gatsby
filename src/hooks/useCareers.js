@@ -15,6 +15,7 @@ const useCareers = () => {
                 uri
                 slug
                 parentId
+                menuOrder
                 featuredImage {
                   node {
                     localFile {
@@ -163,6 +164,7 @@ const useCareers = () => {
         uri: career.uri,
         link: career.link,
         parent: career.parentId,
+        menuOrder: career.menuOrder,
         featuredImage: career?.featuredImage?.node?.localFile,
         type: career.careerInfo.type,
         faculty: {

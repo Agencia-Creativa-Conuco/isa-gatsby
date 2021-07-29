@@ -23,7 +23,6 @@ const Item = ({item, state})=>{
     const isMain = parent?false: true;
 
     const isCareer = type === "career";
-    console.log(title, type, isCareer)
 
     return (
         <Col size={12} sizeMD={isCareer? 12 : isMain? 12 : 6 }>
@@ -152,7 +151,10 @@ const OfferFaculties = ({ page }) =>{
                                     <Col>
                                         <Menu>
                                         {
-                                            grades.map((item,index)=>{
+                                            grades.sort( (a, b) => {
+                                                return a.menuOrder - b.menuOrder  
+                                            })
+                                                .map((item,index)=>{
                                                 return( 
                                                     <Option
                                                         key={item.id}
