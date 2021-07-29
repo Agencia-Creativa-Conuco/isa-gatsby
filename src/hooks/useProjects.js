@@ -27,6 +27,13 @@ const useProjects = () => {
                     }
                   }
                 }
+                projectInfo {
+                  projectRelationship {
+                    ... on WpFaculty {
+                      title
+                    }
+                  }
+                }
               }
             }
           }
@@ -44,6 +51,7 @@ const useProjects = () => {
         link: project.link,
         featuredImage: project.featuredImage? project.featuredImage.node.localFile : null,
         parent: project.parent,
+        titleFaculty: project.projectInfo.projectRelationship || []
     }));
 }
  

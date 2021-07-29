@@ -7,6 +7,7 @@ import usePersons from "../../../hooks/usePersons";
 import usePosts from "../../../hooks/usePosts";
 import DIPNews from "./dip-news"
 import DIPTeam from "./dip-team";
+import DIPGeneral from "./dip-general"
 
 const ResearchPage = ({ ...page }) => {
 
@@ -19,10 +20,12 @@ const ResearchPage = ({ ...page }) => {
 //Obtiene los datos de los Proyectos
 const projects = useProjects();
 
+// console.log( projects)
+
     return (
         <Container>
             <DIPCover { ...page } />
-             {/* <ResearchGeneral {...{ slides, page }} /> */}
+             <DIPGeneral {...{ projects, page }} />
             <DIPProcess {...{page, projects}} />
             <DIPTeam { ...{persons} } />
             <DIPNews {...{ page, posts }} /> 
