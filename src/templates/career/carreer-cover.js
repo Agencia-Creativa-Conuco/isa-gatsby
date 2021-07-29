@@ -53,7 +53,7 @@ const CareerCover = ({ career })=>{
                                             <Gadgets>
                                                 <Row justifyContent="space-around">
                                                     {
-                                                        metadata.map((item, index)=>{
+                                                        metadata? metadata.map((item, index)=>{
 
                                                             const {
                                                                 name,
@@ -68,7 +68,7 @@ const CareerCover = ({ career })=>{
                                                                     </Gadget>
                                                                 </Col>
                                                             )
-                                                        })
+                                                        }) : null
                                                     }
                                                 </Row>
                                             </Gadgets>

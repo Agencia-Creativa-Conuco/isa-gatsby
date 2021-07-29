@@ -15,6 +15,7 @@ const useCareers = () => {
                 uri
                 slug
                 parentId
+                menuOrder
                 featuredImage {
                   node {
                     localFile {
@@ -144,10 +145,14 @@ const useCareers = () => {
       
       //  Extraemos la facultad.
       const [ faculty ] = faculties.filter( faculty => !faculty.parentId && faculty?.facultyInfo?.type === 'faculty' );
-      
+
+      //  Extraemos la facultad.
+      const [ school ] = faculties.filter( faculty => faculty.parentId && faculty?.facultyInfo?.type === 'school' );
+
       return {
         ...career,
         faculty,
+        school
       }
     });
 
@@ -159,15 +164,18 @@ const useCareers = () => {
         uri: career.uri,
         link: career.link,
         parent: career.parentId,
+        menuOrder: career.menuOrder,
         featuredImage: career?.featuredImage?.node?.localFile,
         type: career.careerInfo.type,
         faculty: {
+          id: career?.faculty?.id,
           title: career?.faculty?.title,
           color: career?.faculty?.facultyInfo?.color,
         },
+        school: career.school,
         cover: career.careerInfo.cover,
         perfil: career.careerInfo.perfil,
-        tabs: career.careerInfo.tabs,
+        tabs: career.careerInfo.tabs || [],
         form: career.careerInfo.form,
         requirements: career.careerInfo.requirements || [],
         resources: career?.resources?.resourceRelationship || [],

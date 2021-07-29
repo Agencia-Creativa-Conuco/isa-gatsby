@@ -3,6 +3,7 @@ import Layout from "../components/layout";
 import { graphql } from "gatsby";
 
 import Admisiones from "./page/admission/admisiones";
+import Offer from "./page/offer/offer";
 import About from "./page/about/about";
 import FrontPage from "./home/front-page";
 import DIP from "./page/dip";
@@ -35,6 +36,8 @@ const Post = ({ data }) => {
           <FrontPage {...{ page }}/>
         ) : slug === 'admisiones'? (
           <Admisiones {...{ page }}/>
+        ) : slug === 'oferta-academica'? (
+          <Offer {...{ page }}/>
         ) : slug === 'nosotros'? (
           <About {...{ page }}/>
         ) : slug === 'investigacion'? (

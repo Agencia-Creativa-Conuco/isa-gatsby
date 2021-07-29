@@ -22,7 +22,6 @@ const Career = ({ data }) => {
 
   const [career] = useCareers().filter( career => careers.map( item => item.id).includes( career.id ) );
 
-  console.log(career)
   return (
     <Layout>
       {

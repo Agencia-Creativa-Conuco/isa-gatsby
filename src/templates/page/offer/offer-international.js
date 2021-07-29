@@ -1,26 +1,27 @@
-import { connect, styled,css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
-import Link from "../../link";
+import React from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import Link from "../../../components/link";
+import colors from '../../../components/styles/colors';
+import Cta from '../../../components/cta';
 
-const OfferInternational = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
-
-    const { meta_box } = page;
+const OfferInternational = ({ page }) =>{
     const { 
-        offer_international_title,
-        offer_international_copy, 
-        offer_international_group_copy,
-        offer_international_image,
-        offer_international_items
-     } = meta_box;
+        offer: {
+            internationalOffer: {
+                title,
+                copy,
+                image,
+                content,
+                columns,
+                cta
+            }
+        }
+     } = page;
 
-
-
-    return data.isReady?(
+    return (
         <Section>
             <Container fluid notFluidMD>
                 <Row css={topRow({
@@ -29,17 +30,19 @@ const OfferInternational = ({ state,libraries }) =>{
                     <Row alignItems="flex-end">
                         <Col size={12} sizeMD={7} orderMD={2}>
                             <DivTitle>
-                                <SectionTitle>{ offer_international_title }</SectionTitle>
-                                     <Html2React 
-                                       html={ offer_international_copy }
-                                         />
-                                     <StyledLink to="#" cta>CONOCER MAS</StyledLink>
+                                <SectionTitle>{ title }</SectionTitle>
+                                     <div dangerouslySetInnerHTML={{__html: copy}} />
+                                     {
+                                         cta?(
+                                             <StyledLink to={cta.url} target={cta.target}>{cta.title}</StyledLink>
+                                         ):null
+                                     }
                             </DivTitle>
                         </Col>
                         <Col size={12} sizeMD={5} orderMD={1}>
                             <DivLogo>
                                 <Logo
-                                    media={ offer_international_image }
+                                    media={ image }
                                 />
                             </DivLogo>
                         </Col>
@@ -54,21 +57,17 @@ const OfferInternational = ({ state,libraries }) =>{
                             <Row>
                                 <Col size={12} >
                                     <Title color={colors.white}>
-                                    <Html2React 
-                                        html={offer_international_group_copy}
-                                            />
+                                        <div dangerouslySetInnerHTML={{__html: content}} />
                                     </Title>
                                 </Col>
                             </Row>
                             <Row>
                             {
-                                offer_international_items.map((item,index)=>{
+                                columns.map((item,index)=>{
                                     return(
                                         <Col size={12} sizeMD={6} key={index}>
                                             <ContentTitle color={colors.white}> { item.title }  </ContentTitle>
-                                            <Content color={colors.white}>  
-                                                <Html2React html={ item.content }/>
-                                            </Content>
+                                            <Content color={colors.white} dangerouslySetInnerHTML={{__html: item.content}} />
                                         </Col>
                                     )
                                 })
@@ -79,11 +78,11 @@ const OfferInternational = ({ state,libraries }) =>{
                 </Row>
             </Container>
         </Section>
-    ):null;
+    );
 
 }
 
-export default connect(OfferInternational);
+export default OfferInternational;
 
 
 const topRow = ({bg}) => css`
@@ -102,7 +101,7 @@ const DivTitle = styled.div`
     }
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(Cta)`
     margin-top: 2rem;
     margin-bottom: 3rem;
 `;

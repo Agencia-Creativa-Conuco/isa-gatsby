@@ -1,26 +1,29 @@
-import { connect, styled,css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
+import React from 'react';
+import styled from "@emotion/styled";
+import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from '../../../components/styles/colors';
 
-const OfferCover = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
+const OfferCover = ({ page }) =>{
 
-    const { meta_box } = page;
-    const { offer_cover_copy } = meta_box;
+    const {
+        title,
+        featuredImage,
+        offer: {
+            coverOffer: {
+                copy = "ALGO AHI"
+            }
+        },
+    } = page;
 
-
-
-    return data.isReady?(
+    return (
         <Section spaceNone>
             <Container fluid>
                 <Row alignCenter>
                     <Col size={12} sizeMD={6} sizeLG={7} noLGutters>
                         <DivLogo decoBg={ colors.blue.dark } decoBgA={colors.blue.base}>    
                             <Logo
-                                media={page.featured_media}
+                                media={featuredImage}
                                 size="100%"
                                 sizeMD="120%"
                                 sizeLG="100%"
@@ -31,20 +34,18 @@ const OfferCover = ({ state,libraries }) =>{
                     </Col>
                     <Col size={12} sizeMD={6} sizeLG={5}>
                         <DivTitle>
-                            <SectionTitle> {page.title.rendered} </SectionTitle>
-                            <Html2React 
-                                html={ offer_cover_copy }
-                            />
+                            <SectionTitle> {title} </SectionTitle>
+                            <div dangerouslySetInnerHTML={{__html: copy}} />
                         </DivTitle>
                     </Col>
                 </Row>
             </Container>
         </Section>
-    ):null;
+    );
 
 }
 
-export default connect(OfferCover);
+export default OfferCover;
 
 const DivLogo = styled.div`
     position:relative;

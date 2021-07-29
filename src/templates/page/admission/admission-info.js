@@ -85,12 +85,9 @@ const AdmissionInfo = ({ page }) =>{
 
                                     const {
                                         requirements = [],
-                                        id
                                     } = grade;
 
                                     const isActive = view === index;
-
-                                    console.log(id, view, isActive)
 
                                     return (
                                     <Spring

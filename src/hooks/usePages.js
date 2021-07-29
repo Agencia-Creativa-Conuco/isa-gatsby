@@ -56,6 +56,7 @@ const usePages = () => {
                       }
                     }
                   }
+                  
                   form {
                     title
                     image {
@@ -67,6 +68,55 @@ const usePages = () => {
                           }
                         }
                       }
+                    }
+                  }
+                }
+
+                offer {
+                  coverOffer {
+                    copy
+                  }
+                  centerOffer {
+                    title
+                    content
+                    cta {
+                      title
+                      url
+                      target
+                    }
+                    image {
+                      localFile {
+                        publicURL
+                        childImageSharp {
+                          fluid(maxWidth: 1920) {
+                            ...GatsbyImageSharpFluid_withWebp
+                          }
+                        }
+                      }
+                    }
+                  }
+                  internationalOffer {
+                    content
+                    copy
+                    title
+                    image {
+                      localFile {
+                        publicURL
+                        childImageSharp {
+                          fluid(maxWidth: 1920) {
+                            ...GatsbyImageSharpFluid_withWebp
+                          }
+                        }
+                      }
+                    }
+                    cta {
+                      title
+                      url
+                      target
+                    }
+                    columns {
+                      content
+                      title
                     }
                   }
                 }
@@ -200,6 +250,7 @@ const usePages = () => {
         isPostsPage: page.isPostsPage,
         featuredImage: page?.featuredImage?.node?.localFile,
         home: page.home,
+        offer: page.offer,
         about: {
           cover: page.about.cover,
           history: page.about.history || [],

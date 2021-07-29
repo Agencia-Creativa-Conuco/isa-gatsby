@@ -1,56 +1,54 @@
-import { connect, css, styled } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
+import React from 'react';
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
 import { useState } from "react";
-import Link from "../../link";
+import Link from "../../../components/link";
 import {Spring, animated} from "@react-spring/web";
+import colors from '../../../components/styles/colors';
+import useCareers from '../../../hooks/useCareers';
+import useFaculties from "../../../hooks/useFaculties";
 
-const Item = connect(
-    ({item, state})=>{
+const Item = ({item, state})=>{
     
-        const {
-            colors
-        } = state.theme;
-    
-        const {
-            title,
-            link,
-            parent,
-            type,
-            careers = [],
-            children = []
-        } = item;
-    
-        const isMain = parent?false: true;
-    
-        const isCareer = type === "career";
-    
-        return (
-            <Col size={12} sizeMD={isCareer? 12 : isMain? 12 : 6 }>
-                <Component>
-                    <Link to={link} noDecoration>
-                        <Title 
-                            color={isCareer?colors.text.base:colors.primary.dark} 
-                            bgHover={colors.gray.light}
-                            {...{isMain, isCareer}}
-                        >{title.rendered}</Title>
-                    </Link>
-                    {
-                        careers.length?(
-                            <ItemList items={careers} />
-                        ):null
-                    }
-                    {
-                        children.length?(
-                            <ItemList items={children} />
-                        ):null
-                    }
-                </Component>
-            </Col>
-        );
-    
-    }
+    const {
+        title,
+        uri,
+        parent,
+        type,
+        careers = [],
+        children = []
+    } = item;
 
-)
+    const isMain = parent?false: true;
+
+    const isCareer = type === "career";
+
+    return (
+        <Col size={12} sizeMD={isCareer? 12 : isMain? 12 : 6 }>
+            <Component>
+                <Link to={uri} noDecoration>
+                    <Title 
+                        color={isCareer?colors.text.base:colors.primary.dark} 
+                        bgHover={colors.gray.light}
+                        {...{isMain, isCareer}}
+                    >{title}</Title>
+                </Link>
+                {
+                    careers.length?(
+                        <ItemList items={careers} />
+                    ):null
+                }
+                {
+                    children.length?(
+                        <ItemList items={children} />
+                    ):null
+                }
+            </Component>
+        </Col>
+    );
+
+}
 
 const Component = styled.li`
     list-style: none;
@@ -75,8 +73,9 @@ const Title = styled.span`
             font-weight: 900;
         `: isCareer? css`
             text-transform: capitalize;
+            font-weight: 600;
         `: css`
-            /* font-weight: 300; */
+            font-weight: 300;
         `}
     `}
 `;
@@ -103,39 +102,45 @@ const StyledRow = styled(Row)`
 `;
 
 //Construye la jerarquía completa facultades->departamentos->grados->carreras
-const hierarchy = ({parent=0, faculties=[], careers=[], grade}) => {
+const hierarchy = ({parent=null, faculties=[], careers=[], grade}) => {
 
     return faculties
-         .filter((faculty)=>faculty.parent == parent)
+         .filter((faculty)=>faculty.parent === parent)
          .map((faculty)=>{
 
              return {
                  ...faculty,
                  children: hierarchy({parent: faculty.id, faculties, careers, grade}),
                  careers: careers.filter((career)=>{
-                     return career.faculty.id == faculty.id && career.parent == grade
-                 })
-             }
+                    
+                    return (career?.school?.id === faculty.id) && career.parent === grade
+                })
+            }
          })
          .filter((faculty)=>faculty.children.length || faculty.careers.length)
  }
 
-const OfferFaculties = ({ state }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
-    const [view, setView] = useState(0);
+const OfferFaculties = ({ page }) =>{
 
-    const {
-        careers = [],
-        faculties = [],
-    } = page;
+    //Obtiene los datos de los Careeras
+    const careers = useCareers();
 
+    //Obtiene las facultades que tienen carreras relacionadas.
+    const faculties = useFaculties();
 
     //Filtra los grados a mostrar en el menu
-    const grados =  careers.filter((item)=>  item.parent === 0 );
+    const grades = careers.filter((career)=>{
+        return career.type === "grade" && !career.parent;
+    });
 
-    return data.isReady?(
+    // //Filtra las carreras y las separa de los grados
+    // const careers = careersData.filter((career)=>{
+    //     return career.type === "career" && career.parent;
+    // });
+
+    const [view, setView] = useState(0);
+
+    return careers.length && faculties.length?(
         <StyledSection spaceNone  color={colors.gray.base}>
             <Container fluid>
                 <Row>
@@ -146,16 +151,19 @@ const OfferFaculties = ({ state }) =>{
                                     <Col>
                                         <Menu>
                                         {
-                                            grados.map((item,index)=>{
+                                            grades.sort( (a, b) => {
+                                                return a.menuOrder - b.menuOrder  
+                                            })
+                                                .map((item,index)=>{
                                                 return( 
-                                                        <Option
-                                                            key={index}
-                                                            onClick={ (e) => setView( view == index ? view : index ) }
-                                                            active={view === index} 
-                                                            color={view === index ? colors.blue.dark : colors.white} 
-                                                            >  
-                                                            {item.title.rendered}
-                                                        </Option>                                       
+                                                    <Option
+                                                        key={item.id}
+                                                        onClick={ (e) => setView( view === index ? view : index ) }
+                                                        active={view === index} 
+                                                        color={view === index ? colors.blue.dark : colors.white} 
+                                                        >  
+                                                        {item.title}
+                                                    </Option>                                       
                                                 )
                                             })
                                         }
@@ -168,11 +176,11 @@ const OfferFaculties = ({ state }) =>{
 
                     <NavCol size={12} sizeLG={8} lineColor={colors.gray.base}>
                     {
-                        grados.map((item, index) =>{
+                        grades.map((item, index) =>{
                         
-                            const items = hierarchy({parent: 0, faculties, careers, grade: item.id});
+                            const items = hierarchy({parent: null, faculties, careers, grade: item.id});
 
-                            const isActive = view == index;
+                            const isActive = view === index;
 
                             return faculties.length > 0?(
                                 <Wrapper key={index} hidden={!isActive}>
@@ -207,7 +215,7 @@ const OfferFaculties = ({ state }) =>{
 
 }
 
-export default connect(OfferFaculties);
+export default OfferFaculties;
 
 const Anim = styled(animated.div)`
 `;

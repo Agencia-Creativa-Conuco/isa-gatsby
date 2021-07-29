@@ -16,7 +16,7 @@ const CareerCompetencies = ({ career })=>{
 
     const facultyColor = faculty.color;
 
-    return (
+    return tabs.length?(
         <Section>
             <Section spaceNone as="div" css={displayerSectionStyles({
                 bgColor: colors.gray.light,
@@ -81,7 +81,7 @@ const CareerCompetencies = ({ career })=>{
                 </Container>
             </Section>
         </Section>
-    );
+    ): null;
 }
 
 export default CareerCompetencies;

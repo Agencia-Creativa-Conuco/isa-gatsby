@@ -19,8 +19,6 @@ const HomeAplication = ({ page }) =>{
         }
     } = page;
 
-    console.log(image)
-    
     return (
         <Section spaceNone css={sectionStyles({
             bgRoundDeco:colors.blue.dark,
