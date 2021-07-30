@@ -16,8 +16,8 @@ const ServiceActivities = ({ page }) =>{
 
     const [nav1, setNav1] = useState(null)
     const [nav2, setNav2] = useState(null)
-    let slider1 = [];
-    let slider2 = [];
+    const [slider1, setSlider1] = useState([]);
+    const [slider2, setSlider2] = useState([]);
 
     useEffect(() => {
         setNav1(slider1)
@@ -44,7 +44,7 @@ const ServiceActivities = ({ page }) =>{
                             asNavFor={nav2}
                             autoplay
                             pauseOnHover
-                            ref={slider => (slider1 = slider)}
+                            ref={slider => (setSlider1(slider))}
                         >
                         {
                             actividadesExtracurriculares.map((item, index)=>{
@@ -79,7 +79,7 @@ const ServiceActivities = ({ page }) =>{
                                 return <Dot key={index}>{item}</Dot>
                             })}</Dots>}
                             asNavFor={nav1}
-                            ref={slider => (slider2 = slider)}
+                            ref={slider => (setSlider2(slider))}
                         >
                         {
                             actividadesExtracurriculares.map((item, index)=>{

@@ -2,43 +2,13 @@ import * as React from "react";
 import Layout from "../components/layout";
 import { graphql } from "gatsby";
 import ProjectComponent from "./project/project-single";
+import useProjects from "../hooks/useProjects";
 
 export const query = graphql`
   query ($id: String!) {
     allWpProject(filter: { id: { eq: $id } }) {
       nodes {
         id
-        title
-        content
-        date
-        link
-        uri
-        slug
-        coverCopy
-        images {
-          alt
-          caption
-          description
-          full_url
-          height
-          name
-          path
-          srcset
-          title
-          url
-          width
-        }
-        featuredImage {
-          node {
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 1920) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -50,7 +20,7 @@ const Project = ({ data }) => {
     allWpProject: { nodes: projects },
   } = data;
 
-  const [project] = projects;
+  const [project] = useProjects().filter( project => projects.map( item => item.id).includes( project.id ) );
 
   return (
     <Layout>

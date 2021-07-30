@@ -22,7 +22,7 @@ const ServiceSurgery = ({ page }) =>{
         <Section>
             <Container>
                 <Row>
-                    <Col size={12} sizeMD={6} sizeMD={7} zIndex={2} noGutters>
+                    <Col size={12} sizeMD={7} zIndex={2} noGutters>
                         <DecoLogo
                             decoBg={colors.blue.dark}
                             decoBgA={colors.cta.base}

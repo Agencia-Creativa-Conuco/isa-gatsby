@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import {Container, Row, Col, mq, Section} from "./layout/index";
 import colors from "./styles/colors";
+import moment from "moment";
 
 const Calendar = ({ events = [], title="Fechas de admisión", noEventsTitle}) => {
 
@@ -24,7 +25,12 @@ const Calendar = ({ events = [], title="Fechas de admisión", noEventsTitle}) =>
                             <Row justifyContent="center">
                             {
                                 events.map( (event, index) => {
-                                    const date = new Date(event.date);
+
+                                    const {
+                                        dueDate
+                                    } = event;
+
+                                    const date = new Date(moment(dueDate, "DD-MM-YYYY").format('yyyy-MM-DD'));
                                     const month = new Intl.DateTimeFormat('es', { month: 'long' }).format(date);
                                     const day = new Intl.DateTimeFormat('es', { day: '2-digit' }).format(date);
             

@@ -11,7 +11,6 @@ const useProjects = () => {
                 parent: parentDatabaseId
                 title
                 content
-                coverCopy
                 date
                 link
                 uri

@@ -7,7 +7,7 @@ import Offer from "./page/offer/offer";
 import About from "./page/about/about";
 import FrontPage from "./home/front-page";
 import Services from "./page/services/service";
-import DIP from "./page/dip";
+import Dip from "./page/dip/dip";
 import usePages from "../hooks/usePages";
 
 export const query = graphql`
@@ -44,7 +44,7 @@ const Post = ({ data }) => {
         ) : slug === 'servicios-estudiantiles'? (
           <Services {...{ page }}/>
         ) : slug === 'investigacion'? (
-          <DIP  {...{ page }}/>
+          <Dip  {...{ page }}/>
         ) : (
           <h1>ESTA ES LA PÁGINA:{title}</h1>
         )

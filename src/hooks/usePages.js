@@ -293,7 +293,7 @@ const usePages = () => {
                   }
                 }
                 investigation{
-                  coverInvestigation{
+                  coverInvestigation {
                     copy
                   }
                 }
