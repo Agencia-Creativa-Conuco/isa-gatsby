@@ -95,6 +95,7 @@ const usePages = () => {
                       }
                     }
                   }
+
                   internationalOffer {
                     content
                     copy
@@ -117,6 +118,102 @@ const usePages = () => {
                     columns {
                       content
                       title
+                    }
+                  }
+                }
+
+                studentServices {
+                  coverStudentServices {
+                    copy
+                  }
+                  actividadesExtracurriculares {
+                    title
+                    copy
+                    image {
+                      localFile {
+                        publicURL
+                        childImageSharp {
+                          fluid(maxWidth: 1920) {
+                            ...GatsbyImageSharpFluid_withWebp
+                          }
+                        }
+                      }
+                    }
+                  }
+                  orientacion {
+                    title
+                    content
+                    cta {
+                      title
+                      url
+                      target
+                    }
+                    image {
+                      localFile {
+                        publicURL
+                        childImageSharp {
+                          fluid(maxWidth: 1920) {
+                            ...GatsbyImageSharpFluid_withWebp
+                          }
+                        }
+                      }
+                    }
+                  }
+                  desarrollo {
+                    title
+                    content
+                    cta {
+                      title
+                      url
+                      target
+                    }
+                    image {
+                      localFile {
+                        publicURL
+                        childImageSharp {
+                          fluid(maxWidth: 1920) {
+                            ...GatsbyImageSharpFluid_withWebp
+                          }
+                        }
+                      }
+                    }
+                  }
+                  alojamiento {
+                    title
+                    content
+                    cta {
+                      title
+                      url
+                      target
+                    }
+                    image {
+                      localFile {
+                        publicURL
+                        childImageSharp {
+                          fluid(maxWidth: 1920) {
+                            ...GatsbyImageSharpFluid_withWebp
+                          }
+                        }
+                      }
+                    }
+                  }
+                  enfermeria {
+                    title
+                    content
+                    cta {
+                      title
+                      url
+                      target
+                    }
+                    image {
+                      localFile {
+                        publicURL
+                        childImageSharp {
+                          fluid(maxWidth: 1920) {
+                            ...GatsbyImageSharpFluid_withWebp
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -246,6 +343,7 @@ const usePages = () => {
         featuredImage: page?.featuredImage?.node?.localFile,
         home: page.home,
         offer: page.offer,
+        studentServices: page.studentServices,
         about: {
           cover: page.about.cover,
           history: page.about.history || [],

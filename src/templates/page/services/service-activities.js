@@ -1,22 +1,18 @@
 import React, {useState, useEffect} from "react";
-import { connect, styled, css } from "frontity";
-import { Container, Row, Col, Section, mq} from "../../layout/index";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { Container, Row, Col, Section, mq} from "../../../components/layout/index";
 import Carousel from "react-slick";
-import FeaturedMedia from "../../featured-media";
-import {h2} from "../../styles/tipography";
+import FeaturedMedia from "../../../components/featured-media";
+import {h2} from "../../../components/styles/tipography";
+import colors from "../../../components/styles/colors";
 
-const ServiceActivities = ({ state }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    
-    const { meta_box, featured_media } = page;
-
+const ServiceActivities = ({ page }) =>{
     const {
-        service_activities_title,
-        service_activities_items = [],
-    } = meta_box;
-
-    const {colors} = state.theme;
+        studentServices: {
+            actividadesExtracurriculares,
+        }
+    } = page;
 
     const [nav1, setNav1] = useState(null)
     const [nav2, setNav2] = useState(null)
@@ -28,12 +24,12 @@ const ServiceActivities = ({ state }) =>{
         setNav2(slider2)
     }, [slider1, slider2])
 
-    return data.isReady?(
+    return actividadesExtracurriculares?(
         <Section spaceBottomNone>
             <Container>
                 <Row>
                     <Col>
-                        <SectionTitle> { service_activities_title } </SectionTitle>
+                        <SectionTitle> Actividades Extracurriculares </SectionTitle>
                     </Col>
                 </Row>
             </Container>
@@ -51,7 +47,7 @@ const ServiceActivities = ({ state }) =>{
                             ref={slider => (slider1 = slider)}
                         >
                         {
-                            service_activities_items.map((item, index)=>{
+                            actividadesExtracurriculares.map((item, index)=>{
                                 
                                 const {
                                     image,
@@ -60,7 +56,7 @@ const ServiceActivities = ({ state }) =>{
                                 return(
                                     <FeaturedMedia 
                                         key={index}
-                                        media={featured_media} 
+                                        media={image} 
                                         size="56.25%"
                                         sizeMD="40%"
                                         sizeXL="35%"
@@ -86,7 +82,7 @@ const ServiceActivities = ({ state }) =>{
                             ref={slider => (slider2 = slider)}
                         >
                         {
-                            service_activities_items.map((item, index)=>{
+                            actividadesExtracurriculares.map((item, index)=>{
                                 
                                 const {
                                     title,
@@ -118,7 +114,7 @@ const ServiceActivities = ({ state }) =>{
 
 }
 
-export default connect(ServiceActivities);
+export default ServiceActivities;
 
 const SectionTitle = styled.h2`
     text-align: center;

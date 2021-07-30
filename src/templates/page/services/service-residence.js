@@ -1,22 +1,23 @@
-import { connect, styled,css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
+import React from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from '../../../components/styles/colors';
 
-const ServiceResidence = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
+const ServiceResidence = ({ page }) =>{
 
-    const { meta_box } = page;
     const { 
-         service_residence_title, 
-         service_residence_copy,
-         service_residence_image
-    } = meta_box;
+        studentServices: {
+            alojamiento: {
+                title, 
+                content,
+                image
+            }
+        }
+    } = page;
 
-
-    return data.isReady?(
+    return (
         <Section spaceNone zIndex={2}>
             <Container fluid notFluidXL sizeXL="192rem">
                 <Row>
@@ -25,10 +26,8 @@ const ServiceResidence = ({ state,libraries }) =>{
                             <Row>
                                 <Col>
                                     <DivTitle color={colors.white}>
-                                        <SectionTitle color={colors.white}>{ service_residence_title } </SectionTitle>
-                                        <Html2React 
-                                            html={ service_residence_copy }
-                                        />
+                                        <SectionTitle color={colors.white}>{ title } </SectionTitle>
+                                        <div dangerouslySetInnerHTML={{__html: content}} />
                                     </DivTitle>
                                 </Col>
                             </Row>
@@ -36,7 +35,7 @@ const ServiceResidence = ({ state,libraries }) =>{
                     </Col>
                     <Col size={12} sizeLG={7} noGutters>
                         <FeaturedMedia
-                            media={ service_residence_image }
+                            media={ image }
                             size="56.25%"
                             height="100%"
                             bgColor
@@ -45,11 +44,10 @@ const ServiceResidence = ({ state,libraries }) =>{
                 </Row>
             </Container>
         </Section>
-    ):null;
-
+    );
 }
 
-export default connect(ServiceResidence);
+export default ServiceResidence;
 
 
 const DivTitle = styled.div`

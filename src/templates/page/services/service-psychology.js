@@ -1,29 +1,30 @@
-import { connect, styled } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
+import React from 'react';
+import styled from "@emotion/styled";
+import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from "../../../components/styles/colors";
+import Cta from '../../../components/cta';
 
-const ServicePsychology = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
+const ServicePsychology = ({ page }) =>{
 
-    const { meta_box } = page;
     const { 
-         service_psychology_title, 
-         service_psychology_copy,
-         service_psychology_image
-    } = meta_box;
+        studentServices: {
+            orientacion: {
+                title, 
+                content,
+                image,
+                cta
+            }
+        }
+    } = page;
 
-
-
-    return data.isReady?(
+    return (
         <Section spaceNone>
             <Container fluid>
                 <Row>
                     <Col size={12} sizeMD={6} noGutters>
                         <FeaturedMedia
-                            media={ service_psychology_image }
+                            media={ image }
                             size="56.25%"
                             heightMD="100%"
                             bgColor
@@ -31,21 +32,23 @@ const ServicePsychology = ({ state,libraries }) =>{
                     </Col>
                     <Col size={12} sizeMD={6}>
                         <DivTitle decoBg = {colors.blue.dark}>
-                            <SectionTitle>  { service_psychology_title }  </SectionTitle>
-                            <Html2React 
-                                html={ service_psychology_copy }
-                            />
-                            
+                            <SectionTitle>  { title }  </SectionTitle>
+                            <div dangerouslySetInnerHTML={{__html: content}} />
+                            {
+                                cta?(
+                                    <Cta to={cta.url} target={cta.target}>{cta.title}</Cta>
+                                ):null
+                            }
                         </DivTitle>
                     </Col>
                 </Row>
             </Container>
         </Section>
-    ):null;
+    );
 
 }
 
-export default connect(ServicePsychology);
+export default ServicePsychology;
 
 
 const DivTitle = styled.div`

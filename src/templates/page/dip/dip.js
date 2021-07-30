@@ -1,5 +1,5 @@
 import React from "react";
-import { connect, styled } from "frontity";
+import styled from "@emotion/styled";
 import ResearchCover from "./dip-cover";
 import ResearchProcess from "./dip-process";
 import ResearchNews from "./dip-news";
@@ -8,22 +8,19 @@ import ResearchGeneral from "./dip-general";
 
 const ResearchPage = ({ state }) => {
 
-  // Get information about the current URL.
-    const data = state.source.get(state.router.link);
-
   // Load the post, but only if the data is ready.
-    return data.isReady? (
+    return (
         <Container>
-            <ResearchCover />
+            {/* <ResearchCover />
             <ResearchGeneral />
             <ResearchProcess />
             <ResearchTeam />
-            <ResearchNews />
+            <ResearchNews /> */}
         </Container>
-    ) : null;
+    );
 };
 
-export default connect(ResearchPage);
+export default ResearchPage;
 
 const Container = styled.div`
     width: 100%;

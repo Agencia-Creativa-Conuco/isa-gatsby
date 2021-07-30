@@ -1,23 +1,24 @@
-import { connect, styled,css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
+import React from 'react';
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from '../../../components/styles/colors';
+import Cta from '../../../components/cta';
 
-const ServiceSurgery = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
+const ServiceSurgery = ({ page }) =>{
+    const {
+        studentServices: {
+            enfermeria: {
+                title, 
+                content,
+                image,
+                cta
+            }
+        } 
+    } = page;
 
-    const { meta_box } = page;
-    const { 
-         service_surgery_title, 
-         service_surgery_copy,
-         service_surgery_image
-    } = meta_box;
-
-
-
-    return data.isReady?(
+    return (
         <Section>
             <Container>
                 <Row>
@@ -27,7 +28,7 @@ const ServiceSurgery = ({ state,libraries }) =>{
                             decoBgA={colors.cta.base}
                         >
                         <Media
-                            media={  service_surgery_image }
+                            media={  image }
                             size="56.25%"
                             bgColor
                         />
@@ -35,20 +36,23 @@ const ServiceSurgery = ({ state,libraries }) =>{
                     </Col>
                     <ContentCol bgColor={colors.primary.light}>
                         <DivTitle color={colors.blue.dark}>
-                            <SectionTitle>{  service_surgery_title }</SectionTitle>
-                            <Html2React 
-                                html={ service_surgery_copy }                             
-                            />
+                            <SectionTitle>{  title }</SectionTitle>
+                            <div dangerouslySetInnerHTML={{__html: content}} />
+                            {
+                                cta?(
+                                    <Cta to={cta.url} target={cta.target}>{cta.title}</Cta>
+                                ):null
+                            }
                         </DivTitle>
                     </ContentCol>
                 </Row>
             </Container>
         </Section>
-    ):null;
+    );
 
 }
 
-export default connect(ServiceSurgery);
+export default ServiceSurgery;
 
 const ContentCol = styled(Col)`
     ${({bgColor="lightblue"})=>css`

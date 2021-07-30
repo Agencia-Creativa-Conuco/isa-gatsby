@@ -18,7 +18,7 @@ const SchoolCover = ({ school, faculty })=>{
     return (
         <SSection spaceNone bgColor={faculty.color}>
             <FeaturedMedia 
-                media={ featuredImage?.node?.localFile }
+                media={ featuredImage }
                 size="56.25%"   
                 sizeLG="45%"
                 bgColor

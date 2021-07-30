@@ -1,29 +1,28 @@
-import { connect, styled } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
+import React from 'react';
+import styled from "@emotion/styled";
+import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from '../../../components/styles/colors';
 
-const ServiceWellneres = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
-
-    const { meta_box } = page;
-
+const ServiceWellneres = ({ page }) =>{
+    
     const {  
-            service_wellneres_title,
-            service_wellneres_copy,
-            service_wellneres_image 
-    } = meta_box;
+        studentServices: {
+            desarrollo: {
+                title,
+                content,
+                image 
+            }
+        }
+    } = page;
 
-
-    return data.isReady?(
+    return (
         <Section spaceNone>
             <Container fluid>
                 <Row>
-                    <Col size={12} sizeMD={6} orderMD={2} noGutters>
-                        <FeaturedMedia
-                            media={ service_wellneres_image }
+                <Col size={12} sizeMD={6} orderMD={2} noGutters>
+                    <FeaturedMedia
+                        media={ image }
                             size="56.25%"
                             heightMD="100%"
                             bgColor
@@ -31,20 +30,18 @@ const ServiceWellneres = ({ state,libraries }) =>{
                     </Col>
                     <Col size={12} sizeMD={6} orderMD={1}>
                         <DivTitle decoBg = {colors.blue.dark}>
-                            <SectionTitle > { service_wellneres_title } </SectionTitle>
-                            <Html2React 
-                                html={ service_wellneres_copy }
-                            />
+                            <SectionTitle > { title } </SectionTitle>
+                            <div dangerouslySetInnerHTML={{__html: content}} />
                         </DivTitle>
                     </Col>
                 </Row>
             </Container>
         </Section>
-    ):null;
+    );
 
 }
 
-export default connect(ServiceWellneres);
+export default ServiceWellneres;
 
 
 const DivTitle = styled.div`

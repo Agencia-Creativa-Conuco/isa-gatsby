@@ -1,23 +1,24 @@
-import { connect, styled, css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
+import React from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from '../../../components/styles/colors';
 
-const ServiceCover = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
+const ServiceCover = ({ page }) =>{
 
+    console.log(page)
     const {
-        meta_box
+        title,
+        featuredImage,
+        studentServices: {
+            coverStudentServices: {
+                copy
+            }
+        }
     } = page;
 
-    const {
-        service_cover_copy,
-    } = meta_box;
-
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
-
-    return data.isReady?(
+    return (
         <Section spaceNone>
             <Container noGutters fluid>
                 <Row alignCenter>
@@ -34,8 +35,8 @@ const ServiceCover = ({ state,libraries }) =>{
                                     sizeMD={6}
                                 >
                                     <DivTitle>
-                                        <SectionTitle> {page.title.rendered} </SectionTitle>
-                                        <Copy>{service_cover_copy}</Copy> 
+                                        <SectionTitle> {title} </SectionTitle>
+                                        <Copy>{copy}</Copy> 
                                     </DivTitle>
                                 </Col>
                             </Row>
@@ -53,7 +54,7 @@ const ServiceCover = ({ state,libraries }) =>{
                         >
                             <FeaturedMedia 
                                 decoBg={colors.primary.base} 
-                                media={page.featured_media}
+                                media={featuredImage}
                                 size="100%"
                                 sizeXL="90%"
                                 bgColor
@@ -69,11 +70,11 @@ const ServiceCover = ({ state,libraries }) =>{
                 </Row>
             </Container>
         </Section>
-    ):null;
+    );
 
 }
 
-export default connect(ServiceCover);
+export default ServiceCover;
 
 
 const CopyContainer = styled(Container)`

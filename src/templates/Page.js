@@ -6,6 +6,7 @@ import Admisiones from "./page/admission/admisiones";
 import Offer from "./page/offer/offer";
 import About from "./page/about/about";
 import FrontPage from "./home/front-page";
+import Services from "./page/services/service";
 
 import usePages from "../hooks/usePages";
 
@@ -40,6 +41,8 @@ const Post = ({ data }) => {
           <Offer {...{ page }}/>
         ) : slug === 'nosotros'? (
           <About {...{ page }}/>
+        ) : slug === 'servicios-estudiantiles'? (
+          <Services {...{ page }}/>
         ) : (
           <h1>ESTA ES LA PÁGINA:{title}</h1>
         )
