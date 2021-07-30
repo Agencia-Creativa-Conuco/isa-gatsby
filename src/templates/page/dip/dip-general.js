@@ -1,19 +1,14 @@
 import React, {useState, useEffect} from "react";
-import { connect, styled, css } from "frontity";
-import { Container, Row, Col, Section} from "../../layout/index";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { Container, Section, Row, Col } from "../../../components/layout/index";
 import Carousel from "react-slick";
-import FeaturedMedia from "../../featured-media";
-import Link from "../../link";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from "../../../components/styles/colors";
+import Link from "../../../components/link";
+const DIPGeneral = ({ page, projects }) =>{
 
-const DIPGeneral = ({ state }) =>{
-    const data = state.source.get(state.router.link);
     
-    const page = state.source[data.type][data.id];
-
-    const {
-        projects = [],
-        faculties = [],
-    } = page;
 
     const [nav1, setNav1] = useState(null)
     const [nav2, setNav2] = useState(null)
@@ -25,31 +20,11 @@ const DIPGeneral = ({ state }) =>{
         setNav2(slider2)
     }, [slider1, slider2]);
 
-    //Se prepara la estructura en departamentos y projectos hijos;
-    const departaments = projects.filter((item, index)=> item.parent == 0)
-    .map((departament)=>{
-        const project = Object.assign(departament,{
-            projects:projects.filter((project)=>{
 
-                const {
-                    parent,
-                    meta_box
-                } = project;
 
-                const {
-                    project_type,
-                } = meta_box;
+    const departaments = projects.filter((item)=> !(item.parent > 0));
 
-                return parent == departament.id && project_type === "project_line";
-            })
-        })
-        return project;
-    })
-    .filter((departament)=>departament.projects.length);
-
-    const {colors} = state.theme;
-
-    return data.isReady?(
+    return (
         <Section spaceNone>
             <Container fluid>
                 <Row>
@@ -71,13 +46,13 @@ const DIPGeneral = ({ state }) =>{
                             departaments.map((item, index)=>{
                                 
                                 const {
-                                    featured_media,
+                                    featuredImage,
                                 } = item;
 
                                 return(
                                     <FeaturedMedia 
                                         key={index}
-                                        media={featured_media} 
+                                        media={featuredImage} 
                                         size="56.25%"
                                         bgColor
                                     />
@@ -105,21 +80,13 @@ const DIPGeneral = ({ state }) =>{
                             departaments.map((item, index)=>{
                                 
                                 const {
-                                    featured_media,
                                     title,
                                     link,
-                                    projects = [],
-                                    meta_box
-                                } = item;
-
-                                const {
-                                    projects_to_faculties_to = []
-                                } = meta_box;
-
-                                const [faculty] = faculties.filter((item)=>{
-                                    const [projectRelated] = projects_to_faculties_to;
-                                    return item.id == projectRelated;
-                                });
+                                    titleFaculty,
+                                    id
+                                } = item;       
+                                
+                                const project = projects.filter((item) => item.parent > 0 && item.parent === id)
 
                                 return (
                                     <Departament key={index}>
@@ -127,26 +94,24 @@ const DIPGeneral = ({ state }) =>{
                                             <Row>
                                                 <Col size={12} sizeLG={6} zIndex="1">
                                                     {
-                                                        faculty?(
-                                                            <FacultyName>{faculty.title.rendered}</FacultyName>
+                                                        titleFaculty?(
+                                                            <FacultyName>{titleFaculty[0].title}</FacultyName>
                                                         ):null
                                                     }
-                                                    <Link to={link} noDecoration>
-                                                        <DepartamentName>{title.rendered}</DepartamentName>
-                                                    </Link>
+                                                    <StyledLink to={link}>
+                                                        <DepartamentName>{title}</DepartamentName>
+                                                    </StyledLink>
                                                     <DepartamentProjects>
+                                                        
                                                     {
-                                                        projects.map((item,index)=>{
-
+                                                        project.map((item,index)=>{
                                                             const {
                                                                 title,
-                                                                link = state.router.link
                                                             } = item;
-
                                                             return (
                                                                 <Project key={index} color={colors.gray.base} colorHover={colors.secondary.base}>
-                                                                    <StyledLink to={link} noDecoration>
-                                                                        <ProjectName>{title.rendered}</ProjectName>
+                                                                    <StyledLink to={link}>
+                                                                        <ProjectName>{title}</ProjectName>
                                                                     </StyledLink>
                                                                 </Project>
                                                             )
@@ -165,11 +130,11 @@ const DIPGeneral = ({ state }) =>{
                 </Row>
             </Container>
         </Section>
-    ):null;
+    );
 
 }
 
-export default connect(DIPGeneral);
+export default DIPGeneral;
 
 const ContentContainer = styled(Container)`
     margin: 5rem auto;
@@ -202,7 +167,7 @@ const DepartamentProjects = styled.ul`
 
 const Project = styled.li`
     ${({color="gray", colorHover="darkblue"})=>css`
-        /* list-style: none; */
+        list-style: none;
         padding: 0;
         margin: 0;
         color: ${color};
@@ -221,6 +186,7 @@ const ProjectName = styled.h4`
     text-transform: uppercase;
     color: inherit;
     padding: 1rem 0;
+    
 `;
 
 const Dots = styled.ul`

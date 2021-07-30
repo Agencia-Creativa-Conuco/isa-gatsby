@@ -1,44 +1,35 @@
-import { connect, styled, css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
-import Link from "../../link";
-import {h2} from "../../styles/tipography";
+import React from 'react';
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { Container, Section, Row, Col} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import Link from "../../../components/link";
+import colors from "../../../components/styles/colors";
 
-const DIPProcess = ({ state }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
+import {h2} from "../../../components/styles/tipography";
+
+const DIPProcess = ({ projects, page }) =>{
 
     const { 
-        meta_box,
-        projects = []
+        sectionTitle = "Investigaciónes en curso"
     } = page;
-
-    const { 
-        research_process_title = "Investigaciónes en curso"
-    } = meta_box;
 
     const projectList = projects.filter((item)=>{
 
-        const {
-            parent,
-            meta_box,
-        } = item;
+        const { parent } = item;
 
-        const {
-            project_type
-        } = meta_box;
-
-        return parent > 0 && project_type === "project";
+        return parent > 0 ;
     })
     .filter((item, index)=> index <= 3 );
 
-    return data.isReady && projectList.length?(
+
+
+    return projectList.length?(
         <Section>
             <Container>
                 <Row>
                     <Col>
-                        <SectionTitle> { research_process_title } </SectionTitle>
+                        <SectionTitle> { sectionTitle } </SectionTitle>
                     </Col>
                 </Row>
                <Row>
@@ -47,14 +38,11 @@ const DIPProcess = ({ state }) =>{
 
                         const {
                             title,
-                            featured_media,
-                            meta_box,
-                            link
+                            featuredImage,
+                            link,
+                            // content,
+                            copy
                         } = item;
-
-                        const {
-                            project_cover_copy
-                        } = meta_box;
 
                         const isPrincipal = index > 0? false: true;
                         
@@ -64,7 +52,7 @@ const DIPProcess = ({ state }) =>{
                                 size={12}
                                 sizeMD={isPrincipal?12:4}
                             >
-                                <Link to={link} noDecoration>
+                                <StyledLink to={link}>
                                     <Project>
                                         <Row>
                                             <Col size={12} sizeMD={isPrincipal? 6: 12} >
@@ -74,7 +62,7 @@ const DIPProcess = ({ state }) =>{
                                                     decoBgA={colors.cta.base}
                                                 >
                                                     <FeaturedMedia  
-                                                        media={featured_media}
+                                                        media={featuredImage}
                                                         size={isPrincipal?"70%":"56.25%"}
                                                         bgColor
                                                         zIndex={2}    
@@ -96,14 +84,14 @@ const DIPProcess = ({ state }) =>{
                                                         color={colors.blue.dark} 
                                                         size="2.5rem"
                                                     >
-                                                            { title.rendered }
+                                                            { title }
                                                     </Title>
-                                                    <Copy {...{isPrincipal}}>{ project_cover_copy }</Copy>
+                                                    <Copy  color={colors.gray.light} {...{isPrincipal}}>{copy}</Copy>
                                                 </DivTitle>
                                             </Col>
                                         </Row>
                                     </Project>
-                                </Link>
+                                </StyledLink>
                             </Col>
                         )
                     })
@@ -115,7 +103,7 @@ const DIPProcess = ({ state }) =>{
 
 }
 
-export default connect(DIPProcess);
+export default DIPProcess;
 
 
 const DivTitle = styled.div`
@@ -136,10 +124,11 @@ const Title = styled.h3`
     font-weight: 900;
     text-transform: uppercase;
     margin-top: 0;
+    text-decoration: none;
 `;
 
 const Copy = styled.p`
-    ${({isPrincipal})=>css`
+    ${({isPrincipal}, color="gray")=>css`
         ${isPrincipal?css`
             word-break: break-word;
             white-space: break-spaces;
@@ -150,6 +139,7 @@ const Copy = styled.p`
             max-height: 160px; /* fallback */
             -webkit-line-clamp: 10; /* number of lines to show */
             -webkit-box-orient: vertical;
+            color: ${color}
         `:css`
             display: none;
         `}
@@ -208,4 +198,7 @@ const Deco = styled.div`
             z-index: 0;
         }
     `}
-`
+`;
+const StyledLink = styled(Link)`
+    text-decoration: none;
+`;

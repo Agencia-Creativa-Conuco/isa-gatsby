@@ -292,6 +292,11 @@ const usePages = () => {
                     uri
                   }
                 }
+                investigation{
+                  coverInvestigation{
+                    copy
+                  }
+                }
         
                 resources {
                   resourceRelationship {
@@ -350,6 +355,9 @@ const usePages = () => {
           perfil: page.about.perfil,
           tabs: page.about.tabs || [],
           campus: page.about.campus,
+        },
+        investigation:{
+          cover: page.investigation.coverInvestigation
         },
         events: {
           categories: page?.events?.categories || []

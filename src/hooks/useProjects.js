@@ -8,8 +8,10 @@ const useProjects = () => {
             allWpProject {
               nodes {
                 id: databaseId
+                parent: parentDatabaseId
                 title
                 content
+                coverCopy
                 date
                 link
                 uri
@@ -25,6 +27,13 @@ const useProjects = () => {
                     }
                   }
                 }
+                projectInfo {
+                  projectRelationship {
+                    ... on WpFaculty {
+                      title
+                    }
+                  }
+                }
               }
             }
           }
@@ -35,11 +44,14 @@ const useProjects = () => {
         id: project.id,
         title: project.title,
         content: project.content,
+        copy: project.coverCopy,
         date: project.date,
         slug: project.slug,
         uri: project.uri,
         link: project.link,
-        featuredImage: project.featuredImage? project.featuredImage.node.localFile : null
+        featuredImage: project.featuredImage? project.featuredImage.node.localFile : null,
+        parent: project.parent,
+        titleFaculty: project.projectInfo.projectRelationship || []
     }));
 }
  
