@@ -7,8 +7,8 @@ const useProjects = () => {
         {
             allWpProject {
               nodes {
-                id: databaseId
-                parent: parentDatabaseId
+                id
+                parentId
                 title
                 content
                 date
@@ -17,13 +17,7 @@ const useProjects = () => {
                 slug
                 featuredImage {
                   node {
-                    localFile {
-                      childImageSharp {
-                        fluid(maxWidth: 1920) {
-                          ...GatsbyImageSharpFluid_withWebp
-                        }
-                      }
-                    }
+                    ...ImageFragment
                   }
                 }
                 projectInfo {
@@ -49,7 +43,7 @@ const useProjects = () => {
         uri: project.uri,
         link: project.link,
         featuredImage: project.featuredImage? project.featuredImage.node.localFile : null,
-        parent: project.parent,
+        parent: project.parentId,
         titleFaculty: project.projectInfo.projectRelationship || []
     }));
 }

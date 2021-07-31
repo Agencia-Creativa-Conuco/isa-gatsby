@@ -7,7 +7,6 @@ import colors from '../../../components/styles/colors';
 
 const ServiceCover = ({ page }) =>{
 
-    console.log(page)
     const {
         title,
         featuredImage,

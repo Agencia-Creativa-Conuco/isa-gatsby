@@ -20,12 +20,10 @@ const ResearchPage = ({ ...page }) => {
 //Obtiene los datos de los Proyectos
 const projects = useProjects();
 
-// console.log( projects)
-
     return (
         <Container>
             <DIPCover { ...page } />
-             <DIPGeneral {...{ projects, page }} />
+            <DIPGeneral {...{ projects, page }} />
             <DIPProcess {...{page, projects}} />
             <DIPTeam { ...{persons} } />
             <DIPNews {...{ page, posts }} /> 

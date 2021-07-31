@@ -4,9 +4,9 @@ import ServiceCover from "./service-cover";
 import ServicePsychology from "./service-psychology";
 import ServiceWellneres from "./service-wellneres";
 import ServiceResidence from "./service-residence";
-// import ServiceEconomics from "./service-economics";
+import ServiceEconomics from "./service-economics";
 import ServiceSurgery from "./service-surgery";
-// import ServiceSport from "./service-sport";
+import ServiceSport from "./service-sport";
 import ServiceActivities from "./service-activities";
 
 const ServicePage = ({ page }) => {
@@ -20,8 +20,8 @@ const ServicePage = ({ page }) => {
             <ServiceWellneres {...{page}} />
             <ServiceResidence {...{page}} />
             <ServiceSurgery {...{page}} />
-            {/* <ServiceSport /> */}
-            {/* <ServiceEconomics /> */}
+            <ServiceSport {...{page}} />
+            <ServiceEconomics {...{page}} />
         </Container>
     );
 };

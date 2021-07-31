@@ -12,21 +12,12 @@ const useSlides = () => {
                         slideInfo {
                             copy
                             cta {
-                                title
-                                target
-                                url
+                                ...CtaFragment
                             }
                         }
                         featuredImage {
                             node {
-                                localFile {
-                                    childImageSharp {
-                                        fluid( maxWidth: 1200 ) {
-                                            ...GatsbyImageSharpFluid_withWebp
-                                        }
-                                        gatsbyImageData
-                                    }
-                                }
+                                ...ImageFragment
                             }
                         }
                     }
