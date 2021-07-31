@@ -4,7 +4,7 @@ import LibraryCover from "./library-cover";
 import LibraryServices from "./library-services";
 // import LibraryResources from "./library-resources";
 // import LibraryRegulation from "./library-regulation";
-// import LibraryHorary from "./library-horary";
+import LibraryHorary from "./library-horary";
 
 const LibraryPage = ({ ...page }) => {
 
@@ -17,7 +17,7 @@ console.log(page)
             <LibraryServices {...page}/>
             {/* <LibraryResources /> */}
             {/* <LibraryRegulation /> */}
-            {/* <LibraryHorary /> */}
+            <LibraryHorary {...page}/>
         </Container>
     );
 };
