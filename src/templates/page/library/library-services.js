@@ -1,22 +1,22 @@
-import { connect, styled, css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
+import React from 'react';
+import styled from "@emotion/styled";
+import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media"
+import colors from "../../../components/styles/colors";
+const LibraryServices = ({ page }) =>{
 
-const LibraryServices = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
 
-    
-    const { meta_box } = page;
-    const { 
-            library_servic_copy,
-            library_servic_title,
-            library_servic_image
-          } = meta_box;
-    
-    return data.isReady?(
+    const {
+        library:{
+            services:{
+                title,
+                content,
+                image
+            }
+        },
+    } = page;
+
+    return(
         <StylesSection color={colors.gray.light}>
             <Container fluid notFluidXL sizeXL="192rem">
                 <Row>
@@ -29,7 +29,7 @@ const LibraryServices = ({ state,libraries }) =>{
                         decoBg={colors.blue.base}
                         decoBgB={colors.blue.dark}/> 
                         <FeaturedMedia
-                            media={ library_servic_image }
+                            media={ image }
                             size="60.25%"
                             heightMD="100%"
                             />   
@@ -37,21 +37,19 @@ const LibraryServices = ({ state,libraries }) =>{
                     </Col>
                 <Col size={12} sizeMD={6} noGutters>
                         <DivTitle decoBg = {colors.blue.dark}>
-                            <SectionTitle > { library_servic_title } </SectionTitle>
-                            <Html2React 
-                                html={ library_servic_copy }
-                            />
+                            <SectionTitle > { title } </SectionTitle>
+                            <div dangerouslySetInnerHTML={{__html: content}} />
                         </DivTitle>
                     </Col>
      
                 </Row>
             </Container>
         </StylesSection>
-    ):null;
+    );
 
 }
 
-export default connect(LibraryServices);
+export default LibraryServices;
 
 
 
@@ -84,8 +82,9 @@ const DivTitle = styled.div`
 `;
 
 
-const SectionTitle = styled.h2`
-`;
+const SectionTitle = styled.h2``;
+
+
 const Media = styled.div`
 position: relative;
 &::before{

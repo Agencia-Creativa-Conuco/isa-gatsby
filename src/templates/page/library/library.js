@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import LibraryCover from "./library-cover";
-// import LibraryServices from "./library-services";
+import LibraryServices from "./library-services";
 // import LibraryResources from "./library-resources";
 // import LibraryRegulation from "./library-regulation";
 // import LibraryHorary from "./library-horary";
@@ -14,7 +14,7 @@ console.log(page)
         <Container>
 
             <LibraryCover {...page}/>
-            {/* <LibraryServices /> */}
+            <LibraryServices {...page}/>
             {/* <LibraryResources /> */}
             {/* <LibraryRegulation /> */}
             {/* <LibraryHorary /> */}
