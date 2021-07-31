@@ -11,7 +11,6 @@ import useFaculties from "../../hooks/useFaculties";
 const Career = ({ career })=>{
 
     const [faculty] = useFaculties().filter( faculty => faculty.id === career.faculty.id);
-    console.log(faculty)
 
     return (
         <Article>

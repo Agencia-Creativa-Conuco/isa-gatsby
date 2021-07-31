@@ -11,18 +11,14 @@ import useFaculties from "../../../hooks/useFaculties";
 import useGrades from '../../../hooks/useGrades';
 import useDepartaments from '../../../hooks/useDepartaments';
 
-const Item = ({item, state})=>{
+const Item = ({item, type})=>{
     
     const {
         title,
         uri,
-        parent,
-        type,
-        careers = [],
-        children = []
     } = item;
 
-    const isMain = parent?false: true;
+    const isMain = type === "faculty";
 
     const isCareer = type === "career";
 
@@ -36,16 +32,6 @@ const Item = ({item, state})=>{
                         {...{isMain, isCareer}}
                     >{title}</Title>
                 </Link>
-                {
-                    careers.length?(
-                        <ItemList items={careers} />
-                    ):null
-                }
-                {
-                    children.length?(
-                        <ItemList items={children} />
-                    ):null
-                }
             </Component>
         </Col>
     );
@@ -82,7 +68,7 @@ const Title = styled.span`
     `}
 `;
 
-const ItemList = ({items})=>{
+const ItemList = ({items, type})=>{
 
     return (
         <Container noGutters>
@@ -90,7 +76,7 @@ const ItemList = ({items})=>{
             {
                 items.map((item,index)=>{
                     return (
-                        <Item key={index} item={item} />
+                        <Item key={index} item={item} type={type} />
                     )
                 })
             }
@@ -102,23 +88,6 @@ const ItemList = ({items})=>{
 const StyledRow = styled(Row)`
     padding: 0;
 `;
-
-//Construye la jerarquía completa facultades->departamentos->grados->carreras
-const hierarchy = ({faculties=[], departaments=[], careers=[], grade}) => {
-
-    return faculties
-         .map((faculty)=>{
-
-            return {
-                ...faculty,
-                children: departaments.filter((item) => item.faculty.id === faculty.id),
-                careers: careers.filter((career)=>{
-                    return (career?.faculty?.id === faculty.id)
-                })
-            }
-         })
-         .filter((faculty)=>faculty.children.length || faculty.careers.length)
- }
 
 const OfferFaculties = ({ page }) =>{
 
@@ -134,7 +103,6 @@ const OfferFaculties = ({ page }) =>{
     //Obtiene y ordena los grados a mostrar en el menú
     const grades = useGrades().sort((a,b)=>a.order - b.order);
 
-    console.log(faculties, departaments)
     const [view, setView] = useState(0);
 
     return careers.length && faculties.length?(
@@ -172,8 +140,6 @@ const OfferFaculties = ({ page }) =>{
                     {
                         grades.map((item, index) =>{
                         
-                            const items = hierarchy({ faculties, departaments, careers, grade: item.id});
-
                             const isActive = view === index;
 
                             return faculties.length > 0?(
@@ -189,7 +155,7 @@ const OfferFaculties = ({ page }) =>{
                                         {
                                             styles =>(
                                                 <Anim style={styles}>
-                                                    <ItemList items={items}/>
+                                                    <ItemList items={faculties} type="faculty" />
                                                 </Anim>
                                             )
                                         }
