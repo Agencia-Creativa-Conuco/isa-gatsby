@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
+import { Container, Section, Row, Col } from "../../../components/layout/index";
 import colors from "../../../components/styles/colors";
 import {   ClockIcon  } from "../../../components/icons";
 

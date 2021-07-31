@@ -2,21 +2,17 @@ import React from "react";
 import styled from "@emotion/styled";
 import LibraryCover from "./library-cover";
 import LibraryServices from "./library-services";
-// import LibraryResources from "./library-resources";
-// import LibraryRegulation from "./library-regulation";
+import LibraryResources from "./library-resources";
 import LibraryHorary from "./library-horary";
 
 const LibraryPage = ({ ...page }) => {
 
-
-console.log(page)
     return (
         <Container>
 
             <LibraryCover {...page}/>
             <LibraryServices {...page}/>
-            {/* <LibraryResources /> */}
-            {/* <LibraryRegulation /> */}
+            <LibraryResources {...page}/>
             <LibraryHorary {...page}/>
         </Container>
     );

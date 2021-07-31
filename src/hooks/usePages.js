@@ -250,6 +250,15 @@ const usePages = () => {
                       content
                     }
                   }
+                  recursos {
+                    copy
+                    titlecontent
+                    title
+                    content {
+                      cloneContent
+                    }
+                  
+                }
                   reglamento {
                     copy
                     title
@@ -307,6 +316,7 @@ const usePages = () => {
         library:{
           cover: page.library.coverLibrary,
           horary: page.library.horary,
+          recursos: page.library.recursos ,
           reglamento: page.library.reglamento,
           services: page.library.services
         }

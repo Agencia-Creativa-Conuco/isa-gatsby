@@ -1,52 +1,60 @@
-import { connect, styled, css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
+import React from 'react';
+import styled from "@emotion/styled";
+import { Container, Section, Row, Col } from "../../../components/layout/index";
+import colors from "../../../components/styles/colors";
 
-const LibraryResources = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
+const LibraryResources = ({ page }) =>{
+
+    const {
+        library:{
+            recursos:{
+                title,
+                copy,
+                titlecontent,
+                content
+            }
+        },
+    } = page;
 
     
-    const { meta_box } = page;
-    const { 
-        library_resources_title, 
-        library_resources_copy, 
-        library_resources_content
-     } = meta_box;
-    
-    
-    return data.isReady?(
+    return (
         <Section>
             <Container fluid >
                 <Row >   
                 <Col size={11} mlAuto >
                         <DivTitle >
-                            <SectionTitle > { library_resources_title }</SectionTitle>
+                            <SectionTitle > { title }</SectionTitle>
                         </DivTitle>
                     </Col>
 
                          <ColStyles size={10} color = {colors.blue.base}  >
-                                     <Copy>{ library_resources_copy } </Copy>
+                                     <Copy>{ copy } </Copy>
                             </ColStyles>
 
                             <ColStyles size={10} color = {colors.blue.dark} >
-                                <Content >
-                                    <Html2React 
-                                        html={ library_resources_content }
-                                    />
-                                    
-                                </Content>
+                            <Content>{ titlecontent }</Content>
+                                <Row>
+                                {content.map((item, index)=>{
+                                     const{ cloneContent } = item;
+                                    return(
+                                        <Col size={12} sizeMD={6} key={index}>
+                                                <Content>
+                                                     <div dangerouslySetInnerHTML={{__html: cloneContent}} />
+                                                </Content>
+                                        </Col>
+                                        )
+                                    })}
+                                    </Row>
+                                
                             </ColStyles>
                         </Row>
             </Container>
         </Section>
-    ):null;
+    );
 
 }
 
-export default connect(LibraryResources);
+export default LibraryResources;
 
 
 
@@ -66,6 +74,7 @@ const ColStyles = styled( Col )`
             height: 100%;
             background-color: ${ props => props.color };
             z-index: -1;
+        }
 
 `
 
