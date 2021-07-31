@@ -20,8 +20,6 @@ const ResearchPage = ({ ...page }) => {
 //Obtiene los datos de los Proyectos
 const projects = useProjects();
 
-// console.log( projects)
-
     return (
         <Container>
             <DIPCover { ...page } />

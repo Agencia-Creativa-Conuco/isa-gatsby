@@ -1,23 +1,23 @@
-import { connect, styled } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
-import Link from "../../link";
+import React from 'react';
+import styled from "@emotion/styled";
+import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from "../../../components/styles/colors";
+import Cta from "../../../components/cta";
 
-const ServiceEconomics = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
-
-    const { meta_box } = page;
+const ServiceEconomics = ({ page }) =>{
     const { 
-         service_economics_title, 
-         service_economics_copy,
-         service_economics_image
-    } = meta_box;
+        studentServices: {
+            asistenciaEconomica: {
+                title,
+                content,
+                image,
+                cta
+            }
+        }
+    } = page;
 
-
-    return data.isReady?(
+    return (
         <Section>
             <Container>
                 <Row>
@@ -35,7 +35,7 @@ const ServiceEconomics = ({ state,libraries }) =>{
                                         decoBgA={colors.cta.base}
                                     >
                                         <FeaturedMedia
-                                            media={ service_economics_image }
+                                            media={ image }
                                             size="56.25%"
                                             heightMD="100%"
                                             zIndex={3}
@@ -51,11 +51,15 @@ const ServiceEconomics = ({ state,libraries }) =>{
                                     <DivTitle 
                                         color={colors.blue.dark}
                                     >
-                                        <SectionTitle> { service_economics_title } </SectionTitle>
-                                        <Html2React 
-                                            html={ service_economics_copy }
-                                        />
-                                        <StyledLink to="#" cta>APLICAR</StyledLink>
+                                        <SectionTitle> { title } </SectionTitle>
+                                        <div dangerouslySetInnerHTML={{__html: content}} />
+                                        {
+                                            cta?(
+                                                <StyledLink to={cta.url} target={cta.target}>
+                                                    {cta.title}
+                                                </StyledLink>
+                                            ):null
+                                        }
                                     </DivTitle>
                                 </Col>
                             </Row>
@@ -64,11 +68,11 @@ const ServiceEconomics = ({ state,libraries }) =>{
                 </Row>
             </Container>
         </Section>
-    ):null;
+    );
 
 }
 
-export default connect(ServiceEconomics);
+export default ServiceEconomics;
 
 
 const Wrapper = styled.div`
@@ -107,7 +111,7 @@ const SectionTitle = styled.h2`
     }
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(Cta)`
 
     margin-top: 1rem;
 

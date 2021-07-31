@@ -91,7 +91,6 @@ const ServiceActivities = ({ page }) =>{
                                     cta,
                                 } = item;
 
-                                console.log(item)
                                 return (
                                     <Slide key={index}>
                                         <Container noGutters>

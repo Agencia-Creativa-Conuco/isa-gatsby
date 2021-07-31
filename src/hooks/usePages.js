@@ -147,6 +147,17 @@ const usePages = () => {
                       }
                     }
                   }
+
+                  asistenciaEconomica {
+                    title
+                    content
+                    image {
+                      ...ImageFragment
+                    }
+                    cta {
+                      ...CtaFragment
+                    }
+                  }
                 }
 
                 about {

@@ -19,8 +19,6 @@ const ServiceSport = ({ page }) =>{
         }
     } = page;
 
-    console.log(sports)
-
     const [nav1, setNav1] = useState(null)
     const [nav2, setNav2] = useState(null)
     const [slider1, setSlider1] = useState([]);
