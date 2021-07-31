@@ -1,29 +1,28 @@
 import React from "react";
-import { connect, styled } from "frontity";
+import styled from "@emotion/styled";
 import LibraryCover from "./library-cover";
-import LibraryServices from "./library-services";
-import LibraryResources from "./library-resources";
-import LibraryRegulation from "./library-regulation";
-import LibraryHorary from "./library-horary";
+// import LibraryServices from "./library-services";
+// import LibraryResources from "./library-resources";
+// import LibraryRegulation from "./library-regulation";
+// import LibraryHorary from "./library-horary";
 
-const LibraryPage = ({ state }) => {
+const LibraryPage = ({ ...page }) => {
 
-  // Get information about the current URL.
-    const data = state.source.get(state.router.link);
 
-  // Load the post, but only if the data is ready.
-    return data.isReady? (
+console.log(page)
+    return (
         <Container>
-            <LibraryCover />
-            <LibraryServices />
-            <LibraryResources />
-            <LibraryRegulation />
-            <LibraryHorary />
+
+            <LibraryCover {...page}/>
+            {/* <LibraryServices /> */}
+            {/* <LibraryResources /> */}
+            {/* <LibraryRegulation /> */}
+            {/* <LibraryHorary /> */}
         </Container>
-    ) : null;
+    );
 };
 
-export default connect(LibraryPage);
+export default LibraryPage;
 
 const Container = styled.div`
     width: 100%;

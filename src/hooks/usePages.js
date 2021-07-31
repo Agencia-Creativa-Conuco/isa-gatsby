@@ -328,7 +328,37 @@ const usePages = () => {
                     }
                   }
                 }
-
+                library {
+                  coverLibrary {
+                    copy
+                    titleLibrary
+                  }
+                  horary {
+                    title
+                    content {
+                      content
+                    }
+                  }
+                  reglamento {
+                    copy
+                    title
+                  }
+                  services {
+                    content
+                    title
+                    image{
+                        localFile {
+                          publicURL
+                          childImageSharp {
+                            fluid(maxWidth: 1920) {
+                              ...GatsbyImageSharpFluid_withWebp
+                            }
+                          }
+                        }
+                      }
+                    }
+                    
+                }
               }
             }
           }
@@ -363,6 +393,12 @@ const usePages = () => {
           categories: page?.events?.categories || []
         },
         resources: page.resources,
+        library:{
+          cover: page.library.coverLibrary,
+          horary: page.library.horary,
+          reglamento: page.library.reglamento,
+          services: page.library.services
+        }
     }));
 }
  

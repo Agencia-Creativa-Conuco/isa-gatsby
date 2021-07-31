@@ -1,21 +1,24 @@
-import { connect, styled, css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
+import React from 'react';
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from '../../../components/styles/colors';
 
-const LibraryCover = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
+const LibraryCover = ({ page}) =>{
+
+    const {
+        title,
+        featuredImage,
+        library:{
+            cover:{
+                copy
+            }
+        },
+    } = page;
 
     
-    const { meta_box } = page;
-    const { 
-        library_cover_title,
-        library_cover_copy
-    } = meta_box;
-    
-    return data.isReady?(
+    return (
         <Section spaceNone css={sectionStyles}>
             <Container fluid>
                 <Row alignCenter >
@@ -29,10 +32,9 @@ const LibraryCover = ({ state,libraries }) =>{
                     >
                         <Content decoBg={colors.blue.base}>
                         
-                            <SectionTitle> { library_cover_title } </SectionTitle>
-                            <Html2React 
-                                html={ library_cover_copy }
-                            />
+                            <SectionTitle>{title} </SectionTitle>
+                            <Copy>{copy}</Copy>
+                         
                         </Content>
                     </Col>
                     <Col 
@@ -50,7 +52,7 @@ const LibraryCover = ({ state,libraries }) =>{
                         decoBgB={colors.secondary.dark}>
 
                             <Logo
-                                media={page.featured_media}
+                                media={featuredImage}
                                 size="100%"
                                 sizeLG="80%"
                                 loading="eager"
@@ -60,11 +62,11 @@ const LibraryCover = ({ state,libraries }) =>{
                 </Row>
             </Container>
         </Section>
-    ):null;
+    );
 
 }
 
-export default connect(LibraryCover);
+export default LibraryCover;
 
 const sectionStyles = css`
     overflow: hidden;
@@ -78,6 +80,8 @@ const Content = styled.div`
 
 
 const SectionTitle = styled.h1``;
+
+const Copy = styled.p``;
 
 
 const Media = styled.div`
