@@ -6,6 +6,7 @@ import Carousel from "react-slick";
 import FeaturedMedia from "../../../components/featured-media";
 import {h2} from "../../../components/styles/tipography";
 import colors from "../../../components/styles/colors";
+import Cta from "../../../components/cta";
 
 const ServiceActivities = ({ page }) =>{
     const {
@@ -87,8 +88,10 @@ const ServiceActivities = ({ page }) =>{
                                 const {
                                     title,
                                     copy,
+                                    cta,
                                 } = item;
 
+                                console.log(item)
                                 return (
                                     <Slide key={index}>
                                         <Container noGutters>
@@ -97,6 +100,11 @@ const ServiceActivities = ({ page }) =>{
                                                     <Content>
                                                         <Title>{title}</Title>
                                                         <Copy>{copy}</Copy>
+                                                        {
+                                                            cta?(
+                                                                <Cta to={cta.url} target={cta.target}>{cta.title}</Cta>
+                                                            ):null
+                                                        }
                                                     </Content>
                                                 </Col>
                                             </Row>

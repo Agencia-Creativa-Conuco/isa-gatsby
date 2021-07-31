@@ -179,14 +179,7 @@ const HomeOffer = ({ page }) =>{
                           alt: altText
                           full_url: sourceUrl
                           srcset: srcSet 
-                          localFile {
-                            publicURL
-                            childImageSharp {
-                              fluid(maxWidth: 1920) {
-                                ...GatsbyImageSharpFluid_withWebp
-                              }
-                            }
-                          }           
+                          ...ImageFragment           
                         }
                       }
                   }

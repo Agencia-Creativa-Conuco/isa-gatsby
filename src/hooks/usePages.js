@@ -18,13 +18,7 @@ const usePages = () => {
                 isPostsPage
                 featuredImage {
                   node {
-                    localFile {
-                      childImageSharp {
-                        fluid(maxWidth: 1920) {
-                          ...GatsbyImageSharpFluid_withWebp
-                        }
-                      }
-                    }
+                    ...ImageFragment
                   }
                 }
                 
@@ -32,42 +26,24 @@ const usePages = () => {
                   cover {
                     copy
                     cta {
-                      title
-                      url
-                      target
+                      ...CtaFragment
                     }
                   }
                   ctaSection {
                     title
                     copy
                     cta {
-                      target
-                      title
-                      url
+                      ...CtaFragment
                     }
                     image {
-                      localFile {
-                        publicURL
-                        childImageSharp {
-                          fluid(maxWidth: 1920) {
-                            ...GatsbyImageSharpFluid_withWebp
-                          }
-                        }
-                      }
+                      ...ImageFragment
                     }
                   }
                   
                   form {
                     title
                     image {
-                      localFile {
-                        publicURL
-                        childImageSharp {
-                          fluid(maxWidth: 1920) {
-                            ...GatsbyImageSharpFluid_withWebp
-                          }
-                        }
-                      }
+                      ...ImageFragment
                     }
                   }
                 }
@@ -80,19 +56,10 @@ const usePages = () => {
                     title
                     content
                     cta {
-                      title
-                      url
-                      target
+                      ...CtaFragment
                     }
                     image {
-                      localFile {
-                        publicURL
-                        childImageSharp {
-                          fluid(maxWidth: 1920) {
-                            ...GatsbyImageSharpFluid_withWebp
-                          }
-                        }
-                      }
+                      ...ImageFragment
                     }
                   }
 
@@ -101,19 +68,10 @@ const usePages = () => {
                     copy
                     title
                     image {
-                      localFile {
-                        publicURL
-                        childImageSharp {
-                          fluid(maxWidth: 1920) {
-                            ...GatsbyImageSharpFluid_withWebp
-                          }
-                        }
-                      }
+                      ...ImageFragment
                     }
                     cta {
-                      title
-                      url
-                      target
+                      ...CtaFragment
                     }
                     columns {
                       content
@@ -129,90 +87,63 @@ const usePages = () => {
                   actividadesExtracurriculares {
                     title
                     copy
+                    cta {
+                      ...CtaFragment
+                    }
                     image {
-                      localFile {
-                        publicURL
-                        childImageSharp {
-                          fluid(maxWidth: 1920) {
-                            ...GatsbyImageSharpFluid_withWebp
-                          }
-                        }
-                      }
+                      ...ImageFragment
                     }
                   }
                   orientacion {
                     title
                     content
                     cta {
-                      title
-                      url
-                      target
+                      ...CtaFragment
                     }
                     image {
-                      localFile {
-                        publicURL
-                        childImageSharp {
-                          fluid(maxWidth: 1920) {
-                            ...GatsbyImageSharpFluid_withWebp
-                          }
-                        }
-                      }
+                      ...ImageFragment
                     }
                   }
                   desarrollo {
                     title
                     content
                     cta {
-                      title
-                      url
-                      target
+                      ...CtaFragment
                     }
                     image {
-                      localFile {
-                        publicURL
-                        childImageSharp {
-                          fluid(maxWidth: 1920) {
-                            ...GatsbyImageSharpFluid_withWebp
-                          }
-                        }
-                      }
+                      ...ImageFragment
                     }
                   }
                   alojamiento {
                     title
                     content
                     cta {
-                      title
-                      url
-                      target
+                      ...CtaFragment
                     }
                     image {
-                      localFile {
-                        publicURL
-                        childImageSharp {
-                          fluid(maxWidth: 1920) {
-                            ...GatsbyImageSharpFluid_withWebp
-                          }
-                        }
-                      }
+                      ...ImageFragment
                     }
                   }
                   enfermeria {
                     title
                     content
                     cta {
-                      title
-                      url
-                      target
+                      ...CtaFragment
                     }
                     image {
-                      localFile {
-                        publicURL
-                        childImageSharp {
-                          fluid(maxWidth: 1920) {
-                            ...GatsbyImageSharpFluid_withWebp
-                          }
-                        }
+                      ...ImageFragment
+                    }
+                  }
+                  deportes {
+                    title
+                    content
+                    cta {
+                      ...CtaFragment
+                    }
+                    sports {
+                      name
+                      image {
+                        ...ImageFragment
                       }
                     }
                   }
@@ -222,9 +153,7 @@ const usePages = () => {
                   cover {
                     copy
                     cta {
-                      target
-                      title
-                      url
+                      ...CtaFragment
                     }
                   }
                   
@@ -233,14 +162,7 @@ const usePages = () => {
                     title
                     year
                     image {
-                      localFile {
-                        publicURL
-                        childImageSharp {
-                          fluid(maxWidth: 1920) {
-                            ...GatsbyImageSharpFluid_withWebp
-                          }
-                        }
-                      }
+                      ...ImageFragment
                     }
                   }
         
@@ -249,14 +171,7 @@ const usePages = () => {
                     jobtitle
                     content
                     photo {
-                      localFile {
-                        publicURL
-                        childImageSharp {
-                          fluid(maxWidth: 1920) {
-                            ...GatsbyImageSharpFluid_withWebp
-                          }
-                        }
-                      }
+                      ...ImageFragment
                     }
                   }
                   
@@ -268,15 +183,7 @@ const usePages = () => {
                   campus {
                     title
                     images {
-                      id
-                      localFile {
-                        publicURL
-                        childImageSharp {
-                          fluid(maxWidth: 1920) {
-                            ...GatsbyImageSharpFluid_withWebp
-                          }
-                        }
-                      }
+                      ...ImageFragment
                     }
                   }
         
@@ -305,14 +212,7 @@ const usePages = () => {
                       title
                       featuredImage {
                         node {
-                          localFile {
-                            publicURL
-                            childImageSharp {
-                              fluid(maxWidth: 1920) {
-                                ...GatsbyImageSharpFluid_withWebp
-                              }
-                            }
-                          }
+                          ...ImageFragment
                         }
                       }
                       resource {

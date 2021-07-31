@@ -18,13 +18,7 @@ const useCareers = () => {
                 menuOrder
                 featuredImage {
                   node {
-                    localFile {
-                      childImageSharp {
-                        fluid(maxWidth: 1920) {
-                          ...GatsbyImageSharpFluid_withWebp
-                        }
-                      }
-                    }
+                    ...ImageFragment
                   }
                 }
         
@@ -55,14 +49,7 @@ const useCareers = () => {
                   form {
                     title
                     image {
-                      localFile {
-                        publicURL
-                        childImageSharp {
-                          fluid(maxWidth: 1920) {
-                            ...GatsbyImageSharpFluid_withWebp
-                          }
-                        }
-                      }
+                      ...ImageFragment
                     }
                   }
           
@@ -70,14 +57,7 @@ const useCareers = () => {
                     title
                     content
                     image {
-                      localFile {
-                        publicURL
-                        childImageSharp {
-                          fluid(maxWidth: 1920) {
-                            ...GatsbyImageSharpFluid_withWebp
-                          }
-                        }
-                      }
+                      ...ImageFragment
                     }
                   }
           
@@ -104,14 +84,7 @@ const useCareers = () => {
                       title
                       featuredImage {
                         node {
-                          localFile {
-                            publicURL
-                            childImageSharp {
-                              fluid(maxWidth: 1920) {
-                                ...GatsbyImageSharpFluid_withWebp
-                              }
-                            }
-                          }
+                          ...ImageFragment
                         }
                       }
                       resource {

@@ -17,13 +17,7 @@ const useFaculties = () => {
                 parentId
                 featuredImage {
                   node {
-                    localFile {
-                      childImageSharp {
-                        fluid(maxWidth: 1920) {
-                          ...GatsbyImageSharpFluid_withWebp
-                        }
-                      }
-                    }
+                    ...ImageFragment
                   }
                 }
         
@@ -52,14 +46,7 @@ const useFaculties = () => {
                     jobtitle
                     content
                     photo {
-                      localFile {
-                        publicURL
-                        childImageSharp {
-                          fluid(maxWidth: 1920) {
-                            ...GatsbyImageSharpFluid_withWebp
-                          }
-                        }
-                      }
+                      ...ImageFragment
                     }
                   }
         
@@ -78,14 +65,7 @@ const useFaculties = () => {
                       title
                       featuredImage {
                         node {
-                          localFile {
-                            publicURL
-                            childImageSharp {
-                              fluid(maxWidth: 1920) {
-                                ...GatsbyImageSharpFluid_withWebp
-                              }
-                            }
-                          }
+                          ...ImageFragment
                         }
                       }
                       resource {

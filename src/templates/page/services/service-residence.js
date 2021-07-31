@@ -4,6 +4,7 @@ import { css } from '@emotion/react';
 import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
 import FeaturedMedia from "../../../components/featured-media";
 import colors from '../../../components/styles/colors';
+import Cta from '../../../components/cta';
 
 const ServiceResidence = ({ page }) =>{
 
@@ -12,7 +13,8 @@ const ServiceResidence = ({ page }) =>{
             alojamiento: {
                 title, 
                 content,
-                image
+                image,
+                cta
             }
         }
     } = page;
@@ -28,6 +30,11 @@ const ServiceResidence = ({ page }) =>{
                                     <DivTitle color={colors.white}>
                                         <SectionTitle color={colors.white}>{ title } </SectionTitle>
                                         <div dangerouslySetInnerHTML={{__html: content}} />
+                                        {
+                                            cta?(
+                                                <Cta to={cta.url} target={cta.target}>{cta.title}</Cta>
+                                            ):null
+                                        }
                                     </DivTitle>
                                 </Col>
                             </Row>

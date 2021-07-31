@@ -1,35 +1,37 @@
 import React, {useState, useEffect} from "react";
-import { connect, styled,css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
 import Carousel from "react-slick";
+import colors from "../../../components/styles/colors";
+import Cta from "../../../components/cta";
 
-const ServiceSport = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-
-    const { meta_box } = page;
+const ServiceSport = ({ page }) =>{
     const { 
-         service_sport_title, 
-         service_sport_copy,
-         service_sport_sports = [],
-         service_sport_sports_images = [],
-    } = meta_box;
+        studentServices: {
+            deportes: {
+                title, 
+                content,
+                sports,
+                cta
+            }
+        }
+    } = page;
 
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
+    console.log(sports)
 
     const [nav1, setNav1] = useState(null)
     const [nav2, setNav2] = useState(null)
-    let slider1 = [];
-    let slider2 = [];
+    const [slider1, setSlider1] = useState([]);
+    const [slider2, setSlider2] = useState([]);
 
     useEffect(() => {
         setNav1(slider1)
         setNav2(slider2)
     }, [slider1, slider2])
 
-    return data.isReady?(
+    return (
         <Section spaceNone>
             <Container>
                 <Row>
@@ -43,41 +45,41 @@ const ServiceSport = ({ state,libraries }) =>{
                         <Carousel
                             asNavFor={nav2}
                             pauseOnHover
-                            ref={slider => (slider1 = slider)}
+                            ref={slider => (setSlider1(slider))}
                         >
                         {
-                            service_sport_sports_images.map((item,index)=>{
+                            sports? sports.map((item,index)=>{
                                 return(
                                     <Logo
                                         key={index}
-                                        media={item}
+                                        media={item.image}
                                         size="56.25%"
                                         bgColor
                                     />
                                 )
-                            })
+                            }): null
                         }
                         </Carousel>
                         <Carousel
                             autoplay
                             asNavFor={nav1}
-                            ref={slider => (slider2 = slider)}
+                            ref={slider => (setSlider2(slider))}
                             slidesToShow={3}
                             pauseOnHover
                             centerMode={true}
                         >
                         {
-                            service_sport_sports_images.map((item,index)=>{
+                            sports? sports.map((item,index)=>{
                                 return(
                                     <Dot key={index} onClick={e => nav2.slickGoTo(index)} >
                                         <Logo
-                                            media={item}
+                                            media={item.image}
                                             size="56.25%"
                                             bgColor
                                         />
                                     </Dot>
                                 )
-                            })
+                            }):null
                         }
                         </Carousel>
                     </Col>
@@ -86,33 +88,36 @@ const ServiceSport = ({ state,libraries }) =>{
                         orderMD={1}
                     >
                         <DivTitle color={colors.primary.dark}>
-                            <SectionTitle>{service_sport_title}</SectionTitle>
-                            <Html2React 
-                                html={service_sport_copy}
-                            />
+                            <SectionTitle>{title}</SectionTitle>
+                            <div dangerouslySetInnerHTML={{__html: content}} />
                             <Container>
                                 <Row>
                                 {
-                                    service_sport_sports.map((item, index)=>{
+                                    sports? sports.map((item, index)=>{
                                         return(
                                             <Col size={12} sizeSM={6} key={index}>
-                                                <Sport>{item}</Sport>
+                                                <Sport>{item.name}</Sport>
                                             </Col>
                                         )
-                                    })   
+                                    }) : null   
                                 }
                                 </Row>
                             </Container>
+                            {
+                                cta?(
+                                    <Cta to={cta.url} target={cta.target}>{cta.title}</Cta>
+                                ):null
+                            }
                         </DivTitle>
                     </ContentCol>
                 </Row>
             </Container>
         </Section>
-    ):null;
+    );
 
 }
 
-export default connect(ServiceSport);
+export default ServiceSport;
 
 const ContentCol = styled(Col)`
     ${({bgColor="lightblue"})=>css`
@@ -148,12 +153,12 @@ const SectionTitle = styled.h2`
 `;
 const DivTitle = styled.div``;
 
-const CardMin = styled.div`
-    margin-top: 4rem;
-`;
+// const CardMin = styled.div`
+//     margin-top: 4rem;
+// `;
 
-const MinLogo = styled(FeaturedMedia)`
-`;
+// const MinLogo = styled(FeaturedMedia)`
+// `;
 
 const Sport = styled.p`
     font-weight: bold;

@@ -2,56 +2,13 @@ import * as React from "react"
 import Layout from "../components/layout";
 import { graphql } from "gatsby";
 import PostSingle from "./post/post-single";
+import usePosts from "../hooks/usePosts";
 
 export const query = graphql`
   query($id: String!) {
     allWpPost( filter: { id: { eq: $id } }) {
       nodes {
         id
-        title
-        content
-        excerpt
-        date
-        link
-        uri
-        slug
-        featuredImage {
-          node {
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 1920) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
-            }
-          }
-        }
-        author {
-          node {
-            id
-            name
-            uri
-            slug
-          }
-        }
-        categories {
-          nodes {
-            id
-            name
-            slug
-            link
-            uri
-          }
-        }
-        tags {
-          nodes {
-            id
-            name
-            slug
-            link
-            uri
-          }
-        }
       }
     }
   }
@@ -65,9 +22,9 @@ const Post = ({data}) => {
           nodes: posts
       }
   } = data;
-  
-  const [ post ] = posts;
 
+  const [post] = usePosts().filter( post => posts.map( item => item.id).includes( post.id ) );
+  
   return (
       <Layout>
         <PostSingle {...{post}} />

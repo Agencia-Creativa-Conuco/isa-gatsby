@@ -25,7 +25,7 @@ const projects = useProjects();
     return (
         <Container>
             <DIPCover { ...page } />
-             <DIPGeneral {...{ projects, page }} />
+            <DIPGeneral {...{ projects, page }} />
             <DIPProcess {...{page, projects}} />
             <DIPTeam { ...{persons} } />
             <DIPNews {...{ page, posts }} /> 

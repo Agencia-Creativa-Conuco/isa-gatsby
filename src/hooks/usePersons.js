@@ -16,13 +16,7 @@ const usePersons = () => {
                 slug
                 featuredImage {
                   node {
-                    localFile {
-                      childImageSharp {
-                        fluid(maxWidth: 1920) {
-                          ...GatsbyImageSharpFluid_withWebp
-                        }
-                      }
-                    }
+                    ...ImageFragment
                   }
                 }
               }

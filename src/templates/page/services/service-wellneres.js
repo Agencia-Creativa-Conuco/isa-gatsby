@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
 import FeaturedMedia from "../../../components/featured-media";
 import colors from '../../../components/styles/colors';
+import Cta from '../../../components/cta';
 
 const ServiceWellneres = ({ page }) =>{
     
@@ -11,7 +12,8 @@ const ServiceWellneres = ({ page }) =>{
             desarrollo: {
                 title,
                 content,
-                image 
+                image,
+                cta
             }
         }
     } = page;
@@ -32,6 +34,11 @@ const ServiceWellneres = ({ page }) =>{
                         <DivTitle decoBg = {colors.blue.dark}>
                             <SectionTitle > { title } </SectionTitle>
                             <div dangerouslySetInnerHTML={{__html: content}} />
+                            {
+                                cta?(
+                                    <Cta to={cta.url} target={cta.target}>{cta.title}</Cta>
+                                ):null
+                            }
                         </DivTitle>
                     </Col>
                 </Row>
