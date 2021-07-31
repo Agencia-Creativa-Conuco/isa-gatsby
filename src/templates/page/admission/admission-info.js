@@ -6,19 +6,15 @@ import {AdmissionRequisiteIcon} from "../../../components/icons";
 import {h2} from "../../../components/styles/tipography";
 import {Spring, animated} from "@react-spring/web";
 import colors from "../../../components/styles/colors";
-import useCareers from "../../../hooks/useCareers";
 import useRequirementsCategories from '../../../hooks/useRequirementsCategories';
+import useGrades from '../../../hooks/useGrades';
 
 const AdmissionInfo = ({ page }) =>{
-    
-    //Obtiene los datos de los Careeras
-    const careers = useCareers();
 
     const categories = useRequirementsCategories();
 
-    const grades = careers.filter((career)=>{
-        return !career.parent && career.type === "grade";
-    });
+    //Obtiene los grados 
+    const grades = useGrades()?.sort((a,b) => a.order - b.order);
 
     const [view, setView] = useState(0);
 

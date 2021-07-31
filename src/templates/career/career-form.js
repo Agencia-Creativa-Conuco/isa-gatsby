@@ -6,10 +6,9 @@ import colors from "../../components/styles/colors";
 import BackgroundImage from "gatsby-background-image";
 import Cta from '../../components/cta';
 
-const CareerForm = ({ career }) =>{
+const CareerForm = ({ career, faculty }) =>{
     
     const {
-        faculty,
         form: {
             title,
             image

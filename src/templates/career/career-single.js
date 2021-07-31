@@ -6,20 +6,20 @@ import Competencies from "./carreer-competencies";
 import Pensum from "./carreer-pensum";
 import CareerForm from './career-form';
 import ResourceList from '../../components/resourceslist';
+import useFaculties from "../../hooks/useFaculties";
 
 const Career = ({ career })=>{
 
-    const {
-        faculty
-    } = career;
+    const [faculty] = useFaculties().filter( faculty => faculty.id === career.faculty.id);
+    console.log(faculty)
 
     return (
         <Article>
-            <Cover {...{career}}/>
-            <Perfil {...{career}}/>
-            <Competencies {...{career}}/>
-            <Pensum {...{career}}/>
-            <CareerForm {...{career}}/> 
+            <Cover {...{career, faculty}}/>
+            <Perfil {...{career, faculty}}/>
+            <Competencies {...{career, faculty}}/>
+            <Pensum {...{career, faculty}}/>
+            <CareerForm {...{career, faculty}}/> 
             <ResourceList 
                 items={ career.resources } 
                 exclude={['pensum']} 

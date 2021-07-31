@@ -24,13 +24,7 @@ const Career = ({ data }) => {
 
   return (
     <Layout>
-      {
-        career.parent? (
-          <CareerSingle {...{career}} />
-        ): (
-          <h1>ESTE ES UN GRADO</h1>
-        )
-      }
+      <CareerSingle {...{career}} />
     </Layout>
   );
 };

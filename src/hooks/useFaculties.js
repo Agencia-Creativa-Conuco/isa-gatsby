@@ -1,4 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby';
+import useDepartaments from './useDepartaments';
 
 const useFaculties = () => {
 
@@ -14,22 +15,9 @@ const useFaculties = () => {
                 link
                 uri
                 slug
-                parentId
                 featuredImage {
                   node {
                     ...ImageFragment
-                  }
-                }
-        
-                wpChildren {
-                  nodes {
-                    ... on WpFaculty {
-                      id
-                      title
-                      slug
-                      uri
-                      link
-                    }
                   }
                 }
         
@@ -52,6 +40,12 @@ const useFaculties = () => {
         
                   facultyRelationship {
                     ... on WpCareer {
+                      id
+                    }
+                  }
+
+                  facultyDepartamentRel {
+                    ... on WpDepartament {
                       id
                     }
                   }
@@ -89,12 +83,10 @@ const useFaculties = () => {
 
     return resultado.allWpFaculty.nodes.map( faculty => ({
       id: faculty.id,
-      type: faculty.facultyInfo.type,
       title: faculty.title,
       content: faculty.content,
       date: faculty.date,
       slug: faculty.slug,
-      parent: faculty.parentId,
       uri: faculty.uri,
       link: faculty.link,
       featuredImage: faculty?.featuredImage?.node?.localFile,
@@ -102,8 +94,8 @@ const useFaculties = () => {
       cover: faculty.facultyInfo.cover,
       perfil: faculty.facultyInfo.perfil,
       resources: faculty.resources.resourceRelationship,
-      children: faculty.wpChildren.nodes,
-      careers: faculty.facultyInfo.facultyRelationship || []
+      careers: faculty.facultyInfo.facultyRelationship || [],
+      departaments: faculty.facultyInfo.facultyDepartamentRel || [],
     }));
 }
  

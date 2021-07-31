@@ -4,11 +4,10 @@ import { css } from "@emotion/react";
 import {Section, Container, Row, Col, mq} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
 
-const CareerPerfil = ({career })=>{
+const CareerPerfil = ({career, faculty })=>{
 
     const {
         perfil,
-        faculty
     } = career;
 
     const {

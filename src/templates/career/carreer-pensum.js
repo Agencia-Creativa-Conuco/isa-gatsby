@@ -4,10 +4,9 @@ import { css } from "@emotion/react";
 import {Section, Container, Row, Col, mq} from "../../components/layout/index";
 import {PensumIcon} from "../../components/icons";
 
-const CareerPensum = ({ career })=>{
+const CareerPensum = ({ career, faculty })=>{
 
     const {
-        faculty,
         resources = []
     } = career;
 

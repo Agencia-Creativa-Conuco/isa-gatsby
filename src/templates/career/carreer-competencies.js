@@ -5,12 +5,11 @@ import {Section, Container, Row, Col, mq} from "../../components/layout/index";
 import {lighten, darken} from "polished";
 import colors from "../../components/styles/colors";
 
-const CareerCompetencies = ({ career })=>{
+const CareerCompetencies = ({ career, faculty })=>{
 
     const [active, setActive] = useState(0);
 
     const {
-        faculty,
         tabs = []
     } = career; 
 

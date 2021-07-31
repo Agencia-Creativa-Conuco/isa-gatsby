@@ -14,7 +14,6 @@ const useCareers = () => {
                 link
                 uri
                 slug
-                parentId
                 menuOrder
                 featuredImage {
                   node {
@@ -24,17 +23,15 @@ const useCareers = () => {
         
                 careerInfo {
 
-                  type
-        
                   facultyRelationship {
                     ... on WpFaculty {
                       id
-                      title
-                      parentId
-                      facultyInfo {
-                        type
-                        color
-                      }
+                    }
+                  }
+
+                  departamentCareerRel {
+                    ... on WpDepartament {
+                      id
                     }
                   }
         
@@ -58,15 +55,6 @@ const useCareers = () => {
                     content
                     image {
                       ...ImageFragment
-                    }
-                  }
-          
-                  requirements {
-                    requirement
-                    category {
-                      id
-                      name 
-                      slug
                     }
                   }
           
@@ -108,51 +96,32 @@ const useCareers = () => {
     );
 
     const {
-      allWpCareer: { nodes: careersList },
+      allWpCareer: { nodes: careers },
     } = data;
 
-    const careers = careersList.map( career => {
-
-      //Facultad y departamento vienen juntos en el mismo arreglo.
-      const faculties = career?.careerInfo?.facultyRelationship || [];
+    const resultado = careers.map( career => {
       
-      //  Extraemos la facultad.
-      const [ faculty ] = faculties.filter( faculty => !faculty.parentId && faculty?.facultyInfo?.type === 'faculty' );
-
-      //  Extraemos la facultad.
-      const [ school ] = faculties.filter( faculty => faculty.parentId && faculty?.facultyInfo?.type === 'school' );
-
-      return {
-        ...career,
-        faculty,
-        school
-      }
-    });
-
-    const resultado = careers.map( career => ({
+      const [faculty] = career?.careerInfo?.facultyRelationship || [];
+      const [departament] = career?.careerInfo?.departamentCareerRel || [];
+      
+      return ({
         id: career.id,
         title: career.title,
         date: career.date,
         slug: career.slug,
         uri: career.uri,
         link: career.link,
-        parent: career.parentId,
-        menuOrder: career.menuOrder,
+        order: career.menuOrder,
         featuredImage: career?.featuredImage?.node?.localFile,
-        type: career.careerInfo.type,
-        faculty: {
-          id: career?.faculty?.id,
-          title: career?.faculty?.title,
-          color: career?.faculty?.facultyInfo?.color,
-        },
-        school: career.school,
+        faculty: faculty,
+        departament: departament,
         cover: career.careerInfo.cover,
         perfil: career.careerInfo.perfil,
         tabs: career.careerInfo.tabs || [],
         form: career.careerInfo.form,
-        requirements: career.careerInfo.requirements || [],
         resources: career?.resources?.resourceRelationship || [],
-    }))
+      })
+    })
 
     return resultado;
 }

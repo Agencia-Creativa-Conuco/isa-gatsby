@@ -8,7 +8,6 @@ const useProjects = () => {
             allWpProject {
               nodes {
                 id
-                parentId
                 title
                 content
                 date
@@ -43,7 +42,6 @@ const useProjects = () => {
         uri: project.uri,
         link: project.link,
         featuredImage: project.featuredImage? project.featuredImage.node.localFile : null,
-        parent: project.parentId,
         titleFaculty: project.projectInfo.projectRelationship || []
     }));
 }

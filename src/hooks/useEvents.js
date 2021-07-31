@@ -12,7 +12,7 @@ const useEvents = () => {
                 link
                 uri
                 slug
-                data {
+                eventData {
                   dueDate
                 }
                 eventCategories {
@@ -36,8 +36,8 @@ const useEvents = () => {
         slug: event.slug,
         uri: event.uri,
         link: event.link,
-        dueDate: event.data.dueDate,
-        categories: event.eventCategories.nodes,
+        dueDate: event?.eventData?.dueDate,
+        categories: event?.eventCategories?.nodes,
     }));
 }
  

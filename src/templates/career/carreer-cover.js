@@ -5,12 +5,11 @@ import {Section, Container, Row, Col, mq} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
 import {darken,lighten} from "polished";
 
-const CareerCover = ({ career })=>{
+const CareerCover = ({ career, faculty })=>{
 
     const {
         title,
         featuredImage,
-        faculty,
         cover: {
             copy,
             metadata,

@@ -8,6 +8,8 @@ import {Spring, animated} from "@react-spring/web";
 import colors from '../../../components/styles/colors';
 import useCareers from '../../../hooks/useCareers';
 import useFaculties from "../../../hooks/useFaculties";
+import useGrades from '../../../hooks/useGrades';
+import useDepartaments from '../../../hooks/useDepartaments';
 
 const Item = ({item, state})=>{
     
@@ -102,18 +104,16 @@ const StyledRow = styled(Row)`
 `;
 
 //Construye la jerarquía completa facultades->departamentos->grados->carreras
-const hierarchy = ({parent=null, faculties=[], careers=[], grade}) => {
+const hierarchy = ({faculties=[], departaments=[], careers=[], grade}) => {
 
     return faculties
-         .filter((faculty)=>faculty.parent === parent)
          .map((faculty)=>{
 
-             return {
-                 ...faculty,
-                 children: hierarchy({parent: faculty.id, faculties, careers, grade}),
-                 careers: careers.filter((career)=>{
-                    
-                    return (career?.school?.id === faculty.id) && career.parent === grade
+            return {
+                ...faculty,
+                children: departaments.filter((item) => item.faculty.id === faculty.id),
+                careers: careers.filter((career)=>{
+                    return (career?.faculty?.id === faculty.id)
                 })
             }
          })
@@ -128,16 +128,13 @@ const OfferFaculties = ({ page }) =>{
     //Obtiene las facultades que tienen carreras relacionadas.
     const faculties = useFaculties();
 
-    //Filtra los grados a mostrar en el menu
-    const grades = careers.filter((career)=>{
-        return career.type === "grade" && !career.parent;
-    });
+    //Obtiene los departamentos que tienen carreras relacionadas.
+    const departaments = useDepartaments();
 
-    // //Filtra las carreras y las separa de los grados
-    // const careers = careersData.filter((career)=>{
-    //     return career.type === "career" && career.parent;
-    // });
+    //Obtiene y ordena los grados a mostrar en el menú
+    const grades = useGrades().sort((a,b)=>a.order - b.order);
 
+    console.log(faculties, departaments)
     const [view, setView] = useState(0);
 
     return careers.length && faculties.length?(
@@ -151,10 +148,7 @@ const OfferFaculties = ({ page }) =>{
                                     <Col>
                                         <Menu>
                                         {
-                                            grades.sort( (a, b) => {
-                                                return a.menuOrder - b.menuOrder  
-                                            })
-                                                .map((item,index)=>{
+                                            grades.map((item,index)=>{
                                                 return( 
                                                     <Option
                                                         key={item.id}
@@ -178,7 +172,7 @@ const OfferFaculties = ({ page }) =>{
                     {
                         grades.map((item, index) =>{
                         
-                            const items = hierarchy({parent: null, faculties, careers, grade: item.id});
+                            const items = hierarchy({ faculties, departaments, careers, grade: item.id});
 
                             const isActive = view === index;
 
