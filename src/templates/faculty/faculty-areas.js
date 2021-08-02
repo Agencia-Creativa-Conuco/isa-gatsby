@@ -7,11 +7,12 @@ import colors from '../../components/styles/colors';
 const FcaultyAreasAcademic = ({ faculty }) =>{
     
     const { 
-        children = [],
+        careers,
         color
     } = faculty;
+
     
-    return children.length?(
+    return careers.length?(
         <SectionStyles spaceTopNone >
             <Container> 
                 <Row>
@@ -24,7 +25,7 @@ const FcaultyAreasAcademic = ({ faculty }) =>{
                                 <Col size={10} sizeMD={7} mxAuto   > 
                                     <List>
                                     {
-                                        children.map((item, index)=>{
+                                        careers.map((item, index)=>{
                                             
                                             const {
                                                 title,
