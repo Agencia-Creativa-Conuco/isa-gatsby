@@ -22,6 +22,7 @@ const DIPGeneral = ({ page, projects }) =>{
 
     const departaments = projects.filter((item)=> !(item.parent > 0));
 
+
     return (
         <Section spaceNone>
             <Container fluid>
@@ -82,17 +83,16 @@ const DIPGeneral = ({ page, projects }) =>{
                                     link,
                                     titleFaculty,
                                     id
-                                } = item;       
+                                } = item;   
                                 
-                                const project = projects.filter((item) => item.parent > 0 && item.parent === id)
-
+                                const project = projects.filter((item) => item.parent > 0 && item.parent === id);
                                 return (
                                     <Departament key={index}>
                                         <ContentContainer css={css`width: 200%;`}>
                                             <Row>
                                                 <Col size={12} sizeLG={6} zIndex="1">
                                                     {
-                                                        titleFaculty?(
+                                                        titleFaculty[0]?(
                                                             <FacultyName>{titleFaculty[0].title}</FacultyName>
                                                         ):null
                                                     }

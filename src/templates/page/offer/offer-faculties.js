@@ -9,7 +9,7 @@ import colors from '../../../components/styles/colors';
 import useCareers from '../../../hooks/useCareers';
 import useFaculties from "../../../hooks/useFaculties";
 import useGrades from '../../../hooks/useGrades';
-import useDepartaments from '../../../hooks/useDepartaments';
+// import useDepartaments from '../../../hooks/useDepartaments';
 
 const Item = ({item, type})=>{
     
@@ -98,7 +98,7 @@ const OfferFaculties = ({ page }) =>{
     const faculties = useFaculties();
 
     //Obtiene los departamentos que tienen carreras relacionadas.
-    const departaments = useDepartaments();
+    // const departaments = useDepartaments();
 
     //Obtiene y ordena los grados a mostrar en el menú
     const grades = useGrades().sort((a,b)=>a.order - b.order);

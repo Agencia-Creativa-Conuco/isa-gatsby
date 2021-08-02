@@ -1,5 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby';
-import useDepartaments from './useDepartaments';
+// import useDepartaments from './useDepartaments';
 
 const useFaculties = () => {
 
