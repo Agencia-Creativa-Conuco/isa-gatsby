@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { css, Global } from "@emotion/react";
 
@@ -7,11 +7,29 @@ import ScreenReaderText from "../styles/screen-reader";
 import useFocusTrap from "../hooks/use-trap-focus";
 import useFocusEffect from "../hooks/use-focus-effect";
 import Button from "../styles/button";
+import { useFlexSearch } from "react-use-flexsearch";
+import { graphql, useStaticQuery } from "gatsby";
 
-import {mq} from "../layout/index";
+import { mq } from "../layout/index";
 import colors from "../styles/colors";
 
 const SearchModal = ({ isSearchModalOpen, toggleSearchModal }) => {
+  
+  const resultado = useStaticQuery(graphql`
+    {
+      localSearchPages {
+        store
+        index
+      }
+    }
+  `);
+
+  const [query, setQuery] = useState("");
+
+  const resultados = useFlexSearch( query, resultado.localSearchPages.index, resultado.localSearchPages.store );
+
+  console.log(resultados)
+
   const { searchQuery } = "lorem";
 
   const closeSearchModal = () => {
@@ -36,10 +54,11 @@ const SearchModal = ({ isSearchModalOpen, toggleSearchModal }) => {
 
     // Get the input's value
     const searchString = inputRef.current.value;
-
+    
     // If the typed search string is not empty
     // Better to trim write spaces as well
     if (searchString.trim().length > 0) {
+      setQuery(searchString)
       // Let's go search for blogs that match the search string
       // actions.router.set(`/search/?s=${formatQuery(searchString)}`);
 
@@ -67,8 +86,7 @@ const SearchModal = ({ isSearchModalOpen, toggleSearchModal }) => {
           z-index: 2000;
         `}
       >
-        {
-          isSearchModalOpen?(
+        {isSearchModalOpen ? (
           <>
             <Global
               styles={css`
@@ -109,8 +127,7 @@ const SearchModal = ({ isSearchModalOpen, toggleSearchModal }) => {
               </SectionInner>
             </ModalInner>
           </>
-          ):null
-        }  
+        ) : null}
       </div>
     </>
   );
@@ -154,7 +171,7 @@ const SectionInner = styled.div`
   justify-content: space-between;
   max-width: 168rem;
 
-  ${mq.md}{
+  ${mq.md} {
     width: calc(100% - 8rem);
   }
 `;
@@ -167,14 +184,14 @@ const SearchForm = styled.form`
   display: flex;
   flex-wrap: nowrap;
 
-  ${mq.md}{
+  ${mq.md} {
     position: relative;
     width: 100%;
   }
 `;
 
 const SearchInput = styled.input`
-  ${({layout})=>css`
+  ${({ layout }) => css`
     background: none;
     border: none;
     border-radius: 0;
@@ -195,7 +212,7 @@ const SearchInput = styled.input`
       display: none;
     }
 
-    ${mq.md}{
+    ${mq.md} {
       border: none;
       font-size: 3.2rem;
       height: 8rem;
@@ -209,7 +226,7 @@ const SearchInput = styled.input`
 `;
 
 const CloseButton = styled.button`
-  ${({colors}) => css`
+  ${({ colors }) => css`
     background: none;
     border: none;
     box-shadow: none;
@@ -220,7 +237,7 @@ const CloseButton = styled.button`
     padding: 0;
     text-transform: none;
 
-    color: ${colors?colors.gray.dark : "#555552"};
+    color: ${colors ? colors.gray.dark : "#555552"};
     align-items: center;
     display: flex;
     flex-shrink: 0;
@@ -239,7 +256,7 @@ const CloseButton = styled.button`
       transition: transform 0.15s ease-in-out;
       width: 1.5rem;
       fill: currentColor;
-      ${mq.md}{
+      ${mq.md} {
         height: 2.5rem;
         width: 2.5rem;
       }

@@ -8,6 +8,7 @@ const useGrades = () => {
         allWpGrade {
           nodes {
             id
+            __typename
             title
             content
             date
@@ -51,6 +52,7 @@ const useGrades = () => {
         featuredImage: grade?.featuredImage?.node?.localFile,
         careers: grade.gradeData.gradeCareerRel,
         requirements: grade?.requisitos?.requirements || [],
+        type: grade.__typename,
     }));
 }
  

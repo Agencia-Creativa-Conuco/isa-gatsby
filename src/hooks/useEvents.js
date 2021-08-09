@@ -8,6 +8,7 @@ const useEvents = () => {
             allWpEvent {
               nodes {
                 id
+                __typename
                 title
                 link
                 uri
@@ -38,6 +39,7 @@ const useEvents = () => {
         link: event.link,
         dueDate: event?.eventData?.dueDate,
         categories: event?.eventCategories?.nodes,
+        type: event.__typename,
     }));
 }
  

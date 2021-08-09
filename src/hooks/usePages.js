@@ -8,6 +8,7 @@ const usePages = () => {
             allWpPage {
               nodes {
                 id
+                __typename
                 title
                 content
                 date
@@ -296,6 +297,7 @@ const usePages = () => {
         isFrontPage: page.isFrontPage,
         isPostsPage: page.isPostsPage,
         featuredImage: page?.featuredImage?.node?.localFile,
+        type: page.__typename,
         home: page.home,
         offer: page.offer,
         studentServices: page.studentServices,

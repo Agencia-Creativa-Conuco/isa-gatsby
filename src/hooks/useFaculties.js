@@ -8,6 +8,7 @@ const useFaculties = () => {
             allWpFaculty {
               nodes {
                 id
+                __typename
                 title
                 content
                 date
@@ -98,6 +99,7 @@ const useFaculties = () => {
       resources: faculty.resources.resourceRelationship,
       careers: faculty.facultyInfo.facultyRelationship || [],
       departaments: faculty.facultyInfo.facultyDepartamentRel || [],
+      type: faculty.__typename,
     }));
 }
  

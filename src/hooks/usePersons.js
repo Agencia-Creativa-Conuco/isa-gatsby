@@ -9,6 +9,7 @@ const usePersons = () => {
             allWpPerson {
               nodes {
                 id
+                __typename
                 title
                 date
                 link
@@ -39,6 +40,7 @@ const usePersons = () => {
         featuredImage: person.featuredImage? person.featuredImage.node.localFile : null,
         jobTitle: person?.personData?.personJobTitle,
         degreeTitle: person?.personData?.personDegreeTitle,
+        type: person.__typename,
     }));
 }
  

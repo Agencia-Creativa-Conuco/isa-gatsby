@@ -8,6 +8,7 @@ const useRequirementsCategories = () => {
           allWpRequirementGroup {
             nodes {
               id
+              __typename
               name
               slug
               count
@@ -27,6 +28,7 @@ const useRequirementsCategories = () => {
         name: category.name,
         slug: category.slug,
         count: category.count,
+        type: category.__typename,
     }))
 
     return resultado;
