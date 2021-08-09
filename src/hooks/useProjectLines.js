@@ -8,6 +8,7 @@ const useProjectLines = () => {
             allWpProjectLine {
               nodes {
                 id
+                __typename
                 title
                 content
                 date
@@ -52,6 +53,7 @@ const useProjectLines = () => {
         featuredImage: line.featuredImage? line.featuredImage.node.localFile : null,
         departament: departament,
         projects: line.projectLineData.projectLineProjectRel || [],
+        type: line.__typename,
       })
 
     });

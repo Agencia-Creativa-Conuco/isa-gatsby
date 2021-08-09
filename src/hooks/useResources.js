@@ -8,7 +8,8 @@ const useResources = () => {
         {
             allWpResource {
               nodes {
-                id: databaseId
+                id
+                __typename
                 title
                 date
                 link
@@ -32,7 +33,8 @@ const useResources = () => {
         slug: resource.slug,
         uri: resource.uri,
         link: resource.link,
-        featuredImage: resource.featuredImage? resource.featuredImage.node.localFile : null
+        featuredImage: resource.featuredImage? resource.featuredImage.node.localFile : null,
+        type: resource.__typename
     }));
 }
  

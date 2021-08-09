@@ -8,6 +8,7 @@ const useCareers = () => {
             allWpCareer {
               nodes {
                 id
+                __typename
                 title
                 content
                 date
@@ -128,6 +129,7 @@ const useCareers = () => {
         tabs: career.careerInfo.tabs || [],
         form: career.careerInfo.form,
         resources: career?.resources?.resourceRelationship || [],
+        type: career.__typename,
       })
     })
 

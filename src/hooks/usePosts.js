@@ -8,6 +8,7 @@ const usePosts = () => {
             allWpPost {
               nodes {
                 id
+                __typename
                 title
                 content
                 excerpt
@@ -64,7 +65,8 @@ const usePosts = () => {
         slug: post.slug,
         uri: post.uri,
         link: post.link,
-        featuredImage: post.featuredImage? post.featuredImage.node.localFile : null
+        featuredImage: post.featuredImage? post.featuredImage.node.localFile : null,
+        type: post.__typename,
     }));
 }
  

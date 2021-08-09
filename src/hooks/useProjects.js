@@ -8,6 +8,7 @@ const useProjects = () => {
             allWpProject {
               nodes {
                 id
+                __typename
                 title
                 content
                 date
@@ -58,6 +59,7 @@ const useProjects = () => {
         description: project.projectInfo.description,
         images: project.projectInfo.images || [],
         researchers: project.projectInfo.projectPersonRel || [],
+        type: project.__typename,
       });
       
     });

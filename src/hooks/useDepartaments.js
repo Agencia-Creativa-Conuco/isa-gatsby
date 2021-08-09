@@ -8,6 +8,7 @@ const useDepartaments = () => {
         allWpDepartament {
           nodes {
             id
+            __typename
             title
             content
             date
@@ -62,6 +63,7 @@ const useDepartaments = () => {
         faculty: faculty,
         careers: departament.departamentInfo.departamentCareerRel || [],
         projectLines: departament.departamentInfo.departamentProjectLineRel || [],
+        type: departament.__typename,
       })
     });
 }
