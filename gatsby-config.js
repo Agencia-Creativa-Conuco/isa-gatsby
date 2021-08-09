@@ -16,6 +16,34 @@ module.exports = {
         // },
       },
     },
+    {
+      resolve: 'gatsby-plugin-local-search',
+      options: {
+          name: 'pages',
+          engine: 'flexsearch',
+          query: `
+          query{
+              allWpPost {
+                nodes {
+                  excerpt
+                  slug
+                  title
+                }
+              }
+          `,
+          ref:'slug',
+          index: ['title', 'excerpt'],
+          store: ['title', 'excerpt','slug'],
+          normalizer: ({ data }) => {
+            return  data.allWpPost.nodes.map(node => ({
+              title: node.title,
+              excerpt: node.excerpt,
+              slug: node.slug,
+            }))
+          },
+
+      }
+  },
     "gatsby-plugin-emotion",
     "gatsby-plugin-gatsby-cloud",
     "gatsby-plugin-image",
