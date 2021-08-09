@@ -21,6 +21,7 @@ const DIPGeneral = ({ page, projects, departaments, faculties, projectLines }) =
 
     // const departaments = projects.filter((item)=> !(item.parent > 0));
 
+
     return (
         <Section spaceNone>
             <Container fluid>

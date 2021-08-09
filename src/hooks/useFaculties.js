@@ -40,6 +40,9 @@ const useFaculties = () => {
                   facultyRelationship {
                     ... on WpCareer {
                       id
+                      title
+                      link
+                      uri
                     }
                   }
 

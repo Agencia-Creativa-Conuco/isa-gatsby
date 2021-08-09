@@ -9,7 +9,7 @@ import colors from '../../../components/styles/colors';
 import useCareers from '../../../hooks/useCareers';
 import useFaculties from "../../../hooks/useFaculties";
 import useGrades from '../../../hooks/useGrades';
-import useDepartaments from '../../../hooks/useDepartaments';
+// import useDepartaments from '../../../hooks/useDepartaments';
 
 const OfferFaculties = ({ page }) =>{
 

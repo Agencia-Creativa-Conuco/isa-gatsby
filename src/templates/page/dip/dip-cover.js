@@ -17,7 +17,6 @@ const DIPCover = ({ page }) =>{
         }
     } = page;
 
-
     return (
         <StyledSection spaceNone decoBg={colors.cta.base}>
             <Container noGutters fluid>
