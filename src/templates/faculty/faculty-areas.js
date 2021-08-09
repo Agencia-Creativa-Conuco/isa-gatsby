@@ -3,15 +3,17 @@ import styled from "@emotion/styled";
 import { Container, Section, Row, Col} from "../../components/layout/index";
 import Link from "../../components/link";
 import colors from '../../components/styles/colors';
+import useDepartaments from "../../hooks/useDepartaments";
 
 const FcaultyAreasAcademic = ({ faculty }) =>{
     
     const { 
-        children = [],
         color
     } = faculty;
+
+    const departaments = useDepartaments().filter( departament => departament.faculty.id === faculty.id );
     
-    return children.length?(
+    return departaments.length?(
         <SectionStyles spaceTopNone >
             <Container> 
                 <Row>
@@ -24,7 +26,7 @@ const FcaultyAreasAcademic = ({ faculty }) =>{
                                 <Col size={10} sizeMD={7} mxAuto   > 
                                     <List>
                                     {
-                                        children.map((item, index)=>{
+                                        departaments.map((item, index)=>{
                                             
                                             const {
                                                 title,

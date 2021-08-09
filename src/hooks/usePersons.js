@@ -19,6 +19,10 @@ const usePersons = () => {
                     ...ImageFragment
                   }
                 }
+                personData {
+                  personJobTitle
+                  personDegreeTitle
+                }
               }
             }
           }
@@ -32,7 +36,9 @@ const usePersons = () => {
         slug: person.slug,
         uri: person.uri,
         link: person.link,
-        featuredImage: person.featuredImage? person.featuredImage.node.localFile : null
+        featuredImage: person.featuredImage? person.featuredImage.node.localFile : null,
+        jobTitle: person?.personData?.personJobTitle,
+        degreeTitle: person?.personData?.personDegreeTitle,
     }));
 }
  

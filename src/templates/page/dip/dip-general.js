@@ -6,7 +6,8 @@ import Carousel from "react-slick";
 import FeaturedMedia from "../../../components/featured-media";
 import colors from "../../../components/styles/colors";
 import Link from "../../../components/link";
-const DIPGeneral = ({ page, projects }) =>{
+
+const DIPGeneral = ({ page, projects, departaments, faculties, projectLines }) =>{
 
     const [nav1, setNav1] = useState(null)
     const [nav2, setNav2] = useState(null)
@@ -18,9 +19,7 @@ const DIPGeneral = ({ page, projects }) =>{
         setNav2(slider2)
     }, [slider1, slider2]);
 
-
-
-    const departaments = projects.filter((item)=> !(item.parent > 0));
+    // const departaments = projects.filter((item)=> !(item.parent > 0));
 
     return (
         <Section spaceNone>
@@ -75,16 +74,11 @@ const DIPGeneral = ({ page, projects }) =>{
                             ref={slider => (setSlider2(slider))}
                         >
                         {
-                            departaments.map((item, index)=>{
+                            departaments.map((departament, index)=>{
                                 
-                                const {
-                                    title,
-                                    link,
-                                    titleFaculty,
-                                    id
-                                } = item;       
-                                
-                                const project = projects.filter((item) => item.parent > 0 && item.parent === id)
+                                const [faculty] = faculties.filter( faculty => departament.faculty.id === faculty.id );
+
+                                const lines = projectLines.filter( line => departament.projectLines.map( item => item.id ).includes(line.id) );
 
                                 return (
                                     <Departament key={index}>
@@ -92,23 +86,25 @@ const DIPGeneral = ({ page, projects }) =>{
                                             <Row>
                                                 <Col size={12} sizeLG={6} zIndex="1">
                                                     {
-                                                        titleFaculty?(
-                                                            <FacultyName>{titleFaculty[0].title}</FacultyName>
+                                                        faculty?(
+                                                            <StyledLink to={faculty.uri}>
+                                                                <FacultyName>{faculty.title}</FacultyName>
+                                                            </StyledLink>
                                                         ):null
                                                     }
-                                                    <StyledLink to={link}>
-                                                        <DepartamentName>{title}</DepartamentName>
+                                                    <StyledLink to={departament.uri}>
+                                                        <DepartamentName>{departament.title}</DepartamentName>
                                                     </StyledLink>
                                                     <DepartamentProjects>
                                                         
                                                     {
-                                                        project.map((item,index)=>{
+                                                        lines.map((item,index)=>{
                                                             const {
                                                                 title,
                                                             } = item;
                                                             return (
                                                                 <Project key={index} color={colors.gray.base} colorHover={colors.secondary.base}>
-                                                                    <StyledLink to={link}>
+                                                                    <StyledLink to={item.uri}>
                                                                         <ProjectName>{title}</ProjectName>
                                                                     </StyledLink>
                                                                 </Project>

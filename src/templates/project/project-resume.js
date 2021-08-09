@@ -6,7 +6,6 @@ import colors from "../../components/styles/colors";
 const ProjectsResume = ({ project })=>{
 
     const {
-        title,
         content,
     } = project;
 
@@ -17,9 +16,7 @@ const ProjectsResume = ({ project })=>{
                     <Col size={12} >
                         <Content>
                             <Section as="div" spaceTopNone>
-                                <Title> {  title } </Title>
-                                    <Copy dangerouslySetInnerHTML={{__html: content }}>
-                                </Copy>
+                                <Copy dangerouslySetInnerHTML={{__html: content }} />
                             </Section>
                         </Content>
                     </Col>

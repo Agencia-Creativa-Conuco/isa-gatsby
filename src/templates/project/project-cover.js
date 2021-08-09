@@ -25,7 +25,7 @@ const ProjectsCover = ({ project })=>{
                         noGutters
                     >
                         <FeaturedMedia 
-                            media={ featuredImage?.node?.localFile }
+                            media={ featuredImage }
                             size="56.25%"
                             sizeLG="130%"
                             heightLG="100%"

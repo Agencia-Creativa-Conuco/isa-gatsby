@@ -93,11 +93,9 @@ const DIPTeam = ({ persons }) =>{
                                 persons.map((item, index) =>{
                                     const {
                                         title,
-                                        featuredImage
-                                        // featured_media,
-                                        // degree_title,
-                                        // job_title,
-                                        // link
+                                        featuredImage,
+                                        jobTitle,
+                                        degreeTitle,
                                     } = item;
 
                                     return(
@@ -110,8 +108,8 @@ const DIPTeam = ({ persons }) =>{
                                                 />
                                             </Media>
                                             <DivTitle>
-                                                <Name>{title}</Name>
-                                                <JobTitle>{ title }</JobTitle>
+                                                <Name>{degreeTitle? `${degreeTitle} `: ""}{title}</Name>
+                                                <JobTitle>{ jobTitle }</JobTitle>
                                             </DivTitle>
                                         </Card>
                                     )

@@ -11,101 +11,20 @@ import useFaculties from "../../../hooks/useFaculties";
 import useGrades from '../../../hooks/useGrades';
 import useDepartaments from '../../../hooks/useDepartaments';
 
-const Item = ({item, type})=>{
-    
-    const {
-        title,
-        uri,
-    } = item;
-
-    const isMain = type === "faculty";
-
-    const isCareer = type === "career";
-
-    return (
-        <Col size={12} sizeMD={isCareer? 12 : isMain? 12 : 6 }>
-            <Component>
-                <Link to={uri} noDecoration>
-                    <Title 
-                        color={isCareer?colors.text.base:colors.primary.dark} 
-                        bgHover={colors.gray.light}
-                        {...{isMain, isCareer}}
-                    >{title}</Title>
-                </Link>
-            </Component>
-        </Col>
-    );
-
-}
-
-const Component = styled.li`
-    list-style: none;
-    padding: 0;
-    margin: 0;
-`
-
-const Title = styled.span`
-    ${({isMain, isCareer, color="blue", bgHover="lightgray"})=>css`
-        color: ${color};
-        padding: .5rem 1.5rem;
-        text-transform: uppercase;
-        font-size: 2rem;
-        display: block;
-        ${mq.md}{
-            display: inline-block;
-        }
-        &:hover{
-            background-color: ${bgHover};
-        }
-        ${isMain?css`
-            font-weight: 900;
-        `: isCareer? css`
-            text-transform: capitalize;
-            font-weight: 600;
-        `: css`
-            font-weight: 300;
-        `}
-    `}
-`;
-
-const ItemList = ({items, type})=>{
-
-    return (
-        <Container noGutters>
-            <StyledRow as="ul">
-            {
-                items.map((item,index)=>{
-                    return (
-                        <Item key={index} item={item} type={type} />
-                    )
-                })
-            }
-            </StyledRow>
-        </Container>
-    )
-} 
-
-const StyledRow = styled(Row)`
-    padding: 0;
-`;
-
 const OfferFaculties = ({ page }) =>{
-
-    //Obtiene los datos de los Careeras
-    const careers = useCareers();
-
-    //Obtiene las facultades que tienen carreras relacionadas.
-    const faculties = useFaculties();
-
-    //Obtiene los departamentos que tienen carreras relacionadas.
-    const departaments = useDepartaments();
 
     //Obtiene y ordena los grados a mostrar en el menú
     const grades = useGrades().sort((a,b)=>a.order - b.order);
 
+    const faculties = useFaculties();
+    
+    const departaments = useDepartaments();
+    
+    const careers = useCareers();
+
     const [view, setView] = useState(0);
 
-    return careers.length && faculties.length?(
+    return (
         <StyledSection spaceNone  color={colors.gray.base}>
             <Container fluid>
                 <Row>
@@ -138,9 +57,24 @@ const OfferFaculties = ({ page }) =>{
 
                     <NavCol size={12} sizeLG={8} lineColor={colors.gray.base}>
                     {
-                        grades.map((item, index) =>{
+                        grades.map((grade, index) =>{
                         
                             const isActive = view === index;
+
+                            //Retorna las carreras que pertenecen al grado seleccionado.
+                            const careerList = careers.filter( career => {
+                                return  grade.id === career.grade.id 
+                            } );
+
+                            //Retorna las facultades que tienen carreras del grado seleccionado.
+                            const facultyList = faculties.filter( faculty => {
+                                return faculty.careers.filter( career => careerList.map( item => item.id ).includes(career.id)).length;
+                            });
+
+                            //Retorna los departamentos que tienen carreras del grado seleccionado. 
+                            const departamentList = departaments.filter( departament => {
+                                return departament.careers.filter( career => careerList.map( item => item.id ).includes(career.id)).length;
+                            })
 
                             return faculties.length > 0?(
                                 <Wrapper key={index} hidden={!isActive}>
@@ -155,7 +89,85 @@ const OfferFaculties = ({ page }) =>{
                                         {
                                             styles =>(
                                                 <Anim style={styles}>
-                                                    <ItemList items={faculties} type="faculty" />
+                                                    <Container>
+                                                        <Row>
+                                                        {
+                                                            facultyList.map( faculty => {
+
+                                                                return (
+                                                                    <Col key={faculty.id} size={12}>
+                                                                        <Link to={faculty.uri}>
+                                                                            <Title 
+                                                                                color={colors.primary.dark} 
+                                                                                bgHover={colors.gray.light}
+                                                                                isFaculty
+                                                                            >{faculty.title}</Title>
+                                                                        </Link>
+                                                                        <Row>
+                                                                        {
+                                                                            careerList.filter( career => {
+                                                                                return !career.departament && faculty.id === career.faculty.id;
+                                                                            } )
+                                                                            .map( career => {
+                                                                                return (
+                                                                                    <Col key={career.id} size={12} sizeMD={6}>
+                                                                                        <Link to={career.uri}>
+                                                                                            <Title 
+                                                                                                color={colors.text.base} 
+                                                                                                bgHover={colors.gray.light}
+                                                                                                isCareer
+                                                                                            >{career.title}</Title>
+                                                                                        </Link>
+                                                                                    </Col>
+                                                                                ) 
+                                                                            })
+                                                                        }
+                                                                        </Row>
+                                                                        <Row>
+                                                                        {
+                                                                            departamentList.filter( departament => {
+                                                                                return faculty.id === departament.faculty.id;
+                                                                            } )
+                                                                            .map( departament => {
+                                                                                return (
+                                                                                    <Col key={departament.id} size={12} sizeMD={6}>
+                                                                                        <Link to={departament.uri}>
+                                                                                            <Title 
+                                                                                                color={colors.primary.dark} 
+                                                                                                bgHover={colors.gray.light}
+                                                                                            >{departament.title}</Title>
+                                                                                        </Link>
+                                                                                        <Row>
+                                                                                        {
+                                                                                            careerList.filter( career => {
+                                                                                                return departament.id === career?.departament?.id;
+                                                                                            } )
+                                                                                            .map( career => {
+                                                                                                return (
+                                                                                                    <Col key={career.id} size={12}>
+                                                                                                        <Link to={career.uri}>
+                                                                                                            <Title 
+                                                                                                                color={colors.text.base} 
+                                                                                                                bgHover={colors.gray.light}
+                                                                                                                isCareer
+                                                                                                            >{career.title}</Title>
+                                                                                                        </Link>
+                                                                                                    </Col>
+                                                                                                ) 
+                                                                                            })
+                                                                                        }
+                                                                                        </Row>
+                                                                                    </Col>
+                                                                                ) 
+                                                                            })
+                                                                        }
+                                                                        </Row>
+                                                                    </Col>
+                                                                )
+                                                            })
+                                                        }
+                                                        </Row>
+                                                    </Container>
                                                 </Anim>
                                             )
                                         }
@@ -171,7 +183,7 @@ const OfferFaculties = ({ page }) =>{
                 </Row>
             </Container>
         </StyledSection>
-    ):null;
+    );
 
 }
 
@@ -179,7 +191,6 @@ export default OfferFaculties;
 
 const Anim = styled(animated.div)`
 `;
-
 
 const StyledSection = styled(Section)`
     overflow: hidden;
@@ -243,3 +254,28 @@ const Option = styled.li`
 `;
 
 const Wrapper  = styled.div``;
+
+const Title = styled.span`
+    ${({isFaculty, isCareer, color="blue", bgHover="lightgray"})=>css`
+        color: ${color};
+        padding: .5rem 1.5rem;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: 2rem;
+        display: inline-block;
+        ${mq.md}{
+            display: inline-block;
+        }
+        &:hover{
+            background-color: ${bgHover};
+        }
+        ${isFaculty?css`
+            font-weight: 900;
+        `: isCareer? css`
+            text-transform: capitalize;
+            font-weight: 600;
+        `: css`
+            font-weight: 300;
+        `}
+    `}
+`;

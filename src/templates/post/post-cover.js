@@ -26,7 +26,7 @@ const PostCover = ({ post })=>{
                         <ImageContainer>
                             <Image>
                                 <FeaturedMedia 
-                                    media={ featuredImage.node.localFile }
+                                    media={ featuredImage }
                                     height ="100%"
                                     bgColor
                                     loading="eager"

@@ -32,6 +32,11 @@ const useDepartaments = () => {
                   id
                 }
               }
+              departamentProjectLineRel {
+                ... on WpProjectLine {
+                  id
+                }
+              }
             }
 
           }
@@ -54,8 +59,9 @@ const useDepartaments = () => {
         link: departament.link,
         order: departament.menuOrder,
         featuredImage: departament?.featuredImage?.node?.localFile,
-        careers: departament.departamentInfo.departamentCareerRel || [],
         faculty: faculty,
+        careers: departament.departamentInfo.departamentCareerRel || [],
+        projectLines: departament.departamentInfo.departamentProjectLineRel || [],
       })
     });
 }

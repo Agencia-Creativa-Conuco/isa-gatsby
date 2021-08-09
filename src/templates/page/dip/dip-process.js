@@ -15,10 +15,7 @@ const DIPProcess = ({ projects, page }) =>{
     } = page;
 
     const projectList = projects.filter((item)=>{
-
-        const { parent } = item;
-
-        return parent > 0 ;
+        return true;
     })
     .filter((item, index)=> index <= 3 );
 
@@ -40,7 +37,6 @@ const DIPProcess = ({ projects, page }) =>{
                             title,
                             featuredImage,
                             link,
-                            // content,
                             copy
                         } = item;
 

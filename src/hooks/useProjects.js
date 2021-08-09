@@ -20,9 +20,9 @@ const useProjects = () => {
                   }
                 }
                 projectInfo {
-                  projectRelationship {
-                    ... on WpFaculty {
-                      title
+                  projectLineProjectRel {
+                    ... on WpProjectLine {
+                      id
                     }
                   }
                 }
@@ -32,18 +32,23 @@ const useProjects = () => {
         `
     );
 
-    return resultado.allWpProject.nodes.map( project => ({
+    return resultado.allWpProject.nodes.map( project => {
+      
+      const [projectLine] = project.projectInfo.projectLineProjectRel;
+
+      return ({
         id: project.id,
         title: project.title,
         content: project.content,
-        copy: project.coverCopy,
         date: project.date,
         slug: project.slug,
         uri: project.uri,
         link: project.link,
         featuredImage: project.featuredImage? project.featuredImage.node.localFile : null,
-        titleFaculty: project.projectInfo.projectRelationship || []
-    }));
+        projectLine: projectLine,
+      });
+      
+    });
 }
  
 export default useProjects;

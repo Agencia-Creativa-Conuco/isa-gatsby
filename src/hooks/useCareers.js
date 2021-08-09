@@ -23,6 +23,12 @@ const useCareers = () => {
         
                 careerInfo {
 
+                  gradeCareerRel {
+                    ... on WpGrade {
+                      id
+                    }
+                  }
+
                   facultyRelationship {
                     ... on WpFaculty {
                       id
@@ -101,6 +107,7 @@ const useCareers = () => {
 
     const resultado = careers.map( career => {
       
+      const [grade] = career?.careerInfo?.gradeCareerRel || [];
       const [faculty] = career?.careerInfo?.facultyRelationship || [];
       const [departament] = career?.careerInfo?.departamentCareerRel || [];
       
@@ -113,6 +120,7 @@ const useCareers = () => {
         link: career.link,
         order: career.menuOrder,
         featuredImage: career?.featuredImage?.node?.localFile,
+        grade: grade,
         faculty: faculty,
         departament: departament,
         cover: career.careerInfo.cover,
