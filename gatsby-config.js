@@ -15,7 +15,7 @@ module.exports = {
           // previewRequestConcurrency: 2, // currently set to 5
         // },
       },
-    },
+    },  
     {
       resolve: 'gatsby-plugin-local-search',
       options: {

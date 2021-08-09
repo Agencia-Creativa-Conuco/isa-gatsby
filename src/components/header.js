@@ -40,6 +40,7 @@ const Header = () => {
 
     const menuItems = getHierarchicalItems(menu.menuItems.nodes);
 
+
     const [ isMobileMenuOpen, toggleMobileMenu ] = useState(false);
     const [ isSearchModalOpen, toggleSearchModal ] = useState(false);
 

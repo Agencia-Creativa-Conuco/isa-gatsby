@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Helmet from 'react-helmet';
 import { Global } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -8,6 +8,9 @@ import globalStyles from '../components/styles/global-styles';
 import FontFace from "../components/styles/font-faces";
 import Header from './header';
 import Footer from './footer';
+
+// import Prueba from './search/prueba';
+
 
 const Layout = ({ children }) => {
 
@@ -34,6 +37,7 @@ const Layout = ({ children }) => {
         }
     ` );
 
+
     return ( 
         <>
 
@@ -53,11 +57,12 @@ const Layout = ({ children }) => {
 
             <Global styles={ globalStyles({ settings }) } />
 
-            <Header />
+            <Header  />
 
             <Main>
                 { children }
             </Main>
+            {/* <Prueba/> */}
 
             <Footer />
         </>
