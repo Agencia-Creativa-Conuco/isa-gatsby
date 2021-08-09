@@ -8,7 +8,7 @@ const usePersons = () => {
         {
             allWpPerson {
               nodes {
-                id: databaseId
+                id
                 title
                 date
                 link

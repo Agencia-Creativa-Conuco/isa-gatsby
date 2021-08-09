@@ -11,6 +11,7 @@ const ProjectsCover = ({ project })=>{
     const {
         title,
         featuredImage,
+        description,
     } = project;
 
     return (
@@ -42,7 +43,7 @@ const ProjectsCover = ({ project })=>{
                         <Title  >
                             { title }
                         </Title>  
-                        <Copy dangerouslySetInnerHTML={{__html: "ESTO ES UNA PRUEBA Y DEBE SER SUSTITUIDO POR EL VERDADERO COPY"}} />
+                        <Copy dangerouslySetInnerHTML={{__html: description}} />
                         </StylesContent> 
                     </Col>
                 </Row>

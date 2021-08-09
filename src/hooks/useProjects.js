@@ -20,10 +20,19 @@ const useProjects = () => {
                   }
                 }
                 projectInfo {
+                  description
                   projectLineProjectRel {
                     ... on WpProjectLine {
                       id
                     }
+                  }
+                  projectPersonRel {
+                    ... on WpPerson {
+                      id
+                    }
+                  }
+                  images {
+                    ...ImageFragment
                   }
                 }
               }
@@ -46,6 +55,9 @@ const useProjects = () => {
         link: project.link,
         featuredImage: project.featuredImage? project.featuredImage.node.localFile : null,
         projectLine: projectLine,
+        description: project.projectInfo.description,
+        images: project.projectInfo.images || [],
+        researchers: project.projectInfo.projectPersonRel || [],
       });
       
     });

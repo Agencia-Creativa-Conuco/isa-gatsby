@@ -9,7 +9,7 @@ import useProjectLines from "../../../hooks/useProjectLines";
 import usePersons from "../../../hooks/usePersons";
 import usePosts from "../../../hooks/usePosts";
 import DIPNews from "./dip-news";
-import DIPTeam from "./dip-team";
+import DIPTeam from "../../../components/team-slider";
 import DIPGeneral from "./dip-general";
 
 const ResearchPage = ({ ...page }) => {

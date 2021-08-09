@@ -10,6 +10,11 @@ const DIPCover = ({ page }) =>{
     const {
         title,
         featuredImage,
+        investigation: {
+            cover : {
+                copy
+            }
+        }
     } = page;
 
 
@@ -31,7 +36,7 @@ const DIPCover = ({ page }) =>{
                                     sizeMD={6}
                                 >
                                     <Title> { title } </Title>
-                                    {/* <Copy>{ copy }</Copy>  */}
+                                    <Copy>{ copy }</Copy> 
                                 </Col>
                             </Row>
                         </CopyContainer>

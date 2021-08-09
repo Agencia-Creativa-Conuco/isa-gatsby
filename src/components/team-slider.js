@@ -1,19 +1,15 @@
 import React from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col, mq, mqVal} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
-// import Link from "../../link";
+import { Container, Section, Row, Col, mq, mqVal} from "./layout/index";
+import FeaturedMedia from "./featured-media";
 import Carousel from "react-slick";
-import {LeftArrowIcon, RightArrowIcon} from "../../../components/icons";
-import colors from "../../../components/styles/colors";
+import {LeftArrowIcon, RightArrowIcon} from "./icons";
+import colors from './styles/colors';
 
 
-const DIPTeam = ({ persons }) =>{
+const TeamSlider = ({ persons, title = "Equipo de investigación" }) =>{
 
-
-    const sectionTitle = "Equipo de investigación";
-  
     const Arrows = (props => {
   
         const Arrow = styled.div`
@@ -54,7 +50,7 @@ const DIPTeam = ({ persons }) =>{
             <Container fluid notFluidLG>
                 <Row>
                     <Col size={12}>
-                        <SectionTitle> { sectionTitle } </SectionTitle>
+                        <SectionTitle> { title } </SectionTitle>
                     </Col>
                     <Col size={12}>
                         <Carousel
@@ -124,12 +120,13 @@ const DIPTeam = ({ persons }) =>{
 }
 
 
-export default DIPTeam;
+export default TeamSlider;
 
 
 const BGSection = styled(Section)`
     background: ${props => props.bg};
     padding: 4rem 0;
+    z-index: 3;
 `;
 
 const Card = styled.article`
