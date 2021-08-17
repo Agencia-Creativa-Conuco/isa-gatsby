@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useEffect } from "react";
 import styled from "@emotion/styled";
 import { css, Global } from "@emotion/react";
 
@@ -13,7 +13,11 @@ import { graphql, useStaticQuery } from "gatsby";
 import { mq } from "../layout/index";
 import colors from "../styles/colors";
 
-const SearchModal = ({ isSearchModalOpen, toggleSearchModal }) => {
+
+
+
+
+const SearchModal = ({ isSearchModalOpen, toggleSearchModal, setResultsSearch }) => {
   
   const resultado = useStaticQuery(graphql`
     {
@@ -24,13 +28,36 @@ const SearchModal = ({ isSearchModalOpen, toggleSearchModal }) => {
     }
   `);
 
-  const [query, setQuery] = useState("");
 
+  const { search } = window.location;    
+  const query = new URLSearchParams(search).get('s')
+  const [searchQuery, setQuery] = useState();
+  const isFirstRun = useRef(true);
+  
+  
   const resultados = useFlexSearch( query, resultado.localSearchPages.index, resultado.localSearchPages.store );
+  
 
-  console.log(resultados)
+  setResultsSearch(resultados)
+  // useEffect(()=>{
+  //   if( isFirstRun.current ) {
+  //       isFirstRun.current = false
+  //       return;
+  //     }
+      
+  //     setQuery(resultados)
+ 
 
-  const { searchQuery } = "lorem";
+  // },[resultados])
+
+  // console.log(searchQuery)
+
+
+// if(query){
+
+//   setResultsSearch(resultados);
+//   console.log( resultados )
+// }
 
   const closeSearchModal = () => {
     toggleSearchModal(false);
@@ -49,25 +76,29 @@ const SearchModal = ({ isSearchModalOpen, toggleSearchModal }) => {
   // const formatQuery = (query) => query.trim().replace(" ", "+").toLowerCase();
 
   const handleSubmit = (event) => {
-    // Prevent page navigation
-    event.preventDefault();
 
-    // Get the input's value
-    const searchString = inputRef.current.value;
-    
-    // If the typed search string is not empty
-    // Better to trim write spaces as well
-    if (searchString.trim().length > 0) {
-      setQuery(searchString)
-      // Let's go search for blogs that match the search string
-      // actions.router.set(`/search/?s=${formatQuery(searchString)}`);
+// Prevent page navigation
+// event.preventDefault();
 
-      // Scroll the page to the top
-      window.scrollTo(0, 0);
 
-      // Close the search modal
-      closeSearchModal();
-    }
+//   // Get the input's value
+//   const searchString = inputRef.current.value;
+
+//   // If the typed search string is not empty
+  //   // Better to trim write spaces as well
+  //   if (searchString.trim().length > 0) {
+  //     setQuery(searchString)
+  //     // Let's go search for blogs that match the search string
+  //     // actions.router.set(`/search/?s=${formatQuery(searchString)}`);
+
+  //     // Scroll the page to the top
+  //     window.scrollTo(0, 0);
+
+  //     // Close the search modal
+      // closeSearchModal();
+
+      // return event.target.action = ``
+  //   }
   };
 
   return (
@@ -108,14 +139,16 @@ const SearchModal = ({ isSearchModalOpen, toggleSearchModal }) => {
                 <SearchForm
                   role="search"
                   aria-label="Buscar:"
+                  method="get" 
                   onSubmit={handleSubmit}
-                >
+                  action={`/search/?s=${query}`}
+                  >
                   <SearchInput
                     ref={inputRef}
                     type="search"
-                    defaultValue={searchQuery || ""}
+                    // // defaultValue={query}
                     placeholder="Buscar:"
-                    name="search"
+                    name="s"
                   />
                   <SearchButton bg={primary}>Search</SearchButton>
                 </SearchForm>
@@ -129,7 +162,10 @@ const SearchModal = ({ isSearchModalOpen, toggleSearchModal }) => {
           </>
         ) : null}
       </div>
+
+      
     </>
+
   );
 };
 

@@ -202,7 +202,7 @@ const usePages = () => {
                 }
         
                 events {
-                  categories {
+                  eventCategories {
                     __typename
                     id
                     name
