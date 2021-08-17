@@ -1,4 +1,4 @@
-import React, { useRef, useState,useEffect } from "react";
+import React, { useRef } from "react";
 import styled from "@emotion/styled";
 import { css, Global } from "@emotion/react";
 
@@ -14,9 +14,6 @@ import { mq } from "../layout/index";
 import colors from "../styles/colors";
 
 
-
-
-
 const SearchModal = ({ isSearchModalOpen, toggleSearchModal, setResultsSearch }) => {
   
   const resultado = useStaticQuery(graphql`
@@ -29,35 +26,20 @@ const SearchModal = ({ isSearchModalOpen, toggleSearchModal, setResultsSearch })
   `);
 
 
+    const {
+        index: resultsIndex,
+        store: resultsStore
+    }  = resultado.localSearchPages;
+
+
+  
   const { search } = window.location;    
-  const query = new URLSearchParams(search).get('s')
-  const [searchQuery, setQuery] = useState();
-  const isFirstRun = useRef(true);
-  
-  
-  const resultados = useFlexSearch( query, resultado.localSearchPages.index, resultado.localSearchPages.store );
+  const query = new URLSearchParams(search).get('s');
+  const resultados = useFlexSearch( query, resultsIndex, resultsStore );
   
 
-  setResultsSearch(resultados)
-  // useEffect(()=>{
-  //   if( isFirstRun.current ) {
-  //       isFirstRun.current = false
-  //       return;
-  //     }
-      
-  //     setQuery(resultados)
- 
+  setResultsSearch(resultados);
 
-  // },[resultados])
-
-  // console.log(searchQuery)
-
-
-// if(query){
-
-//   setResultsSearch(resultados);
-//   console.log( resultados )
-// }
 
   const closeSearchModal = () => {
     toggleSearchModal(false);
@@ -75,12 +57,14 @@ const SearchModal = ({ isSearchModalOpen, toggleSearchModal, setResultsSearch })
   // Format the query to remove trailing spaces and replace space with "+"
   // const formatQuery = (query) => query.trim().replace(" ", "+").toLowerCase();
 
+
+  // console.log(inputRef )
   const handleSubmit = (event) => {
 
 // Prevent page navigation
 // event.preventDefault();
 
-
+  // console.log("Entre");
 //   // Get the input's value
 //   const searchString = inputRef.current.value;
 
@@ -139,14 +123,15 @@ const SearchModal = ({ isSearchModalOpen, toggleSearchModal, setResultsSearch })
                 <SearchForm
                   role="search"
                   aria-label="Buscar:"
+                  // onSubmit={handleSubmit}
                   method="get" 
                   onSubmit={handleSubmit}
-                  action={`/search/?s=${query}`}
+                  action={`/search/?s=`}
                   >
                   <SearchInput
-                    ref={inputRef}
+                    // ref={inputRef}
                     type="search"
-                    // // defaultValue={query}
+                    defaultValue={query}
                     placeholder="Buscar:"
                     name="s"
                   />

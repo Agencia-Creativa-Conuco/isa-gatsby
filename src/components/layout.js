@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useState } from 'react';
 import Helmet from 'react-helmet';
 import { Global } from '@emotion/react';
 import styled from '@emotion/styled';

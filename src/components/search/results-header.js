@@ -1,7 +1,7 @@
 import React from "react";
-// import ReslutsSearchForm from "./results-form" 
+import ReslutsSearchForm from "./saerch-form" 
 import styled from "@emotion/styled";
-import { Container, Section, Row, Col, mq} from "../layout/index";
+import { Container, Section, Row, Col } from "../layout/index";
 import colors from '../styles/colors';
 import { css } from '@emotion/react';
 
@@ -18,7 +18,7 @@ const ResultsHeader = () => {
                 <Row>
                     <Col size={10} sizeMD={7}>
                         <Header>
-                            {/* <ReslutsSearchForm/> */}
+                            <ReslutsSearchForm/>
                             <Filtros>  Filtros </Filtros>
                         </Header>
             

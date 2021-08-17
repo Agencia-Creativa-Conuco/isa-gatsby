@@ -45,8 +45,7 @@ const Header = ( {setResultsSearch}) => {
 
 
     const [ isMobileMenuOpen, toggleMobileMenu ] = useState(false);
-    const [ isSearchModalOpen, toggleSearchModal ] = useState(false);
-    const [ value, setResult ] = useState(false);
+    const [ isSearchModalOpen, toggleSearchModal ] = useState(false);;
 
     return ( 
         <HeaderWrapper 

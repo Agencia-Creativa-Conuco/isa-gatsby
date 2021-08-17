@@ -45,9 +45,5 @@ const Content = styled.div`
     overflow: hidden;
 `;
 
-const Title = styled.h2 `
-    text-align:center;
-    padding-bottom: 2rem;
- `;
 
 const Copy = styled.p``;
