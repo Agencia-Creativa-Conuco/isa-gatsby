@@ -6,9 +6,9 @@ import { CloseIcon } from "../icons";
 import ScreenReaderText from "../styles/screen-reader";
 import useFocusTrap from "../hooks/use-trap-focus";
 import useFocusEffect from "../hooks/use-focus-effect";
-import Button from "../styles/button";
 import { useFlexSearch } from "react-use-flexsearch";
 import { graphql, useStaticQuery } from "gatsby";
+import InputResults from "./input"
 
 import { mq } from "../layout/index";
 import colors from "../styles/colors";
@@ -31,21 +31,18 @@ const SearchModal = ({ isSearchModalOpen, toggleSearchModal, setResultsSearch })
         store: resultsStore
     }  = resultado.localSearchPages;
 
-
   
   const { search } = window.location;    
   const query = new URLSearchParams(search).get('s');
   const resultados = useFlexSearch( query, resultsIndex, resultsStore );
   
-
+  
   setResultsSearch(resultados);
 
 
   const closeSearchModal = () => {
     toggleSearchModal(false);
   };
-
-  const { primary } = colors;
 
   // Keep a reference to the input so we can grab it's value on form submission
   const inputRef = useRef();
@@ -54,36 +51,6 @@ const SearchModal = ({ isSearchModalOpen, toggleSearchModal, setResultsSearch })
   useFocusEffect(inputRef, isSearchModalOpen);
   useFocusTrap(containerRef, isSearchModalOpen);
 
-  // Format the query to remove trailing spaces and replace space with "+"
-  // const formatQuery = (query) => query.trim().replace(" ", "+").toLowerCase();
-
-
-  // console.log(inputRef )
-  const handleSubmit = (event) => {
-
-// Prevent page navigation
-// event.preventDefault();
-
-  // console.log("Entre");
-//   // Get the input's value
-//   const searchString = inputRef.current.value;
-
-//   // If the typed search string is not empty
-  //   // Better to trim write spaces as well
-  //   if (searchString.trim().length > 0) {
-  //     setQuery(searchString)
-  //     // Let's go search for blogs that match the search string
-  //     // actions.router.set(`/search/?s=${formatQuery(searchString)}`);
-
-  //     // Scroll the page to the top
-  //     window.scrollTo(0, 0);
-
-  //     // Close the search modal
-      // closeSearchModal();
-
-      // return event.target.action = ``
-  //   }
-  };
 
   return (
     <>
@@ -120,23 +87,8 @@ const SearchModal = ({ isSearchModalOpen, toggleSearchModal, setResultsSearch })
               }}
             >
               <SectionInner ref={containerRef}>
-                <SearchForm
-                  role="search"
-                  aria-label="Buscar:"
-                  // onSubmit={handleSubmit}
-                  method="get" 
-                  onSubmit={handleSubmit}
-                  action={`/search/?s=`}
-                  >
-                  <SearchInput
-                    // ref={inputRef}
-                    type="search"
-                    defaultValue={query}
-                    placeholder="Buscar:"
-                    name="s"
-                  />
-                  <SearchButton bg={primary}>Search</SearchButton>
-                </SearchForm>
+               {/* Input */}
+                <InputResults  valor={query}/>
 
                 <CloseButton onClick={closeSearchModal} colors={colors}>
                   <ScreenReaderText>Cerrar búsqueda</ScreenReaderText>
@@ -197,54 +149,8 @@ const SectionInner = styled.div`
   }
 `;
 
-const SearchForm = styled.form`
-  margin: 0;
-  position: relative;
-  width: 100%;
-  align-items: stretch;
-  display: flex;
-  flex-wrap: nowrap;
 
-  ${mq.md} {
-    position: relative;
-    width: 100%;
-  }
-`;
 
-const SearchInput = styled.input`
-  ${({ layout }) => css`
-    background: none;
-    border: none;
-    border-radius: 0;
-    color: inherit;
-    display: block;
-    font-size: 2rem;
-    letter-spacing: -0.0277em;
-    margin: 0 0 0 -2rem;
-    max-width: calc(100% + 2rem);
-    padding: 0 0 0 2rem;
-    width: calc(100% + 2rem);
-    appearance: none;
-
-    &::-webkit-search-decoration,
-    &::-webkit-search-cancel-button,
-    &::-webkit-search-results-button,
-    &::-webkit-search-results-decoration {
-      display: none;
-    }
-
-    ${mq.md} {
-      border: none;
-      font-size: 3.2rem;
-      height: 8rem;
-    }
-
-    &:focus {
-      outline: thin dotted;
-      outline-offset: -4px;
-    }
-  `}
-`;
 
 const CloseButton = styled.button`
   ${({ colors }) => css`
@@ -285,15 +191,3 @@ const CloseButton = styled.button`
   `}
 `;
 
-const SearchButton = styled(Button)`
-  position: absolute;
-  right: -9999rem;
-  top: 50%;
-  transform: translateY(-50%);
-  margin: 0 0 0.8rem 0.8rem;
-  border-color: #dcd7ca;
-
-  &:focus {
-    right: 0;
-  }
-`;

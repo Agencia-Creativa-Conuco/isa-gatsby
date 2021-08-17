@@ -1,11 +1,14 @@
 import React from "react";
-import ReslutsSearchForm from "./saerch-form" 
 import styled from "@emotion/styled";
 import { Container, Section, Row, Col } from "../layout/index";
 import colors from '../styles/colors';
 import { css } from '@emotion/react';
+import InputResults from "./input"
 
 const ResultsHeader = () => {
+
+  const { search } = window.location;    
+  const query = new URLSearchParams(search).get('s');
 
   return (
     <Section spaceNone>
@@ -17,9 +20,11 @@ const ResultsHeader = () => {
             <Container>
                 <Row>
                     <Col size={10} sizeMD={7}>
-                        <Header>
-                            <ReslutsSearchForm/>
-                            <Filtros>  Filtros </Filtros>
+                        <Header>  
+                        <Label>
+                          <InputResults valor={query} isResults={true}/>
+                        </Label>
+                            <Filtros> Filtros </Filtros>
                         </Header>
             
                     </Col>
@@ -59,3 +64,13 @@ const DivBG = styled.div`
       }
     `}
 `;
+
+
+const Label = styled.label`
+  align-items: stretch;
+  display: flex;
+  font-size: inherit;
+  margin: 0;
+  width: 100%;
+`;
+
