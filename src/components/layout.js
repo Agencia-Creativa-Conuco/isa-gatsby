@@ -15,6 +15,8 @@ const Layout = ({ children }) => {
         
 
     const [resultsSearch, setResultsSearch] = useState();
+
+    console.log()
     
     const {
         wp: {

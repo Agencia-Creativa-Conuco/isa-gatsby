@@ -78,7 +78,18 @@ module.exports = {
                   uri
                 }
               } 
-                 
+
+              allWpCareer {
+                nodes {
+                  id
+                  __typename
+                  slug
+                  title
+                  uri
+                }
+              } 
+            
+            
           }
           `,
         ref: "slug",
