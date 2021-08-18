@@ -1,8 +1,8 @@
 import React,{useState} from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col,mq} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
+import { Container, Section, Row, Col} from "../../../components/layout/index";
+// import FeaturedMedia from "../../../components/featured-media";
 import colors from '../../../components/styles/colors';
 
 
@@ -14,6 +14,14 @@ const DEPServicesMenu = ({ page }) =>{
     
     const [view, setView] = useState(0);
 
+    const {
+        dep:{
+            services:{
+                servicesMenu
+            }
+        }
+    } = page;
+
 
 
     return (
@@ -23,35 +31,34 @@ const DEPServicesMenu = ({ page }) =>{
                     <Col noGutters>
                         <Menu>
                             <Row justifyContent="center">
-                            {/* {
-                                navigation.map((item, index)=>{
+                            {
+                                servicesMenu.map((item, index)=>{
                                     
                                     const {
                                         title,
-                                        icon
                                     } = item;
                                     
                                     return(
                                         <Col size={6} sizeMD='auto' key={index} > 
-                                            <Link to={stringify({path:parse(state.router.link).path, hash:"#contenido"})} noDecoration>
+                                            {/* <Link to={stringify({path:parse(state.router.link).path, hash:"#contenido"})} noDecoration> */}
                                                 <Option 
                                                     decoBG={colors.blue.base}    
-                                                    onClick={ (e) => setView( view == index ? view : index ) }
+                                                    onClick={ (e) => setView( view === index ? view : index ) }
                                                     active={view === index} 
                                                     color={view === index ? colors.blue.base : colors.white}                                        
                                                 >
                                                     <OptionIcon
                                                         bgColor={view === index ? colors.blue.base : colors.white}                                      
                                                     >
-                                                        <FeaturedMedia media={icon} />
+                                                        {/* <FeaturedMedia media={icon} /> */}
                                                     </OptionIcon>
                                                     <OptionName>{title}</OptionName>
                                                 </Option> 
-                                            </Link>
+                                            {/* </Link> */}
                                         </Col>
                                     )
                                 })
-                            } */}
+                            }
                             </Row>
                         </Menu>
                     </Col>
@@ -59,10 +66,10 @@ const DEPServicesMenu = ({ page }) =>{
                 <Row>
                     <Col>
                         <Content  bg={colors.gray.light} id="contenido">
-                            {/* { navigation.map((item,index)=>{
+                            { servicesMenu.map((item,index)=>{
 
                                 const {
-                                    content
+                                    copy
                                 } = item;
 
                                 return(
@@ -70,14 +77,14 @@ const DEPServicesMenu = ({ page }) =>{
                                         key={index} 
                                         noGutters
                                         active={view === index} 
-                                        hidden={index!=view}>
+                                        hidden={index!==view}>
 
-                                        <Html2React html={ content } />
+                                        { copy } 
 
                                     </Copy>
                                 )  
                                 
-                            })} */}
+                            })}
                         </Content>
                     </Col>
                 </Row>

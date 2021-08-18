@@ -305,6 +305,10 @@ const usePages = () => {
                     serviciosProfesionales {
                       copy
                       title
+                      servicesMenu {
+                        title
+                        copy
+                      }
                       image{
                         localFile {
                           publicURL

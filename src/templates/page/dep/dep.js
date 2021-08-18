@@ -10,7 +10,7 @@ import DEPCede from "./dep-cede";
 // import DEPPymes from "./dep-pymes";
 // import DEPIdentity from "./dep-identity";
 // import DEPAsesory from "./dep-asesory";
-// import DEPServicesMenu from "./dep-services-menu";
+import DEPServicesMenu from "./dep-services-menu";
 
 
 const DEPPage = ({ page }) => {
@@ -25,7 +25,7 @@ const DEPPage = ({ page }) => {
          <DEPActivities {...{page}}/>
         <DEPDevelopment {...{page}}/>
         <DEPServices  {...{page}}/>
-        {/* <DEPServicesMenu {...{page}}/> */}
+        <DEPServicesMenu {...{page}}/>
         <DEPLaboratory {...{page}}/>
         {/* <DEPPymes  {...{page}}/>
         <DEPIdentity  {...{page}}/>
