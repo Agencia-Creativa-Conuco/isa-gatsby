@@ -15,49 +15,84 @@ module.exports = {
           // previewRequestConcurrency: 2, // currently set to 5
         },
       },
-    },
+    },  
     {
       resolve: "gatsby-plugin-local-search",
       options: {
         name: "pages",
         engine: "flexsearch",
         query: `
-            {
-              allWpPost {
-                nodes {
-                  id
-                  __typename
-                  slug
-                  title
-                  excerpt
-                }
-              }
-              allWpPage {
-                nodes {
-                  id
-                  __typename
-                  slug
-                  title
-                }
+          {
+            allWpPost {
+              nodes {
+                id
+                __typename
+                slug
+                title
+                excerpt
+                uri
               }
             }
+            allWpPage {
+              nodes {
+                id
+                __typename
+                slug
+                title
+                uri
+              }
+            }
+              allWpFaculty {
+                nodes {
+                  id
+                  __typename
+                  slug
+                  title
+                  uri
+                }
+              }
+              allWpDepartament {
+                nodes {
+                  id
+                  __typename
+                  slug
+                  title
+                  uri
+                }
+              }
+              allWpProject {
+                nodes {
+                  id
+                  __typename
+                  slug
+                  title
+                  uri
+                }
+              }
+              allWpResource {
+                nodes {
+                  id
+                  __typename
+                  slug
+                  title
+                  uri
+                }
+              } 
+                 
+          }
           `,
         ref: "slug",
         index: ["title", "slug"],
-        store: ["id", "title", "slug", "excerpt", "type"],
+        store: ["id","title", "slug", "excerpt", "type", "uri"],
         normalizer: ({ data }) => {
-          return Object.values(data)
-            .map((type) => type.nodes)
-            .reduce((acumulador, currentValue) =>
-              acumulador.concat(currentValue)
-            )
-            .map((node) => ({
-              id: node.id,
-              title: node.title,
-              slug: node.slug,
-              excerpt: node?.excerpt,
-              type: node.__typename,
-            }));
+          return Object.values(data).map( type => type.nodes ).reduce((acumulador, currentValue) => acumulador.concat(currentValue) ).map((node) => ({
+            id: node.id,
+            title: node.title,
+            slug: node.slug,
+            excerpt: node?.excerpt,
+            type: node.__typename,
+            uri: node.uri,
+          }));
         },
       },
     },

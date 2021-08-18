@@ -10,7 +10,10 @@ import SearchModal from "./search/search-modal";
 import SearchButton from "./search/search-button";
 import { getHierarchicalItems } from "./inc/auxiliar";
 
-const Header = () => {
+
+
+const Header = ( {setResultsSearch}) => {
+
 
     //Consultar y optener logo.svg
     const { logo, menu } = useStaticQuery( graphql`
@@ -40,8 +43,9 @@ const Header = () => {
 
     const menuItems = getHierarchicalItems(menu.menuItems.nodes);
 
+
     const [ isMobileMenuOpen, toggleMobileMenu ] = useState(false);
-    const [ isSearchModalOpen, toggleSearchModal ] = useState(false);
+    const [ isSearchModalOpen, toggleSearchModal ] = useState(false);;
 
     return ( 
         <HeaderWrapper 
@@ -87,7 +91,10 @@ const Header = () => {
                 </Col>
                 </Row>
             </Container>
-            <SearchModal {...{ isSearchModalOpen, toggleSearchModal }} />
+            <SearchModal {...{ isSearchModalOpen, toggleSearchModal, setResultsSearch}} />
+            {/* {  setResultsSearch(...value)} */}
+
+            {/* {value} */}
         </HeaderWrapper>
     );
 }

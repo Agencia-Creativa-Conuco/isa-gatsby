@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Helmet from 'react-helmet';
 import { Global } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -9,8 +9,13 @@ import FontFace from "../components/styles/font-faces";
 import Header from './header';
 import Footer from './footer';
 
-const Layout = ({ children }) => {
 
+
+const Layout = ({ children }) => {
+        
+
+    const [resultsSearch, setResultsSearch] = useState();
+    
     const {
         wp: {
             generalSettings: settings
@@ -33,6 +38,8 @@ const Layout = ({ children }) => {
             }
         }
     ` );
+    // console.log( children )
+
 
     return ( 
         <>
@@ -49,16 +56,27 @@ const Layout = ({ children }) => {
 
             </Helmet>
 
-            <FontFace />
+         
 
+            <FontFace />
+           
             <Global styles={ globalStyles({ settings }) } />
 
-            <Header />
+              
+            <Header {...{setResultsSearch}} />
+           
 
-            <Main>
-                { children }
-            </Main>
+                <Main>
+                {
+                    React.Children.map( children, child => {
+                        if( React.isValidElement( child ) ){
+                            return React.cloneElement( child, {...{resultsSearch}})
+                        }
 
+                        return child;
+                    })   
+                }
+                </Main>
             <Footer />
         </>
      );
