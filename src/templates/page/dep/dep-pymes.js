@@ -1,20 +1,14 @@
-import { connect, styled } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
-
-const DEPPymes = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
-    const { meta_box } = page;
-    const { 
-        projects_pymes_title,
-        projects_pymes_copy,
-        projects_pymes_image
-     } = meta_box;
+import React from 'react';
+import styled from "@emotion/styled";
+import { Container, Section, Row, Col,mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from '../../../components/styles/colors';
 
 
-    return data.isReady?(
+const DEPPymes = ({ page }) =>{
+
+
+    return (
         <Section spaceBottomNone>
             <Container fluid notFluidXL sizeXL="192rem" noGutters>
                 <WrapperRow bg={colors.blue.base} decoBg={colors.blue.dark}>
@@ -23,7 +17,7 @@ const DEPPymes = ({ state,libraries }) =>{
                         <Col size={12} sizeMD={5}>
                             <DecoLogo decoBg={colors.blue.dark}>
                             <Logo
-                                media={ projects_pymes_image }
+                                media={  }
                                 size="100%"
                                 mxAuto
                                 maxWidth="45rem"
@@ -33,18 +27,18 @@ const DEPPymes = ({ state,libraries }) =>{
                         <Col size={12} sizeMD={6}>
                             <SectionTitle> { projects_pymes_title } </SectionTitle>
                             <DivTitle color={colors.white} decoBg={colors.blue.dark}>
-                                <Copy> { projects_pymes_copy } </Copy>
+                                <Copy> {  } </Copy>
                             </DivTitle>
                         </Col>
                     </Row>
                 </WrapperRow>
             </Container>
         </Section>
-    ):null;
+    );
 
 }
 
-export default connect(DEPPymes);
+export default DEPPymes;
 
 const WrapperRow = styled.div`
     background: ${props => props.bg};
@@ -88,8 +82,7 @@ const SectionTitle = styled.h2`
     }
 `;
 
-const Copy = styled.p`
-`
+const Copy = styled.p``;
 
 
 const Logo = styled(FeaturedMedia)`
@@ -105,6 +98,7 @@ const Logo = styled(FeaturedMedia)`
         margin-top: -13rem;
     }
 `;
+
 const DecoLogo = styled.div`
     position: relative;
     &::before{

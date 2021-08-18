@@ -1,21 +1,18 @@
-import { connect, styled } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
+import React from 'react';
+import styled from "@emotion/styled";
+import { Container, Section, Row, Col,mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from '../../../components/styles/colors';
 
 
-const DEPAsesory = ({ state }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
+const DEPAsesory = ({ page }) =>{
 
 
-    const { meta_box } = page;
-    const { projects_asesory_group } = meta_box;
-
-    return data.isReady?(
-        <BGSection spaceNone bg={colors.blue.dark}  decoBg={colors.blue.base}>
+    return (
+        <BGSection spaceNone bg={colors.blue.dark} decoBg={colors.blue.base}>
             <Container>
                 <Row alignCenter size={12}>
-                { projects_asesory_group.map((item, index) =>{
+                {/* { projects_asesory_group.map((item, index) =>{
                             
                             return(
                                     <Col size={12} sizeMD={6}  key={index} mxAuto>
@@ -26,15 +23,15 @@ const DEPAsesory = ({ state }) =>{
                                     </DivTitle > 
                                     </Col>                      
                                      )
-                                })}           
+                                })}            */}
                 </Row>
             </Container>
         </BGSection>
-    ):null;
+    );
 
 }
 
-export default connect(DEPAsesory);
+export default DEPAsesory;
 
 
 const BGSection = styled(Section)`
@@ -73,25 +70,25 @@ const Title = styled.h6`
 
 `;
 const Deco = styled.p`
-position: relative;
-&::before{
-    content: "";
-    position: absolute;
-    padding:6.2%;
-    left:-5%;
-    top:2.5rem;
-    background: ${props => props.decoBg};
-    opacity: 0.5;
-    clip-path: circle(50% at 50% 50%);
-    ${mq.lg}{
-        left:-5%; 
-        top:1rem;
-    }
+    position: relative;
+    &::before{
+        content: "";
+        position: absolute;
+        padding:6.2%;
+        left:-5%;
+        top:2.5rem;
+        background: ${props => props.decoBg};
+        opacity: 0.5;
+        clip-path: circle(50% at 50% 50%);
+        ${mq.lg}{
+            left:-5%; 
+            top:1rem;
+        }
 } 
 
 `;
  
 const Copy = styled.p`
-margin-top:2rem;
-`
+    margin-top:2rem;
+`;
 

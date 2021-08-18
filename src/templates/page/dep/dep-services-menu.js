@@ -1,42 +1,29 @@
-import { connect, styled, css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
-import Link from "../../link";
-import {useState} from "react";
+import React,{useState} from 'react';
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { Container, Section, Row, Col,mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from '../../../components/styles/colors';
 
 
 
-const DEPServicesMenu = ({ state, libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
 
-    const { 
-        meta_box,
-        navigation = []
-    } = page;
 
-    const { 
-        projects_services_professional_group
-     } = meta_box;
-
-    const Html2React = libraries.html2react.Component; 
+const DEPServicesMenu = ({ page }) =>{
+ 
     
     const [view, setView] = useState(0);
 
-    const {
-        stringify,
-        parse
-    } = libraries.source;
 
-    return data.isReady?(
+
+    return (
         <SSection spaceTopNone>
             <Container>
                 <Row justifyContent="center">
                     <Col noGutters>
                         <Menu>
                             <Row justifyContent="center">
-                            {
+                            {/* {
                                 navigation.map((item, index)=>{
                                     
                                     const {
@@ -64,7 +51,7 @@ const DEPServicesMenu = ({ state, libraries }) =>{
                                         </Col>
                                     )
                                 })
-                            }
+                            } */}
                             </Row>
                         </Menu>
                     </Col>
@@ -72,7 +59,7 @@ const DEPServicesMenu = ({ state, libraries }) =>{
                 <Row>
                     <Col>
                         <Content  bg={colors.gray.light} id="contenido">
-                            { navigation.map((item,index)=>{
+                            {/* { navigation.map((item,index)=>{
 
                                 const {
                                     content
@@ -90,16 +77,16 @@ const DEPServicesMenu = ({ state, libraries }) =>{
                                     </Copy>
                                 )  
                                 
-                            })}
+                            })} */}
                         </Content>
                     </Col>
                 </Row>
             </Container>
         </SSection>
-    ):null;
+    );
 }
 
-export default connect(DEPServicesMenu);
+export default DEPServicesMenu;
 
 const SSection = styled(Section)`
     margin-top: -2.5rem !important;
@@ -169,7 +156,7 @@ const Content = styled.div`
         border-radius: 2rem;
         z-index: -1;
     }
-`
+`;
 
-const Copy = styled.div``
+const Copy = styled.div``;
 

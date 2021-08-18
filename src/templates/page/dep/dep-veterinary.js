@@ -1,48 +1,47 @@
-import { connect, styled,css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
-import link from "../../link";
+import React from 'react';
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { Container, Section, Row, Col,mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from '../../../components/styles/colors';
+import link from "../../../components/link";
 
-const DEPVeterinary = ({ state, libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
-
-
-    const { meta_box } = page;
-    const { 
-        projects_veterinary_title,
-        projects_veterinary_copy,
-        projects_veterinary_subTitle,
-        projects_veterinary_image,
-        projects_veterinary_group
-     } = meta_box;
+const DEPVeterinary = ({ page }) =>{
 
 
+    const {
+        dep:{
+            veterinary:{
+                title,
+                copy,
+                servicios,
+                image,
+                groupServices
+            }
+        }
+    } = page;
 
-    return data.isReady?(
+    return (
         <Section>
             <Container>
                 <WrapperRow>
                     <Row>
                         <Col size={12} sizeMD={7} noGutters>
                             <DivTitle color={colors.blue.dark} bg={colors.blue.dark}>
-                                <SectionTitle> { projects_veterinary_title } </SectionTitle>
-                                <Copy> { projects_veterinary_copy } </Copy>
+                                <SectionTitle> { title } </SectionTitle>
+                                <Copy> { copy } </Copy>
                                 <Row>
                                     <Col size={12} css={stylesCol}>
-                                    <ServiceLink color={colors.blue.base} to='/'> { projects_veterinary_subTitle } </ServiceLink>
+                                    <ServiceLink color={colors.blue.base} to='/'> { servicios } </ServiceLink>
                                     </Col>
-                                    <Row >
-                                            {projects_veterinary_group.map((item, index)=>{
+                       
+                                            {groupServices.map((item, index)=>{
                                                     return(
                                                       <Col size={6} key={ index }>  
                                                                  <ServiceCopy  color={colors.gray.base} > { item.title  }  </ServiceCopy>
                                                       </Col>
                                                     )
                                             })}     
-                                    </Row>
-
                                     </Row>
                             </DivTitle>
                         </Col>
@@ -54,7 +53,7 @@ const DEPVeterinary = ({ state, libraries }) =>{
                           DecoBgA={colors.blue.dark}
                           >                            
                             <Media
-                                media={ projects_veterinary_image }
+                                media={ image }
                                 size="90%"
                             />
                         </SpecialCol>
@@ -62,11 +61,11 @@ const DEPVeterinary = ({ state, libraries }) =>{
                 </WrapperRow>
             </Container>
         </Section>
-    ):null;
+    );
 
 }
 
-export default connect(DEPVeterinary);
+export default DEPVeterinary;
 
 const WrapperRow = styled.div`
     box-shadow: silver 0 0 10px;
@@ -94,8 +93,8 @@ const Copy = styled.p``;
 const stylesCol =  css`
         margin-top: 2rem;
         margin-bottom: 5rem;
+`;
 
-`
 const ServiceLink = styled(link)`
         font-weight: bold;
         text-decoration: none;
@@ -103,9 +102,9 @@ const ServiceLink = styled(link)`
 `;
 
 const ServiceCopy = styled.div`
-        color: ${ props => props.color  }
+        color: ${ props => props.color  };
 
-`
+`;
 
 const Media = styled( FeaturedMedia )`
         top:-10%;
@@ -128,4 +127,5 @@ const SpecialCol =  styled(Col)`
             ${mq.lg}{
                 top:-13%;
             }
+        }
 `;

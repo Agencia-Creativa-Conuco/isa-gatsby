@@ -1,4 +1,4 @@
-import React from "react";
+import React  from "react";
 import styled from "@emotion/styled";
 import { Container, Section, Row, Col } from "../layout/index";
 import colors from '../styles/colors';
@@ -8,23 +8,34 @@ import { h4 } from "../styles/posts-tipography";
 
 
 const ResultsBody = (props) =>{
+  
+  
+  const {
+    resultsSearch
+  } = props
+  
 
-    const {
-        resultsSearch
-    } = props
-
-
-    return resultsSearch?.length ? (
-        <Section>
+  const count =  resultsSearch?.length;
+  
+  return resultsSearch?.length ? (
+    <Section>
             <Container>
-                <H1>Resultados</H1>
+              <Row>
+                <Col size={12}  css={css`text-align:center;`}>
+                <h1>Resultados</h1>
+                </Col>
+
+               <Col>
+                 <h3>
+                   Total: <span css={css`color:${colors.secondary.base};`} >{count} Resultados</span>
+                 </h3>
+               </Col> 
+               </Row>
                 <Row>
                     
                     {resultsSearch.map((item, id)=>{
-
                         const {
                             title,
-                            slug,
                             type,
                             uri
                         } = item
@@ -40,9 +51,9 @@ const ResultsBody = (props) =>{
                                 <Card types={type} decoColor={ colors.primary.base}> 
                                     <StyledLink to={uri} >
                                     <Title color={ colors.primary.base }> {title}</Title>
-                                        <RouterCard>
+                                        <RouterCard colorRouter={colors.secondary.base}>
                                         { type !== 'resource' ?
-                                            `https://isa.conuco.do${slug}`:null
+                                            `${uri}`:null
                                         }
                                         </RouterCard>
                                     </StyledLink>
@@ -100,10 +111,16 @@ ${({ decoColor="#00A4E5", types="Types" })=>css`
 `;
 
 const RouterCard = styled.div`
+
+${({ colorRouter="#00A4E5" })=>css`
   font-size: 1.4rem;
   position: relative;
   padding: 6px 0;
-`;
+  color: ${colorRouter};
+
+  `}
+
+  `;
 
 
 const Title = styled.h2`

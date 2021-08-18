@@ -1,41 +1,40 @@
-import { connect, styled, css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
-import link from "../../link";
-import  DEPServicesMenu from "./dep-services-menu";
+import React from 'react';
+import styled from "@emotion/styled";
 
-const DEPServices = ({ state, libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
+import { Container, Section, Row, Col} from "../../../components/layout/index";
+// import FeaturedMedia from "../../../components/featured-media";
+// import colors from '../../../components/styles/colors';
 
-    const { meta_box } = page;
-    const { 
-        projects_services_professional_image,
-        projects_services_professional_title,
-        projects_services_professional_copy,
-     } = meta_box;
 
-     
-    return data.isReady?(
-        <BGSection spaceNone  img={ projects_services_professional_image.full_url  }  >
+const DEPServices = ({ page }) =>{
+    const {
+        dep:{
+            services:{
+                title,
+                copy,
+                image
+            }
+        }
+    } = page;
+
+    return (
+        <BGSection spaceNone img={image.localFile.publicURL}  >
             <Container  >
                 <Row>
                     <Col size={12} sizeMD={8} sizeLG={6} mlAuto>
                         <Content>
-                                <Title>{  projects_services_professional_title } </Title>
-                                <Copy>{ projects_services_professional_copy } </Copy> 
+                                <Title>{ title } </Title>
+                                <Copy>{ copy } </Copy> 
                          </Content>
                     </Col>
                 </Row>
             </Container>
         </BGSection>
-    ):null;
+    );
 
 }
 
-export default connect(DEPServices);
+export default DEPServices;
 
 
 
@@ -65,16 +64,15 @@ const Title = styled.h2`
 
 const Copy = styled.p`
         margin-bottom: 4rem;
-
 `;
 
 
-const ServiceLink = styled(link)`
-        font-size: 2rem;
-        text-decoration: none;
-        color: ${props => props.color};   
-        text-align: right;
-`;
+// const ServiceLink = styled(link)`
+//         font-size: 2rem;
+//         text-decoration: none;
+//         color: ${props => props.color};   
+//         text-align: right;
+// `;
 
 
 

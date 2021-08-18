@@ -1,23 +1,24 @@
-import { connect, styled } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
+import React from 'react';
+import styled from "@emotion/styled";
+import { Container, Section, Row, Col,mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from '../../../components/styles/colors';
 
-const DEPCover = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
+
+
+const DEPCover = ({ page }) =>{
 
     const {
-        meta_box
+        featuredImage,
+        dep:{
+            cover:{
+            titleDEp,
+            copy
+          }
+        }
     } = page;
-
-    const {
-        projects_cover_copy
-    } = meta_box;
-
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
-
-    return data.isReady?(
+    
+    return (
         <Section spaceNone>
             <Container fluid noGutters>
                 <Row>
@@ -26,7 +27,7 @@ const DEPCover = ({ state,libraries }) =>{
                             decoBg ={colors.blue.base}
                         >
                         <Logo
-                            media={page.featured_media}
+                            media={featuredImage}
                             size="100%"
                             size="80%"
                             bgColor
@@ -40,12 +41,8 @@ const DEPCover = ({ state,libraries }) =>{
                                 <Row>
                                     <Col>
                                         <DivTitle>
-                                            <SectionTitle> {page.title.rendered} </SectionTitle>
-                                            <Copy>
-                                                <Html2React 
-                                                    html={projects_cover_copy}
-                                                />
-                                            </Copy>
+                                            <SectionTitle> {titleDEp}</SectionTitle>
+                                            <Copy>{copy}</Copy>
                                         </DivTitle>
                                     </Col>
                                 </Row>
@@ -55,10 +52,10 @@ const DEPCover = ({ state,libraries }) =>{
                 </Row>
             </Container>
         </Section>
-    ):null;
+    );
 }
 
-export default connect(DEPCover);
+export default DEPCover;
 
 const DivTitle = styled.div`
     ${mq.xl}{

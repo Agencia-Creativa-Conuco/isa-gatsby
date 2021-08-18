@@ -9,7 +9,8 @@ import FrontPage from "./home/front-page";
 import Services from "./page/services/service";
 import Dip from "./page/dip/dip";
 import usePages from "../hooks/usePages";
-import Library from "./page/library"
+import Library from "./page/library";
+import DEP from "./page/dep";
 
 export const query = graphql`
   query ($id: String!) {
@@ -48,6 +49,8 @@ const Post = ({ data }) => {
           <Dip  {...{ page }}/>
         ) : slug === 'biblioteca'?(
           <Library  {...{ page }}/>
+        ):  slug === 'direccion-extension-y-proyectos'?(
+          <DEP  {...{ page }}/>
         ): (
           <h1>ESTA ES LA PÁGINA:{title}</h1>
         )

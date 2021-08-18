@@ -1,41 +1,42 @@
-import { connect, styled } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-
-const DEPActivities = ({ state,libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component;
-    
-    const { meta_box } = page;
-    const {  
-        projects_activities_title,
-        projects_activities_copy
-    } = meta_box;
+import React from 'react';
+import styled from "@emotion/styled";
+import { Container, Section, Row, Col} from "../../../components/layout/index";
+import colors from '../../../components/styles/colors';
 
 
-    return data.isReady?(
+const DEPActivities = ({ page }) =>{
+
+    const {
+        dep:{
+            activities:{
+                title,
+                content
+            }
+        }
+
+    } = page;
+ 
+
+    return (
         <BGSection spaceNone bg={colors.gray.light}>
             <StyledContainer>
                 <Row justifyContent="center">
                     <Col size={12}>
                         <DivTitle>
-                            <SectionTitle>{  projects_activities_title }</SectionTitle>
+                            <SectionTitle>{ title }</SectionTitle>
                             <Content>
-                                <Html2React 
-                                    html={ projects_activities_copy }
-                                />
+                            <div dangerouslySetInnerHTML={{__html: content}} /> 
                             </Content>
                         </DivTitle>
                     </Col>
                 </Row>
             </StyledContainer>
         </BGSection>
-    ):null;
+    );
 
 }
 
-export default connect(DEPActivities);
+export default DEPActivities;
 
 const BGSection = styled(Section)`
     background: ${props => props.bg};

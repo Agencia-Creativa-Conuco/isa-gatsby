@@ -1,24 +1,33 @@
-import { connect, styled, css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
+import React from 'react';
+import styled from "@emotion/styled";
+import { css } from '@emotion/react';
+import { Container, Section, Row, Col,mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from '../../../components/styles/colors';
 
 
-const DEPDevelopment = ({ state, libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
-    const Html2React = libraries.html2react.Component; 
 
-    const { meta_box } = page;
-    const { 
-        projects_development_title,
-        projects_development_copy, 
-        projects_development_image,
-        projects_development_content,
-     } = meta_box;
+const DEPDevelopment = ({ page }) =>{
 
 
-    return data.isReady?(
+
+    const {
+        dep:{
+            development:{
+                title,
+                content,
+                contentActividades,
+                image,
+            }
+        }
+
+    } = page;
+ 
+    
+
+
+
+    return (
         <Section spaceNone  >
             <Container fluid  >
                 <Row>
@@ -33,9 +42,9 @@ const DEPDevelopment = ({ state, libraries }) =>{
                                 <Row>
                                     <Col>
                                         <Wrapper color="white">
-                                            <Title color={colors.white}> { projects_development_title } </Title>
+                                            <Title color={colors.white}> { title } </Title>
                                             <Content color={colors.white}> 
-                                                <Html2React html={ projects_development_copy } />
+                                            <div dangerouslySetInnerHTML={{__html: content}} />
                                             </Content>
                                         </Wrapper>
                                     </Col>
@@ -55,22 +64,15 @@ const DEPDevelopment = ({ state, libraries }) =>{
                                         <Wrapper>
                                             <Media  decoBg={colors.cta.base}>
                                                 <FeaturedMedia
-                                                    media={ projects_development_image }
+                                                    media={ image  }
                                                     // size="60%"
                                                     maxWidth="25rem"
                                                     alignCenter
                                                     mxAuto
                                                 />
                                             </Media>
-                                            <List color={colors.gray.base}>
-                                            {
-                                                projects_development_content.map((item, index)=>{
-
-                                                    return(
-                                                        <Item key={index}>{item}</Item>
-                                                    )
-                                                })   
-                                            }
+                                            <List>
+                                            <div css={css`color:${colors.gray.base};`} dangerouslySetInnerHTML={{__html: contentActividades}} />
                                             </List>
                                         </Wrapper>
                                     </Col>
@@ -81,11 +83,11 @@ const DEPDevelopment = ({ state, libraries }) =>{
                 </Row>
             </Container>
         </Section>
-    ):null;
+    );
 
 }
 
-export default connect(DEPDevelopment);
+export default DEPDevelopment;
 
 const Title = styled.h2`
     margin-bottom: 3rem;
@@ -111,8 +113,7 @@ const List = styled.ul`
     padding: 0;
 `;
 
-const Item = styled.li`
-`;
+
 
 const Content = styled.div`
     color:  ${props => props.color};
