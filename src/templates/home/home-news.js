@@ -12,7 +12,7 @@ const HomeNews = ({ page, posts }) =>{
         newsTitle = "Noticias Recientes",
     } = page;
 
-    const news = posts;
+    const news = posts.filter( post => post.postType === "post");
 
     return news.length > 0?(
         <Section>

@@ -47,6 +47,16 @@ const usePosts = () => {
                     uri
                   }
                 }
+
+                postData {
+                  type
+                  file {
+                    localFile {
+                      publicURL
+                    }
+                  }
+                }
+
               }
             }
           }
@@ -67,6 +77,8 @@ const usePosts = () => {
         link: post.link,
         featuredImage: post.featuredImage? post.featuredImage.node.localFile : null,
         type: post.__typename,
+        postType: post.postData.type,
+        file: post.postData.file,
     }));
 }
  

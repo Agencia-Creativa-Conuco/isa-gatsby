@@ -71,6 +71,18 @@ const useCareers = () => {
                   }
         
                 }
+
+                contact {
+                  phones {
+                    phone
+                    exts {
+                      ext
+                    }
+                  }
+                  emails {
+                    email
+                  }
+                }
         
                 resources {
                   resourceRelationship {
@@ -129,6 +141,7 @@ const useCareers = () => {
         tabs: career.careerInfo.tabs || [],
         form: career.careerInfo.form,
         resources: career?.resources?.resourceRelationship || [],
+        contact: career.contact,
         type: career.__typename,
       })
     })

@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
+    siteUrl: "https://isa.conuco.do",
     title: "isa",
   },
   plugins: [
@@ -8,12 +8,12 @@ module.exports = {
       resolve: "gatsby-source-wordpress",
       options: {
         url: "https://isa.conuco.do/graphql",
-        // schema: {
-        // timeout: 100000,
-        // perPage: 50, // currently set to 100
-        // requestConcurrency: 5, // currently set to 15
-        // previewRequestConcurrency: 2, // currently set to 5
-        // },
+        schema: {
+          timeout: 100000,
+          // perPage: 100, // currently set to 100
+          // requestConcurrency: 10, // currently set to 15
+          // previewRequestConcurrency: 2, // currently set to 5
+        },
       },
     },
     {
@@ -44,15 +44,20 @@ module.exports = {
           `,
         ref: "slug",
         index: ["title", "slug"],
-        store: ["id","title", "slug", "excerpt", "type"],
+        store: ["id", "title", "slug", "excerpt", "type"],
         normalizer: ({ data }) => {
-          return Object.values(data).map( type => type.nodes ).reduce((acumulador, currentValue) => acumulador.concat(currentValue) ).map((node) => ({
-            id: node.id,
-            title: node.title,
-            slug: node.slug,
-            excerpt: node?.excerpt,
-            type: node.__typename,
-          }));
+          return Object.values(data)
+            .map((type) => type.nodes)
+            .reduce((acumulador, currentValue) =>
+              acumulador.concat(currentValue)
+            )
+            .map((node) => ({
+              id: node.id,
+              title: node.title,
+              slug: node.slug,
+              excerpt: node?.excerpt,
+              type: node.__typename,
+            }));
         },
       },
     },

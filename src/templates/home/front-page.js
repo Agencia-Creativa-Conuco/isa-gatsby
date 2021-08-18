@@ -9,23 +9,15 @@ import HomeNews from "./home-news";
 import Calendar from "../../components/calendar";
 
 import useSlides from "../../hooks/useSlides";
-import usePosts from "../../hooks/usePosts";
 import useProjects from "../../hooks/useProjects";
-import useEvents from "../../hooks/useEvents";
 
-const FrontPage = ({ page }) => {
+const FrontPage = ({ page, posts = [], events }) => {
 
   //Obtiene los datos de los slides
   const slides = useSlides();
 
-  //Obtiene los datos de los Posts
-  const posts = usePosts();
-
   //Obtiene los datos de los Proyectos
   const projects = useProjects();
-
-  //Obtiene los datos de los Eventos
-  const events = useEvents();
 
   // Load the post, but only if the data is ready.
   return (

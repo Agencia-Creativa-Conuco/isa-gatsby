@@ -3,8 +3,7 @@ import styled from "@emotion/styled";
 import FacultyCover from "./faculty-cover";
 import FacultyPerfil from "./faculty-perfil";
 import FacultyAreasAcademic from "./faculty-areas";
-// import Contact from "../../contact";
-
+import Contact from "../../components/contact";
 
 const Faculty = ({ faculty })=>{
 
@@ -14,7 +13,7 @@ const Faculty = ({ faculty })=>{
             <FacultyCover {...{faculty}} />
             <FacultyPerfil {...{faculty}} />
             <FacultyAreasAcademic {...{faculty}} />
-            {/* <Contact color={faculty_color || colors.primary.dark }/> */}
+            <Contact data={faculty.contact} color={faculty.color} />
         </Article>
     )
 }

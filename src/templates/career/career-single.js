@@ -7,6 +7,8 @@ import Pensum from "./carreer-pensum";
 import CareerForm from './career-form';
 import ResourceList from '../../components/resourceslist';
 import useFaculties from "../../hooks/useFaculties";
+import Contact from "../../components/contact";
+import colors from "../../components/styles/colors";
 
 const Career = ({ career })=>{
 
@@ -25,6 +27,7 @@ const Career = ({ career })=>{
                 titleColor={faculty.color} 
                 resourceColor={faculty.color}
             />
+            <Contact data={career.contact} color={faculty.color} bgColor={colors.gray.light} />
         </Article>
     );
 }

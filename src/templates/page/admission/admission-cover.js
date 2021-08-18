@@ -14,12 +14,13 @@ const AdmissionCover = ({ page }) =>{
 
     return (
         <Section spaceNone>
-            <Container fluid noGutters>
+            <Container fluid>
                 <Row alignCenter>
                     <Col 
                         size={12} 
                         sizeMD={7}  
                         sizeLG={6}  
+                        noGutters
                     >
                         <DivLogo decoBg={colors.secondary.light}>
                             <DecoLogo decoBg={colors.secondary.light}>
@@ -38,27 +39,17 @@ const AdmissionCover = ({ page }) =>{
                         sizeMD={5}
                         sizeLG={6}  
                     >
-                        <CopyContainer>
-                            <Row>
-                                <Col
-                                    size={12}
-                                    sizeMD={6}
-                                    mlAuto
-                                >
-                                    <Content decoBg={colors.secondary.light}>
-                                        <SectionTitle>{title}</SectionTitle>
+                        <Content as="div" decoBg={colors.secondary.light}>
+                            <SectionTitle>{title}</SectionTitle>
 
-                                        <Copy>Sigue estos pasos y estudia con nosotros, aplica para vivir una experiencia educativa de calidad que marcará un antes y un después en tu carrera profesional. ¿Estás listo?</Copy>
+                            <Copy>Sigue estos pasos y estudia con nosotros, aplica para vivir una experiencia educativa de calidad que marcará un antes y un después en tu carrera profesional. ¿Estás listo?</Copy>
 
-                                        <StyledCTA 
-                                            to={"#"}
-                                            paddingX="7rem"
-                                            cta
-                                        >Aplicar</StyledCTA>
-                                    </Content>
-                                </Col>
-                            </Row>
-                        </CopyContainer>
+                            <StyledCTA 
+                                to={"#"}
+                                paddingX="7rem"
+                                cta
+                            >Aplicar</StyledCTA>
+                        </Content>
                     </Col>
                 </Row>
             </Container>
@@ -69,19 +60,11 @@ const AdmissionCover = ({ page }) =>{
 
 export default AdmissionCover;
 
-const CopyContainer = styled(Container)`
-    width: 200%;
+const Content = styled(Section)`
     position: relative;
-    margin: 10% auto;
-    ${mq.md}{
-        margin-top: 10rem;
-        left: 0%;
-        transform: translate(-50%,0);
-    }
-`;
-
-const Content = styled.div`
-    position: relative;
+    max-width: 57rem;
+    margin-left: auto;
+    margin-right: auto;
     z-index: 1;
     &:after{
         content: "";
@@ -96,7 +79,6 @@ const Content = styled.div`
     }
 
 `;
-
 
 const SectionTitle = styled.h1`
     margin-top: 0;

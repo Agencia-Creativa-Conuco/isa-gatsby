@@ -202,7 +202,7 @@ const usePages = () => {
                 }
         
                 events {
-                  categories {
+                  eventCategories {
                     __typename
                     id
                     name
@@ -211,9 +211,28 @@ const usePages = () => {
                     uri
                   }
                 }
+
+                posts {
+                  categories {
+                    id
+                  }
+                }
+
                 investigation{
                   coverInvestigation {
                     copy
+                  }
+                }
+
+                contact {
+                  phones {
+                    phone
+                    exts {
+                      ext
+                    }
+                  }
+                  emails {
+                    email
                   }
                 }
         
@@ -312,9 +331,13 @@ const usePages = () => {
           cover: page.investigation.coverInvestigation
         },
         events: {
-          categories: page?.events?.categories || []
+          categories: page?.events?.eventCategories || [],
+        },
+        posts: {
+          categories: page?.posts?.categories || [],
         },
         resources: page.resources,
+        contact: page.contact,
         library:{
           cover: page.library.coverLibrary,
           horary: page.library.horary,

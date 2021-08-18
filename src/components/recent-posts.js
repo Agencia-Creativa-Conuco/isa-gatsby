@@ -1,29 +1,23 @@
 import React from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col, mq } from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
-import Link from "../../../components/link";
-import colors from "../../../components/styles/colors";
+import { Container, Section, Row, Col, mq } from "./layout/index";
+import FeaturedMedia from "./featured-media";
+import Link from "./link";
+import colors from "./styles/colors";
 
-const DIPNews = ({ page, posts }) =>{
+const RecentPosts = ({ title="Noticias Recientes", posts }) =>{
  
-    const {
-         newsTitle = "Noticias Recientes"
-    } = page;
-    
-    const news = posts;
-
-    return news.length?(
+    return posts.length?(
         <Section>
             <Container fluid>
                 <Row>
                     <Col>
-                        <SectionTitle> { newsTitle } </SectionTitle>
+                        <SectionTitle> { title } </SectionTitle>
                     </Col>
                 </Row>
                 <Row>
-                    {news.slice(0,3).map( (item, index) => {
+                    {posts.slice(0,3).map( (item, index) => {
 
                         const {
                             title,
@@ -58,7 +52,7 @@ const DIPNews = ({ page, posts }) =>{
 
 }
 
-export default DIPNews;
+export default RecentPosts;
 
 const Card = styled.div`
     margin-bottom: 6rem;

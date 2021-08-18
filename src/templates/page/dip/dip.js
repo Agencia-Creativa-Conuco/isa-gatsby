@@ -7,14 +7,12 @@ import useDepartaments from "../../../hooks/useDepartaments";
 import useFaculties from "../../../hooks/useFaculties";
 import useProjectLines from "../../../hooks/useProjectLines";
 import usePersons from "../../../hooks/usePersons";
-import usePosts from "../../../hooks/usePosts";
-import DIPNews from "./dip-news";
 import DIPTeam from "../../../components/team-slider";
 import DIPGeneral from "./dip-general";
 
-const ResearchPage = ({ ...page }) => {
+const ResearchPage = ({ page }) => {
 
-    //Obtiene los datos de las facultades.
+  //Obtiene los datos de las facultades.
   const faculties = useFaculties();
 
   //Obtiene los datos de los departamentos que tienen líneas de investigación relacionadas
@@ -31,19 +29,14 @@ const ResearchPage = ({ ...page }) => {
   //Obtiene los datos de las Persons
   const persons = usePersons();
 
-  //Obtiene los datos de los Posts
-  const posts = usePosts();
-
-
   return (
     <Container>
-      <DIPCover {...page} />
+      <DIPCover {...{page}} />
       <DIPGeneral
         {...{ page, projects, projectLines, faculties, departaments }}
       />
       <DIPProcess {...{ page, projects }} />
       <DIPTeam {...{ persons }} />
-      <DIPNews {...{ page, posts }} />
     </Container>
   );
 };

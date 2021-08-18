@@ -28,8 +28,6 @@ const SearchModal = ({ isSearchModalOpen, toggleSearchModal }) => {
 
   const resultados = useFlexSearch( query, resultado.localSearchPages.index, resultado.localSearchPages.store );
 
-  console.log(resultados)
-
   const { searchQuery } = "lorem";
 
   const closeSearchModal = () => {

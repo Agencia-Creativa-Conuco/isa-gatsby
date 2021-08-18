@@ -19,7 +19,7 @@ const ServiceCover = ({ page }) =>{
 
     return (
         <Section spaceNone>
-            <Container noGutters fluid>
+            <Container fluid>
                 <Row alignCenter>
                     <Col 
                         size={12} 
@@ -27,19 +27,10 @@ const ServiceCover = ({ page }) =>{
                         order={2} 
                         orderMD={1}  
                     >
-                        <CopyContainer>
-                            <Row>
-                                <Col
-                                    size={12}
-                                    sizeMD={6}
-                                >
-                                    <DivTitle>
-                                        <SectionTitle> {title} </SectionTitle>
-                                        <Copy>{copy}</Copy> 
-                                    </DivTitle>
-                                </Col>
-                            </Row>
-                        </CopyContainer>
+                        <Content as="div">
+                            <SectionTitle> {title} </SectionTitle>
+                            <Copy>{copy}</Copy> 
+                        </Content>
                     </Col>
                     <Col 
                         size={12} 
@@ -48,23 +39,22 @@ const ServiceCover = ({ page }) =>{
                         zIndex={1}
                         order={1}
                     >
-                        <Content decoBg={colors.blue.base}>
-                        <Media
-                        >
-                            <FeaturedMedia 
-                                decoBg={colors.primary.base} 
-                                media={featuredImage}
-                                size="100%"
-                                sizeXL="90%"
-                                bgColor
+                        <MediaWrapper decoBg={colors.blue.base}>
+                            <Media>
+                                <FeaturedMedia 
+                                    decoBg={colors.primary.base} 
+                                    media={featuredImage}
+                                    size="100%"
+                                    sizeXL="90%"
+                                    bgColor
+                                />
+                            </Media>
+                            <DecoContent 
+                                decoBg={colors.blue.base}
+                                decoBgB={colors.blue.dark}
+                                decoBgC={colors.cta.base}
                             />
-                        </Media>
-                        <DecoContent 
-                            decoBg={colors.blue.base}
-                            decoBgB={colors.blue.dark}
-                            decoBgC={colors.cta.base}
-                         />
-                        </Content> 
+                        </MediaWrapper> 
                     </Col>
                 </Row>
             </Container>
@@ -75,19 +65,11 @@ const ServiceCover = ({ page }) =>{
 
 export default ServiceCover;
 
-
-const CopyContainer = styled(Container)`
-    width: 200%;
-    position: relative;
-    margin: 10% auto;
-    ${mq.md}{
-        margin-top: 10rem;
-        left: 100%;
-        transform: translate(-50%,0);
-    }
+const Content = styled(Section)`
+    max-width: 57rem;
+    margin-left: auto;
+    margin-right: auto;
 `;
-
-const DivTitle = styled.div``;
 
 const SectionTitle = styled.h1``;
 
@@ -98,7 +80,7 @@ const Media = styled.div`
     clip-path: ellipse(100% 100% at 100% 0%);
 `;
 
-const Content = styled.div`
+const MediaWrapper = styled.div`
     ${({decoBg = "#4B84E9"})=>css`
         position: relative;
         &:before{

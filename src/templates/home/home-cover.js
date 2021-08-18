@@ -53,7 +53,7 @@ const HomeCover = ({ page, slides }) =>{
                                             />
                                         </Media>
                                     </Col>
-                                    <Col size={12} sizeMD={6} sizeLG={6} orderMD={1} mxAuto mlMDAuto css={contentColStyles}>
+                                    <Col size={12} sizeMD={6} sizeLG={6} orderMD={1} mxAuto css={contentColStyles}>
                                         <Content bg={colors.blue.dark}>
                                             <Title>{title}</Title>
                                             <Copy>

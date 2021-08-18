@@ -21,7 +21,7 @@ const AboutCover = ({ page }) =>{
 
     return (
         <Section spaceNone css={sectionStyles}>
-            <Container  fluid  noGutters>
+            <Container  fluid>
                 <Row alignCenter >
                     <Col 
                         size={12} 
@@ -31,33 +31,24 @@ const AboutCover = ({ page }) =>{
                         order={2} 
                         orderMD={1}
                     >
-                        <CopyContainer>
-                            <Row>
-                                <Col
-                                    size={12}
-                                    sizeMD={6}
-                                >
-                                    <Content decoBg={colors.blue.base}>
-                                    
-                                        <SectionTitle> {title} </SectionTitle>
-                                        <Copy>{ copy } </Copy>
+                        <Content decoBg={colors.blue.base}>
+                        
+                            <SectionTitle> {title} </SectionTitle>
+                            <Copy>{ copy } </Copy>
 
-                                        
-                                        {
-                                            cta.url && cta.title?(
-                                                <Cta 
-                                                    to={cta.url}
-                                                    target={cta.target}
-                                                >
-                                                    { cta.title }
-                                                </Cta>
-                                            ):null
-                                        }
-                                    
-                                    </Content>
-                                </Col>
-                            </Row>
-                        </CopyContainer>
+                            
+                            {
+                                cta.url && cta.title?(
+                                    <Cta 
+                                        to={cta.url}
+                                        target={cta.target}
+                                    >
+                                        { cta.title }
+                                    </Cta>
+                                ):null
+                            }
+                        
+                        </Content>
                     </Col>
                     <Col 
                      size={11} 
@@ -67,6 +58,7 @@ const AboutCover = ({ page }) =>{
                      order={1} 
                      orderMD={2}
                      mlAuto
+                     noGutters
                     >
                         <Media decoBg={colors.blue.base}>
                             <Logo
@@ -95,20 +87,9 @@ const sectionStyles = css`
     overflow: hidden;
 `;
 
-const CopyContainer = styled(Container)`
-    width: 200%;
-    position: relative;
-    margin: 10% auto;
-    ${mq.md}{
-        margin-top: 10rem;
-        left: 100%;
-        transform: translate(-50%,0);
-    }
-`;
-
 const Content = styled.div`
     margin: 2rem auto;
-    max-width: 50rem;
+    max-width: 57rem;
     position: relative;
     &::before{
         content: '';

@@ -15,6 +15,8 @@ exports.createPages = async gatsbyUtilities => {
   // Query our posts from the GraphQL server
   const posts = await getNodes(gatsbyUtilities)
 
+  const configs = await getNodesConfig(gatsbyUtilities);
+
   // If there are no posts in WordPress, don't do anything
   if (!posts.length) {
     return
@@ -24,7 +26,7 @@ exports.createPages = async gatsbyUtilities => {
   await createSinglePages({ posts, gatsbyUtilities })
 
   // And a paginated archive
-  await createBlogPostArchive({ posts, gatsbyUtilities })
+  await createBlogPostArchive({ posts, configs, gatsbyUtilities })
 }
 
 /**
@@ -64,7 +66,7 @@ const createSinglePages = async ({ posts, gatsbyUtilities }) =>
 /**
  * This function creates all the individual blog pages in this site
  */
-async function createBlogPostArchive({ posts, gatsbyUtilities }) {
+async function createBlogPostArchive({ posts, configs, gatsbyUtilities }) {
   const graphqlResult = await gatsbyUtilities.graphql(/* GraphQL */ `
     {
       wp {
@@ -77,50 +79,62 @@ async function createBlogPostArchive({ posts, gatsbyUtilities }) {
 
   const { postsPerPage } = graphqlResult.data.wp.readingSettings
 
-  const postsChunkedIntoArchivePages = chunk(posts, postsPerPage)
-  const totalPages = postsChunkedIntoArchivePages.length
+  const includeTypes = ["post"];
 
-  return Promise.all(
-    postsChunkedIntoArchivePages.map(async (_posts, index) => {
-      const pageNumber = index + 1
+  configs.filter( config => includeTypes.includes( config.name ) )
+  .map( config => {
 
-      const getPagePath = page => {
-        if (page > 0 && page <= totalPages) {
-          // Since our homepage is our blog page
-          // we want the first page to be "/" and any additional pages
-          // to be numbered.
-          // "/blog/2" for example
-          return page === 1 ? `/blog` : `/blog/${page}`
+    const archivePath = config.archivePath || `/${config.name}/`;
+
+    const _posts = posts.filter( ({ post }) => post.__typename.replace(`Wp`, ``).toLowerCase() === config.name );
+
+    const postsChunkedIntoArchivePages = chunk(_posts, postsPerPage)
+    const totalPages = postsChunkedIntoArchivePages.length
+
+    return Promise.all(
+      postsChunkedIntoArchivePages.map(async (_posts, index) => {
+        const pageNumber = index + 1
+  
+        const getPagePath = page => {
+          if (page > 0 && page <= totalPages) {
+            // Since our homepage is our blog page
+            // we want the first page to be "/" and any additional pages
+            // to be numbered.
+            // "/blog/2" for example
+            return page === 1 ? `${archivePath}` : `${archivePath}${page}`
+          }
+  
+          return null
         }
-
-        return null
-      }
-
-      // createPage is an action passed to createPages
-      // See https://www.gatsbyjs.com/docs/actions#createPage for more info
-      await gatsbyUtilities.actions.createPage({
-        path: getPagePath(pageNumber),
-
-        // use the blog post archive template as the page component
-        component: path.resolve(`./src/templates/blog-post-archive.js`),
-
-        // `context` is available in the template as a prop and
-        // as a variable in GraphQL.
-        context: {
-          // the index of our loop is the offset of which posts we want to display
-          // so for page 1, 0 * 10 = 0 offset, for page 2, 1 * 10 = 10 posts offset,
-          // etc
-          offset: index * postsPerPage,
-
-          // We need to tell the template how many posts to display too
-          postsPerPage,
-
-          nextPagePath: getPagePath(pageNumber + 1),
-          previousPagePath: getPagePath(pageNumber - 1),
-        },
+  
+        // createPage is an action passed to createPages
+        // See https://www.gatsbyjs.com/docs/actions#createPage for more info
+        await gatsbyUtilities.actions.createPage({
+          path: getPagePath(pageNumber),
+  
+          // use the blog post archive template as the page component
+          component: path.resolve(`./src/templates/${config.name}-archive.js`),
+  
+          // `context` is available in the template as a prop and
+          // as a variable in GraphQL.
+          context: {
+            // the index of our loop is the offset of which posts we want to display
+            // so for page 1, 0 * 10 = 0 offset, for page 2, 1 * 10 = 10 posts offset,
+            // etc
+            offset: index * postsPerPage,
+  
+            // We need to tell the template how many posts to display too
+            postsPerPage,
+  
+            nextPagePath: getPagePath(pageNumber + 1),
+            previousPagePath: getPagePath(pageNumber - 1),
+          },
+        })
       })
-    })
-  )
+    )
+
+  });
+
 }
 
 /**
@@ -133,7 +147,7 @@ async function createBlogPostArchive({ posts, gatsbyUtilities }) {
  */
 async function getNodes({ graphql, reporter }) {
   const graphqlResult = await graphql(/* GraphQL */ `
-    query WpPosts {
+    query Query {
       # Query all WordPress blog posts sorted by date
       allWpPost(sort: { fields: [date], order: DESC }) {
         edges {
@@ -220,6 +234,23 @@ async function getNodes({ graphql, reporter }) {
           }
         }
       }
+      allWpDepartament(sort: { fields: [date], order: DESC }) {
+        edges {
+          previous {
+            id
+          }
+          # note: this is a GraphQL alias. It renames "node" to "post" for this query
+          # We're doing this because this "node" is a post! It makes our code more readable further down the line.
+          post: node {
+            __typename
+            id
+            uri
+          }
+          next {
+            id
+          }
+        }
+      }
     }
   `)
 
@@ -233,9 +264,46 @@ async function getNodes({ graphql, reporter }) {
 
   return [
     ...graphqlResult.data.allWpPost.edges,
+    ...graphqlResult.data.allWpPost.edges,
     ...graphqlResult.data.allWpPage.edges,
     ...graphqlResult.data.allWpProject.edges,
     ...graphqlResult.data.allWpCareer.edges,
     ...graphqlResult.data.allWpFaculty.edges,
+    ...graphqlResult.data.allWpDepartament.edges,
+  ]
+}
+
+/**
+ * This function queries Gatsby's GraphQL server and asks for
+ * All WordPress content types. If there are any GraphQL error it throws an error
+ * Otherwise it will return the posts 🙌
+ */
+ async function getNodesConfig({ graphql, reporter }) {
+  const graphqlResult = await graphql(/* GraphQL */ `
+    query Query {
+
+      # Query all Wordpress content type configurations
+      allWpContentType {
+        nodes {
+          id
+          name
+          hasArchive
+          archivePath
+        }
+      }
+      
+    }
+  `)
+
+  if (graphqlResult.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your content types`,
+      graphqlResult.errors
+    )
+    return
+  }
+
+  return [
+    ...graphqlResult.data.allWpContentType.nodes,
   ]
 }

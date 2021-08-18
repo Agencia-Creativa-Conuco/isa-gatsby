@@ -16,7 +16,7 @@ const HomeProjects = ({ projects, page }) =>{
     } = page;
 
     return projects.length?(
-        <Section spaceNone>
+        <Section spaceBottomNone >
             <Container fluid>
                 <Row>
                     <Col>

@@ -19,7 +19,7 @@ const HomeContact = ({ page }) =>{
 
     return (
         <Section spaceNone>
-            <Container fluid notFluidXL sizeXL="192rem">
+            <Container fluid>
                 <Row alignCenter reverseLG>
                     <Col size={12} sizeLG={6} noGutters>
                         <Image

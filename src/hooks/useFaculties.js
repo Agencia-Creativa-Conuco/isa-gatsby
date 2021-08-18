@@ -54,6 +54,18 @@ const useFaculties = () => {
                   }
         
                 }
+
+                contact {
+                  phones {
+                    phone
+                    exts {
+                      ext
+                    }
+                  }
+                  emails {
+                    email
+                  }
+                }
         
                 resources {
                   resourceRelationship {
@@ -100,6 +112,7 @@ const useFaculties = () => {
       careers: faculty.facultyInfo.facultyRelationship || [],
       departaments: faculty.facultyInfo.facultyDepartamentRel || [],
       type: faculty.__typename,
+      contact: faculty.contact,
     }));
 }
  

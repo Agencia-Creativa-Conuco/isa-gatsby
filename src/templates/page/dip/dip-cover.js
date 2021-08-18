@@ -19,7 +19,7 @@ const DIPCover = ({ page }) =>{
 
     return (
         <StyledSection spaceNone decoBg={colors.cta.base}>
-            <Container noGutters fluid>
+            <Container fluid>
                 <Row alignCenter>
                     <Col 
                     size={12} 
@@ -28,17 +28,10 @@ const DIPCover = ({ page }) =>{
                     order={2} 
                     orderMD={1}  
                     >
-                        <CopyContainer>
-                            <Row>
-                                <Col
-                                    size={12}
-                                    sizeMD={6}
-                                >
-                                    <Title> { title } </Title>
-                                    <Copy>{ copy }</Copy> 
-                                </Col>
-                            </Row>
-                        </CopyContainer>
+                        <Content as="div">
+                            <Title> { title } </Title>
+                            <Copy>{ copy }</Copy> 
+                        </Content>
                     </Col>
                     <Col 
                      size={11} 
@@ -48,6 +41,7 @@ const DIPCover = ({ page }) =>{
                      order={1} 
                      orderMD={2}
                      mlAuto
+                     noGutters
                      >
                         <DecoLogo decoBg ={colors.blue.dark}>
                         <Logo
@@ -84,15 +78,10 @@ const StyledSection = styled(Section)`
     `}
 `;
 
-const CopyContainer = styled(Container)`
-    width: 200%;
-    position: relative;
-    margin: 10% auto;
-    ${mq.md}{
-        margin-top: 10rem;
-        left: 100%;
-        transform: translate(-50%,0);
-    }
+const Content = styled(Section)`
+    max-width: 57rem;
+    margin-left: auto;
+    margin-right: auto;
 `;
 
 const Title = styled.h1`

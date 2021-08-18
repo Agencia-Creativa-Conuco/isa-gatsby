@@ -17,11 +17,12 @@ const Admisiones = ({page}) => {
 
   const eventCategories = page.events.categories.map( item => item.id );
 
+  
   const events = useEvents();
-
+  
   //Eventos filtrados por categorías
-  const filteredEvents = events.filter( item => item.categories.filter( category => eventCategories.includes(category.id) ) );
-
+  const filteredEvents = events.filter( event => event.categories.filter( category => eventCategories.includes(category.id) ).length );
+  
   return (
     <Container>
       <AdmissionCover {...{ page }} />

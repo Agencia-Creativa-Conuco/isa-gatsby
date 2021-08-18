@@ -40,6 +40,18 @@ const useDepartaments = () => {
               }
             }
 
+            contact {
+              phones {
+                phone
+                exts {
+                  ext
+                }
+              }
+              emails {
+                email
+              }
+            }
+
           }
         }
       }
@@ -64,6 +76,7 @@ const useDepartaments = () => {
         careers: departament.departamentInfo.departamentCareerRel || [],
         projectLines: departament.departamentInfo.departamentProjectLineRel || [],
         type: departament.__typename,
+        contact: departament.contact,
       })
     });
 }
