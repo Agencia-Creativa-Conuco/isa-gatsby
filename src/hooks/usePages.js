@@ -276,9 +276,8 @@ const usePages = () => {
                     title
                     content {
                       cloneContent
-                    }
-                  
-                }
+                    } 
+                  }
                   reglamento {
                     copy
                     title
@@ -297,8 +296,104 @@ const usePages = () => {
                         }
                       }
                     }
-                    
-                }
+                  }
+                  dep{
+                    coverDep{
+                      copy
+                      titleDep
+                    }
+                    activitiesDep {
+                      content
+                      title
+                    }
+                    developmentProject {
+                      content
+                      title
+                      contentActividades
+                      image{
+                        localFile {
+                          publicURL
+                          childImageSharp {
+                            fluid(maxWidth: 1920) {
+                              ...GatsbyImageSharpFluid_withWebp
+                            }
+                          }
+                        }
+                      }
+                    }
+                    serviciosProfesionales {
+                      copy
+                      title
+                      servicesMenu {
+                        title
+                        copy
+                      }
+                      image{
+                        localFile {
+                          publicURL
+                          childImageSharp {
+                            fluid(maxWidth: 1920) {
+                              ...GatsbyImageSharpFluid_withWebp
+                            }
+                          }
+                        }
+                      }
+                      
+                    }
+                    laboratorio {
+                      dataLaboratory {
+                        copy
+                        title
+                        image{
+                          localFile {
+                            publicURL
+                            childImageSharp {
+                              fluid(maxWidth: 1920) {
+                                ...GatsbyImageSharpFluid_withWebp
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    clinicaVeterinaria {
+                      title
+                      copy
+                      servicios
+                      groupServices {
+                        title
+                      }
+                      image{
+                        localFile {
+                          publicURL
+                          childImageSharp {
+                            fluid(maxWidth: 1920) {
+                              ...GatsbyImageSharpFluid_withWebp
+                            }
+                          }
+                        }
+                      }
+                    }
+                    cede {
+                      copy
+                      title
+                      group {
+                        copy
+                        title
+                      }
+                      image{
+                        localFile {
+                          publicURL
+                          childImageSharp {
+                            fluid(maxWidth: 1920) {
+                              ...GatsbyImageSharpFluid_withWebp
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                
               }
             }
           }
@@ -344,7 +439,17 @@ const usePages = () => {
           recursos: page.library.recursos ,
           reglamento: page.library.reglamento,
           services: page.library.services
+        },
+        dep:{
+          cover: page.dep?.coverDep,
+          activities: page.dep?.activitiesDep,
+          development: page.dep?.developmentProject,
+          services: page.dep?.serviciosProfesionales,
+          laboratory: page.dep?.laboratorio,
+          veterinary: page.dep?.clinicaVeterinaria,
+          cede: page.dep?.cede
         }
+
     }));
 }
  

@@ -1,21 +1,18 @@
-import { connect, styled } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
+import React from 'react';
+import styled from "@emotion/styled";
+import { Container, Section, Row, Col,mq} from "../../../components/layout/index";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from '../../../components/styles/colors';
 
 
-const DEPIdentity = ({ state }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
+const DEPIdentity = ({ page }) =>{
 
-    const { meta_box } = page;
-    const { projects_identity_group } = meta_box;
-
-    return data.isReady?(
+    return (
         <BGSection fluid spaceNone bg={colors.gray.light}>
             <Container>
                 <Row alignCenter>
 
-                { projects_identity_group.map((item, index) =>{
+                {/* { projects_identity_group.map((item, index) =>{
                             
                             return(
                                 <Col size={12} sizeMD={6} sizeLG={4} key={index} mxAuto> 
@@ -26,15 +23,15 @@ const DEPIdentity = ({ state }) =>{
                                 </Col>
 
                                      )    
-                                })}   
+                                })}    */}
                      </Row>
             </Container>
         </BGSection>
-    ):null;
+    );
 
 }
 
-export default connect(DEPIdentity);
+export default DEPIdentity;
 
 
 
@@ -63,6 +60,5 @@ font-weight: bold;
     transform: translate(-2rem);
 `;
 
-const Copy = styled.p`
-`
+const Copy = styled.p``;
 

@@ -1,35 +1,30 @@
-import { connect, styled, css } from "frontity";
-import { Container, Section, Row, Col, mq} from "../../layout/index";
-import FeaturedMedia from "../../featured-media";
-import Link from "../../link";
-import {useState} from "react";
+import React,{useState} from 'react';
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { Container, Section, Row, Col} from "../../../components/layout/index";
+// import FeaturedMedia from "../../../components/featured-media";
+import colors from '../../../components/styles/colors';
 
 
 
-const DEPServicesMenu = ({ state, libraries }) =>{
-    const data = state.source.get(state.router.link);
-    const page = state.source[data.type][data.id];
-    const {colors} = state.theme;
 
-    const { 
-        meta_box,
-        navigation = []
-    } = page;
 
-    const { 
-        projects_services_professional_group
-     } = meta_box;
-
-    const Html2React = libraries.html2react.Component; 
+const DEPServicesMenu = ({ page }) =>{
+ 
     
     const [view, setView] = useState(0);
 
     const {
-        stringify,
-        parse
-    } = libraries.source;
+        dep:{
+            services:{
+                servicesMenu
+            }
+        }
+    } = page;
 
-    return data.isReady?(
+
+
+    return (
         <SSection spaceTopNone>
             <Container>
                 <Row justifyContent="center">
@@ -37,30 +32,29 @@ const DEPServicesMenu = ({ state, libraries }) =>{
                         <Menu>
                             <Row justifyContent="center">
                             {
-                                navigation.map((item, index)=>{
+                                servicesMenu.map((item, index)=>{
                                     
                                     const {
                                         title,
-                                        icon
                                     } = item;
                                     
                                     return(
                                         <Col size={6} sizeMD='auto' key={index} > 
-                                            <Link to={stringify({path:parse(state.router.link).path, hash:"#contenido"})} noDecoration>
+                                            {/* <Link to={stringify({path:parse(state.router.link).path, hash:"#contenido"})} noDecoration> */}
                                                 <Option 
                                                     decoBG={colors.blue.base}    
-                                                    onClick={ (e) => setView( view == index ? view : index ) }
+                                                    onClick={ (e) => setView( view === index ? view : index ) }
                                                     active={view === index} 
                                                     color={view === index ? colors.blue.base : colors.white}                                        
                                                 >
                                                     <OptionIcon
                                                         bgColor={view === index ? colors.blue.base : colors.white}                                      
                                                     >
-                                                        <FeaturedMedia media={icon} />
+                                                        {/* <FeaturedMedia media={icon} /> */}
                                                     </OptionIcon>
                                                     <OptionName>{title}</OptionName>
                                                 </Option> 
-                                            </Link>
+                                            {/* </Link> */}
                                         </Col>
                                     )
                                 })
@@ -72,10 +66,10 @@ const DEPServicesMenu = ({ state, libraries }) =>{
                 <Row>
                     <Col>
                         <Content  bg={colors.gray.light} id="contenido">
-                            { navigation.map((item,index)=>{
+                            { servicesMenu.map((item,index)=>{
 
                                 const {
-                                    content
+                                    copy
                                 } = item;
 
                                 return(
@@ -83,9 +77,9 @@ const DEPServicesMenu = ({ state, libraries }) =>{
                                         key={index} 
                                         noGutters
                                         active={view === index} 
-                                        hidden={index!=view}>
+                                        hidden={index!==view}>
 
-                                        <Html2React html={ content } />
+                                        { copy } 
 
                                     </Copy>
                                 )  
@@ -96,10 +90,10 @@ const DEPServicesMenu = ({ state, libraries }) =>{
                 </Row>
             </Container>
         </SSection>
-    ):null;
+    );
 }
 
-export default connect(DEPServicesMenu);
+export default DEPServicesMenu;
 
 const SSection = styled(Section)`
     margin-top: -2.5rem !important;
@@ -169,7 +163,7 @@ const Content = styled.div`
         border-radius: 2rem;
         z-index: -1;
     }
-`
+`;
 
-const Copy = styled.div``
+const Copy = styled.div``;
 

@@ -23,7 +23,7 @@ const AdmissionForm = ({ state,libraries }) =>{
     `);
 
     return (
-        <BackgroundImage Tag="section" fluid={image?.childImageSharp?.fluid}>
+        <BackgroundImage Tag="section" fluid={image?.childImageSharp}>
             <Container>
                 <Row>
                     <Col size="auto" css={css`background-color: ${colors.blue.dark};`}>
