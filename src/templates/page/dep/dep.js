@@ -7,18 +7,14 @@ import DEPServices  from "./dep-services";
 import DEPLaboratory from "./dep-laboratory";
 import DEPVeterinary from "./dep-veterinary";
 import DEPCede from "./dep-cede";
+import DEPServicesMenu from "./dep-services-menu";
 // import DEPPymes from "./dep-pymes";
 // import DEPIdentity from "./dep-identity";
 // import DEPAsesory from "./dep-asesory";
-import DEPServicesMenu from "./dep-services-menu";
 
 
 const DEPPage = ({ page }) => {
 
-  // Get information about the current URL.
-
-
-  // Load the post, but only if the data is ready.
     return  (
       <Container>
         <DEPCover {...{page}}/>
@@ -27,12 +23,11 @@ const DEPPage = ({ page }) => {
         <DEPServices  {...{page}}/>
         <DEPServicesMenu {...{page}}/>
         <DEPLaboratory {...{page}}/>
+        <DEPVeterinary  {...{page}}/>
+        <DEPCede  {...{page}}/>
         {/* <DEPPymes  {...{page}}/>
         <DEPIdentity  {...{page}}/>
         <DEPAsesory  {...{page}}/> */}
-        <DEPVeterinary  {...{page}}/>
-        
-        <DEPCede  {...{page}}/>
       </Container>
     )
 };

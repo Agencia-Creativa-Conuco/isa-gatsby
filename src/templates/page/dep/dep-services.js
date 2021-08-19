@@ -3,7 +3,8 @@ import styled from "@emotion/styled";
 
 import { Container, Section, Row, Col} from "../../../components/layout/index";
 // import FeaturedMedia from "../../../components/featured-media";
-// import colors from '../../../components/styles/colors';
+import colors from '../../../components/styles/colors';
+import Link  from "../../../components/link"
 
 
 const DEPServices = ({ page }) =>{
@@ -25,6 +26,7 @@ const DEPServices = ({ page }) =>{
                         <Content>
                                 <Title>{ title } </Title>
                                 <Copy>{ copy } </Copy> 
+                                <ServiceLink to={"/"} color={ colors.blue.base}> cartera de services</ServiceLink>
                          </Content>
                     </Col>
                 </Row>
@@ -67,12 +69,12 @@ const Copy = styled.p`
 `;
 
 
-// const ServiceLink = styled(link)`
-//         font-size: 2rem;
-//         text-decoration: none;
-//         color: ${props => props.color};   
-//         text-align: right;
-// `;
+const ServiceLink = styled(Link)`
+        font-size: 2rem;
+        text-decoration: none;
+        color: ${props => props.color};   
+        text-align: right;
+`;
 
 
 
