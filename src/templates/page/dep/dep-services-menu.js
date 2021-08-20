@@ -78,9 +78,7 @@ const DEPServicesMenu = ({ page }) =>{
                                         noGutters
                                         active={view === index} 
                                         hidden={index!==view}>
-
                                         { copy } 
-
                                     </Copy>
                                 )  
                                 

@@ -6,17 +6,18 @@ import { css } from '@emotion/react';
 import Link from "../link"
 import { h4 } from "../styles/posts-tipography";
 
+import ModalCard from "../modal";
 
-const ResultsBody = (props) =>{
+
+const ResultsBody = ({props, resources}) =>{
   
   
   const {
     resultsSearch
   } = props
-  
 
   const count =  resultsSearch?.length;
-  
+
   return resultsSearch?.length ? (
     <Section>
             <Container>
@@ -24,7 +25,6 @@ const ResultsBody = (props) =>{
                 <Col size={12}  css={css`text-align:center;`}>
                 <h1>Resultados</h1>
                 </Col>
-
                <Col>
                  <h3>
                    Total: <span css={css`color:${colors.secondary.base};`} >{count} Resultados</span>
@@ -33,33 +33,44 @@ const ResultsBody = (props) =>{
                </Row>
                 <Row>
                     
-                    {resultsSearch.map((item, id)=>{
+                    {resultsSearch.map((item, index)=>{
                         const {
                             title,
                             type,
-                            uri
+                            uri,
+                            id
                         } = item
-                  
+
+                        //Obtener los datos del  recurso
+                        const resultsModal = resources.filter((item)=> item.id === id)
+                      
                         return(
                             <Col
-                            key={id}
+                            key={index}
                             size={12}
                             sizeMD={6}
                             sizeXL={6}
                             >
                               <Article>  
                                 <Card types={type} decoColor={ colors.primary.base}> 
-                                    <StyledLink to={uri} >
-                                    <Title color={ colors.primary.base }> {title}</Title>
-                                        <RouterCard colorRouter={colors.secondary.base}>
-                                        { type !== 'resource' ?
-                                            `${uri}`:null
-                                        }
-                                        </RouterCard>
-                                    </StyledLink>
+                                    {type !== "WpResource" ?(     
+                                      <StyledLink  to={uri}> 
+                                          <Title color={ colors.primary.base }> {title}</Title>
+                                              <RouterCard colorRouter={colors.secondary.base}>
+                                                {uri}
+                                              </RouterCard>
+                                          </StyledLink>
+                                      ):(
+                                        <>
+                                        <Title color={ colors.primary.base } > {title}</Title>
+                                        <ModalCard 
+                                        props={resultsModal}/>
+    
+                                        </>
+                                      )
+                                    }            
                                     </Card>
                               </Article>
-
                             </Col>
                     )
                     })
@@ -68,7 +79,10 @@ const ResultsBody = (props) =>{
             </Container>
         </Section>
     ):(
-        <H1> Sin Resultados :( </H1>
+      <>
+        <H1> Sin Resultados :( </H1>                
+        </>
+        
     )
 
 }
@@ -80,11 +94,6 @@ const H1 = styled.h1`
     margin: 5rem;
     text-align: center;
 `;
-
-
-
-
-
 
 const Article = styled.article``;
 

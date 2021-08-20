@@ -16,8 +16,6 @@ const Layout = ({ children }) => {
 
     const [resultsSearch, setResultsSearch] = useState();
 
-    console.log()
-    
     const {
         wp: {
             generalSettings: settings
@@ -40,7 +38,6 @@ const Layout = ({ children }) => {
             }
         }
     ` );
-    // console.log( children )
 
 
     return ( 
@@ -74,7 +71,6 @@ const Layout = ({ children }) => {
                         if( React.isValidElement( child ) ){
                             return React.cloneElement( child, {...{resultsSearch}})
                         }
-
                         return child;
                     })   
                 }

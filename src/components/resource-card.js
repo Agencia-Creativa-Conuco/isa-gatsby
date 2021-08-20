@@ -4,18 +4,18 @@ import styled from "@emotion/styled";
 import { DownloadIcon } from "./icons";
 import { Row, Col } from "./layout/index";
 import {h5} from "./styles/tipography";
-import cta from "./styles/cta";
 import FeaturedMedia from "./featured-media"
 import colors from "./styles/colors";
+import ModalCard from "./modal"
 
 const ResourceCard = ({
     state, actions, libraries, 
-    title, to, icon, color=state.theme.colors.primary.dark
+    title, to, icon, color=state.theme.colors.primary.dark,
+    item
 }) => {
     
     return (
         <Card>
-            <DownloadLink href={to} download>
                 <Row>
                     <Col>
                         <ResourceName color={color}>{title}</ResourceName>
@@ -32,10 +32,10 @@ const ResourceCard = ({
                             )
                         }
                         </Icon>
-                        <Button>Descargar</Button>
+                       
+                            <ModalCard props={[item]}/>
                     </Col>
                 </Row>
-            </DownloadLink>
         </Card>
     )
 }
@@ -44,6 +44,7 @@ export default ResourceCard;
 
 const Card = styled.div`
     max-width: 300px;
+    padding: 2rem;
     box-shadow: 0 .5rem 1rem rgba(0,0,0,0.15);
     border-radius: 15px;
     margin: 0 auto;
@@ -56,12 +57,12 @@ const Card = styled.div`
     }
 `;
 
-const DownloadLink = styled.a`
-    padding: 15px;
-    display: block;
-    text-decoration: none;
-    color: inherit;
-`;
+// const DownloadLink = styled.a`
+//     padding: 15px;
+//     display: block;
+//     text-decoration: none;
+//     color: inherit;
+// `;
 
 const ResourceName = styled.span`
     ${({color="blue"}) => css`
@@ -101,7 +102,7 @@ const Icon = styled.div`
     `}
 `;
 
-const Button = styled.span`
-    ${cta}
-    margin-top: 1rem;
-`;
+// const Button = styled.span`
+//     ${cta}
+//     margin-top: 1rem;
+// `;

@@ -83,6 +83,7 @@ const ResourcesList = ({
                                 icon={featuredImage}
                                 to={publicURL}    
                                 color={resourceColor}
+                                item={item}
                             />
                         </Col>
                         )
