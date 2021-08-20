@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 import mq from "./mq";
 
 const Section = ({
   thin, small, medium, large, 
   mediumTop, mediumBottom,
   spaceTopNone, spaceTopNoneMD, spaceBottomNone, spaceNone,
-  zIndex, zIndexSM, zIndexMD, zIndexLG, zIndexXL,
+  zIndex, zIndexSM, zIndexMD, zIndexLG, zIndexXL, bgColor,
   ...props
 }) => {
 
@@ -15,7 +16,7 @@ const Section = ({
       thin, small, medium, large, 
       mediumTop, mediumBottom,
       spaceTopNone, spaceTopNoneMD, spaceBottomNone, spaceNone,
-      zIndex, zIndexSM, zIndexMD, zIndexLG, zIndexXL,
+      zIndex, zIndexSM, zIndexMD, zIndexLG, zIndexXL, bgColor,
       ...props
     }} />
   );
@@ -31,30 +32,31 @@ const SectionComponent = styled.section`
     thin, small, medium, large, 
     mediumTop, mediumBottom,
     spaceTopNone, spaceTopNoneMD, spaceBottomNone, spaceNone,
-    zIndex, zIndexSM, zIndexMD, zIndexLG, zIndexXL
-  }) => `
-    ${thin? `
+    zIndex, zIndexSM, zIndexMD, zIndexLG, zIndexXL, bgColor
+  }) => css`
+    ${ bgColor?css`background-color: ${bgColor}`:css``}
+    ${thin? css`
       margin-bottom: 3.2rem;
       margin-top: 3.2rem;
       ${mq.md}{
           margin-bottom: 6.4rem;
           margin-top: 6.4rem;
       }`:""}
-    ${small || (!thin && !medium && !large) ? `
+    ${small || (!thin && !medium && !large) ? css`
       margin-bottom: 5.5rem;
       margin-top: 5.5rem;
       ${mq.md}{
           margin-bottom: 9.6rem;
           margin-top: 9.6rem;
       }`:""}
-    ${medium? `
+    ${medium? css`
       margin-bottom: 6.4rem;
       margin-top: 6.4rem;
       ${mq.md}{
           margin-bottom: 12.8rem;
           margin-top: 12.8rem;
       }`:""}
-    ${large? `
+    ${large? css`
       margin-bottom: 8rem;
       margin-top: 8rem;
       ${mq.md}{
@@ -62,7 +64,7 @@ const SectionComponent = styled.section`
           margin-top: 16rem;
       }`:""}
     
-    ${mediumTop? `
+    ${mediumTop? css`
       ${mq.xs}{
         margin-top: 6.4rem;
         ${mq.md}{
@@ -71,7 +73,7 @@ const SectionComponent = styled.section`
       }
     `:""}
 
-    ${mediumBottom? `
+    ${mediumBottom? css`
       ${mq.xs}{
         margin-bottom: 6.4rem;
         ${mq.md}{
@@ -80,49 +82,49 @@ const SectionComponent = styled.section`
       }
     `:""}
 
-    ${spaceTopNone? `
+    ${spaceTopNone? css`
       ${mq.xs}{
         margin-top: initial;
       }
     `:""}
 
-    ${spaceTopNoneMD? `
+    ${spaceTopNoneMD? css`
       ${mq.md}{
         margin-top: initial;
       }
     `:""}
 
-    ${spaceBottomNone? `
+    ${spaceBottomNone? css`
       ${mq.xs}{
         margin-bottom: initial;
       }
     `:""}
 
-    ${spaceNone? `
+    ${spaceNone? css`
       ${mq.xs}{
         margin: initial;
       }
     `:""}
 
-    ${zIndex ? `
+    ${zIndex ? css`
         z-index:${zIndex};
     ` : ""}
-    ${zIndexSM ? `
+    ${zIndexSM ? css`
         ${mq.sm}{
             z-index:${zIndexSM};
         }
     ` : ""}
-    ${zIndexMD ? `
+    ${zIndexMD ? css`
         ${mq.md}{
             z-index:${zIndexMD};
         }
     ` : ""}
-    ${zIndexLG ? `
+    ${zIndexLG ? css`
         ${mq.lg}{
             z-index:${zIndexLG};
         }
     ` : ""}
-    ${zIndexXL ? `
+    ${zIndexXL ? css`
         ${mq.xl}{
             z-index:${zIndexXL};
         }

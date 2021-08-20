@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import colors from './styles/colors';
-import { Container, Row, Col } from './layout/index';
+import { Container, Row, Col, mq } from './layout/index';
 import Nav from './nav';
 import MobileMenu from "./menu";
 import SearchModal from "./search/search-modal";
@@ -131,7 +131,13 @@ const HeaderWrapper = styled.header`
 `;
   
 const Logo = styled.div`
-  max-width: 12rem;
+  max-width: 9rem;
+  ${mq.md}{
+    max-width: 10rem;
+  }
+  ${mq.lg}{
+    max-width: 12rem;
+  }
 `;
 
 const NavWrapper = styled.div`
