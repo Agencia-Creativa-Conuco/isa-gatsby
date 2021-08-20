@@ -88,6 +88,15 @@ module.exports = {
                   uri
                 }
               } 
+              allWpGrade {
+                nodes {
+                  id
+                  __typename
+                  slug
+                  title
+                  uri
+                }
+              }
             
             
           }

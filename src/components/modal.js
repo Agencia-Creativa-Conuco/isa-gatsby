@@ -5,35 +5,34 @@ import { Row, Col, mq} from "./layout/index";
 import colors from './styles/colors';
 import { CloseIcon } from "./icons";
 import FeaturedMedia from "./featured-media";
+import { h4 } from "./styles/posts-tipography";
 
 
 
 const ModalCard = ({props}) =>{
 
+     const {
+        title
+     } = props[0];
+
     const [close, setOPen] = useState(true);
      const  OpenMOdal =()=>{
          setOPen(!close)
-         console.log("Open");
      }
 
-      const obj ={
-        content: `Lorem ipsum dolor sit amet consectetur adipiscing, elit mus himenaeos taciti eget ac, quisque fringilla ridiculus quis tempor.Suspendisse mattis placerat gravida primis sagittis bibendum dis nascetur libero. `
-    }
-
     return(
-        <>
+       <>
         <Modal hidden={close}>
         <ModalContainer>
                     <CloseButton  onClick={OpenMOdal} colors={colors}>
                         <CloseIcon/>
                     </CloseButton>
-
-
                {props?.map((item,index)=>{
                    const {
                        title="Title defaul",
                        featuredImage,
                        resource:{
+                           description,
                         file:{
                             localFile: {
                                 publicURL
@@ -45,7 +44,7 @@ const ModalCard = ({props}) =>{
                         <Row key={index}>
                             <Col order={2} orderMD={1}>
                                 <ModalHeader> {title}</ModalHeader>
-                                <ModalBody> {obj.content}</ModalBody>
+                                <ModalBody> {description}</ModalBody>
                                 <StyledCTA href={publicURL} download >Descargar</StyledCTA>
                             </Col>
 
@@ -63,7 +62,10 @@ const ModalCard = ({props}) =>{
             }     
         </ModalContainer>
         </Modal>
-             <Option onClick={OpenMOdal} >Ver</Option>
+         <ModalSection  onClick={OpenMOdal}>
+             <Title color={ colors.primary.base } >{title}</Title>
+             <Option  color={colors.secondary.base} onClick={OpenMOdal} >Ver</Option>
+        </ModalSection>
         </>
         )
     }
@@ -71,6 +73,12 @@ const ModalCard = ({props}) =>{
     
 export default ModalCard;
     
+const ModalSection = styled.div`
+    &:hover {
+        cursor: pointer;
+        }
+    `;
+
     
 const Modal = styled.div`
     position: fixed;
@@ -127,7 +135,7 @@ const CloseButton = styled.button`
 
 const ModalHeader = styled.h2``;
 
-const ModalBody = styled.div`
+const ModalBody = styled.p`
     margin: 0 auto;
 `;
 
@@ -140,12 +148,13 @@ const StyledCTA = styled.a`
 `;
 
 const Option = styled.h3`
-text-align: center;
-&:hover {
-        font-size: 3rem;
-        cursor: pointer;
-    }
-`;
+    color: ${props => props.color};
+    text-align: right;
+    &:hover {
+            /* font-size: 3rem; */
+            cursor: pointer;
+        }
+    `;
 
 const Media = styled.div`
     display: grid;
@@ -156,6 +165,7 @@ const Image = styled(FeaturedMedia)`
 `;
 
 
-
-
-
+const Title = styled.h2`
+  color: ${ props => props.color };
+  ${h4}
+`;
