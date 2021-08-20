@@ -11,7 +11,6 @@ import ModalCard from "../modal";
 
 const ResultsBody = ({props, resources}) =>{
   
-  
   const {
     resultsSearch
   } = props
@@ -41,6 +40,18 @@ const ResultsBody = ({props, resources}) =>{
                             id
                         } = item
 
+                        const objecTypes ={
+                          WpPage: 'Página',
+                          WpResource:'Recurso',
+                          WpDepartament:'Departamento',
+                          WpCareer:'Carrera',
+                          WpPost:'Publicación',
+                          WpFaculty:'Facultad',
+                          // WpGrade: 'Grado'
+                        }
+                    
+                        const translateTypes =  objecTypes[type] || title;
+
                         //Obtener los datos del  recurso
                         const resultsModal = resources.filter((item)=> item.id === id)
                       
@@ -52,7 +63,7 @@ const ResultsBody = ({props, resources}) =>{
                             sizeXL={6}
                             >
                               <Article>  
-                                <Card types={type} decoColor={ colors.primary.base}> 
+                                <Card types={translateTypes} decoColor={ colors.primary.base}> 
                                     {type !== "WpResource" ?(     
                                       <StyledLink  to={uri}> 
                                           <Title color={ colors.primary.base }> {title}</Title>
@@ -61,12 +72,9 @@ const ResultsBody = ({props, resources}) =>{
                                               </RouterCard>
                                           </StyledLink>
                                       ):(
-                                        <>
-                                        <Title color={ colors.primary.base } > {title}</Title>
-                                        <ModalCard 
-                                        props={resultsModal}/>
-    
-                                        </>
+                                        <ModalCard  props={resultsModal}>
+                                            <Title color={ colors.primary.base } > {title}</Title>
+                                       </ModalCard>
                                       )
                                     }            
                                     </Card>

@@ -15,6 +15,7 @@ const useResources = () => {
                 uri
                 slug
                 resource {
+                  description
                   file {
                     localFile {
                       publicURL
