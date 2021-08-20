@@ -1,9 +1,7 @@
 import React,{useState} from "react";
-import Cta from "./cta";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col, mq} from "./layout/index";
-import {h5} from "./styles/tipography";
+import { Row, Col, mq} from "./layout/index";
 import colors from './styles/colors';
 import { CloseIcon } from "./icons";
 import FeaturedMedia from "./featured-media";
@@ -11,8 +9,6 @@ import FeaturedMedia from "./featured-media";
 
 
 const ModalCard = ({props}) =>{
-
-
 
     const [close, setOPen] = useState(true);
      const  OpenMOdal =()=>{
@@ -32,17 +28,25 @@ const ModalCard = ({props}) =>{
                         <CloseIcon/>
                     </CloseButton>
 
+
                {props?.map((item,index)=>{
                    const {
-                       title,
-                       featuredImage
+                       title="Title defaul",
+                       featuredImage,
+                       resource:{
+                        file:{
+                            localFile: {
+                                publicURL
+                            }
+                        }
+                    }
                    } = item;
                 return(                    
-                        <Row>
+                        <Row key={index}>
                             <Col order={2} orderMD={1}>
                                 <ModalHeader> {title}</ModalHeader>
                                 <ModalBody> {obj.content}</ModalBody>
-                                <StyledCTA >Descargar</StyledCTA>
+                                <StyledCTA href={publicURL} download >Descargar</StyledCTA>
                             </Col>
 
                             {featuredImage?(
@@ -127,17 +131,20 @@ const ModalBody = styled.div`
     margin: 0 auto;
 `;
 
-const StyledCTA = styled(Cta)`
+const StyledCTA = styled.a`
     margin-top: 2rem;
+    padding: 15px;
+    display: block;
+    text-decoration: none;
 
 `;
 
 const Option = styled.h3`
+text-align: center;
 &:hover {
         font-size: 3rem;
         cursor: pointer;
     }
-
 `;
 
 const Media = styled.div`
@@ -146,7 +153,6 @@ const Media = styled.div`
 
 const Image = styled(FeaturedMedia)`
     padding-top: 3rem ;
-
 `;
 
 

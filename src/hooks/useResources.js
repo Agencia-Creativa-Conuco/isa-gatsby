@@ -1,4 +1,3 @@
-import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
 const useResources = () => {
@@ -15,6 +14,13 @@ const useResources = () => {
                 link
                 uri
                 slug
+                resource {
+                  file {
+                    localFile {
+                      publicURL
+                    }
+                  }
+                }
                 featuredImage {
                   node {
                     ...ImageFragment
@@ -34,7 +40,8 @@ const useResources = () => {
         uri: resource.uri,
         link: resource.link,
         featuredImage: resource.featuredImage? resource.featuredImage.node.localFile : null,
-        type: resource.__typename
+        type: resource.__typename,
+        resource: resource.resource
     }));
 }
  
