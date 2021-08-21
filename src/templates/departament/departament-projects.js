@@ -22,7 +22,9 @@ const DepartamentsProjects  = ({ faculty, projects, projectLines })=>{
                     <Container key={line.id} >
                         <Row>
                             <Col>
-                                <Title color={ colors.text.base} >Programas de {line.title}</Title>
+                                <SLink to={line.uri}>
+                                    <Title color={ colors.text.base} >Programas de {line.title}</Title>
+                                </SLink>
                             </Col>
                         </Row>
                         <Row>
@@ -37,7 +39,7 @@ const DepartamentsProjects  = ({ faculty, projects, projectLines })=>{
 
                                 return (
                                     <Col size={6} sizeMD={6}  mxAuto key={index}>
-                                        <StyledLink to={uri}>
+                                        <SLink to={uri}>
                                             <Card>
                                                 <FeaturedMedia 
                                                     media={ featuredImage }
@@ -46,7 +48,7 @@ const DepartamentsProjects  = ({ faculty, projects, projectLines })=>{
                                                 /> 
                                                 <CardTitle color={faculty.color || colors.primary.dark }>{ title }</CardTitle>
                                             </Card>
-                                        </StyledLink>
+                                        </SLink>
                                     </Col>
                                 );
                             })
@@ -92,7 +94,7 @@ const CardTitle = styled.h4`
     /* text-transform: uppercase; */
 `;
 
-const StyledLink = styled(Link)`
+const SLink = styled(Link)`
     text-decoration: none;
     color: inherit;
 `;

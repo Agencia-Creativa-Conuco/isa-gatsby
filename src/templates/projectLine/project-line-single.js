@@ -13,7 +13,7 @@ const ProjectLines = ({line}) => {
     return (
         <Section as="article" spaceNone>
             <Cover bgColor={colors.primary.base} spaceNone>
-                <Section as="div">
+                <Section as="div" spaceBottomNone>
                     <Container>
                         <Row>
                             <Col>
@@ -23,46 +23,50 @@ const ProjectLines = ({line}) => {
                     </Container>   
                 </Section>
             </Cover>
-            <List thin>
-                <Container>
-                    <Row>
-                        <Col>
-                            <SubTitle>Proyectos de investigación</SubTitle>
-                        </Col>
-                    </Row>
-                    <Row>
-                    {
-                        projects.map( project => {
-                            return (
-                                <Col key={project.id} size={12} sizeMD={6}>
-                                    <SLink to={project.uri}>
-                                        <Project>
-                                            <Row>
-                                                {
-                                                project.featuredImage?(
-                                                    <Col size="auto" noRGutters>
-                                                        <ProjectMedia>
-                                                            <FeaturedMedia 
-                                                                media={project.featuredImage} 
-                                                                size="100%"
-                                                            />
-                                                        </ProjectMedia>
-                                                    </Col>
-                                                ):null
-                                                }
-                                                <Col>
-                                                    <ProjectTitle>{project.title}</ProjectTitle>
-                                                </Col>
-                                            </Row>
-                                        </Project>
-                                    </SLink>
+            {
+                projects.length?(
+                    <List thin>
+                        <Container>
+                            <Row>
+                                <Col>
+                                    <SubTitle>Proyectos de investigación</SubTitle>
                                 </Col>
-                            )
-                        })
-                    }
-                    </Row>
-                </Container>
-            </List>
+                            </Row>
+                            <Row>
+                            {
+                                projects.map( project => {
+                                    return (
+                                        <Col key={project.id} size={12} sizeMD={6}>
+                                            <SLink to={project.uri}>
+                                                <Project>
+                                                    <Row>
+                                                        {
+                                                        project.featuredImage?(
+                                                            <Col size="auto" noRGutters>
+                                                                <ProjectMedia>
+                                                                    <FeaturedMedia 
+                                                                        media={project.featuredImage} 
+                                                                        size="100%"
+                                                                    />
+                                                                </ProjectMedia>
+                                                            </Col>
+                                                        ):null
+                                                        }
+                                                        <Col>
+                                                            <ProjectTitle>{project.title}</ProjectTitle>
+                                                        </Col>
+                                                    </Row>
+                                                </Project>
+                                            </SLink>
+                                        </Col>
+                                    )
+                                })
+                            }
+                            </Row>
+                        </Container>
+                    </List>
+                ):null
+            }
         </Section>
     )
 }
@@ -73,19 +77,29 @@ const Cover = styled(Section)`
     overflow: hidden;
 `;
 
-const List = styled(Section)``;
+const List = styled(Section)`
+    margin-bottom: 20rem !important;
+`;
 
 const Title = styled.h1`
     text-align: center;
     color: white;
+    margin-bottom: 4rem;
+    margin-top: 4rem;
 `;
 
-const SubTitle = styled.h2``;
+const SubTitle = styled.h2`
+    font-weight: 300;
+`;
 
 const Project = styled(Container)`
     padding: 1.5rem;
     background-color: #FAFAFA;
+    transition: all 0.25s ease-in-out;
     margin: .5rem 0;
+    &:hover{
+        background-color: #F5F5F5;
+    }
 `;
 
 const ProjectTitle = styled.h3`

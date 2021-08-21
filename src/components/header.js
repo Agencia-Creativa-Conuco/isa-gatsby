@@ -23,7 +23,7 @@ const Header = ( {setResultsSearch}) => {
                 publicURL
             }
 
-            menu: wpMenu(name: {eq: "main"}) {
+            menu: wpMenu(locations: {in: MENU_1}) {
               id
               name
               menuItems {

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
 import { Section, Container, Row, Col } from '../../components/layout/index';
 import Link from '../../components/link';
 import Layout from '../../components/layout';
@@ -21,7 +20,7 @@ const ProjectLines = () => {
         <Layout>
             <Section as="article" spaceNone>
                 <Cover bgColor={colors.primary.base} spaceNone>
-                    <Section as="div">
+                    <Section as="div" spaceBottomNone>
                         <Container>
                             <Row>
                                 <Col>
@@ -92,6 +91,8 @@ const List = styled(Section)``;
 const Title = styled.h1`
     text-align: center;
     color: white;
+    margin-bottom: 4rem;
+    margin-top: 4rem;
 `;
 
 const Faculty = styled.h2`
@@ -107,8 +108,11 @@ const Line = styled.h4`
     font-weight: normal;
     padding: 1.5rem;
     background-color: #FAFAFA;
+    transition: all 0.25s ease-in-out;
     margin: .5rem 0;
-    ;
+    &:hover{
+        background-color: #F5F5F5;
+    }
 `;
 
 const SLink = styled(Link)`

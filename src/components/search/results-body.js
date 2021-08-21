@@ -47,7 +47,9 @@ const ResultsBody = ({props, resources}) =>{
                           WpCareer:'Carrera',
                           WpPost:'Publicación',
                           WpFaculty:'Facultad',
-                          // WpGrade: 'Grado'
+                          WpProject:'Investigación',
+                          WpProjectLine:'Línea de investigación',
+                          WpGrade: 'Oferta académica'
                         }
                     
                         const translateTypes =  objecTypes[type] || title;

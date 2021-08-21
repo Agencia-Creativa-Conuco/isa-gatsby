@@ -160,7 +160,7 @@ const HomeOffer = ({ page }) =>{
     //Consultar y optener logo.svg
     const { menu } = useStaticQuery( graphql`
         query {
-            menu: wpMenu(name: {eq: "home_nav"}) {
+            menu: wpMenu(locations: {in: HOME_NAV}) {
                 id
                 name
                 menuItems {

@@ -15,7 +15,7 @@ module.exports = {
           // previewRequestConcurrency: 2, // currently set to 5
         },
       },
-    },  
+    },
     {
       resolve: "gatsby-plugin-local-search",
       options: {
@@ -69,6 +69,15 @@ module.exports = {
                   uri
                 }
               }
+              allWpProjectLine {
+                nodes {
+                  id
+                  __typename
+                  slug
+                  title
+                  uri
+                }
+              }
               allWpResource {
                 nodes {
                   id
@@ -97,22 +106,25 @@ module.exports = {
                   uri
                 }
               }
-            
-            
           }
           `,
         ref: "slug",
         index: ["title", "slug"],
-        store: ["id","title", "slug", "excerpt", "type", "uri"],
+        store: ["id", "title", "slug", "excerpt", "type", "uri"],
         normalizer: ({ data }) => {
-          return Object.values(data).map( type => type.nodes ).reduce((acumulador, currentValue) => acumulador.concat(currentValue) ).map((node) => ({
-            id: node.id,
-            title: node.title,
-            slug: node.slug,
-            excerpt: node?.excerpt,
-            type: node.__typename,
-            uri: node.uri,
-          }));
+          return Object.values(data)
+            .map((type) => type.nodes)
+            .reduce((acumulador, currentValue) =>
+              acumulador.concat(currentValue)
+            )
+            .map((node) => ({
+              id: node.id,
+              title: node.title,
+              slug: node.slug,
+              excerpt: node?.excerpt,
+              type: node.__typename,
+              uri: node.uri,
+            }));
         },
       },
     },
