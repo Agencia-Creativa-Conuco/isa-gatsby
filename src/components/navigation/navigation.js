@@ -42,11 +42,7 @@ const Navigation = ({
 
             return children?(
               <StyledCol key={index} {...{size, sizeSM, sizeMD, sizeLG, sizeXL, mxAuto}}>
-                {
-                  isLink?(
-                    <NavigationLabel {...{labelColor}}>{label}</NavigationLabel>
-                  ):null
-                }
+                <NavigationLabel {...{labelColor}}>{label}</NavigationLabel>
 
                 <NavList 
                   items={children} 

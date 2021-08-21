@@ -7,6 +7,7 @@ import Link from "../link";
 import NavList from "./nav-list";
 import {LeftArrowMenuIcon} from "../icons";
 import colors from "../styles/colors";
+import { mq } from "../layout/index";
 
 ///////////////////////////////////////////////////
 export function usePrevious(value) {
@@ -75,7 +76,7 @@ const NavItem = ({
         }
         {/* If link url is the current page, add `aria-current` for a11y */}
         {
-            isLink?(
+            isLink && !hasChildren?(
                 <ItemLink
                     to={url}
                     aria-current={isCurrentPage ? "page" : undefined}
@@ -91,6 +92,7 @@ const NavItem = ({
                     {...{isMain, hasChildren, colors}}
                     fontWeight={fontWeight}
                     fontWeightAll={fontWeightAll}
+                    onClick={(e) => {e.stopPropagation(); setOpen(!isOpen)}}
                 >
                     {label}
                 </ItemLabel>
@@ -165,6 +167,9 @@ const itemTextStyles = ({isMain, hasChildren, fontWeight})=>css`
     padding: 1rem 1.5rem;
     padding-right: 4rem;
     font-weight: ${fontWeight};
+    ${mq.lg}{
+        padding: .5rem 1rem;
+    }
     &:hover{
         text-decoration: underline;
     }
