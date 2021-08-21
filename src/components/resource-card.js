@@ -43,7 +43,7 @@ const ResourceCard = ({
             <ModalCard
                 isOpen={isOpenModal} 
                 closeModal={closeModal}>
-                 <h1>Title de en admisiones</h1>
+                 <h1>Titulo en admisiones</h1>
                   
              </ModalCard> 
                                               

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
 import { Section, Container, Row, Col } from '../../components/layout/index';
 import Link from '../../components/link';
 import Layout from '../../components/layout';
