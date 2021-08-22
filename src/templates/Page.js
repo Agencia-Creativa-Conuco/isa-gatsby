@@ -1,6 +1,7 @@
 import * as React from "react";
 import Layout from "../components/layout";
 import { graphql } from "gatsby";
+import { css, Global } from "@emotion/react";
 
 import Admisiones from "./page/admission/admisiones";
 import Offer from "./page/offer/offer";
@@ -46,6 +47,7 @@ const Post = ({ data }) => {
 
   return (
     <Layout>
+      <Global styles={ css`${page.styles}` } />
       {
         isFrontPage? (
           <FrontPage {...{ page, posts, events }}/>

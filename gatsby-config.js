@@ -10,9 +10,9 @@ module.exports = {
         url: "https://isa.conuco.do/graphql",
         schema: {
           timeout: 100000,
-          // perPage: 100, // currently set to 100
-          // requestConcurrency: 10, // currently set to 15
-          // previewRequestConcurrency: 2, // currently set to 5
+          perPage: 25, // currently set to 100
+          requestConcurrency: 15, // currently set to 15
+          previewRequestConcurrency: 5, // currently set to 5
         },
       },
     },

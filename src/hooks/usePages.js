@@ -17,6 +17,7 @@ const usePages = () => {
                 slug
                 isFrontPage
                 isPostsPage
+                styles
                 featuredImage {
                   node {
                     ...ImageFragment
@@ -412,6 +413,7 @@ const usePages = () => {
         isPostsPage: page.isPostsPage,
         featuredImage: page?.featuredImage?.node?.localFile,
         type: page.__typename,
+        styles: page.styles,
         home: page.home,
         offer: page.offer,
         studentServices: page.studentServices,
