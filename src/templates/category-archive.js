@@ -7,12 +7,15 @@ import FeaturedMedia from "../components/featured-media";
 import Link from "../components/link";
 import Cta from "../components/cta";
 import colors from "../components/styles/colors";
+import useCategories from "../hooks/useCategories";
 
 // markup
 const Post = (props) => {
   const { pageContext } = props;
 
-  const { offset, nextPagePath, previousPagePath, postsPerPage, items } = pageContext;
+  const { nextPagePath, previousPagePath, items, id } = pageContext;
+
+  const [category] = useCategories().filter( category => category.id === id);
 
   const posts = usePosts()
     .filter(( post ) => items.includes( post.id ) );
@@ -26,13 +29,18 @@ const Post = (props) => {
       <Section as="article">
         <Container>
           <Row>
+            <Col>
+              <Title>{category.name}</Title>
+            </Col>
+          </Row>
+          <Row>
             {posts.map((post) => {
               return (
                 <Col key={post.id} size={12} sizeMD={4}>
                   <SLink to={post.uri}>
                     <Article>
                       <FeaturedMedia media={post.featuredImage} size="56.25%" bgColor/>
-                      <Title>{post.title}</Title>
+                      <ItemTitle>{post.title}</ItemTitle>
                       <Excerpt dangerouslySetInnerHTML={{__html: post.excerpt}} />
                     </Article>
                   </SLink>
@@ -75,7 +83,9 @@ export default Post;
 
 const Article = styled.article``;
 
-const Title = styled.h3`
+const Title = styled.h1``;
+
+const ItemTitle = styled.h3`
   text-transform: uppercase;
 `;
 

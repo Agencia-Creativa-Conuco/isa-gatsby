@@ -110,6 +110,7 @@ exports.createArchives = async function createArchives({ categories, gatsbyUtili
     
               nextPagePath: getPagePath(pageNumber + 1),
               previousPagePath: getPagePath(pageNumber - 1),
+              id: term.node.id, //id de la categoria
             },
           })
         })
