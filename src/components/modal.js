@@ -1,106 +1,65 @@
-import React,{useState} from "react";
+import React from 'react'
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { Row, Col, mq} from "./layout/index";
-import colors from './styles/colors';
+import { css } from '@emotion/react';
 import { CloseIcon } from "./icons";
-import FeaturedMedia from "./featured-media";
-import { h4 } from "./styles/posts-tipography";
+import { Row, Col, Container} from "./layout/index";
+import colors from './styles/colors';
+import { Global } from '@emotion/react';
 
 
+const ModalCard = ( {isOpen, closeModal, title="Title default", children} ) => {
 
-const ModalCard = ({props}) =>{
 
-     const {
-        title
-     } = props[0];
-
-    const [close, setOPen] = useState(true);
-     const  OpenMOdal =()=>{
-         setOPen(!close)
-     }
+    //Detiene el enevto del padre
+    const handlEeventFather =(e)=> e.stopPropagation();
 
     return(
-       <>
-        <Modal hidden={close}>
-        <ModalContainer>
-                    <CloseButton  onClick={OpenMOdal} colors={colors}>
-                        <CloseIcon/>
-                    </CloseButton>
-               {props?.map((item,index)=>{
-                   const {
-                       title="Title defaul",
-                       featuredImage,
-                       resource:{
-                           description,
-                        file:{
-                            localFile: {
-                                publicURL
-                            }
-                        }
-                    }
-                   } = item;
-                return(                    
-                        <Row key={index}>
-                            <Col order={2} orderMD={1}>
-                                <ModalHeader> {title}</ModalHeader>
-                                <ModalBody> {description}</ModalBody>
-                                <StyledCTA href={publicURL} download >Descargar</StyledCTA>
-                            </Col>
+        <Card display={isOpen ? "grid":"none"} onClick={closeModal} >
+          { isOpen &&
+            <Global styles={{ body: { overflowY: "hidden" } }} />
+          }
+            <CardModal onClick={handlEeventFather}>
+              <Container>
+                <CloseButton onClick={closeModal} colors={colors}>
+                         <CloseIcon/>
+                </CloseButton>
+                <Row>
+                  <Col>
+                    {children ? children: <h2>{title}</h2>}
+                  </Col>
+                </Row>
+              </Container>
+            </CardModal>
+        </Card>
+    )
+        
+}
 
-                            {featuredImage?(
-                        <Col size={12} sizeMD={5} order={1} orderMD={2}>
-                                <Media>
-                                  <Image  media={featuredImage} />
-                               </Media>
-                           </Col>
-                    ):null 
-                    } 
-                        </Row>
-                       )
-                })
-            }     
-        </ModalContainer>
-        </Modal>
-         <ModalSection  onClick={OpenMOdal}>
-             <Title color={ colors.primary.base } >{title}</Title>
-             <Option  color={colors.secondary.base} onClick={OpenMOdal} >Ver</Option>
-        </ModalSection>
-        </>
-        )
-    }
-    
-    
+
 export default ModalCard;
-    
-const ModalSection = styled.div`
-    &:hover {
-        cursor: pointer;
-        }
-    `;
 
-    
-const Modal = styled.div`
+const Card = styled.div`
+  ${ ({display}) => css`
+    background-color: rgba(0,0,0, .80);
+    width: 100vw;
+    height: 100vh;
     position: fixed;
-    top: 0;
+    top:0;
     left: 0;
-    height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 5; 
-    `;
+    z-index: 999;
+    display: ${display};
+    justify-content: center;
+    align-items: center;
 
-const ModalContainer = styled.div`
-    max-width: 660px;
+    `}
+`;
+
+const CardModal = styled.div`
     position: relative;
+    max-width: 660px;
     background: white;
-    top: 30vh;
-    border-radius: 15px;
     padding:2rem 3rem;
-    margin: 0rem 2rem;
-    ${mq.md}{
-        margin: 0 auto;
-    }
+    border-radius: 5px;
 `;
 
 const CloseButton = styled.button`
@@ -110,17 +69,15 @@ const CloseButton = styled.button`
     box-shadow: none;
     position: absolute;
     color: ${colors ? colors.gray.dark : "#555552"};
-    left: 90%;
-    top: 1.5rem;
+    right: -2rem;
+    top: -1rem;
     z-index:6;
     &:hover {
       svg {
         transform: scale(1.3);
       }
     }
-    ${mq.md} {
-        left: 94%;
-      }
+
     svg {
       height: 1.5rem;
       transition: transform 0.15s ease-in-out;
@@ -130,42 +87,4 @@ const CloseButton = styled.button`
         width: 2rem;
     }
   `}
-`;
-
-
-const ModalHeader = styled.h2``;
-
-const ModalBody = styled.p`
-    margin: 0 auto;
-`;
-
-const StyledCTA = styled.a`
-    margin-top: 2rem;
-    padding: 15px;
-    display: block;
-    text-decoration: none;
-
-`;
-
-const Option = styled.h3`
-    color: ${props => props.color};
-    text-align: right;
-    &:hover {
-            /* font-size: 3rem; */
-            cursor: pointer;
-        }
-    `;
-
-const Media = styled.div`
-    display: grid;
-    `
-
-const Image = styled(FeaturedMedia)`
-    padding-top: 3rem ;
-`;
-
-
-const Title = styled.h2`
-  color: ${ props => props.color };
-  ${h4}
 `;

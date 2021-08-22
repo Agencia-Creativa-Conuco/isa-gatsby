@@ -7,15 +7,19 @@ import {h5} from "./styles/tipography";
 import FeaturedMedia from "./featured-media"
 import colors from "./styles/colors";
 import ModalCard from "./modal"
+import useModal from "./hooks/useModal";
 
 const ResourceCard = ({
     state, actions, libraries, 
     title, to, icon, color=state.theme.colors.primary.dark,
     item
 }) => {
+
+    const [isOpenModal, openModal, closeModal] = useModal();
     
     return (
         <Card>
+            <Div onClick={openModal}>
                 <Row>
                     <Col>
                         <ResourceName color={color}>{title}</ResourceName>
@@ -31,11 +35,18 @@ const ResourceCard = ({
                                 <DownloadIcon />
                             )
                         }
-                        </Icon>
-                       
-                            <ModalCard props={[item]}/>
+                        </Icon>       
                     </Col>
                 </Row>
+            </Div>
+            {/* Aca se les pasan los datos que se moestrar en el modal */}
+            <ModalCard
+                isOpen={isOpenModal} 
+                closeModal={closeModal}>
+                 <h1>Titulo en admisiones</h1>
+                  
+             </ModalCard> 
+                                              
         </Card>
     )
 }
@@ -57,12 +68,13 @@ const Card = styled.div`
     }
 `;
 
-// const DownloadLink = styled.a`
-//     padding: 15px;
-//     display: block;
-//     text-decoration: none;
-//     color: inherit;
-// `;
+const Div = styled.div`
+    padding: 15px;
+    display: block;
+    &:hover{
+      cursor: pointer;
+    }
+`;
 
 const ResourceName = styled.span`
     ${({color="blue"}) => css`

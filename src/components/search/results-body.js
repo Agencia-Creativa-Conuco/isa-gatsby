@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import { Container, Section, Row, Col } from "../layout/index";
 import colors from '../styles/colors';
@@ -6,14 +6,18 @@ import { css } from '@emotion/react';
 import Link from "../link"
 import { h4 } from "../styles/posts-tipography";
 
-import ModalCard from "../modal";
 
+import ModalCard from "../modal";
+import useModal from "../hooks/useModal";
 
 const ResultsBody = ({props, resources}) =>{
-  
+
+  const [isOpenModal, openModal, closeModal] = useModal();
+
   const {
     resultsSearch
-  } = props
+  } = props;
+
 
   const count =  resultsSearch?.length;
 
@@ -56,7 +60,7 @@ const ResultsBody = ({props, resources}) =>{
 
                         //Obtener los datos del  recurso
                         const resultsModal = resources.filter((item)=> item.id === id)
-                      
+                        console.log(resultsModal[0]?.title);
                         return(
                             <Col
                             key={index}
@@ -65,6 +69,7 @@ const ResultsBody = ({props, resources}) =>{
                             sizeXL={6}
                             >
                               <Article>  
+                                <OptionModal onClick={openModal}>
                                 <Card types={translateTypes} decoColor={ colors.primary.base}> 
                                     {type !== "WpResource" ?(     
                                       <StyledLink  to={uri}> 
@@ -74,23 +79,33 @@ const ResultsBody = ({props, resources}) =>{
                                               </RouterCard>
                                           </StyledLink>
                                       ):(
-                                        <ModalCard  props={resultsModal}>
-                                            <Title color={ colors.primary.base } > {title}</Title>
-                                       </ModalCard>
+                                        <>
+                                         <Title color={ colors.primary.base } > {title}</Title>                                         
+                                        </>
                                       )
                                     }            
                                     </Card>
+                                        </OptionModal>
+                                    
                               </Article>
                             </Col>
                     )
                     })
                 }
+
+           {/* Aca se les pasan los datos que se moestrar en el modal */}
+                        <ModalCard
+                          isOpen={isOpenModal} 
+                          closeModal={closeModal}>
+                         <h1>Title de Prueba</h1>
+                         <h2>Sub Title de prueba</h2>
+                      </ModalCard>       
                 </Row>
             </Container>
         </Section>
     ):(
-      <>
-        <H1> Sin Resultados :( </H1>                
+        <> 
+        <H1> Sin Resultados :( </H1>    
         </>
         
     )
@@ -156,3 +171,12 @@ const StyledLink = styled(Link)`
     z-index: 1;
 
     `;
+
+
+const OptionModal = styled.div`
+    &:hover{
+      cursor: pointer;
+    }
+
+
+`;
