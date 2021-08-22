@@ -4,11 +4,11 @@ import { Container, Section, Row, Col } from "../layout/index";
 import colors from '../styles/colors';
 import { css } from '@emotion/react';
 import InputResults from "./input"
+import { useQueryParam, StringParam } from "use-query-params";
 
 const ResultsHeader = () => {
 
-  const { search } = window.location;    
-  const query = new URLSearchParams(search).get('s');
+  const [query] = useQueryParam("s", StringParam);
 
   return (
     <Section spaceNone>

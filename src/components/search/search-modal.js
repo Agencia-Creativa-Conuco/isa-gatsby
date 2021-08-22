@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import styled from "@emotion/styled";
 import { css, Global } from "@emotion/react";
-import { useQueryParam, NumberParam, StringParam } from "use-query-params";
+import { useQueryParam, StringParam } from "use-query-params";
 import { CloseIcon } from "../icons";
 import ScreenReaderText from "../styles/screen-reader";
 import useFocusTrap from "../hooks/use-trap-focus";
