@@ -1,5 +1,7 @@
 import * as React from "react"
 import { Link } from "gatsby"
+import Layout from "../components/layout"
+import { Section, Container, Row, Col } from "../components/layout/index"
 
 // styles
 const pageStyles = {
@@ -27,27 +29,37 @@ const codeStyles = {
 // markup
 const NotFoundPage = () => {
   return (
-    <main style={pageStyles}>
-      <title>Not found</title>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry{" "}
-        <span role="img" aria-label="Pensive emoji">
-          😔
-        </span>{" "}
-        we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
+    <Layout>
+      <main style={pageStyles}>
+        <Section>
+          <Container>
+            <Row>
+              <Col>
+                <title>Not found</title>
+                <h1 style={headingStyles}>Página no encontrada</h1>
+                <p style={paragraphStyles}>
+                  Lo sentimos{" "}
+                  <span role="img" aria-label="Pensive emoji">
+                    😔
+                  </span>{" "}
+                  No pudimos encontrar lo que estabas buscando.
+                  <br />
+                  {process.env.NODE_ENV === "development" ? (
+                    <>
+                      <br />
+                        Intenta crear una página en <code style={codeStyles}>src/pages/</code>.
+                      <br />
+                    </>
+                  ) : null}
+                  <br />
+                  <Link to="/">Ir a la página de inicio</Link>.
+                </p>
+              </Col>
+            </Row>
+          </Container>
+        </Section>
+      </main>
+    </Layout>
   )
 }
 

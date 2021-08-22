@@ -1,12 +1,12 @@
 import * as React from "react";
 import Layout from "../components/layout";
 import { graphql } from "gatsby";
-import ProjectComponent from "./project/project-single";
-import useProjects from "../hooks/useProjects";
+import GradeComponent from "./grade/grade-single";
+import useGrades from "../hooks/useGrades";
 
 export const query = graphql`
   query ($id: String!) {
-    allWpProject(filter: { id: { eq: $id } }) {
+    allWpGrade(filter: { id: { eq: $id } }) {
       nodes {
         id
       }
@@ -15,17 +15,17 @@ export const query = graphql`
 `;
 
 // markup
-const Project = ({ data }) => {
+const Grade = ({ data }) => {
   const {
-    allWpProject: { nodes: projects },
+    allWpGrade: { nodes: grades },
   } = data;
 
-  const [project] = useProjects().filter( project => projects.map( item => item.id).includes( project.id ) );
+  const [grade] = useGrades().filter( grade => grades.map( item => item.id).includes( grade.id ) );
 
   return (
     <Layout>
-      <ProjectComponent {...{ project }}/>
+      <GradeComponent {...{ grade }}/>
     </Layout>
   );
 };
-export default Project;
+export default Grade;
