@@ -23,7 +23,7 @@ const DepartamentsProjects  = ({ faculty, projects, projectLines })=>{
                         <Row>
                             <Col>
                                 <SLink to={line.uri}>
-                                    <Title color={ colors.text.base} >Programas de {line.title}</Title>
+                                    <Title color={ colors.text.base} >{line.title}</Title>
                                 </SLink>
                             </Col>
                         </Row>

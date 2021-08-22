@@ -9,7 +9,7 @@ module.exports = {
       options: {
         url: "https://isa.conuco.do/graphql",
         schema: {
-          timeout: 100000,
+          timeout: 120000,
           perPage: 25, // currently set to 100
           requestConcurrency: 15, // currently set to 15
           previewRequestConcurrency: 5, // currently set to 5
@@ -149,5 +149,6 @@ module.exports = {
       },
       __key: "images",
     },
+    "gatsby-plugin-use-query-params",
   ],
 };

@@ -1,21 +1,23 @@
 import React, { useRef } from "react";
 import styled from "@emotion/styled";
 import { css, Global } from "@emotion/react";
-
+import { useQueryParam, NumberParam, StringParam } from "use-query-params";
 import { CloseIcon } from "../icons";
 import ScreenReaderText from "../styles/screen-reader";
 import useFocusTrap from "../hooks/use-trap-focus";
 import useFocusEffect from "../hooks/use-focus-effect";
 import { useFlexSearch } from "react-use-flexsearch";
 import { graphql, useStaticQuery } from "gatsby";
-import InputResults from "./input"
+import InputResults from "./input";
 
 import { mq } from "../layout/index";
 import colors from "../styles/colors";
 
-
-const SearchModal = ({ isSearchModalOpen, toggleSearchModal, setResultsSearch }) => {
-  
+const SearchModal = ({
+  isSearchModalOpen,
+  toggleSearchModal,
+  setResultsSearch,
+}) => {
   const resultado = useStaticQuery(graphql`
     {
       localSearchPages {
@@ -25,19 +27,13 @@ const SearchModal = ({ isSearchModalOpen, toggleSearchModal, setResultsSearch })
     }
   `);
 
+  const { index: resultsIndex, store: resultsStore } = resultado.localSearchPages;
 
-    const {
-        index: resultsIndex,
-        store: resultsStore
-    }  = resultado.localSearchPages;
+  const [query] = useQueryParam("s", StringParam);
 
-  const { search } = window.location;    
-  const query = new URLSearchParams(search).get('s');
-  const resultados = useFlexSearch( query, resultsIndex, resultsStore );
-  
-  
+  const resultados = useFlexSearch(query, resultsIndex, resultsStore);
+
   setResultsSearch(resultados);
-
 
   const closeSearchModal = () => {
     toggleSearchModal(false);
@@ -49,7 +45,6 @@ const SearchModal = ({ isSearchModalOpen, toggleSearchModal, setResultsSearch })
 
   useFocusEffect(inputRef, isSearchModalOpen);
   useFocusTrap(containerRef, isSearchModalOpen);
-
 
   return (
     <>
@@ -86,8 +81,8 @@ const SearchModal = ({ isSearchModalOpen, toggleSearchModal, setResultsSearch })
               }}
             >
               <SectionInner ref={containerRef}>
-               {/* Input */}
-                <InputResults  valor={query}/>
+                {/* Input */}
+                <InputResults valor={query} />
 
                 <CloseButton onClick={closeSearchModal} colors={colors}>
                   <ScreenReaderText>Cerrar búsqueda</ScreenReaderText>
@@ -98,10 +93,7 @@ const SearchModal = ({ isSearchModalOpen, toggleSearchModal, setResultsSearch })
           </>
         ) : null}
       </div>
-
-      
     </>
-
   );
 };
 
@@ -148,9 +140,6 @@ const SectionInner = styled.div`
   }
 `;
 
-
-
-
 const CloseButton = styled.button`
   ${({ colors }) => css`
     background: none;
@@ -189,4 +178,3 @@ const CloseButton = styled.button`
     }
   `}
 `;
-

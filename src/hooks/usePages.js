@@ -23,6 +23,10 @@ const usePages = () => {
                     ...ImageFragment
                   }
                 }
+
+                pageSettings{
+                  pageCustom
+                }
                 
                 home {
                   cover {
@@ -414,6 +418,7 @@ const usePages = () => {
         featuredImage: page?.featuredImage?.node?.localFile,
         type: page.__typename,
         styles: page.styles,
+        settings: page.pageSettings,
         home: page.home,
         offer: page.offer,
         studentServices: page.studentServices,

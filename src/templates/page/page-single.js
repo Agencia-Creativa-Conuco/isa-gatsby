@@ -7,12 +7,18 @@ import colors from "../../components/styles/colors";
 
 const PageSingle = ({ page }) => {
 
+  console.log(page)
+
   const {
     title,
     featuredImage,
     content,
-    page_custom = false
+    settings,
   } = page;
+  
+  const {
+    pageCustom = false,
+  } = settings;
 
   // Load the post, but only if the data is ready.
   return (
@@ -21,7 +27,7 @@ const PageSingle = ({ page }) => {
       <Section as="article" spaceNone>
         {/* COVER */}
         {
-          !parseInt(page_custom)?(
+          !pageCustom?(
             <Section spaceNone as="div">
               <Cover bgColor={colors.primary.dark} hasMedia={featuredImage?true:false}>
                 <FeaturedMedia 

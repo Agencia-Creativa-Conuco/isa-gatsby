@@ -30,6 +30,7 @@
     "gatsby-plugin-react-helmet": "^4.10.0",
     "gatsby-plugin-sharp": "^3.10.2",
     "gatsby-plugin-sitemap": "^4.6.0",
+    "gatsby-plugin-use-query-params": "^1.0.1",
     "gatsby-source-filesystem": "^3.10.0",
     "gatsby-source-wordpress": "^5.10.0",
     "gatsby-transformer-sharp": "^3.10.0",
@@ -40,6 +41,7 @@
     "react-slick": "^0.28.1",
     "react-use-flexsearch": "^0.1.1",
     "resize-observer-polyfill": "^1.5.1",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "use-query-params": "^1.2.3"
   }
 }

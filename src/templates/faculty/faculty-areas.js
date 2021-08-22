@@ -26,12 +26,15 @@ const FcaultyAreasAcademic = ({ faculty }) =>{
                                 <Col size={10} sizeMD={7} mxAuto   > 
                                     <List>
                                     {
-                                        departaments.map((item, index)=>{
+                                        departaments.filter((departament)=>{
+                                            return departament.careers.length;
+                                        })
+                                        .map((departament, index)=>{
                                             
                                             const {
                                                 title,
                                                 uri,
-                                            } = item;
+                                            } = departament;
 
                                             return(
                                                 <Item key={index}>

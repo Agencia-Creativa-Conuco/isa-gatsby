@@ -93,9 +93,7 @@ const DIPGeneral = ({ page, projects, departaments, faculties, projectLines }) =
                                                             </StyledLink>
                                                         ):null
                                                     }
-                                                    <StyledLink to={departament.uri}>
-                                                        <DepartamentName>{departament.title}</DepartamentName>
-                                                    </StyledLink>
+                                                    <DepartamentName>{departament.title}</DepartamentName>
                                                     <DepartamentProjects>
                                                         
                                                     {
