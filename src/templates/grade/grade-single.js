@@ -1,9 +1,14 @@
 import React from 'react';
+import GradeCover from './grade-cover';
+import GradeOffer from './grade-offer';
 
 const Grade = ({ grade }) => {
 
     return (
-        <h1>ESTO ES UN GRADO</h1>
+        <article>
+            <GradeCover {...{grade}} />
+            <GradeOffer {...{grade}} />
+        </article>
     )
 }
 

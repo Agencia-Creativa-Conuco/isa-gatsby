@@ -23,6 +23,9 @@ const useGrades = () => {
             }
             
             gradeData {
+              gradeCover{
+                copy
+              }
               gradeCareerRel {
                 ... on WpCareer {
                   id
@@ -50,7 +53,8 @@ const useGrades = () => {
         link: grade.link,
         order: grade.menuOrder,
         featuredImage: grade?.featuredImage?.node?.localFile,
-        careers: grade.gradeData.gradeCareerRel,
+        copy: grade.gradeData?.gradeCover?.copy,
+        careers: grade.gradeData?.gradeCareerRel,
         requirements: grade?.requisitos?.requirements || [],
         type: grade.__typename,
     }));
