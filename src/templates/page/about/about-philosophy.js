@@ -113,6 +113,7 @@ export default AboutPhilosophy;
 
 const StyledSection = styled(Section)`
     ${({bgColor="blue", decoBg="red"})=>css`
+        background-color: white;
         &:before{
             content:'';
             background-color: ${bgColor};
