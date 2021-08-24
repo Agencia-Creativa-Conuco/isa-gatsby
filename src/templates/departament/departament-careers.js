@@ -29,15 +29,23 @@ const DepartamentsCareers  = ({ faculty, careers, grades })=>{
                                 } = career;
 
                                 return (
-                                    <Col size={6} sizeMD={6}  mxAuto key={index}>
+                                    <Col size={6} sizeMD={6} key={index}>
                                         <StyledLink to={uri}>
                                             <Card>
-                                                <FeaturedMedia 
-                                                    media={ featuredImage }
-                                                    size="100%"   
-                                                    bgColor
-                                                /> 
-                                                <CardTitle color={faculty.color || colors.primary.dark }>{ title }</CardTitle>
+                                                <Row>
+                                                    <Col size="auto">
+                                                        <CardMedia>
+                                                            <FeaturedMedia 
+                                                                media={ featuredImage }
+                                                                size="100%"   
+                                                                bgColor
+                                                            /> 
+                                                        </CardMedia>
+                                                    </Col>
+                                                    <Col>
+                                                        <CardTitle color={faculty.color || colors.primary.dark }>{ title }</CardTitle>
+                                                    </Col>
+                                                </Row>
                                             </Card>
                                         </StyledLink>
                                     </Col>
@@ -60,8 +68,23 @@ const BGSection = styled( Section )`
 `;
 
 const Card = styled.div`
-    margin: 2rem auto;
-    max-width: 40rem;
+    padding: 1.5rem;
+    background-color: #FAFAFA;
+    transition: all 0.25s ease-in-out;
+    margin: .5rem 0;
+    &:hover{
+        background-color: #F5F5F5;
+    }
+`;
+
+const CardMedia = styled.div`
+    width: 8rem;
+`;
+
+const CardTitle = styled.h3`
+    color:${props => props.color};
+    text-transform: uppercase;
+    margin: 0;
 `;
 
 const Title = styled.h2`
@@ -75,11 +98,6 @@ const Title = styled.h2`
     `}
 `;
 
-const CardTitle = styled.h3`
-    text-align:center;
-    color:${props => props.color};
-    text-transform: uppercase;
-`;
 
 const StyledLink = styled(Link)`
     text-decoration: none;
