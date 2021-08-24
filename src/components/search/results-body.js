@@ -127,7 +127,7 @@ const Card = styled.div`
 ${({ decoColor="#00A4E5", types="Types" })=>css`
   position: relative;
   background: white;
-  box-shadow: silver 0px 6px 10px;
+  box-shadow: 0rem 2.5rem 4rem rgb(0 0 0 / 6%);
   border-radius: 1rem;
   padding: 3rem 3rem;
   margin: 2rem;
