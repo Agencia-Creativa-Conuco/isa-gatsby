@@ -4,8 +4,6 @@ import { Container, Section, Row, Col,mq} from "../../../components/layout/index
 import FeaturedMedia from "../../../components/featured-media";
 import colors from '../../../components/styles/colors';
 
-
-
 const DEPCover = ({ page }) =>{
 
     const {
@@ -13,7 +11,6 @@ const DEPCover = ({ page }) =>{
         featuredImage,
         dep:{
             cover:{
-            titleDEp,
             copy
           }
         }
@@ -37,18 +34,14 @@ const DEPCover = ({ page }) =>{
                         </DecoLogo>
                     </Col>
                     <Col>
-                        <Section as="div">
-                            <Container>
-                                <Row>
-                                    <Col>
-                                        <DivTitle>
-                                            <SectionTitle> {title}</SectionTitle>
-                                            <Copy>{copy}</Copy>
-                                        </DivTitle>
-                                    </Col>
-                                </Row>
-                            </Container>
-                        </Section>
+                        <Col>
+                          <Content>
+                             <DivTitle>
+                                 <SectionTitle> {title}</SectionTitle>
+                                 <Copy>{copy}</Copy>
+                             </DivTitle>
+                           </Content>
+                         </Col>
                     </Col>
                 </Row>
             </Container>
@@ -75,7 +68,11 @@ const Copy = styled.p``;
 const Logo = styled(FeaturedMedia)`
     clip-path: circle(85% at 20% 3%);
 `;
-
+const Content = styled.div`
+    margin: 2rem auto;
+    max-width: 50rem;
+    position: relative;
+`;
 const DecoLogo = styled.div`
     position: relative;
     &::before{

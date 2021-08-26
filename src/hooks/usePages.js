@@ -253,6 +253,7 @@ const usePages = () => {
                       }
                       resource {
                         type
+                        description
                         file {
                           id
                           localFile {
@@ -339,6 +340,20 @@ const usePages = () => {
                         }
                       }
                     }
+                    mipymes {
+                      copy
+                      title
+                      image{
+                        localFile {
+                          publicURL
+                          childImageSharp {
+                            fluid(maxWidth: 1920) {
+                              ...GatsbyImageSharpFluid_withWebp
+                            }
+                          }
+                        }
+                      }
+                    }
                     clinicaVeterinaria {
                       title
                       copy
@@ -418,7 +433,8 @@ const usePages = () => {
           services: page.dep?.serviciosProfesionales,
           laboratory: page.dep?.laboratorio,
           veterinary: page.dep?.clinicaVeterinaria,
-          cede: page.dep?.cede
+          cede: page.dep?.cede,
+          mipymes: page.dep?.mipymes
         }
 
     }));

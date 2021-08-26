@@ -6,9 +6,6 @@ import { Container, Section, Row, Col} from "../../../components/layout/index";
 import colors from '../../../components/styles/colors';
 
 
-
-
-
 const DEPServicesMenu = ({ page }) =>{
  
     
@@ -81,7 +78,6 @@ const DEPServicesMenu = ({ page }) =>{
                                         hidden={index!==view}
                                         dangerouslySetInnerHTML={{__html: copy }} 
                                     />
-                                    
                                 )  
                                 
                             })

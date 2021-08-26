@@ -6,6 +6,17 @@ import colors from '../../../components/styles/colors';
 
 
 const DEPPymes = ({ page }) =>{
+        const {
+            dep:{
+                mipymes:{
+                title,
+                copy,
+                image
+              }
+            }
+
+        } = page;
+        console.log(copy)
 
 
     return (
@@ -17,7 +28,7 @@ const DEPPymes = ({ page }) =>{
                         <Col size={12} sizeMD={5}>
                             <DecoLogo decoBg={colors.blue.dark}>
                             <Logo
-                                media={  }
+                                media={ image }
                                 size="100%"
                                 mxAuto
                                 maxWidth="45rem"
@@ -25,9 +36,9 @@ const DEPPymes = ({ page }) =>{
                         </DecoLogo>
                         </Col>
                         <Col size={12} sizeMD={6}>
-                            <SectionTitle> { projects_pymes_title } </SectionTitle>
+                            <SectionTitle>{title}</SectionTitle>
                             <DivTitle color={colors.white} decoBg={colors.blue.dark}>
-                                <Copy> {  } </Copy>
+                                <Copy>{copy}</Copy>
                             </DivTitle>
                         </Col>
                     </Row>
