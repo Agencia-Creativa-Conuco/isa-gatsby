@@ -9,6 +9,7 @@ import colors from '../../../components/styles/colors';
 const DEPCover = ({ page }) =>{
 
     const {
+        title,
         featuredImage,
         dep:{
             cover:{
@@ -21,7 +22,7 @@ const DEPCover = ({ page }) =>{
     return (
         <Section spaceNone>
             <Container fluid noGutters>
-                <Row>
+                <Row alignCenter>
                     <Col size={12} sizeLG={7}>
                         <DecoLogo
                             decoBg ={colors.blue.base}
@@ -41,7 +42,7 @@ const DEPCover = ({ page }) =>{
                                 <Row>
                                     <Col>
                                         <DivTitle>
-                                            <SectionTitle> {titleDEp}</SectionTitle>
+                                            <SectionTitle> {title}</SectionTitle>
                                             <Copy>{copy}</Copy>
                                         </DivTitle>
                                     </Col>

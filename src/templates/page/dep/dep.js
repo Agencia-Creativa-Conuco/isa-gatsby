@@ -18,7 +18,7 @@ const DEPPage = ({ page }) => {
     return  (
       <Container>
         <DEPCover {...{page}}/>
-         <DEPActivities {...{page}}/>
+        <DEPActivities {...{page}}/>
         <DEPDevelopment {...{page}}/>
         <DEPServices  {...{page}}/>
         <DEPServicesMenu {...{page}}/>

@@ -60,7 +60,7 @@ const ResultsBody = ({props, resources}) =>{
 
                         //Obtener los datos del  recurso
                         const resultsModal = resources.filter((item)=> item.id === id)
-                        console.log(resultsModal[0]?.title);
+                        
                         return(
                             <Col
                             key={index}

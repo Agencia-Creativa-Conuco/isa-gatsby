@@ -5,7 +5,7 @@ import { Container, Section, Row, Col} from "../../../components/layout/index";
 // import FeaturedMedia from "../../../components/featured-media";
 import colors from '../../../components/styles/colors';
 import Link  from "../../../components/link"
-
+import BackgroundImage from "gatsby-background-image";
 
 const DEPServices = ({ page }) =>{
     const {
@@ -18,30 +18,36 @@ const DEPServices = ({ page }) =>{
         }
     } = page;
 
+    console.log(image)
+
     return (
-        <BGSection spaceNone img={image.localFile.publicURL}  >
-            <Container  >
-                <Row>
-                    <Col size={12} sizeMD={8} sizeLG={6} mlAuto>
-                        <Content>
-                                <Title>{ title } </Title>
-                                <Copy>{ copy } </Copy> 
-                                <ServiceLink to={"/"} color={ colors.blue.base}> cartera de services</ServiceLink>
-                         </Content>
-                    </Col>
-                </Row>
-            </Container>
-        </BGSection>
+        <BImage Tag="section" fluid={image?.localFile?.childImageSharp?.fluid}>
+            <BGSection as="div" spaceNone>
+                <Container  >
+                    <Row>
+                        <Col size={12} sizeMD={8} sizeLG={6} mlAuto>
+                            <Content>
+                                    <Title>{ title } </Title>
+                                    <Copy>{ copy } </Copy> 
+                            </Content>
+                        </Col>
+                    </Row>
+                </Container>
+            </BGSection>
+        </BImage>
     );
 
 }
 
 export default DEPServices;
 
+const BImage = styled(BackgroundImage)`
+    overflow: hidden;
+`;
 
 
 const BGSection = styled(Section)`
-    background: url(${ props => props.img });
+    background: rgba(0, 0, 0, 0.35);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;

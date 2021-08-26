@@ -20,13 +20,8 @@ const DEPDevelopment = ({ page }) =>{
                 image,
             }
         }
-
     } = page;
  
-    
-
-
-
     return (
         <Section spaceNone  >
             <Container fluid  >

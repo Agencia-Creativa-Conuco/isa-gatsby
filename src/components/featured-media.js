@@ -64,6 +64,17 @@ const FeaturedMedia = ({
               loading={loading}
               fit={fit}
             />
+          ) : media?.localFile?.publicURL? (
+            <NormalImage
+              {...media}
+              alt={ media.alt }
+              src= { media.localFile.publicURL }
+              srcSet={ media.srcset }
+              position={position}
+              isSized={isSized}
+              loading={loading}
+              fit={fit}
+            />
           ) : (
             <NormalImage
               {...media}

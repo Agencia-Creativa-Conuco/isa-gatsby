@@ -13,8 +13,6 @@ import colors from "../../components/styles/colors";
 
 const Departament= ({ departament })=>{
 
-    console.log(departament);
-    
     const [faculty] = useFaculties().filter( faculty => faculty.id === departament.faculty.id );
 
     //Obtiene las carreras que pertenecen al departamento

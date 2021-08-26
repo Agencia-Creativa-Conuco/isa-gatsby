@@ -305,7 +305,6 @@ const usePages = () => {
                   dep{
                     coverDep{
                       copy
-                      titleDep
                     }
                     activitiesDep {
                       content
@@ -316,14 +315,7 @@ const usePages = () => {
                       title
                       contentActividades
                       image{
-                        localFile {
-                          publicURL
-                          childImageSharp {
-                            fluid(maxWidth: 1920) {
-                              ...GatsbyImageSharpFluid_withWebp
-                            }
-                          }
-                        }
+                        ...ImageFragment
                       }
                     }
                     serviciosProfesionales {
@@ -334,14 +326,7 @@ const usePages = () => {
                         copy
                       }
                       image{
-                        localFile {
-                          publicURL
-                          childImageSharp {
-                            fluid(maxWidth: 1920) {
-                              ...GatsbyImageSharpFluid_withWebp
-                            }
-                          }
-                        }
+                        ...ImageFragment
                       }
                       
                     }
@@ -350,14 +335,7 @@ const usePages = () => {
                         copy
                         title
                         image{
-                          localFile {
-                            publicURL
-                            childImageSharp {
-                              fluid(maxWidth: 1920) {
-                                ...GatsbyImageSharpFluid_withWebp
-                              }
-                            }
-                          }
+                          ...ImageFragment
                         }
                       }
                     }
@@ -369,14 +347,7 @@ const usePages = () => {
                         title
                       }
                       image{
-                        localFile {
-                          publicURL
-                          childImageSharp {
-                            fluid(maxWidth: 1920) {
-                              ...GatsbyImageSharpFluid_withWebp
-                            }
-                          }
-                        }
+                        ...ImageFragment
                       }
                     }
                     cede {
@@ -387,14 +358,7 @@ const usePages = () => {
                         title
                       }
                       image{
-                        localFile {
-                          publicURL
-                          childImageSharp {
-                            fluid(maxWidth: 1920) {
-                              ...GatsbyImageSharpFluid_withWebp
-                            }
-                          }
-                        }
+                        ...ImageFragment
                       }
                     }
                   }

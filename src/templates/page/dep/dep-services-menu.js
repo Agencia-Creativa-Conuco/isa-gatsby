@@ -66,23 +66,26 @@ const DEPServicesMenu = ({ page }) =>{
                 <Row>
                     <Col>
                         <Content  bg={colors.gray.light} id="contenido">
-                            { servicesMenu.map((item,index)=>{
+                        { 
+                            servicesMenu.map( (item,index) => {
 
                                 const {
                                     copy
                                 } = item;
 
                                 return(
-                                    <Copy  
+                                    <Copy 
                                         key={index} 
                                         noGutters
                                         active={view === index} 
-                                        hidden={index!==view}>
-                                        { copy } 
-                                    </Copy>
+                                        hidden={index!==view}
+                                        dangerouslySetInnerHTML={{__html: copy }} 
+                                    />
+                                    
                                 )  
                                 
-                            })}
+                            })
+                        }
                         </Content>
                     </Col>
                 </Row>

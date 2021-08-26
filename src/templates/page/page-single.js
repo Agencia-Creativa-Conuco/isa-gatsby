@@ -7,8 +7,6 @@ import colors from "../../components/styles/colors";
 
 const PageSingle = ({ page }) => {
 
-  console.log(page)
-
   const {
     title,
     featuredImage,
