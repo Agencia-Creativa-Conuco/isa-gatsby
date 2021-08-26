@@ -121,7 +121,7 @@ module.exports = {
               id: node.id,
               title: node.title,
               slug: node.slug,
-              excerpt: node?.excerpt,
+              excerpt: node.excerpt,
               type: node.__typename,
               uri: node.uri,
             }));
