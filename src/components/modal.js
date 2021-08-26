@@ -5,65 +5,101 @@ import { CloseIcon } from "./icons";
 import { Row, Col, Container} from "./layout/index";
 import colors from './styles/colors';
 import { Global } from '@emotion/react';
+import {fadeIn, slideDown} from "./styles/animations"
 
-
-const ModalCard = ( {isOpen, closeModal, title="Title default", children} ) => {
-
-
-    //Detiene el enevto del padre
-    const handlEeventFather =(e)=> e.stopPropagation();
+const ModalCard = ( {isOpen, closeModal, title, children} ) => {
 
     return(
-        <Card display={isOpen ? "grid":"none"} onClick={closeModal} >
-          { isOpen &&
-            <Global styles={{ body: { overflowY: "hidden" } }} />
-          }
-
-            <CardModal onClick={handlEeventFather}>
-              <Container>
-                <CloseButton onClick={closeModal} colors={colors}>
-                         <CloseIcon/>
-                </CloseButton>
-                <Row>
-                  <Col>
-                    {children ? children: <h2>{title}</h2>}
-                  </Col>
-                </Row>
-              </Container>
-            </CardModal>
-        </Card>
-    )
-        
+        <ModalWrapper data-open={isOpen} onClick={closeModal} >
+           { isOpen &&
+             <Global styles={{ body: { overflowY: "hidden" } }} />
+           }
+             <CardModal onClick={(e)=>{e.stopPropagation()}}>
+                 <CardWrapper>
+                     <Container>
+                         <Row>
+                           <Col>
+                           <ModalHeader  size={12} colors={colors} >
+                                {title && (
+                                           <ModalTitle>{title}</ModalTitle>
+                                       )}
+                               <CloseButton onClick={closeModal} colors={colors}>
+                                       <CloseIcon/>
+                               </CloseButton>
+                           </ModalHeader>
+                         <ModalBody>
+                           {children ? children:null}
+                         </ModalBody>
+                         </Col>
+                       </Row>
+                     </Container>
+                  </CardWrapper>
+             </CardModal>
+        </ModalWrapper>
+    )     
 }
 
 
 export default ModalCard;
 
-const Card = styled.div`
+const ModalWrapper = styled.div`
   ${ ({display}) => css`
-    background-color: rgba(0,0,0, .80);
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top:0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  opacity: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  z-index: 20000;
+  animation: ${fadeIn} 0.2s ease-out;
+  
+  &[data-open="true"] {
+    display: flex;
     left: 0;
-    z-index: 999;
-    display: ${display};
+    opacity: 1;
+    right: 0;
+    transition: opacity 0.25s ease-out;
+    align-items: baseline;
     justify-content: center;
-    align-items: center;
-    overflow: scroll;
-    
+  }
 
     `}
 `;
 
 const CardModal = styled.div`
-    position: relative;
-    max-width: 80%;
-    background: white;
-    padding:2rem 3rem;
+    background: #fff;
+    margin: 0 1rem;
+    margin-top: 15vh;
+    margin-bottom: 15vh;
     border-radius: 5px;
-    margin: 7rem auto;
+    animation: ${slideDown} 0.4s ease-out;
+`;
+
+
+const CardWrapper = styled.div`
+    height: 100%;
+    align-content: baseline;
+`;
+
+
+const ModalHeader = styled(Col)`
+    ${({colors})=>`
+        background-color: ${colors.gray.lighter};
+        align-self: baseline;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-right: 70px;
+        text-align: left;
+        color: ${colors.green.base};
+        font-weight: bold;
+    `}
+`;
+
+
+const ModalTitle = styled.h4`
+  margin: 0; 
 `;
 
 const CloseButton = styled.button`
@@ -73,17 +109,18 @@ const CloseButton = styled.button`
     box-shadow: none;
     position: absolute;
     color: ${colors ? colors.gray.dark : "#555552"};
-    right: -2rem;
-    top: -1rem;
+    right: 0rem;
+    top: 1rem;
     z-index:6;
     &:hover {
+      cursor: pointer;
       svg {
         transform: scale(1.3);
       }
     }
 
     svg {
-      height: 1.5rem;
+      height: 2rem;
       transition: transform 0.15s ease-in-out;
       fill: currentColor;
 
@@ -91,4 +128,9 @@ const CloseButton = styled.button`
         width: 2rem;
     }
   `}
+`;
+
+const ModalBody = styled(Col)`
+  padding-top: 20px;
+  padding-bottom: 20px;
 `;
