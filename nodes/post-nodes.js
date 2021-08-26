@@ -9,8 +9,10 @@ exports.createSinglePages = async ({ posts, gatsbyUtilities }) =>
     posts.map(({ previous, post, next }) => {
 
       //Solo genera vistas para los direcciones académicas (Tienen carreras asignadas)
-      if(post.__typename === "WpDepartament" && !post.data.careers.length){
-        return null;
+      if(post.__typename === "WpDepartament"){
+        if(!post?.data?.careers?.length){
+          return null;
+        }
       }
 
 
