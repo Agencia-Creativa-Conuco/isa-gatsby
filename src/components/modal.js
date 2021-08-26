@@ -18,6 +18,7 @@ const ModalCard = ( {isOpen, closeModal, title="Title default", children} ) => {
           { isOpen &&
             <Global styles={{ body: { overflowY: "hidden" } }} />
           }
+
             <CardModal onClick={handlEeventFather}>
               <Container>
                 <CloseButton onClick={closeModal} colors={colors}>
@@ -50,16 +51,19 @@ const Card = styled.div`
     display: ${display};
     justify-content: center;
     align-items: center;
+    overflow: scroll;
+    
 
     `}
 `;
 
 const CardModal = styled.div`
     position: relative;
-    max-width: 660px;
+    max-width: 80%;
     background: white;
     padding:2rem 3rem;
     border-radius: 5px;
+    margin: 7rem auto;
 `;
 
 const CloseButton = styled.button`

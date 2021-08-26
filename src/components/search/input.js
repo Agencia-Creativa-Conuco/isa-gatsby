@@ -18,7 +18,7 @@ import { BaseToggle  } from "../navigation/nav-toggle";
                   action={`/search/?s=`}
                   >
             <Input
-                defaultValue={ valor}
+                defaultValue={valor}
                 css={ isResults? inputResults: inputHeader}
                 type="search"
                 placeholder="Buscar:"

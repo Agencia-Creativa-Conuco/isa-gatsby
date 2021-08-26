@@ -56,7 +56,7 @@ export default ResourceCard;
 const Card = styled.div`
     max-width: 300px;
     padding: 2rem;
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,0.15);
+    box-shadow: 0rem 2.5rem 4rem rgb(0 0 0 / 6%);
     border-radius: 15px;
     margin: 0 auto;
     position: relative;
