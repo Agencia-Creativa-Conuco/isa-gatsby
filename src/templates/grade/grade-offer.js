@@ -89,7 +89,7 @@ const GradeOffer = ({ grade }) => {
                         <Col key={departament.id} size={12} sizeMD={6}>
                           <Link to={departament.uri}>
                             <Title
-                              color={colors.primary.dark}
+                              color={colors.primary.base}
                               bgHover={colors.gray.light}
                             >
                               {departament.title}
@@ -163,15 +163,15 @@ const Title = styled.span`
     }
     ${isFaculty
       ? css`
-          font-weight: 600;
+          font-weight: 900;
         `
       : isCareer
       ? css`
           text-transform: capitalize;
-          font-weight: 600;
+          font-weight: 300;
         `
       : css`
-          font-weight: 300;
+          font-weight: 400;
         `}
   `}
 `;

@@ -133,7 +133,7 @@ const OfferFaculties = ({ page }) =>{
                                                                                     <Col key={departament.id} size={12} sizeMD={6}>
                                                                                         <Link to={departament.uri}>
                                                                                             <Title 
-                                                                                                color={colors.primary.dark} 
+                                                                                                color={colors.primary.base} 
                                                                                                 bgHover={colors.gray.light}
                                                                                             >{departament.title}</Title>
                                                                                         </Link>
@@ -273,9 +273,9 @@ const Title = styled.span`
             font-weight: 900;
         `: isCareer? css`
             text-transform: capitalize;
-            font-weight: 600;
-        `: css`
             font-weight: 300;
+        `: css`
+            font-weight: 400;
         `}
     `}
 `;
