@@ -6,9 +6,6 @@ import { Container, Section, Row, Col} from "../../../components/layout/index";
 import colors from '../../../components/styles/colors';
 
 
-
-
-
 const DEPServicesMenu = ({ page }) =>{
  
     
@@ -77,8 +74,10 @@ const DEPServicesMenu = ({ page }) =>{
                                         key={index} 
                                         noGutters
                                         active={view === index} 
-                                        hidden={index!==view}>
-                                        { copy } 
+                                        hidden={index!==view}                                
+                                        dangerouslySetInnerHTML={{__html: copy}} 
+                                        >
+                                      
                                     </Copy>
                                 )  
                                 
