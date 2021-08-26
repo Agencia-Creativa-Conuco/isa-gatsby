@@ -10,7 +10,10 @@ exports.createSinglePages = async ({ posts, gatsbyUtilities }) =>
 
       //Solo genera vistas para los direcciones académicas (Tienen carreras asignadas)
       if(post.__typename === "WpDepartament"){
-        if(!post.data.careers.length){
+
+        const careers = post.data.careers || [];
+        
+        if(!careers.length){
           return null;
         }
       }
@@ -254,7 +257,11 @@ exports.getNodes = async function getNodes({ graphql, reporter }) {
             id
             uri
             data: departamentInfo {
-              careers: departamentCareerRel {
+
+              const {
+                careers
+              } = ers: depa;
+              caretamentCareerRel {
                 ... on WpCareer {
                   id
                 }
