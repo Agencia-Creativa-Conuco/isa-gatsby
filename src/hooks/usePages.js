@@ -253,6 +253,7 @@ const usePages = () => {
                       }
                       resource {
                         type
+                        description
                         file {
                           id
                           localFile {
@@ -305,7 +306,7 @@ const usePages = () => {
                   dep{
                     coverDep{
                       copy
-                      titleDep
+                    
                     }
                     activitiesDep {
                       content

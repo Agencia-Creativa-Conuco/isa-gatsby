@@ -19,6 +19,9 @@ const ResultsBody = ({props, resources}) =>{
   } = props;
 
 
+
+
+
   const count =  resultsSearch?.length;
 
   return resultsSearch?.length ? (
@@ -59,9 +62,10 @@ const ResultsBody = ({props, resources}) =>{
                         const translateTypes =  objecTypes[type] || title;
 
                         //Obtener los datos del  recurso
-                        const resultsModal = resources.filter((item)=> item.id === id)
-                        console.log(resultsModal[0]?.title);
+                       
+                    
                         return(
+                          
                             <Col
                             key={index}
                             size={12}
@@ -80,26 +84,31 @@ const ResultsBody = ({props, resources}) =>{
                                           </StyledLink>
                                       ):(
                                         <>
-                                         <Title color={ colors.primary.base } > {title}</Title>                                         
+                                         <Title color={ colors.primary.base } > {title}</Title>                       
                                         </>
                                       )
                                     }            
                                     </Card>
                                         </OptionModal>
                                     
+               
                               </Article>
                             </Col>
+
+
+                        
+                            
                     )
                     })
-                }
+                  },
+                    <ModalCard
+                        isOpen={isOpenModal} 
+                        closeModal={closeModal}>
+                       
+                    </ModalCard> 
+               
 
-           {/* Aca se les pasan los datos que se moestrar en el modal */}
-                        <ModalCard
-                          isOpen={isOpenModal} 
-                          closeModal={closeModal}>
-                         <h1>Title de Prueba</h1>
-                         <h2>Sub Title de prueba</h2>
-                      </ModalCard>       
+                  
                 </Row>
             </Container>
         </Section>
