@@ -8,11 +8,11 @@ exports.createSinglePages = async ({ posts, gatsbyUtilities }) =>
   Promise.all(
     posts.map(({ previous, post, next }) => {
 
-      //Solo genera vistas para los direcciones académicas (Tienen carreras asignadas)
-      if(post.__typename === "WpDepartament"){
+       //Solo genera vistas para los direcciones académicas (Tienen carreras asignadas)
+       if(post.__typename === "WpDepartament"){
 
-        const careers = post.data.careers || [];
-        
+        const careers = post.data.careers? post.data.careers : [];
+
         if(!careers.length){
           return null;
         }
@@ -257,11 +257,7 @@ exports.getNodes = async function getNodes({ graphql, reporter }) {
             id
             uri
             data: departamentInfo {
-
-              const {
-                careers
-              } = ers: depa;
-              caretamentCareerRel {
+              careers: departamentCareerRel {
                 ... on WpCareer {
                   id
                 }

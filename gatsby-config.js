@@ -110,7 +110,7 @@ module.exports = {
           `,
         ref: "slug",
         index: ["title", "slug"],
-        store: ["id", "title", "slug", "excerpt", "type", "uri"],
+        store: ["id", "title", "slug", "type", "uri"],
         normalizer: ({ data }) => {
           return Object.values(data)
             .map((type) => type.nodes)
@@ -121,7 +121,6 @@ module.exports = {
               id: node.id,
               title: node.title,
               slug: node.slug,
-              excerpt: node.excerpt,
               type: node.__typename,
               uri: node.uri,
             }));
