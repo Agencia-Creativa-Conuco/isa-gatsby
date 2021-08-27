@@ -37,7 +37,7 @@ const HomeContact = ({ page }) =>{
                             <Form name="contacto" method="POST" data-netlify="true">
                                 <Input type="text" name="name" placeholder="Nombre"/>
                                 <Input type="email" name="email" placeholder="Correo Electronico"/>
-                                <Input type="tel" name="phone" placeholder="Numero de telefono"/>
+                                <Input type="tel" name="phonenumber" placeholder="Numero de telefono"/>
                                 <button type="submit">Enviar</button>
                             </Form>
                         </Content>
