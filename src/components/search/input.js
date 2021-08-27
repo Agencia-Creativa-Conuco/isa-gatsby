@@ -1,52 +1,74 @@
-import React from "react";
+import React , {useEffect} from "react";
 import { mq } from "../layout/index";
-import { css } from '@emotion/react';
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import Input from "../styles/input";
 import { SearchIcon } from "../icons";
-import { BaseToggle  } from "../navigation/nav-toggle";
+import { BaseToggle } from "../navigation/nav-toggle";
+import { useFlexSearch } from "react-use-flexsearch";
+import { useQueryParam, StringParam } from "use-query-params";
+import { graphql, useStaticQuery } from "gatsby";
 
+const SearchForm = ({ isResults, setResultsSearch }) => {
 
- const InputResults = ({valor, isResults} )=>{
+  const resultado = useStaticQuery(graphql`
+    {
+      localSearchPages {
+        store
+        index
+      }
+    }
+  `);
 
-     return( 
-            <>
-             <SearchForm
-                  role="search"
-                  aria-label="Buscar:"
-                  method="get" 
-                  action={`/search/?s=`}
-                  >
-            <Input
-                defaultValue={valor}
-                css={ isResults? inputResults: inputHeader}
-                type="search"
-                placeholder="Buscar:"
-                name="s"
-            />
+  const { index: resultsIndex, store: resultsStore } = resultado.localSearchPages;
 
-            {isResults ?(
-                <HeaderToggle>
-                    <BaseToggle>
-                            <Icon>
-                                <SearchIcon/>
-                            </Icon>
-                    </BaseToggle>
-             </HeaderToggle>
-                ):null
-              }
-              </SearchForm>
-                
-        </>
+  const [query] = useQueryParam("s", StringParam);
 
-        )
-}
+  const resultados = useFlexSearch(query, resultsIndex, resultsStore);
 
-export default InputResults
+  useEffect( () => {
+    setResultsSearch(resultados);
+  }, [resultados]);
 
+  // ComponentWillMount
+  // ComponentWillUpdate
+  // ComponentDidUpdate
+  // ComponentDidMount
 
+  return (
+    <>
+      <Form
+        role="search"
+        aria-label="Buscar:"
+        method="get"
+        action={`/search/?s=`}
+        onSubmit={ () => { setResultsSearch(resultados) }}
+      >
+        <Input
+          defaultValue={query}
+          css={isResults ? inputResults : inputHeader}
+          type="search"
+          placeholder="Buscar:"
+          name="s"
+        />
 
-const SearchForm = styled.form`
+        {isResults ? (
+          <HeaderToggle>
+            <BaseToggle>
+              <Icon>
+                <SearchIcon />
+              </Icon>
+            </BaseToggle>
+          </HeaderToggle>
+        ) : null}
+      </Form>
+    </>
+  );
+};
+
+export default SearchForm;
+
+const Form = styled.form`
   margin: 0;
   position: relative;
   width: 100%;
@@ -71,40 +93,38 @@ const HeaderToggle = styled.div`
 
 const Icon = styled.div``;
 
-
 const inputHeader = css`
-    background: none;
+  background: none;
+  border: none;
+  border-radius: 0;
+  color: inherit;
+  display: block;
+  font-size: 2rem;
+  letter-spacing: -0.0277em;
+  margin: 0 0 0 -2rem;
+  max-width: calc(100% + 2rem);
+  padding: 0 0 0 2rem;
+  width: calc(100% + 2rem);
+  appearance: none;
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+  }
+
+  ${mq.md} {
     border: none;
-    border-radius: 0;
-    color: inherit;
-    display: block;
-    font-size: 2rem;
-    letter-spacing: -0.0277em;
-    margin: 0 0 0 -2rem;
-    max-width: calc(100% + 2rem);
-    padding: 0 0 0 2rem;
-    width: calc(100% + 2rem);
-    appearance: none;
+    font-size: 3.2rem;
+    height: 8rem;
+  }
 
-    &::-webkit-search-decoration,
-    &::-webkit-search-cancel-button,
-    &::-webkit-search-results-button,
-    &::-webkit-search-results-decoration {
-      display: none;
-    }
-
-    ${mq.md} {
-      border: none;
-      font-size: 3.2rem;
-      height: 8rem;
-    }
-
-    &:focus {
-      outline: thin dotted;
-      outline-offset: -4px;
-    }
+  &:focus {
+    outline: thin dotted;
+    outline-offset: -4px;
+  }
 `;
-
 
 const inputResults = css`
   background: white;

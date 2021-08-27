@@ -23,8 +23,6 @@ const AdmissionForm = ({ state,libraries }) =>{
         }
     `);
 
-    console.log(image)
-
     return (
         <BackgroundImage Tag="section" fluid={image?.childImageSharp.fluid}>
             <Container>

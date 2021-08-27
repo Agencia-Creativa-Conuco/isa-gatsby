@@ -8,6 +8,7 @@ import { Global } from "@emotion/react";
 import { fadeIn, slideDown } from "../../components/styles/animations";
 
 const useModal = () => {
+  
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {

@@ -9,11 +9,11 @@ const SearchView = (props) =>{
 
   const resources = useResources();
 
-    return (
-        <Article>
-          <ResultsHeader/>
-          <ResultsBody {...{props,resources }}/>
-        </Article>
+  return (
+      <Article>
+        <ResultsHeader {...props} />
+        <ResultsBody {...{props,resources }}/>
+      </Article>
 );
 
 }
