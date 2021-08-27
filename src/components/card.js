@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css } from '@emotion/react';
-import { Row, Col, Container, Section } from "./layout/index";
+import { Row, Col, Container } from "./layout/index";
 import FeaturedMedia from "./featured-media"
+import Cta from "./cta"
 
 
 const CardInfo =( {item} )=>{
@@ -27,8 +28,10 @@ const CardInfo =( {item} )=>{
                     order={2}
                     orderLG={1}>
                         <h2>{title}</h2>
-                        <Copy>{description}</Copy>
-                        <StyledCTA href={publicURL} download> Descargar </StyledCTA>
+                        <Copy>{description}</Copy>     
+                              <StyledCTA href={publicURL} download> 
+                                 <Cta>Descargar</Cta> 
+                               </StyledCTA>       
                     </Col>
                     {featuredImage?(
                     <Col 

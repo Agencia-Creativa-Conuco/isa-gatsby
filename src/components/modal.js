@@ -75,6 +75,7 @@ const CardModal = styled.div`
     margin-bottom: 15vh;
     border-radius: 5px;
     animation: ${slideDown} 0.4s ease-out;
+    padding-bottom: 5rem;
 `;
 
 

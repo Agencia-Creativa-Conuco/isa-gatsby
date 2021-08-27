@@ -10,8 +10,6 @@ import {
 } from "../../../components/layout/index";
 import FeaturedMedia from "../../../components/featured-media";
 import colors from "../../../components/styles/colors";
-import link from "../../../components/link";
-
 const DEPVeterinary = ({ page }) => {
   const {
     dep: {

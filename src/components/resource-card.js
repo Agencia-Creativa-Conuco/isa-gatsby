@@ -2,9 +2,8 @@ import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { DownloadIcon } from "./icons";
-import { Row, Col, Container } from "./layout/index";
+import { Row, Col  } from "./layout/index";
 import {h5} from "./styles/tipography";
-import FeaturedMedia from "./featured-media"
 import colors from "./styles/colors";
 import ModalCard from "./modal"
 import useModal from "./hooks/useModal";

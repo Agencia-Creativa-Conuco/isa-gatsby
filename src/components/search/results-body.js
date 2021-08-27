@@ -44,7 +44,6 @@ const ResultsBody = ({props, resources}) =>{
                             title,
                             type,
                             uri,
-                            id
                         } = item
 
                         const objecTypes ={
