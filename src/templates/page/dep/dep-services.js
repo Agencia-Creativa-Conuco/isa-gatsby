@@ -1,10 +1,6 @@
 import React from 'react';
 import styled from "@emotion/styled";
-
 import { Container, Section, Row, Col} from "../../../components/layout/index";
-// import FeaturedMedia from "../../../components/featured-media";
-import colors from '../../../components/styles/colors';
-import Link  from "../../../components/link"
 import BackgroundImage from "gatsby-background-image";
 
 const DEPServices = ({ page }) =>{
@@ -72,13 +68,6 @@ const Copy = styled.p`
         margin-bottom: 4rem;
 `;
 
-
-const ServiceLink = styled(Link)`
-        font-size: 2rem;
-        text-decoration: none;
-        color: ${props => props.color};   
-        text-align: right;
-`;
 
 
 

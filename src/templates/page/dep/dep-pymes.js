@@ -17,8 +17,7 @@ const DEPPymes = ({ page }) => {
       mipymes: { title, copy, image, cta },
     },
   } = page;
-  console.log(copy);
-
+  
   return (
     <Section spaceBottomNone>
       <WrapperRow bg={colors.blue.base} decoBg={colors.blue.dark}>
