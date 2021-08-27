@@ -34,7 +34,7 @@ const HomeContact = ({ page }) =>{
                     <Col size={12} sizeLG={6}>
                         <Content bgDeco={colors.primary.light}>
                             <SectionTitle> {title} </SectionTitle>
-                            <Form name="contact" method="POST" data-netlify="true">
+                            <Form name="contacto" method="POST" netlify>
                                 <Input type="text" name="name" placeholder="Nombre"/>
                                 <Input type="email" name="email" placeholder="Correo Electronico"/>
                                 <Input type="tel" name="phone" placeholder="Numero de telefono"/>
