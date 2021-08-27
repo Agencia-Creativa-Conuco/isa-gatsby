@@ -18,8 +18,6 @@ const DEPServices = ({ page }) =>{
         }
     } = page;
 
-    console.log(image)
-
     return (
         <BImage Tag="section" fluid={image?.localFile?.childImageSharp?.fluid}>
             <BGSection as="div" spaceNone>

@@ -34,12 +34,11 @@ const HomeContact = ({ page }) =>{
                     <Col size={12} sizeLG={6}>
                         <Content bgDeco={colors.primary.light}>
                             <SectionTitle> {title} </SectionTitle>
-                            <Form method="POST" action="/">
-                                <Input type="text" placeholder="Nombre"/>
-                                <Input type="email" placeholder="Correo Electronico"/>
-                                <Input type="tel" placeholder="Numero de telefono"/>
-                                <Input type="text" placeholder="Mensaje"/>
-                                <StyledLink to="#" cta>ENTRAR</StyledLink>
+                            <Form name="contact" netlify>
+                                <Input type="text" name="name" placeholder="Nombre"/>
+                                <Input type="email" name="email" placeholder="Correo Electronico"/>
+                                <Input type="tel" name="phone" placeholder="Numero de telefono"/>
+                                <button type="submit">Enviar</button>
                             </Form>
                         </Content>
                     </Col>
