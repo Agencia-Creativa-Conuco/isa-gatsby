@@ -18,7 +18,7 @@ const LibraryServices = ({ page }) =>{
 
     return(
         <StylesSection color={colors.gray.light}>
-            <Container fluid notFluidXL sizeXL="192rem">
+            <Container fluid >
                 <Row>
                 <Col size={12} sizeMD={6} noGutters>
 

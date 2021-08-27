@@ -36,7 +36,7 @@ const DEPServicesMenu = ({ page }) =>{
                                     } = item;
                                     
                                     return(
-                                        <Col size={6} sizeMD='auto' key={index} > 
+                                        <Col size={6} sizeMD={4} sizeXL={2} key={index} > 
                                             {/* <Link to={stringify({path:parse(state.router.link).path, hash:"#contenido"})} noDecoration> */}
                                                 <Option 
                                                     decoBG={colors.blue.base}    
@@ -93,18 +93,26 @@ const DEPServicesMenu = ({ page }) =>{
 export default DEPServicesMenu;
 
 const SSection = styled(Section)`
-    margin-top: -2.5rem !important;
+    margin-top: -8rem !important;
 `;
 
 const Menu = styled.ul`
     position:relative;
-    top:0;   
-    background: #0A214F;
-    margin: 0;
-    padding: 0 10%;
     padding-top: 4rem;
     padding-bottom: 6rem;
-    border-radius: 0 0 5rem 5rem;
+    margin: 0;
+    &:before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        height: 100%;
+        width: 110%;
+        background: #0A214F;
+        margin: 0;
+        transform: translate( -50%, 0); 
+        border-radius: 0 0 5rem 5rem;
+    }
 `;
 
 const Option = styled.li`

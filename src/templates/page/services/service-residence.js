@@ -21,7 +21,7 @@ const ServiceResidence = ({ page }) =>{
 
     return (
         <Section spaceNone zIndex={2}>
-            <Container fluid notFluidXL sizeXL="192rem">
+            <Container fluid>
                 <Row>
                     <Col size={12} sizeLG={5} css={css`background-color:${colors.blue.dark}; padding: 0;`}>
                         <Container>

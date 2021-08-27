@@ -338,42 +338,42 @@ const usePages = () => {
                         image{
                           ...ImageFragment
                         }
+                        cta {
+                          ...CtaFragment
+                        }
                       }
                     }
                     mipymes {
                       copy
                       title
+                      cta {
+                        ...CtaFragment
+                      }
                       image{
-                        localFile {
-                          publicURL
-                          childImageSharp {
-                            fluid(maxWidth: 1920) {
-                              ...GatsbyImageSharpFluid_withWebp
-                            }
-                          }
-                        }
+                        ...ImageFragment
                       }
                     }
                     clinicaVeterinaria {
                       title
                       copy
-                      servicios
-                      groupServices {
-                        title
-                      }
                       image{
                         ...ImageFragment
+                      }
+                      list {
+                        title
+                        items {
+                          content
+                        }
                       }
                     }
                     cede {
                       copy
                       title
-                      group {
-                        copy
-                        title
-                      }
                       image{
                         ...ImageFragment
+                      }
+                      cta {
+                        ...CtaFragment
                       }
                     }
                   }

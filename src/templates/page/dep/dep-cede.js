@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col,mq} from "../../../components/layout/index";
+import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
 import FeaturedMedia from "../../../components/featured-media";
 import colors from '../../../components/styles/colors';
+import Cta from '../../../components/cta';
 
 
 
@@ -15,7 +16,7 @@ const DEPCede = ({ page }) =>{
                 title,
                 copy,
                 image,
-                group
+                cta
             }
         }
     } = page;
@@ -25,24 +26,25 @@ const DEPCede = ({ page }) =>{
         <Section spaceTopNone>
             <Container>
                 <Row>
-                    <Col size={12} sizeLG={6}>
-                        <DivTitle>
-                            <SectionTitle>{ title }</SectionTitle>
-                            <Copy>{ copy }</Copy>
-                        </DivTitle>
-                        <DivLogo>
-                            <Logo
+                    <Col size={12} sizeLG={6} noGutters zIndex={2}>
+                        <Media>
+                            <FeaturedMedia
                                 media={ image }
-                                size="70%"
-                                zIndex="20"
+                                size="56.25%"
+                                zIndex="2"
                             />
-                        </DivLogo>
+                        </Media>
                     </Col>
                     <Col css={css`background-color: ${colors.blue.dark};`}>
-                        <PriorityDiv color={colors.white}>
-                            <PriorityTitle color={colors.white}> {  group.title } </PriorityTitle>
-                            <PriorityCopy> { group.copy  } </PriorityCopy>
-                        </PriorityDiv>
+                        <Content>
+                            <Title color={colors.white}> { title } </Title>
+                            <Copy> { copy  } </Copy>
+                            {cta ? (
+                                <Cta to={cta.url} target={cta.target}>
+                                    {cta.title}
+                                </Cta>
+                            ) : null}
+                        </Content>
                     </Col>
                 </Row>
             </Container>
@@ -53,30 +55,26 @@ const DEPCede = ({ page }) =>{
 
 export default DEPCede;
 
+const Title = styled.h2`
+    color: inherit;
+`;
 
-const DivTitle = styled.div``;
-
-const SectionTitle = styled.h2`
-    margin-bottom: 3rem;
+const Content = styled.div`
+    color: white;
+    padding-top: 0rem;
+    padding-bottom: 2rem;
+    ${mq.md}{
+        padding-top: 3rem;
+        padding-bottom: 4rem;
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
 `;
 
 const Copy = styled.p``;
 
-const DivLogo = styled.div``;
-
-const Logo = styled(FeaturedMedia)`
-    ${mq.lg}{
-        transform:  translate(6rem, 4rem);
+const Media = styled.div`
+    ${mq.md}{
+        transform: translate(3rem, 3rem);
     }
 `;
-
-const PriorityDiv = styled.div`
-    padding: 3rem 5rem 0rem 10rem;  
-    color: ${props => props.color};
-`;
-
-const PriorityTitle = styled.h5`
-    color: ${props => props.color};
-`;
-
-const PriorityCopy = styled.p``;
