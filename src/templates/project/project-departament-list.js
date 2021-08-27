@@ -43,7 +43,7 @@ const ProjectLineList = ({ state, libraries })=>{
                                     mxAuto
                                 >
                                     <Card>
-                                        <Link to={link} noDecoration>
+                                        <Link to={link}>
                                             <FeaturedMedia 
                                                 media={featured_media} 
                                                 size="56.25%"

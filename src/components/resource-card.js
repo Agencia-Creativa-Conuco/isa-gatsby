@@ -4,9 +4,8 @@ import styled from "@emotion/styled";
 import { DownloadIcon } from "./icons";
 import { Row, Col, Container } from "./layout/index";
 import {h5} from "./styles/tipography";
-import FeaturedMedia from "./featured-media"
+// import FeaturedMedia from "./featured-media"
 import colors from "./styles/colors";
-import ModalCard from "./modal"
 import useModal from "./hooks/useModal";
 import CardInfo from "./card"
 
@@ -16,39 +15,39 @@ const ResourceCard = ({
     item
 }) => {
 
-    const [isOpenModal, openModal, closeModal] = useModal();
+    const {
+        openModal, 
+        ModalUI
+    } = useModal();
     
     return (
         <>
-        <Card onClick={openModal}>
-            <Div >
-                <Row>
-                    <Col>
-                        <ResourceName color={color}>{title}</ResourceName>
-                    </Col>
-                </Row>
-                <Row alignCenter>
-                    <Col size="auto" mxAuto>
-                        <Icon bgColor={icon?"transparent":colors.gray.light} hasIcon={false}>
-                        {/* {
-                            icon? (
-                                <FeaturedMedia media={icon} />
-                            ):( */}
-                                <DownloadIcon />
-                            {/* )
-                        } */}
-                        </Icon>       
-                    </Col>
-                </Row>
-            </Div>                                              
-        </Card>
+            <Card onClick={openModal}>
+                <Div >
+                    <Row>
+                        <Col>
+                            <ResourceName color={color}>{title}</ResourceName>
+                        </Col>
+                    </Row>
+                    <Row alignCenter>
+                        <Col size="auto" mxAuto>
+                            <Icon bgColor={icon?"transparent":colors.gray.light} hasIcon={false}>
+                            {/* {
+                                icon? (
+                                    <FeaturedMedia media={icon} />
+                                ):( */}
+                                    <DownloadIcon />
+                                {/* )
+                            } */}
+                            </Icon>       
+                        </Col>
+                    </Row>
+                </Div>                                              
+            </Card>
             {/* Aca se les pasan los datos que se mostrararan en el modal */}
-            <ModalCard
-             isOpen={isOpenModal} 
-             closeModal={closeModal}>
+            <ModalUI>
                 <CardInfo item={item}/>
-             </ModalCard> 
-
+            </ModalUI> 
         </>
     )
 }

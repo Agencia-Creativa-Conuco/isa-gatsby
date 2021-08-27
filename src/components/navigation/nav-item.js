@@ -80,18 +80,14 @@ const NavItem = ({
                 <ItemLink
                     to={url}
                     aria-current={isCurrentPage ? "page" : undefined}
-                    {...{isMain, hasChildren, colors}}
                     fontWeight={fontWeight}
-                    fontWeightAll={fontWeightAll}
                 >
                     {label}
                 </ItemLink>
             ):(
                 <ItemLabel
                     aria-current={isCurrentPage ? "page" : undefined}
-                    {...{isMain, hasChildren, colors}}
                     fontWeight={fontWeight}
-                    fontWeightAll={fontWeightAll}
                     onClick={(e) => {e.stopPropagation(); setOpen(!isOpen)}}
                 >
                     {label}
@@ -159,7 +155,7 @@ const Expand = styled.div`
     `}
 `;
 
-const itemTextStyles = ({isMain, hasChildren, fontWeight})=>css`
+const itemTextStyles = ({fontWeight})=>css`
     display: block;
     line-height: 1.2;
     text-decoration: none;
