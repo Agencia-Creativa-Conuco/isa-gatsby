@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import styled from "@emotion/styled";
 import { Container, Section, Row, Col } from "../layout/index";
 import colors from "../styles/colors";
@@ -6,31 +6,71 @@ import { css } from "@emotion/react";
 import Link from "../link";
 import { h4 } from "../styles/posts-tipography";
 import useModal from "../hooks/useModal";
+import useSelect from "../hooks/useSelect";
 
-const ResultsBody = ({ props, resources }) => {
+
+const ResultsBody = ({props, resources}) =>{
+
+  const [isOpenModal, openModal, closeModal] = useModal();
+
+  const {
+    resultsSearch
+  } = props;
+
+    const {
+      SelectUI,
+      selectedOption
+
+    } = useSelect();
+
+  const options = [
+
+    { value: 'WpPage', label: 'Página' },
+    { value: 'WpResource', label: 'Recurso' },
+    { value: 'WpCareer', label: 'Carrera' },
+    { value: 'WpPost', label: 'Publicación' },
+    { value: 'WpFaculty', label: 'Facultad' },
+    { value: 'WpProject', label: 'Investigación' },
+    { value: 'WpProjectLine', label: 'Línea de investigación' },
+    { value: 'WpGrade', label: 'Oferta académica' },
+  ]
+
+
+  // Filtrando valor del select 
+  let hash = {};
+
+  resultsSearch?.filter((current)=>  hash[current.type] = current.type);
+
+  const optionsFilter = options.filter((item)=> hash[item.value] ? item:null);
   
-  const { openModal, ModalUI } = useModal();
 
-  const { resultsSearch } = props;
+  // Filtrando el Contenido a mostrar 
+  const filtros =  resultsSearch?.filter((item)=> item.type.includes(selectedOption?.value));
 
-  const count = resultsSearch?.length;
+  const results =  filtros?.length !== 0 ? filtros:resultsSearch;
+    
 
   return resultsSearch?.length ? (
     <Section>
             <Container>
               <Row>
+                <Col  size={5}>
+                  <SelectUI options={optionsFilter} />
+
+                </Col>
                 <Col size={12}  css={css`text-align:center;`}>
                 <h1>Resultados</h1>
+
                 </Col>
                <Col>
                  <h3>
-                   Total: <span css={css`color:${colors.secondary.base};`} >{count} Resultados</span>
+                   Total: <span css={css`color:${colors.secondary.base};`} >{ results.length} Resultados</span>
                  </h3>
                </Col> 
                </Row>
                 <Row>
                     
-                    {resultsSearch.map((item, index)=>{
+                    { results?.map((item, index)=>{
                         const {
                             title,
                             type,
@@ -84,13 +124,18 @@ const ResultsBody = ({ props, resources }) => {
                
                               </Article>
                             </Col>
+
+
+                        
+                            
                     )
                     })
                   },
-                    <ModalUI>
-                       askdfa;sdkfasdf
+                    {/* <ModalCard
+                        isOpen={isOpenModal} 
+                        closeModal={closeModal}>
                        
-                    </ModalUI> 
+                    </ModalCard>  */}
                
 
                   
@@ -108,57 +153,76 @@ const ResultsBody = ({ props, resources }) => {
 
 export default ResultsBody;
 
+
 const H1 = styled.h1`
-  margin: 5rem;
-  text-align: center;
+    margin: 5rem;
+    text-align: center;
 `;
 
 const Article = styled.article``;
 
+
 const Card = styled.div`
-  ${({ decoColor = "#00A4E5", types = "Types" }) => css`
-    position: relative;
-    background: white;
-    box-shadow: 0rem 2.5rem 4rem rgb(0 0 0 / 6%);
-    border-radius: 1rem;
-    padding: 3rem 3rem;
-    margin: 2rem;
-    &::before {
-      content: "${types}";
+${({ decoColor="#00A4E5", types="Types" })=>css`
+  position: relative;
+  background: white;
+  box-shadow: 0rem 2.5rem 4rem rgb(0 0 0 / 6%);
+  border-radius: 1rem;
+  padding: 3rem 3rem;
+  margin: 2rem;
+    &::before{
+      content:'${ types }';
       position: absolute;
-      background-color: ${decoColor};
-      top: -1rem;
+      background-color: ${ decoColor };
+      top:-1rem;
       left: 2rem;
       border-radius: 2rem;
-      padding: 0px 1rem 2px;
+      padding: 0px  1rem 2px;
       color: white;
     }
   `}
 `;
 
 const RouterCard = styled.div`
-  ${({ colorRouter = "#00A4E5" }) => css`
-    font-size: 1.4rem;
-    position: relative;
-    padding: 6px 0;
-    color: ${colorRouter};
+
+${({ colorRouter="#00A4E5" })=>css`
+  font-size: 1.4rem;
+  position: relative;
+  padding: 6px 0;
+  color: ${colorRouter};
+
   `}
-`;
+
+  `;
+
 
 const Title = styled.h2`
-  color: ${(props) => props.color};
+  color: ${ props => props.color };
   ${h4}
 `;
 
+
+
 const StyledLink = styled(Link)`
-  text-decoration: none;
-  position: relative;
-  display: block;
-  z-index: 1;
-`;
+    text-decoration: none;
+    position: relative;
+    display: block;
+    /* z-index: 1; */
+
+    `;
+
 
 const OptionModal = styled.div`
-  &:hover {
-    cursor: pointer;
-  }
+    &:hover{
+      cursor: pointer;
+    }
+
+
+`;
+
+const customStyles  = css`
+menu{
+  color:red;
+}
+
 `;
