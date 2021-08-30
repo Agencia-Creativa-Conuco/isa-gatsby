@@ -28,7 +28,7 @@ const Related = ({ title = "Recientes", items=[] })=>{
                         return  ( 
                             <Col size={12} sizeMD={6} sizeLG={4} mxAuto key={index}>
                                 <Card  DecoColor={colors.secondary.lighter}>
-                                    <StyledLink to={link} noDecoration>
+                                    <StyledLink to={link}>
                                         <Row>
                                             <Col size={12} >
                                                 <Media color={ colors.green.light }>

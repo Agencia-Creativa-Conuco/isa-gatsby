@@ -6,6 +6,7 @@ import { Container, Row, Col, mq} from "../../../components/layout/index";
 import colors from '../../../components/styles/colors';
 import BackgroundImage from "gatsby-background-image";
 import Cta from "../../../components/cta";
+import Form from '../../../components/form';
 
 const AdmissionForm = ({ state,libraries }) =>{
 
@@ -23,18 +24,14 @@ const AdmissionForm = ({ state,libraries }) =>{
     `);
 
     return (
-        <BackgroundImage Tag="section" fluid={image?.childImageSharp}>
+        <BackgroundImage Tag="section" fluid={image?.childImageSharp.fluid}>
             <Container>
                 <Row>
-                    <Col size="auto" css={css`background-color: ${colors.blue.dark};`}>
-                        <Form method="POST" action="/">
-                            <SectionTitle color={colors.white}>Formulario de inscripción</SectionTitle>
-                            <Input type="text" placeholder="Nombre"/>
-                            <Input type="email" placeholder="Correo Electronico"/>
-                            <Input type="tel" placeholder="Numero de telefono"/>
-                            <Input type="text" placeholder="Mensaje"/>
-                            <StyledCTA to="#" cta>ENTRAR</StyledCTA>
-                        </Form>
+                    <Col size="auto" css={css`background-color: ${colors.gray.light};`}>
+                        <Wrapper>
+                            <Title>Solicitud de admisión</Title>
+                            <Form formId="69ce8ab3-acc5-438e-bd13-b5bb7a7c7ebf" cardStyle={false} />
+                        </Wrapper>
                     </Col>
                 </Row>
             </Container>
@@ -45,33 +42,15 @@ const AdmissionForm = ({ state,libraries }) =>{
 
 export default AdmissionForm;
 
-const Form = styled.form`
-    padding: 2rem;
-`;
-
-
-const SectionTitle = styled.h2`
-    color: ${props => props.color};
-    margin-bottom: 3rem;
-`;
-
-const Input = styled.input`
-    border-radius: 1.2rem;
-    display: block;
-    border: none;
-    padding: 2rem 4rem;
-    margin: 1.5rem 0;
-    max-width: 100%;
-
-    ${mq.lg}{
-        padding: 2rem 6rem;
-    }
-`;
-
-
-const StyledCTA = styled(Cta)`
-
+const Wrapper = styled.div`
+    max-width: 40rem;
+    padding: 2rem 0;
     ${mq.md}{
-        margin-top: 3rem;
+        padding: 4rem;
     }
+`;
+
+const Title = styled.h2`
+    text-transform: uppercase;
+    margin-bottom: 3rem;
 `;

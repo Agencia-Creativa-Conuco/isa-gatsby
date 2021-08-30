@@ -3,33 +3,30 @@ import styled from "@emotion/styled";
 import { Container, Section, Row, Col } from "../layout/index";
 import colors from '../styles/colors';
 import { css } from '@emotion/react';
-import InputResults from "./input"
-import { useQueryParam, StringParam } from "use-query-params";
+import SearchForm from "./input"
 
-const ResultsHeader = () => {
-
-  const [query] = useQueryParam("s", StringParam);
+const ResultsHeader = ({...props}) => {
 
   return (
     <Section spaceNone>
-            <DivBG  
-                bg={ colors.gray.light }
-                deco={ colors.blue.dark }
-                deco2={ colors.green.base }  />
+      <DivBG  
+          bg={ colors.gray.light }
+          deco={ colors.blue.dark }
+          deco2={ colors.green.base }  />
 
-            <Container>
-                <Row>
-                    <Col size={10} sizeMD={7}>
-                        <Header>  
-                        <Label>
-                          <InputResults valor={query} isResults={true}/>
-                        </Label>
-                            <Filtros> Filtros </Filtros>
-                        </Header>
-            
-                    </Col>
-                </Row>
-            </Container>
+      <Container>
+          <Row>
+              <Col size={10} sizeMD={7}>
+                  <Header>  
+                  <Label>
+                    <SearchForm isResults={true} {...props}/>
+                  </Label>
+                      <Filtros> Filtros </Filtros>
+                  </Header>
+      
+              </Col>
+          </Row>
+      </Container>
     </Section>
   );
 };

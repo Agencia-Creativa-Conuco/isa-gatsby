@@ -5,6 +5,7 @@ import { Container, Section, Row, Col, mq} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
 import colors from "../../components/styles/colors";
 import Cta from "../../components/cta";
+import Form from "../../components/form";
 
 const HomeContact = ({ page }) =>{
     
@@ -34,13 +35,14 @@ const HomeContact = ({ page }) =>{
                     <Col size={12} sizeLG={6}>
                         <Content bgDeco={colors.primary.light}>
                             <SectionTitle> {title} </SectionTitle>
-                            <Form method="POST" action="/">
-                                <Input type="text" placeholder="Nombre"/>
-                                <Input type="email" placeholder="Correo Electronico"/>
-                                <Input type="tel" placeholder="Numero de telefono"/>
-                                <Input type="text" placeholder="Mensaje"/>
-                                <StyledLink to="#" cta>ENTRAR</StyledLink>
-                            </Form>
+                            <Form formId="386740ac-0068-4408-b0ad-1b7b62a5c417"/>
+                            {/* <Form name="contacto" method="POST" netlify>
+                                <input type="hidden" name="form-name" value="contacto" />
+                                <Input type="text" name="name" placeholder="Nombre"/>
+                                <Input type="email" name="email" placeholder="Correo Electronico"/>
+                                <Input type="tel" name="phonenumber" placeholder="Numero de telefono"/>
+                                <button type="submit">Enviar</button>
+                            </Form> */}
                         </Content>
                     </Col>
                 </Row>
@@ -72,10 +74,10 @@ const SectionTitle = styled.h2`
     text-align: center;
 `;
 
-const Form = styled.form`
-    margin: 0 auto;
-    text-align: center;
-`;
+// const Form = styled.form`
+//     margin: 0 auto;
+//     text-align: center;
+// `;
 
 const Input = styled.input`
     border-radius: 1.2rem;

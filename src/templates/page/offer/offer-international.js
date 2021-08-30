@@ -29,7 +29,7 @@ const OfferInternational = ({ page }) =>{
                     <Row alignItems="flex-end">
                         <Col size={12} sizeMD={7} orderMD={2}>
                             <DivTitle>
-                                <SectionTitle>{ title }</SectionTitle>
+                                <Title>{ title }</Title>
                                      <div dangerouslySetInnerHTML={{__html: copy}} />
                                      {
                                          cta?(
@@ -55,9 +55,7 @@ const OfferInternational = ({ page }) =>{
                         <DivTitle sizeXL="90rem">
                             <Row>
                                 <Col size={12} >
-                                    <Title color={colors.white}>
-                                        <div dangerouslySetInnerHTML={{__html: content}} />
-                                    </Title>
+                                    <Copy color={colors.white} dangerouslySetInnerHTML={{__html: content}} />
                                 </Col>
                             </Row>
                             <Row>
@@ -105,7 +103,7 @@ const StyledLink = styled(Cta)`
     margin-bottom: 3rem;
 `;
 
-const SectionTitle = styled.h2`
+const Title = styled.h2`
     margin-bottom: 4rem;
 `;
 
@@ -120,7 +118,7 @@ const Logo = styled(FeaturedMedia)`
     
 `;
 
-const Title = styled.p`
+const Copy = styled.p`
     color: ${props => props.color};
 `;
 

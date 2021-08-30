@@ -1,14 +1,11 @@
 import React, { useRef } from "react";
 import styled from "@emotion/styled";
 import { css, Global } from "@emotion/react";
-import { useQueryParam, StringParam } from "use-query-params";
 import { CloseIcon } from "../icons";
 import ScreenReaderText from "../styles/screen-reader";
 import useFocusTrap from "../hooks/use-trap-focus";
 import useFocusEffect from "../hooks/use-focus-effect";
-import { useFlexSearch } from "react-use-flexsearch";
-import { graphql, useStaticQuery } from "gatsby";
-import InputResults from "./input";
+import SearchForm from "./input";
 
 import { mq } from "../layout/index";
 import colors from "../styles/colors";
@@ -18,22 +15,6 @@ const SearchModal = ({
   toggleSearchModal,
   setResultsSearch,
 }) => {
-  const resultado = useStaticQuery(graphql`
-    {
-      localSearchPages {
-        store
-        index
-      }
-    }
-  `);
-
-  const { index: resultsIndex, store: resultsStore } = resultado.localSearchPages;
-
-  const [query] = useQueryParam("s", StringParam);
-
-  const resultados = useFlexSearch(query, resultsIndex, resultsStore);
-
-  setResultsSearch(resultados);
 
   const closeSearchModal = () => {
     toggleSearchModal(false);
@@ -82,7 +63,7 @@ const SearchModal = ({
             >
               <SectionInner ref={containerRef}>
                 {/* Input */}
-                <InputResults valor={query} />
+                <SearchForm {...{setResultsSearch}} />
 
                 <CloseButton onClick={closeSearchModal} colors={colors}>
                   <ScreenReaderText>Cerrar búsqueda</ScreenReaderText>

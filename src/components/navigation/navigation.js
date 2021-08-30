@@ -65,7 +65,7 @@ const StyledCol = styled(Col)`
   margin-bottom: 2rem;
 `;
 
-const Menu = styled.ul`
+const Menu = styled.div`
   margin: 0;
 `;
 

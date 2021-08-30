@@ -35,7 +35,7 @@ const HomeNews = ({ page, posts }) =>{
 
                         return (
                             <Card key={index} main>
-                                <StyledLink to={link} noDecoration>
+                                <StyledLink to={link}>
                                     <Container>
                                         <Row>
                                             <Col size={12}>
@@ -73,7 +73,7 @@ const HomeNews = ({ page, posts }) =>{
 
                             return (
                                 <Card key={index} bgDeco={colors.secondary.lighter}>
-                                    <StyledLink to={link} noDecoration>
+                                    <StyledLink to={link}>
                                         <Container>
                                             <Row>
                                                 <Col size={12} sizeMD={6}>
