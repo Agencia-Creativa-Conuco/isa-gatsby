@@ -21,7 +21,6 @@ const ResultsHeader = ({...props}) => {
                   <Label>
                     <SearchForm isResults={true} {...props}/>
                   </Label>
-                      <Filtros> Filtros </Filtros>
                   </Header>
       
               </Col>
@@ -35,7 +34,7 @@ export default  ResultsHeader ;
 
 
 const Header = styled.div`
-    margin-top: -10rem;
+    margin-top: -6rem;
 `;
 
 const Filtros = styled.div`
@@ -46,7 +45,7 @@ const Filtros = styled.div`
 const DivBG = styled.div`
     ${({ bg, deco, deco2 })=>css`
         width: 100%;
-        height: 20rem;
+        height: 18rem;
         position: relative;
         top: 0;
         background: ${ bg };

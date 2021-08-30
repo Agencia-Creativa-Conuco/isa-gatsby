@@ -6,7 +6,7 @@ import { css } from "@emotion/react";
 import Link from "../link";
 import { h4 } from "../styles/posts-tipography";
 import useModal from "../hooks/useModal";
-import useSelect from "../hooks/useSelect";
+import useFilter from "../hooks/useFilter";
 
 
 const ResultsBody = ({props, resources}) =>{
@@ -21,7 +21,7 @@ const ResultsBody = ({props, resources}) =>{
       SelectUI,
       selectedOption
 
-    } = useSelect();
+    } = useFilter();
 
   const options = [
 
@@ -54,19 +54,17 @@ const ResultsBody = ({props, resources}) =>{
     <Section>
             <Container>
               <Row>
-                <Col  size={5}>
-                  <SelectUI options={optionsFilter} />
-
-                </Col>
                 <Col size={12}  css={css`text-align:center;`}>
-                <h1>Resultados</h1>
-
+                   <h1>Resultados</h1>
                 </Col>
-               <Col>
+               <Col size={12}>
                  <h3>
                    Total: <span css={css`color:${colors.secondary.base};`} >{ results.length} Resultados</span>
                  </h3>
                </Col> 
+               <Col size={12} sizeMD={5}>
+                  <SelectUI options={optionsFilter} />
+                </Col>
                </Row>
                 <Row>
                     
@@ -130,7 +128,7 @@ const ResultsBody = ({props, resources}) =>{
                             
                     )
                     })
-                  },
+                  }
                     {/* <ModalCard
                         isOpen={isOpenModal} 
                         closeModal={closeModal}>
