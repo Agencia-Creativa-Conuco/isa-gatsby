@@ -17,8 +17,10 @@ const useResources = () => {
                 resource {
                   description
                   file {
-                    localFile {
-                      publicURL
+                    featuredImage {
+                      node {
+                        ...ImageFragment
+                      }
                     }
                   }
                 }
@@ -40,7 +42,7 @@ const useResources = () => {
         slug: resource.slug,
         uri: resource.uri,
         link: resource.link,
-        featuredImage: resource.featuredImage? resource.featuredImage.node.localFile : null,
+        featuredImage:resource?.featuredImage?.node?.localFile,
         type: resource.__typename,
         resource: resource.resource
     }));

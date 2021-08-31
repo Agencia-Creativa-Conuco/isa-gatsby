@@ -7,6 +7,7 @@ import Cta from "./cta"
 
 
 const CardInfo =( {item} )=>{
+    console.log(item);
     const{
         title,
         featuredImage,

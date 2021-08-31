@@ -1,21 +1,19 @@
-import React,{useState} from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import { Container, Section, Row, Col } from "../layout/index";
 import colors from "../styles/colors";
 import { css } from "@emotion/react";
-import Link from "../link";
-import { h4 } from "../styles/posts-tipography";
-import useModal from "../hooks/useModal";
 import useFilter from "../hooks/useFilter";
+import CardBody from "./card-body";
 
 
 const ResultsBody = ({props, resources}) =>{
 
-  const [isOpenModal, openModal, closeModal] = useModal();
-
   const {
     resultsSearch
   } = props;
+
+  console.log(resources);
 
     const {
       SelectUI,
@@ -66,13 +64,13 @@ const ResultsBody = ({props, resources}) =>{
                   <SelectUI options={optionsFilter} />
                 </Col>
                </Row>
-                <Row>
-                    
+                <Row>           
                     { results?.map((item, index)=>{
                         const {
                             title,
                             type,
                             uri,
+                            id
                         } = item
 
                         const objecTypes ={
@@ -90,59 +88,29 @@ const ResultsBody = ({props, resources}) =>{
                         const translateTypes =  objecTypes[type] || title;
 
                         //Obtener los datos del  recurso
-                       
-                    
+                        const resourceFilter = resources.filter((item)=> {
+                                return item.uri === uri ? {item}:null
+                             });
+
                         return(
-                          
-                            <Col
-                            key={index}
-                            size={12}
-                            sizeMD={6}
-                            sizeXL={6}
-                            >
-                              <Article>  
-                                <OptionModal onClick={openModal}>
-                                <Card types={translateTypes} decoColor={ colors.primary.base}> 
-                                    {type !== "WpResource" ?(     
-                                      <StyledLink  to={uri}> 
-                                          <Title color={ colors.primary.base }> {title}</Title>
-                                              <RouterCard colorRouter={colors.secondary.base}>
-                                                {uri}
-                                              </RouterCard>
-                                          </StyledLink>
-                                      ):(
-                                        <>
-                                         <Title color={ colors.primary.base } > {title}</Title>                       
-                                        </>
-                                      )
-                                    }            
-                                    </Card>
-                                        </OptionModal>
-                                    
-               
-                              </Article>
-                            </Col>
-
-
-                        
-                            
+                          <CardBody
+                          key={index}
+                          title={title}
+                          type={type}
+                          uri={uri}
+                          id={id}
+                          translateTypes={translateTypes}
+                          item={resourceFilter} 
+                          />                            
                     )
                     })
                   }
-                    {/* <ModalCard
-                        isOpen={isOpenModal} 
-                        closeModal={closeModal}>
-                       
-                    </ModalCard>  */}
-               
-
-                  
                 </Row>
             </Container>
         </Section>
     ):(
         <> 
-        <H1> Sin Resultados :( </H1>    
+        <Title> Sin Resultados 😔 </Title>    
         </>
         
     )
@@ -152,75 +120,7 @@ const ResultsBody = ({props, resources}) =>{
 export default ResultsBody;
 
 
-const H1 = styled.h1`
+const Title = styled.h1`
     margin: 5rem;
     text-align: center;
-`;
-
-const Article = styled.article``;
-
-
-const Card = styled.div`
-${({ decoColor="#00A4E5", types="Types" })=>css`
-  position: relative;
-  background: white;
-  box-shadow: 0rem 2.5rem 4rem rgb(0 0 0 / 6%);
-  border-radius: 1rem;
-  padding: 3rem 3rem;
-  margin: 2rem;
-    &::before{
-      content:'${ types }';
-      position: absolute;
-      background-color: ${ decoColor };
-      top:-1rem;
-      left: 2rem;
-      border-radius: 2rem;
-      padding: 0px  1rem 2px;
-      color: white;
-    }
-  `}
-`;
-
-const RouterCard = styled.div`
-
-${({ colorRouter="#00A4E5" })=>css`
-  font-size: 1.4rem;
-  position: relative;
-  padding: 6px 0;
-  color: ${colorRouter};
-
-  `}
-
-  `;
-
-
-const Title = styled.h2`
-  color: ${ props => props.color };
-  ${h4}
-`;
-
-
-
-const StyledLink = styled(Link)`
-    text-decoration: none;
-    position: relative;
-    display: block;
-    /* z-index: 1; */
-
-    `;
-
-
-const OptionModal = styled.div`
-    &:hover{
-      cursor: pointer;
-    }
-
-
-`;
-
-const customStyles  = css`
-menu{
-  color:red;
-}
-
 `;

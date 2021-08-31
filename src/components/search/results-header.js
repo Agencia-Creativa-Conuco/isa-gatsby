@@ -37,11 +37,6 @@ const Header = styled.div`
     margin-top: -6rem;
 `;
 
-const Filtros = styled.div`
-  padding: 1rem;
-`;
-
-
 const DivBG = styled.div`
     ${({ bg, deco, deco2 })=>css`
         width: 100%;
