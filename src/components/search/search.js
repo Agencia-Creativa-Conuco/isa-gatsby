@@ -8,6 +8,7 @@ import useResources from '../../hooks/useResources'
 const SearchView = (props) =>{
 
   const resources = useResources();
+  
 
   return (
       <Article>

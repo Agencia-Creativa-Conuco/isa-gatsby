@@ -13,8 +13,6 @@ const ResultsBody = ({props, resources}) =>{
     resultsSearch
   } = props;
 
-  console.log(resources);
-
     const {
       SelectUI,
       selectedOption

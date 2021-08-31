@@ -46,9 +46,9 @@ const CardBody = ({
         </Article>
       </Col>
       <ModalUI>{
-        item.map((item)=>{
+        item.map((item,index)=>{
             return(
-              <CardInfo item = {item} /> 
+              <CardInfo key={index} item = {item} /> 
             )
         })
         }
