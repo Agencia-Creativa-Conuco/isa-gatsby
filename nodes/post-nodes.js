@@ -9,14 +9,14 @@ exports.createSinglePages = async ({ posts, gatsbyUtilities }) =>
     posts.map(({ previous, post, next }) => {
 
        //Solo genera vistas para los direcciones académicas (Tienen carreras asignadas)
-       if(post.__typename === "WpDepartament"){
+      //  if(post.__typename === "WpDepartament"){
 
-        const careers = post.data.careers? post.data.careers : [];
+      //   const careers = post.data.careers? post.data.careers : [];
 
-        if(!careers.length){
-          return null;
-        }
-      }
+      //   if(!careers.length){
+      //     return null;
+      //   }
+      // }
 
 
       // createPage is an action passed to createPages

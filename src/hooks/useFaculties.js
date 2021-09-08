@@ -24,7 +24,7 @@ const useFaculties = () => {
                 facultyInfo {
         
                   color
-        
+                  mision
                   cover {
                     copy
                   }
@@ -106,6 +106,7 @@ const useFaculties = () => {
       link: faculty.link,
       featuredImage: faculty?.featuredImage?.node?.localFile,
       color: faculty.facultyInfo.color,
+      mision: faculty.facultyInfo.mision,
       cover: faculty.facultyInfo.cover,
       perfil: faculty.facultyInfo.perfil,
       resources: faculty.resources.resourceRelationship,

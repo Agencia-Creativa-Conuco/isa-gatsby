@@ -101,6 +101,7 @@ ${({
   maxWidth,mxAuto, rounded
 })=>css`
     max-width: ${maxWidth};
+    width: 100%;
     height: 100%;
     ${mxAuto?`margin: 0 auto`:""};
     ${rounded?`

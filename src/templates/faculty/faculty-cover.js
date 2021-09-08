@@ -10,6 +10,7 @@ const FacultyCover = ({ faculty })=>{
         title,
         featuredImage,
         color,
+        mision,
         cover: {
             copy
         }
@@ -32,6 +33,14 @@ const FacultyCover = ({ faculty })=>{
                                     <Wrapper as="div">
                                         <Title color={colors.white}> {title}</Title>
                                         <Content dangerouslySetInnerHTML={{__html: copy}} />    
+                                        {
+                                            mision?(
+                                                <>
+                                                    <SubTitle>Misión</SubTitle>
+                                                    <Paragraph>{mision}</Paragraph>
+                                                </>
+                                            ):null
+                                        }
                                     </Wrapper>
                                 </Col>
                             </Row>
@@ -67,16 +76,31 @@ const ColStyles = styled( Col )`
 `
 
 const Wrapper = styled(Section)`
+    ${mq.lg}{
+        padding: 4rem 0;
+    }
     ${mq.xl}{
         max-width: 57rem;
         margin-left: auto;
         margin-right: auto;
+        padding: rem 0;
     }
 `;
 
 const Title = styled.h1`
     color:  white;
     margin-bottom: 4rem;
+`;
+
+const SubTitle = styled.h2`
+    color:  white;
+    margin-bottom: 2rem;
+    margin-top: 4rem;
+    text-transform: uppercase;
+`;
+
+const Paragraph = styled.p`
+    color: white;
 `;
 
 const Content = styled.div`

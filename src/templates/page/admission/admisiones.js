@@ -9,6 +9,8 @@ import AdmissionCover from "./admission-cover";
 import AdmissionForm from "./admission-form";
 import ResourceList from "../../../components/resourceslist";
 import AdmissionInfo from "./admission-info";
+import AdmissionCredit from "./admission-credit";
+import AdmissionServices from "./admission-services";
 import Calendar from "../../../components/calendar";
 import colors from "../../../components/styles/colors";
 
@@ -31,6 +33,8 @@ const Admisiones = ({page}) => {
       </CalendarSection>
       <AdmissionInfo {...{ page }} />
       <AdmissionForm />
+      <AdmissionCredit {...{page}} />
+      <AdmissionServices {...{page}} />
       <ResourceList items={ page.resources?.resourceRelationship } />
     </Container>
   )

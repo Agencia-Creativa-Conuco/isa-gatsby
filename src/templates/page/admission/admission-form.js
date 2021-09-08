@@ -5,7 +5,6 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { Container, Row, Col, mq} from "../../../components/layout/index";
 import colors from '../../../components/styles/colors';
 import BackgroundImage from "gatsby-background-image";
-import Cta from "../../../components/cta";
 import Form from '../../../components/form';
 
 const AdmissionForm = ({ state,libraries }) =>{
