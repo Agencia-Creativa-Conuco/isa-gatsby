@@ -10,10 +10,10 @@ const CardInfo = ({ item }) => {
             title,
             featuredImage,
             resource: {
-            description,
-            file: {
-                localFile: { publicURL },
-            },
+                description,
+                file: {
+                    localFile: { publicURL },
+                },
             },
         } = item;
 
@@ -21,11 +21,11 @@ const CardInfo = ({ item }) => {
                 <Container>
                 <Row>
                     <Col order={2} orderLG={1}>
-                        <h2>{title}</h2>
+                        <Title>{title}</Title>
                         <Copy>{description}</Copy>
-                        <StyledCTA href={publicURL} download>
-                            <Cta>Descargar</Cta>
-                        </StyledCTA>
+                        <Cta to={publicURL} download>
+                            Descargar
+                        </Cta>
                     </Col>
                     {featuredImage ? (
                     <Col
@@ -48,15 +48,13 @@ const CardInfo = ({ item }) => {
 
 export default CardInfo;
 
-const Copy = styled.p`
-  margin: 0 auto;
+const Title = styled.h2`
+    margin-bottom: 3rem;
 `;
 
-const StyledCTA = styled.a`
-  margin-top: 2rem;
-  padding: 15px;
-  display: block;
-  text-decoration: none;
+const Copy = styled.p`
+  margin: 0 auto;
+  margin-bottom: 4rem;
 `;
 
 const stylesCol = css`

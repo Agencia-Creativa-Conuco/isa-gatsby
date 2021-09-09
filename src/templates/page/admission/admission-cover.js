@@ -45,7 +45,7 @@ const AdmissionCover = ({ page }) =>{
                             <Copy>Sigue estos pasos y estudia con nosotros, aplica para vivir una experiencia educativa de calidad que marcará un antes y un después en tu carrera profesional. ¿Estás listo?</Copy>
 
                             <StyledCTA 
-                                to={"#"}
+                                to={"#form"}
                                 paddingX="7rem"
                                 cta
                             >Aplicar</StyledCTA>
