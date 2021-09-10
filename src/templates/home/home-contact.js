@@ -4,7 +4,6 @@ import { css } from "@emotion/react";
 import { Container, Section, Row, Col, mq} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
 import colors from "../../components/styles/colors";
-import Cta from "../../components/cta";
 import Form from "../../components/form";
 
 const HomeContact = ({ page }) =>{
@@ -36,13 +35,6 @@ const HomeContact = ({ page }) =>{
                         <Content bgDeco={colors.primary.light}>
                             <SectionTitle> {title} </SectionTitle>
                             <Form formId="386740ac-0068-4408-b0ad-1b7b62a5c417"/>
-                            {/* <Form name="contacto" method="POST" netlify>
-                                <input type="hidden" name="form-name" value="contacto" />
-                                <Input type="text" name="name" placeholder="Nombre"/>
-                                <Input type="email" name="email" placeholder="Correo Electronico"/>
-                                <Input type="tel" name="phonenumber" placeholder="Numero de telefono"/>
-                                <button type="submit">Enviar</button>
-                            </Form> */}
                         </Content>
                     </Col>
                 </Row>
@@ -72,30 +64,6 @@ const Content = styled.div`
 const SectionTitle = styled.h2`
     margin: 6rem auto;
     text-align: center;
-`;
-
-// const Form = styled.form`
-//     margin: 0 auto;
-//     text-align: center;
-// `;
-
-const Input = styled.input`
-    border-radius: 1.2rem;
-    display: block;
-    border: none;
-    padding: 2rem 4rem;
-    margin: 1.5rem auto;
-    box-shadow: lightGray 0 0 10px;
-    max-width: 100%;
-
-    ${mq.lg}{
-        padding: 2rem 6rem;
-    }
-`;
-
-
-const StyledLink = styled(Cta)`
-    margin-top: 2rem;
 `;
 
 const Image = styled(FeaturedMedia)`

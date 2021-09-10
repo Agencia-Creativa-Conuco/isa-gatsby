@@ -37,8 +37,12 @@ const Navigation = ({
             </StyledCol>
           ):(
           items.map( (item, index) => {
-            const {children, label, url} = item;
-            const isLink = url !== "#";
+            const {
+              children, 
+              label, 
+            //  url
+            } = item;
+            // const isLink = url !== "#";
 
             return children?(
               <StyledCol key={index} {...{size, sizeSM, sizeMD, sizeLG, sizeXL, mxAuto}}>

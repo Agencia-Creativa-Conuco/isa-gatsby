@@ -28,7 +28,7 @@ const SearchForm = ({ isResults, setResultsSearch }) => {
 
   useEffect( () => {
     setResultsSearch(resultados);
-  }, [resultados]);
+  }, [resultados, setResultsSearch]);
 
   // ComponentWillMount
   // ComponentWillUpdate

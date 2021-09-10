@@ -24,7 +24,7 @@ const Form = ({
   const forms = formIds.length ? formIds : [formId];
 
   const manageFormSubmit = () => {
-    const element = document.getElementById(id);
+    // const element = document.getElementById(id);
     
     if (active < forms.length - 1) {
         setActive(active + 1);

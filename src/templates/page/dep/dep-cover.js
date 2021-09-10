@@ -26,7 +26,6 @@ const DEPCover = ({ page }) =>{
                         >
                         <Logo
                             media={featuredImage}
-                            size="100%"
                             size="80%"
                             bgColor
                         />

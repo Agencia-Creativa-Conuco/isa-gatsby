@@ -17,7 +17,7 @@ import Contact from "../components/contact";
 import RecentPosts from "../components/recent-posts";
 import usePosts from "../hooks/usePosts";
 import useEvents from "../hooks/useEvents";
-import DEP from "./page/dep";
+import Dep from "./page/dep";
 
 export const query = graphql`
   query ($id: String!) {
@@ -64,7 +64,7 @@ const Post = ({ data }) => {
         ) : slug === 'biblioteca'?(
           <Library  {...{ page }}/>
         ):  slug === 'direccion-extension-y-proyectos'?(
-          <DEP  {...{ page }}/>
+          <Dep  {...{ page }}/>
         ): (
           <PageSingle {...{ page }}/>
         )

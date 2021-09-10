@@ -11,12 +11,12 @@ const CareerForm = ({ career, faculty }) =>{
     
     const {
         form: {
-            title,
+            // title,
             image
         }
     } = career;
 
-    const facultyColor = faculty.color;
+    // const facultyColor = faculty.color;
     
     return (
         <BGSection spaceNone>

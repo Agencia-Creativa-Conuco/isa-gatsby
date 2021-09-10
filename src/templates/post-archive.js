@@ -12,7 +12,12 @@ import colors from "../components/styles/colors";
 const Post = (props) => {
   const { pageContext } = props;
 
-  const { offset, nextPagePath, previousPagePath, postsPerPage, items } = pageContext;
+  const { 
+    //offset, 
+    nextPagePath, 
+    previousPagePath, 
+    //postsPerPage, 
+    items } = pageContext;
 
   const posts = usePosts()
     .filter(( post ) => items.includes( post.id ) );

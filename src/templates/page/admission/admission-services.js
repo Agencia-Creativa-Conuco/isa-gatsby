@@ -1,37 +1,11 @@
 import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
 import styled from "@emotion/styled";
 import { Section, Container, Row, Col } from "../../../components/layout/index";
 import { HotelIcon, FoodIcon } from "../../../components/icons";
-import FeaturedMedia from "../../../components/featured-media";
 import { css } from "@emotion/react";
 import colors from "../../../components/styles/colors";
 
 const AdmissionServices = ({ page }) => {
-  const { images } = useStaticQuery(graphql`
-    query {
-      images: allFile(
-        filter: {
-          relativePath: {
-            in: [
-              "admisiones/banco_adopem.png"
-              "admisiones/banfondesa.jpg"
-              "admisiones/fundapec.png"
-            ]
-          }
-        }
-      ) {
-        nodes {
-          id
-          childImageSharp {
-            fluid(maxWidth: 1200) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-      }
-    }
-  `);
 
   const services = [
     {
