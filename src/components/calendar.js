@@ -7,8 +7,29 @@ import moment from "moment";
 
 const Calendar = ({ events = [], title="Fechas de admisión", noEventsTitle}) => {
 
+
+    //Ordena los eventos de menor a mayor
+    const eventList = events.sort( (a, b) => {
+
+        const dateA = new Date(a.dueDate);
+        const dateB = new Date (b.dueDate);
+
+        return dateA - dateB;
+    })
+    // Filtra los eventos que no han vencido
+    .filter( (event, index) => {
+        const today = new Date();
+        const dueDate = new Date(event.dueDate);
+
+        return dueDate >= today;
+    })
+    //Solo se muestran 3 resultados en la página
+    .filter( (event, index) => {
+        return index <= 2
+    } );
+
     // Load the post, but only if the data is ready.
-  return (noEventsTitle || events.length)? (
+  return (noEventsTitle || eventList.length)? (
     <Section>
         <Container>
             {title ? (
@@ -18,21 +39,20 @@ const Calendar = ({ events = [], title="Fechas de admisión", noEventsTitle}) =>
                     </Col>
                 </Row>
             ):null}
-            {events.length ? (
+            {eventList.length ? (
                 <Row>
                     <Col size="auto" mxAuto>
                         <EventList>
                             <Row justifyContent="center">
                             {
-                                events.map( (event, index) => {
+                                eventList.map( (event, index) => {
 
                                     const {
                                         dueDate
                                     } = event;
 
-                                    const date = new Date(moment(dueDate, "DD-MM-YYYY").format('yyyy-MM-DD'));
-                                    const month = new Intl.DateTimeFormat('es', { month: 'long' }).format(date);
-                                    const day = new Intl.DateTimeFormat('es', { day: '2-digit' }).format(date);
+                                    const month = moment(dueDate, '' ,'es').format('MMMM');
+                                    const day = moment(dueDate, '', 'es').format('DD');
             
                                     return (
                                         <EventCard key={index} size="auto" noGutters>

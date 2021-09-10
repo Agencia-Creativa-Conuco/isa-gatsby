@@ -6,6 +6,7 @@ import HubspotForm from "react-hubspot-form";
 import Loading from "./loading";
 import colors from "./styles/colors";
 import scrollTo from "gatsby-plugin-smoothscroll";
+import $ from "jquery";
 
 const Form = ({
   formId,

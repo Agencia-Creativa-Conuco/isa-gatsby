@@ -12,8 +12,6 @@ const Post = ({ post })=>{
 
     const relatedPosts = posts.filter( item => item.id !== post.id).slice(0,3);
 
-    console.log(post)
-
     return(
         
         <Article key={post.id}>
