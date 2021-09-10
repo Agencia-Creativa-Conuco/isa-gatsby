@@ -148,6 +148,6 @@ module.exports = {
       },
       __key: "images",
     },
-    "gatsby-plugin-use-query-params",
+    "gatsby-plugin-use-query-params"
   ],
 };

@@ -9,6 +9,11 @@ import FontFace from "../components/styles/font-faces";
 import Header from "./header";
 import Footer from "./footer";
 
+if (typeof window !== "undefined") {
+  // eslint-disable-next-line global-require
+  require("smooth-scroll")('a[href*="#"]')
+}
+
 const Layout = ({ children }) => {
 
   const [resultsSearch, setResultsSearch] = useState();
