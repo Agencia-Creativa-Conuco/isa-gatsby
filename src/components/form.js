@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { mq } from "./layout/index";
 import HubspotForm from "react-hubspot-form";
 import Loading from "./loading";
 import colors from "./styles/colors";
+import SmoothScroll from "smooth-scroll";
 
 const Form = ({
   formId,
   formIds = [],
+  id = "form",
   loadingHeight = "100%",
   cardStyle = true,
   submitedTitle = "¡Gracias por enviar el formulario!",
@@ -22,7 +24,8 @@ const Form = ({
   const forms = formIds.length ? formIds : [formId];
 
   const manageFormSubmit = () => {
-    const element = document.getElementById("form");
+    const element = document.getElementById(id);
+    const scrool = new SmoothScroll();
     
     if (active < forms.length - 1) {
         setActive(active + 1);
@@ -30,77 +33,83 @@ const Form = ({
       setSubmited(true);
     }
 
-    window.scrollTo({ top: element.offsetTop -100, left: 0, behavior: "smooth" });
+    scrool.animateScroll(element);
   };
 
+  useEffect( ()=> {
+    const script = document.createElement("script");
+    script.src =
+      "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js";
+    let jqueryScript = document.getElementsByTagName("script");
+    let src = Array.from(jqueryScript).filter(
+      (item) => item.src === script.src
+    );
+    if (src.length === 0) {
+      document.body.appendChild(script);
+    }
+  }, [])
 
-  return forms.length && !submited? (
-    <FormSwitcher id="form">
-      <FormDots>
-        {
-          forms.map( ( form, index ) => {
-
-            const isVisible = displayedForms.includes(index) && displayedForms.length > 1;
-            const isCurrent = index === active;
-
-            return (
-              <Dot 
-                key={index}
-                onClick={ ()=>{ setActive(index)}}
-                hidden={!isVisible}
-                bgColor={colors.primary.base}
-                current={ isCurrent }
-              >{index + 1}</Dot>
-            )
-          })
-        }
-      </FormDots>
-      {forms.map((form, index) => {
+  return (
+    <FormSwitcher id={id}>
+      {
+        forms.length && !submited? (
+          <>
+              <FormDots>
+                {
+                  forms.map( ( form, index ) => {
         
-        const isVisible = active === index;
-
-        return isVisible?(
-          <FormContainer
-            key={index}
-            id={index}
-            {...{ cardStyle, ...props }}
-            hidden={!isVisible}
-          >
-            <FormCut>
-              <HubspotForm
-                portalId={20627890}
-                formId={form}
-                onReady={() => {
-                  const script = document.createElement("script");
-                  script.src =
-                    "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js";
-                  let jqueryScript = document.getElementsByTagName("script");
-                  let src = Array.from(jqueryScript).filter(
-                    (item) => item.src === script.src
-                  );
-                  if (src.length === 0) {
-                    document.body.appendChild(script);
-                  }
-
-                  setDisplayedForms( displayedForms.concat( active));
-
-                }}
-                onFormSubmitted={() => {
-                  manageFormSubmit();
-                }}
-                loading={<Loading height={loadingHeight} />}
-              />
-            </FormCut>
-          </FormContainer>
-        ):null;
-      })}
-    </FormSwitcher>
-  ) : (
-    <Message>
-      <h3>{submitedTitle}</h3>
-      <p>{submitedText}</p>
-    </Message>
-  );
+                    const isVisible = displayedForms.includes(index) && displayedForms.length > 1;
+                    const isCurrent = index === active;
+        
+                    return (
+                      <Dot 
+                        key={index}
+                        onClick={ ()=>{ setActive(index)}}
+                        hidden={!isVisible}
+                        bgColor={colors.primary.base}
+                        current={ isCurrent }
+                      >{index + 1}</Dot>
+                    )
+                  })
+                }
+              </FormDots>
+              {forms.map((form, index) => {
+                
+                const isVisible = active === index;
+        
+                return isVisible?(
+                  <FormContainer
+                    key={index}
+                    id={index}
+                    {...{ cardStyle, ...props }}
+                    hidden={!isVisible}
+                  >
+                    <FormCut>
+                      <HubspotForm
+                        portalId={20627890}
+                        formId={form}
+                        onReady={() => {
+                          setDisplayedForms( displayedForms.concat( active));
+                        }}
+                        onFormSubmitted={() => {
+                          manageFormSubmit();
+                        }}
+                        loading={<Loading height={loadingHeight} />}
+                      />
+                    </FormCut>
+                  </FormContainer>
+                ):null;
+              })}
+          </>
+        ) : (
+          <Message id="form">
+            <h3>{submitedTitle}</h3>
+            <p>{submitedText}</p>
+          </Message>
+        )
+      }
+      </FormSwitcher>
+  )
 };
 
 export default Form;

@@ -11,11 +11,10 @@ import Footer from "./footer";
 
 if (typeof window !== "undefined") {
   // eslint-disable-next-line global-require
-  require("smooth-scroll")('a[href*="#"]')
+  require("smooth-scroll")('a[href*="#"]');
 }
 
 const Layout = ({ children }) => {
-
   const [resultsSearch, setResultsSearch] = useState();
 
   const {
@@ -60,7 +59,9 @@ const Layout = ({ children }) => {
       <Main>
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child)) {
-            return React.cloneElement(child, { ...{ resultsSearch, setResultsSearch } });
+            return React.cloneElement(child, {
+              ...{ resultsSearch, setResultsSearch },
+            });
           }
           return child;
         })}
