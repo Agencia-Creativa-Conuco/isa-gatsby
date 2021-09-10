@@ -15,88 +15,80 @@ const DepartamentCover = ({ departament, faculty })=>{
     } = departament;
 
     return (
-        <SSection spaceNone bgColor={faculty.color || colors.primary.dark}>
-            <FeaturedMedia 
-                media={ featuredImage }
-                size="56.25%"   
-                sizeLG="45%"
-                bgColor
-            /> 
-            <SContainer bgColor={lighten(0.15, faculty.color || colors.primary.dark)}>  
-                <Deco bgColor={lighten(0.15, faculty.color || colors.primary.dark)} bgColorBefore={lighten(0.03, faculty.color || colors.primary.dark)} bgColorAfter={lighten(0.03, faculty.color || colors.primary.dark)} />
+        <Section spaceNone >
+            <Container fluid>
                 <Row>
-                    <Col>
-                        <Title> { title }</Title>
-                        <Copy dangerouslySetInnerHTML={{__html: content}} />
+                    <Col 
+                        size={12} 
+                        sizeLG={6} 
+                        noGutters>
+                            <FeaturedMedia 
+                                media={ featuredImage }
+                                size="56.25%"
+                                sizeLG="80%"
+                                heightLG="100%"
+                                bgColor
+                            />
                     </Col>
+                    <ColStyles
+                        size={12}
+                        sizeLG={6}
+                        color={ faculty.color || colors.primary.dark }      
+                    >
+                        <Container noGutters>
+                            <Row>
+                                <Col>
+                                    <Wrapper as="div">
+                                        <Title color={colors.white}> {title}</Title>
+                                        <Content dangerouslySetInnerHTML={{__html: content}} />    
+                                    </Wrapper>
+                                </Col>
+                            </Row>
+                        </Container>
+
+                    </ColStyles>
+                  
                 </Row>
-            </SContainer>
-        </SSection>
+            </Container>
+        </Section>
     );
 }
 
 export default DepartamentCover;
 
-const SSection = styled(Section)`
-    ${({bgColor="darkblue"})=>css`
-        background-color: ${bgColor};
-        padding-bottom: 15rem;
-    `}
-`;
+const ColStyles = styled( Col )`
+    background-color:  ${props => props.color};
+`
 
-const SContainer = styled(Container)`
-    ${({bgColor="blue"})=>css`
-        background-color: ${bgColor};
-        color: white;
-        padding-top: 4rem;
-        padding-bottom: 15rem;
-        ${mq.sm}{
-            margin-top: -15%;
-        }
-        ${mq.xl}{
-            margin-top: -25rem;
-        }
-
-        *{
-            color: inherit;
-        }
-    `}
-`;
-
-const Deco = styled.div`
-    ${({ bgColor="green", bgColorBefore="green", bgColorAfter="green"})=>css`
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: 110%;
-        height: 100%;
-        background-color: ${bgColor};
-        transform: translate(-50%, 0);
-        &:before{
-            content:'';
-            position:absolute;
-            top:8rem;
-            left:-3rem;
-            padding: 3rem;
-            background-color: ${bgColorBefore};
-        }
-        &:after{
-            content:'';
-            position:absolute;
-            top:15rem;
-            right:-2rem;
-            padding: 2rem;
-            background-color: ${bgColorAfter};
-        }
-    `}
+const Wrapper = styled(Section)`
+    ${mq.lg}{
+        padding: 4rem 0;
+    }
+    ${mq.xl}{
+        max-width: 57rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: rem 0;
+    }
 `;
 
 const Title = styled.h1`
-        text-align:center;
-        color: white;
-        margin-bottom: 4rem;
+    color:  white;
+    margin-bottom: 4rem;
 `;
 
-const Copy  = styled.div`
-    margin-bottom: 4rem;
+const SubTitle = styled.h2`
+    color:  white;
+    margin-bottom: 2rem;
+    margin-top: 4rem;
+    text-transform: uppercase;
+`;
+
+const Paragraph = styled.p`
+    color: white;
+`;
+
+const Content = styled.div`
+    position: relative;
+    color: white;
 `;

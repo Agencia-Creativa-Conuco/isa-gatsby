@@ -9,13 +9,13 @@ import { css } from "@emotion/react";
 const DepartamentsCareers  = ({ faculty, careers, grades })=>{
 
     return grades.length?(
-        <BGSection spaceTopNone bg={colors.green.base}>
+        <BGSection thin bg={colors.green.base}>
             {
                 grades.map( (grade, index) => (
                     <Container key={grade.id} >
                         <Row>
                             <Col>
-                                <Title color={ index? faculty.color : "white" } main={ index? false: true }>Programas de {grade.title}</Title>
+                                <Title color={ faculty.color } main={ index? false: true }>Programas de {grade.title}</Title>
                             </Col>
                         </Row>
                         <Row>
@@ -29,7 +29,7 @@ const DepartamentsCareers  = ({ faculty, careers, grades })=>{
                                 } = career;
 
                                 return (
-                                    <Col size={6} sizeMD={6} key={index}>
+                                    <Col size={12} sizeMD={6} key={index}>
                                         <StyledLink to={uri}>
                                             <Card>
                                                 <Row>
@@ -64,7 +64,6 @@ export default DepartamentsCareers;
 
 const BGSection = styled( Section )`
     position: relative;
-    margin-top: -25rem !important;
 `;
 
 const Card = styled.div`
@@ -90,7 +89,7 @@ const CardTitle = styled.h3`
 const Title = styled.h2`
     ${({color="inherit", main})=>css`
         text-align:center;
-        margin-bottom: 10rem;
+        margin-bottom: 4rem;
         color: ${color};
         ${ main? css``:css`
             margin-top: 10rem;

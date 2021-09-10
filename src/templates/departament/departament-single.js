@@ -39,4 +39,6 @@ const Departament= ({ departament })=>{
 
 export default Departament;
 
-const Article = styled.article``;
+const Article = styled.article`
+    margin-bottom: 20rem;
+`;

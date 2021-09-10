@@ -9,7 +9,7 @@ import { css } from "@emotion/react";
 const DepartamentsProjects  = ({ faculty, projects, projectLines })=>{
 
     return projectLines.length?(
-        <BGSection>
+        <BGSection thin>
             <Container>
                 <Row>
                     <Col>
@@ -38,15 +38,23 @@ const DepartamentsProjects  = ({ faculty, projects, projectLines })=>{
                                 } = project;
 
                                 return (
-                                    <Col size={6} sizeMD={6}  mxAuto key={index}>
+                                    <Col size={12} sizeMD={6}  key={index}>
                                         <SLink to={uri}>
                                             <Card>
-                                                <FeaturedMedia 
-                                                    media={ featuredImage }
-                                                    size="100%"   
-                                                    bgColor
-                                                /> 
-                                                <CardTitle color={faculty.color || colors.primary.dark }>{ title }</CardTitle>
+                                                <Row>
+                                                    <Col size="auto">
+                                                        <CardMedia>
+                                                            <FeaturedMedia 
+                                                                media={ featuredImage }
+                                                                size="100%"   
+                                                                bgColor
+                                                            /> 
+                                                        </CardMedia>
+                                                    </Col>
+                                                    <Col>
+                                                        <CardTitle color={faculty.color || colors.primary.dark }>{ title }</CardTitle>
+                                                    </Col>
+                                                </Row>
                                             </Card>
                                         </SLink>
                                     </Col>
@@ -67,11 +75,6 @@ const BGSection = styled( Section )`
     position: relative;
 `;
 
-const Card = styled.div`
-    margin: 2rem auto;
-    max-width: 40rem;
-`;
-
 const SectionTitle = styled.h2`
     ${({color="inherit"})=>css`
         text-align:center;
@@ -82,19 +85,34 @@ const SectionTitle = styled.h2`
 
 const Title = styled.h3`
     ${({color="inherit"})=>css`
-        text-align:center;
+        /* text-align:center; */
         text-transform: uppercase;
+        font-weight: 300;
         color: ${color};
     `}
-`;
-
-const CardTitle = styled.h4`
-    text-align:center;
-    color:${props => props.color};
-    /* text-transform: uppercase; */
 `;
 
 const SLink = styled(Link)`
     text-decoration: none;
     color: inherit;
+`;
+
+const Card = styled.div`
+    padding: 1.5rem;
+    background-color: #FAFAFA;
+    transition: all 0.25s ease-in-out;
+    margin: .5rem 0;
+    &:hover{
+        background-color: #F5F5F5;
+    }
+`;
+
+const CardMedia = styled.div`
+    width: 8rem;
+`;
+
+const CardTitle = styled.h3`
+    color:${props => props.color};
+    text-transform: uppercase;
+    margin: 0;
 `;
