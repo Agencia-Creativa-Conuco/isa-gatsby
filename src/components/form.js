@@ -5,7 +5,7 @@ import { mq } from "./layout/index";
 import HubspotForm from "react-hubspot-form";
 import Loading from "./loading";
 import colors from "./styles/colors";
-import SmoothScroll from "smooth-scroll";
+import scrollTo from "gatsby-plugin-smoothscroll";
 
 const Form = ({
   formId,
@@ -25,7 +25,6 @@ const Form = ({
 
   const manageFormSubmit = () => {
     const element = document.getElementById(id);
-    const scrool = new SmoothScroll();
     
     if (active < forms.length - 1) {
         setActive(active + 1);
@@ -33,7 +32,7 @@ const Form = ({
       setSubmited(true);
     }
 
-    scrool.animateScroll(element);
+    scrollTo(`#${id}`)
   };
 
   useEffect( ()=> {
