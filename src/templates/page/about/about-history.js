@@ -93,7 +93,7 @@ const AboutHistory = ({ page }) =>{
                                             bg={colors.secondary.base}
                                             bgLine={colors.text_main}
                                         >
-                                            {year}
+                                            {index === history.length -1? "ACTUALIDAD" : year}
                                         </CardYear>
 
                                         <Card bg={colors.white}>
@@ -197,6 +197,7 @@ const CardTitle = styled.h3`
 const CardDescription = styled.p`
     text-align: justify;
     display: none;
+    white-space: break-spaces;
 `;
 
 const CardMedia = styled.div`

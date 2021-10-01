@@ -9,11 +9,9 @@ import Carousel from "react-slick";
 
 import {h1} from "../../components/styles/tipography";
 
-const HomeProjects = ({ projects, page }) =>{
+const HomeProjects = ({ projects }) =>{
     
-    const {
-        projectTitle = "Proyectos de investigación",
-    } = page;
+    const projectTitle = "Proyectos de investigación"
 
     return projects.length?(
         <Section spaceBottomNone >

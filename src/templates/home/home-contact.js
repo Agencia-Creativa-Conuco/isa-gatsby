@@ -6,16 +6,9 @@ import FeaturedMedia from "../../components/featured-media";
 import colors from "../../components/styles/colors";
 import Form from "../../components/form";
 
-const HomeContact = ({ page }) =>{
+const HomeContact = ({ images }) =>{
     
-    const {
-        home: {
-            form: {
-                title,
-                image
-            }
-        }
-    }=page;
+    const title = "Contáctanos"
 
     return (
         <Section spaceNone>
@@ -23,7 +16,7 @@ const HomeContact = ({ page }) =>{
                 <Row alignCenter reverseLG>
                     <Col size={12} sizeLG={6} noGutters>
                         <Image
-                            media={image}
+                            media={images.contact}
                             size="56.25%"
                             sizeLG="120%"
                             sizeXL="100%"

@@ -18,7 +18,7 @@ const DEPLaboratory = ({ page }) =>{
     } = page;
 
     return (
-        <Section >
+        <Section spaceTopNone >
             <Container fluid >
              {dataLaboratory.map((item,index) =>{
                  const {
@@ -30,14 +30,14 @@ const DEPLaboratory = ({ page }) =>{
                      
                      return (
                         <Row key={index}>
-                            <Col noGutters size={12} sizeMD={6} order={1} orderMD={index%2?2:1}>
+                            <Col noGutters size={12} sizeMD={6} order={1} orderMD={index%2?1:2}>
                                 <FeaturedMedia
                                     media={ image }
                                     size="56.25%"
                                     heightMD="100%"
                                 />
                             </Col>
-                            <Col css={css`background-color:${colors.blue.dark};`} order={2} orderMD={index%2?1:2} noGutters>
+                            <Col css={css`background-color:${colors.blue.dark};`} order={2} orderMD={index%2?2:1} noGutters>
                                 <Content color={colors.white}>
                                     <Title color={colors.white}>{ title }</Title>
                                     <Copy>{ copy }</Copy>

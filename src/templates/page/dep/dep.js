@@ -22,10 +22,10 @@ const DEPPage = ({ page }) => {
         <DEPDevelopment {...{page}}/>
         <DEPServices  {...{page}}/>
         <DEPServicesMenu {...{page}}/>
-        <DEPLaboratory {...{page}}/>
         <DEPPymes  {...{page}}/>
-        <DEPVeterinary  {...{page}}/>
+        <DEPLaboratory {...{page}}/>
         <DEPCede  {...{page}}/>
+        <DEPVeterinary  {...{page}}/>
     
        {/* <DEPIdentity  {...{page}}/>
         <DEPAsesory  {...{page}}/> */}

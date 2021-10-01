@@ -236,6 +236,9 @@ const usePages = () => {
                       ext
                     }
                   }
+                  whatsapp {
+                    phone
+                  }
                   emails {
                     email
                   }

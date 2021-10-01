@@ -11,7 +11,40 @@ import Calendar from "../../components/calendar";
 import useSlides from "../../hooks/useSlides";
 import useProjects from "../../hooks/useProjects";
 
+import { useStaticQuery, graphql } from "gatsby";
+
 const FrontPage = ({ page, posts = [], events }) => {
+
+  const { allFile } = useStaticQuery(graphql`
+    query {
+      allFile(
+        filter: {
+          relativeDirectory: {
+            in: [
+              "home"
+            ]
+          }
+        }
+      ) {
+        nodes {
+          id
+          name
+          childImageSharp {
+            fluid(maxWidth: 1200) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const images = allFile.nodes.reduce( (obj, item)=>{
+      return {
+          ...obj,
+          [item.name]:item
+      }
+  }, {} )
 
   //Obtiene los datos de los slides
   const slides = useSlides();
@@ -42,13 +75,13 @@ const FrontPage = ({ page, posts = [], events }) => {
   // Load the post, but only if the data is ready.
   return (
     <>
-      <HomeCover {...{ slides, page }}/>
-      <HomeOffer {...{ page }}/>
+      <HomeCover {...{ slides, images }} />
+      <HomeOffer />
       <Calendar {...{events}} />
-      <HomeNews {...{ posts, page }}/>
-      <HomeProjects {...{ projects, page }}/>
-      <HomeAplication {...{ page }} />
-      <HomeContact {...{ page }} />
+      <HomeNews {...{ posts }} />
+      <HomeProjects {...{ projects }} />
+      <HomeAplication {...{ images }} />
+      <HomeContact {...{ images }} />
     </>
   );
 };

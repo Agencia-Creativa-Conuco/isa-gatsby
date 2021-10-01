@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { Section, Container, Row, Col, mq } from "../components/layout/index";
-import {  PhoneIcon, MailIcon  } from "../components/icons";
+import {  PhoneIcon, MailIcon, WhatsappIcon  } from "../components/icons";
 import Link from "../components/link";
 import colors from "./styles/colors";
 
@@ -12,6 +12,7 @@ const Contact = ({ data = {}, color = "green", bgColor="transparent"}) => {
         title = "Contacto",
         phones = [],
         emails = [],
+        whatsapp = [],
     } = data;
 
     return phones?.length || emails?.length?  
@@ -50,7 +51,42 @@ const Contact = ({ data = {}, color = "green", bgColor="transparent"}) => {
                                                         return (
                                                             <Item key={index} color={color}>
                                                                 <Phone>
-                                                                    <StyledLink to={`tel: ${phone}`} >{ phone }{ exts?.length > 0? (exts?.length > 1? `, Exts. ` : ", Ext. " ) + extsFormated : ""} </StyledLink>
+                                                                    <StyledLink to={`tel: ${phone}`} target="_blank" >{ phone }{ exts?.length > 0? (exts?.length > 1? `, Exts. ` : ", Ext. " ) + extsFormated : ""} </StyledLink>
+                                                                </Phone>
+                                                            </Item>
+                                                        )
+                                                    })
+                                                }
+                                                </List>
+                                            </Col>
+                                        </Row> 
+                                    </PhoneList> 
+                                </Col>
+                            ):null
+                        }
+                        {
+                            whatsapp?.length?(
+                                <Col size={12}>
+                                    <PhoneList> 
+                                        <Row>
+                                            <Col size="auto">
+                                                <Icon color={color}>
+                                                    <WhatsappIcon  /> 
+                                                </Icon>
+                                            </Col>
+                                            <Col noLGutters>
+                                                <List>
+                                                {
+                                                    whatsapp.map((item, index)=>{
+
+                                                        const {
+                                                            phone, 
+                                                        } = item;
+
+                                                        return (
+                                                            <Item key={index} color={color}>
+                                                                <Phone>
+                                                                    <StyledLink to={`https://wa.me/1${phone.replace(/[^0-9]/g,'')}`} target="_blank">{ phone }</StyledLink>
                                                                 </Phone>
                                                             </Item>
                                                         )
@@ -83,7 +119,7 @@ const Contact = ({ data = {}, color = "green", bgColor="transparent"}) => {
                                                         return (
                                                             <Item key={index} color={colors.text.base}>
                                                                 <Email>
-                                                                    <StyledLink to={`mailto: ${email}`} >{email}</StyledLink>
+                                                                    <StyledLink to={`mailto: ${email}`} target="_blank" >{email}</StyledLink>
                                                                 </Email>
                                                             </Item>
                                                         )
@@ -166,4 +202,5 @@ const Phone = styled.div`
 
 const Email = styled.p`
     font-weight: bold;
+    font-size: 2rem;
 `;

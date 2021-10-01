@@ -6,11 +6,9 @@ import FeaturedMedia from "../../components/featured-media";
 import Link from "../../components/link";
 import colors from "../../components/styles/colors";
 
-const HomeNews = ({ page, posts }) =>{
+const HomeNews = ({ posts }) =>{
     
-    const {
-        newsTitle = "Noticias Recientes",
-    } = page;
+    const newsTitle = "Noticias Recientes"
 
     const news = posts.filter( post => post.postType === "post");
 

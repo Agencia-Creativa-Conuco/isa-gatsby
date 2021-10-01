@@ -4,6 +4,7 @@ import { css } from "@emotion/react";
 import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
 import FeaturedMedia from "../../../components/featured-media";
 import colors from '../../../components/styles/colors';
+import Cta from '../../../components/cta';
 
 const LibraryCover = ({ page}) =>{
 
@@ -34,6 +35,7 @@ const LibraryCover = ({ page}) =>{
                         
                             <SectionTitle>{title} </SectionTitle>
                             <Copy>{copy}</Copy>
+                            <Cta to="http://bibliotecaunisa.com/" target="_blank">ir al Sitio oficial</Cta>
                          
                         </Content>
                     </Col>
@@ -79,9 +81,13 @@ const Content = styled.div`
 `;
 
 
-const SectionTitle = styled.h1``;
+const SectionTitle = styled.h1`
+    margin-bottom: 2.5rem;
+`;
 
-const Copy = styled.p``;
+const Copy = styled.p`
+    margin-bottom: 2rem;
+`;
 
 
 const Media = styled.div`

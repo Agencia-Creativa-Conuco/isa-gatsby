@@ -74,6 +74,7 @@ export default DEPVeterinary;
 const WrapperRow = styled.div`
   box-shadow: silver 0 0 10px;
   border-radius: 20px;
+  margin-top: 15rem;
 `;
 
 const DivTitle = styled.div`

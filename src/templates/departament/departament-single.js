@@ -31,7 +31,7 @@ const Departament= ({ departament })=>{
         <Article>
             <DepartamentCover {...{departament, faculty}}/>
             <DepartamentCareers {...{faculty, careers, grades}}/>
-            <DepartamentProjects {...{faculty, projectLines, projects}}/>
+            {/* <DepartamentProjects {...{faculty, projectLines, projects}}/> */}
             <Contact data={departament.contact} color={faculty.color} bgColor={colors.gray.light} />
         </Article>
     );

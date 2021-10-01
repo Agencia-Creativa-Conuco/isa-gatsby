@@ -52,7 +52,7 @@ export default DEPPymes;
 
 const WrapperRow = styled.div`
   background: ${(props) => props.bg};
-  margin-top: 20%;
+  margin-top: 15rem;
   position: relative;
   &:before {
     content: "";

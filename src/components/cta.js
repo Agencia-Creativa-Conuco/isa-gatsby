@@ -10,14 +10,14 @@ const Cta = ({
     ...other 
 }) => {
     return !download? ( 
-        <Link to={to} {...{download}}>
-            <Span {...{color, bgColor, bgActiveColor, shadowColor, paddingX,}} {...other}>
+        <Link to={to} {...{download}} {...other}>
+            <Span {...{color, bgColor, bgActiveColor, shadowColor, paddingX,}} >
                 {children}
             </Span>
         </Link>
      ) : (
-        <Anchor href={to} {...{download}}>
-            <Span {...{color, bgColor, bgActiveColor, shadowColor, paddingX,}} {...other}>
+        <Anchor href={to} {...{download}} {...other}>
+            <Span {...{color, bgColor, bgActiveColor, shadowColor, paddingX,}} >
                 {children}
             </Span>
         </Anchor>

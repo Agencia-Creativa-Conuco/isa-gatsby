@@ -8,6 +8,7 @@ import {
   WhatsappIcon,
   InstagramIcon,
   Facebook2Icon,
+  TwitterIcon,
 } from "./icons";
 import Navigation from "./navigation/navigation";
 import colors from "./styles/colors";
@@ -42,9 +43,9 @@ const Footer = ({ state, libraries }) => {
   const items = getHierarchicalItems(menu.menuItems.nodes);
 
   const {
-      url_ws = '/',
-      url_facebook = '/',
-      url_instagram = '/'
+      url_twitter = "https://twitter.com/universidad_isa", 
+      url_facebook = 'https://www.facebook.com/UniversidadISA',
+      url_instagram = 'https://www.instagram.com/universidadisa'
   } = menu
 
   return (
@@ -90,17 +91,17 @@ const Footer = ({ state, libraries }) => {
               <Col size={12} sizeMD={4} css={StylesCol}>
                 <Title> REDES SOCIALES </Title>
                 <Row>
-                  {url_ws ? (
+                  {url_twitter ? (
                     <Col size="auto">
-                      <LinkIcon to={url_ws}>
-                        <WhatsappIcon />
+                      <LinkIcon to={url_twitter} target="_blank">
+                        <TwitterIcon />
                       </LinkIcon>
                     </Col>
                   ) : null}
 
                   {url_instagram ? (
                     <Col size="auto">
-                      <LinkIcon to={url_instagram}>
+                      <LinkIcon to={url_instagram} target="_blank">
                         <InstagramIcon />
                       </LinkIcon>
                     </Col>
@@ -108,7 +109,7 @@ const Footer = ({ state, libraries }) => {
 
                   {url_facebook ? (
                     <Col size="auto">
-                      <LinkIcon to={url_facebook}>
+                      <LinkIcon to={url_facebook} target="_blank">
                         <Facebook2Icon />
                       </LinkIcon>
                     </Col>
@@ -166,6 +167,7 @@ const LinkIcon = styled(Link)`
   display: inline-block;
   margin: 0 auto;
   padding: 10px;
+  color: white;
   &:hover {
     opacity: 0.5;
   }

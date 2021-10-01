@@ -30,7 +30,7 @@ const Item = ({ item, ...other })=>{
             <Component>
                 <StyledLink to={url}>
                     <Title 
-                        color={ (level + 1) % 2 === 0 && level !== 1? colors.text.base : colors.primary.dark } 
+                        color={ (level + 1) % 2 === 0 && level !== 1? colors.text.base : level >= 2? colors.primary.dark : colors.primary.dark } 
                         bgHover={colors.gray.light}
                         {...{isMain, level}}
                     >{label}</Title>
@@ -68,9 +68,11 @@ const Title = styled.span`
         ${isMain?css`
             font-weight: 900;
         `: level % 2 !== 0? css`
-            font-weight: normal;
+            font-weight: 400;
+            text-transform: capitalize;
         `: css`
             font-weight: 300;
+            text-transform: capitalize;
         `}
     `}
 `;
@@ -153,7 +155,7 @@ const NavItem = ({item, isActive, setView}) => {
     );
 }
 
-const HomeOffer = ({ page }) =>{
+const HomeOffer = ({ }) =>{
     
     const [view, setView] = useState();
     
@@ -188,9 +190,7 @@ const HomeOffer = ({ page }) =>{
         }
     `);
 
-    const {
-        menuItems = getHierarchicalItems(menu?.menuItems?.nodes) || []
-    } = page;
+    const menuItems = getHierarchicalItems(menu?.menuItems?.nodes) || []
 
     return menuItems.length?(
         <Section

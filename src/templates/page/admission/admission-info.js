@@ -14,7 +14,9 @@ const AdmissionInfo = ({ page }) =>{
     const categories = useRequirementsCategories();
 
     //Obtiene los grados 
-    const grades = useGrades()?.sort((a,b) => a.order - b.order);
+    const grades = useGrades()?.sort((a,b) => a.order - b.order).filter( grade => {
+        return grade.requirements.length;
+    });
 
     const [view, setView] = useState(0);
 

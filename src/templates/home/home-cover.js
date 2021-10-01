@@ -8,19 +8,17 @@ import Cta from '../../components/cta';
 
 import FeaturedMedia from '../../components/featured-media';
 
-const HomeCover = ({ page, slides }) =>{
-
-    const {
-        home: {
-            cover,
-        }
-    } = page;
+const HomeCover = ({ slides, images }) =>{
 
     const items = slides.length? slides : [ {
-        title: page.title,
-        copy: cover.copy,
-        featuredImage: page.featuredImage,
-        cta: cover.cta
+        title: "Bienvenidos a UNIVERSIDAD ISA",
+        copy: "Entra y descubre todas las ofertas académicas que tenemos disponibles para ti e inicia a aprender para servir y a servir para construir",
+        featuredImage: images.cover,
+        cta: {
+            url: "/admisiones",
+            target: null,
+            title: "Estudia con nosotros"
+        }
     } ];
 
     return (

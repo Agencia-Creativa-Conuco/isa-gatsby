@@ -32,7 +32,11 @@ const OfferTecnics = ({ page }) =>{
                         <DivTitle decoBg={colors.blue.base}>
                             <SectionTitle decoBg={colors.blue.base}>{ title }</SectionTitle>
                             <div dangerouslySetInnerHTML={{__html: content}} />
-                            <StyledLink to={cta.url} target={cta.target}>{cta.title}</StyledLink>
+                            {
+                                cta? (
+                                    <StyledLink to={cta.url} target={cta.target}>{cta.title}</StyledLink>
+                                ) : null
+                            }
                         </DivTitle>
                         <DecoCol decoBg={colors.blue.base}/>
                     </Col>

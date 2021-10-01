@@ -78,9 +78,10 @@ const AboutCampus = ({ page }) =>{
                         >
                         {
                             images.map((item,index) => {
+
                                 return (
                                     <FeaturedMedia 
-                                        key={item.ID}
+                                        key={item.id}
                                         media={item.localFile}
                                         size="56.25%"
                                         sizeXL="40%"
