@@ -1,19 +1,17 @@
 import React from "react";
-
-import HomeCover from "./home-cover";
-import HomeContact from "./home-contact";
-import HomeProjects from "./home-projects";
-import HomeAplication from "./home-aplication";
-import HomeOffer from "./home-offer";
-import HomeNews from "./home-news";
-import Calendar from "../../components/calendar";
-
-import useSlides from "../../hooks/useSlides";
-import useProjects from "../../hooks/useProjects";
+import styled from "@emotion/styled";
+import Layout from "../../components/layout";
+import AboutCover from "./about-cover";
+import AboutHistory from "./about-history";
+import AboutRector from "./about-rector";
+import AboutCampus from "./about-campus";
+import AboutPhilosophy from "./about-philosophy";
+// import ResourceList from "../../components/resourceslist";
+// import usePages from "../../hooks/usePages";
 
 import { useStaticQuery, graphql } from "gatsby";
 
-const FrontPage = ({ page, posts = [], events }) => {
+const About = ({ ...props }) => {
 
   //Obtiene las imágenes localmente desde la ruta "images/home"
   const { allFile } = useStaticQuery(graphql`
@@ -22,7 +20,7 @@ const FrontPage = ({ page, posts = [], events }) => {
         filter: {
           relativeDirectory: {
             in: [
-              "home"
+              "about"
             ]
           }
         }
@@ -49,24 +47,25 @@ const FrontPage = ({ page, posts = [], events }) => {
       }
   }, {} )
 
-  //Obtiene los datos de los slides
-  const slides = useSlides();
-
-  //Obtiene los datos de los Proyectos
-  const projects = useProjects();
-
   // Load the post, but only if the data is ready.
   return (
-    <>
-      <HomeCover {...{ slides, images }} />
-      <HomeOffer />
-      <Calendar {...{events}} />
-      <HomeNews {...{ posts }} />
-      <HomeProjects {...{ projects }} />
-      <HomeAplication {...{ images }} />
-      <HomeContact {...{ images }} />
-    </>
+    <Layout>
+      <Container>
+        <AboutCover {...{images}} />
+        <AboutHistory {...{images}} />
+        <AboutRector {...{images}} />
+        <AboutPhilosophy />
+        <AboutCampus {...{images}} />
+        {/* <ResourceList items={ page.resources?.resourceRelationship } /> */}
+      </Container>
+    </Layout>
   );
 };
 
-export default FrontPage;
+export default About;
+
+const Container = styled.div`
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+`;

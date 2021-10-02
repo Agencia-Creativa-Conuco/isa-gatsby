@@ -28,32 +28,6 @@ const usePages = () => {
                   pageCustom
                 }
                 
-                home {
-                  cover {
-                    copy
-                    cta {
-                      ...CtaFragment
-                    }
-                  }
-                  ctaSection {
-                    title
-                    copy
-                    cta {
-                      ...CtaFragment
-                    }
-                    image {
-                      ...ImageFragment
-                    }
-                  }
-                  
-                  form {
-                    title
-                    image {
-                      ...ImageFragment
-                    }
-                  }
-                }
-
                 offer {
                   coverOffer {
                     copy
@@ -401,7 +375,6 @@ const usePages = () => {
         type: page.__typename,
         styles: page.styles,
         settings: page.pageSettings,
-        home: page.home,
         offer: page.offer,
         studentServices: page.studentServices,
         about: {
