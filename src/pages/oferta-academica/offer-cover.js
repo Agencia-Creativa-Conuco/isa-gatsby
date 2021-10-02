@@ -1,20 +1,14 @@
 import React from 'react';
 import styled from "@emotion/styled";
-import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
-import colors from '../../../components/styles/colors';
+import { Container, Section, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import colors from '../../components/styles/colors';
 
-const OfferCover = ({ page }) =>{
+const OfferCover = ({ images }) =>{
 
-    const {
-        title,
-        featuredImage,
-        offer: {
-            coverOffer: {
-                copy = "ALGO AHI"
-            }
-        },
-    } = page;
+    const 
+        title = "Ofeta Académica",
+        copy = "Desde 1962 hemos construido una plataforma que responde a las necesidades de la población estudiantil que busca formarse para ayudar al desarrollo económico y social de la República Dominicana y el mundo, de la mano de expertos en cada área del saber que abarca nuestra oferta académica.";
 
     return (
         <Section spaceNone>
@@ -23,7 +17,8 @@ const OfferCover = ({ page }) =>{
                     <Col size={12} sizeMD={6} sizeLG={7} noLGutters>
                         <DivLogo decoBg={ colors.blue.dark } decoBgA={colors.blue.base}>    
                             <Logo
-                                media={featuredImage}
+                                media={images.cover}
+                                alt={title}
                                 size="100%"
                                 sizeMD="120%"
                                 sizeLG="100%"

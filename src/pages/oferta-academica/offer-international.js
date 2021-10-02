@@ -1,24 +1,52 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
-import colors from '../../../components/styles/colors';
-import Cta from '../../../components/cta';
+import { Container, Section, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import colors from '../../components/styles/colors';
+import Cta from '../../components/cta';
 
-const OfferInternational = ({ page }) =>{
-    const { 
-        offer: {
-            internationalOffer: {
-                title,
-                copy,
-                image,
-                content,
-                columns,
-                cta
+const OfferInternational = ({ images }) =>{
+    const 
+        title = "Programas Internacionales",
+        copy = "<p>La Universidad ISA, ha coordinado por más de veinte (20) años, programas académicos de corta duración como parte de las vinculaciones internacionales de la institución. Actualmente, desarrolla el programa internacional “Discovering the Food, Human and Environmental Systems of the Caribbean Islands” realizado durante las dos (2) primeras semanas del mes de enero, conjuntamente con la Universidad de Illinois at Urbana Champaign. Todos los años aproximadamente veinte (20) estudiantes estadounidenses y dominicanos (1 estudiante por carrera) participan de este programa.</p>",
+        content = `Los programas internacionales se desarrollan con la participación de diferentes conferencistas de distintas instituciones, quienes comparten sus conocimientos y experiencias en los temas de desarrollo económico del sector agropecuario, así como, aspectos sociales y culturales importantes del país. Como un mecanismo de fortalecer los conocimientos adquiridos, se realizan visitas y excursiones a instituciones y lugares de interés para los participantes, entre éstas: el Centro León y el Instituto del Tabaco (INTABACO) en la provincia Santiago; el Batey Libertad y BANELINO en la provincia Valverde; el Grupo MACAPI y GOYA Dominicana en San Cristóbal; la Embajada de los Estados Unidos de América, el Cuerpo de Paz, en Santo Domingo, entre otros.`,
+        columns = [
+            {
+                title: "Cede del programa",
+                content: `El programa internacional se desarrolla en el campus de la Universidad ISA y en las diferentes instituciones vinculadas al programa.`,
+            },
+            {
+                title: "Perfil del estudiante",
+                content: `Estudiantes activos, extranjeros y de la Universidad ISA.`,
+            },
+            {
+                title: "Principales enfoques y actividades",
+                content: `
+                    <ul>
+                        <li>Agrícola</li>
+                        <li>Pecuario</li>
+                        <li>Ambiental</li>
+                        <li>Cultural</li>
+                    </ul>
+                `,
+            },
+            {
+                title: "Programas anteriores",
+                content: `
+                    <ul>
+                        <li>Ohio State</li>
+                        <li>University</li>
+                        <li>Purdue</li>
+                        <li>University</li>
+                    </ul>
+                `,
             }
+        ],
+        cta = {
+            url: '/admisiones',
+            title: "Estudia con nosotros"
         }
-     } = page;
 
     return (
         <Section>
@@ -41,7 +69,8 @@ const OfferInternational = ({ page }) =>{
                         <Col size={12} sizeMD={5} orderMD={1}>
                             <DivLogo>
                                 <Logo
-                                    media={ image }
+                                    media={ images['programas-internacionales'] }
+                                    alt={title}
                                 />
                             </DivLogo>
                         </Col>

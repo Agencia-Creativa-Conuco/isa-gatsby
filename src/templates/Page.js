@@ -3,7 +3,6 @@ import Layout from "../components/layout";
 import { graphql } from "gatsby";
 import { css, Global } from "@emotion/react";
 
-import Offer from "./page/offer/offer";
 import FrontPage from "./home/front-page";
 import Services from "./page/services/service";
 import Dip from "./page/dip/dip";
@@ -47,8 +46,6 @@ const Post = ({ data }) => {
       {
         isFrontPage? (
           <FrontPage {...{ page, posts, events }}/>
-        ) : slug === 'oferta-academica'? (
-          <Offer {...{ page }}/>
         ) : slug === 'servicios-estudiantiles'? (
           <Services {...{ page }}/>
         ) : slug === 'investigacion'? (
