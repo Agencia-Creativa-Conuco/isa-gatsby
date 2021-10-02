@@ -1,17 +1,19 @@
 import React from 'react';
 import styled from "@emotion/styled";
-import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
-import colors from '../../../components/styles/colors';
-import Cta from "../../../components/cta";
+import { Container, Section, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import colors from '../../components/styles/colors';
+import Cta from "../../components/cta";
 
-const AdmissionCover = ({ page }) =>{
+const AdmissionCover = ({ images }) =>{
 
-    const {
-        title,
-        featuredImage,
-    } = page;
-
+    const 
+        title = "Estudia con nosotros",
+        copy = "Sigue estos pasos y estudia con nosotros, aplica para vivir una experiencia educativa de calidad que marcará un antes y un después en tu carrera profesional. ¿Estás listo?",
+        cta = {
+            url: "#form",
+            title: "Aplicar",
+        }
     return (
         <Section spaceNone>
             <Container fluid>
@@ -25,7 +27,7 @@ const AdmissionCover = ({ page }) =>{
                         <DivLogo decoBg={colors.secondary.light}>
                             <DecoLogo decoBg={colors.secondary.light}>
                             <Logo
-                                media={featuredImage}
+                                media={images.cover}
                                 alt="Admisiones Universidad ISA"
                                 size="100%"
                                 sizeXL="90%"
@@ -41,14 +43,11 @@ const AdmissionCover = ({ page }) =>{
                     >
                         <Content as="div" decoBg={colors.secondary.light}>
                             <SectionTitle>{title}</SectionTitle>
-
-                            <Copy>Sigue estos pasos y estudia con nosotros, aplica para vivir una experiencia educativa de calidad que marcará un antes y un después en tu carrera profesional. ¿Estás listo?</Copy>
-
+                            <Copy>{copy}</Copy>
                             <StyledCTA 
-                                to={"#form"}
+                                to={cta.url}
                                 paddingX="7rem"
-                                cta
-                            >Aplicar</StyledCTA>
+                            >{cta.title}</StyledCTA>
                         </Content>
                     </Col>
                 </Row>

@@ -2,10 +2,10 @@ import React from 'react';
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { graphql, useStaticQuery } from 'gatsby';
-import { Container, Row, Col, mq} from "../../../components/layout/index";
-import colors from '../../../components/styles/colors';
+import { Container, Row, Col, mq} from "../../components/layout/index";
+import colors from '../../components/styles/colors';
 import BackgroundImage from "gatsby-background-image";
-import Form from '../../../components/form';
+import Form from '../../components/form';
 
 const AdmissionForm = ({ state,libraries }) =>{
 

@@ -155,7 +155,7 @@ const NavItem = ({item, isActive, setView}) => {
     );
 }
 
-const HomeOffer = ({ }) =>{
+const HomeOffer = () =>{
     
     const [view, setView] = useState();
     

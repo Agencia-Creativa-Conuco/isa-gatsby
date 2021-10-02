@@ -6,7 +6,7 @@ import {  PhoneIcon, MailIcon, WhatsappIcon  } from "../components/icons";
 import Link from "../components/link";
 import colors from "./styles/colors";
 
-const Contact = ({ data = {}, color = "green", bgColor="transparent"}) => {
+const Contact = ({ data = {}, color = colors.primary.base , bgColor= colors.gray.light}) => {
 
     const {
         title = "Contacto",

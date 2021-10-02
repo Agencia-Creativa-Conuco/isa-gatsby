@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Section, Container, Row, Col } from "../../../components/layout/index";
-import { HotelIcon, FoodIcon } from "../../../components/icons";
+import { Section, Container, Row, Col } from "../../components/layout/index";
+import { HotelIcon, FoodIcon } from "../../components/icons";
 import { css } from "@emotion/react";
-import colors from "../../../components/styles/colors";
+import colors from "../../components/styles/colors";
 
 const AdmissionServices = ({ page }) => {
 

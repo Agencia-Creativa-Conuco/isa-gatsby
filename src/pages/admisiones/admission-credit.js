@@ -1,8 +1,8 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import styled from "@emotion/styled";
-import { Section, Container, Row, Col } from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
+import { Section, Container, Row, Col } from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
 
 const AdmissionCredit = ({ page }) => {
   const { images } = useStaticQuery(graphql`

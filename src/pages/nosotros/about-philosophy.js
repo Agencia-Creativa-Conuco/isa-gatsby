@@ -7,7 +7,7 @@ import colors from '../../components/styles/colors';
 
 import {Spring, animated} from "@react-spring/web";
 
-const AboutPhilosophy = ({ }) =>{
+const AboutPhilosophy = () =>{
 
     const tabs = [
         {

@@ -129,7 +129,7 @@ const Title = styled.h2`
   margin-top: 0;
 `;
 
-const Description = styled.p``;
+// const Description = styled.p``;
 
 const Media = styled.div`
   ${({ bgDeco = "lightblue" }) => css`

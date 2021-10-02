@@ -3,11 +3,11 @@ import styled from "@emotion/styled";
 import useFaculties from "../../hooks/useFaculties";
 import useCareers from "../../hooks/useCareers";
 import useGrades from "../../hooks/useGrades";
-import useProjects from "../../hooks/useProjects";
-import useProjectLines from "../../hooks/useProjectLines";
+// import useProjects from "../../hooks/useProjects";
+// import useProjectLines from "../../hooks/useProjectLines";
 import DepartamentCover from "./departament-cover";
 import DepartamentCareers from "./departament-careers";
-import DepartamentProjects from "./departament-projects";
+// import DepartamentProjects from "./departament-projects";
 import Contact from "../../components/contact";
 import colors from "../../components/styles/colors";
 
@@ -22,10 +22,10 @@ const Departament= ({ departament })=>{
     const grades = useGrades().filter( grade => careers.map( career => career.grade.id ).includes(grade.id) );
 
     //Obtiene las líneas de proyecto relacionadas con el departamento.
-    const projectLines = useProjectLines().filter( line => departament.projectLines.map( dline => dline.id ).includes( line.id ) );
+    // const projectLines = useProjectLines().filter( line => departament.projectLines.map( dline => dline.id ).includes( line.id ) );
 
     //Obtiene los proyectos de investigación correspondientes a las líneas de proyectos del departamento.
-    const projects = useProjects().filter( project => projectLines.map( line => line.id ).includes( project.projectLine.id ) );
+    // const projects = useProjects().filter( project => projectLines.map( line => line.id ).includes( project.projectLine.id ) );
 
     return (
         <Article>

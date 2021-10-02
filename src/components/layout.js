@@ -8,13 +8,18 @@ import globalStyles from "../components/styles/global-styles";
 import FontFace from "../components/styles/font-faces";
 import Header from "./header";
 import Footer from "./footer";
+import ResourcesList from "./resourceslist";
+import Contact from "./contact";
+import usePages from "../hooks/usePages";
+import useCareers from "../hooks/useCareers";
 
 if (typeof window !== "undefined") {
   // eslint-disable-next-line global-require
   require("smooth-scroll")('a[href*="#"]');
 }
 
-const Layout = ({ children }) => {
+const Layout = ({children}) => {
+
   const [resultsSearch, setResultsSearch] = useState();
 
   const {
@@ -37,6 +42,9 @@ const Layout = ({ children }) => {
       }
     }
   `);
+
+  const postTypes = [].concat(usePages(), useCareers());
+  const [postType] = postTypes.filter( postType => postType.uri === window.location.pathname );
 
   return (
     <>
@@ -65,6 +73,10 @@ const Layout = ({ children }) => {
           }
           return child;
         })}
+        {/* Se muestran recursos relacionados con el tipo de dato */}
+        <ResourcesList items={ postType?.resources?.resourceRelationship } />
+        {/* Se muestra información de contacto relacionada con el tipo de dato */}
+        <Contact data={ postType?.contact } />
       </Main>
       <Footer />
     </>

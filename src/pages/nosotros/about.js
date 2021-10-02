@@ -6,8 +6,6 @@ import AboutHistory from "./about-history";
 import AboutRector from "./about-rector";
 import AboutCampus from "./about-campus";
 import AboutPhilosophy from "./about-philosophy";
-// import ResourceList from "../../components/resourceslist";
-// import usePages from "../../hooks/usePages";
 
 import { useStaticQuery, graphql } from "gatsby";
 
@@ -56,7 +54,6 @@ const About = ({ ...props }) => {
         <AboutRector {...{images}} />
         <AboutPhilosophy />
         <AboutCampus {...{images}} />
-        {/* <ResourceList items={ page.resources?.resourceRelationship } /> */}
       </Container>
     </Layout>
   );

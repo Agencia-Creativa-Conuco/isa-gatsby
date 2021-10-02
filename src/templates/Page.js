@@ -3,17 +3,13 @@ import Layout from "../components/layout";
 import { graphql } from "gatsby";
 import { css, Global } from "@emotion/react";
 
-import Admisiones from "./page/admission/admisiones";
 import Offer from "./page/offer/offer";
-import About from "./page/about/about";
 import FrontPage from "./home/front-page";
 import Services from "./page/services/service";
 import Dip from "./page/dip/dip";
 import usePages from "../hooks/usePages";
 import Library from "./page/library"
 import PageSingle from "./page/page-single";
-import colors from "../components/styles/colors";
-import Contact from "../components/contact";
 import RecentPosts from "../components/recent-posts";
 import usePosts from "../hooks/usePosts";
 import useEvents from "../hooks/useEvents";
@@ -51,12 +47,8 @@ const Post = ({ data }) => {
       {
         isFrontPage? (
           <FrontPage {...{ page, posts, events }}/>
-        ) : slug === 'admisiones'? (
-          <Admisiones {...{ page }}/>
         ) : slug === 'oferta-academica'? (
           <Offer {...{ page }}/>
-        ) : slug === 'nosotros'? (
-          <About {...{ page }}/>
         ) : slug === 'servicios-estudiantiles'? (
           <Services {...{ page }}/>
         ) : slug === 'investigacion'? (
@@ -74,8 +66,6 @@ const Post = ({ data }) => {
         !isFrontPage? (<RecentPosts {...{posts}} />) : null
       }
 
-      <Contact data={page.contact} color={colors.primary.base} bgColor={colors.gray.light} />
-      
     </Layout>
   );
 };

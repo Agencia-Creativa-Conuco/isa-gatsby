@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
 import {Section, Container, Row, Col, mq} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
-import {lighten} from "polished";
 import colors from "../../components/styles/colors";
 
 const DepartamentCover = ({ departament, faculty })=>{
@@ -77,16 +75,16 @@ const Title = styled.h1`
     margin-bottom: 4rem;
 `;
 
-const SubTitle = styled.h2`
-    color:  white;
-    margin-bottom: 2rem;
-    margin-top: 4rem;
-    text-transform: uppercase;
-`;
+// const SubTitle = styled.h2`
+//     color:  white;
+//     margin-bottom: 2rem;
+//     margin-top: 4rem;
+//     text-transform: uppercase;
+// `;
 
-const Paragraph = styled.p`
-    color: white;
-`;
+// const Paragraph = styled.p`
+//     color: white;
+// `;
 
 const Content = styled.div`
     position: relative;

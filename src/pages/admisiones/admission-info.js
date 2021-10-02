@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
-import {AdmissionRequisiteIcon} from "../../../components/icons";
-import {h2} from "../../../components/styles/tipography";
+import { Container, Section, Row, Col, mq} from "../../components/layout/index";
+import {AdmissionRequisiteIcon} from "../../components/icons";
+import {h2} from "../../components/styles/tipography";
 import {Spring, animated} from "@react-spring/web";
-import colors from "../../../components/styles/colors";
-import useRequirementsCategories from '../../../hooks/useRequirementsCategories';
-import useGrades from '../../../hooks/useGrades';
+import colors from "../../components/styles/colors";
+import useRequirementsCategories from '../../hooks/useRequirementsCategories';
+import useGrades from '../../hooks/useGrades';
 
 const AdmissionInfo = ({ page }) =>{
 

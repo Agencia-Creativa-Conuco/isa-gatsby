@@ -5,7 +5,6 @@ import { Link, useStaticQuery, graphql } from 'gatsby';
 import { Container, Row, Col, mq } from "./layout/index";
 import FeaturedMedia from "./featured-media";
 import {
-  WhatsappIcon,
   InstagramIcon,
   Facebook2Icon,
   TwitterIcon,

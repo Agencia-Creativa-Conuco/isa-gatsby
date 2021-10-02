@@ -140,46 +140,6 @@ const usePages = () => {
                   }
                 }
 
-                about {
-                  cover {
-                    copy
-                    cta {
-                      ...CtaFragment
-                    }
-                  }
-                  
-                  history {
-                    content
-                    title
-                    year
-                    image {
-                      ...ImageFragment
-                    }
-                  }
-        
-                  perfil {
-                    name
-                    jobtitle
-                    content
-                    photo {
-                      ...ImageFragment
-                    }
-                  }
-                  
-                  tabs {
-                    content
-                    title
-                  }
-        
-                  campus {
-                    title
-                    images {
-                      ...ImageFragment
-                    }
-                  }
-        
-                }
-        
                 events {
                   eventCategories {
                     __typename
@@ -377,13 +337,6 @@ const usePages = () => {
         settings: page.pageSettings,
         offer: page.offer,
         studentServices: page.studentServices,
-        about: {
-          cover: page.about.cover,
-          history: page.about.history || [],
-          perfil: page.about.perfil,
-          tabs: page.about.tabs || [],
-          campus: page.about.campus,
-        },
         investigation:{
           cover: page.investigation.coverInvestigation
         },
