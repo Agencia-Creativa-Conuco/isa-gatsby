@@ -17,6 +17,7 @@ const HomeContact = ({ images }) =>{
                     <Col size={12} sizeLG={6} noGutters>
                         <Image
                             media={images.contact}
+                            alt={title}
                             size="56.25%"
                             sizeLG="120%"
                             sizeXL="100%"

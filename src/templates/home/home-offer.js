@@ -131,7 +131,7 @@ const NavItem = ({item, isActive, setView}) => {
         >
             <MenuItemBody>
                 <IconWrapper bgColor={colors.gray.light}>
-                    <Icon media={icon?.localFile} size="100%" fit="initial"/>
+                    <Icon media={icon?.localFile} alt={label} size="100%" fit="initial"/>
                 </IconWrapper>
                 <OfferTitle>{label}</OfferTitle>
                 {

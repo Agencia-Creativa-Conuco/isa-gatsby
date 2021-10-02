@@ -142,6 +142,7 @@ const AboutHistory = ({ images }) =>{
                                                             media={image}
                                                             size="100%"
                                                             bgColor={colors.gray.light}
+                                                            alt={title}
                                                         />
                                                     </CardMedia> 
                                                 )

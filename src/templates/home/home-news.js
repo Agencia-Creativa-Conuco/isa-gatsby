@@ -40,6 +40,7 @@ const HomeNews = ({ posts }) =>{
                                                 <CardMedia>
                                                     <FeaturedMedia
                                                         media={featuredImage}
+                                                        alt={title}
                                                         size="56.25%"
                                                         bgColor={colors.gray.light}
                                                     />
@@ -78,6 +79,7 @@ const HomeNews = ({ posts }) =>{
                                                     <CardMedia>
                                                         <FeaturedMedia
                                                             media={featuredImage}
+                                                            alt={title}
                                                             size="56.25%"
                                                             bgColor={colors.gray.light}
                                                         />

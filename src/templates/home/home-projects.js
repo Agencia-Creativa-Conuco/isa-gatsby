@@ -40,6 +40,7 @@ const HomeProjects = ({ projects }) =>{
                                             <SlideMedia>
                                                 <FeaturedMedia 
                                                     media={featuredImage}
+                                                    alt={title}
                                                     size="150%"
                                                     sizeSM="100%"
                                                     sizeMD="56.25%"

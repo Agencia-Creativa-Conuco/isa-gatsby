@@ -28,6 +28,7 @@ const AboutRector = ({ images }) =>{
                         <CubeRector decoBg={colors.blue.base}>
                             <FeaturedMedia
                                 media={images.rector}
+                                alt={name}
                                 size="100%"
                                 rounded
                                 zIndex="1"

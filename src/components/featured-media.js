@@ -9,7 +9,7 @@ const FeaturedMedia = ({
   state, media, position, className, bgColor,
   height, heightSM, heightMD, heightLG, heightXL,
   size, sizeSM, sizeMD, sizeLG, sizeXL, loading="lazy", fit="cover",
-  maxWidth,mxAuto, zIndex, rounded = false, ...props
+  maxWidth,mxAuto, zIndex, rounded = false, alt, ...props
 }) => {
 
   if(
@@ -38,7 +38,7 @@ const FeaturedMedia = ({
           media?.childImageSharp? (
             <StyledImage
               fluid={media.childImageSharp.fluid}
-              alt={"texto alternativo"}
+              alt={alt || media.name}
               position={position}
               isSized={isSized}
               loading={loading}
@@ -47,7 +47,7 @@ const FeaturedMedia = ({
           ) : media?.localFile?.childImageSharp? (
             <StyledImage
               fluid={media?.localFile?.childImageSharp.fluid}
-              alt={"texto alternativo"}
+              alt={alt || media.altText}
               position={position}
               isSized={isSized}
               loading={loading}
@@ -56,7 +56,7 @@ const FeaturedMedia = ({
           ) : media?.publicURL? (
             <NormalImage
               {...media}
-              alt={ media.alt }
+              alt={ alt || media.alt }
               src= { media.publicURL }
               srcSet={ media.srcset }
               position={position}
@@ -67,7 +67,7 @@ const FeaturedMedia = ({
           ) : media?.localFile?.publicURL? (
             <NormalImage
               {...media}
-              alt={ media.alt }
+              alt={ alt || media.alt }
               src= { media.localFile.publicURL }
               srcSet={ media.srcset }
               position={position}
@@ -78,7 +78,7 @@ const FeaturedMedia = ({
           ) : (
             <NormalImage
               {...media}
-              alt={ media.alt }
+              alt={ alt || media.alt }
               src= { media.full_url }
               srcSet={ media.srcset }
               position={position}

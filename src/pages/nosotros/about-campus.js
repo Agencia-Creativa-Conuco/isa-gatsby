@@ -48,7 +48,6 @@ const Arrows = (props => {
 
 const AboutCampus = ({ images }) =>{
     
-    console.log(Object.values(images))
     const title = "Nuestro campus";
 
     return Object.values(images).length?(
@@ -72,7 +71,7 @@ const AboutCampus = ({ images }) =>{
                             nextArrow={<Arrows bgColor={"white"} color={colors.primary.dark}><RightArrowIcon/></Arrows>}
                         >
                         {
-                            Object.values(images).filter((item) => item.name.includes("campus")).map((item) => {
+                            Object.values(images).filter((item) => item.name.includes("campus")).map((item, index) => {
                                 
                                 return (
                                     <FeaturedMedia 
@@ -81,6 +80,7 @@ const AboutCampus = ({ images }) =>{
                                         size="56.25%"
                                         sizeXL="40%"
                                         bgColor={colors.gray.light}
+                                        alt={`Campus Universidad ISA - ${index}`}
                                     />
                                 )
                         })}

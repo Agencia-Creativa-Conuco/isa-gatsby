@@ -60,6 +60,7 @@ const AboutCover = ({ images }) =>{
                         <Media decoBg={colors.blue.base}>
                             <Logo
                                 media={images.cover}
+                                alt="Sobre Universidad ISA"
                                 size="100%"
                                 sizeXL="90%"
                                 bgColor

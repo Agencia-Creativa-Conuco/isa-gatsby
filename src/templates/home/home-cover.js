@@ -44,6 +44,7 @@ const HomeCover = ({ slides, images }) =>{
                                         <Media>
                                             <SlideImage 
                                                 media={featuredImage}
+                                                alt={title}
                                                 bgColor
                                                 size="100%"
                                                 sizeMD="100%"
