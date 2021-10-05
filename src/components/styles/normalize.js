@@ -342,7 +342,7 @@ template {
  */
 
 [hidden] {
-	display: none;
+	display: none !important;
 }
 
 `;

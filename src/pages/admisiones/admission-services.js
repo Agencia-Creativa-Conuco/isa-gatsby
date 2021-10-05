@@ -4,17 +4,20 @@ import { Section, Container, Row, Col } from "../../components/layout/index";
 import { HotelIcon, FoodIcon } from "../../components/icons";
 import { css } from "@emotion/react";
 import colors from "../../components/styles/colors";
+import Link from "../../components/link";
 
 const AdmissionServices = ({ page }) => {
 
   const services = [
     {
       name: "Alojamiento",
-      icon: HotelIcon,
+      icon: HotelIcon, 
+      url: "https://forms.gle/EFMUNvShBRNi2mui7",
     },
     {
       name: "Alimentación",
-      icon: FoodIcon
+      icon: FoodIcon,
+      url: "https://forms.gle/cpjpU6U3n2yTVknMA"
     }
   ]
 
@@ -31,12 +34,14 @@ const AdmissionServices = ({ page }) => {
 
               return (
                 <Col key={index} size={12} sizeMD={4} mxAuto>
+                  <Link to={service.url} target="_blank">
                     <Service>
                         <Icon css={css`color: ${colors.primary.dark};`}>
                           <Icono />
                         </Icon>
                         <h3>{service.name}</h3>
                     </Service>
+                  </Link>
                 </Col>
               );
             })}
