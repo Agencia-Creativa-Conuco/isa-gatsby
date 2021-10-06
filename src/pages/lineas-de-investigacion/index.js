@@ -8,7 +8,7 @@ import useProjectLines from '../../hooks/useProjectLines';
 import useDepartaments from '../../hooks/useDepartaments';
 import colors from '../../components/styles/colors';
 
-const ProjectLines = () => {
+const ProjectLines = (props) => {
 
     const projectLines = useProjectLines();
 
@@ -17,7 +17,7 @@ const ProjectLines = () => {
     const faculties = useFaculties().filter( faculty => departaments.map( departament => departament.faculty.id ).includes( faculty.id ) );
 
     return (
-        <Layout>
+        <Layout {...props}>
             <Section as="article" spaceNone>
                 <Cover bgColor={colors.primary.base} spaceNone>
                     <Section as="div" spaceBottomNone>

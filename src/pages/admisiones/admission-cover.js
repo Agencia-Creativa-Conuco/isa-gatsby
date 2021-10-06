@@ -4,8 +4,35 @@ import { Container, Section, Row, Col, mq} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
 import colors from '../../components/styles/colors';
 import Cta from "../../components/cta";
+import { useStaticQuery, graphql } from 'gatsby';
 
-const AdmissionCover = ({ images }) =>{
+const AdmissionCover = () =>{
+
+        //Obtiene las imágenes localmente desde la ruta "images/home"
+  const { allFile } = useStaticQuery(graphql`
+  query {
+    allFile(filter: { relativeDirectory: { in: ["oferta-academica"] } }) {
+      nodes {
+        id
+        name
+        childImageSharp {
+          fluid(maxWidth: 1200) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+    }
+  }
+`);
+
+// Convierte arreglo de imágenes en objeto cuya llave es el nómbre del archivo
+// Esto para facilitar la búsqueda de la imagenes en los componentes hijos.
+const images = allFile.nodes.reduce((obj, item) => {
+  return {
+    ...obj,
+    [item.name]: item,
+  };
+}, {});
 
     const 
         title = "Estudia con nosotros",

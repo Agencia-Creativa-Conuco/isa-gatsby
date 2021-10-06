@@ -3,8 +3,35 @@ import styled from "@emotion/styled";
 import { Container, Section, Row, Col} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
 import colors from '../../components/styles/colors';
+import { useStaticQuery, graphql } from 'gatsby';
 
-const AboutRector = ({ images }) =>{
+const AboutRector = () =>{
+
+        //Obtiene las imágenes localmente desde la ruta "images/home"
+  const { allFile } = useStaticQuery(graphql`
+  query {
+    allFile(filter: { relativeDirectory: { in: ["oferta-academica"] } }) {
+      nodes {
+        id
+        name
+        childImageSharp {
+          fluid(maxWidth: 1200) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+    }
+  }
+`);
+
+// Convierte arreglo de imágenes en objeto cuya llave es el nómbre del archivo
+// Esto para facilitar la búsqueda de la imagenes en los componentes hijos.
+const images = allFile.nodes.reduce((obj, item) => {
+  return {
+    ...obj,
+    [item.name]: item,
+  };
+}, {});
 
     const 
         name= "Ingeniero Benito A. Ferreiras",

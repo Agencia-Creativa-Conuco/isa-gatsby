@@ -6,6 +6,7 @@ import Carousel from "react-slick";
 import FeaturedMedia from "../../components/featured-media";
 import {LeftArrowIcon, RightArrowIcon} from "../../components/icons";
 import colors from "../../components/styles/colors";
+import { useStaticQuery, graphql } from "gatsby";
 
 const Arrows = (props => {
   
@@ -41,7 +42,33 @@ const Arrows = (props => {
   
 })
 
-const AboutHistory = ({ images }) =>{
+const AboutHistory = () =>{
+
+    //Obtiene las imágenes localmente desde la ruta "images/home"
+    const { allFile } = useStaticQuery(graphql`
+    query {
+        allFile(filter: { relativeDirectory: { in: ["oferta-academica"] } }) {
+        nodes {
+            id
+            name
+            childImageSharp {
+            fluid(maxWidth: 1200) {
+                ...GatsbyImageSharpFluid_withWebp
+            }
+            }
+        }
+        }
+    }
+    `);
+
+    // Convierte arreglo de imágenes en objeto cuya llave es el nómbre del archivo
+    // Esto para facilitar la búsqueda de la imagenes en los componentes hijos.
+    const images = allFile.nodes.reduce((obj, item) => {
+    return {
+        ...obj,
+        [item.name]: item,
+    };
+    }, {});
 
     const history = [
         {

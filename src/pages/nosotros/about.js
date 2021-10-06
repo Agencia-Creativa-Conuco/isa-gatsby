@@ -7,53 +7,17 @@ import AboutRector from "./about-rector";
 import AboutCampus from "./about-campus";
 import AboutPhilosophy from "./about-philosophy";
 
-import { useStaticQuery, graphql } from "gatsby";
-
-const About = ({ ...props }) => {
-
-  //Obtiene las imágenes localmente desde la ruta "images/home"
-  const { allFile } = useStaticQuery(graphql`
-    query {
-      allFile(
-        filter: {
-          relativeDirectory: {
-            in: [
-              "about"
-            ]
-          }
-        }
-      ) {
-        nodes {
-          id
-          name
-          childImageSharp {
-            fluid(maxWidth: 1200) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-      }
-    }
-  `);
-
-  // Convierte arreglo de imágenes en objeto cuya llave es el nómbre del archivo
-  // Esto para facilitar la búsqueda de la imagenes en los componentes hijos.
-  const images = allFile.nodes.reduce( (obj, item)=>{
-      return {
-          ...obj,
-          [item.name]:item
-      }
-  }, {} )
+const About = (props) => {
 
   // Load the post, but only if the data is ready.
   return (
-    <Layout>
+    <Layout {...props}>
       <Container>
-        <AboutCover {...{images}} />
-        <AboutHistory {...{images}} />
-        <AboutRector {...{images}} />
+        <AboutCover  />
+        <AboutHistory  />
+        <AboutRector  />
         <AboutPhilosophy />
-        <AboutCampus {...{images}} />
+        <AboutCampus  />
       </Container>
     </Layout>
   );

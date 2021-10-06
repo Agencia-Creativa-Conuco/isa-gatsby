@@ -15,7 +15,7 @@ export const query = graphql`
 `;
 
 // markup
-const Career = ({ data }) => {
+const Career = ({ data, ...props }) => {
   const {
     allWpCareer: { nodes: careers },
   } = data;
@@ -23,7 +23,7 @@ const Career = ({ data }) => {
   const [career] = useCareers().filter( career => careers.map( item => item.id).includes( career.id ) );
 
   return (
-    <Layout>
+    <Layout {...props}>
       <CareerSingle {...{career}} />
     </Layout>
   );

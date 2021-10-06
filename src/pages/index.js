@@ -6,7 +6,7 @@ import usePosts from "../hooks/usePosts";
 import useEvents from "../hooks/useEvents";
 
 // markup
-const IndexPage = () => {
+const IndexPage = (props) => {
 
   const [page] = usePages().filter( page => page.isFrontPage );
 
@@ -17,7 +17,7 @@ const IndexPage = () => {
   const events = useEvents().filter( event => event.categories.filter( category => page.events.categories.map( item => item.id ).includes( category.id ) ).length );
   
   return (
-      <Layout>
+      <Layout {...props}>
         <FrontPage {...{page, posts, events}} />
       </Layout>
   )

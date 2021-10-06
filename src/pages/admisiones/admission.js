@@ -6,7 +6,6 @@ import { Section } from "../../components/layout/index";
 import useEvents from "../../hooks/useEvents";
 import Layout from "../../components/layout";
 
-import {useStaticQuery, graphql} from "gatsby";
 import usePages from "../../hooks/usePages";
 
 import AdmissionCover from "./admission-cover";
@@ -18,34 +17,8 @@ import Calendar from "../../components/calendar";
 import colors from "../../components/styles/colors";
 
 // markup
-const Admissions = () => {
+const Admissions = (props) => {
     
-  //Obtiene las imágenes localmente desde la ruta "images/home"
-  const { allFile } = useStaticQuery(graphql`
-    query {
-      allFile(filter: { relativeDirectory: { in: ["admisiones"] } }) {
-        nodes {
-          id
-          name
-          childImageSharp {
-            fluid(maxWidth: 1200) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-      }
-    }
-  `);
-
-  // Convierte arreglo de imágenes en objeto cuya llave es el nómbre del archivo
-  // Esto para facilitar la búsqueda de la imagenes en los componentes hijos.
-  const images = allFile.nodes.reduce((obj, item) => {
-    return {
-      ...obj,
-      [item.name]: item,
-    };
-  }, {});
-
   const [page] = usePages().filter( page => page.slug ==="admisiones");
 
   const eventCategories = page.events.categories.map((item) => item.id);
@@ -61,9 +34,9 @@ const Admissions = () => {
   );
 
   return (
-      <Layout>
+      <Layout {...props}>
         <Container>
-        <AdmissionCover {...{ images }} />
+        <AdmissionCover />
         <CalendarSection bgColor={colors.gray.light} spaceNone>
             <Calendar events={filteredEvents} />
         </CalendarSection>

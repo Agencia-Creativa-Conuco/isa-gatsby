@@ -18,7 +18,12 @@ if (typeof window !== "undefined") {
   require("smooth-scroll")('a[href*="#"]');
 }
 
-const Layout = ({children}) => {
+const Layout = (props) => {
+
+  const { 
+    children,
+    path = "/"
+  } = props;
 
   const [resultsSearch, setResultsSearch] = useState();
 
@@ -44,7 +49,7 @@ const Layout = ({children}) => {
   `);
 
   const postTypes = [].concat(usePages(), useCareers());
-  const [postType] = postTypes.filter( postType => postType.uri === window.location.pathname );
+  const [postType] = postTypes.filter( postType => postType.uri === path );
 
   return (
     <>
