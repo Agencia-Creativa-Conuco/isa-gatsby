@@ -9,7 +9,7 @@ import colors from "../../components/styles/colors";
 import useRequirementsCategories from '../../hooks/useRequirementsCategories';
 import useGrades from '../../hooks/useGrades';
 
-const AdmissionInfo = ({ page }) =>{
+const AdmissionInfo = () =>{
 
     const categories = useRequirementsCategories();
 

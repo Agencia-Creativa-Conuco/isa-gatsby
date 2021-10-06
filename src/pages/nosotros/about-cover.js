@@ -12,7 +12,7 @@ const AboutCover = () =>{
         //Obtiene las imágenes localmente desde la ruta "images/home"
   const { allFile } = useStaticQuery(graphql`
   query {
-    allFile(filter: { relativeDirectory: { in: ["oferta-academica"] } }) {
+    allFile(filter: { relativeDirectory: { in: ["nosotros"] } }) {
       nodes {
         id
         name

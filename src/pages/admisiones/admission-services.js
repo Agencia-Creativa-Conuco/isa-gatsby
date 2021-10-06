@@ -6,7 +6,7 @@ import { css } from "@emotion/react";
 import colors from "../../components/styles/colors";
 import Link from "../../components/link";
 
-const AdmissionServices = ({ page }) => {
+const AdmissionServices = () => {
 
   const services = [
     {

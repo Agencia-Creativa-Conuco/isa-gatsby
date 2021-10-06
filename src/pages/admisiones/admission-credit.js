@@ -4,7 +4,8 @@ import styled from "@emotion/styled";
 import { Section, Container, Row, Col } from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
 
-const AdmissionCredit = ({ page }) => {
+const AdmissionCredit = () => {
+  
   const { images } = useStaticQuery(graphql`
     query {
       images: allFile(
