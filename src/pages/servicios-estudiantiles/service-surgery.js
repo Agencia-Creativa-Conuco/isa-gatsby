@@ -1,22 +1,27 @@
 import React from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
-import colors from '../../../components/styles/colors';
-import Cta from '../../../components/cta';
+import { Container, Section, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import colors from '../../components/styles/colors';
+import Cta from '../../components/cta';
+import useFiles from '../../hooks/useFiles';
 
-const ServiceSurgery = ({ page }) =>{
-    const {
-        studentServices: {
-            enfermeria: {
-                title, 
-                content,
-                image,
-                cta
-            }
-        } 
-    } = page;
+const ServiceSurgery = () =>{
+    
+    const images = useFiles();
+    
+    const 
+        title = "Servicio de Enfermería", 
+        content = `
+            <p>En la unidad de servicios de enfermería, está enfocada atender y orientar las necesidades de salud y emergencias que puedan surgir durante el desarrollo de la actividad académica y administrativa de la Universidad, ofreciendo un servicio de apoyo oportuno y de alta calidad en la atención de primeros auxilios ambulatorios y de urgencia.</p>
+            <p>Esta unidad promueve además, campañas orientadas a fomentar hábitos de conductas sanas y evitar riesgos de enfermedades, con el objetivo primordial de contribuir al desarrollo integral, tanto de los estudiantes, como de los empleados, mediante la prevención, mantenimiento y promoción de la salud.</p>
+            <p><strong>Horarios</strong><br>
+            Lunes a viernes de 8:00 a.m. a 7:00 p.m.<br>
+            Sábados de 8:00 a.m. a 5:00 p.m.</p>
+        `,
+        image = images["servicios-estudiantiles"].enfermeria,
+        cta = null
 
     return (
         <Section>

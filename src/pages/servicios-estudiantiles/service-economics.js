@@ -1,21 +1,23 @@
 import React from 'react';
 import styled from "@emotion/styled";
-import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
-import colors from "../../../components/styles/colors";
-import Cta from "../../../components/cta";
+import { Container, Section, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import colors from "../../components/styles/colors";
+import Cta from "../../components/cta";
+import useFiles from '../../hooks/useFiles';
 
-const ServiceEconomics = ({ page }) =>{
-    const { 
-        studentServices: {
-            asistenciaEconomica: {
-                title,
-                content,
-                image,
-                cta
-            }
-        }
-    } = page;
+const ServiceEconomics = () =>{
+
+    const images = useFiles();
+
+    const 
+        title = "Asistencia Económica Estudiantil",
+        content = `
+            <p>El Programa de Residencia Estudiantil, es un servicio que ofrece la Universidad ISA a sus estudiantes, principalmente a aquellos provenientes de zonas alejadas a la provincia de Santiago, con el objetivo de propiciar un ambiente que les permita la dedicación a sus estudios y a la vez, lograr un buen desempeño académico.</p>
+            <p>Los estudiantes que desean conservar el derecho al servicio de residencia estudiantil, deben mantener un rendimiento académico en condición normal (2.0/4.0); y el respeto a las normas y reglamentos institucionales.</p>
+        `,
+        image = images["servicios-estudiantiles"].asistencia_economica,
+        cta = null
 
     return (
         <Section>

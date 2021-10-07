@@ -1,21 +1,19 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { Container, Section, Row, Col} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
-import colors from '../../../components/styles/colors';
+import { Container, Section, Row, Col} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import colors from '../../components/styles/colors';
+import useFiles from "../../hooks/useFiles";
 
-const ServiceCover = ({ page }) =>{
+const ServiceCover = () =>{
 
-    const {
-        title,
-        featuredImage,
-        studentServices: {
-            coverStudentServices: {
-                copy
-            }
-        }
-    } = page;
+    const images = useFiles();
+
+    const
+        title = "Servicios Al Estudiante",
+        copy = "Junto a nuestra oferta académica, tenemos disponible diversos servicios que cubren las diferentes necesidades de los estudiantes durante su paso por la universidad. Descubre aquí cuáles son e iniciemos esta aventura juntos.",
+        featuredImage = images['servicios-estudiantiles'].cover;
 
     return (
         <Section spaceNone>

@@ -1,22 +1,23 @@
 import React from 'react';
 import styled from "@emotion/styled";
-import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
-import colors from '../../../components/styles/colors';
-import Cta from '../../../components/cta';
+import { Container, Section, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import colors from '../../components/styles/colors';
+import Cta from '../../components/cta';
+import useFiles from '../../hooks/useFiles';
 
 const ServiceWellneres = ({ page }) =>{
+
+    const images = useFiles();
     
-    const {  
-        studentServices: {
-            desarrollo: {
-                title,
-                content,
-                image,
-                cta
-            }
-        }
-    } = page;
+    const   
+        title = "Departamento de Desarrollo y Bienestar Estudiantil",
+        content = `
+            <p>El departamento de Desarrollo y Bienestar Estudiantil está orientado a facilitar y eficientizar el avance académico y personal de los estudiantes, mediante los servicios que ofrece, liderados por un equipo especializado que pone en acción sus conocimientos, destrezas, y empeño con el propósito de contribuir al crecimiento intelectual, académico, espiritual, emocional, social y vocacional del estudiante, así como también a la plena realización de sus potencialidades.</p>
+            <p>Desarrollo y Bienestar Estudiantil, es un canal activo y de relación con los estudiantes y sus actividades, brinda el apoyo necesario en la concretización de sus iniciativas, promoviendo el liderazgo e incentivando el desarrollo de servicios de apoyo social, educacional, deportivo y cultural.</p>
+        `,
+        image = images["servicios-estudiantiles"].bienestar_estudiantil,
+        cta = null
 
     return (
         <Section spaceNone>

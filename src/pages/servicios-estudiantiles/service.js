@@ -8,21 +8,24 @@ import ServiceEconomics from "./service-economics";
 import ServiceSurgery from "./service-surgery";
 import ServiceSport from "./service-sport";
 import ServiceActivities from "./service-activities";
+import Layout from "../../components/layout";
 
-const ServicePage = ({ page }) => {
+const ServicePage = (props) => {
 
   // Load the post, but only if the data is ready.
     return (
-        <Container>
-            <ServiceCover {...{page}} /> 
-            <ServiceActivities {...{page}} />
-            <ServicePsychology {...{page}} />
-            <ServiceWellneres {...{page}} />
-            <ServiceResidence {...{page}} />
-            <ServiceSurgery {...{page}} />
-            <ServiceSport {...{page}} />
-            <ServiceEconomics {...{page}} />
-        </Container>
+        <Layout {...props}>
+            <Container>
+                <ServiceCover /> 
+                <ServiceActivities />
+                <ServicePsychology />
+                <ServiceWellneres />
+                <ServiceResidence />
+                <ServiceSurgery />
+                <ServiceSport />
+                <ServiceEconomics />
+            </Container>
+        </Layout>
     );
 };
 

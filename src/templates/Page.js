@@ -4,7 +4,6 @@ import { graphql } from "gatsby";
 import { css, Global } from "@emotion/react";
 
 import FrontPage from "./home/front-page";
-import Services from "./page/services/service";
 import Dip from "./page/dip/dip";
 import usePages from "../hooks/usePages";
 import PageSingle from "./page/page-single";
@@ -44,8 +43,6 @@ const Post = ({ data }) => {
       {
         isFrontPage? (
           <FrontPage {...{ page, posts, events }}/>
-        ) : slug === 'servicios-estudiantiles'? (
-          <Services {...{ page }}/>
         ) : slug === 'investigacion'? (
           <Dip  {...{ page }}/>
         ) : (

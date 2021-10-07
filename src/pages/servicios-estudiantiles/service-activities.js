@@ -1,19 +1,44 @@
 import React, {useState, useEffect} from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Row, Col, Section, mq} from "../../../components/layout/index";
+import { Container, Row, Col, Section, mq} from "../../components/layout/index";
 import Carousel from "react-slick";
-import FeaturedMedia from "../../../components/featured-media";
-import {h2} from "../../../components/styles/tipography";
-import colors from "../../../components/styles/colors";
-import Cta from "../../../components/cta";
+import FeaturedMedia from "../../components/featured-media";
+import {h2} from "../../components/styles/tipography";
+import colors from "../../components/styles/colors";
+import Cta from "../../components/cta";
+import useFiles from "../../hooks/useFiles";
 
-const ServiceActivities = ({ page }) =>{
-    const {
-        studentServices: {
-            actividadesExtracurriculares,
-        }
-    } = page;
+const ServiceActivities = () =>{
+    
+    const images = useFiles();
+
+    const actividadesExtracurriculares = [
+        {
+            title: "Pastoral Juvenil",
+            copy: "La Pastoral Juvenil desarrolla acciones encaminadas a fomentar valores, así como la actividad y crecimiento espiritual, contribuyendo a la formación integral de los universitarios.",
+            cta: null,
+            image: images['servicios-estudiantiles'].pastoral_juvenil
+        },
+        {
+            title: "Club De Danza",
+            copy: "En períodos de tiempo razonables (una vez a la semana, cada quince días, mensual) los participantes se exponen a películas de contenido relevante y al final generan un debate.",
+            cta: null,
+            image: images['servicios-estudiantiles'].club_de_danza
+        },
+        {
+            title: "Club De Ciencia",
+            copy: "El Club de Ciencias identificado con el logo   tiene como misión el contribuir con el fortalecimiento de la enseñanza/ aprendizaje de las ciencias en la República Dominicana a través del desarrollo intelectual, científico, cultural y social de las/os profesores/as de ciencias de la naturaleza en el país.",
+            cta: null,
+            image: images['servicios-estudiantiles'].club_de_ciencias
+        },
+        {
+            title: "Cine Foro",
+            copy: "En períodos de tiempo razonables (una vez a la semana, cada quince días, mensual) los participantes se exponen a películas de contenido relevante y al final generan un debate.",
+            cta: null,
+            image: images['servicios-estudiantiles'].cine_foro
+        },
+    ];
 
     const [nav1, setNav1] = useState(null)
     const [nav2, setNav2] = useState(null)

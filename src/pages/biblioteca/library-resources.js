@@ -38,7 +38,7 @@ const LibraryResources = () => {
                 const { cloneContent } = item;
                 return (
                   <Col size={12} sizeMD={6} key={index}>
-                    <div dangerouslySetInnerHTML={{ __html: cloneContent }} />
+                    <p dangerouslySetInnerHTML={{ __html: cloneContent }} />
                   </Col>
                 );
               })}

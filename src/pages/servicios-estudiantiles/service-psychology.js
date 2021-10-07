@@ -1,22 +1,23 @@
 import React from 'react';
 import styled from "@emotion/styled";
-import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
-import colors from "../../../components/styles/colors";
-import Cta from '../../../components/cta';
+import { Container, Section, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import colors from "../../components/styles/colors";
+import Cta from '../../components/cta';
+import useFiles from '../../hooks/useFiles';
 
-const ServicePsychology = ({ page }) =>{
+const ServicePsychology = () =>{
 
-    const { 
-        studentServices: {
-            orientacion: {
-                title, 
-                content,
-                image,
-                cta
-            }
-        }
-    } = page;
+    const images = useFiles();
+
+    const  
+        title = "Orientación e Inclusión Estudiantil", 
+        content = `
+            <p>Orientación e inclusión estudiantil es un servicio orientado a propiciar el bienestar estudiantil y potenciar, en todas sus dimensiones, el desarrollo integral del estudiante mediante los servicios de orientación académica, personal, social y profesional.</p>
+            <p>Su objetivo principal es valorar y propugnar por el desarrollo integral de los estudiantes, aportándole la asesoría y respaldo en su proceso de formación académica, personal y social, contribuyendo a la formación de agentes autónomos que se integrarán a la sociedad.</p>
+        `,
+        image = images['servicios-estudiantiles'].orientacion_estudiantil,
+        cta = null
 
     return (
         <Section spaceNone>

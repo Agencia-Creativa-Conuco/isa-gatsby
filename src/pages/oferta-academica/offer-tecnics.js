@@ -4,7 +4,6 @@ import { css } from '@emotion/react';
 import { Container, Section, Row, Col} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
 import colors from '../../components/styles/colors';
-import Cta from '../../components/cta';
 import { useStaticQuery, graphql } from 'gatsby';
 
 const OfferTecnics = () =>{
@@ -104,10 +103,6 @@ const SectionTitle = styled.h2`
     margin-bottom: 4rem;
 `;
 
-const StyledLink = styled(Cta)`
-    margin-top: 2rem;
-    margin-bottom: 3rem;
-`;
 
 const DecoCol = styled.div`
     position: absolute;

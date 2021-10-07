@@ -1,23 +1,50 @@
 import React, {useState, useEffect} from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
+import { Container, Section, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
 import Carousel from "react-slick";
-import colors from "../../../components/styles/colors";
-import Cta from "../../../components/cta";
+import colors from "../../components/styles/colors";
+import Cta from "../../components/cta";
+import useFiles from "../../hooks/useFiles";
 
-const ServiceSport = ({ page }) =>{
-    const { 
-        studentServices: {
-            deportes: {
-                title, 
-                content,
-                sports,
-                cta
-            }
-        }
-    } = page;
+const ServiceSport = () =>{
+
+    const images = useFiles();
+
+    const  
+        title = "Unidad de Deporte", 
+        content = `
+            <p>La unidad de Deporte gestiona profesionalmente los programas de actividad física y deportiva para los estudiantes, con el objetivo de fomentar y mantener en ellos la importancia de aquellos aspectos que tengan que ver con su desarrollo y disciplina física. Esta unidad coordina la formación de equipos, entrenamientos y participación del estudiantado en los principales eventos deportivos universitarios e interuniversitarios que se desarrollan en el país.</p>
+            <h4><strong>DISCIPLINAS DESARROLLADAS PARA AMBOS GÉNEROS</strong></h4>
+        `,
+        sports = [
+            {
+                name: "Baloncesto Masculino",
+                image: images['servicios-estudiantiles'].baloncesto,
+            },
+            {
+                name: "Voleibol",
+                image: images['servicios-estudiantiles'].voleibol,
+            },
+            {
+                name: "Futbol",
+                image: images['servicios-estudiantiles'].futbol,
+            },
+            {
+                name: "Atletismo",
+                image: images['servicios-estudiantiles'].atletismo,
+            },
+            {
+                name: "Béisbol",
+                image: images['servicios-estudiantiles'].beisbol,
+            },
+            {
+                name: "Ajedrez",
+                image: images['servicios-estudiantiles'].ajedrez,
+            },
+        ],
+        cta = null
 
     const [nav1, setNav1] = useState(null)
     const [nav2, setNav2] = useState(null)
