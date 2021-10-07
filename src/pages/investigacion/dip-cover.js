@@ -1,21 +1,19 @@
 import React from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
-import colors from "../../../components/styles/colors";
+import { Container, Section, Row, Col} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import colors from "../../components/styles/colors";
+import useFiles from '../../hooks/useFiles';
 
-const DIPCover = ({ page }) =>{
+const DIPCover = () =>{
 
-    const {
-        title,
-        featuredImage,
-        investigation: {
-            cover : {
-                copy
-            }
-        }
-    } = page;
+    const images = useFiles();
+
+    const 
+        title = "Investigación",
+        copy = "La Vicerrectoría de Investigaciones es la unidad operativa de la Universidad ISA que tiene como misión institucional normar, dirigir y desarrollar las actividades de investigación de la institución.", 
+        featuredImage = images.investigacion.cover;
 
     return (
         <StyledSection spaceNone decoBg={colors.cta.base}>

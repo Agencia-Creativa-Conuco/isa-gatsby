@@ -1,18 +1,16 @@
 import React from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
-import Link from "../../../components/link";
-import colors from "../../../components/styles/colors";
+import { Container, Section, Row, Col} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import Link from "../../components/link";
+import colors from "../../components/styles/colors";
 
-import {h2} from "../../../components/styles/tipography";
+import {h2} from "../../components/styles/tipography";
 
-const DIPProcess = ({ projects, page }) =>{
+const DIPProcess = ({ projects }) =>{
 
-    const { 
-        sectionTitle = "Investigaciónes en curso"
-    } = page;
+    const sectionTitle = "Investigaciónes en curso"
 
     const projectList = projects.filter((item)=>{
         return true;

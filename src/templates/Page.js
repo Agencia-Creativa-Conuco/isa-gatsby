@@ -4,7 +4,6 @@ import { graphql } from "gatsby";
 import { css, Global } from "@emotion/react";
 
 import FrontPage from "./home/front-page";
-import Dip from "./page/dip/dip";
 import usePages from "../hooks/usePages";
 import PageSingle from "./page/page-single";
 import RecentPosts from "../components/recent-posts";
@@ -29,7 +28,7 @@ const Post = ({ data }) => {
 
   const [page] = usePages().filter( page => pages.map( item => item.id).includes( page.id ) );
 
-  const { slug, isFrontPage } = page;
+  const { isFrontPage } = page;
   
   //Obtiene los datos de los Posts de las categorías seleccionadas
   const posts = usePosts().filter( post => post.categories.filter( category => page.posts.categories.map( item => item.id ).includes(category.id) ).length );
@@ -43,8 +42,6 @@ const Post = ({ data }) => {
       {
         isFrontPage? (
           <FrontPage {...{ page, posts, events }}/>
-        ) : slug === 'investigacion'? (
-          <Dip  {...{ page }}/>
         ) : (
           <PageSingle {...{ page }}/>
         )

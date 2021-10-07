@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col } from "../../../components/layout/index";
+import { Container, Section, Row, Col } from "../../components/layout/index";
 import Carousel from "react-slick";
-import FeaturedMedia from "../../../components/featured-media";
-import colors from "../../../components/styles/colors";
-import Link from "../../../components/link";
+import FeaturedMedia from "../../components/featured-media";
+import colors from "../../components/styles/colors";
+import Link from "../../components/link";
 
-const DIPGeneral = ({ page, projects, departaments, faculties, projectLines }) =>{
+const DIPGeneral = ({ projects, departaments, faculties, projectLines }) =>{
 
     const [nav1, setNav1] = useState(null)
     const [nav2, setNav2] = useState(null)

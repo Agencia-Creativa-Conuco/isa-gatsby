@@ -77,8 +77,7 @@ const AdmissionForm = ({ state,libraries }) =>{
                                                     key={index} 
                                                     onClick={form.action}
                                                     hidden = { 
-                                                        index === active || 
-                                                        active >= 1 && index >= 1
+                                                        (index === active) || (active >= 1 && index >= 1)
                                                     }
                                                 >
                                                     {form.name}

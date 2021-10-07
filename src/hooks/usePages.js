@@ -28,85 +28,6 @@ const usePages = () => {
                   pageCustom
                 }
                 
-                studentServices {
-                  coverStudentServices {
-                    copy
-                  }
-                  actividadesExtracurriculares {
-                    title
-                    copy
-                    cta {
-                      ...CtaFragment
-                    }
-                    image {
-                      ...ImageFragment
-                    }
-                  }
-                  orientacion {
-                    title
-                    content
-                    cta {
-                      ...CtaFragment
-                    }
-                    image {
-                      ...ImageFragment
-                    }
-                  }
-                  desarrollo {
-                    title
-                    content
-                    cta {
-                      ...CtaFragment
-                    }
-                    image {
-                      ...ImageFragment
-                    }
-                  }
-                  alojamiento {
-                    title
-                    content
-                    cta {
-                      ...CtaFragment
-                    }
-                    image {
-                      ...ImageFragment
-                    }
-                  }
-                  enfermeria {
-                    title
-                    content
-                    cta {
-                      ...CtaFragment
-                    }
-                    image {
-                      ...ImageFragment
-                    }
-                  }
-                  deportes {
-                    title
-                    content
-                    cta {
-                      ...CtaFragment
-                    }
-                    sports {
-                      name
-                      image {
-                        ...ImageFragment
-                      }
-                    }
-                  }
-
-                  asistenciaEconomica {
-                    title
-                    content
-                    image {
-                      ...ImageFragment
-                    }
-                    cta {
-                      ...CtaFragment
-                    }
-                  }
-                }
 
                 events {
                   eventCategories {
@@ -122,12 +43,6 @@ const usePages = () => {
                 posts {
                   categories {
                     id
-                  }
-                }
-
-                investigation{
-                  coverInvestigation {
-                    copy
                   }
                 }
 
@@ -191,10 +106,6 @@ const usePages = () => {
         type: page.__typename,
         styles: page.styles,
         settings: page.pageSettings,
-        studentServices: page.studentServices,
-        investigation:{
-          cover: page.investigation.coverInvestigation
-        },
         events: {
           categories: page?.events?.eventCategories || [],
         },

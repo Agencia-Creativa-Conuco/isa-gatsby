@@ -2,15 +2,16 @@ import React from "react";
 import styled from "@emotion/styled";
 import DIPCover from "./dip-cover";
 import DIPProcess from "./dip-process";
-import useProjects from "../../../hooks/useProjects";
-import useDepartaments from "../../../hooks/useDepartaments";
-import useFaculties from "../../../hooks/useFaculties";
-import useProjectLines from "../../../hooks/useProjectLines";
-import usePersons from "../../../hooks/usePersons";
-import DIPTeam from "../../../components/team-slider";
+import useProjects from "../../hooks/useProjects";
+import useDepartaments from "../../hooks/useDepartaments";
+import useFaculties from "../../hooks/useFaculties";
+import useProjectLines from "../../hooks/useProjectLines";
+import usePersons from "../../hooks/usePersons";
+import DIPTeam from "../../components/team-slider";
 import DIPGeneral from "./dip-general";
+import Layout from "../../components/layout";
 
-const ResearchPage = ({ page }) => {
+const ResearchPage = (props) => {
 
   //Obtiene los datos de las facultades.
   const faculties = useFaculties();
@@ -30,14 +31,16 @@ const ResearchPage = ({ page }) => {
   const persons = usePersons();
 
   return (
-    <Container>
-      <DIPCover {...{page}} />
-      <DIPGeneral
-        {...{ page, projects, projectLines, faculties, departaments }}
-      />
-      <DIPProcess {...{ page, projects }} />
-      <DIPTeam {...{ persons }} />
-    </Container>
+    <Layout {...props}>
+      <Container>
+        <DIPCover />
+        <DIPGeneral
+          {...{ projects, projectLines, faculties, departaments }}
+        />
+        <DIPProcess {...{ projects }} />
+        <DIPTeam {...{ persons }} />
+      </Container>
+    </Layout>
   );
 };
 
