@@ -11,9 +11,11 @@ import {
 import FeaturedMedia from "../../components/featured-media";
 import colors from "../../components/styles/colors";
 import Cta from "../../components/cta";
+import useFiles from "../../hooks/useFiles";
 
-const HomeAplication = ({ images }) => {
+const HomeAplication = () => {
 
+  const images = useFiles();
   const title = "Expande tu horizonte profesional con nosotros"
   const copy = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem cum, voluptatum architecto sint, quasi totam sequi aliquam porro explicabo aspernatur nam distinctio esse asperiores repellat dolore reiciendis voluptate unde vel?"
 
@@ -35,7 +37,7 @@ const HomeAplication = ({ images }) => {
           <Row alignCenter>
             <Col size={12} sizeSM={10} sizeLG={6} mxAuto>
               <Media bgDeco={colors.primary.dark}>
-                <Image media={images.application} size="125%" position="50% 10%" />
+                <Image media={images.home.application} size="125%" position="50% 10%" />
               </Media>
             </Col>
             <Col size={12} sizeLG={6} mlAuto>

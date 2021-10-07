@@ -5,8 +5,11 @@ import { Container, Section, Row, Col, mq} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
 import colors from "../../components/styles/colors";
 import Form from "../../components/form";
+import useFiles from '../../hooks/useFiles';
 
-const HomeContact = ({ images }) =>{
+const HomeContact = () =>{
+
+    const images = useFiles();
     
     const title = "Contáctanos"
 
@@ -16,7 +19,7 @@ const HomeContact = ({ images }) =>{
                 <Row alignCenter reverseLG>
                     <Col size={12} sizeLG={6} noGutters>
                         <Image
-                            media={images.contact}
+                            media={images.home.contact}
                             alt={title}
                             size="56.25%"
                             sizeLG="120%"

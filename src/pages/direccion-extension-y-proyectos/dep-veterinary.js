@@ -7,15 +7,39 @@ import {
   Row,
   Col,
   mq,
-} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
-import colors from "../../../components/styles/colors";
+} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import colors from "../../components/styles/colors";
+import useFiles from "../../hooks/useFiles";
+
 const DEPVeterinary = ({ page }) => {
-  const {
-    dep: {
-      veterinary: { title, copy, list, image },
-    },
-  } = page;
+
+  const images = useFiles();
+
+  const 
+    title = "Clínica Veterinaria",
+    copy = "La Clínica Veterinaria está preparada para ofrecerle a nuestros clientes los mejores servicios en cuanto a la salud de sus animales, tanto en el ámbito preventivo como curativo y en el aspecto docente ofrece a los estudiantes la oportunidad de poder conocer, diagnosticar, tratar y sobre todo prevenir las principales patologías que afectan a nuestros animales de compañía.",
+    list = [
+      {
+        title: "Servicios",
+        items: [
+          { content: "Consulta"},
+          { content: "cirugía"},
+          { content: "Vacunaciones"}
+        ]
+      },
+      {
+        title: "Diagnósticos",
+        items: [
+          { content: "Parasitología"},
+          { content: "Rayos X"},
+          { content: "Ecografía"},
+          { content: "Biopsia"},
+          { content: "Necropsia"}
+        ]
+      }
+    ],
+    image = images["direccion-extension-y-proyectos"].clinica_veterinaria;
 
   return (
     <Section>

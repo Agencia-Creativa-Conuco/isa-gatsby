@@ -5,15 +5,17 @@ import { Container, Section, Row, Col, mq} from "../../components/layout/index";
 import Carousel from "react-slick";
 import colors from "../../components/styles/colors";
 import Cta from '../../components/cta';
-
+import useFiles from '../../hooks/useFiles';
 import FeaturedMedia from '../../components/featured-media';
 
-const HomeCover = ({ slides, images }) =>{
+const HomeCover = ({ slides }) =>{
+
+    const images = useFiles();
 
     const items = slides.length? slides : [ {
         title: "Bienvenidos a UNIVERSIDAD ISA",
         copy: "Entra y descubre todas las ofertas académicas que tenemos disponibles para ti e inicia a aprender para servir y a servir para construir",
-        featuredImage: images.cover,
+        featuredImage: images.home.cover,
         cta: {
             url: "/admisiones",
             target: null,

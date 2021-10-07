@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import Layout from "../../components/layout";
 import DEPCover from "./dep-cover";
 import DEPActivities from "./dep-activities";
 import DEPDevelopment from "./dep-development";
@@ -13,23 +14,25 @@ import DEPPymes from "./dep-pymes";
 // import DEPAsesory from "./dep-asesory";
 
 
-const DEPPage = ({ page }) => {
+const DEPPage = () => {
 
     return  (
-      <Container>
-        <DEPCover {...{page}}/>
-        <DEPActivities {...{page}}/>
-        <DEPDevelopment {...{page}}/>
-        <DEPServices  {...{page}}/>
-        <DEPServicesMenu {...{page}}/>
-        <DEPPymes  {...{page}}/>
-        <DEPLaboratory {...{page}}/>
-        <DEPCede  {...{page}}/>
-        <DEPVeterinary  {...{page}}/>
-    
-       {/* <DEPIdentity  {...{page}}/>
-        <DEPAsesory  {...{page}}/> */}
-      </Container>
+      <Layout>
+        <Container>
+          <DEPCover/>
+          <DEPActivities/>
+          <DEPDevelopment/>
+          <DEPServices />
+          <DEPServicesMenu/>
+          <DEPPymes />
+          <DEPLaboratory/>
+          <DEPCede />
+          <DEPVeterinary />
+      
+        {/* <DEPIdentity />
+          <DEPAsesory /> */}
+        </Container>
+      </Layout>
     )
 };
 

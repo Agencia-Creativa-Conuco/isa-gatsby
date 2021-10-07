@@ -92,7 +92,7 @@ const Footer = ({ state, libraries }) => {
                 <Row>
                   {url_twitter ? (
                     <Col size="auto">
-                      <LinkIcon to={url_twitter} target="_blank">
+                      <LinkIcon href={url_twitter} target="_blank">
                         <TwitterIcon />
                       </LinkIcon>
                     </Col>
@@ -100,7 +100,7 @@ const Footer = ({ state, libraries }) => {
 
                   {url_instagram ? (
                     <Col size="auto">
-                      <LinkIcon to={url_instagram} target="_blank">
+                      <LinkIcon href={url_instagram} target="_blank">
                         <InstagramIcon />
                       </LinkIcon>
                     </Col>
@@ -108,7 +108,7 @@ const Footer = ({ state, libraries }) => {
 
                   {url_facebook ? (
                     <Col size="auto">
-                      <LinkIcon to={url_facebook} target="_blank">
+                      <LinkIcon href={url_facebook} target="_blank">
                         <Facebook2Icon />
                       </LinkIcon>
                     </Col>
@@ -158,7 +158,7 @@ const StylesCol = css`
   }
 `;
 
-const LinkIcon = styled(Link)`
+const LinkIcon = styled.a`
   border-radius: 100%;
   border-width: 1px;
   border-style: solid;

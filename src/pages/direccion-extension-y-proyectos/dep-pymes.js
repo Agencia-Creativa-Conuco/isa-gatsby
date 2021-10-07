@@ -1,22 +1,30 @@
 import React from "react";
 import styled from "@emotion/styled";
-import Cta from "../../../components/cta";
+import Cta from "../../components/cta";
 import {
   Container,
   Section,
   Row,
   Col,
   mq,
-} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
-import colors from "../../../components/styles/colors";
+} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import colors from "../../components/styles/colors";
+import useFiles from "../../hooks/useFiles";
 
-const DEPPymes = ({ page }) => {
-  const {
-    dep: {
-      mipymes: { title, copy, image, cta },
-    },
-  } = page;
+const DEPPymes = () => {
+
+  const images = useFiles();
+  const image = images["direccion-extension-y-proyectos"].cover;
+
+  const 
+    title = "Centro MIPYMES", 
+    copy = "El Centro PYMES (Centro de Servicios de Apoyo Integral de las micro, pequeñas y medianas empresas) es una iniciativa por parte del Ministerio de Industria y Comercio a través del Viceministerio de Fomento a las Pymes en alianza con la Universidad ISA, el cual tiene como objetivo principal brindar los servicios y las consultorías necesarias a las micro, pequeñas y medianas empresas, de manera gratuita, para fortalecer su capacidad productiva, competitividad y eficiencia.", 
+    cta ={
+      url: "/centro-mipymes",
+      title: "Conoce más",
+      target: null
+    };
   
   return (
     <Section spaceBottomNone>

@@ -1,26 +1,60 @@
 import React from 'react';
 import styled from "@emotion/styled";
 import { css } from '@emotion/react';
-import { Container, Section, Row, Col,mq} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
-import colors from '../../../components/styles/colors';
+import { Container, Section, Row, Col,mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import colors from '../../components/styles/colors';
+import { useStaticQuery, graphql } from "gatsby";
 
 
+const DEPDevelopment = () =>{
 
-const DEPDevelopment = ({ page }) =>{
+          //Obtiene las imágenes localmente desde la ruta "images/home"
+          const { allFile } = useStaticQuery(graphql`
+          query {
+              allFile(filter: { relativeDirectory: { in: ["direccion-extension-y-proyectos"] } }) {
+              nodes {
+                  id
+                  name
+                  publicURL
+                  childImageSharp {
+                  fluid(maxWidth: 1200) {
+                          ...GatsbyImageSharpFluid_withWebp
+                  }
+                  }
+              }
+              }
+          }
+          `);
+      
+          // Convierte arreglo de imágenes en objeto cuya llave es el nómbre del archivo
+          // Esto para facilitar la búsqueda de la imagenes en los componentes hijos.
+          const images = allFile.nodes.reduce((obj, item) => {
+          return {
+              ...obj,
+              [item.name]: item,
+          };
+          }, {});
 
-
-
-    const {
-        dep:{
-            development:{
-                title,
-                content,
-                contentActividades,
-                image,
-            }
-        }
-    } = page;
+    const 
+        title = "Proyectos En Desarrollo",
+        content = `
+            <p>Además de dedicarse a la docencia y la investigación, la universidad cuenta con una amplia trayectoria en la elaboración y ejecución de proyectos, principalmente relacionados al desarrollo social y agroproductivo. Esto ha conllevado a que la institución posea una fuerte vinculación con las distintas entidades, ONG’s, Ministerios y Estamentos Estatales que brindan soporte al desarrollo del país y a los sectores más vulnerables.</p>
+            <p>Con ello se ha cultivado una amplia experiencia sobre las metodologías de intervención, tanto para los programas de capacitación, como para el acompañamiento y asistencia técnica dirigidos al incremento de la competitividad y al mejoramiento de la calidad y productividad de dichos sectores.</p>
+            <p>Actualmente, la Universidad ISA, mediante alianzas estratégicas con entidades públicas y privadas, enfoca sus esfuerzos en los siguientes ámbitos:</p>
+        `,
+        contentActividades = `
+            <ul>
+                <li>Producción Sostenible y Seguridad Alimentaria</li>
+                <li>Innovación de Bienes y Servicios de los Sectores Productivos</li>
+                <li>Nutrición y Sistemas de Alimentación Animal</li>
+                <li>Desarrollo de Empresas Rurales y Agroalimentarias</li>
+                <li>Gestión Ambiental</li>
+                <li>Gestión Empresarial</li>
+                <li>Desarrollo Comunitario</li>
+                <li>Emprendimiento e Innovación</li>
+            </ul>
+        `;
  
     return (
         <Section spaceNone  >
@@ -59,7 +93,7 @@ const DEPDevelopment = ({ page }) =>{
                                         <Wrapper>
                                             <Media  decoBg={colors.cta.base}>
                                                 <FeaturedMedia
-                                                    media={ image  }
+                                                    media={ images.ambitos  }
                                                     // size="60%"
                                                     maxWidth="25rem"
                                                     alignCenter

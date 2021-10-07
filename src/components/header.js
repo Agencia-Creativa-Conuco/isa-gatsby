@@ -19,7 +19,7 @@ const Header = ( {setResultsSearch}) => {
     const { logo, menu } = useStaticQuery( graphql`
         query {
             
-            logo: file(relativePath: {eq: "logo.svg"}) {
+            logo: file(relativePath: {eq: "site/logo.svg"}) {
                 publicURL
             }
 

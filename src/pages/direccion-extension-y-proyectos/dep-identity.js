@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from "@emotion/styled";
-import { Container, Section, Row, Col,mq} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
-import colors from '../../../components/styles/colors';
+import { Container, Section, Row, Col,mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import colors from '../../components/styles/colors';
 
 
 const DEPIdentity = ({ page }) =>{

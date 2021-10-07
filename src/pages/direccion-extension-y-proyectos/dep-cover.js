@@ -1,20 +1,41 @@
 import React from 'react';
 import styled from "@emotion/styled";
-import { Container, Section, Row, Col,mq} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
-import colors from '../../../components/styles/colors';
+import { Container, Section, Row, Col,mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import colors from '../../components/styles/colors';
+import { useStaticQuery, graphql } from "gatsby";
 
-const DEPCover = ({ page }) =>{
+const DEPCover = () =>{
 
-    const {
-        title,
-        featuredImage,
-        dep:{
-            cover:{
-            copy
-          }
+      //Obtiene las imágenes localmente desde la ruta "images/home"
+    const { allFile } = useStaticQuery(graphql`
+    query {
+        allFile(filter: { relativeDirectory: { in: ["direccion-extension-y-proyectos"] } }) {
+        nodes {
+            id
+            name
+            childImageSharp {
+            fluid(maxWidth: 1200) {
+                    ...GatsbyImageSharpFluid_withWebp
+            }
+            }
         }
-    } = page;
+        }
+    }
+    `);
+
+    // Convierte arreglo de imágenes en objeto cuya llave es el nómbre del archivo
+    // Esto para facilitar la búsqueda de la imagenes en los componentes hijos.
+    const images = allFile.nodes.reduce((obj, item) => {
+    return {
+        ...obj,
+        [item.name]: item,
+    };
+    }, {});
+
+    const 
+        title = "Dirección Extensión y Proyectos",
+        copy = "La Dirección de Extensión y Proyectos es una dependencia de la Vicerrectoría de Investigación, Extensión y Postgrado (VIEP), la misma ha sido como un instrumento para la difusión del conocimiento, la aplicación de la ciencia, el apoyo a los sectores productivos y empresariales, el mejoramiento de la competitividad, así como el intercambio cultural y deportivo, todo ello visto como fundamento para el desarrollo integral de la sociedad y el cumplimiento de la labor de la Universidad.";
     
     return (
         <Section spaceNone>
@@ -25,8 +46,9 @@ const DEPCover = ({ page }) =>{
                             decoBg ={colors.blue.base}
                         >
                         <Logo
-                            media={featuredImage}
+                            media={images.cover}
                             size="80%"
+                            alt="Dirección Extensión y Proyectos"
                             bgColor
                         />
                         <DecoLogo2 decoBg={colors.blue.dark}/>

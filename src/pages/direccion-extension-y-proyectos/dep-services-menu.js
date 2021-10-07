@@ -1,25 +1,93 @@
 import React,{useState} from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col} from "../../../components/layout/index";
-// import FeaturedMedia from "../../../components/featured-media";
-import colors from '../../../components/styles/colors';
+import { Container, Section, Row, Col} from "../../components/layout/index";
+// import FeaturedMedia from "../../components/featured-media";
+import colors from '../../components/styles/colors';
 
 
-const DEPServicesMenu = ({ page }) =>{
+const DEPServicesMenu = () =>{
  
-    
     const [view, setView] = useState(0);
 
-    const {
-        dep:{
-            services:{
-                servicesMenu
-            }
-        }
-    } = page;
-
-
+    const servicesMenu = [
+        {
+            title : "Gerenciales y Mercadológicos",
+            content: `
+                <ul>
+                    <li>Planes de mercadeo</li>
+                    <li>Planes estratégicos</li>
+                    <li>Planes de negocios</li>
+                    <li>Creación de modelos de Responsabilidad Social Corporativa (RSC)</li>
+                    <li>Investigación de mercados</li>
+                    <li>Análisis de cadenas de valor</li>
+                    <li>Análisis y descripción de puestos</li>
+                    <li>Análisis y mejora de productos y procesos</li>
+                    <li>Diseños de Manuales de procedimientos y medidas de control interno contables y administrativos.</li>
+                    <li>Análisis financieros</li>
+                    <li>Valuación de empresas</li>
+                    <li>Mercadeo agrícola</li>
+                    <li>Administración de fincas</li>
+                </ul>
+            `,
+        },
+        {
+            title : "Gestión Medioambiental y Recursos Naturales",
+            content: `
+                <ul>
+                    <li>Servicios de Laboratorio Especializados en Madera</li>
+                    <li>Consultorías Ambientales en General</li>
+                    <li>Estudios de Impactos Ambientales</li>
+                    <li>Estudios de Inventario Forestal</li>
+                    <li>Asesoría para la Protección de los Recursos Naturales y Ambientales</li>
+                    <li>Capacitaciones para la mitigación y adaptación al cambio climático</li>
+                </ul>
+            `,
+        },
+        {
+            title : "Departamento de Ciencia Animal",
+            content: `
+                <ul>
+                    <li>Consultas en general</li>
+                    <li>Vacunas ( Felinos, Caninos)</li>
+                    <li>Coproológicos</li>
+                    <li>Sonografias</li>
+                    <li>Baño, corte de uña y de pelo en caninos</li>
+                    <li>Cirugías en general</li>
+                    <li>Rayos X</li>
+                </ul>
+            `,
+        },
+        {
+            title : "Departamento de Agronomía",
+            content: `
+                <ul>
+                    <li>Extracción de ADN</li>
+                    <li>Análisis por PCR y electroforesis</li>
+                    <li>Determinación de material vegetal infectado por Candidatus Liberibacter asiaticus (enfermedad del Huang Long Bing)</li>
+                    <li>Análisis fitopatológico para diagnóstico de hongos fitopatógenos en tejidos vegetales (raices, tallo, hojas, flores, frutos, ramas, etc).</li>
+                    <li>Análisis fitopatológico para diagnóstico de bacterias fitopatógenas (raíces, tallo, hojas, flores, frutos, ramas, etc).</li>
+                    <li>Análisis fitopatológico para diagnóstico de nemátodos fitopatógeno en suelo y raíces.</li>
+                    <li>Diagnóstico de plagas insectiles y ácaros.</li>
+                </ul>
+            `,
+        },
+        {
+            title : "Departamento de Tecnología de Alimentos",
+            content: `
+                <ul>
+                    <li>Servicios de soporte y seguimiento en Gestión de Calidad.</li>
+                    <li>Capacitación en Buenas Prácticas Agrícolas de banano, mango y aguacate.</li>
+                    <li>Capacitación en manejo poscosecha de vegetales orientales.</li>
+                    <li>Servicios de Capacitación en BPM (Buenas Prácticas de Manufactura).</li>
+                    <li>Consultoría en Buenas Prácticas de Manufactura y Procedimientos Operativos Estandarizados de Saneamiento (BPM / POES)</li>
+                    <li>Servicios de Capacitación en BPM (Buenas Prácticas de Manufactura).</li>
+                    <li>Consultoría en Buenas Prácticas de Manufactura y Procedimientos Operativos Estandarizados de Saneamiento (BPM / POES)</li>
+                    <li>Correcto manejo de almacenes y materias primas.</li>
+                </ul>
+            `,
+        },
+    ]
 
     return (
         <SSection spaceTopNone>
@@ -67,7 +135,7 @@ const DEPServicesMenu = ({ page }) =>{
                             servicesMenu.map( (item,index) => {
 
                                 const {
-                                    copy
+                                    content
                                 } = item;
 
                                 return(
@@ -76,7 +144,7 @@ const DEPServicesMenu = ({ page }) =>{
                                         noGutters
                                         active={view === index} 
                                         hidden={index!==view}
-                                        dangerouslySetInnerHTML={{__html: copy }} 
+                                        dangerouslySetInnerHTML={{__html: content }} 
                                     />
                                 )  
                                 
