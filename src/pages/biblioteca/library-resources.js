@@ -21,17 +21,17 @@ const LibraryResources = () => {
 
   return (
     <Section>
-      <Container fluid>
+      <Container>
         <Row>
-          <Col size={11} mlAuto>
+          <Col size={12} mlAuto>
             <Title>{title}</Title>
           </Col>
 
-          <ColStyles size={10} color={colors.blue.base}>
+          <ColStyles size={12} color={colors.blue.base}>
             <Copy>{copy}</Copy>
           </ColStyles>
 
-          <ColStyles size={10} color={colors.blue.dark}>
+          <ColStyles size={12} color={colors.blue.dark}>
             <SectionTitle>{titlecontent}</SectionTitle>
             <Row>
               {content.map((item, index) => {
