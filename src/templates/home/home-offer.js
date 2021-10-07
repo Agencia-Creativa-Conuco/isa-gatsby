@@ -206,8 +206,11 @@ const HomeOffer = () =>{
                                 const {
                                     id,
                                     url,
-                                    children
+                                    children,
+                                    target
                                 } = item;
+
+                                console.log(item)
 
                                 const isActive = view === id;
 
@@ -217,7 +220,7 @@ const HomeOffer = () =>{
                                     </Col>
                                 ):(
                                     <Col size={6} sizeLG={3} mxAuto noGutters key={index}>
-                                        <StyledLink to={url}>
+                                        <StyledLink to={url} target={target}>
                                             <NavItem {...{item, isActive, setView}}/>
                                         </StyledLink>
                                     </Col>
