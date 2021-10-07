@@ -4,17 +4,19 @@ import LibraryCover from "./library-cover";
 import LibraryServices from "./library-services";
 import LibraryResources from "./library-resources";
 import LibraryHorary from "./library-horary";
+import Layout from "../../components/layout";
 
-const LibraryPage = ({ ...page }) => {
+const LibraryPage = (props) => {
 
     return (
-        <Container>
-
-            <LibraryCover {...page}/>
-            <LibraryServices {...page}/>
-            <LibraryResources {...page}/>
-            <LibraryHorary {...page}/>
-        </Container>
+        <Layout {...props}>
+            <Container>
+                <LibraryCover />
+                <LibraryServices />
+                <LibraryResources />
+                <LibraryHorary />
+            </Container>
+        </Layout>
     );
 };
 

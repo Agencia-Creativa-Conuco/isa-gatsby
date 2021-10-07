@@ -14,10 +14,10 @@ import DEPPymes from "./dep-pymes";
 // import DEPAsesory from "./dep-asesory";
 
 
-const DEPPage = () => {
+const DEPPage = (props) => {
 
     return  (
-      <Layout>
+      <Layout {...props}>
         <Container>
           <DEPCover/>
           <DEPActivities/>

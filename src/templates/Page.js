@@ -7,7 +7,6 @@ import FrontPage from "./home/front-page";
 import Services from "./page/services/service";
 import Dip from "./page/dip/dip";
 import usePages from "../hooks/usePages";
-import Library from "./page/library"
 import PageSingle from "./page/page-single";
 import RecentPosts from "../components/recent-posts";
 import usePosts from "../hooks/usePosts";
@@ -49,8 +48,6 @@ const Post = ({ data }) => {
           <Services {...{ page }}/>
         ) : slug === 'investigacion'? (
           <Dip  {...{ page }}/>
-        ) : slug === 'biblioteca'?(
-          <Library  {...{ page }}/>
         ) : (
           <PageSingle {...{ page }}/>
         )

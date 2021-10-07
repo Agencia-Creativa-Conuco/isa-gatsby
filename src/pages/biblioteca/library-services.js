@@ -1,20 +1,31 @@
 import React from 'react';
 import styled from "@emotion/styled";
-import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media"
-import colors from "../../../components/styles/colors";
+import { Container, Section, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media"
+import colors from "../../components/styles/colors";
+import useFiles from '../../hooks/useFiles';
 
-const LibraryServices = ({ page }) =>{
+const LibraryServices = () =>{
 
-    const {
-        library:{
-            services:{
-                title,
-                content,
-                image
-            }
-        },
-    } = page;
+    const images = useFiles();
+
+    const 
+        title = "Servicios",
+        content = `
+            <ul>
+                <li>Préstamo de materiales: libros, revistas, enciclopedias, diccionarios, atlas, entre otros.</li>
+                <li>Sala de lectura con capacidad para 60 usuarios simultáneamente y ambiente propicio para el estudio.</li>
+                <li>Catálogo en línea donde se pueden localizar con facilidad todo el material bibliográfico con que cuenta la biblioteca.</li>
+                <li>Sala digital dotada de computadoras con internet, scanners, impresión y enciclopedias digitales para consulta e investigación.</li>
+                <li>Consulta en Bases de datos: EBSCO, TEEAL</li>
+                <li>Orientación y asesoría al usuario.</li>
+                <li>Consulta de Libros digitales.</li>
+                <li>Préstamos de equipos y materiales audiovisuales como televisores, cámara digital, proyectores de multimedia, retroproyectores, portátiles, DVD.</li>
+                <li>Servicios de fotocopiado, encuadernación y venta de materiales.</li>
+                <li>Servicio de Internet Wifi</li>
+            </ul>
+        `,
+        image = images.biblioteca.servicios;
 
     return(
         <StylesSection color={colors.gray.light}>

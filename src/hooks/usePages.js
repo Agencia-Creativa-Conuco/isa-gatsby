@@ -28,38 +28,6 @@ const usePages = () => {
                   pageCustom
                 }
                 
-                offer {
-                  coverOffer {
-                    copy
-                  }
-                  centerOffer {
-                    title
-                    content
-                    cta {
-                      ...CtaFragment
-                    }
-                    image {
-                      ...ImageFragment
-                    }
-                  }
-
-                  internationalOffer {
-                    content
-                    copy
-                    title
-                    image {
-                      ...ImageFragment
-                    }
-                    cta {
-                      ...CtaFragment
-                    }
-                    columns {
-                      content
-                      title
-                    }
-                  }
-                }
-
                 studentServices {
                   coverStudentServices {
                     copy
@@ -202,118 +170,6 @@ const usePages = () => {
                     }
                   }
                 }
-                library {
-                  coverLibrary {
-                    copy
-                    titleLibrary
-                  }
-                  horary {
-                    title
-                    content {
-                      content
-                    }
-                  }
-                  recursos {
-                    copy
-                    titlecontent
-                    title
-                    content {
-                      cloneContent
-                    } 
-                  }
-                  reglamento {
-                    copy
-                    title
-                  }
-                  services {
-                    content
-                    title
-                    image{
-                        localFile {
-                          publicURL
-                          childImageSharp {
-                            fluid(maxWidth: 1920) {
-                              ...GatsbyImageSharpFluid_withWebp
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                  dep{
-                    coverDep{
-                      copy
-                    }
-                    activitiesDep {
-                      content
-                      title
-                    }
-                    developmentProject {
-                      content
-                      title
-                      contentActividades
-                      image{
-                        ...ImageFragment
-                      }
-                    }
-                    serviciosProfesionales {
-                      copy
-                      title
-                      servicesMenu {
-                        title
-                        copy
-                      }
-                      image{
-                        ...ImageFragment
-                      }
-                      
-                    }
-                    laboratorio {
-                      dataLaboratory {
-                        copy
-                        title
-                        image{
-                          ...ImageFragment
-                        }
-                        cta {
-                          ...CtaFragment
-                        }
-                      }
-                    }
-                    mipymes {
-                      copy
-                      title
-                      cta {
-                        ...CtaFragment
-                      }
-                      image{
-                        ...ImageFragment
-                      }
-                    }
-                    clinicaVeterinaria {
-                      title
-                      copy
-                      image{
-                        ...ImageFragment
-                      }
-                      list {
-                        title
-                        items {
-                          content
-                        }
-                      }
-                    }
-                    cede {
-                      copy
-                      title
-                      image{
-                        ...ImageFragment
-                      }
-                      cta {
-                        ...CtaFragment
-                      }
-                    }
-                  }
                 
               }
             }
@@ -335,7 +191,6 @@ const usePages = () => {
         type: page.__typename,
         styles: page.styles,
         settings: page.pageSettings,
-        offer: page.offer,
         studentServices: page.studentServices,
         investigation:{
           cover: page.investigation.coverInvestigation
@@ -348,23 +203,6 @@ const usePages = () => {
         },
         resources: page.resources,
         contact: page.contact,
-        library:{
-          cover: page.library.coverLibrary,
-          horary: page.library.horary,
-          recursos: page.library.recursos ,
-          reglamento: page.library.reglamento,
-          services: page.library.services
-        },
-        dep:{
-          cover: page.dep?.coverDep,
-          activities: page.dep?.activitiesDep,
-          development: page.dep?.developmentProject,
-          services: page.dep?.serviciosProfesionales,
-          laboratory: page.dep?.laboratorio,
-          veterinary: page.dep?.clinicaVeterinaria,
-          cede: page.dep?.cede,
-          mipymes: page.dep?.mipymes
-        }
 
     }));
 }

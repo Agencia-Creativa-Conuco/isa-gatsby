@@ -1,23 +1,20 @@
 import React from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
-import colors from '../../../components/styles/colors';
-import Cta from '../../../components/cta';
+import { Container, Section, Row, Col, mq} from "../../components/layout/index";
+import FeaturedMedia from "../../components/featured-media";
+import colors from '../../components/styles/colors';
+import Cta from '../../components/cta';
+import useFiles from "../../hooks/useFiles"
 
-const LibraryCover = ({ page}) =>{
+const LibraryCover = () =>{
 
-    const {
-        title,
-        featuredImage,
-        library:{
-            cover:{
-                copy
-            }
-        },
-    } = page;
+    const images = useFiles();
 
+    const 
+        title = "Biblioteca",
+        copy = "La biblioteca de la Universidad ISA, se concibe como un centro de información y fuente de conocimiento en permanente renovación. Su accionar, está orientado a la búsqueda del crecimiento científico y espiritual de toda la comunidad universitaria, a través del contacto con los medios y actores que sirven de catalizador",
+        featuredImage = images.biblioteca.cover;
     
     return (
         <Section spaceNone css={sectionStyles}>
