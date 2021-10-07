@@ -65,7 +65,7 @@ const DIPGeneral = ({ projects, departaments, faculties, projectLines }) =>{
                         size={12}
                         sizeLG={6}
                         css={
-                            css`background-color:${colors.gray.light};`
+                            css`background-color: #FAFAFA;`
                         }
                     >
                         <Carousel

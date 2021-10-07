@@ -8,6 +8,7 @@ const useFiles = () => {
         nodes {
           id
           name
+          publicURL
           relativeDirectory
           sourceInstanceName
           childImageSharp {

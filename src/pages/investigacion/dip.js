@@ -9,6 +9,7 @@ import useProjectLines from "../../hooks/useProjectLines";
 import usePersons from "../../hooks/usePersons";
 import DIPTeam from "../../components/team-slider";
 import DIPGeneral from "./dip-general";
+import DIPPhilosophy from "./dip-philosophy";
 import Layout from "../../components/layout";
 
 const ResearchPage = (props) => {
@@ -34,11 +35,12 @@ const ResearchPage = (props) => {
     <Layout {...props}>
       <Container>
         <DIPCover />
+        <DIPPhilosophy />
+        <DIPTeam {...{ persons }} />
         <DIPGeneral
           {...{ projects, projectLines, faculties, departaments }}
         />
         <DIPProcess {...{ projects }} />
-        <DIPTeam {...{ persons }} />
       </Container>
     </Layout>
   );
