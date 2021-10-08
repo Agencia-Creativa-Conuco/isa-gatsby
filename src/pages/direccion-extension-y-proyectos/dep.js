@@ -10,9 +10,6 @@ import DEPVeterinary from "./dep-veterinary";
 import DEPCede from "./dep-cede";
 import DEPServicesMenu from "./dep-services-menu";
 import DEPPymes from "./dep-pymes";
-// import DEPIdentity from "./dep-identity";
-// import DEPAsesory from "./dep-asesory";
-
 
 const DEPPage = (props) => {
 
@@ -28,9 +25,6 @@ const DEPPage = (props) => {
           <DEPLaboratory/>
           <DEPCede />
           <DEPVeterinary />
-      
-        {/* <DEPIdentity />
-          <DEPAsesory /> */}
         </Container>
       </Layout>
     )
