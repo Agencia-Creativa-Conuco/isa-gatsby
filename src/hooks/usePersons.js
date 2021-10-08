@@ -23,6 +23,14 @@ const usePersons = () => {
                 personData {
                   personJobTitle
                   personDegreeTitle
+                  personDegree
+                  carreraNacionalInvestigacion {
+                    isMember
+                    anoIngreso
+                    area
+                    areaInvestigacion
+                    categoria
+                  }
                 }
               }
             }
@@ -40,6 +48,8 @@ const usePersons = () => {
         featuredImage: person.featuredImage? person.featuredImage.node.localFile : null,
         jobTitle: person?.personData?.personJobTitle,
         degreeTitle: person?.personData?.personDegreeTitle,
+        degree: person?.personData?.personDegree,
+        carreraNacionalInvestigacion: person?.personData?.carreraNacionalInvestigacion,
         type: person.__typename,
     }));
 }
