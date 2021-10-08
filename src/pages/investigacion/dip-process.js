@@ -8,13 +8,14 @@ import colors from "../../components/styles/colors";
 
 import {h2} from "../../components/styles/tipography";
 
-const DIPProcess = ({ projects }) =>{
+const DIPProcess = ({ projects = [] }) =>{
 
-    const sectionTitle = "Investigaciónes en curso"
+    const sectionTitle = "Investigaciónes en curso";
 
     const projectList = projects.filter((item)=>{
         return true;
     })
+
     .filter((item, index)=> index <= 3 );
 
 
@@ -133,7 +134,7 @@ const Copy = styled.p`
             max-height: 160px; /* fallback */
             -webkit-line-clamp: 10; /* number of lines to show */
             -webkit-box-orient: vertical;
-            color: ${color}
+            color: ${color};
         `:css`
             display: none;
         `}
