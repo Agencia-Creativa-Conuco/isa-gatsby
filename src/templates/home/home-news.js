@@ -33,7 +33,7 @@ const HomeNews = ({ posts }) =>{
 
                         return (
                             <Card key={index} main>
-                                <StyledLink to={link}>
+                                <StyledLink to={link} aria-label="Click para abrir el post...">
                                     <Container>
                                         <Row>
                                             <Col size={12}>
@@ -49,7 +49,7 @@ const HomeNews = ({ posts }) =>{
                                             <Col size={12}>
                                                 <CardBody>
                                                     <CardTitle main>{title}</CardTitle>
-                                                    <Excerpt main dangerouslySetInnerHTML={{__html: excerpt}} />
+                                                    <Excerpt  colorText={colors.text.base}  main dangerouslySetInnerHTML={{__html: excerpt}} />
                                                 </CardBody>
                                             </Col>
                                         </Row>
@@ -72,7 +72,7 @@ const HomeNews = ({ posts }) =>{
 
                             return (
                                 <Card key={index} bgDeco={colors.secondary.lighter}>
-                                    <StyledLink to={link}>
+                                    <StyledLink to={link} aria-label="Click para abrir el post...">
                                         <Container>
                                             <Row>
                                                 <Col size={12} sizeMD={6}>
@@ -88,7 +88,7 @@ const HomeNews = ({ posts }) =>{
                                                 <Col size={12} sizeMD={6}>
                                                     <CardBody>
                                                         <CardTitle>{title}</CardTitle>
-                                                        <Excerpt dangerouslySetInnerHTML={{__html: excerpt}} />
+                                                        <Excerpt colorText={colors.text.base} dangerouslySetInnerHTML={{__html: excerpt}} />
                                                     </CardBody>
                                                 </Col>
                                             </Row>
@@ -158,8 +158,9 @@ const CardTitle = styled.h3`
 `;
 
 const Excerpt = styled.div`
-    ${({main})=>css`
-        ${main?css``:css`
+${({colorText="#555555",main})=>css`
+color:${colorText};
+    ${main?css``:css`
             ${mq.lg}{
                 display: none;
             }

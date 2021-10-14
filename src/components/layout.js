@@ -53,7 +53,11 @@ const Layout = (props) => {
 
   return (
     <>
-      <Helmet>
+      <Helmet
+        htmlAttributes={{
+          lang: 'en',
+        }}
+      >
         <title>{settings.title}</title>
         <meta name="description" content={settings.description} />
 

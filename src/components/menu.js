@@ -11,9 +11,11 @@ const MobileMenu = ({ items, isMobileMenuOpen, toggleMobileMenu }) => {
   
   return (
     <>
-      <MenuToggle onClick={(e)=>{
+      <MenuToggle 
+        aria-label="Click para abrir el menu..."
+        onClick={(e)=>{
         e.stopPropagation();
-        toggleMobileMenu(!isMobileMenuOpen);
+        toggleMobileMenu(!isMobileMenuOpen);     
       }}>
         {isMobileMenuOpen ? (
           <>

@@ -34,7 +34,7 @@ const AdmissionServices = () => {
 
               return (
                 <Col key={index} size={12} sizeMD={4} mxAuto>
-                  <Link to={service.url} target="_blank">
+                  <Link to={service.url} target="_blank" aria-label="Click para abrir el...">
                     <Service>
                         <Icon css={css`color: ${colors.primary.dark};`}>
                           <Icono />

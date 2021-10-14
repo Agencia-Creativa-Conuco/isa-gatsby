@@ -81,6 +81,7 @@ const NavItem = ({
                     to={url}
                     aria-current={isCurrentPage ? "page" : undefined}
                     fontWeight={fontWeight}
+                    aria-label="Item de la navegacion..."
                 >
                     {label}
                 </ItemLink>

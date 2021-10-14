@@ -70,7 +70,7 @@ const Footer = ({ state, libraries }) => {
                 />
               </Col>
               <Col size={12} sizeLG={3} order={1} orderLG={2}>
-                <Link to={"/"}>
+                <Link to={"/"}  aria-label="Logo">
                   <FeaturedMedia
                     media={logo}
                     maxWidth="25rem"
@@ -92,7 +92,7 @@ const Footer = ({ state, libraries }) => {
                 <Row>
                   {url_twitter ? (
                     <Col size="auto">
-                      <LinkIcon href={url_twitter} target="_blank">
+                      <LinkIcon href={url_twitter} target="_blank"  aria-label="Click para abrir la red social...">
                         <TwitterIcon />
                       </LinkIcon>
                     </Col>
@@ -100,7 +100,7 @@ const Footer = ({ state, libraries }) => {
 
                   {url_instagram ? (
                     <Col size="auto">
-                      <LinkIcon href={url_instagram} target="_blank">
+                      <LinkIcon href={url_instagram} target="_blank"  aria-label="Click para abrir la red social...">
                         <InstagramIcon />
                       </LinkIcon>
                     </Col>
@@ -108,7 +108,8 @@ const Footer = ({ state, libraries }) => {
 
                   {url_facebook ? (
                     <Col size="auto">
-                      <LinkIcon href={url_facebook} target="_blank">
+     
+                      <LinkIcon href={url_facebook} target="_blank"  aria-label="Click para abrir la red social...">
                         <Facebook2Icon />
                       </LinkIcon>
                     </Col>
@@ -133,8 +134,8 @@ const RowWrapper = styled(Row)`
   padding: 5rem 0;
   color: white;
 `;
-const Title = styled.h4`
-  color: white;
+const Title = styled.h3`
+  color: #0A214F;
   font-weight: bold;
 `;
 

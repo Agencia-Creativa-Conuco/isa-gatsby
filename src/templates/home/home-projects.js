@@ -57,7 +57,7 @@ const HomeProjects = ({ projects }) =>{
                                                             <SlideTitle>{title}</SlideTitle>
                                                             <Excerpt dangerouslySetInnerHTML={{ __html: excerpt }} />
                                                             <LinkBox>
-                                                                <Cta to={link} >Conocer más</Cta>
+                                                                <Cta to={link} aria-label="Click para abrir el...">Conocer más</Cta>
                                                             </LinkBox>
                                                         </Col>
                                                     </Row>
