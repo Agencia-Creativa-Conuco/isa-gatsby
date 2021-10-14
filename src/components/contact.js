@@ -22,7 +22,7 @@ const Contact = ({ data = {}, color = colors.primary.base , bgColor= colors.gray
                 <Container>
                     <Row>
                         <Col size={12}>
-                            <Title color={color}>{title}</Title>
+                            <Title color={colors.text.base}>{title}</Title>
                         </Col>
                         {
                             phones?.length?(
@@ -49,7 +49,7 @@ const Contact = ({ data = {}, color = colors.primary.base , bgColor= colors.gray
                                                         }, "") : "";
 
                                                         return (
-                                                            <Item key={index} color={color}>
+                                                            <Item key={index}color={colors.text.base}>
                                                                 <Phone>
                                                                     <StyledLink to={`tel: ${phone}`} target="_blank" >{ phone }{ exts?.length > 0? (exts?.length > 1? `, Exts. ` : ", Ext. " ) + extsFormated : ""} </StyledLink>
                                                                 </Phone>
@@ -84,9 +84,9 @@ const Contact = ({ data = {}, color = colors.primary.base , bgColor= colors.gray
                                                         } = item;
 
                                                         return (
-                                                            <Item key={index} color={color}>
+                                                            <Item key={index} color={colors.text.base}>
                                                                 <Phone>
-                                                                    <StyledLink to={`https://wa.me/1${phone.replace(/[^0-9]/g,'')}`} target="_blank">{ phone }</StyledLink>
+                                                                    <StyledLink to={`https://wa.me/1${phone.replace(/[^0-9]/g,'')}`} target="_blank" rel="noreferrer">{ phone }</StyledLink>
                                                                 </Phone>
                                                             </Item>
                                                         )

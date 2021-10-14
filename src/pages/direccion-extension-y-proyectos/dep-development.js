@@ -98,6 +98,7 @@ const DEPDevelopment = () =>{
                                                     maxWidth="25rem"
                                                     alignCenter
                                                     mxAuto
+                                                    alt="Logo de proyecto..."
                                                 />
                                             </Media>
                                             <List>

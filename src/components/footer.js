@@ -92,7 +92,7 @@ const Footer = ({ state, libraries }) => {
                 <Row>
                   {url_twitter ? (
                     <Col size="auto">
-                      <LinkIcon href={url_twitter} target="_blank"  aria-label="Click para abrir la red social...">
+                      <LinkIcon href={url_twitter} target="_blank" rel="noreferrer"  aria-label="Click para abrir la red social...">
                         <TwitterIcon />
                       </LinkIcon>
                     </Col>
@@ -100,7 +100,7 @@ const Footer = ({ state, libraries }) => {
 
                   {url_instagram ? (
                     <Col size="auto">
-                      <LinkIcon href={url_instagram} target="_blank"  aria-label="Click para abrir la red social...">
+                      <LinkIcon href={url_instagram} target="_blank" rel="noreferrer"  aria-label="Click para abrir la red social...">
                         <InstagramIcon />
                       </LinkIcon>
                     </Col>
@@ -109,7 +109,7 @@ const Footer = ({ state, libraries }) => {
                   {url_facebook ? (
                     <Col size="auto">
      
-                      <LinkIcon href={url_facebook} target="_blank"  aria-label="Click para abrir la red social...">
+                      <LinkIcon href={url_facebook} target="_blank" rel="noreferrer"  aria-label="Click para abrir la red social...">
                         <Facebook2Icon />
                       </LinkIcon>
                     </Col>

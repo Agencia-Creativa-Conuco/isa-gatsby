@@ -32,7 +32,7 @@ const LibraryCover = () =>{
                         
                             <SectionTitle>{title} </SectionTitle>
                             <Copy>{copy}</Copy>
-                            <Cta to="http://bibliotecaunisa.com/" color="#000a0f" target="_blank" >ir al Sitio oficial</Cta>
+                            <Cta to="http://bibliotecaunisa.com/" rel="noopener" target="_blank" >ir al Sitio oficial</Cta>
                          
                         </Content>
                     </Col>

@@ -6,6 +6,8 @@ import Layout from "../../../components/layout";
 import colors from "../../../components/styles/colors";
 import FeaturedMedia from "../../../components/featured-media";
 import useFiles from "../../../hooks/useFiles";
+import {h4} from "../../../components/styles/tipography"
+
 
 const ProjectLines = (props) => {
 
@@ -108,7 +110,7 @@ const ProjectLines = (props) => {
                 {facilities.map((facility, index) => {
                   return (
                     <Col key={index} size={12} sizeMD={6}>
-                      <SLink to={facility.url} target={facility.target}>
+                      <SLink to={facility.url} target={facility.target} rel="noopener">
                         <Line>
                           <span>{facility.title}</span>
                         </Line>
@@ -139,12 +141,12 @@ const ProjectLines = (props) => {
                                 
                                 return (
                                     <Col key={index} size={12} sizeMD={6} sizeLG={4}>
-                                        <SLink to={resource.url} target={resource.target}>
+                                        <SLink to={resource.url} target={resource.target} rel="noopener">
                                             <Line>
                                             <Row>
                                                 <Col size="auto">
                                                     <InlineImage>
-                                                        <FeaturedMedia media={resource.image} size="50%" fit="initial"/>
+                                                        <FeaturedMedia media={resource.image} size="50%" alt="Facilidades" fit="initial"/>
                                                     </InlineImage>
                                                 </Col>
                                                 <Col noLGutters>
@@ -189,7 +191,8 @@ const Facilidades = styled.div``;
 
 const Recursos = styled.div``;
 
-const Line = styled.h4`
+const Line = styled.h2`
+  ${h4}
   font-weight: normal;
   padding: 1.5rem;
   background-color: #fafafa;

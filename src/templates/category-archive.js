@@ -8,6 +8,7 @@ import Link from "../components/link";
 import Cta from "../components/cta";
 import colors from "../components/styles/colors";
 import useCategories from "../hooks/useCategories";
+import {h3} from "../components/styles/tipography"
 
 // markup
 const Post = (props) => {
@@ -85,7 +86,8 @@ const Article = styled.article``;
 
 const Title = styled.h1``;
 
-const ItemTitle = styled.h3`
+const ItemTitle = styled.h2`
+  ${h3}
   text-transform: uppercase;
 `;
 

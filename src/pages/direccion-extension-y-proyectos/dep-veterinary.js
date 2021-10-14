@@ -63,8 +63,9 @@ const DEPVeterinary = ({ page }) => {
                 <Row>
                   {list.map((item, index) => {
                     return (
+                      //Cambio de color base
                       <Col key={index} size={12} sizeMD={6} css={stylesCol}>
-                        <ItemTitle color={colors.blue.base}>
+                        <ItemTitle color={colors.blue.dark}>
                           {" "}
                           {item.title}{" "}
                         </ItemTitle>

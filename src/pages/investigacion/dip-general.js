@@ -6,6 +6,7 @@ import Carousel from "react-slick";
 import FeaturedMedia from "../../components/featured-media";
 import colors from "../../components/styles/colors";
 import Link from "../../components/link";
+import {h4} from "../../components/styles/tipography"
 
 const DIPGeneral = ({ projects, departaments = [], faculties, projectLines }) =>{
 
@@ -173,7 +174,8 @@ const Project = styled.li`
     `}
 `;
 
-const ProjectName = styled.h4`
+const ProjectName = styled.h3`
+    ${h4}
     margin: 0rem;
     font-weight: initial;
     text-transform: uppercase;
