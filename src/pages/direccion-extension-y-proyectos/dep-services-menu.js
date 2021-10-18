@@ -106,6 +106,8 @@ const DEPServicesMenu = () =>{
                                     return(
                                         <Col size={6} sizeMD={4} sizeXL={2} key={index} > 
                                             {/* <Link to={stringify({path:parse(state.router.link).path, hash:"#contenido"})} > */}
+                                           
+                                            <ImtemUl>
                                                 <Option 
                                                     decoBG={colors.blue.base}    
                                                     onClick={ (e) => setView( view === index ? view : index ) }
@@ -119,6 +121,8 @@ const DEPServicesMenu = () =>{
                                                     </OptionIcon>
                                                     <OptionName>{title}</OptionName>
                                                 </Option> 
+                                                    </ImtemUl>
+                                               
                                             {/* </Link> */}
                                         </Col>
                                     )
@@ -164,7 +168,7 @@ const SSection = styled(Section)`
     margin-top: -8rem !important;
 `;
 
-const Menu = styled.ul`
+const Menu = styled.div`
     position:relative;
     padding-top: 4rem;
     padding-bottom: 6rem;
@@ -204,6 +208,11 @@ const OptionName = styled.p`
     color: inherit;
     margin: 0;
 `;
+const ImtemUl = styled.ul`
+    margin:0;
+    padding: 0;
+`;
+
 
 const OptionIcon = styled.div`
     ${({bgColor="white"})=>css`

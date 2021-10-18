@@ -210,8 +210,6 @@ const HomeOffer = () =>{
                                     target
                                 } = item;
 
-                                console.log(item)
-
                                 const isActive = view === id;
 
                                 return children.length?(
@@ -220,7 +218,7 @@ const HomeOffer = () =>{
                                     </Col>
                                 ):(
                                     <Col size={6} sizeLG={3} mxAuto noGutters key={index}>
-                                        <StyledLink to={url} target={target} aria-label="Click para abrir el...">
+                                        <StyledLink to={url} target={target} rel="noopener" aria-label="Click para abrir el...">
                                             <NavItem {...{item, isActive, setView}}/>
                                         </StyledLink>
                                     </Col>

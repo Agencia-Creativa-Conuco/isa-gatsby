@@ -44,7 +44,7 @@ const HomeAplication = () => {
               <Content bg={colors.white} decoBg={colors.blue.dark}>
                 <Title>{title}</Title>
                 <p>{copy}</p>
-                <Cta to="/admisiones"  aria-label="Click para abrir el...">Estudia con nosotros</Cta>
+                <Cta to="/admisiones"  aria-label="Click para abrir el..." shadowColor="black">Estudia con nosotros</Cta>
               </Content>
             </Col>
           </Row>

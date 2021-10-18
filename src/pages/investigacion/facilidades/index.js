@@ -185,6 +185,7 @@ const Title = styled.h1`
   color: white;
   margin-bottom: 4rem;
   margin-top: 4rem;
+  text-shadow: 0px 0px 6px #484848
 `;
 
 const Facilidades = styled.div``;

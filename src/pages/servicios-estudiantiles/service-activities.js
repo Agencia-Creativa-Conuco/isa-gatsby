@@ -217,6 +217,7 @@ const Content = styled.div`
 const Title = styled.h3`
     color: white;
     text-transform: uppercase;
+    text-shadow: 0 0px black;
     margin-bottom: 4rem;
     font-weight: 900;
     ${h2}
@@ -224,4 +225,6 @@ const Title = styled.h3`
 
 const Copy = styled.p`
     color: white;
-`;
+    text-shadow: 0px 0px 25px #000000;
+
+`; 

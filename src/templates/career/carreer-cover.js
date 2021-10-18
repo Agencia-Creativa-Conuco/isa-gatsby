@@ -49,28 +49,28 @@ const CareerCover = ({ career, faculty })=>{
                                             <Faculty color="#FFFFFF">{ faculty?.title }</Faculty>
                                             <Title>{ title }</Title>
                                             <Copy dangerouslySetInnerHTML={{__html: copy}} />
-                                            <Gadgets>
                                                 <Row justifyContent="space-around">
                                                     {
                                                         metadata? metadata.map((item, index)=>{
-
+                                                            
                                                             const {
                                                                 name,
                                                                 value
                                                             } = item;
-
+                                                            
                                                             return(
-                                                                <Col size="auto" key={index}>
-                                                                    <Gadget>
-                                                                        <GadgetName>{ name }</GadgetName>
-                                                                        <GadgetValue>{ value }</GadgetValue>
-                                                                    </Gadget>
+                                                                <Col size="auto" key={index}>      
+                                                                    <Gadgets>
+                                                                        <Gadget>
+                                                                            <GadgetName>{ name }</GadgetName>    
+                                                                            <GadgetValue>{ value }</GadgetValue>
+                                                                        </Gadget>
+                                                                    </Gadgets> 
                                                                 </Col>
                                                             )
                                                         }) : null
                                                     }
                                                 </Row>
-                                            </Gadgets>
                                         </Content>
                                     </Col>
                                 </Row>

@@ -37,6 +37,7 @@ const CareerCompetencies = ({ career, faculty })=>{
 
                                     return (
                                         <Col key={index} size={12} sizeSM="auto" noGutters>
+                                          <NanUl>
                                             <NavItem>
                                                 <Tab 
                                                     disabled={isActive} 
@@ -48,6 +49,7 @@ const CareerCompetencies = ({ career, faculty })=>{
                                                     }}
                                                 >{title}</Tab>
                                             </NavItem>
+                                            </NanUl>
                                         </Col>
                                     )
                                 })   
@@ -178,4 +180,9 @@ const Content = styled.div`
 
 const Description = styled.div`
     margin-bottom: 3rem;
+`;
+
+const NanUl = styled.ul`
+    margin: 0;
+    padding: 0;
 `;

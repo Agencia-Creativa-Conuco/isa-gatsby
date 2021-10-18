@@ -44,7 +44,7 @@ const DEPDevelopment = () =>{
             <p>Actualmente, la Universidad ISA, mediante alianzas estratégicas con entidades públicas y privadas, enfoca sus esfuerzos en los siguientes ámbitos:</p>
         `,
         contentActividades = `
-            <ul>
+            <ul style="list-style-type: circle">
                 <li>Producción Sostenible y Seguridad Alimentaria</li>
                 <li>Innovación de Bienes y Servicios de los Sectores Productivos</li>
                 <li>Nutrición y Sistemas de Alimentación Animal</li>
@@ -102,7 +102,7 @@ const DEPDevelopment = () =>{
                                                 />
                                             </Media>
                                             <List>
-                                            <div css={css`color:${colors.gray.base};`} dangerouslySetInnerHTML={{__html: contentActividades}} />
+                                             <div css={css`color:${colors.gray.base};`} dangerouslySetInnerHTML={{__html: contentActividades}} />
                                             </List>
                                         </Wrapper>
                                     </Col>
@@ -138,7 +138,7 @@ const Wrapper = styled.div`
     `}
 `;
 
-const List = styled.ul`
+const List = styled.div`
     margin: 0;
     padding: 0;
 `;

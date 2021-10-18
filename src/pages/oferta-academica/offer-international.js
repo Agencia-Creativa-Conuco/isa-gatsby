@@ -12,6 +12,7 @@ import FeaturedMedia from "../../components/featured-media";
 import colors from "../../components/styles/colors";
 import Cta from "../../components/cta";
 import { useStaticQuery, graphql } from 'gatsby';
+import { h5 } from "../../components/styles/tipography";
 
 
 const OfferInternational = () => {
@@ -189,7 +190,8 @@ const Copy = styled.p`
   color: ${(props) => props.color};
 `;
 
-const ContentTitle = styled.h5`
+const ContentTitle = styled.h2`
+  ${h5}
   color: ${(props) => props.color};
   text-align: center;
 `;

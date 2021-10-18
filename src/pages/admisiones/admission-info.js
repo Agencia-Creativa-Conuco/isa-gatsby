@@ -53,6 +53,7 @@ const AdmissionInfo = () =>{
                                             } = grade;
 
                                             return (
+                                                <ImtemUl>
                                                 <Item 
                                                     key={id}
                                                     color={isActive?"white":colors.secondary.dark}
@@ -61,6 +62,7 @@ const AdmissionInfo = () =>{
                                                 >
                                                     <ItemName>{title}</ItemName>
                                                 </Item>
+                                                </ImtemUl>
                                             )
                                         })
                                     }
@@ -154,7 +156,7 @@ const AdmissionInfo = () =>{
 
 export default AdmissionInfo;
 
-const Navigation = styled.ul`
+const Navigation = styled.div`
     margin: 0 auto;
     padding: 10%;
     ${mq.sm}{
@@ -163,6 +165,10 @@ const Navigation = styled.ul`
     ${mq.md}{
         padding: 3rem;
     }
+`;
+const ImtemUl = styled.ul`
+    margin:0;
+    padding: 0;
 `;
 
 const Item = styled.li`
@@ -203,9 +209,8 @@ const DisplayerSection = styled.div`
     }
 `;
 
-const DisplayerSectionTitle = styled.h3`
+const DisplayerSectionTitle = styled.h2`
     ${({color="red"})=>css`
-        ${h2}
         color: ${color};
         text-transform: uppercase;
         font-weight: 900;

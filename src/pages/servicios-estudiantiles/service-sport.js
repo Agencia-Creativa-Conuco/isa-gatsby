@@ -7,6 +7,7 @@ import Carousel from "react-slick";
 import colors from "../../components/styles/colors";
 import Cta from "../../components/cta";
 import useFiles from "../../hooks/useFiles";
+import {h4} from "../../components/styles/tipography"
 
 const ServiceSport = () =>{
 
@@ -16,8 +17,8 @@ const ServiceSport = () =>{
         title = "Unidad de Deporte", 
         content = `
             <p>La unidad de Deporte gestiona profesionalmente los programas de actividad física y deportiva para los estudiantes, con el objetivo de fomentar y mantener en ellos la importancia de aquellos aspectos que tengan que ver con su desarrollo y disciplina física. Esta unidad coordina la formación de equipos, entrenamientos y participación del estudiantado en los principales eventos deportivos universitarios e interuniversitarios que se desarrollan en el país.</p>
-            <h4><strong>DISCIPLINAS DESARROLLADAS PARA AMBOS GÉNEROS</strong></h4>
         `,
+        anotherTitle ="DISCIPLINAS DESARROLLADAS PARA AMBOS GÉNEROS",
         sports = [
             {
                 name: "Baloncesto Masculino",
@@ -115,6 +116,7 @@ const ServiceSport = () =>{
                         <DivTitle color={colors.primary.dark}>
                             <SectionTitle>{title}</SectionTitle>
                             <div dangerouslySetInnerHTML={{__html: content}} />
+                            <AnotherTitle>{anotherTitle}</AnotherTitle>
                             <Container>
                                 <Row>
                                 {
@@ -188,4 +190,9 @@ const DivTitle = styled.div``;
 const Sport = styled.p`
     font-weight: bold;
     margin-bottom: .2rem;
+`;
+
+const AnotherTitle = styled.h3`
+    ${h4}
+    font-weight: 700;
 `;

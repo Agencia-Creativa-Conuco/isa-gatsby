@@ -135,8 +135,9 @@ const RowWrapper = styled(Row)`
   color: white;
 `;
 const Title = styled.h3`
-  color: #0A214F;
+  color: white;
   font-weight: bold;
+  text-shadow:  0px 0px 10px #000000;
 `;
 
 const MediaDeco = css`
