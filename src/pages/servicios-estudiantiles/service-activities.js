@@ -122,8 +122,8 @@ const ServiceActivities = () =>{
                                             <Row>
                                                 <Col>
                                                     <Content>
-                                                        <Title>{title}</Title>
-                                                        <Copy>{copy}</Copy>
+                                                        <Title color={colors.shadow.base}>{title}</Title>
+                                                        <Copy color={colors.shadow.text}>{copy}</Copy>
                                                         {
                                                             cta?(
                                                                 <Cta to={cta.url} target={cta.target}>{cta.title}</Cta>
@@ -217,7 +217,7 @@ const Content = styled.div`
 const Title = styled.h3`
     color: white;
     text-transform: uppercase;
-    text-shadow: 0 0px black;
+    text-shadow: ${props => props.color};
     margin-bottom: 4rem;
     font-weight: 900;
     ${h2}
@@ -225,6 +225,6 @@ const Title = styled.h3`
 
 const Copy = styled.p`
     color: white;
-    text-shadow: 0px 0px 25px #000000;
+    text-shadow:  ${props => props.color};
 
 `; 

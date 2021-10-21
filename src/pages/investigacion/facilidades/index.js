@@ -92,7 +92,7 @@ const ProjectLines = (props) => {
             <Container>
               <Row>
                 <Col>
-                  <Title>{title}</Title>
+                  <Title color={colors.shadow.base}>{title}</Title>
                 </Col>
               </Row>
             </Container>
@@ -185,7 +185,7 @@ const Title = styled.h1`
   color: white;
   margin-bottom: 4rem;
   margin-top: 4rem;
-  text-shadow: 0px 0px 6px #484848
+  text-shadow: ${props => props.color};
 `;
 
 const Facilidades = styled.div``;
@@ -209,7 +209,8 @@ const SLink = styled(Link)`
   color: inherit;
 `;
 
-const STitle = styled.h2``;
+const STitle = styled.h2`
+`;
 
 const SubTitle = styled.h3`
     font-weight: 300;

@@ -24,7 +24,7 @@ const ProjectLines = (props) => {
                         <Container>
                             <Row>
                                 <Col>
-                                    <Title>Líneas de investigación</Title>
+                                    <Title color={colors.shadow.base}>Líneas de investigación</Title>
                                 </Col>
                             </Row>
                         </Container>   
@@ -93,7 +93,7 @@ const Title = styled.h1`
     color: white;
     margin-bottom: 4rem;
     margin-top: 4rem;
-    text-shadow: 0px 0px 6px #484848;
+    text-shadow:${props => props.color};
 `;
 
 const Faculty = styled.h2`

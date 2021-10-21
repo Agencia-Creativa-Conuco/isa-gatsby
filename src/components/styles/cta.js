@@ -1,6 +1,6 @@
 import {css} from "@emotion/react";
 
-const ctas = ({bgColor="#00A4E5", bgActiveColor="#1A5687", shadowColor="rgba(115, 185, 255, 0.5)", color="#FFFFFF",paddingX="5rem"}) => css`
+const ctas = ({bgColor="#00A4E5", bgActiveColor="#1A5687", shadowColor="rgba(115, 185, 255, 0.5)", color="#FFFFFF",paddingX="5rem", textShadow="0.1rem 0.1rem 0.1rem rgb(52,49,49,0.80)"}) => css`
     display: inline-block;
     text-align: center;
     vertical-align: middle;
@@ -16,7 +16,7 @@ const ctas = ({bgColor="#00A4E5", bgActiveColor="#1A5687", shadowColor="rgba(115
     cursor: pointer;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
-    text-shadow: 0.1rem .1rem .1rem rgba(0,0,0,0.35);
+    text-shadow: ${textShadow};
     &:focus{
         box-shadow: 0 0 0 0.32rem ${shadowColor};
     }
