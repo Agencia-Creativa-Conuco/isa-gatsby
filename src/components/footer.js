@@ -45,7 +45,7 @@ const Footer = ({ state, libraries }) => {
       url_twitter = "https://twitter.com/universidad_isa", 
       url_facebook = 'https://www.facebook.com/UniversidadISA',
       url_instagram = 'https://www.instagram.com/universidadisa'
-  } = menu
+  } = menu;
 
   return (
     <FooterWrapper>
@@ -88,7 +88,7 @@ const Footer = ({ state, libraries }) => {
           <Container sizeXL="150rem">
             <Row>
               <Col size={12} sizeMD={4} css={StylesCol}>
-                <Title> REDES SOCIALES </Title>
+                <Title color={colors.shadow.base}> REDES SOCIALES </Title>
                 <Row>
                   {url_twitter ? (
                     <Col size="auto">
@@ -108,7 +108,6 @@ const Footer = ({ state, libraries }) => {
 
                   {url_facebook ? (
                     <Col size="auto">
-     
                       <LinkIcon href={url_facebook} target="_blank" rel="noreferrer"  aria-label="Click para abrir la red social...">
                         <Facebook2Icon />
                       </LinkIcon>
@@ -137,7 +136,7 @@ const RowWrapper = styled(Row)`
 const Title = styled.h3`
   color: white;
   font-weight: bold;
-  text-shadow:  0px 0px 10px #000000;
+  text-shadow: ${props => props.color}
 `;
 
 const MediaDeco = css`

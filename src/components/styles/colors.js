@@ -42,6 +42,10 @@ const colors = {
       sticky: "rgba(255,255,255,0.95)"
     },
     footer: "rgba(255,255,255,0.95)",
+    shadow:{
+      base: "0.1rem 0.1rem 0.1rem rgb(0,0,0,0.40)",
+      text: "0.1rem 0.1rem 0.1rem rgb(0,0,0,0.60)"
+    }
 }
 
 export default colors;
