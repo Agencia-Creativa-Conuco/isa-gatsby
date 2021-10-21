@@ -37,12 +37,16 @@ const Post = (props) => {
           <Row>
             {posts.map((post) => {
               return (
-                <Col key={post.id} size={12} sizeMD={4}>
+                <Col key={post.id} size={12} sizeMD={6} sizeLG={4}>
                   <SLink to={post.uri}>
                     <Article>
                       <FeaturedMedia media={post.featuredImage} size="56.25%" bgColor/>
                       <ItemTitle>{post.title}</ItemTitle>
-                      <Excerpt dangerouslySetInnerHTML={{__html: post.excerpt}} />
+                      {
+                        post.postType === "post"?(
+                          <Excerpt dangerouslySetInnerHTML={{__html: post.excerpt}} />
+                        ):null
+                      }
                     </Article>
                   </SLink>
                 </Col>
@@ -82,13 +86,18 @@ const Post = (props) => {
 };
 export default Post;
 
-const Article = styled.article``;
+const Article = styled.article`
+  margin-bottom: 4rem;
+`;
 
-const Title = styled.h1``;
+const Title = styled.h1`
+  margin-bottom: 4rem;
+`;
 
 const ItemTitle = styled.h2`
   ${h3}
-  text-transform: uppercase;
+  text-transform: initial;
+  margin-top: 1rem;
 `;
 
 const Excerpt = styled.div``;

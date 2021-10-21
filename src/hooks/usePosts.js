@@ -78,7 +78,7 @@ const usePosts = () => {
         featuredImage: post.featuredImage? post.featuredImage.node.localFile : null,
         type: post.__typename,
         postType: post.postData.type,
-        file: post.postData.file,
+        file: post.postData.file?.localFile?.publicURL,
     }));
 }
  

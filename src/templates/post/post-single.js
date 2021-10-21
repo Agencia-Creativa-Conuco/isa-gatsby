@@ -19,11 +19,13 @@ const Post = ({ post })=>{
                 post.postType === "file"?(
                     <PostFileCover {...{ post }} />
                 ):(
-                    <PostCover {...{ post }}/>
+                    <>
+                        <PostCover {...{ post }}/>
+                        <PostContent {...{ post }}/>
+                        <Related items={relatedPosts} />
+                    </>
                 )
             }
-            <PostContent {...{ post }}/>
-            <Related items={relatedPosts} />
         </Article>
     )
 }
