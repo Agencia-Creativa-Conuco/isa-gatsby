@@ -5,17 +5,55 @@ import colors from "../../components/styles/colors";
 
 const LibraryResources = () => {
   const title = "Recursos",
-    copy =
-      "Lorem ipsum dolor sit amet consectetur adipiscing elit sem eleifend, dictumst mauris velit aptent montes rutrum ultrices penatibus proin, euismod class hac pellentesque dui semper posuere fames. Faucibus tempus ut imperdiet pulvinar iaculis sagittis hendrerit duis auctor, odio aliquet montes porttitor metus mattis sem quam ac, dapibus quisque aliquam id ridiculus mollis platea interdum. Proin cubilia sociosqu et senectus varius faucibus curae cursus tellus inceptos pellentesque accumsan convallis volutpat fermentum, augue suspendisse est ut leo netus iaculis velit dignissim dictum class suscipit vitae.",
-    titlecontent = "Title Content",
+    copy =`
+      <p><b>Modalidades de uso</b>: Los documentos deben ser solicitados a través del personal bibliotecario en calidad de préstamo. El período de préstamo está sujeto a las características específicas de cada colección.</p>
+      <p></p>
+    `,
+    titlecontent = "Para los fines de servicio al público, la Biblioteca cuenta con los siguientes recursos:",
     content = [
       {
         cloneContent:
-          "Lorem ipsum dolor sit amet consectetur adipiscing elit sem eleifend, dictumst mauris velit aptent montes rutrum ultrices penatibus proin, euismod class hac pellentesque dui semper posuere fames. Faucibus tempus ut imperdiet pulvinar iaculis sagittis hendrerit duis auctor, odio aliquet montes porttitor metus mattis sem quam ac, dapibus quisque aliquam id ridiculus mollis platea interdum. Proin cubilia sociosqu et senectus varius faucibus curae cursus tellus inceptos pellentesque accumsan convallis volutpat fermentum, augue suspendisse est ut leo netus iaculis velit dignissim dictum class suscipit vitae.",
+          "<b>Colección General:</b> integrada por obras que  cubren toda el área del conocimiento y cuyo fin es servir de fuente de información para la formación de la comunidad académica.",
       },
       {
         cloneContent:
-          "Lorem ipsum dolor sit amet consectetur adipiscing elit sem eleifend, dictumst mauris velit aptent montes rutrum ultrices penatibus proin, euismod class hac pellentesque dui semper posuere fames. Faucibus tempus ut imperdiet pulvinar iaculis sagittis hendrerit duis auctor, odio aliquet montes porttitor metus mattis sem quam ac, dapibus quisque aliquam id ridiculus mollis platea interdum. Proin cubilia sociosqu et senectus varius faucibus curae cursus tellus inceptos pellentesque accumsan convallis volutpat fermentum, augue suspendisse est ut leo netus iaculis velit dignissim dictum class suscipit vitae.",
+          "<b>Colección de Referencia:</b> formada por obras que  facilitan la respuesta rápida a una necesidad de información específica. Entre estos se encuentran: diccionarios, enciclopedias, directorios, anuarios, atlas, índices, etc.",
+      },
+      {
+        cloneContent:
+          "<b>Colección de Reserva:</b> integrada por los libros de texto y/o cualquier material cuya consulta es asignada por los profesores como soporte al desarrollo de un programa analítico en particular.",
+      },
+      {
+        cloneContent:
+          "<b>Colección Dominicana.</b>  Integrada por documentaciones de autores dominicanos o extranjeros que tienen como tema aspectos de la República Dominicana.",
+      },
+      {
+        cloneContent:
+          "<b>Colección de Hemeroteca:</b> formada por las publicaciones periódicas: revistas, periódicos, boletines y otras.",
+      },
+      {
+        cloneContent:
+          "<b>Colección de tesis y trabajos de investigación.</b>  Integrada por documentos que han sido presentados para la obtención de un grado académico en instituciones de educación superior.",
+      },
+      {
+        cloneContent:
+          "<b>Colección de folletos.</b>  Integrada por los documentos impresos sin encuadernación de imprenta y que han sido producidos de manera no convencional.",
+      },
+      {
+        cloneContent:
+          "<b>Colección de audiovisuales y Multimedia.</b>  Integrada por el conjunto de dispositivos que despliegan la información de manera expositiva e interactiva así como los equipos de videos, sonido, diapositivas, discos compactos, etc.",
+      },
+      {
+        cloneContent:
+          "<b>Colección virtual.</b> Integrada por el conjunto de documentos en formato digital.",
+      },
+      {
+        cloneContent:
+          "<b>Colección especial.</b>  Integrada por aquellas documentaciones que poseen un alto valor por su singularidad, antigüedad o procedencia.",
+      },
+      {
+        cloneContent:
+          "<b>Colección Institucional.</b>  Integrada por las documentaciones producidas por la institución y que registran su accionar.",
       },
     ];
 
@@ -28,7 +66,7 @@ const LibraryResources = () => {
           </Col>
 
           <ColStyles size={12} color={colors.blue.base}>
-            <Copy>{copy}</Copy>
+            <Copy dangerouslySetInnerHTML={{ __html: copy }} />
           </ColStyles>
 
           <ColStyles size={12} color={colors.blue.dark}>
@@ -77,6 +115,10 @@ const Title = styled.h2``;
 const SectionTitle = styled.h3`
     color: white;
     margin-top: 0;
+    margin-bottom: 3rem;
 `;
 
-const Copy = styled.div``;
+const Copy = styled.div`
+  text-shadow: ${colors.shadow.base};
+  font-size: 1.8rem;
+`;

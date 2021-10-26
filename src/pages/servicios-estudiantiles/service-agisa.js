@@ -11,12 +11,19 @@ const ServiceEconomics = () =>{
     const images = useFiles();
 
     const 
-        title = "Asistencia Económica Estudiantil",
+        title = "Asociación De Graduados De ISA (AGISA)",
         content = `
-            <p>El Programa de Residencia Estudiantil, es un servicio que ofrece la Universidad ISA a sus estudiantes, principalmente a aquellos provenientes de zonas alejadas a la provincia de Santiago, con el objetivo de propiciar un ambiente que les permita la dedicación a sus estudios y a la vez, lograr un buen desempeño académico.</p>
-            <p>Los estudiantes que desean conservar el derecho al servicio de residencia estudiantil, deben mantener un rendimiento académico en condición normal (2.0/4.0); y el respeto a las normas y reglamentos institucionales.</p>
+            <p>es una institución privada, sin fines de lucros que agrupa y promueve el mejoramiento de los profesionales graduados de los diversos programas de estudio del ISA. AGISA surge mediante el decreto número 455 del año 1990 con los objetivos de promover:</p>
+            <ul>
+                <li>El desarrollo institucional del Instituto Superior de Agricultura, y el acercamiento entre el ISA y sus egresados.</li>
+                <li>El desarrollo social, cultural, científico y económico de sus miembros.</li>
+                <li>El establecimiento de lazos de amistad, cooperación y compañerismo entre los miembros de la asociación.</li>
+                <li>La Cooperación y acercamiento entre las instituciones cívicoculturales, del sector agropecuario y asociaciones que tengan relación o afinidad con AGISA.</li>
+                <li>La divulgación de informaciones científicas del sector agropecuario entres sus miembro y a nivel público.</li>
+                <li>La difusión de ideas no comprometidas en el orden político-partidista, que conlleven a la búsqueda de soluciones a los grandes problemas de la agricultura dominicana.</li>
+            </ul>
         `,
-        image = images["servicios-estudiantiles"].asistencia_economica,
+        image = images["servicios-estudiantiles"].agisa,
         cta = null
 
     return (

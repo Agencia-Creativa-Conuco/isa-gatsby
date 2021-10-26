@@ -16,6 +16,12 @@ const ServiceResidence = () =>{
         content = `
             <p>El Programa de Residencia Estudiantil, es un servicio que ofrece la Universidad ISA a sus estudiantes, principalmente a aquellos provenientes de zonas alejadas a la provincia de Santiago, con el objetivo de propiciar un ambiente que les permita la dedicación a sus estudios y a la vez, lograr un buen desempeño académico.</p>
             <p>Los estudiantes que desean conservar el derecho al servicio de residencia estudiantil, deben mantener un rendimiento académico en condición normal (2.0/4.0); y el respeto a las normas y reglamentos institucionales.</p>
+            <p><b>Observaciones</b></p>
+            <ul>
+                <li>Los estudiantes podrán permanecer en la residencia estudiantil, solo en el período académico que indica el calendario académico cada cuatrimestre.</li>
+                <li>Es responsabilidad del estudiante, actualizar el servicio de alojamiento al inicio de cada cuatrimestre.</li>
+                <li>Para mantener el servicio, el estudiante debe respetar los estatutos establecidos en el Reglamento Estudiantil.</li>
+            </ul>
         `,
         image = images["servicios-estudiantiles"].alojamiento,
         cta = null

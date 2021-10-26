@@ -4,9 +4,10 @@ import ServiceCover from "./service-cover";
 import ServicePsychology from "./service-psychology";
 import ServiceWellneres from "./service-wellneres";
 import ServiceResidence from "./service-residence";
-import ServiceEconomics from "./service-economics";
+import ServiceAGISA from "./service-agisa";
 import ServiceSurgery from "./service-surgery";
 import ServiceSport from "./service-sport";
+import ServiceExcellence from "./service-excellence";
 import ServiceActivities from "./service-activities";
 import Layout from "../../components/layout";
 
@@ -18,12 +19,13 @@ const ServicePage = (props) => {
             <Container>
                 <ServiceCover /> 
                 <ServiceActivities />
-                <ServicePsychology />
                 <ServiceWellneres />
+                <ServicePsychology />
                 <ServiceResidence />
                 <ServiceSurgery />
                 <ServiceSport />
-                <ServiceEconomics />
+                <ServiceExcellence />
+                <ServiceAGISA />
             </Container>
         </Layout>
     );

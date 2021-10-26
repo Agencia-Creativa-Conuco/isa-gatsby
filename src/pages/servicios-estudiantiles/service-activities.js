@@ -13,7 +13,27 @@ const ServiceActivities = () =>{
     
     const images = useFiles();
 
-    const actividadesExtracurriculares = [
+    const 
+    title = "Comités y Clubes Estudiantiles",
+    actividadesExtracurriculares = [
+        {
+            title: "CAISA",
+            copy: "El Club Ambiental del ISA (CAISA) es un voluntariado que promueve la conservación, preservación y estudio del medio ambiente; conformado por estudiantes, profesores y personal de apoyo de la Institución, interesados en realizar actividades en fomento y conservación de los recursos naturales en la República Dominicana.",
+            cta: null,
+            image: images['servicios-estudiantiles'].caisa
+        },
+        {
+            title: "Club de Astronomía",
+            copy: "",
+            cta: null,
+            image: images['servicios-estudiantiles'].astronomia
+        },
+        {
+            title: "Club de Lectura",
+            copy: "",
+            cta: null,
+            image: images['servicios-estudiantiles'].lectura
+        },
         {
             title: "Pastoral Juvenil",
             copy: "La Pastoral Juvenil desarrolla acciones encaminadas a fomentar valores, así como la actividad y crecimiento espiritual, contribuyendo a la formación integral de los universitarios.",
@@ -27,7 +47,7 @@ const ServiceActivities = () =>{
             image: images['servicios-estudiantiles'].club_de_danza
         },
         {
-            title: "Club De Ciencia",
+            title: "Club De Ciencias",
             copy: "El Club de Ciencias identificado con el logo   tiene como misión el contribuir con el fortalecimiento de la enseñanza/ aprendizaje de las ciencias en la República Dominicana a través del desarrollo intelectual, científico, cultural y social de las/os profesores/as de ciencias de la naturaleza en el país.",
             cta: null,
             image: images['servicios-estudiantiles'].club_de_ciencias
@@ -55,7 +75,7 @@ const ServiceActivities = () =>{
             <Container>
                 <Row>
                     <Col>
-                        <SectionTitle> Actividades Extracurriculares </SectionTitle>
+                        <SectionTitle>{title}</SectionTitle>
                     </Col>
                 </Row>
             </Container>
