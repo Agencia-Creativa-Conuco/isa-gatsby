@@ -12,6 +12,7 @@ import AdmissionCover from "./admission-cover";
 import AdmissionInfo from "./admission-info";
 import AdmissionForm from "./admission-form";
 import AdmissionCredit from "./admission-credit";
+import AdmissionBeca from "./admission-beca";
 import AdmissionServices from "./admission-services";
 import Calendar from "../../components/calendar";
 import colors from "../../components/styles/colors";
@@ -43,6 +44,7 @@ const Admissions = (props) => {
         <AdmissionInfo />
         <AdmissionForm />
         <AdmissionCredit />
+        <AdmissionBeca />
         <AdmissionServices />
         </Container>
       </Layout>

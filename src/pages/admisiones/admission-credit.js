@@ -3,33 +3,29 @@ import { useStaticQuery, graphql } from "gatsby";
 import styled from "@emotion/styled";
 import { Section, Container, Row, Col } from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
+import useFiles from "../../hooks/useFiles";
 
 const AdmissionCredit = () => {
+
+  const images = useFiles();
   
-  const { images } = useStaticQuery(graphql`
-    query {
-      images: allFile(
-        filter: {
-          relativePath: {
-            in: [
-              "admisiones/banco_adopem.png"
-              "admisiones/banfondesa.jpg"
-              "admisiones/fundapec.png"
-            ]
-          }
-        }
-      ) {
-        nodes {
-          id
-          childImageSharp {
-            fluid(maxWidth: 1200) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-      }
-    }
-  `);
+  const data = [
+    {
+      url: "https://bancoadopem.com.do/",
+      title: "Banco Adopem",
+      image: images.admisiones.banco_adopem
+    },
+    {
+      url: "https://banfondesa.com.do/",
+      title: "Banfondesa",
+      image: images.admisiones.banfondesa
+    },
+    {
+      url: "https://www.fundapec.edu.do/",
+      title: "Fundapec",
+      image: images.admisiones.fundapec
+    },    
+  ]
 
   return (
     <Section>
@@ -41,14 +37,16 @@ const AdmissionCredit = () => {
               Financiamiento disponible a través de:
             </Copy>
             <Row alignCenter>
-            {images.nodes.map((image) => {
+            {data.map((item, key) => {
               return (
-                <Col key={image.id} size={12} sizeMD={4}>
+                <Col key={key} size={12} sizeMD={4}>
+                  <a href={item.url} target="_blank" aria-label={item.title}>
                     <Institution>
                         <Media>
-                            <FeaturedMedia media={image} />
+                            <FeaturedMedia media={item.image} />
                         </Media>
                     </Institution>
+                  </a>
                 </Col>
               );
             })}
