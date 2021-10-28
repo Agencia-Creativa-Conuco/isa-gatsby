@@ -22,24 +22,12 @@ const Admissions = (props) => {
     
   const [page] = usePages().filter( page => page.slug ==="admisiones");
 
-  const eventCategories = page.events.categories.map((item) => item.id);
-
-  const events = usePeriods();
-
-//   Eventos filtrados por categorías
-  const filteredEvents = events.filter(
-    (event) =>
-      event.categories.filter((category) =>
-        eventCategories.includes(category.id)
-      ).length
-  );
-
   return (
       <Layout {...props}>
         <Container>
         <AdmissionCover />
         <CalendarSection bgColor={colors.gray.light} spaceNone>
-            <Calendar events={filteredEvents} />
+            <Calendar />
         </CalendarSection>
         <AdmissionInfo />
         <AdmissionForm />
