@@ -1,6 +1,6 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
-const useEvents = () => {
+const usePeriods = () => {
 
     const resultado = useStaticQuery(
         graphql `
@@ -13,19 +13,9 @@ const useEvents = () => {
                 link
                 uri
                 slug
-                order
-                eventData {
+                periodData {
                   examDates{
                     examDate
-                  }
-                }
-                eventCategories {
-                  nodes {
-                    id
-                    slug
-                    name
-                    link
-                    uri
                   }
                 }
               }
@@ -40,10 +30,9 @@ const useEvents = () => {
         slug: event.slug,
         uri: event.uri,
         link: event.link,
-        examDates: event?.eventData?.examDates || [],
-        categories: event?.eventCategories?.nodes,
+        examDates: event?.periodData?.examDates || [],
         type: event.__typename,
     }));
 }
  
-export default useEvents;
+export default usePeriods;

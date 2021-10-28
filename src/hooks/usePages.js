@@ -27,18 +27,6 @@ const usePages = () => {
                 pageSettings{
                   pageCustom
                 }
-                
-
-                events {
-                  eventCategories {
-                    __typename
-                    id
-                    name
-                    slug
-                    link
-                    uri
-                  }
-                }
 
                 posts {
                   categories {
@@ -106,9 +94,6 @@ const usePages = () => {
         type: page.__typename,
         styles: page.styles,
         settings: page.pageSettings,
-        events: {
-          categories: page?.events?.eventCategories || [],
-        },
         posts: {
           categories: page?.posts?.categories || [],
         },

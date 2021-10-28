@@ -8,7 +8,7 @@ import usePages from "../hooks/usePages";
 import PageSingle from "./page/page-single";
 import RecentPosts from "../components/recent-posts";
 import usePosts from "../hooks/usePosts";
-import useEvents from "../hooks/useEvents";
+import usePeriods from "../hooks/usePeriods";
 
 export const query = graphql`
   query ($id: String!) {
@@ -34,7 +34,7 @@ const Post = ({ data }) => {
   const posts = usePosts().filter( post => post.categories.filter( category => page.posts.categories.map( item => item.id ).includes(category.id) ).length );
 
   //Obtiene los datos de los Eventos
-  const events = useEvents().filter( event => event.categories.filter( category => page.events.categories.map( item => item.id ).includes( category.id ) ).length );
+  const events = usePeriods().filter( event => event.categories.filter( category => page.events.categories.map( item => item.id ).includes( category.id ) ).length );
 
   return (
     <Layout>

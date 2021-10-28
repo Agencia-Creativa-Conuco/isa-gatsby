@@ -7,7 +7,7 @@ import moment from "moment";
 import DayPicker from "react-day-picker";
 import "react-day-picker/lib/style.css";
 import useModal from "./hooks/useModal";
-import useEvents from "../hooks/useEvents";
+import usePeriods from "../hooks/usePeriods";
 
 const Event = ({ event }) => {
   const { openModal, ModalUI } = useModal();
@@ -78,7 +78,7 @@ const Calendar = ({
 }) => {
     
   //Obtiene los datos de los Eventos
-  const events = useEvents()
+  const events = usePeriods()
 
   //Ordena los eventos de menor a mayor
   const eventList = events

@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
 import { Section } from "../../components/layout/index";
-import useEvents from "../../hooks/useEvents";
+import usePeriods from "../../hooks/usePeriods";
 import Layout from "../../components/layout";
 
 import usePages from "../../hooks/usePages";
@@ -24,7 +24,7 @@ const Admissions = (props) => {
 
   const eventCategories = page.events.categories.map((item) => item.id);
 
-  const events = useEvents();
+  const events = usePeriods();
 
 //   Eventos filtrados por categorías
   const filteredEvents = events.filter(
