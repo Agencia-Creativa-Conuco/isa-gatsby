@@ -8,7 +8,6 @@ import usePages from "../hooks/usePages";
 import PageSingle from "./page/page-single";
 import RecentPosts from "../components/recent-posts";
 import usePosts from "../hooks/usePosts";
-import usePeriods from "../hooks/usePeriods";
 
 export const query = graphql`
   query ($id: String!) {
@@ -33,15 +32,12 @@ const Post = ({ data }) => {
   //Obtiene los datos de los Posts de las categorías seleccionadas
   const posts = usePosts().filter( post => post.categories.filter( category => page.posts.categories.map( item => item.id ).includes(category.id) ).length );
 
-  //Obtiene los datos de los Eventos
-  const events = usePeriods().filter( event => event.categories.filter( category => page.events.categories.map( item => item.id ).includes( category.id ) ).length );
-
   return (
     <Layout>
       <Global styles={ css`${page.styles}` } />
       {
         isFrontPage? (
-          <FrontPage {...{ page, posts, events }}/>
+          <FrontPage {...{ page, posts }}/>
         ) : (
           <PageSingle {...{ page }}/>
         )
