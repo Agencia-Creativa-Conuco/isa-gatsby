@@ -4,7 +4,7 @@ const usePeriods = () => {
   const resultado = useStaticQuery(
     graphql`
       {
-        allWpEvent {
+        allWpPeriod {
           nodes {
             id
             __typename
@@ -23,7 +23,7 @@ const usePeriods = () => {
     `
   );
 
-  return resultado.allWpEvent.nodes.map((event) => ({
+  return resultado.allWpPeriod.nodes.map((event) => ({
     id: event.id,
     title: event.title,
     slug: event.slug,
