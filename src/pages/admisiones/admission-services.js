@@ -8,25 +8,27 @@ import Link from "../../components/link";
 
 const AdmissionServices = () => {
 
-  const services = [
-    {
-      name: "Alojamiento",
-      icon: HotelIcon, 
-      url: "https://forms.gle/EFMUNvShBRNi2mui7",
-    },
-    {
-      name: "Alimentación",
-      icon: FoodIcon,
-      url: "https://forms.gle/cpjpU6U3n2yTVknMA"
-    }
-  ]
+  const 
+    title="Servicios Opcionales",
+    services = [
+      {
+        name: "Alojamiento",
+        icon: HotelIcon, 
+        url: "https://forms.gle/EFMUNvShBRNi2mui7",
+      },
+      {
+        name: "Alimentación",
+        icon: FoodIcon,
+        url: "https://forms.gle/cpjpU6U3n2yTVknMA"
+      }
+    ]
 
   return (
     <Section>
       <Container>
         <Row>
           <Col>
-            <Title>Servicios Opcionales</Title>
+            <Title>{title}</Title>
             <Row alignCenter>
             {services.map((service, index) => {
 
@@ -34,14 +36,14 @@ const AdmissionServices = () => {
 
               return (
                 <Col key={index} size={12} sizeMD={4} mxAuto>
-                  <Link to={service.url} target="_blank" rel="noreferrer"  aria-label="Click para abrir el...">
+                  <SLink href={service.url} target="_blank" rel="noreferrer"  aria-label={service.name}>
                     <Service>
                         <Icon css={css`color: ${colors.primary.dark};`}>
                           <Icono />
                         </Icon>
                         <h3>{service.name}</h3>
                     </Service>
-                  </Link>
+                  </SLink>
                 </Col>
               );
             })}
@@ -74,4 +76,8 @@ const Service = styled.div`
 const Icon = styled.div`
   max-width: 6rem;
   margin: 0 auto;
+`;
+
+const SLink = styled.a`
+  text-decoration: none;
 `;

@@ -46,9 +46,9 @@ const DEPLaboratory = () =>{
                                     heightMD="100%"
                                 />
                             </Col>
-                            <Col css={css`background-color:${colors.blue.dark};`} order={2} orderMD={index%2?2:1} noGutters>
-                                <Content color={colors.white}>
-                                    <Title color={colors.white}>{ title }</Title>
+                            <Col css={css`background-color: #FAFAFA;`} order={2} orderMD={index%2?2:1}>
+                                <Content>
+                                    <Title>{ title }</Title>
                                     <Copy>{ copy }</Copy>
                                     {cta ? (
                                         <Cta to={cta.url} target={cta.target}>
@@ -70,21 +70,21 @@ export default DEPLaboratory;
 
 
 const Content = styled.div`
-    padding: 5% 10% 10% 10%;
-    color: ${props => props.color};
-    ${mq.md}{
-        padding: 10%;
+    margin: 4rem auto;
+    ${mq.lg}{
+        margin: 0 auto;
+        padding: 5%;
+        box-sizing: content-box;
     }
 `;
 
 
 const Title = styled.h2`
     margin-bottom: 3rem;
-    color: ${props => props.color};
 `;
 
 const Copy = styled.p`
-    position:relative;
+    position: relative;
 `;
 
 

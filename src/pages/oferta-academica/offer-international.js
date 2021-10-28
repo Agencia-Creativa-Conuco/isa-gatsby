@@ -193,7 +193,6 @@ const Copy = styled.p`
 const ContentTitle = styled.h2`
   ${h5}
   color: ${(props) => props.color};
-  text-align: center;
 `;
 
 const Content = styled.div`

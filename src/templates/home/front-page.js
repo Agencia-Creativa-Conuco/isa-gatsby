@@ -11,7 +11,7 @@ import Calendar from "../../components/calendar";
 import useSlides from "../../hooks/useSlides";
 import useProjects from "../../hooks/useProjects";
 
-const FrontPage = ({ page, posts = [], events }) => {
+const FrontPage = ({ page, posts = [] }) => {
 
   //Obtiene los datos de los slides
   const slides = useSlides();
@@ -24,7 +24,7 @@ const FrontPage = ({ page, posts = [], events }) => {
     <>
       <HomeCover {...{ slides }} />
       <HomeOffer />
-      <Calendar {...{events}} />
+      <Calendar />
       <HomeNews {...{ posts }} />
       <HomeProjects {...{ projects }} />
       <HomeAplication />

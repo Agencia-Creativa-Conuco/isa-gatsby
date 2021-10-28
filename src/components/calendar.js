@@ -1,79 +1,123 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import {Container, Row, Col, mq, Section} from "./layout/index";
+import { css, Global } from "@emotion/react";
+import { Container, Row, Col, mq, Section } from "./layout/index";
 import colors from "./styles/colors";
 import moment from "moment";
+import DayPicker from "react-day-picker";
+import "react-day-picker/lib/style.css";
+import useModal from "./hooks/useModal";
+import useEvents from "../hooks/useEvents";
 
-const Calendar = ({ events = [], title="Fechas de admisión", noEventsTitle}) => {
+const Event = ({ event }) => {
+  const { openModal, ModalUI } = useModal();
 
+  const examDates = event.examDates.map((date) =>
+    moment(date.examDate, "", "es").toDate()
+  );
 
-    //Ordena los eventos de menor a mayor
-    const eventList = events.sort( (a, b) => {
+  const modifiers = {
+    highlighted: examDates,
+  };
 
-        const dateA = new Date(a.dueDate);
-        const dateB = new Date (b.dueDate);
+  const MONTHS = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ];
+  const WEEKDAYS_LONG = [
+    "Domingo",
+    "Lunes",
+    "Martes",
+    "Miércoles",
+    "Jueves",
+    "Viernes",
+    "Sábado",
+  ];
+  const WEEKDAYS_SHORT = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
 
-        return dateA - dateB;
-    })
-    // Filtra los eventos que no han vencido
-    .filter( (event, index) => {
-        const today = new Date();
-        const dueDate = new Date(event.dueDate);
+  return (
+    <>
+      <EventCard size="auto" noGutters onClick={openModal}>
+        {/* <EventDay color={colors.secondary.base}>{day}</EventDay> */}
+        <EventName>{event.title}</EventName>
+      </EventCard>
+      <ModalUI title={event.title}>
+        <Row>
+          <Col>
+            <EventTitle>Exámentes de admisión</EventTitle>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <DayPicker
+              modifiers={modifiers}
+              months={MONTHS}
+              weekdaysLong={WEEKDAYS_LONG}
+              weekdaysShort={WEEKDAYS_SHORT}
+            />
+          </Col>
+        </Row>
+      </ModalUI>
+    </>
+  );
+};
 
-        return dueDate >= today;
-    })
+const Calendar = ({
+  title = "Períodos de admisión",
+  noEventsTitle,
+}) => {
+    
+  //Obtiene los datos de los Eventos
+  const events = useEvents()
+
+  //Ordena los eventos de menor a mayor
+  const eventList = events
     //Solo se muestran 3 resultados en la página
-    .filter( (event, index) => {
-        return index <= 2
-    } );
+    // .filter((event, index) => {
+    //   return index <= 4;
+    // });
 
-    // Load the post, but only if the data is ready.
-  return (noEventsTitle || eventList.length)? (
+  // Load the post, but only if the data is ready.
+  return noEventsTitle || eventList.length ? (
     <Section>
-        <Container>
-            {title ? (
-                <Row>
-                    <Col>
-                        <Title>{title}</Title>
-                    </Col>
-                </Row>
-            ):null}
-            {eventList.length ? (
-                <Row>
-                    <Col size="auto" mxAuto>
-                        <EventList>
-                            <Row justifyContent="center">
-                            {
-                                eventList.map( (event, index) => {
+      <Global styles={birthdayStyle} />
 
-                                    const {
-                                        dueDate
-                                    } = event;
-
-                                    const month = moment(dueDate, '' ,'es').format('MMMM');
-                                    const day = moment(dueDate, '', 'es').format('DD');
-            
-                                    return (
-                                        <EventCard key={index} size="auto" noGutters>
-                                            <EventDay color={colors.secondary.base}>{day}</EventDay>
-                                            <EventMonth>{month}</EventMonth>
-                                        </EventCard>
-                                    );
-                                })
-                            }
-                            </Row>
-                        </EventList>
-                    </Col>
-                </Row>
-            ):(
-                <Row>
-                    <Col>
-                        <NoEventsText>{noEventsTitle}</NoEventsText>
-                    </Col>
-                </Row>
-            )}
-        </Container>
+      <Container>
+        {title ? (
+          <Row>
+            <Col>
+              <Title>{title}</Title>
+            </Col>
+          </Row>
+        ) : null}
+        {eventList.length ? (
+          <Row>
+            <Col size="auto" mxAuto>
+              <EventList>
+                {eventList.map((event, index) => {
+                return <Event key={index} event={event} />;
+                })}
+              </EventList>
+            </Col>
+          </Row>
+        ) : (
+          <Row>
+            <Col>
+              <NoEventsText>{noEventsTitle}</NoEventsText>
+            </Col>
+          </Row>
+        )}
+      </Container>
     </Section>
   ) : null;
 };
@@ -81,58 +125,94 @@ const Calendar = ({ events = [], title="Fechas de admisión", noEventsTitle}) =>
 export default Calendar;
 
 const Title = styled.h2`
-    text-align: center;
+  text-align: center;
 `;
 
 const EventList = styled.div`
-    ${mq.md}{
-        border-radius: 10rem;
-        padding: 1.5rem;
-        overflow: hidden;
-        box-shadow: 0 2rem 2rem rgba(0,0,0,0.2);
-        background-color: white;
-    }
-`;
-
-const EventCard = styled(Col)`
-    background-color: white;
-    padding: .5rem 1.5rem;
-    margin: 0;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 20rem;
-    box-shadow: 0 2rem 2rem rgba(0,0,0,0.2);
-    margin: 2rem;
+  ${mq.md} {
     border-radius: 10rem;
-    ${mq.md}{
-        border-left: 0.2rem solid lightgray;
-        box-shadow: initial;
-        margin: initial;
-        border-radius: initial;
-    }
-    &:first-of-type{
-        border: initial;
-    }
+    padding: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.2);
+    background-color: white;
+    columns: 32rem 3;
+    column-rule-style: solid;
+    column-rule-color: lightgray;
+    column-rule-width: .25rem;
+  }
 `;
 
-const EventDay = styled.span`
-    ${({color="green"})=>css`
-        font-size: 35px;
-        color: ${color};
-        font-weight: 900;
-        margin-right: .5rem;
-    `}
+const EventCard = styled.div`
+  cursor: pointer;
+  background-color: white;
+  padding: 0.5rem 1.5rem;
+  margin: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20rem;
+  box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.2);
+  margin: 2rem;
+  border-radius: 10rem;
+  ${mq.md} {
+    /* border-left: 0.2rem solid lightgray; */
+    box-shadow: initial;
+    margin: initial;
+    border-radius: initial;
+  }
+  &:first-of-type {
+    /* border: initial; */
+  }
 `;
 
-const EventMonth = styled.span`
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
+const EventName = styled.span`
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
 `;
 
 const NoEventsText = styled.p`
+  text-align: center;
+`;
+
+const EventTitle = styled.h3`
+  color: ${colors.primary.dark};
+  text-transform: uppercase;
+  text-align: left;
+  margin-bottom: 2rem;
+  margin-top: 0;
+`;
+
+const birthdayStyle = css`
+  .DayPicker {
+    width: 100%;
+    background-color: ${colors.gray.light};
+  }
+  .DayPicker-wrapper {
+    width: 100%;
+  }
+  .DayPicker-Months {
+    width: 100%;
+  }
+  .DayPicker-Month {
+    width: 100%;
+  }
+  .DayPicker-Day {
+    border-radius: initial;
+    font-size: 1.7rem;
+  }
+  .DayPicker-Day--highlighted {
+    background-color: ${colors.primary.base};
+    color: white;
+  }
+  .DayPicker-Caption {
+    font-weight: 400;
     text-align: center;
+    font-size: 2rem;
+    div {
+      font-size: inherit;
+      font-weight: inherit;
+    }
+  }
 `;

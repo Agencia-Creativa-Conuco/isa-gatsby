@@ -48,16 +48,15 @@ const DEPVeterinary = ({ page }) => {
           <Row>
             <SpecialCol
               size={12}
-              sizeMD={5}
-              noGutters
+              sizeLG={5}
               DecoBg={colors.blue.base}
               DecoBgA={colors.blue.dark}
               orderMD={2}
             >
-              <Media media={image} size="90%" />
+              <Media media={image} />
             </SpecialCol>
-            <Col size={12} sizeMD={7} noGutters>
-              <DivTitle color={colors.blue.dark} bg={colors.blue.dark}>
+            <Col size={12} sizeLG={7}>
+              <Content color={colors.blue.dark} bg={colors.blue.dark}>
                 <Title> {title} </Title>
                 <Copy> {copy} </Copy>
                 <Row>
@@ -85,7 +84,7 @@ const DEPVeterinary = ({ page }) => {
                     );
                   })}
                 </Row>
-              </DivTitle>
+              </Content>
             </Col>
           </Row>
         </WrapperRow>
@@ -102,29 +101,33 @@ const WrapperRow = styled.div`
   margin-top: 15rem;
 `;
 
-const DivTitle = styled.div`
+const Content = styled.div`
   color: ${(props) => props.color};
   padding: 10%;
   padding-bottom: 10%;
 
   ${mq.lg} {
-    padding: 5rem 7rem 3rem 10rem;
+    padding: 4rem;
   }
 `;
 
 const Title = styled.h2`
+  margin-top: 0;
   margin-bottom: 3rem;
 `;
 
 const Copy = styled.p``;
 
 const stylesCol = css`
-  margin-top: 2rem;
-  margin-bottom: 5rem;
 `;
+
 const ItemTitle = styled.h3`
   ${({ color }) => css`
     color: ${color};
+    margin-top: 0;
+    ${mq.lg}{
+      margin-top: 1rem;
+    }
   `}
 `;
 
@@ -133,25 +136,33 @@ const ServiceCopy = styled.div`
 `;
 
 const Media = styled(FeaturedMedia)`
-  top: -10%;
-  height: 110%;
+  margin-top: -10%;
 `;
 
 const SpecialCol = styled(Col)`
-  background: ${(props) => props.DecoBg};
-  border-radius: 0px 20px 20px 0px;
   position: relative;
-  &::before {
+  &:before{
+    content: '';
+    border-radius: 0px 20px 20px 0px;
+    position: absolute;
+    width: 1000%;
+    height: 100%;
+    right: 0;
+    top: 0;
+    background-color: ${ (props) => props.DecoBg};
+    ${mq.lg}{
+      width: 100%;
+    }
+  }
+  &:after {
     content: "";
     position: absolute;
     padding: 10%;
-    right: 10%;
-    top: -7%;
+    right: 5%;
+    top: 0%;
+    transform: translate(0, -50%);
     background: ${(props) => props.DecoBgA};
     clip-path: circle(50% at 50% 50%);
     z-index: 1;
-    ${mq.lg} {
-      top: -13%;
-    }
   }
 `;

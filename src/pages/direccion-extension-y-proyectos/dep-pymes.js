@@ -15,7 +15,7 @@ import useFiles from "../../hooks/useFiles";
 const DEPPymes = () => {
 
   const images = useFiles();
-  const image = images["direccion-extension-y-proyectos"].cover;
+  const image = images["direccion-extension-y-proyectos"].centro_mipymes;
 
   const 
     title = "Centro MIPYMES", 

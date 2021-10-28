@@ -60,7 +60,7 @@ const ResourcesList = ({
                     </Row>
                     ):null
                 }
-                <Row>
+                <Row justifyContent="center">
                 {
                     resources.length? resources.map((item,index) =>{
 
@@ -77,7 +77,7 @@ const ResourcesList = ({
                         } = item;
 
                         return(
-                        <Col key={index} size="auto" mxAuto>
+                        <Col key={index} size="auto">
                             <ResourceCard
                                 title={title}
                                 icon={featuredImage}

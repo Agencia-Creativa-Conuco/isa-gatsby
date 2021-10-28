@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { CloseIcon } from "../../components/icons";
-import { Row, Col, Container } from "../../components/layout/index";
+import { Row, Col, Container, mq } from "../../components/layout/index";
 import colors from "../../components/styles/colors";
 import { Global } from "@emotion/react";
 import { fadeIn, slideDown } from "../../components/styles/animations";
@@ -19,30 +19,27 @@ const useModal = () => {
     setModalOpen(false);
   };
 
-  const ModalUI = ({title, children}) => {
+  const ModalUI = ({title, children, size}) => {
     return (
       <ModalWrapper data-open={isModalOpen} onClick={closeModal}>
         {isModalOpen && <Global styles={{ body: { overflowY: "hidden" } }} />}
         <CardModal
+          sizeSM={size} sizeMD={size} sizeLG={size} sizeXL={size}
           onClick={(e) => {
             e.stopPropagation();
           }}
         >
-          <CardWrapper>
-            <Container>
-              <Row>
-                <Col>
-                  <ModalHeader size={12} colors={colors}>
-                    {title && <ModalTitle>{title}</ModalTitle>}
-                    <CloseButton onClick={closeModal} colors={colors}>
-                      <CloseIcon />
-                    </CloseButton>
-                  </ModalHeader>
-                  <ModalBody>{children}</ModalBody>
-                </Col>
-              </Row>
-            </Container>
-          </CardWrapper>
+          <Row>
+            <Col>
+              <ModalHeader size={12} colors={colors}>
+                {title && <ModalTitle>{title}</ModalTitle>}
+                <CloseButton onClick={closeModal} colors={colors}>
+                  <CloseIcon />
+                </CloseButton>
+              </ModalHeader>
+              <ModalBody>{children}</ModalBody>
+            </Col>
+          </Row>
         </CardModal>
       </ModalWrapper>
     );
@@ -83,35 +80,43 @@ const ModalWrapper = styled.div`
   `}
 `;
 
-const CardModal = styled.div`
+const CardModal = styled(Container)`
   background: #fff;
   margin: 0 1rem;
   margin-top: 15vh;
   margin-bottom: 15vh;
   border-radius: 5px;
   animation: ${slideDown} 0.4s ease-out;
+  flex: 1;
+  max-width: 1140px;
+  padding: 1.5rem;
+  ${mq.sm}{
+    padding: 3rem;
+  }
+  ${mq.md}{
+    padding: 3.5rem;
+  }
+  ${mq.xl}{
+    padding: 4.5rem;
+  }
 `;
 
-const CardWrapper = styled.div`
-  height: 100%;
-  align-content: baseline;
-`;
-
-const ModalHeader = styled(Col)`
-  ${({ colors }) => `
+const ModalHeader = styled.div`
+  ${({ colors }) => css`
         background-color: ${colors.gray.lighter};
         align-self: baseline;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        padding-right: 70px;
         text-align: left;
         color: ${colors.green.base};
         font-weight: bold;
+        margin-bottom: 2rem;
+        padding-right: 5rem;
+        position: relative;
     `}
 `;
 
 const ModalTitle = styled.h4`
   margin: 0;
+  font-weight: 300;
 `;
 
 const CloseButton = styled.button`
@@ -122,7 +127,9 @@ const CloseButton = styled.button`
     position: absolute;
     color: ${colors ? colors.gray.dark : "#555552"};
     right: 0rem;
-    top: 1rem;
+    top: 0rem;
+    padding: 1rem;
+    transform: translate(0, -1rem);
     z-index: 6;
     &:hover {
       cursor: pointer;
@@ -142,7 +149,4 @@ const CloseButton = styled.button`
   `}
 `;
 
-const ModalBody = styled(Col)`
-  padding-top: 20px;
-  padding-bottom: 20px;
-`;
+const ModalBody = styled.div``;

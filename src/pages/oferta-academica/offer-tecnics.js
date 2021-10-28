@@ -42,7 +42,7 @@ const images = allFile.nodes.reduce((obj, item) => {
         `;
 
     return (
-        <Section spaceNone css={css`background: ${colors.gray.light};`}>
+        <StyledSection spaceNone css={css`background: ${colors.gray.light};`}>
             <Container fluid>
                 <Row>
                     <Col 
@@ -74,12 +74,17 @@ const images = allFile.nodes.reduce((obj, item) => {
                     </Col>
                 </Row>
             </Container>
-        </Section>
+        </StyledSection>
     );
 
 }
 
 export default OfferTecnics;
+
+const StyledSection = styled(Section)`
+    position: relative;
+    z-index: 2;
+`;
 
 const DivTitle = styled.div`
     max-width: 57rem;

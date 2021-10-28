@@ -18,31 +18,27 @@ const OfferLabs = () =>{
         content = `
             <p>La unidad de Deporte gestiona profesionalmente los programas de actividad física y deportiva para los estudiantes, con el objetivo de fomentar y mantener en ellos la importancia de aquellos aspectos que tengan que ver con su desarrollo y disciplina física. Esta unidad coordina la formación de equipos, entrenamientos y participación del estudiantado en los principales eventos deportivos universitarios e interuniversitarios que se desarrollan en el país.</p>
         `,
-        subTitle ="DISCIPLINAS DESARROLLADAS PARA AMBOS GÉNEROS",
+        subTitle ="Áreas prácticas",
         sports = [
             {
-                name: "Baloncesto Masculino",
+                name: "Laboratorios",
                 image: images['servicios-estudiantiles'].baloncesto,
             },
             {
-                name: "Voleibol",
+                name: "Planta de procesamiento",
                 image: images['servicios-estudiantiles'].voleibol,
             },
             {
-                name: "Futbol",
+                name: "Clínica Veterinaria",
                 image: images['servicios-estudiantiles'].futbol,
             },
             {
-                name: "Atletismo",
+                name: "Producción animal",
                 image: images['servicios-estudiantiles'].atletismo,
             },
             {
-                name: "Béisbol",
+                name: "Producción agrícola",
                 image: images['servicios-estudiantiles'].beisbol,
-            },
-            {
-                name: "Ajedrez",
-                image: images['servicios-estudiantiles'].ajedrez,
             },
         ],
         cta = null

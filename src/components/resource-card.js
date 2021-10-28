@@ -31,21 +31,21 @@ const ResourceCard = ({
                     </Row>
                     <Row alignCenter>
                         <Col size="auto" mxAuto>
-                            <Icon bgColor={icon?"transparent":colors.gray.light} hasIcon={false}>
-                            {/* {
-                                icon? (
-                                    <FeaturedMedia media={icon} />
-                                ):( */}
-                                    <DownloadIcon />
-                                {/* )
-                            } */}
-                            </Icon>       
                         </Col>
                     </Row>
                 </Div>                                              
+                <Icon bgColor={icon?"transparent":colors.gray.light} hasIcon={false}>
+                {/* {
+                    icon? (
+                        <FeaturedMedia media={icon} />
+                    ):( */}
+                        <DownloadIcon />
+                    {/* )
+                } */}
+                </Icon>       
             </Card>
             {/* Aca se les pasan los datos que se mostrararan en el modal */}
-            <ModalUI>
+            <ModalUI size="80rem">
                 <CardInfo item={item}/>
             </ModalUI> 
         </>
@@ -55,13 +55,15 @@ const ResourceCard = ({
 export default ResourceCard;
 
 const Card = styled.div`
-    max-width: 300px;
-    padding: 2rem;
+    width: 300px;
+    height: 11rem;
+    padding: 1rem;
     box-shadow: 0rem 2.5rem 4rem rgb(0 0 0 / 6%);
     border-radius: 15px;
     margin: 0 auto;
     position: relative;
     margin-bottom: 50px;
+    padding-bottom: 5rem;
     &:hover{
         cursor: pointer;
         svg{
@@ -80,32 +82,31 @@ const Div = styled.div`
 
 const ResourceName = styled.span`
     ${({color="blue"}) => css`
-        ${h5}
         display: block;
         text-align: center;
         font-weight: bold;
         color: ${color};
         margin: 0;
-        margin-bottom: 1rem;
         text-transform: uppercase;
+        line-height: 1.2;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
     `}
 `;
 
 const Icon = styled.div`
     ${({bgColor="lightgray", hasIcon=false})=>css`
-        position: relative;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
         display: block;
         margin: 0 auto;
         width: 70px;
-        ${hasIcon?css`
-            margin: 1rem auto;
-        `:css`
-            background-color: ${bgColor};
-            padding-bottom: 70px;
-            border-radius: 50%;
-        `}
         svg{
-            position: absolute;
+            position: relative;
+            width: 2.5rem;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(1.5);

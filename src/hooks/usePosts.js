@@ -55,6 +55,12 @@ const usePosts = () => {
                       publicURL
                     }
                   }
+                  eventData{
+                    startDate
+                    endDate
+                    modalidad
+                    place
+                  }
                 }
 
               }
@@ -79,6 +85,7 @@ const usePosts = () => {
         type: post.__typename,
         postType: post.postData.type,
         file: post.postData.file?.localFile?.publicURL,
+        event: post.postData.eventData,
     }));
 }
  
