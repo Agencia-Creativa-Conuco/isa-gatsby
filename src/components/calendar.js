@@ -82,10 +82,8 @@ const Calendar = ({
 
   //Ordena los eventos de menor a mayor
   const eventList = events
-    //Solo se muestran 3 resultados en la página
-    // .filter((event, index) => {
-    //   return index <= 4;
-    // });
+    //Ordena por el campo orden de wordpress
+    .sort( (a,b) => a.order - b.order )
 
   // Load the post, but only if the data is ready.
   return noEventsTitle || eventList.length ? (

@@ -12,6 +12,7 @@ const usePeriods = () => {
             link
             uri
             slug
+            menuOrder
             periodData {
               examDates {
                 examDate
@@ -29,6 +30,7 @@ const usePeriods = () => {
     slug: event.slug,
     uri: event.uri,
     link: event.link,
+    order: event.menuOrder,
     examDates: event?.periodData?.examDates || [],
     type: event.__typename,
   }));
