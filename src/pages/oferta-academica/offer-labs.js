@@ -22,23 +22,23 @@ const OfferLabs = () =>{
         sports = [
             {
                 name: "Laboratorios",
-                image: images['servicios-estudiantiles'].baloncesto,
+                image: images['oferta-academica'].laboratorios,
             },
             {
                 name: "Planta de procesamiento",
-                image: images['servicios-estudiantiles'].voleibol,
+                image: images['oferta-academica'].planta_de_procesamiento,
             },
             {
                 name: "Clínica Veterinaria",
-                image: images['servicios-estudiantiles'].futbol,
+                image: images['oferta-academica'].clinica_veterinaria,
             },
             {
                 name: "Producción animal",
-                image: images['servicios-estudiantiles'].atletismo,
+                image: images['oferta-academica'].produccion_animal,
             },
             {
                 name: "Producción agrícola",
-                image: images['servicios-estudiantiles'].beisbol,
+                image: images['oferta-academica'].produccion_agricola,
             },
         ],
         cta = null

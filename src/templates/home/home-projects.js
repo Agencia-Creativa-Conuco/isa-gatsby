@@ -46,7 +46,6 @@ const HomeProjects = ({ projects }) =>{
                                                     sizeMD="56.25%"
                                                     sizeLG="50%"
                                                     sizeXL="35%"
-                                                    loading={index?"lazy":"eager"}
                                                     bgColor
                                                 />
                                             </SlideMedia>

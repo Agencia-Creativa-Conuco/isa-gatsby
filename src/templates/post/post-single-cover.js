@@ -29,7 +29,6 @@ const PostCover = ({ post })=>{
                                     media={ featuredImage }
                                     height ="100%"
                                     bgColor
-                                    loading="eager"
                                     />
                             </Image>
                         </ImageContainer>

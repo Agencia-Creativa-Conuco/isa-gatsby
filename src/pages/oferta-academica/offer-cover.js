@@ -43,13 +43,14 @@ const images = allFile.nodes.reduce((obj, item) => {
                 <Row alignCenter>
                     <Col size={12} sizeMD={6} sizeLG={7} noLGutters>
                         <DivLogo decoBg={ colors.blue.dark } decoBgA={colors.blue.base}>    
-                            <Logo
+                            <Image
                                 media={images.cover}
                                 alt={title}
                                 size="100%"
                                 sizeMD="120%"
                                 sizeLG="100%"
                                 sizeXL="80%"
+                                position="90% 50%"
                                 bgColor
                             />
                         </DivLogo>
@@ -113,7 +114,7 @@ const DivTitle = styled.div`
 
 const SectionTitle = styled.h1``;
 
-const Logo = styled(FeaturedMedia)`
+const Image = styled(FeaturedMedia)`
 clip-path: ellipse(88% 75% at left);
 z-index: 5;
 ${mq.md}{

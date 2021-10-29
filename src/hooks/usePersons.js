@@ -21,6 +21,7 @@ const usePersons = () => {
                   }
                 }
                 personData {
+                  isTeam
                   personJobTitle
                   personDegreeTitle
                   personDegree
@@ -46,6 +47,7 @@ const usePersons = () => {
         uri: person.uri,
         link: person.link,
         featuredImage: person.featuredImage? person.featuredImage.node.localFile : null,
+        isTeam: person?.personData?.isTeam,
         jobTitle: person?.personData?.personJobTitle,
         degreeTitle: person?.personData?.personDegreeTitle,
         degree: person?.personData?.personDegree,

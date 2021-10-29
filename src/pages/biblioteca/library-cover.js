@@ -54,7 +54,6 @@ const LibraryCover = () =>{
                                 media={featuredImage}
                                 size="100%"
                                 sizeLG="80%"
-                                loading="eager"
                             />
                         </Media>
                     </Col>

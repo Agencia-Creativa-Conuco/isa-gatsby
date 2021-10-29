@@ -8,7 +8,9 @@ import {LeftArrowIcon, RightArrowIcon} from "./icons";
 import colors from './styles/colors';
 
 
-const TeamSlider = ({ persons, title = "Equipo de investigación" }) =>{
+const TeamSlider = ({ persons = [], title = "Equipo de investigación" }) =>{
+
+    const researchers = persons.filter( person => person.isTeam );
 
     const Arrows = (props => {
   
@@ -45,7 +47,7 @@ const TeamSlider = ({ persons, title = "Equipo de investigación" }) =>{
       
       })
 
-    return persons.length ?(
+    return researchers.length ?(
         <BGSection spaceNone bg={ colors.gray.light } >
             <Container fluid notFluidLG>
                 <Row>
@@ -86,7 +88,7 @@ const TeamSlider = ({ persons, title = "Equipo de investigación" }) =>{
                             ]}
                         >
                             { 
-                                persons.map((item, index) =>{
+                                researchers.map((item, index) =>{
                                     const {
                                         title,
                                         featuredImage,

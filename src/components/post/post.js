@@ -28,7 +28,6 @@ const Post = ({ post }) => {
           <FeaturedMedia 
             media={featuredImage.node.localFile} 
             size="56.25%" 
-            loading="eager" 
             bgColor={colors.image.base}
           />
 
