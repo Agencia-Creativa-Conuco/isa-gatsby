@@ -2,11 +2,11 @@ import * as React from "react";
 import Layout from "../components/layout";
 import { graphql } from "gatsby";
 import FacultySingle from "./faculty/faculty-single";
-import useFaculties from "../hooks/useFaculties";
+import useFacultades from "../hooks/useFacultades";
 
 export const query = graphql`
   query ($id: String!) {
-    allWpFaculty(filter: { id: { eq: $id } }) {
+    allWpFacultad(filter: { id: { eq: $id } }) {
       nodes {
         id
       }
@@ -18,10 +18,10 @@ export const query = graphql`
 const Faculty = ({ data }) => {
 
   const {
-    allWpFaculty: { nodes: faculties },
+    allWpFacultad: { nodes: faculties },
   } = data;
 
-  const [faculty] = useFaculties().filter( faculty => faculties.map( item => item.id).includes( faculty.id ) );
+  const [faculty] = useFacultades().filter( faculty => faculties.map( item => item.id).includes( faculty.id ) );
   
   return (
     <Layout>

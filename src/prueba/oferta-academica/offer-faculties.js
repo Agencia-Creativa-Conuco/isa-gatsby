@@ -6,21 +6,21 @@ import { useState } from "react";
 import Link from "../../components/link";
 import {Spring, animated} from "@react-spring/web";
 import colors from '../../components/styles/colors';
-import useCareers from '../../hooks/useCareers';
-import useFaculties from "../../hooks/useFaculties";
-import useGrades from '../../hooks/useGrades';
-import useDepartaments from '../../hooks/useDepartaments';
+import useCarreras from '../../hooks/useCarreras';
+import useFacultades from "../../hooks/useFacultades";
+import useGrados from '../../hooks/useGrados';
+import useDepartamentos from '../../hooks/useDepartamentos';
 
 const OfferFaculties = () =>{
 
     //Obtiene y ordena los grados a mostrar en el menú
-    const grades = useGrades().sort((a,b)=>a.order - b.order);
+    const grades = useGrados().sort((a,b)=>a.order - b.order);
 
-    const faculties = useFaculties();
+    const faculties = useFacultades();
     
-    const departaments = useDepartaments();
+    const departaments = useDepartamentos();
     
-    const careers = useCareers();
+    const careers = useCarreras();
 
     const [view, setView] = useState(0);
 

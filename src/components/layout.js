@@ -6,12 +6,12 @@ import { graphql, useStaticQuery } from "gatsby";
 
 import globalStyles from "../components/styles/global-styles";
 import FontFace from "../components/styles/font-faces";
-import Header from "./header";
-import Footer from "./footer";
+// import Header from "./header";
+// import Footer from "./footer";
 import ResourcesList from "./resourceslist";
 import Contact from "./contact";
 import usePages from "../hooks/usePages";
-import useCareers from "../hooks/useCareers";
+import useCarreras from "../hooks/useCarreras";
 
 if (typeof window !== "undefined") {
   // eslint-disable-next-line global-require
@@ -48,7 +48,7 @@ const Layout = (props) => {
     }
   `);
 
-  const postTypes = [].concat(usePages(), useCareers());
+  const postTypes = [].concat(usePages(), useCarreras());
   const [postType] = postTypes.filter( postType => postType.uri === path );
 
   return (
@@ -71,7 +71,7 @@ const Layout = (props) => {
 
       <Global styles={globalStyles({ settings })} />
 
-      <Header {...{ setResultsSearch }} />
+      {/* <Header {...{ setResultsSearch }} /> */}
 
       <Main>
         {React.Children.map(children, (child) => {
@@ -87,7 +87,7 @@ const Layout = (props) => {
         {/* Se muestra información de contacto relacionada con el tipo de dato */}
         <Contact data={ postType?.contact } />
       </Main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

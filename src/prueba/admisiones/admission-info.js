@@ -6,15 +6,15 @@ import {AdmissionRequisiteIcon} from "../../components/icons";
 import {h2} from "../../components/styles/tipography";
 import {Spring, animated} from "@react-spring/web";
 import colors from "../../components/styles/colors";
-import useRequirementsCategories from '../../hooks/useRequirementsCategories';
-import useGrades from '../../hooks/useGrades';
+import useGruposDeRequisitos from '../../hooks/useGruposDeRequisitos';
+import useGrados from '../../hooks/useGrados';
 
 const AdmissionInfo = () =>{
 
-    const categories = useRequirementsCategories();
+    const categories = useGruposDeRequisitos();
 
     //Obtiene los grados 
-    const grades = useGrades()?.sort((a,b) => a.order - b.order).filter( grade => {
+    const grades = useGrados()?.sort((a,b) => a.order - b.order).filter( grade => {
         return grade.requirements.length;
     });
 

@@ -2,11 +2,11 @@ import * as React from "react";
 import Layout from "../components/layout";
 import { graphql } from "gatsby";
 import CareerSingle from "./career/career-single";
-import useCareers from "../hooks/useCareers";
+import useCarreras from "../hooks/useCarreras";
 
 export const query = graphql`
   query ($id: String!) {
-    allWpCareer(filter: { id: { eq: $id } }) {
+    allWpCarrera(filter: { id: { eq: $id } }) {
       nodes {
         id
       }
@@ -17,10 +17,10 @@ export const query = graphql`
 // markup
 const Career = ({ data, ...props }) => {
   const {
-    allWpCareer: { nodes: careers },
+    allWpCarrera: { nodes: careers },
   } = data;
 
-  const [career] = useCareers().filter( career => careers.map( item => item.id).includes( career.id ) );
+  const [career] = useCarreras().filter( career => careers.map( item => item.id).includes( career.id ) );
 
   return (
     <Layout {...props}>

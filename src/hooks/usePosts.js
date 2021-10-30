@@ -48,20 +48,20 @@ const usePosts = () => {
                   }
                 }
 
-                postData {
-                  type
-                  file {
-                    localFile {
-                      publicURL
-                    }
-                  }
-                  eventData{
-                    startDate
-                    endDate
-                    modalidad
-                    place
-                  }
-                }
+                #postData {
+                #  type
+                #  file {
+                #    localFile {
+                #      publicURL
+                #    }
+                #  }
+                #  eventData{
+                #    startDate
+                #    endDate
+                #    modalidad
+                #    place
+                #  }
+                #}
 
               }
             }
@@ -83,9 +83,9 @@ const usePosts = () => {
         link: post.link,
         featuredImage: post.featuredImage? post.featuredImage.node.localFile : null,
         type: post.__typename,
-        postType: post.postData.type,
-        file: post.postData.file?.localFile?.publicURL,
-        event: post.postData.eventData,
+        postType: post?.postData?.type,
+        file: post?.postData?.file?.localFile?.publicURL,
+        event: post?.postData?.eventData,
     }));
 }
  

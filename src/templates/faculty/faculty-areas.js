@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { Container, Section, Row, Col} from "../../components/layout/index";
 import Link from "../../components/link";
 import colors from '../../components/styles/colors';
-import useDepartaments from "../../hooks/useDepartaments";
+import useDepartamentos from "../../hooks/useDepartamentos";
 
 const FcaultyAreasAcademic = ({ faculty }) =>{
     
@@ -11,7 +11,7 @@ const FcaultyAreasAcademic = ({ faculty }) =>{
         color
     } = faculty;
 
-    const departaments = useDepartaments().filter( departament => departament.faculty.id === faculty.id );
+    const departaments = useDepartamentos().filter( departament => departament.faculty.id === faculty.id );
     
     return departaments.length?(
         <SectionStyles spaceTopNone >

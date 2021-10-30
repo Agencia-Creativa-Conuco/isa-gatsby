@@ -7,7 +7,7 @@ module.exports = {
     {
       resolve: "gatsby-source-wordpress",
       options: {
-        url: "https://isa.conuco.do/graphql",
+        url: "https://prueba.conuco.do/graphql",
         schema: {
           timeout: 120000,
           perPage: 25, // currently set to 100
@@ -42,7 +42,7 @@ module.exports = {
                 uri
               }
             }
-              allWpFaculty {
+              allWpFacultad {
                 nodes {
                   id
                   __typename
@@ -51,7 +51,7 @@ module.exports = {
                   uri
                 }
               }
-              allWpDepartament {
+              allWpDepartamento {
                 nodes {
                   id
                   __typename
@@ -60,7 +60,7 @@ module.exports = {
                   uri
                 }
               }
-              allWpProject {
+              allWpInvestigacion {
                 nodes {
                   id
                   __typename
@@ -69,7 +69,7 @@ module.exports = {
                   uri
                 }
               }
-              allWpProjectLine {
+              allWpLineaDeInvestigacion {
                 nodes {
                   id
                   __typename
@@ -78,7 +78,7 @@ module.exports = {
                   uri
                 }
               }
-              allWpResource {
+              allWpRecurso {
                 nodes {
                   id
                   __typename
@@ -88,7 +88,7 @@ module.exports = {
                 }
               } 
 
-              allWpCareer {
+              allWpCarrera {
                 nodes {
                   id
                   __typename
@@ -97,7 +97,7 @@ module.exports = {
                   uri
                 }
               } 
-              allWpGrade {
+              allWpGrado {
                 nodes {
                   id
                   __typename

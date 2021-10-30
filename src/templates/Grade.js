@@ -2,11 +2,11 @@ import * as React from "react";
 import Layout from "../components/layout";
 import { graphql } from "gatsby";
 import GradeComponent from "./grade/grade-single";
-import useGrades from "../hooks/useGrades";
+import useGrados from "../hooks/useGrados";
 
 export const query = graphql`
   query ($id: String!) {
-    allWpGrade(filter: { id: { eq: $id } }) {
+    allWpGrado(filter: { id: { eq: $id } }) {
       nodes {
         id
       }
@@ -17,10 +17,10 @@ export const query = graphql`
 // markup
 const Grade = ({ data }) => {
   const {
-    allWpGrade: { nodes: grades },
+    allWpGrado: { nodes: grades },
   } = data;
 
-  const [grade] = useGrades().filter( grade => grades.map( item => item.id).includes( grade.id ) );
+  const [grade] = useGrados().filter( grade => grades.map( item => item.id).includes( grade.id ) );
 
   return (
     <Layout>

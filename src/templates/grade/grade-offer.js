@@ -12,24 +12,24 @@ import {
 import Link from "../../components/link";
 // import { Spring, animated } from "@react-spring/web";
 import colors from "../../components/styles/colors";
-import useCareers from "../../hooks/useCareers";
-import useFaculties from "../../hooks/useFaculties";
-// import useGrades from "../../hooks/useGrades";
-import useDepartaments from "../../hooks/useDepartaments";
+import useCarreras from "../../hooks/useCarreras";
+import useFacultades from "../../hooks/useFacultades";
+// import useGrados from "../../hooks/useGrados";
+import useDepartamentos from "../../hooks/useDepartamentos";
 
 const GradeOffer = ({ grade }) => {
 
-  const careers = useCareers().filter((career) => {
+  const careers = useCarreras().filter((career) => {
     return grade.id === career.grade.id;
   });
 
-  const faculties = useFaculties().filter((faculty) => {
+  const faculties = useFacultades().filter((faculty) => {
     return faculty.careers.filter((career) =>
       careers.map((item) => item.id).includes(career.id)
     ).length;
   });
 
-  const departaments = useDepartaments().filter((departament) => {
+  const departaments = useDepartamentos().filter((departament) => {
     return departament.careers.filter((career) =>
       careers.map((item) => item.id).includes(career.id)
     ).length;

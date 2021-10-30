@@ -6,11 +6,11 @@ import Layout from "../../../components/layout";
 import colors from "../../../components/styles/colors";
 import FeaturedMedia from "../../../components/featured-media";
 import useFiles from "../../../hooks/useFiles";
-import usePersons from "../../../hooks/usePersons";
+import useInvestigadores from "../../../hooks/useInvestigadores";
 
 const CarreraNacionalDeInvestigadores = (props) => {
 
-  const persons = usePersons().filter( person => person.carreraNacionalInvestigacion.isMember);
+  const persons = useInvestigadores().filter( person => person.carreraNacionalInvestigacion.isMember);
 
   const title = "Miembros De La Carrera Nacional De Investigadores UNISA";
 

@@ -4,7 +4,7 @@ import {Section, Container, Row, Col} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
 import Link from "../../components/link";
 import colors from "../../components/styles/colors";
-import useCareer from "../../hooks/useCareers";
+import useCareer from "../../hooks/useCarreras";
 
 const SchoolCareers  = ({ school, faculty })=>{
 

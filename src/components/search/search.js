@@ -3,11 +3,11 @@ import styled from "@emotion/styled";
 import ResultsHeader from "./results-header";
 import ResultsBody from "./results-body"
 
-import useResources from '../../hooks/useResources'
+import useRecursos from '../../hooks/useRecursos'
 
 const SearchView = (props) =>{
 
-  const resources = useResources();
+  const resources = useRecursos();
   
 
   return (

@@ -17,62 +17,62 @@ const usePages = () => {
                 slug
                 isFrontPage
                 isPostsPage
-                styles
+                # styles
                 featuredImage {
                   node {
                     ...ImageFragment
                   }
                 }
 
-                pageSettings{
-                  pageCustom
-                }
+                #pageSettings{
+                #  pageCustom
+                #}
 
-                posts {
-                  categories {
-                    id
-                  }
-                }
+                #posts {
+                #  categories {
+                #    id
+                #  }
+                #}
 
-                contact {
-                  phones {
-                    phone
-                    exts {
-                      ext
-                    }
-                  }
-                  whatsapp {
-                    phone
-                  }
-                  emails {
-                    email
-                  }
-                }
+                #contact {
+                #  phones {
+                #    phone
+                #    exts {
+                #      ext
+                #    }
+                #  }
+                #  whatsapp {
+                #    phone
+                #  }
+                #  emails {
+                #    email
+                #  }
+                #}
         
-                resources {
-                  resourceRelationship {
-                    ... on WpResource {
-                      id
-                      title
-                      featuredImage {
-                        node {
-                          ...ImageFragment
-                        }
-                      }
-                      resource {
-                        type
-                        description
-                        file {
-                          id
-                          localFile {
-                            id
-                            publicURL
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
+                #resources {
+                #  resourceRelationship {
+                #    ... on WpResource {
+                #      id
+                #      title
+                #      featuredImage {
+                #        node {
+                #          ...ImageFragment
+                #        }
+                #      }
+                #      resource {
+                #        type
+                #        description
+                #        file {
+                #          id
+                #          localFile {
+                #            id
+                #            publicURL
+                #          }
+                #        }
+                #      }
+                #    }
+                #  }
+                #}
                 
               }
             }
@@ -92,7 +92,7 @@ const usePages = () => {
         isPostsPage: page.isPostsPage,
         featuredImage: page?.featuredImage?.node?.localFile,
         type: page.__typename,
-        styles: page.styles,
+        styles: page?.styles,
         settings: page.pageSettings,
         posts: {
           categories: page?.posts?.categories || [],

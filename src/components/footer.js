@@ -21,7 +21,7 @@ const Footer = ({ state, libraries }) => {
         publicURL
       }
 
-      menu: wpMenu(locations: {in: MENU_2}) {
+      menu: wpMenu(locations: {in: FOOTER}) {
         id
         name
         menuItems {

@@ -8,18 +8,16 @@ const useSlides = () => {
                 allWpSlide {
                     nodes {
                         id
-                        title
-                        slideInfo {
-                            copy
-                            cta {
-                                ...CtaFragment
-                            }
+                        nombre
+                        copy
+                        imagenPortada {
+                            ...ImageFragment
                         }
-                        featuredImage {
-                            node {
-                                ...ImageFragment
-                            }
-                        }
+                        #slideInfo {
+                        #    cta {
+                        #        ...CtaFragment
+                        #    }
+                        #}
                     }
                 }
             } 
@@ -28,10 +26,10 @@ const useSlides = () => {
     
     return resultado.allWpSlide.nodes.map( slide => ({
         id: slide.id,
-        title: slide.title,
+        nombre: slide.nombre,
         copy: slide.slideInfo.copy,
         cta: slide.slideInfo.cta,
-        featuredImage: slide.featuredImage? slide.featuredImage.node.localFile : null
+        imagenPortada: slide.imagenPortada
     }));
 }
  

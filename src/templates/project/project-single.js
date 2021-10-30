@@ -1,8 +1,8 @@
 import React from "react";
 import styled from '@emotion/styled';
 import ProjectsCover from "./project-cover";
-import useProjects from "../../hooks/useProjects";
-import usePersons from "../../hooks/usePersons";
+import useInvestigaciones from "../../hooks/useInvestigaciones";
+import useInvestigadores from "../../hooks/useInvestigadores";
 import Related from "../../components/related";
 import TeamSlider from "../../components/team-slider";
 
@@ -16,9 +16,9 @@ const Project  = ({ project })=>{
         researchers
     } = project;
 
-    const projects = useProjects();
+    const projects = useInvestigaciones();
 
-    const persons = usePersons().filter( person => researchers.map( researcher => researcher.id ).includes(person.id) );
+    const persons = useInvestigadores().filter( person => researchers.map( researcher => researcher.id ).includes(person.id) );
 
     const relatedProjects = projects.filter( (item, index) => item.id !== project.id).slice(0,3);
 

@@ -1,11 +1,11 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
-const useRequirementsCategories = () => {
+const useGruposDeRequisitos = () => {
 
     const data = useStaticQuery(
         graphql `
         {
-          allWpRequirementGroup {
+          allWpGrupoDeRequisitos {
             nodes {
               id
               __typename
@@ -20,7 +20,7 @@ const useRequirementsCategories = () => {
     );
 
     const {
-      allWpRequirementGroup: { nodes: categories },
+      allWpGrupoDeRequisitos: { nodes: categories },
     } = data;
 
     const resultado = categories.map( category => ({
@@ -34,4 +34,4 @@ const useRequirementsCategories = () => {
     return resultado;
 }
  
-export default useRequirementsCategories;
+export default useGruposDeRequisitos;

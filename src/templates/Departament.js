@@ -2,11 +2,11 @@ import * as React from "react"
 import Layout from "../components/layout";
 import { graphql } from "gatsby";
 import DepartamentSingle from "./departament/departament-single";
-import useDepartaments from "../hooks/useDepartaments";
+import useDepartamentos from "../hooks/useDepartamentos";
 
 export const query = graphql`
   query($id: String!) {
-    allWpDepartament( filter: { id: { eq: $id } }) {
+    allWpDepartamento( filter: { id: { eq: $id } }) {
       nodes {
         id
       }
@@ -18,12 +18,12 @@ export const query = graphql`
 const Post = ({data}) => {
 
   const {
-      allWpDepartament: {
+      allWpDepartamento: {
           nodes: departaments
       }
   } = data;
 
-  const [departament] = useDepartaments().filter( departament => departaments.map( item => item.id).includes( departament.id ) );
+  const [departament] = useDepartamentos().filter( departament => departaments.map( item => item.id).includes( departament.id ) );
   
   return (
       <Layout>

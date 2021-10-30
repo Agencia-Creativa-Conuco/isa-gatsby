@@ -6,13 +6,13 @@ import Competencies from "./carreer-competencies";
 import Pensum from "./carreer-pensum";
 import CareerForm from './career-form';
 import ResourceList from '../../components/resourceslist';
-import useFaculties from "../../hooks/useFaculties";
+import useFacultades from "../../hooks/useFacultades";
 import Contact from "../../components/contact";
 import colors from "../../components/styles/colors";
 
 const Career = ({ career })=>{
 
-    const [faculty] = useFaculties().filter( faculty => faculty.id === career.faculty.id);
+    const [faculty] = useFacultades().filter( faculty => faculty.id === career.faculty.id);
 
     return (
         <Article>

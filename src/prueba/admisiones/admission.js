@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
 import { Section } from "../../components/layout/index";
-import usePeriods from "../../hooks/usePeriods";
+import usePeriodosAdmision from "../../hooks/usePeriodosAdmision";
 import Layout from "../../components/layout";
 
 import usePages from "../../hooks/usePages";

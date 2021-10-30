@@ -3,12 +3,12 @@ import styled from '@emotion/styled';
 import { Section, Container, Row, Col } from '../../components/layout/index';
 import Link from '../../components/link';
 import FeaturedMedia from '../../components/featured-media';
-import useProjects from '../../hooks/useProjects';
+import useInvestigaciones from '../../hooks/useInvestigaciones';
 import colors from '../../components/styles/colors';
 
 const ProjectLines = ({line}) => {
 
-    const projects = useProjects().filter( project => line.projects.map( project => project.id ).includes( project.id ) );
+    const projects = useInvestigaciones().filter( project => line.projects.map( project => project.id ).includes( project.id ) );
 
     return (
         <Section as="article" spaceNone>

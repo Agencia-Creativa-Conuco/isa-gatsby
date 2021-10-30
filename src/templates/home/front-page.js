@@ -9,7 +9,7 @@ import HomeNews from "./home-news";
 import Calendar from "../../components/calendar";
 
 import useSlides from "../../hooks/useSlides";
-import useProjects from "../../hooks/useProjects";
+import useInvestigaciones from "../../hooks/useInvestigaciones";
 
 const FrontPage = ({ page, posts = [] }) => {
 
@@ -17,7 +17,7 @@ const FrontPage = ({ page, posts = [] }) => {
   const slides = useSlides();
 
   //Obtiene los datos de los Proyectos
-  const projects = useProjects();
+  const projects = useInvestigaciones();
 
   // Load the post, but only if the data is ready.
   return (

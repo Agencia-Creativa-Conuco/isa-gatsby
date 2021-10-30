@@ -3,18 +3,18 @@ import styled from '@emotion/styled';
 import { Section, Container, Row, Col } from '../../components/layout/index';
 import Link from '../../components/link';
 import Layout from '../../components/layout';
-import useFaculties from '../../hooks/useFaculties';
-import useProjectLines from '../../hooks/useProjectLines';
-import useDepartaments from '../../hooks/useDepartaments';
+import useFacultades from '../../hooks/useFacultades';
+import useLineasInvestigacion from '../../hooks/useLineasInvestigacion';
+import useDepartamentos from '../../hooks/useDepartamentos';
 import colors from '../../components/styles/colors';
 
 const ProjectLines = (props) => {
 
-    const projectLines = useProjectLines();
+    const projectLines = useLineasInvestigacion();
 
-    const departaments = useDepartaments().filter( departament => projectLines.map( line => line.departament.id ).includes( departament.id ) );
+    const departaments = useDepartamentos().filter( departament => projectLines.map( line => line.departament.id ).includes( departament.id ) );
 
-    const faculties = useFaculties().filter( faculty => departaments.map( departament => departament.faculty.id ).includes( faculty.id ) );
+    const faculties = useFacultades().filter( faculty => departaments.map( departament => departament.faculty.id ).includes( faculty.id ) );
 
     return (
         <Layout {...props}>

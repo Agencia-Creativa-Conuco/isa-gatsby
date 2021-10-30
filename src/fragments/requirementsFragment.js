@@ -1,10 +1,10 @@
 import { graphql } from "gatsby";
 
 export const query = graphql`
-    fragment RequirementsFragment on WpGrade_Requisitos {
-        requirements {
-            requirement
-            category {
+    fragment RequirementsFragment on WpGrupoDeRequisitos {
+        requisitos {
+            requisito
+            categoria {
                 id
                 name
             }

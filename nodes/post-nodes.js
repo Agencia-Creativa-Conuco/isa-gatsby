@@ -177,7 +177,7 @@ exports.getNodes = async function getNodes({ graphql, reporter }) {
           }
         }
       }
-      allWpProject(sort: { fields: [date], order: DESC }) {
+      allWpInvestigacion(sort: { fields: [date], order: DESC }) {
         edges {
           previous {
             id
@@ -194,7 +194,7 @@ exports.getNodes = async function getNodes({ graphql, reporter }) {
           }
         }
       }
-      allWpProjectLine(sort: { fields: [date], order: DESC }) {
+      allWpLineaDeInvestigacion(sort: { fields: [date], order: DESC }) {
         edges {
           previous {
             id
@@ -211,7 +211,7 @@ exports.getNodes = async function getNodes({ graphql, reporter }) {
           }
         }
       }
-      allWpCareer(sort: { fields: [date], order: DESC }) {
+      allWpCarrera(sort: { fields: [date], order: DESC }) {
         edges {
           previous {
             id
@@ -228,7 +228,7 @@ exports.getNodes = async function getNodes({ graphql, reporter }) {
           }
         }
       }
-      allWpFaculty(sort: { fields: [date], order: DESC }) {
+      allWpFacultad(sort: { fields: [date], order: DESC }) {
         edges {
           previous {
             id
@@ -245,7 +245,7 @@ exports.getNodes = async function getNodes({ graphql, reporter }) {
           }
         }
       }
-      allWpDepartament(sort: { fields: [date], order: DESC }) {
+      allWpDepartamento(sort: { fields: [date], order: DESC }) {
         edges {
           previous {
             id
@@ -269,7 +269,7 @@ exports.getNodes = async function getNodes({ graphql, reporter }) {
           }
         }
       }
-      allWpGrade(sort: { fields: [date], order: DESC }) {
+      allWpGrado(sort: { fields: [date], order: DESC }) {
         edges {
           previous {
             id
@@ -300,12 +300,12 @@ exports.getNodes = async function getNodes({ graphql, reporter }) {
   return [
     ...graphqlResult.data.allWpPost.edges,
     ...graphqlResult.data.allWpPage.edges,
-    ...graphqlResult.data.allWpProject.edges,
-    ...graphqlResult.data.allWpProjectLine.edges,
-    ...graphqlResult.data.allWpCareer.edges,
-    ...graphqlResult.data.allWpFaculty.edges,
-    ...graphqlResult.data.allWpDepartament.edges,
-    ...graphqlResult.data.allWpGrade.edges,
+    ...graphqlResult.data.allWpInvestigacion.edges,
+    ...graphqlResult.data.allWpLineaDeInvestigacion.edges,
+    ...graphqlResult.data.allWpCarrera.edges,
+    ...graphqlResult.data.allWpFacultad.edges,
+    ...graphqlResult.data.allWpDepartamento.edges,
+    ...graphqlResult.data.allWpGrado.edges,
   ];
 };
 

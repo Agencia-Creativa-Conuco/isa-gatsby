@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
 import { Row, Col, Container } from "./layout/index";
 import FeaturedMedia from "./featured-media";
 import Cta from "./cta";
-import colors from "./styles/colors";
 
 const CardInfo = ({ item }) => {
   const {
