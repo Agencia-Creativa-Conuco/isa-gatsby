@@ -3,11 +3,11 @@ import styled from '@emotion/styled';
 import {Section, Container, Row, Col} from "../../components/layout/index";
 import colors from "../../components/styles/colors";
 
-const ProjectsResume = ({ project })=>{
+const ProjectsResume = ({ investigacion })=>{
 
     const {
-        content,
-    } = project;
+        resumen,
+    } = investigacion;
 
     return (
         <BGSection bg={ colors.gray.light } zIndex='1' >
@@ -16,7 +16,7 @@ const ProjectsResume = ({ project })=>{
                     <Col size={12} >
                         <Content>
                             <Section as="div" spaceTopNone>
-                                <Copy dangerouslySetInnerHTML={{__html: content }} />
+                                <Copy dangerouslySetInnerHTML={{__html: resumen }} />
                             </Section>
                         </Content>
                     </Col>

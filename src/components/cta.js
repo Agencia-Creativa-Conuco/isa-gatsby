@@ -9,7 +9,10 @@ const Cta = ({
     download,
     ...other 
 }) => {
-    return !download? ( 
+
+    const isExternal = true;
+
+    return !isExternal? ( 
         <Link to={to} {...{download}} {...other}>
             <Span {...{color, bgColor, bgActiveColor, shadowColor, paddingX,}} >
                 {children}

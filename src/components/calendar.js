@@ -12,8 +12,8 @@ import usePeriodosAdmision from "../hooks/usePeriodosAdmision";
 const Event = ({ event }) => {
   const { openModal, ModalUI } = useModal();
 
-  const examDates = event.examDates.map((date) =>
-    moment(date.examDate, "", "es").toDate()
+  const examDates = event.fechasExamenesAdmision.map((date) =>
+    moment(date.fechaExamen, "", "es").toDate()
   );
 
   const modifiers = {
@@ -49,9 +49,9 @@ const Event = ({ event }) => {
     <>
       <EventCard size="auto" noGutters onClick={openModal}>
         {/* <EventDay color={colors.secondary.base}>{day}</EventDay> */}
-        <EventName>{event.title}</EventName>
+        <EventName>{event.nombre}</EventName>
       </EventCard>
-      <ModalUI title={event.title}>
+      <ModalUI title={event.nombre}>
         <Row>
           <Col>
             <EventTitle>Exámentes de admisión</EventTitle>

@@ -1,4 +1,5 @@
 import { graphql, useStaticQuery } from "gatsby";
+import urlSlug from 'url-slug';
 
 const usePeriodosAdmision = () => {
   const resultado = useStaticQuery(
@@ -12,14 +13,12 @@ const usePeriodosAdmision = () => {
             link
             uri
             slug
-            fechaInicio
-            fechaFin
             #menuOrder
-            #periodData {
-            #  examDates {
-            #    examDate
-            #  }
-            #}
+            datosPeriodosDeAdmision {
+              fechasExamenesAdmision {
+                fechaExamen
+              }
+            }
           }
         }
       }
@@ -29,13 +28,11 @@ const usePeriodosAdmision = () => {
   return resultado.allWpPeriodoDeAdmision.nodes.map((periodo) => ({
     id: periodo.id,
     nombre: periodo.nombre,
-    slug: periodo.slug,
-    uri: periodo.uri,
-    link: periodo.link,
+    slug: urlSlug(periodo.nombre),
+    uri: periodo.uri.replace(periodo.slug, urlSlug(periodo.nombre)),
+    link: periodo.link.replace(periodo.slug, urlSlug(periodo.nombre)),
     order: periodo?.menuOrder,
-    fechaInicio: periodo.fechaInicio,
-    fechaFin: periodo.fechaFin,
-    examDates: periodo?.periodData?.examDates || [],
+    fechasExamenesAdmision: periodo?.datosPeriodosDeAdmision?.fechasExamenesAdmision || [],
     type: periodo.__typename,
   }));
 };

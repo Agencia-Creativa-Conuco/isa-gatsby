@@ -1,4 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby';
+import urlSlug from 'url-slug';
 
 const useRecursos = () => {
 
@@ -22,6 +23,9 @@ const useRecursos = () => {
                     publicURL
                   }
                 }
+                datosRecurso {
+                  tipo
+                }
               }
             }
           }
@@ -32,9 +36,9 @@ const useRecursos = () => {
         id: recurso.id,
         nombre: recurso.nombre,
         date: recurso.date,
-        slug: recurso.slug,
-        uri: recurso.uri,
-        link: recurso.link,
+        slug: urlSlug(recurso.nombre),
+        uri: recurso.uri.replace(recurso.slug, urlSlug(recurso.nombre)),
+        link: recurso.link.replace(recurso.slug, urlSlug(recurso.nombre)),
         imagenPortada: recurso.imagenPortada,
         type: recurso.__typename,
         archivo: recurso.archivo

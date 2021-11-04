@@ -17,16 +17,16 @@ const usePages = () => {
                 slug
                 isFrontPage
                 isPostsPage
-                # styles
+                styles
                 featuredImage {
                   node {
                     ...ImageFragment
                   }
                 }
 
-                #pageSettings{
-                #  pageCustom
-                #}
+                pageSettings{
+                  pageCustom
+                }
 
                 #posts {
                 #  categories {

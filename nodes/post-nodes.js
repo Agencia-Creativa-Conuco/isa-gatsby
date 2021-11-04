@@ -1,6 +1,6 @@
 const path = require(`path`);
 const chunk = require(`lodash/chunk`);
-
+const urlSlug = require(`url-slug`);
 /**
  * This function creates all the individual blog pages in this site
  */
@@ -8,23 +8,14 @@ exports.createSinglePages = async ({ posts, gatsbyUtilities }) =>
   Promise.all(
     posts.map(({ previous, post, next }) => {
 
-       //Solo genera vistas para los direcciones académicas (Tienen carreras asignadas)
-      //  if(post.__typename === "WpDepartament"){
-
-      //   const careers = post.data.careers? post.data.careers : [];
-
-      //   if(!careers.length){
-      //     return null;
-      //   }
-      // }
-
+      const uri = [`WpPost`,`WpPage`].includes(post.__typename)? post.uri : post.uri.replace(post.slug, urlSlug(post.nombre));
 
       // createPage is an action passed to createPages
       // See https://www.gatsbyjs.com/docs/actions#createPage for more info
       return gatsbyUtilities.actions.createPage({
         // Use the WordPress uri as the Gatsby page path
         // This is a good idea so that internal links and menus work 👍
-        path: post.uri,
+        path: uri,
 
         // use the blog post template as the page component
         component: path.resolve(
@@ -188,6 +179,8 @@ exports.getNodes = async function getNodes({ graphql, reporter }) {
             __typename
             id
             uri
+            nombre
+            slug
           }
           next {
             id
@@ -205,6 +198,8 @@ exports.getNodes = async function getNodes({ graphql, reporter }) {
             __typename
             id
             uri
+            nombre
+            slug
           }
           next {
             id
@@ -222,6 +217,8 @@ exports.getNodes = async function getNodes({ graphql, reporter }) {
             __typename
             id
             uri
+            nombre
+            slug
           }
           next {
             id
@@ -239,6 +236,8 @@ exports.getNodes = async function getNodes({ graphql, reporter }) {
             __typename
             id
             uri
+            nombre
+            slug
           }
           next {
             id
@@ -256,13 +255,8 @@ exports.getNodes = async function getNodes({ graphql, reporter }) {
             __typename
             id
             uri
-            data: departamentInfo {
-              careers: departamentCareerRel {
-                ... on WpCareer {
-                  id
-                }
-              }
-            }
+            nombre
+            slug
           }
           next {
             id
@@ -280,6 +274,8 @@ exports.getNodes = async function getNodes({ graphql, reporter }) {
             __typename
             id
             uri
+            nombre
+            slug
           }
           next {
             id

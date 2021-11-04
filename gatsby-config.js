@@ -47,7 +47,7 @@ module.exports = {
                   id
                   __typename
                   slug
-                  title
+                  nombre
                   uri
                 }
               }
@@ -56,7 +56,7 @@ module.exports = {
                   id
                   __typename
                   slug
-                  title
+                  nombre
                   uri
                 }
               }
@@ -65,7 +65,7 @@ module.exports = {
                   id
                   __typename
                   slug
-                  title
+                  nombre
                   uri
                 }
               }
@@ -74,7 +74,7 @@ module.exports = {
                   id
                   __typename
                   slug
-                  title
+                  nombre
                   uri
                 }
               }
@@ -83,7 +83,7 @@ module.exports = {
                   id
                   __typename
                   slug
-                  title
+                  nombre
                   uri
                 }
               } 
@@ -93,7 +93,7 @@ module.exports = {
                   id
                   __typename
                   slug
-                  title
+                  nombre
                   uri
                 }
               } 
@@ -102,7 +102,7 @@ module.exports = {
                   id
                   __typename
                   slug
-                  title
+                  nombre
                   uri
                 }
               }

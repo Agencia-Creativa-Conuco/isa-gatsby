@@ -1,4 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby';
+import urlSlug from 'url-slug';
 
 const useInvestigadores = () => {
 
@@ -17,19 +18,20 @@ const useInvestigadores = () => {
                 tituloAcademico
                 tituloAcademicoAbreviado
                 esEquipo
-                esCarrera
                 date
                 link
                 uri
                 slug
+                datosInvestigador {
+                  carreraNacionalInvestigacion {
+                    esMiembro
+                    area
+                    categoria
+                    anoIngreso
+                    areaInvestigacion
+                  }
+                }
                 #personData {
-                #  carreraNacionalInvestigacion {
-                #    isMember
-                #    anoIngreso
-                #    area
-                #    areaInvestigacion
-                #    categoria
-                #  }
                 #}
               }
             }
@@ -39,20 +41,17 @@ const useInvestigadores = () => {
 
     return resultado.allWpInvestigador.nodes.map( investigador => ({
         id: investigador.id,
-        nombre: investigador.nombre,
+        nombre: investigador?.nombre,
         date: investigador.date,
-        slug: investigador.slug,
-        uri: investigador.uri,
-        link: investigador.link,
+        slug: urlSlug(investigador.nombre),
+        uri: investigador.uri.replace(investigador.slug, urlSlug(investigador.nombre)),
+        link: investigador.link.replace(investigador.slug, urlSlug(investigador.nombre)),
         imagenPortada: investigador?.imagenPortada,
-        puestoTrabajo: puestoTrabajo,
-        tituloAcademico: tituloAcademico,
-        tituloAcademicoAbreviado: tituloAcademicoAbreviado,
-        isCarrera: investigador?.isCarrera,
-        isTeam: investigador?.personData?.isTeam,
-        jobTitle: investigador?.personData?.personJobTitle,
-        degreeTitle: investigador?.personData?.personDegreeTitle,
-        degree: investigador?.personData?.personDegree,
+        puestoTrabajo: investigador?.puestoTrabajo,
+        tituloAcademico: investigador?.tituloAcademico,
+        tituloAcademicoAbreviado: investigador?.tituloAcademicoAbreviado,
+        isCarrera: investigador?.datosInvestigador?.esCarrera,
+        esEquipo: investigador?.esEquipo,
         carreraNacionalInvestigacion: investigador?.personData?.carreraNacionalInvestigacion,
         type: investigador.__typename,
     }));

@@ -6,14 +6,18 @@ import Cta from '../../components/cta';
 
 import FeaturedMedia from "../../components/featured-media";
 import Carousel from "react-slick";
+import useInvestigaciones from "../../hooks/useInvestigaciones";
 
 import {h1} from "../../components/styles/tipography";
 
-const HomeProjects = ({ projects }) =>{
+const HomeProjects = () =>{
     
+
+    const investigaciones = useInvestigaciones();
+
     const projectTitle = "Proyectos de investigación"
 
-    return projects.length?(
+    return investigaciones.length?(
         <Section spaceBottomNone >
             <Container fluid>
                 <Row>
@@ -25,22 +29,22 @@ const HomeProjects = ({ projects }) =>{
                     <Col noGutters>
                         <Carousel css={css`overflow: hidden;`}>
                         {
-                            projects.map((project,index)=>{
+                            investigaciones.map((investigacion,index)=>{
 
                                 const {
-                                    title,
-                                    excerpt,
+                                    nombre,
+                                    // excerpt,
                                     link,
-                                    featuredImage
-                                } = project
+                                    imagenPortada
+                                } = investigacion
 
                                 return (
                                     <Slide key={index}>
                                         <SlideWrapper>
                                             <SlideMedia>
                                                 <FeaturedMedia 
-                                                    media={featuredImage}
-                                                    alt={title}
+                                                    media={imagenPortada}
+                                                    alt={nombre}
                                                     size="150%"
                                                     sizeSM="100%"
                                                     sizeMD="56.25%"
@@ -53,8 +57,8 @@ const HomeProjects = ({ projects }) =>{
                                                 <Container>
                                                     <Row>
                                                         <Col size={12} sizeMD={7} sizeLG={7} mlAuto>
-                                                            <SlideTitle>{title}</SlideTitle>
-                                                            <Excerpt dangerouslySetInnerHTML={{ __html: excerpt }} />
+                                                            <SlideTitle>{nombre}</SlideTitle>
+                                                            {/* <Excerpt dangerouslySetInnerHTML={{ __html: excerpt }} /> */}
                                                             <LinkBox>
                                                                 <Cta to={link} aria-label="Click para abrir el...">Conocer más</Cta>
                                                             </LinkBox>
@@ -112,10 +116,10 @@ const SlideTitle = styled.h3`
     ${h1}
 `;
 
-const Excerpt = styled.div`
-    color: white;
-    text-shadow: .1rem .1rem .1rem gray;
-`;
+// const Excerpt = styled.div`
+//     color: white;
+//     text-shadow: .1rem .1rem .1rem gray;
+// `;
 
 const LinkBox = styled.div`
     margin-top: 2rem;

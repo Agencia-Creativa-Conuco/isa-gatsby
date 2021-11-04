@@ -6,13 +6,13 @@ import FeaturedMedia from "../../components/featured-media";
 import { h2 } from "../../components/styles/posts-tipography";
 import colors from "../../components/styles/colors";
 
-const ProjectsCover = ({ project })=>{
+const ProjectsCover = ({ investigacion })=>{
 
     const {
-        title,
-        featuredImage,
-        description,
-    } = project;
+        nombre,
+        imagenPortada,
+        descripcion,
+    } = investigacion;
 
     return (
         <Section spaceNone zIndex='4' >
@@ -26,7 +26,7 @@ const ProjectsCover = ({ project })=>{
                         noGutters
                     >
                         <FeaturedMedia 
-                            media={ featuredImage }
+                            media={ imagenPortada }
                             size="56.25%"
                             sizeLG="130%"
                             heightLG="100%"
@@ -41,9 +41,9 @@ const ProjectsCover = ({ project })=>{
                     >
                         <StylesContent>
                         <Title  >
-                            { title }
+                            { nombre }
                         </Title>  
-                        <Copy dangerouslySetInnerHTML={{__html: description}} />
+                        <Copy dangerouslySetInnerHTML={{__html: descripcion}} />
                         </StylesContent> 
                     </Col>
                 </Row>

@@ -6,8 +6,8 @@ import { graphql, useStaticQuery } from "gatsby";
 
 import globalStyles from "../components/styles/global-styles";
 import FontFace from "../components/styles/font-faces";
-// import Header from "./header";
-// import Footer from "./footer";
+import Header from "./header";
+import Footer from "./footer";
 import ResourcesList from "./resourceslist";
 import Contact from "./contact";
 import usePages from "../hooks/usePages";
@@ -71,7 +71,7 @@ const Layout = (props) => {
 
       <Global styles={globalStyles({ settings })} />
 
-      {/* <Header {...{ setResultsSearch }} /> */}
+      <Header {...{ setResultsSearch }} />
 
       <Main>
         {React.Children.map(children, (child) => {
@@ -87,7 +87,7 @@ const Layout = (props) => {
         {/* Se muestra información de contacto relacionada con el tipo de dato */}
         <Contact data={ postType?.contact } />
       </Main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

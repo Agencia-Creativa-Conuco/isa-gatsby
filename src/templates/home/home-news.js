@@ -5,12 +5,15 @@ import { Container, Section, Row, Col, mq} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
 import Link from "../../components/link";
 import colors from "../../components/styles/colors";
+import usePosts from '../../hooks/usePosts';
 
-const HomeNews = ({ posts }) =>{
+const HomeNews = () =>{
+
+    const posts = usePosts();
     
     const newsTitle = "Noticias Recientes"
 
-    const news = posts.filter( post => post.postType === "post");
+    const news = posts.filter( post => post.tipoPublicacion === "post");
 
     return news.length > 0?(
         <Section>

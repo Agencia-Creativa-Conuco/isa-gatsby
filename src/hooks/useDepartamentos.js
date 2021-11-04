@@ -1,4 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby';
+import urlSlug from 'url-slug';
 
 const useDepartamentos = () => {
 
@@ -21,7 +22,7 @@ const useDepartamentos = () => {
                 id
               }
             }
-            lineasInvestigacion{
+            lineasDeInvestigacion{
               nodes {
                 id
               }
@@ -59,14 +60,14 @@ const useDepartamentos = () => {
         nombre: departamento.nombre,
         copy: departamento.copy,
         date: departamento.date,
-        slug: departamento.slug,
-        uri: departamento.uri,
-        link: departamento.link,
+        slug: urlSlug(departamento.nombre),
+        uri: departamento.uri.replace(departamento.slug, urlSlug(departamento.nombre)),
+        link: departamento.link.replace(departamento.slug, urlSlug(departamento.nombre)),
         order: departamento.menuOrder,
-        imagenPortada: departament?.imagenPortada,
-        facultad: departamento.facultad.node.id,
-        carreras: departamento.carreras.nodes || [],
-        lineasInvestigacion: departamento.lineasInvestigacion.nodes || [],
+        imagenPortada: departamento?.imagenPortada,
+        facultad: departamento?.facultad?.node?.id,
+        carreras: departamento?.carreras?.nodes || [],
+        lineasInvestigacion: departamento?.lineasDeInvestigacion?.nodes || [],
         type: departamento.__typename,
         contact: departamento?.contact,
       })

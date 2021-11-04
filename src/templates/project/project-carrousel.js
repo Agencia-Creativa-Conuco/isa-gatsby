@@ -41,11 +41,11 @@ const Arrows = (props) => {
   return <Arrow {...props} />;
 };
 
-const ProjectsCarrousel = ({ project }) => {
+const ProjectsCarrousel = ({ investigacion }) => {
 
-  const { images } = project;
+  const { imagenes } = investigacion;
 
-  return images.length ? (
+  return imagenes.length ? (
     <Section zIndex="2">
       <SliderWrapper color={colors.gray.light} color2={colors.white}>
         <Carousel
@@ -90,13 +90,13 @@ const ProjectsCarrousel = ({ project }) => {
             },
           ]}
         >
-          {images.map((image, index) => {
+          {imagenes.map((imagen, index) => {
 
             return (
               <SlideStyle key={index}>
                 <Row>
                   <Col size={10} noGutters mxAuto>
-                    <FeaturedMedia media={image} size="70%" />
+                    <FeaturedMedia media={imagen} size="70%" />
                   </Col>
                 </Row>
               </SlideStyle>

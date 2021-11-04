@@ -1,4 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby';
+import urlSlug from 'url-slug';
 
 const useGrados = () => {
 
@@ -44,9 +45,9 @@ const useGrados = () => {
         nombre: grado.nombre,
         copy: grado.copy,
         date: grado.date,
-        slug: grado.slug,
-        uri: grado.uri,
-        link: grado.link,
+        slug: urlSlug(grado.nombre),
+        uri: grado.uri.replace(grado.slug, urlSlug(grado.nombre)),
+        link: grado.link.replace(grado.slug, urlSlug(grado.nombre)),
         order: grado?.menuOrder,
         imagenPortada: grado?.imagenPortada,
         carreras: grado.carreras.nodes || [],

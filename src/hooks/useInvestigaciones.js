@@ -1,4 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby';
+import urlSlug from 'url-slug';
 
 const useInvestigaciones = () => {
 
@@ -11,6 +12,7 @@ const useInvestigaciones = () => {
                 __typename
                 nombre
                 descripcion
+                resumen
                 date
                 link
                 uri
@@ -18,7 +20,7 @@ const useInvestigaciones = () => {
                 imagenPortada {
                   ...ImageFragment
                 }
-                lineaInvestigacion{
+                lineaDeInvestigacion{
                   node {
                     id
                   }
@@ -28,11 +30,11 @@ const useInvestigaciones = () => {
                     id
                   }
                 }
-                #projectInfo {
-                  #images {
-                  #  ...ImageFragment
-                  #}
-                #}
+                datosInvestigacion {
+                  imagenes {
+                    ...ImageFragment
+                  }
+                }
               }
             }
           }
@@ -45,14 +47,15 @@ const useInvestigaciones = () => {
         id: investigacion.id,
         nombre: investigacion.nombre,
         descripcion: investigacion.descripcion,
+        resumen: investigacion.resumen,
         imagenPortada: investigacion.imagenPortada,
         date: investigacion.date,
-        slug: investigacion.slug,
-        uri: investigacion.uri,
-        link: investigacion.link,
-        lineaInvestigacion: investigacion.lineaInvestigacion,
-        images: investigacion.projectInfo.images || [],
-        investigadores: investigacion.investigadores || [],
+        slug: urlSlug(investigacion.nombre),
+        uri: investigacion.uri.replace(investigacion.slug, urlSlug(investigacion.nombre)),
+        link: investigacion.link.replace(investigacion.slug, urlSlug(investigacion.nombre)),
+        lineaInvestigacion: investigacion.lineaDeInvestigacion,
+        imagenes: investigacion?.datosInvestigacion?.imagenes || [],
+        investigadores: investigacion?.investigadores?.nodes || [],
         type: investigacion.__typename,
       });
       

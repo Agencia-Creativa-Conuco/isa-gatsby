@@ -116,8 +116,8 @@ const NavItem = ({item, isActive, setView}) => {
         id,
         label,
         description,
-        wpFields: {
-            icon
+        datosMenu: {
+            icono
         },
         children,
     } = item;
@@ -131,7 +131,7 @@ const NavItem = ({item, isActive, setView}) => {
         >
             <MenuItemBody>
                 <IconWrapper bgColor={colors.gray.light}>
-                    <Icon media={icon?.localFile} alt={label} size="100%" fit="initial"/>
+                    <Icon media={icono?.localFile} alt={label} size="100%" fit="initial"/>
                 </IconWrapper>
                 <OfferTitle>{label}</OfferTitle>
                 {
@@ -162,8 +162,7 @@ const HomeOffer = () =>{
     //Consultar y optener logo.svg
     const { menu } = useStaticQuery( graphql`
         query {
-            #menu: wpMenu(locations: {in: HOME_NAV}) {
-            menu: wpMenu(locations: {in: PRIMARY}) {
+            menu: wpMenu(locations: {in: HOME}) {
                 id
                 name
                 menuItems {
@@ -176,15 +175,15 @@ const HomeOffer = () =>{
                     path
                     parentId
                     order
-                    #wpFields {
-                    #    icon {
-                    #      id
-                    #      alt: altText
-                    #      full_url: sourceUrl
-                    #      srcset: srcSet 
-                    #      ...ImageFragment           
-                    #    }
-                    #  }
+                    datosMenu {
+                       icono {
+                         id
+                         alt: altText
+                         full_url: sourceUrl
+                         srcset: srcSet 
+                         ...ImageFragment           
+                       }
+                     }
                   }
                 }
             }

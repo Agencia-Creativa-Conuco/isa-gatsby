@@ -9,15 +9,11 @@ import HomeNews from "./home-news";
 import Calendar from "../../components/calendar";
 
 import useSlides from "../../hooks/useSlides";
-import useInvestigaciones from "../../hooks/useInvestigaciones";
 
-const FrontPage = ({ page, posts = [] }) => {
+const FrontPage = ({ page}) => {
 
   //Obtiene los datos de los slides
   const slides = useSlides();
-
-  //Obtiene los datos de los Proyectos
-  const projects = useInvestigaciones();
 
   // Load the post, but only if the data is ready.
   return (
@@ -25,8 +21,8 @@ const FrontPage = ({ page, posts = [] }) => {
       <HomeCover {...{ slides }} />
       <HomeOffer />
       <Calendar />
-      <HomeNews {...{ posts }} />
-      <HomeProjects {...{ projects }} />
+      <HomeNews />
+      <HomeProjects />
       <HomeAplication />
       <HomeContact />
     </>

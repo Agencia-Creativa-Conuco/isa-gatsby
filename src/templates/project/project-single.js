@@ -10,24 +10,24 @@ import ProjectsCarrousel from "./project-carrousel";
 import ProjectsResume from "./project-resume";
 
 
-const Project  = ({ project })=>{
+const Project  = ({ investigacion })=>{
 
     const {
-        researchers
-    } = project;
+        investigadores
+    } = investigacion;
 
-    const projects = useInvestigaciones();
+    const investigaciones = useInvestigaciones();
 
-    const persons = useInvestigadores().filter( person => researchers.map( researcher => researcher.id ).includes(person.id) );
+    const listaInvestigadores = useInvestigadores().filter( investigador => investigadores.map( researcher => researcher.id ).includes(investigador.id) );
 
-    const relatedProjects = projects.filter( (item, index) => item.id !== project.id).slice(0,3);
+    const relatedProjects = investigaciones.filter( (item, index) => item.id !== investigacion.id).slice(0,3);
 
     return(  
-        <Article key={project.id}>
-            <ProjectsCover {...{ project }}/>
-            <ProjectsCarrousel {...{ project }}/>
-            <TeamSlider {...{persons}}/>
-            <ProjectsResume {...{ project }}/>
+        <Article key={investigacion.id}>
+            <ProjectsCover {...{ investigacion }}/>
+            <ProjectsCarrousel {...{ investigacion }}/>
+            <TeamSlider investigadores={listaInvestigadores} />
+            <ProjectsResume {...{ investigacion }}/>
             <Related items={relatedProjects} />
         </Article>
     )

@@ -8,16 +8,16 @@ const useSlides = () => {
                 allWpSlide {
                     nodes {
                         id
-                        nombre
+                        titulo
                         copy
                         imagenPortada {
                             ...ImageFragment
                         }
-                        #slideInfo {
-                        #    cta {
-                        #        ...CtaFragment
-                        #    }
-                        #}
+                        datosCTA {
+                            cta {
+                                ...CtaFragment
+                            }
+                        }
                     }
                 }
             } 
@@ -26,10 +26,10 @@ const useSlides = () => {
     
     return resultado.allWpSlide.nodes.map( slide => ({
         id: slide.id,
-        nombre: slide.nombre,
-        copy: slide.slideInfo.copy,
-        cta: slide.slideInfo.cta,
-        imagenPortada: slide.imagenPortada
+        titulo: slide.titulo,
+        copy: slide.copy,
+        imagenPortada: slide.imagenPortada,
+        cta: slide?.datosCTA?.cta,
     }));
 }
  

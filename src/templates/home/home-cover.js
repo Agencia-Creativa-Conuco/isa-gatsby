@@ -15,11 +15,11 @@ const HomeCover = ({ slides }) =>{
     const items = slides.length? slides : [ {
         title: "Bienvenidos a UNIVERSIDAD ISA",
         copy: "Entra y descubre todas las ofertas académicas que tenemos disponibles para ti e inicia a aprender para servir y a servir para construir",
-        featuredImage: images.home.cover,
+        imagenPortada: images.home.cover,
         cta: {
             url: "/admisiones",
             target: null,
-            title: "Estudia con nosotros"
+            titulo: "Estudia con nosotros"
         }
     } ];
 
@@ -27,14 +27,14 @@ const HomeCover = ({ slides }) =>{
         <StyledSection spaceNone bgDeco={colors.primary.dark}>
             <Carousel 
                 fade
-                // autoplay
+                autoplay
                 pauseOnHover
             >
             {items.map((item,index) =>{
                     const {
-                        title,
+                        titulo,
                         copy,
-                        featuredImage,
+                        imagenPortada,
                         cta
                     } = item;
 
@@ -45,8 +45,8 @@ const HomeCover = ({ slides }) =>{
                                     <Col size={10} sizeMD={6} sizeLG={6} orderMD={2} noGutters css={mediaColStyles}>
                                         <Media>
                                             <SlideImage 
-                                                media={featuredImage}
-                                                alt={title}
+                                                media={imagenPortada}
+                                                alt={titulo}
                                                 bgColor
                                                 size="100%"
                                                 sizeMD="100%"
@@ -56,15 +56,19 @@ const HomeCover = ({ slides }) =>{
                                     </Col>
                                     <Col size={12} sizeMD={6} sizeLG={6} orderMD={1} mxAuto css={contentColStyles}>
                                         <Content bg={colors.blue.dark}>
-                                            <Title>{title}</Title>
+                                            <Title>{titulo}</Title>
                                             <Copy>
                                                 {copy}
                                             </Copy>
-                                            <LinkBox>
-                                                <Cta to={cta.url} target={cta.target}>
-                                                    {cta.title}
-                                                </Cta>
-                                            </LinkBox>
+                                            {
+                                                cta?(
+                                                    <LinkBox>
+                                                        <Cta to={cta.url} target={cta.target}>
+                                                            {cta.title}
+                                                        </Cta>
+                                                    </LinkBox>
+                                                ):null
+                                            }
                                         </Content>
                                     </Col>
                                 </Row>

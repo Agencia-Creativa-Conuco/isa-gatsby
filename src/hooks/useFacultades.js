@@ -1,4 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby';
+import urlSlug from 'url-slug';
 
 const useFacultades = () => {
 
@@ -56,7 +57,7 @@ const useFacultades = () => {
                 #  }
                 #}
         
-                #resources {
+                #recursos {
                 #  resourceRelationship {
                 #    ... on WpResource {
                 #      id
@@ -90,17 +91,17 @@ const useFacultades = () => {
       nombre: facultad.nombre,
       copy: facultad.copy,
       date: facultad.date,
-      slug: facultad.slug,
-      uri: facultad.uri,
-      link: facultad.link,
+      slug: urlSlug(facultad.nombre),
+        uri: facultad.uri.replace(facultad.slug, urlSlug(facultad.nombre)),
+        link: facultad.link.replace(facultad.slug, urlSlug(facultad.nombre)),
       imagenPortada: facultad?.imagenPortada,
       color: facultad.color,
       mision: facultad.mision,
-      careers: facultad.carreras.nodes || [],
-      departaments: facultad.departamentos.nodes || [],
-      type: facultad.__typename,
-      resources: facultad.resources.resourceRelationship || [],
-      contact: facultad.contact,
+      carreras: facultad.carreras.nodes || [],
+      departamentos: facultad.departamentos.nodes || [],
+      type: facultad?.__typename,
+      recursos: facultad?.recursos?.resourceRelationship || [],
+      contact: facultad?.contact,
     }));
 }
  

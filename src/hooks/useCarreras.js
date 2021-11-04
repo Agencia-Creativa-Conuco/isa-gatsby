@@ -1,4 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby';
+import urlSlug from 'url-slug';
 
 const useCarreras = () => {
 
@@ -31,11 +32,15 @@ const useCarreras = () => {
                 copy
                 duracion
                 creditos
+                duracionPasantia
                 imagenPerfilEgresado {
                   ...ImageFragment
                 }
                 contenidoPerfilEgresado
                 hsFormulario
+                imagenFormulario {
+                  ...ImageFragment
+                }
                 date
                 link
                 uri
@@ -89,27 +94,27 @@ const useCarreras = () => {
 
     const resultado = carreras.map( carrera => {
       
-      const [grado] = carrera?.grado?.node?.id;
-      const [facultad] = carrera?.facultad?.node?.id;
-      const [departamento] = carrera?.departamento?.node?.id;
-      
       return ({
         id: carrera.id,
         nombre: carrera.nombre,
         date: carrera.date,
-        slug: carrera.slug,
-        uri: carrera.uri,
-        link: carrera.link,
+        slug: urlSlug(carrera.nombre),
+        uri: carrera.uri.replace(carrera.slug, urlSlug(carrera.nombre)),
+        link: carrera.link.replace(carrera.slug, urlSlug(carrera.nombre)),
         order: carrera.menuOrder,
-        imagenPortada: carrera?.imagenPortada?.node?.localFile,
-        grado: grado,
-        facultad: facultad,
-        departamento: departamento,
+        imagenPortada: carrera?.imagenPortada,
+        grado: carrera.grado,
+        facultad: carrera.facultad.node,
+        departamento: carrera.departamento,
         copy: carrera.copy,
+        duracion: carrera.duracion,
+        creditos: carrera.creditos,
+        duracionPasantia: carrera.duracionPasantia,
         imagenPerfilEgresado: carrera.imagenPerfilEgresado,
         contenidoPerfilEgresado: carrera.contenidoPerfilEgresado,
         // tabs: carrera.carreraInfo.tabs || [],
         hsFormulario: carrera.hsFormulario,
+        imagenFormulario: carrera?.imagenFormulario,
         resources: carrera?.resources?.resourceRelationship || [],
         contact: carrera.contact,
         type: carrera.__typename,

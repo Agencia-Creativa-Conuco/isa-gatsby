@@ -23,7 +23,7 @@ const ResultsBody = ({props, resources}) =>{
 
     { value: 'WpPage', label: 'Página' },
     { value: 'WpResource', label: 'Recurso' },
-    { value: 'WpCareer', label: 'Carrera' },
+    { value: 'WpCarrera', label: 'Carrera' },
     { value: 'WpPost', label: 'Publicación' },
     { value: 'WpFaculty', label: 'Facultad' },
     { value: 'WpProject', label: 'Investigación' },
@@ -75,7 +75,7 @@ const ResultsBody = ({props, resources}) =>{
                           WpPage: 'Página',
                           WpResource:'Recurso',
                           WpDepartament:'Departamento',
-                          WpCareer:'Carrera',
+                          WpCarrera:'Carrera',
                           WpPost:'Publicación',
                           WpFaculty:'Facultad',
                           WpProject:'Investigación',
