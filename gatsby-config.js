@@ -33,6 +33,7 @@ module.exports = {
                 uri
               }
             }
+
             allWpPage {
               nodes {
                 id
@@ -51,6 +52,7 @@ module.exports = {
                   uri
                 }
               }
+
               allWpDepartamento {
                 nodes {
                   id
@@ -60,6 +62,7 @@ module.exports = {
                   uri
                 }
               }
+
               allWpInvestigacion {
                 nodes {
                   id
@@ -69,6 +72,7 @@ module.exports = {
                   uri
                 }
               }
+
               allWpLineaDeInvestigacion {
                 nodes {
                   id
@@ -78,6 +82,7 @@ module.exports = {
                   uri
                 }
               }
+
               allWpRecurso {
                 nodes {
                   id
@@ -97,6 +102,7 @@ module.exports = {
                   uri
                 }
               } 
+
               allWpGrado {
                 nodes {
                   id
@@ -109,8 +115,8 @@ module.exports = {
           }
           `,
         ref: "slug",
-        index: ["title", "slug"],
-        store: ["id", "title", "slug", "type", "uri"],
+        index: ["title", "nombre", "slug"],
+        store: ["id", "title", "nombre", "slug", "type", "uri"],
         normalizer: ({ data }) => {
           return Object.values(data)
             .map((type) => type.nodes)
@@ -120,6 +126,7 @@ module.exports = {
             .map((node) => ({
               id: node.id,
               title: node.title,
+              nombre: node.nombre,
               slug: node.slug,
               type: node.__typename,
               uri: node.uri,

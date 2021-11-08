@@ -7,10 +7,10 @@ import useInvestigadores from "../../../hooks/useInvestigadores";
 
 const CarreraNacionalDeInvestigadores = (props) => {
 
-  const investigadores = useInvestigadores().filter( investigador => investigador.esMiembro);
+  const investigadores = useInvestigadores().filter( investigador => investigador.esCarrera);
 
   const title = "Miembros De La Carrera Nacional De Investigadores UNISA";
-
+  console.log(useInvestigadores())
   return (
     <Layout {...props}>
       <Section as="article" spaceNone>
@@ -37,9 +37,9 @@ const CarreraNacionalDeInvestigadores = (props) => {
                 {investigadores.map((investigador, index) => {
 
                   const {
-                    title,
-                    jobTitle,
-                    degree,
+                    nombre,
+                    puestoTrabajo,
+                    tituloAcademico,
                     carreraNacionalInvestigacion
                   } = investigador;
 
@@ -53,9 +53,9 @@ const CarreraNacionalDeInvestigadores = (props) => {
                   return (
                     <Col key={index} size={12} sizeMD={6}>
                       <Card>
-                        <Name>{title}</Name>
-                        <Line><Label>Formación académica:</Label> <Value>{degree}</Value></Line>
-                        <Line><Label>Posición en UNISA:</Label> <Value>{jobTitle}</Value></Line>
+                        <Name>{nombre}</Name>
+                        <Line><Label>Formación académica:</Label> <Value>{tituloAcademico}</Value></Line>
+                        <Line><Label>Posición en UNISA:</Label> <Value>{puestoTrabajo}</Value></Line>
                         <Line><Label>Área de investigación / Departamento UNISA:</Label> <Value>{area}</Value></Line>
                         <Line><Label>Categoría: </Label> <Value>{categoria}</Value></Line>
                         <Line><Label>Año de Ingreso:</Label> <Value>{anoIngreso}</Value></Line>

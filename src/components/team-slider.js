@@ -8,9 +8,9 @@ import {LeftArrowIcon, RightArrowIcon} from "./icons";
 import colors from './styles/colors';
 
 
-const TeamSlider = ({ persons = [], title = "Equipo de investigación" }) =>{
+const TeamSlider = ({ investigadores = [], title = "Equipo de investigación" }) =>{
 
-    const researchers = persons.filter( person => person.isTeam );
+    const researchers = investigadores;
 
     const Arrows = (props => {
   
@@ -90,24 +90,24 @@ const TeamSlider = ({ persons = [], title = "Equipo de investigación" }) =>{
                             { 
                                 researchers.map((item, index) =>{
                                     const {
-                                        title,
-                                        featuredImage,
-                                        jobTitle,
-                                        degreeTitle,
+                                        nombre,
+                                        imagenPortada,
+                                        puestoTrabajo,
+                                        tituloAcademicoAbreviado,
                                     } = item;
 
                                     return(
                                         <Card key={index}>
                                             <Media>
                                                 <FeaturedMedia 
-                                                    media={featuredImage}
+                                                    media={imagenPortada}
                                                     size="100%"
                                                     bgColor={colors.gray.base}
                                                 />
                                             </Media>
                                             <DivTitle>
-                                                <Name>{degreeTitle? `${degreeTitle} `: ""}{title}</Name>
-                                                <JobTitle>{ jobTitle }</JobTitle>
+                                                <Name>{tituloAcademicoAbreviado? `${tituloAcademicoAbreviado} `: ""}{nombre}</Name>
+                                                <JobTitle>{ puestoTrabajo }</JobTitle>
                                             </DivTitle>
                                         </Card>
                                     )

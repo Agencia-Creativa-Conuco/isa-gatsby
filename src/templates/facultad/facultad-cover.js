@@ -4,17 +4,15 @@ import {Section, Container, Row, Col, mq} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
 import colors from "../../components/styles/colors";
 
-const FacultyCover = ({ faculty })=>{
+const FacultyCover = ({ facultad })=>{
 
     const {
-        title,
-        featuredImage,
+        nombre,
+        imagenPortada,
         color,
         mision,
-        cover: {
-            copy
-        }
-    } = faculty;
+        copy
+    } = facultad;
 
     return (
         <Section spaceNone >
@@ -31,7 +29,7 @@ const FacultyCover = ({ faculty })=>{
                             <Row>
                                 <Col>
                                     <Wrapper as="div">
-                                        <Title color={colors.white}> {title}</Title>
+                                        <Title color={colors.white}> {nombre}</Title>
                                         <Content dangerouslySetInnerHTML={{__html: copy}} />    
                                         {
                                             mision?(
@@ -56,7 +54,7 @@ const FacultyCover = ({ faculty })=>{
                         orderLG={2}
                         noGutters>
                             <FeaturedMedia 
-                                media={ featuredImage }
+                                media={ imagenPortada }
                                 size="56.25%"
                                 sizeLG="80%"
                                 heightLG="100%"

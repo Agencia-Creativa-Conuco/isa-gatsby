@@ -19,15 +19,15 @@ const Post = ({data}) => {
 
   const {
       allWpDepartamento: {
-          nodes: departaments
+          nodes: departamentos
       }
   } = data;
 
-  const [departament] = useDepartamentos().filter( departament => departaments.map( item => item.id).includes( departament.id ) );
+  const [departamento] = useDepartamentos().filter( departamento => departamentos.map( item => item.id).includes( departamento.id ) );
   
   return (
       <Layout>
-        <DepartamentSingle {...{departament}} />
+        <DepartamentSingle {...{departamento}} />
       </Layout>
   )
 }

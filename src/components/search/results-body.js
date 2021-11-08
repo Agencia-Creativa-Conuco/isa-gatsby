@@ -5,13 +5,16 @@ import colors from "../styles/colors";
 import { css } from "@emotion/react";
 import useFilter from "../hooks/useFilter";
 import CardBody from "./card-body";
+import urlSlug from 'url-slug';
+import useRecursos from '../../hooks/useRecursos';
 
-
-const ResultsBody = ({props, resources}) =>{
+const ResultsBody = ({props}) =>{
 
   const {
     resultsSearch
   } = props;
+
+  const recursos = useRecursos();
 
     const {
       SelectUI,
@@ -22,13 +25,13 @@ const ResultsBody = ({props, resources}) =>{
   const options = [
 
     { value: 'WpPage', label: 'Página' },
-    { value: 'WpResource', label: 'Recurso' },
+    { value: 'WpRecurso', label: 'Recurso' },
     { value: 'WpCarrera', label: 'Carrera' },
     { value: 'WpPost', label: 'Publicación' },
-    { value: 'WpFaculty', label: 'Facultad' },
-    { value: 'WpProject', label: 'Investigación' },
-    { value: 'WpProjectLine', label: 'Línea de investigación' },
-    { value: 'WpGrade', label: 'Oferta académica' },
+    { value: 'WpFacultad', label: 'Facultad' },
+    { value: 'WpInvestigacion', label: 'Investigación' },
+    { value: 'WpLineaInvestigacion', label: 'Línea de investigación' },
+    { value: 'WpGrado', label: 'Oferta académica' },
   ]
 
 
@@ -39,13 +42,11 @@ const ResultsBody = ({props, resources}) =>{
 
   const optionsFilter = options.filter((item)=> hash[item.value] ? item:null);
   
-
   // Filtrando el Contenido a mostrar 
   const filtros =  resultsSearch?.filter((item)=> item.type.includes(selectedOption?.value));
 
   const results =  filtros?.length !== 0 ? filtros:resultsSearch;
     
-
   return resultsSearch?.length ? (
     <Section>
             <Container>
@@ -66,39 +67,43 @@ const ResultsBody = ({props, resources}) =>{
                     { results?.map((item, index)=>{
                         const {
                             title,
+                            nombre,
                             type,
                             uri,
-                            id
+                            id,
+                            slug,
                         } = item
+
+                        const uriParsed = nombre? uri.replace(slug, urlSlug(nombre)) : uri;
 
                         const objecTypes ={
                           WpPage: 'Página',
-                          WpResource:'Recurso',
-                          WpDepartament:'Departamento',
+                          WpRecurso:'Recurso',
+                          WpDepartamento:'Departamento',
                           WpCarrera:'Carrera',
                           WpPost:'Publicación',
-                          WpFaculty:'Facultad',
-                          WpProject:'Investigación',
-                          WpProjectLine:'Línea de investigación',
-                          WpGrade: 'Oferta académica'
+                          WpFacultad:'Facultad',
+                          WpInvestigacion:'Investigación',
+                          WpLineaInvestigacion:'Línea de investigación',
+                          WpGrado: 'Oferta académica'
                         }
                     
                         const translateTypes =  objecTypes[type] || title;
 
                         //Obtener los datos del  recurso
-                        const resourceFilter = resources.filter((item)=> {
-                                return item.uri === uri ? {item}:null
-                             });
+                        const [recurso] = recursos.filter((item)=> {
+                          return item.id === id
+                        });
 
                         return(
                           <CardBody
-                          key={index}
-                          title={title}
-                          type={type}
-                          uri={uri}
-                          id={id}
-                          translateTypes={translateTypes}
-                          item={resourceFilter} 
+                            key={index}
+                            title={nombre || title}
+                            type={type}
+                            uri={uriParsed}
+                            id={id}
+                            translateTypes={translateTypes}
+                            item={recurso} 
                           />                            
                     )
                     })

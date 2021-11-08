@@ -12,6 +12,7 @@ const useInvestigaciones = () => {
                 __typename
                 nombre
                 descripcion
+                descripcionCorta
                 resumen
                 date
                 link
@@ -47,6 +48,7 @@ const useInvestigaciones = () => {
         id: investigacion.id,
         nombre: investigacion.nombre,
         descripcion: investigacion.descripcion,
+        descripcionCorta: investigacion.descripcionCorta,
         resumen: investigacion.resumen,
         imagenPortada: investigacion.imagenPortada,
         date: investigacion.date,

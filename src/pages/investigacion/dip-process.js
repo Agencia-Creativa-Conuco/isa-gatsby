@@ -8,11 +8,11 @@ import colors from "../../components/styles/colors";
 
 import {h2} from "../../components/styles/tipography";
 
-const DIPProcess = ({ projects = [] }) =>{
+const DIPProcess = ({ investigaciones = [] }) =>{
 
     const sectionTitle = "Investigaciónes en curso";
 
-    const projectList = projects.filter((item)=>{
+    const projectList = investigaciones.filter((item)=>{
         return true;
     })
 
@@ -33,10 +33,10 @@ const DIPProcess = ({ projects = [] }) =>{
                     projectList.map((item,index) =>{
 
                         const {
-                            title,
-                            featuredImage,
+                            nombre,
+                            imagenPortada,
                             link,
-                            copy
+                            descripcionCorta
                         } = item;
 
                         const isPrincipal = index > 0? false: true;
@@ -57,7 +57,7 @@ const DIPProcess = ({ projects = [] }) =>{
                                                     decoBgA={colors.cta.base}
                                                 >
                                                     <FeaturedMedia  
-                                                        media={featuredImage}
+                                                        media={imagenPortada}
                                                         size={isPrincipal?"70%":"56.25%"}
                                                         bgColor
                                                         zIndex={2}    
@@ -79,9 +79,9 @@ const DIPProcess = ({ projects = [] }) =>{
                                                         color={colors.blue.dark} 
                                                         size="2.5rem"
                                                     >
-                                                            { title }
+                                                            { nombre }
                                                     </Title>
-                                                    <Copy  color={colors.gray.light} {...{isPrincipal}}>{copy}</Copy>
+                                                    <Copy  color={colors.gray.light} {...{isPrincipal}}>{descripcionCorta}</Copy>
                                                 </DivTitle>
                                             </Col>
                                         </Row>

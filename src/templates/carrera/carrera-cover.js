@@ -11,8 +11,25 @@ const CareerCover = ({ carrera, facultad })=>{
         nombre,
         imagenPortada,
         copy,
-        metadata = []
+        duracion,
+        creditos,
+        duracionPasantia,
     } = carrera;
+
+    const metadata = [
+        {
+            name: "Créditos",
+            value: creditos
+        },
+        {
+            name: "Duración",
+            value: duracion
+        },
+        {
+            name: "Pasantía",
+            value: duracionPasantia
+        },
+    ]
     
     const facultyColor = facultad.color;
 
@@ -49,7 +66,7 @@ const CareerCover = ({ carrera, facultad })=>{
                                             <Copy dangerouslySetInnerHTML={{__html: copy}} />
                                                 <Row justifyContent="space-around">
                                                     {
-                                                        metadata? metadata.map((item, index)=>{
+                                                        metadata.filter( (item) => item.value ).map((item, index)=>{
                                                             
                                                             const {
                                                                 name,
@@ -66,7 +83,7 @@ const CareerCover = ({ carrera, facultad })=>{
                                                                     </Gadgets> 
                                                                 </Col>
                                                             )
-                                                        }) : null
+                                                        })
                                                     }
                                                 </Row>
                                         </Content>

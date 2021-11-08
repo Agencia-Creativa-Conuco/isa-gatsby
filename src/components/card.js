@@ -4,16 +4,12 @@ import { Row, Col, Container } from "./layout/index";
 import FeaturedMedia from "./featured-media";
 import Cta from "./cta";
 
-const CardInfo = ({ item }) => {
+const CardInfo = ({ item = {} }) => {
   const {
-    title,
-    featuredImage,
-    resource: {
-      description,
-      file: {
-        localFile: { publicURL },
-      },
-    },
+    nombre,
+    imagenPortada,
+    descripcion,
+    archivo,
   } = item;
 
   return (
@@ -22,17 +18,17 @@ const CardInfo = ({ item }) => {
         <Row>
           <Col order={2} orderLG={1}>
             <Content>
-              <Title>{title}</Title>
-              <Copy>{description}</Copy>
-              <Cta to={publicURL} download>
+              <Title>{nombre}</Title>
+              <Copy>{descripcion}</Copy>
+              <Cta to={archivo} download>
                 Descargar
               </Cta>
             </Content>
           </Col>
-          {featuredImage ? (
+          {imagenPortada ? (
             <Col size={12} sizeLG={6} order={1} orderLG={2}>
               <Media>
-                <FeaturedMedia media={featuredImage.node} bgColor="#AAAAAA" />
+                <FeaturedMedia media={imagenPortada} bgColor="#AAAAAA" />
               </Media>
             </Col>
           ) : null}

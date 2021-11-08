@@ -5,15 +5,15 @@ import Link from "../../components/link";
 import colors from '../../components/styles/colors';
 import useDepartamentos from "../../hooks/useDepartamentos";
 
-const FcaultyAreasAcademic = ({ faculty }) =>{
+const FcaultyAreasAcademic = ({ facultad }) =>{
     
     const { 
-        color
-    } = faculty;
+        color = colors.primary.base
+    } = facultad;
 
-    const departaments = useDepartamentos().filter( departament => departament.faculty.id === faculty.id );
+    const departamentos = useDepartamentos().filter( departament => departament.facultad === facultad.id );
     
-    return departaments.length?(
+    return departamentos.length?(
         <SectionStyles spaceTopNone >
             <Container> 
                 <Row>
@@ -26,13 +26,13 @@ const FcaultyAreasAcademic = ({ faculty }) =>{
                                 <Col size={10} sizeMD={7} mxAuto   > 
                                     <List>
                                     {
-                                        departaments.filter((departament)=>{
-                                            return departament.careers.length;
+                                        departamentos.filter((departament)=>{
+                                            return departament.carreras.length;
                                         })
                                         .map((departament, index)=>{
                                             
                                             const {
-                                                title,
+                                                nombre,
                                                 uri,
                                             } = departament;
 
@@ -43,7 +43,7 @@ const FcaultyAreasAcademic = ({ faculty }) =>{
                                                         color={ color  } 
                                                         color2={colors.text.base}
                                                     >
-                                                        {title}
+                                                        {nombre}
                                                     </SLink>
                                                 </Item>
                                             )

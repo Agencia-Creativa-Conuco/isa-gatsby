@@ -3,23 +3,26 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import {Section, Container, Row, Col, mq} from "../../components/layout/index";
 import {PensumIcon} from "../../components/icons";
+import useRecursos from "../../hooks/useRecursos";
 
 const CareerPensum = ({ carrera, facultad })=>{
 
     const {
-        resources = []
+        recursos = []
     } = carrera;
 
     
-    const pensums = resources.filter((item)=>{
+    const pensums = useRecursos().filter((recurso)=>{
         
         const {
-            resource: {
-                type
-            }
-        } = item;
-        
-        return type === "pensum";
+            id,
+            tipoRecurso
+        } = recurso;
+
+        //verifica que el recurso esta enlazado a la carrera
+        const esRecurso = recursos.filter( (item) => item.id === id ).length
+
+        return tipoRecurso === "pensum" && esRecurso;
     });
 
     const facultyColor = facultad.color;
@@ -31,14 +34,12 @@ const CareerPensum = ({ carrera, facultad })=>{
                 {
                     pensums.map((pensum, index)=>{
                         const{
-                            title,
-                            resource: {
-                                file : {
-                                    localFile : {
-                                        publicURL
-                                    }
+                            nombre,
+                            archivo: {
+                                localFile: {
+                                    publicURL
                                 }
-                            }
+                            },
                         } = pensum;
 
                         return(
@@ -51,7 +52,7 @@ const CareerPensum = ({ carrera, facultad })=>{
                                         <Row alignCenter>
                                             <Col>
                                                 <CardSpan color={facultyColor}>Descargar</CardSpan>
-                                                <CardTitle color={facultyColor}>{ title }</CardTitle>
+                                                <CardTitle color={facultyColor}>{ nombre }</CardTitle>
                                             </Col>
                                             <Col size="auto">
                                                 <CardIcon color={facultyColor}>

@@ -23,7 +23,7 @@ const CardBody = ({
     <>
       <Col size={12} sizeMD={6} sizeXL={6}>
         <Article>
-          {type !== "WpResource" ? (
+          {type !== "WpRecurso" ? (
             <StyledLink to={uri}>
               <Card types={translateTypes} decoColor={colors.primary.base}>
                 <Title color={colors.primary.base}> {title}</Title>
@@ -45,13 +45,8 @@ const CardBody = ({
           )}
         </Article>
       </Col>
-      <ModalUI>{
-        item.map((item,index)=>{
-            return(
-              <CardInfo key={index} item = {item} /> 
-            )
-        })
-        }
+      <ModalUI>
+          <CardInfo item = {item} /> 
       </ModalUI>
     </>
   );

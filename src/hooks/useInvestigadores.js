@@ -31,8 +31,6 @@ const useInvestigadores = () => {
                     areaInvestigacion
                   }
                 }
-                #personData {
-                #}
               }
             }
           }
@@ -50,9 +48,9 @@ const useInvestigadores = () => {
         puestoTrabajo: investigador?.puestoTrabajo,
         tituloAcademico: investigador?.tituloAcademico,
         tituloAcademicoAbreviado: investigador?.tituloAcademicoAbreviado,
-        isCarrera: investigador?.datosInvestigador?.esCarrera,
+        esCarrera: investigador?.datosInvestigador?.carreraNacionalInvestigacion?.esMiembro,
         esEquipo: investigador?.esEquipo,
-        carreraNacionalInvestigacion: investigador?.personData?.carreraNacionalInvestigacion,
+        carreraNacionalInvestigacion: investigador?.datosInvestigador?.carreraNacionalInvestigacion,
         type: investigador.__typename,
     }));
 }

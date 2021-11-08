@@ -11,7 +11,7 @@ const FileCover = ({ post })=>{
         title,
         content,
         featuredImage,
-        file,
+        archivo,
     } = post;
 
     return (
@@ -43,7 +43,7 @@ const FileCover = ({ post })=>{
                                 <div dangerouslySetInnerHTML={{__html: content}}/>
                             </Content>
                             <CTABox>
-                                <Cta to={file} download>Descargar</Cta>
+                                <Cta to={archivo} download>Descargar</Cta>
                             </CTABox>
                         </Col>
                     </Row>

@@ -42,7 +42,7 @@ const useLineasInvestigacion = () => {
         link: linea.link.replace(linea.slug, urlSlug(linea.nombre)),
         featuredImage: linea.featuredImage? linea.featuredImage.node.localFile : null,
         departamento: linea.departamento || [],
-        investigaciones: linea.investigaciones || [],
+        investigaciones: linea.investigaciones.nodes || [],
         type: linea.__typename,
       })
 

@@ -45,6 +45,17 @@ const useCarreras = () => {
                 link
                 uri
                 slug
+                datosCarrera{
+                  tabs{
+                    titulo
+                    contenido
+                  }
+                }
+                recursos {
+                  nodes {
+                    id
+                  }
+                }
         #
                 #contact {
                 #  phones {
@@ -57,31 +68,6 @@ const useCarreras = () => {
                 #    email
                 #  }
                 #}
-        #
-                #resources {
-                #  resourceRelationship {
-                #    ... on WpResource {
-                #      id
-                #      title
-                #      featuredImage {
-                #        node {
-                #          ...ImageFragment
-                #        }
-                #      }
-                #      resource {
-                #        type
-                #        file {
-                #          id
-                #          localFile {
-                #            id
-                #            publicURL
-                #          }
-                #        }
-                #      }
-                #    }
-                #  }
-                #}
-        #
               }
             }
           }
@@ -103,7 +89,7 @@ const useCarreras = () => {
         link: carrera.link.replace(carrera.slug, urlSlug(carrera.nombre)),
         order: carrera.menuOrder,
         imagenPortada: carrera?.imagenPortada,
-        grado: carrera.grado,
+        grado: carrera.grado.node,
         facultad: carrera.facultad.node,
         departamento: carrera.departamento,
         copy: carrera.copy,
@@ -112,10 +98,10 @@ const useCarreras = () => {
         duracionPasantia: carrera.duracionPasantia,
         imagenPerfilEgresado: carrera.imagenPerfilEgresado,
         contenidoPerfilEgresado: carrera.contenidoPerfilEgresado,
-        // tabs: carrera.carreraInfo.tabs || [],
+        tabs: carrera.datosCarrera.tabs || [],
         hsFormulario: carrera.hsFormulario,
         imagenFormulario: carrera?.imagenFormulario,
-        resources: carrera?.resources?.resourceRelationship || [],
+        recursos: carrera?.recursos?.nodes || [],
         contact: carrera.contact,
         type: carrera.__typename,
       })

@@ -15,10 +15,10 @@ import Layout from "../../components/layout";
 const ResearchPage = (props) => {
 
   //Obtiene los datos de las facultades.
-  const faculties = useFacultades();
+  const facultades = useFacultades();
 
   //Obtiene los datos de los departamentos que tienen líneas de investigación relacionadas
-  const departaments = useDepartamentos().filter(
+  const departamentos = useDepartamentos().filter(
     (departamento) => departamento.lineasInvestigacion.length
   );
 
@@ -26,21 +26,21 @@ const ResearchPage = (props) => {
   const lineasInvestigacion = useLineasInvestigacion();
 
   //Obtiene los datos de los Proyectos
-  const projects = useInvestigaciones();
+  const investigaciones = useInvestigaciones();
 
   //Obtiene los datos de las Persons
-  const persons = useInvestigadores();
+  const investigadores = useInvestigadores().filter( item => item.esEquipo );
 
   return (
     <Layout {...props}>
       <Container>
         <DIPCover />
         <DIPPhilosophy />
-        <DIPTeam {...{ persons }} />
+        <DIPTeam {...{ investigadores }} />
         <DIPGeneral
-          {...{ projects, lineasInvestigacion, faculties, departaments }}
+          {...{ investigaciones, lineasInvestigacion, facultades, departamentos }}
         />
-        <DIPProcess {...{ projects }} />
+        <DIPProcess {...{ investigaciones }} />
       </Container>
     </Layout>
   );

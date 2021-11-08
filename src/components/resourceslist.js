@@ -6,6 +6,7 @@ import {h3} from "./styles/tipography";
 import {SearchIcon} from "./icons";
 import ResourceCard from "./resource-card";
 import colors from "./styles/colors";
+import useRecursos from "../hooks/useRecursos";
 
 const ResourcesList = ({
     spaceTopNone, 
@@ -26,16 +27,18 @@ const ResourcesList = ({
     items = []
 }) => {
 
-    const resources = items? items.filter((item)=>{
+    const resources = useRecursos().filter((recurso)=>{
 
         const {
-            resource: {
-                type
-            }
-        } = item;
+            id,
+            tipoRecurso
+        } = recurso;
 
-        return !exclude.includes(type);
-    }) : [];
+        //Verifica que el recurso está relacionado al post.
+        const esRelacionado = items.filter( item => item.id === id ).length;
+
+        return !exclude.includes(tipoRecurso) && esRelacionado;
+    });
 
     useEffect(()=>{
     }, []);
@@ -65,13 +68,11 @@ const ResourcesList = ({
                     resources.length? resources.map((item,index) =>{
 
                         const {
-                            title,
-                            featuredImage,
-                            resource : {
-                                file : {
-                                    localFile: {
-                                        publicURL
-                                    }
+                            nombre,
+                            imagenPortada,
+                            archivo : {
+                                localFile: {
+                                    publicURL
                                 }
                             }
                         } = item;
@@ -79,8 +80,8 @@ const ResourcesList = ({
                         return(
                         <Col key={index} size="auto">
                             <ResourceCard
-                                title={title}
-                                icon={featuredImage}
+                                title={nombre}
+                                icon={imagenPortada}
                                 to={publicURL}    
                                 color={resourceColor}
                                 item={item}

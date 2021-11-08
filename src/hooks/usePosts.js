@@ -55,12 +55,6 @@ const usePosts = () => {
                       publicURL
                     }
                   }
-                  datosDelEvento {
-                    fechaInicio
-                    fechaFin
-                    modalidad
-                    lugar
-                  }
                 }
                 #postData {
                 #  type
@@ -99,7 +93,6 @@ const usePosts = () => {
         type: post.__typename,
         tipoPublicacion: post?.datosPublicacion?.tipo,
         archivo: post?.datosPublicacion?.archivo?.localFile?.publicURL,
-        evento: post?.datosPublicacion?.datosDelEvento,
     }));
 }
  

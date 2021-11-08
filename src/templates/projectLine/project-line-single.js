@@ -6,9 +6,9 @@ import FeaturedMedia from '../../components/featured-media';
 import useInvestigaciones from '../../hooks/useInvestigaciones';
 import colors from '../../components/styles/colors';
 
-const ProjectLines = ({line}) => {
+const ProjectLines = ({lineaInvestigacion}) => {
 
-    const projects = useInvestigaciones().filter( project => line.projects.map( project => project.id ).includes( project.id ) );
+    const investigaciones = useInvestigaciones().filter( investigacion => lineaInvestigacion.investigaciones.map( investigacion => investigacion.id ).includes( investigacion.id ) );
 
     return (
         <Section as="article" spaceNone>
@@ -17,14 +17,14 @@ const ProjectLines = ({line}) => {
                     <Container>
                         <Row>
                             <Col>
-                                <Title>{line.title}</Title>
+                                <Title>{lineaInvestigacion.nombre}</Title>
                             </Col>
                         </Row>
                     </Container>   
                 </Section>
             </Cover>
             {
-                projects.length?(
+                investigaciones.length?(
                     <List thin>
                         <Container>
                             <Row>
@@ -34,18 +34,18 @@ const ProjectLines = ({line}) => {
                             </Row>
                             <Row>
                             {
-                                projects.map( project => {
+                                investigaciones.map( investigacion => {
                                     return (
-                                        <Col key={project.id} size={12} sizeMD={6}>
-                                            <SLink to={project.uri}>
+                                        <Col key={investigacion.id} size={12} sizeMD={6}>
+                                            <SLink to={investigacion.uri}>
                                                 <Project>
                                                     <Row>
                                                         {
-                                                        project.featuredImage?(
+                                                        investigacion.imagenPortada?(
                                                             <Col size="auto" noRGutters>
                                                                 <ProjectMedia>
                                                                     <FeaturedMedia 
-                                                                        media={project.featuredImage} 
+                                                                        media={investigacion.imagenPortada} 
                                                                         size="100%"
                                                                     />
                                                                 </ProjectMedia>
@@ -53,7 +53,7 @@ const ProjectLines = ({line}) => {
                                                         ):null
                                                         }
                                                         <Col>
-                                                            <ProjectTitle>{project.title}</ProjectTitle>
+                                                            <ProjectTitle>{investigacion.nombre}</ProjectTitle>
                                                         </Col>
                                                     </Row>
                                                 </Project>

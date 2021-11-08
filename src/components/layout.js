@@ -83,7 +83,7 @@ const Layout = (props) => {
           return child;
         })}
         {/* Se muestran recursos relacionados con el tipo de dato */}
-        <ResourcesList items={ postType?.resources?.resourceRelationship } />
+        <ResourcesList items={ postType?.recursos || [] } />
         {/* Se muestra información de contacto relacionada con el tipo de dato */}
         <Contact data={ postType?.contact } />
       </Main>

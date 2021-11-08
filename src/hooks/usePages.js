@@ -49,30 +49,13 @@ const usePages = () => {
                 #  }
                 #}
         
-                #resources {
-                #  resourceRelationship {
-                #    ... on WpResource {
-                #      id
-                #      title
-                #      featuredImage {
-                #        node {
-                #          ...ImageFragment
-                #        }
-                #      }
-                #      resource {
-                #        type
-                #        description
-                #        file {
-                #          id
-                #          localFile {
-                #            id
-                #            publicURL
-                #          }
-                #        }
-                #      }
-                #    }
-                #  }
-                #}
+                datosRecursos {
+                  relacion {
+                    ... on WpRecurso {
+                      id
+                    }
+                  }
+                }
                 
               }
             }
@@ -97,7 +80,7 @@ const usePages = () => {
         posts: {
           categories: page?.posts?.categories || [],
         },
-        resources: page.resources,
+        recursos: page?.datosRecursos?.relacion,
         contact: page.contact,
 
     }));

@@ -20,11 +20,11 @@ const ProjectLine = ({ data }) => {
     allWpLineaDeInvestigacion: { nodes: lines },
   } = data;
 
-  const [line] = useLineasInvestigacion().filter( line => lines.map( item => item.id).includes( line.id ) );
+  const [lineaInvestigacion] = useLineasInvestigacion().filter( lineaInvestigacion => lines.map( item => item.id).includes( lineaInvestigacion.id ) );
 
   return (
     <Layout>
-      <ProjectLineComponent {...{ line }}/>
+      <ProjectLineComponent {...{ lineaInvestigacion }}/>
     </Layout>
   );
 };

@@ -4,17 +4,15 @@ import { Container, Section, Row, Col} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
 import colors from "../../components/styles/colors";
 
-const FacultyPerfil = ({ faculty }) =>{
+const FacultyPerfil = ({ facultad }) =>{
 
     const {
         color,
-        perfil: {
-            name,
-            jobtitle,
-            content,
-            photo
-        }
-    } = faculty;
+        nombreDecano,
+        puestoDecano,
+        biografiaDecano,
+        fotoDecano
+    } = facultad;
 
     return (
         <BgSection color={colors.gray.light} spaceNone>
@@ -28,7 +26,7 @@ const FacultyPerfil = ({ faculty }) =>{
                         >
                             <CubeDecano  decoBg={ color || colors.primary.dark }>
                                 <FeaturedMedia
-                                    media={ photo }
+                                    media={ fotoDecano }
                                     size="100%"
                                     rounded
                                     zIndex="1"
@@ -43,10 +41,10 @@ const FacultyPerfil = ({ faculty }) =>{
                         >
                             <Content>
                                 <Title color={ color || colors.primary.dark }>
-                                    <JobTitle>{jobtitle}</JobTitle>
-                                    <Name>{name}</Name>
+                                    <JobTitle>{puestoDecano}</JobTitle>
+                                    <Name>{nombreDecano}</Name>
                                 </Title>
-                                <div dangerouslySetInnerHTML={{__html: content}} />
+                                <div dangerouslySetInnerHTML={{__html: biografiaDecano}} />
                             </Content>
                         </Col>
                     </Row>

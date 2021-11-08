@@ -8,7 +8,7 @@ import colors from "../../components/styles/colors";
 import Link from "../../components/link";
 import {h4} from "../../components/styles/tipography"
 
-const DIPGeneral = ({ projects, departaments = [], faculties, projectLines }) =>{
+const DIPGeneral = ({ investigaciones, departamentos = [], facultades, lineasInvestigacion }) =>{
 
     const [nav1, setNav1] = useState(null)
     const [nav2, setNav2] = useState(null)
@@ -20,7 +20,7 @@ const DIPGeneral = ({ projects, departaments = [], faculties, projectLines }) =>
         setNav2(slider2)
     }, [slider1, slider2]);
 
-    // const departaments = projects.filter((item)=> !(item.parent > 0));
+    // const departamentos = investigaciones.filter((item)=> !(item.parent > 0));
 
 
     return (
@@ -42,16 +42,16 @@ const DIPGeneral = ({ projects, departaments = [], faculties, projectLines }) =>
                             ref={slider => (setSlider1(slider))}
                         >
                         {
-                            departaments.map((item, index)=>{
+                            departamentos.map((item, index)=>{
                                 
                                 const {
-                                    featuredImage,
+                                    imagenPortada,
                                 } = item;
 
                                 return(
                                     <FeaturedMedia 
                                         key={index}
-                                        media={featuredImage} 
+                                        media={imagenPortada} 
                                         size="56.25%"
                                         bgColor
                                     />
@@ -76,11 +76,13 @@ const DIPGeneral = ({ projects, departaments = [], faculties, projectLines }) =>
                             ref={slider => (setSlider2(slider))}
                         >
                         {
-                            departaments.map((departament, index)=>{
+                            departamentos.map((departamento, index)=>{
                                 
-                                const [faculty] = faculties.filter( faculty => departament.faculty.id === faculty.id );
+                                const [facultad] = facultades.filter( facultad => { 
+                                    return departamento.facultad === facultad.id
+                                } );
 
-                                const lines = projectLines.filter( line => departament.projectLines.map( item => item.id ).includes(line.id) );
+                                const lines = lineasInvestigacion.filter( line => departamento.lineasInvestigacion.map( item => item.id ).includes(line.id) );
 
                                 return (
                                     <Departament key={index}>
@@ -88,24 +90,24 @@ const DIPGeneral = ({ projects, departaments = [], faculties, projectLines }) =>
                                             <Row>
                                                 <Col size={12} sizeLG={6} zIndex="1">
                                                     {
-                                                        faculty?(
-                                                            <StyledLink to={faculty.uri}>
-                                                                <FacultyName>{faculty.title}</FacultyName>
+                                                        facultad?(
+                                                            <StyledLink to={facultad.uri}>
+                                                                <FacultyName>{facultad.nombre}</FacultyName>
                                                             </StyledLink>
                                                         ):null
                                                     }
-                                                    <DepartamentName>{departament.title}</DepartamentName>
+                                                    <DepartamentName>{departamento.nombre}</DepartamentName>
                                                     <DepartamentProjects>
                                                         
                                                     {
                                                         lines.map((item,index)=>{
                                                             const {
-                                                                title,
+                                                                nombre,
                                                             } = item;
                                                             return (
                                                                 <Project key={index} color={colors.gray.base} colorHover={colors.secondary.base}>
                                                                     <StyledLink to={item.uri}>
-                                                                        <ProjectName>{title}</ProjectName>
+                                                                        <ProjectName>{nombre}</ProjectName>
                                                                     </StyledLink>
                                                                 </Project>
                                                             )

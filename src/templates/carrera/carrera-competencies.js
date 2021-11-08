@@ -30,7 +30,7 @@ const CareerCompetencies = ({ carrera, facultad })=>{
                                 tabs.map((item,index)=>{
 
                                     const {
-                                        title
+                                        titulo
                                     } = item;
 
                                     const isActive = index === active;
@@ -47,7 +47,7 @@ const CareerCompetencies = ({ carrera, facultad })=>{
                                                     onClick={(e) => {
                                                         setActive(index);
                                                     }}
-                                                >{title}</Tab>
+                                                >{titulo}</Tab>
                                             </NavItem>
                                             </NanUl>
                                         </Col>
@@ -63,7 +63,7 @@ const CareerCompetencies = ({ carrera, facultad })=>{
                             tabs.map((item, index)=>{
 
                                 const {
-                                    content
+                                    contenido
                                 } = item;
 
                                 const isActive = index === active;
@@ -71,7 +71,7 @@ const CareerCompetencies = ({ carrera, facultad })=>{
                                 return (
                                     <Col key={index} size={12} hidden={!isActive}>
                                         <Content>
-                                            <Description dangerouslySetInnerHTML={{__html: content}} />
+                                            <Description dangerouslySetInnerHTML={{__html: contenido}} />
                                         </Content>
                                     </Col>
                                 )

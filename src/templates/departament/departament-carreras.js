@@ -6,27 +6,27 @@ import Link from "../../components/link";
 import colors from "../../components/styles/colors";
 import { css } from "@emotion/react";
 
-const DepartamentsCareers  = ({ faculty, careers, grades })=>{
+const DepartamentsCareers  = ({ facultad, carreras, grados })=>{
 
-    return grades.length?(
+    return grados.length?(
         <BGSection thin bg={colors.green.base}>
             {
-                grades.map( (grade, index) => (
-                    <Container key={grade.id} >
+                grados.map( (grado, index) => (
+                    <Container key={grado.id} >
                         <Row>
                             <Col>
-                                <Title color={ faculty.color } main={ index? false: true }>Programas de {grade.title}</Title>
+                                <Title color={ facultad.color } main={ index? false: true }>Programas de {grado.nombre}</Title>
                             </Col>
                         </Row>
                         <Row>
                         {  
-                            careers.filter( career => career.grade.id === grade.id ).map((career,index)=>{
+                            carreras.filter( carrera => carrera.grado.id === grado.id ).map((carrera,index)=>{
 
                                 const {
-                                    title,
-                                    featuredImage,
+                                    nombre,
+                                    imagenPortada,
                                     uri
-                                } = career;
+                                } = carrera;
 
                                 return (
                                     <Col size={12} sizeMD={6} key={index}>
@@ -36,14 +36,14 @@ const DepartamentsCareers  = ({ faculty, careers, grades })=>{
                                                     <Col size="auto">
                                                         <CardMedia>
                                                             <FeaturedMedia 
-                                                                media={ featuredImage }
+                                                                media={ imagenPortada }
                                                                 size="100%"   
                                                                 bgColor
                                                             /> 
                                                         </CardMedia>
                                                     </Col>
                                                     <Col>
-                                                        <CardTitle color={faculty.color || colors.primary.dark }>{ title }</CardTitle>
+                                                        <CardTitle color={facultad.color || colors.primary.dark }>{ nombre }</CardTitle>
                                                     </Col>
                                                 </Row>
                                             </Card>

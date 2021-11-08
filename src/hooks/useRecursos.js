@@ -11,6 +11,7 @@ const useRecursos = () => {
                 id
                 __typename
                 nombre
+                descripcion
                 date
                 link
                 uri
@@ -35,13 +36,15 @@ const useRecursos = () => {
     return resultado.allWpRecurso.nodes.map( recurso => ({
         id: recurso.id,
         nombre: recurso.nombre,
+        descripcion: recurso.descripcion,
         date: recurso.date,
         slug: urlSlug(recurso.nombre),
         uri: recurso.uri.replace(recurso.slug, urlSlug(recurso.nombre)),
         link: recurso.link.replace(recurso.slug, urlSlug(recurso.nombre)),
         imagenPortada: recurso.imagenPortada,
+        tipoRecurso: recurso?.datosRecurso?.tipo,
         type: recurso.__typename,
-        archivo: recurso.archivo
+        archivo: recurso?.archivo?.localFile?.publicURL
     }));
 }
  
