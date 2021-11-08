@@ -56,18 +56,21 @@ const useCarreras = () => {
                     id
                   }
                 }
-        #
-                #contact {
-                #  phones {
-                #    phone
-                #    exts {
-                #      ext
-                #    }
-                #  }
-                #  emails {
-                #    email
-                #  }
-                #}
+        
+                contacto {
+                  telefonos {
+                    telefono
+                    extensiones {
+                      extension
+                    }
+                  }
+                  whatsapp {
+                    telefono
+                  }
+                  emails {
+                    email
+                  }
+                }
               }
             }
           }
@@ -102,7 +105,7 @@ const useCarreras = () => {
         hsFormulario: carrera.hsFormulario,
         imagenFormulario: carrera?.imagenFormulario,
         recursos: carrera?.recursos?.nodes || [],
-        contact: carrera.contact,
+        contacto: carrera.contacto,
         type: carrera.__typename,
       })
     })

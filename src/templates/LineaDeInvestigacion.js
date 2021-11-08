@@ -15,7 +15,7 @@ export const query = graphql`
 `;
 
 // markup
-const ProjectLine = ({ data }) => {
+const ProjectLine = ({ data, ...props }) => {
   const {
     allWpLineaDeInvestigacion: { nodes: lines },
   } = data;
@@ -23,7 +23,7 @@ const ProjectLine = ({ data }) => {
   const [lineaInvestigacion] = useLineasInvestigacion().filter( lineaInvestigacion => lines.map( item => item.id).includes( lineaInvestigacion.id ) );
 
   return (
-    <Layout>
+    <Layout {...props} obj={lineaInvestigacion}>
       <ProjectLineComponent {...{ lineaInvestigacion }}/>
     </Layout>
   );

@@ -38,54 +38,21 @@ const useFacultades = () => {
                   ...ImageFragment
                 }
         
-                #facultyInfo {
-        #
-                #  perfil {
-                #    name
-                #    jobtitle
-                #    copy
-                #    photo {
-                #      ...ImageFragment
-                #    }
-                #  }
-        #
-                #}
-
-                #contact {
-                #  phones {
-                #    phone
-                #    exts {
-                #      ext
-                #    }
-                #  }
-                #  emails {
-                #    email
-                #  }
-                #}
+                contacto {
+                  telefonos {
+                    telefono
+                    extensiones {
+                      extension
+                    }
+                  }
+                  whatsapp {
+                    telefono
+                  }
+                  emails {
+                    email
+                  }
+                }
         
-                #recursos {
-                #  resourceRelationship {
-                #    ... on WpResource {
-                #      id
-                #      nombre
-                #      imagenPortada {
-                #        node {
-                #          ...ImageFragment
-                #        }
-                #      }
-                #      resource {
-                #        type
-                #        file {
-                #          id
-                #          localFile {
-                #            id
-                #            publicURL
-                #          }
-                #        }
-                #      }
-                #    }
-                #  }
-                #}
               }
             }
           }
@@ -111,7 +78,7 @@ const useFacultades = () => {
       departamentos: facultad.departamentos.nodes || [],
       type: facultad?.__typename,
       recursos: facultad?.recursos?.resourceRelationship || [],
-      contact: facultad?.contact,
+      contacto: facultad?.contacto,
     }));
 }
  

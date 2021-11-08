@@ -23,7 +23,7 @@ const Career = ({ data, ...props }) => {
   const [carrera] = useCarreras().filter( carrera => carreras.map( item => item.id).includes( carrera.id ) );
 
   return (
-    <Layout {...props}>
+    <Layout {...props} obj={carrera}>
       <CareerSingle {...{carrera}} />
     </Layout>
   );

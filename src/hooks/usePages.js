@@ -34,20 +34,20 @@ const usePages = () => {
                 #  }
                 #}
 
-                #contact {
-                #  phones {
-                #    phone
-                #    exts {
-                #      ext
-                #    }
-                #  }
-                #  whatsapp {
-                #    phone
-                #  }
-                #  emails {
-                #    email
-                #  }
-                #}
+                contacto {
+                  telefonos {
+                    telefono
+                    extensiones {
+                      extension
+                    }
+                  }
+                  whatsapp {
+                    telefono
+                  }
+                  emails {
+                    email
+                  }
+                }
         
                 datosRecursos {
                   relacion {
@@ -81,7 +81,7 @@ const usePages = () => {
           categories: page?.posts?.categories || [],
         },
         recursos: page?.datosRecursos?.relacion,
-        contact: page.contact,
+        contacto: page.contacto,
 
     }));
 }

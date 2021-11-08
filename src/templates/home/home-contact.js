@@ -12,14 +12,14 @@ const HomeContact = () =>{
     const images = useFiles();
     
     const title = "Contáctanos"
-
+    
     return (
         <Section spaceNone>
             <Container fluid>
                 <Row alignCenter reverseLG>
                     <Col size={12} sizeLG={6} noGutters>
                         <Image
-                            media={images.home.contact}
+                            media={images.home.contacto}
                             alt={title}
                             size="56.25%"
                             sizeLG="120%"

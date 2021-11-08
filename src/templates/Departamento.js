@@ -15,7 +15,7 @@ export const query = graphql`
 `;
 
 // markup
-const Post = ({data}) => {
+const Post = ({data, ...props}) => {
 
   const {
       allWpDepartamento: {
@@ -26,7 +26,7 @@ const Post = ({data}) => {
   const [departamento] = useDepartamentos().filter( departamento => departamentos.map( item => item.id).includes( departamento.id ) );
   
   return (
-      <Layout>
+      <Layout {...props} obj={departamento}>
         <DepartamentSingle {...{departamento}} />
       </Layout>
   )

@@ -35,18 +35,14 @@ const CareerPensum = ({ carrera, facultad })=>{
                     pensums.map((pensum, index)=>{
                         const{
                             nombre,
-                            archivo: {
-                                localFile: {
-                                    publicURL
-                                }
-                            },
+                            archivo
                         } = pensum;
 
                         return(
                             <Col size={12} sizeSM="auto" mxAuto key={index}>
                                 <Card>
                                     <CardLink
-                                        href={publicURL}
+                                        href={archivo}
                                         download
                                     >
                                         <Row alignCenter>

@@ -10,8 +10,6 @@ import Header from "./header";
 import Footer from "./footer";
 import ResourcesList from "./resourceslist";
 import Contact from "./contact";
-import usePages from "../hooks/usePages";
-import useCarreras from "../hooks/useCarreras";
 
 if (typeof window !== "undefined") {
   // eslint-disable-next-line global-require
@@ -22,7 +20,7 @@ const Layout = (props) => {
 
   const { 
     children,
-    path = "/"
+    obj = {},
   } = props;
 
   const [resultsSearch, setResultsSearch] = useState();
@@ -47,9 +45,6 @@ const Layout = (props) => {
       }
     }
   `);
-
-  const postTypes = [].concat(usePages(), useCarreras());
-  const [postType] = postTypes.filter( postType => postType.uri === path );
 
   return (
     <>
@@ -82,10 +77,13 @@ const Layout = (props) => {
           }
           return child;
         })}
-        {/* Se muestran recursos relacionados con el tipo de dato */}
-        <ResourcesList items={ postType?.recursos || [] } />
+        {/* 
+          Se muestran recursos relacionados con el tipo de dato 
+            - Se excluye el tipo pensum para los objetos de tipo WpCarrera. Ya que los pensums se muestran de una forma distinta en las carreras
+        */}
+        <ResourcesList items={ obj?.recursos || [] } exclude={ obj?.type === "WpCarrera"?["pensum"] : []} />
         {/* Se muestra información de contacto relacionada con el tipo de dato */}
-        <Contact data={ postType?.contact } />
+        <Contact data={ obj?.contacto } />
       </Main>
       <Footer />
     </>

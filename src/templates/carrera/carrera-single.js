@@ -5,10 +5,7 @@ import Perfil from "./carrera-perfil";
 import Competencies from "./carrera-competencies";
 import Pensum from "./carrera-pensum";
 import CareerForm from './carrera-form';
-import ResourceList from '../../components/resourceslist';
 import useFacultades from "../../hooks/useFacultades";
-import Contact from "../../components/contact";
-import colors from "../../components/styles/colors";
 
 const Career = ({ carrera })=>{
 
@@ -21,13 +18,6 @@ const Career = ({ carrera })=>{
             <Competencies {...{carrera, facultad}}/>
             <Pensum {...{carrera, facultad}}/>
             <CareerForm {...{carrera, facultad}}/> 
-            <ResourceList 
-                items={ carrera.resources } 
-                exclude={['pensum']} 
-                titleColor={facultad.color} 
-                resourceColor={facultad.color}
-            />
-            <Contact data={carrera.contact} color={facultad.color} bgColor={colors.gray.light} />
         </Article>
     );
 }

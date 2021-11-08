@@ -70,11 +70,7 @@ const ResourcesList = ({
                         const {
                             nombre,
                             imagenPortada,
-                            archivo : {
-                                localFile: {
-                                    publicURL
-                                }
-                            }
+                            archivo
                         } = item;
 
                         return(
@@ -82,7 +78,7 @@ const ResourcesList = ({
                             <ResourceCard
                                 title={nombre}
                                 icon={imagenPortada}
-                                to={publicURL}    
+                                to={archivo}    
                                 color={resourceColor}
                                 item={item}
                             />

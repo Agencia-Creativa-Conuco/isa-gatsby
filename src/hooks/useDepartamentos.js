@@ -35,17 +35,20 @@ const useDepartamentos = () => {
               ...ImageFragment
             }
 
-            #contact {
-            #  phones {
-            #    phone
-            #    exts {
-            #      ext
-            #    }
-            #  }
-            #  emails {
-            #    email
-            #  }
-            #}
+            contacto {
+              telefonos {
+                telefono
+                extensiones {
+                  extension
+                }
+              }
+              whatsapp {
+                telefono
+              }
+              emails {
+                email
+              }
+            }
 
           }
         }
@@ -69,7 +72,7 @@ const useDepartamentos = () => {
         carreras: departamento?.carreras?.nodes || [],
         lineasInvestigacion: departamento?.lineasDeInvestigacion?.nodes || [],
         type: departamento.__typename,
-        contact: departamento?.contact,
+        contacto: departamento?.contacto,
       })
     });
 }

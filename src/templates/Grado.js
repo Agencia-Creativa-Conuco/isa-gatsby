@@ -15,7 +15,7 @@ export const query = graphql`
 `;
 
 // markup
-const Grade = ({ data }) => {
+const Grade = ({ data, ...props }) => {
   const {
     allWpGrado: { nodes: grados },
   } = data;
@@ -23,7 +23,7 @@ const Grade = ({ data }) => {
   const [grado] = useGrados().filter( grado => grados.map( item => item.id).includes( grado.id ) );
 
   return (
-    <Layout>
+    <Layout {...props} obj={grado}>
       <GradeComponent {...{ grado }}/>
     </Layout>
   );

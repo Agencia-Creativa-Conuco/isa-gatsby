@@ -10,7 +10,7 @@ const CarreraNacionalDeInvestigadores = (props) => {
   const investigadores = useInvestigadores().filter( investigador => investigador.esCarrera);
 
   const title = "Miembros De La Carrera Nacional De Investigadores UNISA";
-  console.log(useInvestigadores())
+  
   return (
     <Layout {...props}>
       <Section as="article" spaceNone>

@@ -10,12 +10,12 @@ const Contact = ({ data = {}, color = colors.primary.base , bgColor= colors.gray
 
     const {
         title = "Contacto",
-        phones = [],
+        telefonos = [],
         emails = [],
         whatsapp = [],
     } = data;
 
-    return phones?.length || emails?.length?  
+    return telefonos?.length || emails?.length?  
     (
         <MSection spaceNone bgColor={bgColor}>
             <SSection as="div">
@@ -25,7 +25,7 @@ const Contact = ({ data = {}, color = colors.primary.base , bgColor= colors.gray
                             <Title color={colors.text.base}>{title}</Title>
                         </Col>
                         {
-                            phones?.length?(
+                            telefonos?.length?(
                                 <Col size={12}>
                                     <PhoneList> 
                                         <Row>
@@ -37,21 +37,21 @@ const Contact = ({ data = {}, color = colors.primary.base , bgColor= colors.gray
                                             <Col noLGutters>
                                                 <List>
                                                 {
-                                                    phones.map((item, index)=>{
+                                                    telefonos.map((item, index)=>{
 
                                                         const {
-                                                            phone, 
-                                                            exts = []
+                                                            telefono, 
+                                                            extensiones = []
                                                         } = item;
 
-                                                        const extsFormated = exts?.length? exts.reduce(( acc, cur, idx, src ) => {
-                                                            return acc + ((idx < src.length - 1) ? (cur.ext + ", ") : cur.ext);
+                                                        const extsFormated = extensiones?.length? extensiones.reduce(( acc, cur, idx, src ) => {
+                                                            return acc + ((idx < src.length - 1) ? (cur.extension + ", ") : cur.extension);
                                                         }, "") : "";
 
                                                         return (
                                                             <Item key={index}color={colors.text.base}>
                                                                 <Phone>
-                                                                    <StyledLink to={`tel: ${phone}`} target="_blank" >{ phone }{ exts?.length > 0? (exts?.length > 1? `, Exts. ` : ", Ext. " ) + extsFormated : ""} </StyledLink>
+                                                                    <StyledLink to={`tel: ${telefono}`} target="_blank" >{ telefono }{ extensiones?.length > 0? (extensiones?.length > 1? `, Exts. ` : ", Ext. " ) + extsFormated : ""} </StyledLink>
                                                                 </Phone>
                                                             </Item>
                                                         )
@@ -80,13 +80,13 @@ const Contact = ({ data = {}, color = colors.primary.base , bgColor= colors.gray
                                                     whatsapp.map((item, index)=>{
 
                                                         const {
-                                                            phone, 
+                                                            telefono, 
                                                         } = item;
 
                                                         return (
                                                             <Item key={index} color={colors.text.base}>
                                                                 <Phone>
-                                                                    <StyledLink to={`https://wa.me/1${phone.replace(/[^0-9]/g,'')}`} target="_blank" rel="noreferrer">{ phone }</StyledLink>
+                                                                    <StyledLink to={`https://wa.me/1${telefono?.replace(/[^0-9]/g,'')}`} target="_blank" rel="noreferrer">{ telefono }</StyledLink>
                                                                 </Phone>
                                                             </Item>
                                                         )

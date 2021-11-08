@@ -15,16 +15,16 @@ export const query = graphql`
 `;
 
 // markup
-const Facultad = ({ data }) => {
+const Facultad = ({ data, ...props }) => {
 
   const {
-    allWpFacultad: { nodes: faculties },
+    allWpFacultad: { nodes: facultades },
   } = data;
 
-  const [facultad] = useFacultades().filter( facultad => faculties.map( item => item.id).includes( facultad.id ) );
+  const [facultad] = useFacultades().filter( facultad => facultades.map( item => item.id).includes( facultad.id ) );
   
   return (
-    <Layout>
+    <Layout {...props} obj={facultad}>
       <FacultySingle {...{facultad}} />
     </Layout>
   );

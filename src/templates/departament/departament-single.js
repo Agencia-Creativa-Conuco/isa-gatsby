@@ -8,8 +8,6 @@ import useGrados from "../../hooks/useGrados";
 import DepartamentCover from "./departament-cover";
 import DepartamentCareers from "./departament-carreras";
 // import DepartamentProjects from "./departament-projects";
-import Contact from "../../components/contact";
-import colors from "../../components/styles/colors";
 
 const Departament= ({ departamento })=>{
 
@@ -32,7 +30,6 @@ const Departament= ({ departamento })=>{
             <DepartamentCover {...{departamento, facultad}}/>
             <DepartamentCareers {...{facultad, carreras, grados}}/>
             {/* <DepartamentProjects {...{facultad, projectLines, projects}}/> */}
-            <Contact data={departamento.contact} color={facultad.color} bgColor={colors.gray.light} />
         </Article>
     );
 }
