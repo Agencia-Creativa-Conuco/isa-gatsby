@@ -68,7 +68,7 @@ const useDepartamentos = () => {
         link: departamento.link.replace(departamento.slug, urlSlug(departamento.nombre)),
         order: departamento.menuOrder,
         imagenPortada: departamento?.imagenPortada,
-        facultad: departamento?.facultad?.node?.id,
+        facultad: departamento?.facultad?.node,
         carreras: departamento?.carreras?.nodes || [],
         lineasInvestigacion: departamento?.lineasDeInvestigacion?.nodes || [],
         type: departamento.__typename,

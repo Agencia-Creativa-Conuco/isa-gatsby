@@ -17,7 +17,8 @@ const Post = (props) => {
     nextPagePath, 
     previousPagePath, 
     //postsPerPage, 
-    items } = pageContext;
+    items = []
+  } = pageContext;
 
   const posts = usePosts()
     .filter(( post ) => items.includes( post.id ) );

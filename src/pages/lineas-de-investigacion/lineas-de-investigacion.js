@@ -14,8 +14,8 @@ const ProjectLines = (props) => {
     
     const departamentos = useDepartamentos().filter( departamento => lineasDeInvestigacion.map( line => line.departamento.id ).includes( departamento.id ) );
     
-    const facultades = useFacultades().filter( facultad => departamentos.map( departament => departament.facultad.id ).includes( facultad.id ) );
-    
+    const facultades = useFacultades().filter( facultad => departamentos.map( departamento => departamento.facultad.id ).includes( facultad.id ) );
+     
     return (
         <Layout {...props}>
             <Section as="article" spaceNone>
@@ -39,23 +39,23 @@ const ProjectLines = (props) => {
                                     <Col key={facultad.id} size={12}>
                                         <Section as="div" spaceTopNone>
                                             <Faculty>
-                                                {facultad.title}
+                                                {facultad.nombre}
                                             </Faculty>
                                             <Row>
                                             {
-                                                departamentos.filter( departament => departament.facultad.id === facultad.id )
-                                                .map( departament => {
+                                                departamentos.filter( departamento => departamento.facultad.id === facultad.id )
+                                                .map( departamento => {
                                                     return (
-                                                        <Col key={departament.id} size={12}>
-                                                            <Departament>{departament.title}</Departament>
+                                                        <Col key={departamento.id} size={12}>
+                                                            <Departament>{departamento.nombre}</Departament>
                                                             <Row>
                                                             {
-                                                                lineasDeInvestigacion.filter( line => line.departament.id === departament.id )
+                                                                lineasDeInvestigacion.filter( line => line.departamento.id === departamento.id )
                                                                 .map( line => {
                                                                     return (
                                                                         <Col key={line.id} size={12} sizeMD={6} >
                                                                             <SLink to={line.uri}>
-                                                                                <Line>{line.title}</Line>
+                                                                                <Line>{line.nombre}</Line>
                                                                             </SLink>
                                                                         </Col>
                                                                     )

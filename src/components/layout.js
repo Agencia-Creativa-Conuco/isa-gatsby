@@ -10,6 +10,7 @@ import Header from "./header";
 import Footer from "./footer";
 import ResourcesList from "./resourceslist";
 import Contact from "./contact";
+import usePages from "../hooks/usePages";
 
 if (typeof window !== "undefined") {
   // eslint-disable-next-line global-require
@@ -18,9 +19,12 @@ if (typeof window !== "undefined") {
 
 const Layout = (props) => {
 
+  //Si obj no es pasado en props, utiliza page;
+  const [page] = usePages().filter( page => page.uri === props.path);
+
   const { 
     children,
-    obj = {},
+    obj = page,
   } = props;
 
   const [resultsSearch, setResultsSearch] = useState();

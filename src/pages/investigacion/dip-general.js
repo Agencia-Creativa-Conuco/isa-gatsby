@@ -79,7 +79,7 @@ const DIPGeneral = ({ investigaciones, departamentos = [], facultades, lineasInv
                             departamentos.map((departamento, index)=>{
                                 
                                 const [facultad] = facultades.filter( facultad => { 
-                                    return departamento.facultad === facultad.id
+                                    return departamento.facultad.id === facultad.id
                                 } );
 
                                 const lines = lineasInvestigacion.filter( line => departamento.lineasInvestigacion.map( item => item.id ).includes(line.id) );

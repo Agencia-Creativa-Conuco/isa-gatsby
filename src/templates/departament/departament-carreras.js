@@ -82,7 +82,7 @@ const CardMedia = styled.div`
 
 const CardTitle = styled.h3`
     color:${props => props.color};
-    text-transform: uppercase;
+    // text-transform: uppercase;
     margin: 0;
 `;
 

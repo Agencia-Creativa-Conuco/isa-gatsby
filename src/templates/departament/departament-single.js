@@ -11,7 +11,7 @@ import DepartamentCareers from "./departament-carreras";
 
 const Departament= ({ departamento })=>{
 
-    const [facultad] = useFacultades().filter( facultad => facultad.id === departamento.facultad );
+    const [facultad] = useFacultades().filter( facultad => facultad.id === departamento.facultad.id );
 
     //Obtiene las carreras que pertenecen al departamento
     const carreras = useCarreras().filter( carrera => departamento.carreras.map( dcareer => dcareer.id).includes(carrera.id) );

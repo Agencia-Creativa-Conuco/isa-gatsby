@@ -11,7 +11,7 @@ const FcaultyAreasAcademic = ({ facultad }) =>{
         color = colors.primary.base
     } = facultad;
 
-    const departamentos = useDepartamentos().filter( departament => departament.facultad === facultad.id );
+    const departamentos = useDepartamentos().filter( departament => departament.facultad.id === facultad.id );
     
     return departamentos.length?(
         <SectionStyles spaceTopNone >

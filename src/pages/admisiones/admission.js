@@ -16,9 +16,9 @@ import colors from "../../components/styles/colors";
 
 // markup
 const Admissions = (props) => {
-    
+
   return (
-      <Layout {...props}>
+      <Layout {...props} >
         <Container>
           <AdmissionCover />
           <CalendarSection bgColor={colors.gray.light} spaceNone>

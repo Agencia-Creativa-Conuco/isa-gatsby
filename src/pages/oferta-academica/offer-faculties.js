@@ -106,7 +106,7 @@ const OfferFaculties = () =>{
                                                                         <Row>
                                                                         {
                                                                             listaDeCarreras.filter( carrera => {
-                                                                                return !carrera.departamento && facultad.id === carrera.facultad.id;
+                                                                                return !carrera?.departamento?.id && facultad.id === carrera?.facultad?.id;
                                                                             } )
                                                                             .map( carrera => {
                                                                                 return (
@@ -126,7 +126,7 @@ const OfferFaculties = () =>{
                                                                         <Row>
                                                                         {
                                                                             listaDeDepartamentos.filter( departamento => {
-                                                                                return facultad.id === departamento.facultad.id;
+                                                                                return facultad.id === departamento?.facultad?.id;
                                                                             } )
                                                                             .map( departamento => {
                                                                                 return (

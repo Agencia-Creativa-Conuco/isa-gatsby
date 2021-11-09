@@ -77,7 +77,7 @@ const useFacultades = () => {
       carreras: facultad.carreras.nodes || [],
       departamentos: facultad.departamentos.nodes || [],
       type: facultad?.__typename,
-      recursos: facultad?.recursos?.resourceRelationship || [],
+      recursos: facultad?.recursos?.nodes || [],
       contacto: facultad?.contacto,
     }));
 }

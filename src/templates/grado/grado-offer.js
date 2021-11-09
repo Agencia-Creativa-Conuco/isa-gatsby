@@ -60,7 +60,7 @@ const GradeOffer = ({ grado }) => {
                   {carreras
                     .filter((carrera) => {
                       return (
-                        !carrera.departamento && facultad.id === carrera.facultad.id
+                        !carrera?.departamento?.id && facultad.id === carrera?.facultad?.id
                       );
                     })
                     .map((carrera) => {

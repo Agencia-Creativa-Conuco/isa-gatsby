@@ -20,6 +20,7 @@ const useGrados = () => {
                 id
               }
             }
+            orden
             date
             link
             uri
@@ -48,7 +49,7 @@ const useGrados = () => {
         slug: urlSlug(grado.nombre),
         uri: grado.uri.replace(grado.slug, urlSlug(grado.nombre)),
         link: grado.link.replace(grado.slug, urlSlug(grado.nombre)),
-        order: grado?.menuOrder,
+        order: grado?.orden,
         imagenPortada: grado?.imagenPortada,
         carreras: grado.carreras.nodes || [],
         requisitos: grado?.datosRequisitos?.requisitos || [],

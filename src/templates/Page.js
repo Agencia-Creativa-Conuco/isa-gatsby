@@ -6,8 +6,6 @@ import { css, Global } from "@emotion/react";
 import FrontPage from "./home/front-page";
 import usePages from "../hooks/usePages";
 import PageSingle from "./page/page-single";
-import RecentPosts from "../components/recent-posts";
-import usePosts from "../hooks/usePosts";
 
 export const query = graphql`
   query ($id: String!) {
@@ -20,7 +18,7 @@ export const query = graphql`
 `;
 
 // markup
-const Post = ({ data }) => {
+const Post = ({ data, ...props }) => {
   const {
     allWpPage: { nodes: pages },
   } = data;
@@ -29,24 +27,16 @@ const Post = ({ data }) => {
 
   const { isFrontPage } = page;
   
-  //Obtiene los datos de los Posts de las categorías seleccionadas
-  const posts = usePosts().filter( post => post.categories.filter( category => page.posts.categories.map( item => item.id ).includes(category.id) ).length );
-
   return (
-    <Layout>
+    <Layout {...props} obj={page}>
       <Global styles={ css`${page.styles}` } />
       {
         isFrontPage? (
-          <FrontPage {...{ page, posts }}/>
+          <FrontPage />
         ) : (
           <PageSingle {...{ page }}/>
         )
       }
-
-      {
-        !isFrontPage? (<RecentPosts {...{posts}} />) : null
-      }
-
     </Layout>
   );
 };
