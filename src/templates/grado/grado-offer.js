@@ -53,7 +53,7 @@ const GradeOffer = ({ grado }) => {
                     bgHover={colors.gray.light}
                     isFaculty
                   >
-                    {facultad.title}
+                    {facultad.nombre}
                   </Title>
                 </Link>
                 <Row>
@@ -72,7 +72,7 @@ const GradeOffer = ({ grado }) => {
                               bgHover={colors.gray.light}
                               isCareer
                             >
-                              {carrera.title}
+                              {carrera.nombre}
                             </Title>
                           </Link>
                         </Col>
@@ -92,7 +92,7 @@ const GradeOffer = ({ grado }) => {
                               color={colors.primary.base}
                               bgHover={colors.gray.light}
                             >
-                              {departamento.title}
+                              {departamento.nombre}
                             </Title>
                           </Link>
                           <Row>
@@ -111,7 +111,7 @@ const GradeOffer = ({ grado }) => {
                                         bgHover={colors.gray.light}
                                         isCareer
                                       >
-                                        {carrera.title}
+                                        {carrera.nombre}
                                       </Title>
                                     </Link>
                                   </Col>

@@ -5,7 +5,7 @@ import {Section, Container, Row, Col, mq} from "../../components/layout/index";
 import {lighten, darken} from "polished";
 import colors from "../../components/styles/colors";
 
-const CareerCompetencies = ({ carrera, facultad })=>{
+const CarreraCompetencias = ({ carrera, facultad })=>{
 
     const [active, setActive] = useState(0);
 
@@ -85,7 +85,7 @@ const CareerCompetencies = ({ carrera, facultad })=>{
     ): null;
 }
 
-export default CareerCompetencies;
+export default CarreraCompetencias;
 
 const displayerSectionStyles = ({
     bgColor="#F0F0F0",

@@ -1,3 +1,3 @@
-import Library from "./library";
+import Library from "../../templates/page/biblioteca/library";
 
 export default Library;

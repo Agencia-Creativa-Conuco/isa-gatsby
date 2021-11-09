@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 import {Section, Container, Row, Col, mq} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
 
-const CareerPerfil = ({carrera, faculty })=>{
+const CarreraPerfil = ({carrera, faculty })=>{
 
     const {
         imagenPerfilEgresado,
@@ -39,7 +39,7 @@ const CareerPerfil = ({carrera, faculty })=>{
     );
 }
 
-export default CareerPerfil;
+export default CarreraPerfil;
 
 const Media = styled.div`
     ${({decoBgColor="green"})=>css`

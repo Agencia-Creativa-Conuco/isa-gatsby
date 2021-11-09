@@ -1,28 +1,28 @@
 import React from "react";
 import styled from "@emotion/styled";
-import Cover from "./carrera-cover";
-import Perfil from "./carrera-perfil";
-import Competencies from "./carrera-competencies";
-import Pensum from "./carrera-pensum";
-import CareerForm from './carrera-form';
+import CarreraCover from "./carrera-cover";
+import CarreraPerfil from "./carrera-perfil";
+import CarreraCompetencias from "./carrera-competencies";
+import CarreraPensum from "./carrera-pensum";
+import CarreraForm from './carrera-form';
 import useFacultades from "../../hooks/useFacultades";
 
-const Career = ({ carrera })=>{
+const CarreraSingle = ({ carrera })=>{
 
     const [facultad] = useFacultades().filter( facultad => facultad.id === carrera.facultad.id);
 
     return (
         <Article>
-            <Cover {...{carrera, facultad}}/>
-            <Perfil {...{carrera, facultad}}/>
-            <Competencies {...{carrera, facultad}}/>
-            <Pensum {...{carrera, facultad}}/>
-            <CareerForm {...{carrera, facultad}}/> 
+            <CarreraCover {...{carrera, facultad}}/>
+            <CarreraPerfil {...{carrera, facultad}}/>
+            <CarreraCompetencias {...{carrera, facultad}}/>
+            <CarreraPensum {...{carrera, facultad}}/>
+            <CarreraForm {...{carrera, facultad}}/> 
         </Article>
     );
 }
 
-export default Career;
+export default CarreraSingle;
 
 const Article = styled.article``;
 

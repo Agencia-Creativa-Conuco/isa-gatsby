@@ -1,21 +1,21 @@
 import React from "react";
 import styled from "@emotion/styled";
-import FacultyCover from "./facultad-cover";
-import FacultyPerfil from "./facultad-perfil";
-import FacultyAreasAcademic from "./facultad-areas";
+import FacultadCover from "./facultad-cover";
+import FacultadPerfil from "./facultad-perfil";
+import FacultadAreas from "./facultad-areas";
 
-const Faculty = ({ facultad })=>{
+const FacultadSingle = ({ facultad })=>{
 
     return (
         
         <Article>
-            <FacultyCover {...{facultad}} />
-            <FacultyPerfil {...{facultad}} />
-            <FacultyAreasAcademic {...{facultad}} />
+            <FacultadCover {...{facultad}} />
+            <FacultadPerfil {...{facultad}} />
+            <FacultadAreas {...{facultad}} />
         </Article>
     )
 }
 
-export default Faculty;
+export default FacultadSingle;
 
 const Article = styled.article``;

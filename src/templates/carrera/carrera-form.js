@@ -7,7 +7,7 @@ import BackgroundImage from "gatsby-background-image";
 import Form from '../../components/form';
 
 
-const CareerForm = ({ carrera, facultad }) =>{
+const CarreraForm = ({ carrera, facultad }) =>{
     
     const {
         imagenFormulario
@@ -34,7 +34,7 @@ const CareerForm = ({ carrera, facultad }) =>{
 
 }
 
-export default CareerForm;
+export default CarreraForm;
 
 const BGSection = styled(Section)`
     background: url(${props => props.bg});

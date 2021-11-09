@@ -5,7 +5,7 @@ import {Section, Container, Row, Col, mq} from "../../components/layout/index";
 import {PensumIcon} from "../../components/icons";
 import useRecursos from "../../hooks/useRecursos";
 
-const CareerPensum = ({ carrera, facultad })=>{
+const CarreraPensum = ({ carrera, facultad })=>{
 
     const {
         recursos = []
@@ -68,7 +68,7 @@ const CareerPensum = ({ carrera, facultad })=>{
     ):null;
 }
 
-export default CareerPensum;
+export default CarreraPensum;
 
 const sectionStyles = css`
     margin-top: -10rem;

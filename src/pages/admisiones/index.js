@@ -1,3 +1,3 @@
-import Admissions from "./admission";
+import Admissions from "../../templates/page/admisiones/admisiones";
 
 export default Admissions;

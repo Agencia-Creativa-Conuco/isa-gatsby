@@ -1,15 +1,15 @@
 import React from 'react';
-import GradeCover from './grado-cover';
-import GradeOffer from './grado-offer';
+import GradoCover from './grado-cover';
+import GradoOffer from './grado-offer';
 
-const Grade = ({ grado }) => {
+const GradoSingle = ({ grado }) => {
 
     return (
         <article>
-            <GradeCover {...{grado}} />
-            <GradeOffer {...{grado}} />
+            <GradoCover {...{grado}} />
+            <GradoOffer {...{grado}} />
         </article>
     )
 }
 
-export default Grade;
+export default GradoSingle;

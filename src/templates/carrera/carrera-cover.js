@@ -5,7 +5,7 @@ import {Section, Container, Row, Col, mq} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
 import {darken,lighten} from "polished";
 
-const CareerCover = ({ carrera, facultad })=>{
+const CarreraCover = ({ carrera, facultad })=>{
 
     const {
         nombre,
@@ -98,7 +98,7 @@ const CareerCover = ({ carrera, facultad })=>{
     );
 }
 
-export default CareerCover;
+export default CarreraCover;
 
 const sectionStyles = ({
     bgColor="green",

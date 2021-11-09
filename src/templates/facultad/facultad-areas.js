@@ -5,7 +5,7 @@ import Link from "../../components/link";
 import colors from '../../components/styles/colors';
 import useDepartamentos from "../../hooks/useDepartamentos";
 
-const FcaultyAreasAcademic = ({ facultad }) =>{
+const FacultadAreas = ({ facultad }) =>{
     
     const { 
         color = colors.primary.base
@@ -61,7 +61,7 @@ const FcaultyAreasAcademic = ({ facultad }) =>{
 
 }
 
-export default FcaultyAreasAcademic;
+export default FacultadAreas;
 
 const SectionStyles =styled(Section)`
     margin-top: -10rem !important;
