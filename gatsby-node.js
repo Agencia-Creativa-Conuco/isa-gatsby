@@ -22,7 +22,7 @@ exports.createPages = async gatsbyUtilities => {
   // If there are no posts in WordPress, don't do anything
   if (posts.length) {
     // If there are posts and pages or custom-types, create Gatsby pages for them
-    // await _post.createSinglePages({ posts, gatsbyUtilities })
+    await _post.createSinglePages({ posts, gatsbyUtilities })
   
     // And a paginated archive
     await _post.createBlogPostArchive({ posts, configs, gatsbyUtilities })

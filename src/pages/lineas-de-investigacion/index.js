@@ -1,3 +1,3 @@
-import ProjectLines from "./lineas-de-investigacion";
+import ProjectLines from "../../templates/page/lineas-de-investigacion/lineas-de-investigacion";
 
 export default ProjectLines;

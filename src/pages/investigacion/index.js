@@ -1,3 +1,3 @@
-import Dip from "./dip";
+import Dip from "../../templates/page/dip/dip";
 
 export default Dip;

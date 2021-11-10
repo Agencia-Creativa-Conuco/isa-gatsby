@@ -1,3 +1,3 @@
-import OfferPage from "./oferta-academica";
+import OfferPage from "../../templates/page/oferta-academica/oferta-academica";
 
 export default OfferPage;

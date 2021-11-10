@@ -1,6 +1,5 @@
 const path = require(`path`);
 const chunk = require(`lodash/chunk`);
-const urlSlug = require(`url-slug`);
 /**
  * This function creates all the individual blog pages in this site
  */
@@ -8,7 +7,7 @@ exports.createSinglePages = async ({ posts, gatsbyUtilities }) =>
   Promise.all(
     posts.map(({ previous, post, next }) => {
 
-      const uri = [`WpPost`,`WpPage`].includes(post.__typename)? post.uri : post.uri.replace(post.slug, urlSlug(post.nombre));
+      const uri = post.uri;
 
       // createPage is an action passed to createPages
       // See https://www.gatsbyjs.com/docs/actions#createPage for more info
@@ -128,29 +127,6 @@ exports.createBlogPostArchive = async function createBlogPostArchive({
 exports.getNodes = async function getNodes({ graphql, reporter }) {
   const graphqlResult = await graphql(/* GraphQL */ `
     query Query {
-      # Query all WordPress blog posts sorted by date
-      allWpPost(sort: { fields: [date], order: DESC }) {
-        edges {
-          previous {
-            id
-          }
-          # note: this is a GraphQL alias. It renames "node" to "post" for this query
-          # We're doing this because this "node" is a post! It makes our code more readable further down the line.
-          post: node {
-            __typename
-            id
-            uri
-            categories {
-              nodes {
-                id
-              }
-            }
-          }
-          next {
-            id
-          }
-        }
-      }
       allWpPage(sort: { fields: [date], order: DESC }) {
         edges {
           previous {
@@ -162,120 +138,6 @@ exports.getNodes = async function getNodes({ graphql, reporter }) {
             __typename
             id
             uri
-          }
-          next {
-            id
-          }
-        }
-      }
-      allWpInvestigacion(sort: { fields: [date], order: DESC }) {
-        edges {
-          previous {
-            id
-          }
-          # note: this is a GraphQL alias. It renames "node" to "post" for this query
-          # We're doing this because this "node" is a post! It makes our code more readable further down the line.
-          post: node {
-            __typename
-            id
-            uri
-            nombre
-            slug
-          }
-          next {
-            id
-          }
-        }
-      }
-      allWpLineaDeInvestigacion(sort: { fields: [date], order: DESC }) {
-        edges {
-          previous {
-            id
-          }
-          # note: this is a GraphQL alias. It renames "node" to "post" for this query
-          # We're doing this because this "node" is a post! It makes our code more readable further down the line.
-          post: node {
-            __typename
-            id
-            uri
-            nombre
-            slug
-          }
-          next {
-            id
-          }
-        }
-      }
-      allWpCarrera(sort: { fields: [date], order: DESC }) {
-        edges {
-          previous {
-            id
-          }
-          # note: this is a GraphQL alias. It renames "node" to "post" for this query
-          # We're doing this because this "node" is a post! It makes our code more readable further down the line.
-          post: node {
-            __typename
-            id
-            uri
-            nombre
-            slug
-          }
-          next {
-            id
-          }
-        }
-      }
-      allWpFacultad(sort: { fields: [date], order: DESC }) {
-        edges {
-          previous {
-            id
-          }
-          # note: this is a GraphQL alias. It renames "node" to "post" for this query
-          # We're doing this because this "node" is a post! It makes our code more readable further down the line.
-          post: node {
-            __typename
-            id
-            uri
-            nombre
-            slug
-          }
-          next {
-            id
-          }
-        }
-      }
-      allWpDepartamento(sort: { fields: [date], order: DESC }) {
-        edges {
-          previous {
-            id
-          }
-          # note: this is a GraphQL alias. It renames "node" to "post" for this query
-          # We're doing this because this "node" is a post! It makes our code more readable further down the line.
-          post: node {
-            __typename
-            id
-            uri
-            nombre
-            slug
-          }
-          next {
-            id
-          }
-        }
-      }
-      allWpGrado(sort: { fields: [date], order: DESC }) {
-        edges {
-          previous {
-            id
-          }
-          # note: this is a GraphQL alias. It renames "node" to "post" for this query
-          # We're doing this because this "node" is a post! It makes our code more readable further down the line.
-          post: node {
-            __typename
-            id
-            uri
-            nombre
-            slug
           }
           next {
             id
@@ -294,14 +156,7 @@ exports.getNodes = async function getNodes({ graphql, reporter }) {
   }
 
   return [
-    ...graphqlResult.data.allWpPost.edges,
     ...graphqlResult.data.allWpPage.edges,
-    ...graphqlResult.data.allWpInvestigacion.edges,
-    ...graphqlResult.data.allWpLineaDeInvestigacion.edges,
-    ...graphqlResult.data.allWpCarrera.edges,
-    ...graphqlResult.data.allWpFacultad.edges,
-    ...graphqlResult.data.allWpDepartamento.edges,
-    ...graphqlResult.data.allWpGrado.edges,
   ];
 };
 
