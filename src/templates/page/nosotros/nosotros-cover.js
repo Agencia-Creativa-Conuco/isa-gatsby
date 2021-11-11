@@ -36,7 +36,7 @@ const NosotrosCover = () => {
 
   const title = "UNIVERSIDAD ISA";
   const copy =
-    "La Universidad ISA es una institución de educación superior, privada, sin fines de lucro, amparada en la ley 139-01 del día 13 de agosto de 2001.";
+    "La Universidad ISA propicia en sus aulas el desarrollo de líderes visionarios, guiados por los valores de honestidad, responsabilidad, respeto, compromiso social y calidad.";
   const cta = {
     title: "Estudia con nosotros",
     url: "/admisiones",

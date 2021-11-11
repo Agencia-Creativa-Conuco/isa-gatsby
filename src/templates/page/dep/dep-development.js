@@ -39,7 +39,7 @@ const DEPDevelopment = () =>{
     const 
         title = "Proyectos En Desarrollo",
         content = `
-            <p>Además de dedicarse a la docencia y la investigación, la universidad cuenta con una amplia trayectoria en la elaboración y ejecución de proyectos, principalmente relacionados al desarrollo social y agroproductivo. Esto ha conllevado a que la institución posea una fuerte vinculación con las distintas entidades, ONG’s, Ministerios y Estamentos Estatales que brindan soporte al desarrollo del país y a los sectores más vulnerables.</p>
+            <p>Además de dedicarse a la docencia y la investigación, la Universidad cuenta con una amplia trayectoria en la elaboración y ejecución de proyectos, principalmente relacionados al desarrollo social y agroproductivo. Esto ha conllevado a que la institución posea una fuerte vinculación con las distintas entidades, ONG, Ministerios y Estamentos Estatales que brindan soporte al desarrollo del país y a los sectores más vulnerables.</p>
             <p>Con ello se ha cultivado una amplia experiencia sobre las metodologías de intervención, tanto para los programas de capacitación, como para el acompañamiento y asistencia técnica dirigidos al incremento de la competitividad y al mejoramiento de la calidad y productividad de dichos sectores.</p>
             <p>Actualmente, la Universidad ISA, mediante alianzas estratégicas con entidades públicas y privadas, enfoca sus esfuerzos en los siguientes ámbitos:</p>
         `,

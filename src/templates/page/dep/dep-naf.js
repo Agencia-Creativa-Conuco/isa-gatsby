@@ -28,7 +28,6 @@ const DepNAF = () =>{
                             <Title color={colors.white}> Centro NAF </Title>
                             <Copy>
                                 <p>Ofrece orientación tributaria gratuita.</p>
-                                <p>Servicios de inforamción y orientación básica sobre los siguientes trámites y procesos tributarios:</p>
                             </Copy>
                         </Content>
                     </Col>
@@ -38,7 +37,7 @@ const DepNAF = () =>{
                                 <ul css={listStyles}>
                                     <li>Promoción de Cultura Tributaria.</li>
                                     <li>Deberes y derechos de los contribuyentes y ciudadanos.</li>
-                                    <li>Uso de los servicios en línea del portal web y oficina virtual de Inpuestos Internos.</li>
+                                    <li>Uso de los servicios en línea del portal web y oficina virtual de Impuestos Internos.</li>
                                     <li>Inscripción y actualización del Registro Nacional de Contribuyentes (RNC).</li>
                                     <li>Registro del Régimen Simplificado de Tributación (RST).</li>
                                     <li>Solicitud de comprobantes fiscales.</li>

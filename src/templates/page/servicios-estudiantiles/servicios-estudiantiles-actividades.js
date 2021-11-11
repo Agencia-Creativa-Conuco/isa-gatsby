@@ -14,7 +14,7 @@ const ServiciosEstudiantilesActividades = () =>{
     const images = useFiles();
 
     const 
-    title = "Comités y Clubes Estudiantiles",
+    title = "Actividades Extracurriculares",
     actividadesExtracurriculares = [
         {
             title: "CAISA",

@@ -30,7 +30,7 @@ const SectionComponent = styled.section`
   position: relative;
   ${({
     thin, small, medium, large, 
-    mediumTop, mediumBottom,
+    mediumTop, mediumBottom, smallTop, smallBottom,
     spaceTopNone, spaceTopNoneMD, spaceBottomNone, spaceNone,
     zIndex, zIndexSM, zIndexMD, zIndexLG, zIndexXL, bgColor
   }) => css`
@@ -63,6 +63,24 @@ const SectionComponent = styled.section`
           margin-bottom: 16rem;
           margin-top: 16rem;
       }`:""}
+
+    ${smallTop? css`
+      ${mq.xs}{
+        margin-top: 5.5rem;
+        ${mq.md}{
+            margin-top: 9.6rem;
+        }
+      }
+    `:""}
+
+    ${smallBottom? css`
+      ${mq.xs}{
+        margin-bottom: 5.5rem;
+        ${mq.md}{
+            margin-bottom: 9.6rem;
+        }
+      }
+    `:""}
     
     ${mediumTop? css`
       ${mq.xs}{
@@ -81,6 +99,7 @@ const SectionComponent = styled.section`
         }
       }
     `:""}
+    
 
     ${spaceTopNone? css`
       ${mq.xs}{

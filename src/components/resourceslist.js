@@ -40,6 +40,8 @@ const ResourcesList = ({
         return !exclude.includes(tipoRecurso) && esRelacionado;
     });
 
+    console.log(resources)
+
     useEffect(()=>{
     }, []);
 

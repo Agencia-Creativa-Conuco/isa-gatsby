@@ -24,13 +24,13 @@ const DIPPhilosophy = () => {
     {
       title: "Misión",
       content: `
-                <p>desarrollar, factibilizar y fortalecer la investigación y publicación científica, tecnológica y de innovación, mediante prácticas éticas y temas relevantes con impacto a nivel nacional e internacional.</p>
+                <p>Desarrollar, factibilizar y fortalecer la investigación y publicación científica, tecnológica y de innovación, mediante prácticas éticas y temas relevantes con impacto a nivel nacional e internacional.</p>
             `,
     },
     {
       title: "Visión",
       content: `
-                <p>ser un departamento que posibilite, impulse y apoye las investigaciones y publicaciones, a los fines de contribuir en la solución de problemas de la sociedad.</p>
+                <p>Ser un departamento que posibilite, impulse y apoye las investigaciones y publicaciones, a los fines de contribuir en la solución de problemas de la sociedad.</p>
             `,
     },
     {

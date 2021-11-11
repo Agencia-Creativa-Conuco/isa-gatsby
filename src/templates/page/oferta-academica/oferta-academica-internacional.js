@@ -71,10 +71,8 @@ const OfferInternational = () => {
         title: "Programas anteriores",
         content: `
                     <ul>
-                        <li>Ohio State</li>
-                        <li>University</li>
-                        <li>Purdue</li>
-                        <li>University</li>
+                        <li>Ohio State University</li>
+                        <li>Purdue University</li>
                     </ul>
                 `,
       },

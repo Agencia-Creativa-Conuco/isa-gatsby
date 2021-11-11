@@ -107,7 +107,7 @@ const NosotrosHistory = () =>{
             title: "Hoy Universidad ISA",
             year: "Actualidad",
             content: `
-                <p>El desarrollo de las actividades de la Universidad ISA durante las últimas cinco décadas, ha respondido claramente a las necesidades de tecnificación e industrialización de los sectores productivos de la agropecuMyISAM nacional.</p> 
+                <p>El desarrollo de las actividades de la Universidad ISA durante las últimas cinco décadas, ha respondido claramente a las necesidades de tecnificación e industrialización de los sectores productivos de la agropecuaria nacional.</p> 
                 <p>La Universidad ha sabido responder a los cambios que la sociedad ha demandado, y en la actualidad ha diversificado su oferta curricular ofreciendo carreras que responden a las necesidades del país. En todas ellas introduciendo cambios en la estructura curricular para formar profesionales con las competencias requeridas para desarrollar su labor con profesionalidad, inspirados en los principios y valores que sustenta la Universidad.</p>
             `,
             image: images['crono-5']

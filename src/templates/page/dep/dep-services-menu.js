@@ -45,12 +45,12 @@ const DEPServicesMenu = () =>{
             `,
         },
         {
-            title : "Departamento de Ciencia Animal",
+            title : "Ciencia Animal",
             content: `
                 <ul>
                     <li>Consultas en general</li>
                     <li>Vacunas ( Felinos, Caninos)</li>
-                    <li>Coproológicos</li>
+                    <li>Coprológicos</li>
                     <li>Sonografias</li>
                     <li>Baño, corte de uña y de pelo en caninos</li>
                     <li>Cirugías en general</li>
@@ -59,7 +59,7 @@ const DEPServicesMenu = () =>{
             `,
         },
         {
-            title : "Departamento de Agronomía",
+            title : "Agronomía",
             content: `
                 <ul>
                     <li>Extracción de ADN</li>
@@ -73,7 +73,7 @@ const DEPServicesMenu = () =>{
             `,
         },
         {
-            title : "Departamento de Tecnología de Alimentos",
+            title : "Tecnología de Alimentos",
             content: `
                 <ul>
                     <li>Servicios de soporte y seguimiento en Gestión de Calidad.</li>

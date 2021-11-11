@@ -272,11 +272,11 @@ const Title = styled.span`
         ${isFaculty?css`
             font-weight: 900;
         `: isCareer? css`
-            text-transform: capitalize;
+            text-transform: initial;
             font-weight: 400;
         `: css`
             font-weight: 300;
-            text-transform: capitalize;
+            text-transform: initial;
         `}
     `}
 `;

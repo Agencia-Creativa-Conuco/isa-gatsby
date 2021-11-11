@@ -14,7 +14,7 @@ export const h1 = css`
         font-size: 4rem;
     }
     ${mq.xl}{
-        font-size: 4.5rem;
+        font-size: 4rem;
     }
 `;
 
@@ -30,7 +30,7 @@ export const h2 = css`
         font-size: 3rem;
     }
     ${mq.xl}{
-        font-size: 3.5rem;
+        font-size: 3rem;
     }   
 `;
 

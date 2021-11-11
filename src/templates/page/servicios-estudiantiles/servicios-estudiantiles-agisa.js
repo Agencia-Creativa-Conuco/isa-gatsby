@@ -13,7 +13,7 @@ const ServiciosEstudiantilesAGISA = () =>{
     const 
         title = "Asociación De Graduados De ISA (AGISA)",
         content = `
-            <p>es una institución privada, sin fines de lucros que agrupa y promueve el mejoramiento de los profesionales graduados de los diversos programas de estudio del ISA. AGISA surge mediante el decreto número 455 del año 1990 con los objetivos de promover:</p>
+            <p>Es una institución privada, sin fines de lucros que agrupa y promueve el mejoramiento de los profesionales graduados de los diversos programas de estudio del ISA. AGISA surge mediante el decreto número 455 del año 1990 con los objetivos de promover:</p>
             <ul>
                 <li>El desarrollo institucional del Instituto Superior de Agricultura, y el acercamiento entre el ISA y sus egresados.</li>
                 <li>El desarrollo social, cultural, científico y económico de sus miembros.</li>

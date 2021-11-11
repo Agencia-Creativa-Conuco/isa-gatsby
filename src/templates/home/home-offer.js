@@ -69,10 +69,10 @@ const Title = styled.span`
             font-weight: 900;
         `: level % 2 !== 0? css`
             font-weight: 400;
-            text-transform: capitalize;
+            text-transform: initial;
         `: css`
             font-weight: 300;
-            text-transform: capitalize;
+            text-transform: initial;
         `}
     `}
 `;

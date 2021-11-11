@@ -15,7 +15,7 @@ const AdmisionesBeca = () => {
           <Col>
             <Title>Becas</Title>
             <Copy>
-              Becas disponibles a través de:
+              Gestión de becas a través de:
             </Copy>
             <Row alignCenter>
               <Col size={12} sizeMD={4}>
@@ -50,6 +50,15 @@ const AdmisionesBeca = () => {
                   <Institution>
                       <Media>
                           <FeaturedMedia media={images.admisiones.cedaf} />
+                      </Media>
+                  </Institution>
+                </a>
+              </Col>
+              <Col size={12} sizeMD={4}>
+                <a href="http://www.inafocam.edu.do/" target="_blank" rel="noreferrer" aria-label="INAFOCAM"> 
+                  <Institution>
+                      <Media>
+                          <FeaturedMedia media={images.admisiones.inafocam} />
                       </Media>
                   </Institution>
                 </a>

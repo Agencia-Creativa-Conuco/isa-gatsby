@@ -21,7 +21,7 @@ const ServiciosEstudiantilesDeportes = () =>{
         anotherTitle ="DISCIPLINAS DESARROLLADAS PARA AMBOS GÉNEROS",
         sports = [
             {
-                name: "Baloncesto Masculino",
+                name: "Baloncesto",
                 image: images['servicios-estudiantiles'].baloncesto,
             },
             {
@@ -39,6 +39,10 @@ const ServiciosEstudiantilesDeportes = () =>{
             {
                 name: "Béisbol",
                 image: images['servicios-estudiantiles'].beisbol,
+            },
+            {
+                name: "Sóftbol",
+                image: images['servicios-estudiantiles'].softbol,
             },
             {
                 name: "Ajedrez",

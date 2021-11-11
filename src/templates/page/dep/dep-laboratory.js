@@ -21,7 +21,10 @@ const DEPLaboratory = () =>{
             title: "Laboratorio de Análisis Industrial e Inocuidad de los Alimentos",
             copy: "El Laboratorio de Inocuidad de Alimentos y Análisis Industrial (LIAAI), es una dependencia de carácter científico y tecnológico, con autonomía administrativa, adscrito a la Universidad ISA. El LIAAI nace con la intención de responder a la necesidad del sector agrícola e industrial de tener a la disposición un laboratorio, con personal altamente capacitado, tecnología especializada, capaz de ofrecer servicios de análisis destinados a confirmar la calidad de los productos según los requerimientos nacionales e internacionales.",
             image: images["direccion-extension-y-proyectos"].liaai,
-            cta: null
+            cta: {
+                url: '/liaai',
+                title: 'Conoce más',
+            }
         }
     ]
 

@@ -11,7 +11,7 @@ const ServiciosEstudiantilesCover = () =>{
     const images = useFiles();
 
     const
-        title = "Servicios Al Estudiante",
+        title = "Servicios al Estudiante",
         copy = "Junto a nuestra oferta académica, tenemos disponible diversos servicios que cubren las diferentes necesidades de los estudiantes durante su paso por la universidad. Descubre aquí cuáles son e iniciemos esta aventura juntos.",
         featuredImage = images['servicios-estudiantiles'].cover;
 

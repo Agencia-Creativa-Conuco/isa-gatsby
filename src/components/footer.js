@@ -8,6 +8,8 @@ import {
   InstagramIcon,
   Facebook2Icon,
   TwitterIcon,
+  YoutubeIcon,
+  LinkedInIcon,
 } from "./icons";
 import Navigation from "./navigation/navigation";
 import colors from "./styles/colors";
@@ -44,7 +46,9 @@ const Footer = ({ state, libraries }) => {
   const {
       url_twitter = "https://twitter.com/universidad_isa", 
       url_facebook = 'https://www.facebook.com/UniversidadISA',
-      url_instagram = 'https://www.instagram.com/universidadisa'
+      url_instagram = 'https://www.instagram.com/universidadisa',
+      url_youtube = 'https://www.youtube.com/channel/UCh5-GNiGNA_CBxkeXCiOMjA',
+      url_linkedin = 'https://do.linkedin.com/company/universidad-isa',
   } = menu;
 
   return (
@@ -92,7 +96,7 @@ const Footer = ({ state, libraries }) => {
                 <Row>
                   {url_twitter ? (
                     <Col size="auto">
-                      <LinkIcon href={url_twitter} target="_blank" rel="noreferrer"  aria-label="Click para abrir la red social...">
+                      <LinkIcon href={url_twitter} target="_blank" rel="noreferrer"  aria-label="Twitter">
                         <TwitterIcon />
                       </LinkIcon>
                     </Col>
@@ -100,7 +104,7 @@ const Footer = ({ state, libraries }) => {
 
                   {url_instagram ? (
                     <Col size="auto">
-                      <LinkIcon href={url_instagram} target="_blank" rel="noreferrer"  aria-label="Click para abrir la red social...">
+                      <LinkIcon href={url_instagram} target="_blank" rel="noreferrer"  aria-label="Instagram">
                         <InstagramIcon />
                       </LinkIcon>
                     </Col>
@@ -108,8 +112,24 @@ const Footer = ({ state, libraries }) => {
 
                   {url_facebook ? (
                     <Col size="auto">
-                      <LinkIcon href={url_facebook} target="_blank" rel="noreferrer"  aria-label="Click para abrir la red social...">
+                      <LinkIcon href={url_facebook} target="_blank" rel="noreferrer"  aria-label="Facebook">
                         <Facebook2Icon />
+                      </LinkIcon>
+                    </Col>
+                  ) : null}
+
+                  {url_linkedin ? (
+                    <Col size="auto">
+                      <LinkIcon href={url_linkedin} target="_blank" rel="noreferrer"  aria-label="LinkedIn">
+                        <LinkedInIcon />
+                      </LinkIcon>
+                    </Col>
+                  ) : null}
+
+                  {url_youtube ? (
+                    <Col size="auto">
+                      <LinkIcon href={url_youtube} target="_blank" rel="noreferrer"  aria-label="Youtube">
+                        <YoutubeIcon />
                       </LinkIcon>
                     </Col>
                   ) : null}

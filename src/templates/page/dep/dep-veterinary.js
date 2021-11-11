@@ -24,7 +24,7 @@ const DEPVeterinary = ({ page }) => {
         title: "Servicios",
         items: [
           { content: "Consulta"},
-          { content: "cirugía"},
+          { content: "Cirugía"},
           { content: "Vacunaciones"}
         ]
       },
@@ -48,10 +48,12 @@ const DEPVeterinary = ({ page }) => {
           <Row>
             <SpecialCol
               size={12}
+              sizeMD={8}
+              mlAuto
               sizeLG={5}
               DecoBg={colors.blue.base}
               DecoBgA={colors.blue.dark}
-              orderMD={2}
+              orderLG={2}
             >
               <Media media={image} />
             </SpecialCol>
