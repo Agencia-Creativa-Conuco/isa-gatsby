@@ -4,35 +4,12 @@ import { css } from '@emotion/react';
 import { Container, Section, Row, Col} from "../../../components/layout/index";
 import FeaturedMedia from "../../../components/featured-media";
 import colors from '../../../components/styles/colors';
-import { useStaticQuery, graphql } from 'gatsby';
+import Cta from '../../../components/cta';
+import useFiles from '../../../hooks/useFiles';
 
 const OfferTecnics = () =>{
 
-        //Obtiene las imágenes localmente desde la ruta "images/home"
-  const { allFile } = useStaticQuery(graphql`
-  query {
-    allFile(filter: { relativeDirectory: { in: ["oferta-academica"] } }) {
-      nodes {
-        id
-        name
-        childImageSharp {
-          fluid(maxWidth: 1200) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-    }
-  }
-`);
-
-// Convierte arreglo de imágenes en objeto cuya llave es el nómbre del archivo
-// Esto para facilitar la búsqueda de la imagenes en los componentes hijos.
-const images = allFile.nodes.reduce((obj, item) => {
-  return {
-    ...obj,
-    [item.name]: item,
-  };
-}, {});
+    const images = useFiles()['oferta-academica'];
 
     const 
         title = "Centro de Educación Técnica Huáscar Rodríguez Herrera",
@@ -54,6 +31,7 @@ const images = allFile.nodes.reduce((obj, item) => {
                         <DivTitle decoBg={colors.blue.base}>
                             <SectionTitle decoBg={colors.blue.base}>{ title }</SectionTitle>
                             <div dangerouslySetInnerHTML={{__html: content}} />
+                            <Cta to="/centro-de-educacion-tecnica-huascar-rodriguez-herrera">Conocer más</Cta>
                         </DivTitle>
                         <DecoCol decoBg={colors.blue.base}/>
                     </Col>
@@ -131,4 +109,4 @@ const DecoCol = styled.div`
         transform: translate(-50%, -50%);
         z-index: 1;
     }
-`
+`;

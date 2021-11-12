@@ -20,10 +20,10 @@ const ServiciosEstudiantilesBienestar = ({ page }) =>{
         cta = null
 
     return (
-        <Section spaceNone>
+        <Section spaceNone zIndex={20}>
             <Container fluid>
                 <Row>
-                <Col size={12} sizeMD={6} orderMD={2} noGutters>
+                <Col size={12} sizeMD={6} noGutters>
                     <FeaturedMedia
                         media={ image }
                             size="56.25%"
@@ -31,7 +31,7 @@ const ServiciosEstudiantilesBienestar = ({ page }) =>{
                             bgColor
                         />
                     </Col>
-                    <Col size={12} sizeMD={6} orderMD={1}>
+                    <Col size={12} sizeMD={6}>
                         <DivTitle decoBg = {colors.blue.dark}>
                             <SectionTitle > { title } </SectionTitle>
                             <div dangerouslySetInnerHTML={{__html: content}} />
@@ -50,7 +50,6 @@ const ServiciosEstudiantilesBienestar = ({ page }) =>{
 }
 
 export default ServiciosEstudiantilesBienestar;
-
 
 const DivTitle = styled.div`
     max-width: 57rem;

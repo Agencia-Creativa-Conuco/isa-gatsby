@@ -14,7 +14,7 @@ const Form = ({
   loadingHeight = "100%",
   cardStyle = true,
   submitedTitle = "¡Gracias por enviar el formulario!",
-  submitedText = "En Universidad ISA tomamos muy en serio las solicitudes de nuestros usuarios. Nos pondremos en contacto pronto.",
+  submitedText = "Hola, gracias por contactar Universidad ISA, responderemos su requerimiento en cuanto nos sea posible. Siempre a la orden.",
   ...props
 }) => {
   const [submited, setSubmited] = useState(false);

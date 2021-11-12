@@ -20,10 +20,10 @@ const ServiciosEstudiantilesPsicologia = () =>{
         cta = null
 
     return (
-        <Section spaceNone>
+        <Section spaceNone zIndex={2}>
             <Container fluid>
                 <Row>
-                    <Col size={12} sizeMD={6} noGutters>
+                    <Col size={12} sizeMD={6} noGutters orderLG={2}>
                         <FeaturedMedia
                             media={ image }
                             size="56.25%"

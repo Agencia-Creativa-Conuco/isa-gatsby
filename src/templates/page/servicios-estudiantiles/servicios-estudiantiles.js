@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import ServiciosEstudiantilesCover from "./servicios-estudiantiles-cover";
 import ServiciosEstudiantilesPsicologia from "./servicios-estudiantiles-psicologia";
 import ServiciosEstudiantilesBienestar from "./servicios-estudiantiles-bienestar";
-import ServiciosEstudiantilesResidencia from "./servicios-estudiantiles-residencia";
+// import ServiciosEstudiantilesResidencia from "./servicios-estudiantiles-residencia";
 import ServiciosEstudiantilesAGISA from "./servicios-estudiantiles-agisa";
 import ServiciosEstudiantilesClinica from "./servicios-estudiantiles-clinica";
 import ServiciosEstudiantilesDeportes from "./servicios-estudiantiles-deportes";
@@ -21,7 +21,7 @@ const ServiciosEstudiantilesPage = (props) => {
                 <ServiciosEstudiantilesActividades />
                 <ServiciosEstudiantilesBienestar />
                 <ServiciosEstudiantilesPsicologia />
-                <ServiciosEstudiantilesResidencia />
+                {/* <ServiciosEstudiantilesResidencia /> */}
                 <ServiciosEstudiantilesClinica />
                 <ServiciosEstudiantilesDeportes />
                 <ServiciosEstudiantilesExcelencia />
