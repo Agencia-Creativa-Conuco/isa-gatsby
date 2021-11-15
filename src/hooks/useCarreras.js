@@ -37,7 +37,6 @@ const useCarreras = () => {
                   ...ImageFragment
                 }
                 contenidoPerfilEgresado
-                hsFormulario
                 imagenFormulario {
                   ...ImageFragment
                 }
@@ -102,7 +101,6 @@ const useCarreras = () => {
         imagenPerfilEgresado: carrera.imagenPerfilEgresado,
         contenidoPerfilEgresado: carrera.contenidoPerfilEgresado,
         tabs: carrera.datosCarrera.tabs || [],
-        hsFormulario: carrera.hsFormulario,
         imagenFormulario: carrera?.imagenFormulario,
         recursos: carrera?.recursos?.nodes || [],
         contacto: carrera.contacto,
