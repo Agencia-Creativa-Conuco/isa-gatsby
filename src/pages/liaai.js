@@ -13,35 +13,39 @@ const LIAAI = () => {
 
     return (
         <Layout>
-            <Section medium smallBottom>
+            <Section medium spaceBottomNone zIndex={3}>
                 <Container>
-                    <Row>
-                        <Col>
-                            <Logo>
-                                <FeaturedMedia media={images.logo}/>
-                            </Logo>
-                            <Title>Laboratorioa de Análisis Industrial e Inocuidad de los Alimentos</Title>
-                            <p>El Laboratorio de Inocuidad de Alimentos y Análisis Industrial (LIAAI), es una dependencia de carácter científico y tecnológico, con autonomía administrativa, adscrito a la Universidad ISA.  El LIAAI nace con la intención de responder a la necesidad del sector agrícola e industrial de tener a la  disposición un laboratorio, con personal altamente capacitado, tecnología especializada, capaz de ofrecer servicios de análisis destinados a confirmar la calidad de los productos según los requerimientos nacionales e internacionales.</p>
-                        </Col>
-                    </Row>
-                </Container>
-            </Section>
-            <SSection bgColor={colors.primary.dark} color="white">
-                <Section as="div">
-                    <Container>
+                    <Overlay>
                         <Row>
                             <Col>
-                                <SubTitle color="white">Políticas de Calidad LIAAI</SubTitle>
+                                <Logo>
+                                    <FeaturedMedia media={images.logo}/>
+                                </Logo>
+                                <Title>Laboratorioa de Análisis Industrial e Inocuidad de los Alimentos</Title>
+                                <p>El Laboratorio de Inocuidad de Alimentos y Análisis Industrial (LIAAI), es una dependencia de carácter científico y tecnológico, con autonomía administrativa, adscrito a la Universidad ISA.  El LIAAI nace con la intención de responder a la necesidad del sector agrícola e industrial de tener a la  disposición un laboratorio, con personal altamente capacitado, tecnología especializada, capaz de ofrecer servicios de análisis destinados a confirmar la calidad de los productos según los requerimientos nacionales e internacionales.</p>
                             </Col>
                         </Row>
-                        <ListPolíticas>
-                            <li>El Laboratorio de Inocuidad de Alimentos y Análisis Industrial (LIAAI) tiene como política cumplir de manera íntegra su misión, valores y objetivos de calidad, aplicando las Buenas Prácticas de Laboratorio (BPL) para garantizar la calidad de los ensayos microbiológicos, químicos, físicos y físico-químicos cumpliendo siempre con los requisitos y expectativas de nuestros clientes.</li>
-                            <li>La alta Gerencia asegura que todo el personal está familiarizado con la documentación del Sistema de Gestión de Calidad y está comprometido con su implementación, mantenimiento y mejora, aplicando las políticas y procedimientos establecidos de manera correcta en todas las actividades que desarrolla para estos fines.</li>
-                            <li>El LIAAI está comprometido con la mejora y el cumplimiento de los procesos, proporcionando un servicio de la más alta calidad, puntualidad y confiabilidad, acorde a los estándares internacionales, basados en los requisitos de las Normas ISO/9001 e ISO/IEC/17025.</li>
-                        </ListPolíticas>
-                    </Container>
-                </Section>
-            </SSection>
+                    </Overlay>
+                </Container>
+            </Section>
+            <SPoliticas>
+                <SSection as="div" bgColor={colors.primary.dark} color="white" spaceTopNone css={css`padding-top: 5%;`}>
+                    <Section as="div">
+                        <Container>
+                            <Row>
+                                <Col>
+                                    <SubTitle color="white">Políticas de Calidad LIAAI</SubTitle>
+                                </Col>
+                            </Row>
+                            <ListPolíticas>
+                                <li>El Laboratorio de Inocuidad de Alimentos y Análisis Industrial (LIAAI) tiene como política cumplir de manera íntegra su misión, valores y objetivos de calidad, aplicando las Buenas Prácticas de Laboratorio (BPL) para garantizar la calidad de los ensayos microbiológicos, químicos, físicos y físico-químicos cumpliendo siempre con los requisitos y expectativas de nuestros clientes.</li>
+                                <li>La alta Gerencia asegura que todo el personal está familiarizado con la documentación del Sistema de Gestión de Calidad y está comprometido con su implementación, mantenimiento y mejora, aplicando las políticas y procedimientos establecidos de manera correcta en todas las actividades que desarrolla para estos fines.</li>
+                                <li>El LIAAI está comprometido con la mejora y el cumplimiento de los procesos, proporcionando un servicio de la más alta calidad, puntualidad y confiabilidad, acorde a los estándares internacionales, basados en los requisitos de las Normas ISO/9001 e ISO/IEC/17025.</li>
+                            </ListPolíticas>
+                        </Container>
+                    </Section>
+                </SSection>
+            </SPoliticas>
             <SSection>
                 <Container>
                     <Row>
@@ -82,6 +86,52 @@ const LIAAI = () => {
 }
 
 export default LIAAI;
+
+const Overlay = styled.div`
+    padding: 5%;
+    position: relative;
+    background-color: white;
+    margin-bottom: -10%;
+    border-radius: 2rem;
+    &:before{
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 70%;
+        box-shadow: 0 0 3.5rem rgba(0,0,0,0.3);
+        z-index: -1;
+    }
+`;
+
+const SPoliticas = styled.section`
+    position: relative;
+    &:before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5%;
+        padding-bottom: 5%;
+        height: 0;
+        background-color: ${colors.primary.base};
+        transform: translate(50%, -50%);
+        z-index: 1;
+    }
+    &:after{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 10%;
+        padding-bottom: 10%;
+        height: 0;
+        background-color: ${colors.primary.base};
+        transform: translate(50%, 50%);
+        z-index: 1;
+    }
+`;
 
 const Logo = styled.div`
     max-width: 25rem;
