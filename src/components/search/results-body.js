@@ -7,11 +7,13 @@ import useFilter from "../hooks/useFilter";
 import CardBody from "./card-body";
 import urlSlug from 'url-slug';
 import useRecursos from '../../hooks/useRecursos';
+import Loading from "../loading";
+
 
 const ResultsBody = ({props}) =>{
 
   const {
-    resultsSearch
+    resultsSearch,
   } = props;
 
   const recursos = useRecursos();
@@ -111,13 +113,11 @@ const ResultsBody = ({props}) =>{
                 </Row>
             </Container>
         </Section>
+    ): resultsSearch?.length !== 0 ?(
+           <Loading/> 
     ):(
-        <> 
-        <Title> Sin Resultados 😔 </Title>    
-        </>
-        
+      <Title> Sin Resultados 😔 </Title>    
     )
-
 }
 
 export default ResultsBody;
