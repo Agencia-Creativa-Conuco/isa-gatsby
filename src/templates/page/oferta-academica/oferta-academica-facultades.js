@@ -76,6 +76,8 @@ const OfferFaculties = () =>{
                                 return departamento.carreras.filter( carrera => listaDeCarreras.map( item => item.id ).includes(carrera.id)).length;
                             })
 
+                           const esPostgrado = ['grado'].includes(grado.slug);
+
                             return facultades.length > 0?(
                                 <Wrapper key={index} hidden={!isActive}>
                                     <Section as="div">
@@ -96,7 +98,7 @@ const OfferFaculties = () =>{
 
                                                                 return (
                                                                     <Col key={facultad.id} size={12}>
-                                                                        <Link to={facultad.uri}>
+                                                                        <Link to={ esPostgrado? facultad.uri : null }>
                                                                             <Title 
                                                                                 color={colors.primary.dark} 
                                                                                 bgHover={colors.gray.light}

@@ -8,6 +8,7 @@ const Section = ({
   mediumTop, mediumBottom,
   spaceTopNone, spaceTopNoneMD, spaceBottomNone, spaceNone,
   zIndex, zIndexSM, zIndexMD, zIndexLG, zIndexXL, bgColor,
+  overflow,
   ...props
 }) => {
 
@@ -17,6 +18,7 @@ const Section = ({
       mediumTop, mediumBottom,
       spaceTopNone, spaceTopNoneMD, spaceBottomNone, spaceNone,
       zIndex, zIndexSM, zIndexMD, zIndexLG, zIndexXL, bgColor,
+      overflow,
       ...props
     }} />
   );
@@ -32,8 +34,10 @@ const SectionComponent = styled.section`
     thin, small, medium, large, 
     mediumTop, mediumBottom, smallTop, smallBottom,
     spaceTopNone, spaceTopNoneMD, spaceBottomNone, spaceNone,
-    zIndex, zIndexSM, zIndexMD, zIndexLG, zIndexXL, bgColor
+    zIndex, zIndexSM, zIndexMD, zIndexLG, zIndexXL, bgColor,
+    overflow,
   }) => css`
+    overflow: ${overflow || 'initial'};
     ${ bgColor?css`background-color: ${bgColor}`:css``}
     ${thin? css`
       margin-bottom: 3.2rem;

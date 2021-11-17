@@ -89,7 +89,7 @@ const GradeOffer = ({ grado }) => {
                         <Col key={departamento.id} size={12} sizeMD={6}>
                           <Link to={departamento.uri}>
                             <Title
-                              color={colors.primary.base}
+                              color={colors.primary.dark}
                               bgHover={colors.gray.light}
                             >
                               {departamento.nombre}
@@ -137,14 +137,16 @@ const StyledSection = styled(Section)`
   overflow: hidden;
   background-color: #FEFEFE;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.15) inset;
-    padding-bottom: 10rem;
-`;
+  padding-bottom: 10rem;
+  `;
 
 const SectionTitle = styled.h2`
     text-align: center;
     font-weight: 900;
     margin-bottom: 4rem;
-    margin-top: 4rem;
+    margin-top: .5rem;
+    font-weight: 400;
+    color: ${colors.primary.base}
 `;
 
 const Title = styled.span`
@@ -168,10 +170,10 @@ const Title = styled.span`
       : isCareer
       ? css`
           text-transform: capitalize;
-          font-weight: 300;
+          font-weight: 400;
         `
       : css`
-          font-weight: 400;
+          font-weight: 300;
         `}
   `}
 `;

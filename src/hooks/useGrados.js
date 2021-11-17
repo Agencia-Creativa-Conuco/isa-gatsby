@@ -11,10 +11,6 @@ const useGrados = () => {
             id
             __typename
             nombre
-            copy
-            imagenPortada {
-              ...ImageFragment
-            }
             carreras {
               nodes {
                 id
@@ -44,13 +40,11 @@ const useGrados = () => {
     return resultado.allWpGrado.nodes.map( grado => ({
         id: grado.id,
         nombre: grado.nombre,
-        copy: grado.copy,
         date: grado.date,
         slug: urlSlug(grado.nombre),
         uri: grado.uri.replace(grado.slug, urlSlug(grado.nombre)),
         link: grado.link.replace(grado.slug, urlSlug(grado.nombre)),
         order: grado?.orden,
-        imagenPortada: grado?.imagenPortada,
         carreras: grado.carreras.nodes || [],
         requisitos: grado?.datosRequisitos?.requisitos || [],
         type: grado.__typename,

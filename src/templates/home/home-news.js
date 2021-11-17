@@ -41,12 +41,14 @@ const HomeNews = () =>{
                                         <Row>
                                             <Col size={12}>
                                                 <CardMedia>
-                                                    <FeaturedMedia
-                                                        media={featuredImage}
-                                                        alt={title}
-                                                        size="56.25%"
-                                                        bgColor={colors.gray.light}
-                                                    />
+                                                    <Media>
+                                                        <FeaturedMedia
+                                                            media={featuredImage}
+                                                            alt={title}
+                                                            size="56.25%"
+                                                            bgColor={colors.gray.light}
+                                                        />
+                                                    </Media>
                                                 </CardMedia>
                                             </Col>
                                             <Col size={12}>
@@ -80,12 +82,14 @@ const HomeNews = () =>{
                                             <Row>
                                                 <Col size={12} sizeMD={6}>
                                                     <CardMedia>
-                                                        <FeaturedMedia
-                                                            media={featuredImage}
-                                                            alt={title}
-                                                            size="56.25%"
-                                                            bgColor={colors.gray.light}
-                                                        />
+                                                        <Media>
+                                                            <FeaturedMedia
+                                                                media={featuredImage}
+                                                                alt={title}
+                                                                size="56.25%"
+                                                                bgColor={colors.gray.light}
+                                                            />
+                                                        </Media>
                                                     </CardMedia>
                                                 </Col>
                                                 <Col size={12} sizeMD={6}>
@@ -143,6 +147,16 @@ const Card = styled.div`
 
 const CardMedia = styled.div`
     margin-bottom: 1rem;
+    padding-bottom: 56.25%;
+    background-color: #FAFAFA;
+    position: relative;
+`;
+
+const Media = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
 `;
 
 const CardBody = styled.div``;

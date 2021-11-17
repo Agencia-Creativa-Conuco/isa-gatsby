@@ -14,14 +14,14 @@ import {
 import Navigation from "./navigation/navigation";
 import colors from "./styles/colors";
 import { getHierarchicalItems } from "./inc/auxiliar";
+import useFiles from "../hooks/useFiles";
 
 const Footer = ({ state, libraries }) => {
+
+  const images = useFiles().site;
   //Consultar y optener logo.svg
-  const { logo, menu } = useStaticQuery(graphql`
+  const { menu } = useStaticQuery(graphql`
     query {
-      logo: file(relativePath: { eq: "logo-footer.svg" }) {
-        publicURL
-      }
 
       menu: wpMenu(locations: {in: FOOTER}) {
         id
@@ -76,7 +76,7 @@ const Footer = ({ state, libraries }) => {
               <Col size={12} sizeLG={3} order={1} orderLG={2}>
                 <Link to={"/"}  aria-label="Logo">
                   <FeaturedMedia
-                    media={logo}
+                    media={images["logo-footer"]}
                     maxWidth="25rem"
                     mxAuto
                     css={MediaDeco}
