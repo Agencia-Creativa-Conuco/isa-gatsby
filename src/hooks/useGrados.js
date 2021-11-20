@@ -29,7 +29,7 @@ const useGrados = () => {
                   id
                 }
               }
-            }
+            }   
 
             formularioGrados {
               formularios{

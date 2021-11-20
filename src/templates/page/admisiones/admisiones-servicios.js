@@ -6,8 +6,15 @@ import { css } from "@emotion/react";
 import colors from "../../../components/styles/colors";
 import useModal from "../../../components/hooks/useModal";
 import Cta from "../../../components/cta";
+import useGlobalOption from "../../../hooks/useGlobalOption";
 
 const AdmisionesServicios = () => {
+
+
+  const [{servicios}]= useGlobalOption();
+
+
+  console.log(servicios);
 
   const 
     title="Servicios Opcionales",
