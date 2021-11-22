@@ -24,7 +24,7 @@ const ResourceCard = ({
             <Card onClick={openModal}>
                 <CardMedia>
                     <Media>
-                        <FeaturedMedia media={item.imagenPortada} height="100%" fit="contain" position="0% 0%"/>
+                        <FeaturedMedia media={item.imagenPortada} height="100%" fit="contain" position="center center"/>
                     </Media>
                 </CardMedia>
                 <CardBody>
