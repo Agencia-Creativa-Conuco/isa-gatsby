@@ -15,6 +15,7 @@ import Navigation from "./navigation/navigation";
 import colors from "./styles/colors";
 import { getHierarchicalItems } from "./inc/auxiliar";
 import useFiles from "../hooks/useFiles";
+import useGlobalOption from "../hooks/useGlobalOption";
 
 const Footer = ({ state, libraries }) => {
 
@@ -43,13 +44,12 @@ const Footer = ({ state, libraries }) => {
 
   const items = getHierarchicalItems(menu.menuItems.nodes);
 
-  const {
-      url_twitter = "https://twitter.com/universidad_isa", 
-      url_facebook = 'https://www.facebook.com/UniversidadISA',
-      url_instagram = 'https://www.instagram.com/universidadisa',
-      url_youtube = 'https://www.youtube.com/channel/UCh5-GNiGNA_CBxkeXCiOMjA',
-      url_linkedin = 'https://do.linkedin.com/company/universidad-isa',
-  } = menu;
+  const [{redesSociales}] = useGlobalOption();
+
+const  dataRedes={};
+
+redesSociales.map((item)=> dataRedes[item.id] = item.url);
+
 
   return (
     <FooterWrapper>
@@ -94,41 +94,41 @@ const Footer = ({ state, libraries }) => {
               <Col size={12} sizeMD={4} css={StylesCol}>
                 <Title color={colors.shadow.base}> REDES SOCIALES </Title>
                 <Row>
-                  {url_twitter ? (
+                  {dataRedes.url_twitter ? (
                     <Col size="auto">
-                      <LinkIcon href={url_twitter} target="_blank" rel="noreferrer"  aria-label="Twitter">
+                      <LinkIcon href={dataRedes.url_twitter} target="_blank" rel="noreferrer"  aria-label="Twitter">
                         <TwitterIcon />
                       </LinkIcon>
                     </Col>
                   ) : null}
 
-                  {url_instagram ? (
+                  {dataRedes.url_instagram ? (
                     <Col size="auto">
-                      <LinkIcon href={url_instagram} target="_blank" rel="noreferrer"  aria-label="Instagram">
+                      <LinkIcon href={dataRedes.url_instagram} target="_blank" rel="noreferrer"  aria-label="Instagram">
                         <InstagramIcon />
                       </LinkIcon>
                     </Col>
                   ) : null}
 
-                  {url_facebook ? (
+                  {dataRedes.url_facebook ? (
                     <Col size="auto">
-                      <LinkIcon href={url_facebook} target="_blank" rel="noreferrer"  aria-label="Facebook">
+                      <LinkIcon href={dataRedes.url_facebook} target="_blank" rel="noreferrer"  aria-label="Facebook">
                         <Facebook2Icon />
                       </LinkIcon>
                     </Col>
                   ) : null}
 
-                  {url_linkedin ? (
+                  {dataRedes.url_linkedin ? (
                     <Col size="auto">
-                      <LinkIcon href={url_linkedin} target="_blank" rel="noreferrer"  aria-label="LinkedIn">
+                      <LinkIcon href={dataRedes.url_linkedin} target="_blank" rel="noreferrer"  aria-label="LinkedIn">
                         <LinkedInIcon />
                       </LinkIcon>
                     </Col>
                   ) : null}
 
-                  {url_youtube ? (
+                  {dataRedes.url_youtube ? (
                     <Col size="auto">
-                      <LinkIcon href={url_youtube} target="_blank" rel="noreferrer"  aria-label="Youtube">
+                      <LinkIcon href={dataRedes.url_youtube} target="_blank" rel="noreferrer"  aria-label="Youtube">
                         <YoutubeIcon />
                       </LinkIcon>
                     </Col>
