@@ -11,18 +11,15 @@ import useGlobalOption from "../../../hooks/useGlobalOption";
 const AdmisionesServicios = () => {
 
 
-  const [{servicios}]= useGlobalOption();
-
-
-  console.log(servicios);
+  const [{servicios}] = useGlobalOption();
 
   const 
     title="Servicios Opcionales",
     services = [
       {
+        id: "alojamiento",
         name: "Alojamiento",
         icon: HotelIcon, 
-        url: "https://forms.gle/EFMUNvShBRNi2mui7",
         contenido: `
           <p>El Programa de Residencia Estudiantil, es un servicio que ofrece la Universidad ISA a sus estudiantes, principalmente a aquellos provenientes de zonas alejadas a la provincia de Santiago, con el objetivo de propiciar un ambiente que les permita la dedicación a sus estudios y a la vez, lograr un buen desempeño académico.</p>
           <p>Los estudiantes que desean conservar el derecho al servicio de residencia estudiantil, deben mantener un rendimiento académico en condición normal (2.0/4.0); y el respeto a las normas y reglamentos institucionales.</p>
@@ -35,9 +32,9 @@ const AdmisionesServicios = () => {
         `,
       },
       {
+        id:"alimentacion",
         name: "Alimentación",
         icon: FoodIcon,
-        url: "https://forms.gle/cpjpU6U3n2yTVknMA",
         contenido: `
           <p>El Programa de Servicio de  Alimentación, es una facilidad que ofrece la Universidad ISA a sus estudiantes, principalmente a aquellos provenientes de zonas alejadas a la provincia de Santiago, con el objetivo de propiciar un ambiente que les permita la dedicación a sus estudios y a la vez, lograr un buen desempeño académico.</p>
           <p>Los estudiantes que desean conservar el derecho al servicio de alimentación, deben mantener un rendimiento académico en condición normal (2.0/4.0); y el respeto a las normas y reglamentos institucionales.</p>
@@ -47,6 +44,15 @@ const AdmisionesServicios = () => {
       }
     ]
 
+  // se agregan las url que llegan desde el CMS
+    services.map((item) => {
+     return servicios.forEach((i) => {
+        if (item.id === i.id) {
+          item.url = i.link;
+        }
+      });
+    });
+
   return (
     <Section>
       <Container>
@@ -55,7 +61,6 @@ const AdmisionesServicios = () => {
             <Title>{title}</Title>
             <Row alignCenter>
             {services.map((service, index) => {
-
               return (
                 <Col key={index} size={12} sizeMD={4} mxAuto>
                   <ServiceComponent {...{service}} />

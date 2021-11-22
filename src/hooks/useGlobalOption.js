@@ -10,10 +10,21 @@ const useGlobalOption = () => {
                 acfOptionsServiciosOpcionales {
                   serviciosOpcionales {
                     servicios {
+                      id
                       link
                     }
                   }
                 }
+                acfOptionsRedesSociales {
+                  redesSociales {
+                    redes {
+                      id
+                      url
+                    }
+                  }
+                }
+
+
               }
             }
           }          
@@ -21,7 +32,8 @@ const useGlobalOption = () => {
     );
     
     return resultado.allWp.nodes.map( option => ({
-        servicios:  option.acfOptionsServiciosOpcionales?.serviciosOpcionales.servicios,
+        servicios:  option.acfOptionsServiciosOpcionales?.serviciosOpcionales.servicios || [],
+        redesSociales: option.acfOptionsRedesSociales?.redesSociales.redes || [],
     }));
 }
  
