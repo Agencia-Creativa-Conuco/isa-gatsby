@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import Image from "gatsby-image";
+import Image from "gatsby-image/withIEPolyfill";
 import { mq } from "./layout/index";
 import colors from "./styles/colors";
 
@@ -57,6 +57,10 @@ const FeaturedMedia = ({
 
   if (!media) return null;
 
+  const fluidMedia = media?.childImageSharp?.fluid || media?.localFile?.childImageSharp?.fluid;
+
+  const normalMedia = media?.publicURL || media?.localFile?.publicURL || media.full_url
+
   return (
     <Wrapper {...{ maxWidth, mxAuto, rounded, ...props }}>
       <Container
@@ -78,57 +82,24 @@ const FeaturedMedia = ({
           bgColor: bgColor === true ? colors.gray.light : bgColor,
         }}
       >
-        {media?.childImageSharp ? (
+        {fluidMedia ? (
           <StyledImage
-            fluid={media.childImageSharp.fluid}
-            alt={alt || media.name}
-            position={position}
-            objectPosition="90% 50%"
+            fluid={fluidMedia}
+            alt={ alt || media.altText || media.name }
             isSized={isSized}
             loading={loading}
-            fit={fit}
-          />
-        ) : media?.localFile?.childImageSharp ? (
-          <StyledImage
-            fluid={media?.localFile?.childImageSharp.fluid}
-            alt={alt || media.altText}
-            position={position}
-            objectPosition="90% 50%"
-            isSized={isSized}
-            loading={loading}
-            fit={fit}
-          />
-        ) : media?.publicURL ? (
-          <NormalImage
-            {...media}
-            alt={alt || media.alt}
-            src={media.publicURL}
-            srcSet={media.srcset}
-            position={position}
-            isSized={isSized}
-            loading={loading}
-            fit={fit}
-          />
-        ) : media?.localFile?.publicURL ? (
-          <NormalImage
-            {...media}
-            alt={alt || media.alt}
-            src={media.localFile.publicURL}
-            srcSet={media.srcset}
-            position={position}
-            isSized={isSized}
-            loading={loading}
-            fit={fit}
+            objectPosition={position}
+            objectFit={fit}
           />
         ) : (
           <NormalImage
             {...media}
             alt={alt || media.alt}
-            src={media.full_url}
+            src={normalMedia}
             srcSet={media.srcset}
-            position={position}
             isSized={isSized}
             loading={loading}
+            position={position}
             fit={fit}
           />
         )}
@@ -226,7 +197,7 @@ const StyledImage = styled(Image)`
     display: block;
     height: 100%;
     width: 100%;
-    object-fit: ${fit};
+    /* object-fit: ${fit}; */
     ${fit === "initial"
       ? css`
           width: auto;
@@ -256,7 +227,7 @@ const NormalImage = styled.img`
     display: block;
     height: 100%;
     width: 100%;
-    object-fit: ${fit};
+    /* object-fit: ${fit}; */
     ${fit === "initial"
       ? css`
           width: auto;
