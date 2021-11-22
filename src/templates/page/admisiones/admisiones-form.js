@@ -7,49 +7,45 @@ import colors from '../../../components/styles/colors';
 import BackgroundImage from "gatsby-background-image";
 import Form from '../../../components/form';
 import ctas from "../../../components/styles/cta";
+import useGrados from '../../../hooks/useGrados';
 
 const AdmisionesForm = ({ ...props }) =>{
 
-    //Consultar y optener logo.svg
+    //     //Consultar y optener logo.svg
     const { image } = useStaticQuery( graphql`
-        query {
-            image: file(relativePath: {eq: "admisiones/form.jpg"}) {
-                childImageSharp {
-                    fluid( maxWidth: 1200 ) {
-                        ...GatsbyImageSharpFluid_withWebp
-                    }
+    query {
+        image: file(relativePath: {eq: "admisiones/form.jpg"}) {
+            childImageSharp {
+                fluid( maxWidth: 1200 ) {
+                    ...GatsbyImageSharpFluid_withWebp
                 }
             }
         }
+    }
     `);
-
+    
     const [ active, setActive ] = useState(0);
+    
+    const data =  useGrados();
 
-    const forms = [
-        {
-            name: "Regresar",
-            ids: [],
-            action: () => {
-                setActive(0);
-            }
-        },
-        {
-            name: "Grado",
-            ids: ["69ce8ab3-acc5-438e-bd13-b5bb7a7c7ebf","80f9144a-c033-4af4-a60e-b628a3d8e2c1", "8ccea767-afc6-4f73-a829-a7b4e44bb189","d5d2a0fe-39bc-4782-b7a3-62a689979c4f"],
-            action: () => {
-                setActive(1);
-            }
-        },
-        {
-            name: "Posgrado",
-            ids: ["de559321-c71f-4850-ab19-5c8794a2854b","72ac2cd0-9514-4eef-bda4-20f8a69f6755","7808941e-8863-407a-af36-63ed5770405b","de14d62e-19a6-4d3c-afdc-7d2d8f609bd4"],
-            action: () => {
-                setActive(2);
-            }
-        }
-    ]
-
-
+         const forms =  data.filter(
+            (item) => item.formulario.formularios !== null && item.formulario
+          )
+          .map((item, index) => {
+            item.formulario.action = () => {
+              setActive(index + 1);
+            };
+            item.formulario.name = item.nombre ;
+            return item.formulario;
+          });
+          forms.unshift({
+          name: "Regresar",
+          formularios: [],
+          action: () => {
+            setActive(0);
+          },
+        });
+     
     return (
         <BackgroundImage Tag="section" fluid={image?.childImageSharp.fluid} id="form">
             <Container fluid>
@@ -65,6 +61,8 @@ const AdmisionesForm = ({ ...props }) =>{
                             <Buttons>
                                 {
                                     forms.map( (form, index )=>{
+                                        const { name, action } = form;
+
                                         return(
                                             <div key={index}>
                                                 <Grade
@@ -72,15 +70,15 @@ const AdmisionesForm = ({ ...props }) =>{
                                                     hidden = { 
                                                         index === 0 || index !== active
                                                     }
-                                                >{form.name}</Grade>
+                                                >{name}</Grade>
                                                 <Cta 
                                                     key={index} 
-                                                    onClick={form.action}
+                                                    onClick={action}
                                                     hidden = { 
                                                         (index === active) || (active >= 1 && index >= 1)
                                                     }
                                                 >
-                                                    {form.name}
+                                                    {name}
                                                 </Cta>
                                             </div>
                                         )
@@ -90,12 +88,18 @@ const AdmisionesForm = ({ ...props }) =>{
                             <Displayer>
                                 {
                                     forms
-                                        .filter( (form, index) => form.ids.length && index === active )
+                                        .filter( (form, index) => form.formularios.length && index === active )
+
                                         .map( (form, index) => {
+                                            const {  formularios } =  form;
+                                            let ids= [];
+                                            for (let i of formularios){
+                                                ids.push(i.id)
+                                              }              
                                         return (
                                             <Form
                                                 key={index} 
-                                                formIds={form.ids} 
+                                                formIds={ids} 
                                                 cardStyle={false} 
                                             />
                                         )
@@ -109,7 +113,6 @@ const AdmisionesForm = ({ ...props }) =>{
             </Container>
         </BackgroundImage>
     );
-
 }
 
 export default AdmisionesForm;

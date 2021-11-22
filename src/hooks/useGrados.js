@@ -29,8 +29,13 @@ const useGrados = () => {
                   id
                 }
               }
-            }
+            }   
 
+            formularioGrados {
+              formularios{
+                id
+              }
+            }    
           }
         }
       }
@@ -48,6 +53,7 @@ const useGrados = () => {
         carreras: grado.carreras.nodes || [],
         requisitos: grado?.datosRequisitos?.requisitos || [],
         type: grado.__typename,
+        formulario: grado?.formularioGrados,
     }));
 }
  

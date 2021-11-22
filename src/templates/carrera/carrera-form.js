@@ -5,15 +5,30 @@ import { Container, Section, Row, Col, mq} from "../../components/layout/index";
 import colors from "../../components/styles/colors";
 import BackgroundImage from "gatsby-background-image";
 import Form from '../../components/form';
+import useGrados from '../../hooks/useGrados';
+
 
 
 const CarreraForm = ({ carrera, facultad }) =>{
     
     const {
+        grado,
         imagenFormulario
     } = carrera;
 
-    // const facultyColor = facultad.color;
+    const data = useGrados();
+
+    console.log(data)
+
+    const filtro = data.filter((item)=>  item.id  === grado.id )
+    .map((item)=>{
+        return item.formulario.formularios
+    })
+
+    let ids= [];
+    for (let i of filtro[0]){
+        ids.push(i.id)
+      }     
     
     return (
         <BGSection spaceNone>
@@ -23,7 +38,7 @@ const CarreraForm = ({ carrera, facultad }) =>{
                         <Col size="auto" css={css`background-color: ${colors.gray.light};`}> 
                             <Wrapper>
                                 <Title>Solicitud de admisión</Title>
-                                <Form formId="69ce8ab3-acc5-438e-bd13-b5bb7a7c7ebf" cardStyle={false} />
+                                <Form   formIds={ids}  cardStyle={false} />
                             </Wrapper>
                         </Col>
                     </Row>
