@@ -28,7 +28,7 @@ const CardInfo = ({ item = {} }) => {
           {imagenPortada ? (
             <Col size={12} sizeLG={6} order={1} orderLG={2}>
               <Media>
-                <FeaturedMedia media={imagenPortada} bgColor="#AAAAAA" />
+                <FeaturedMedia media={imagenPortada} bgColor="rgba( 0 0 0 / 10%)" />
               </Media>
             </Col>
           ) : null}
