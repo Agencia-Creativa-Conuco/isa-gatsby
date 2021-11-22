@@ -6,31 +6,21 @@ import colors from "../../components/styles/colors";
 import BackgroundImage from "gatsby-background-image";
 import Form from '../../components/form';
 import useGrados from '../../hooks/useGrados';
-
-
+import Cta from "../../components/cta";
 
 const CarreraForm = ({ carrera, facultad }) =>{
     
     const {
-        grado,
         imagenFormulario
     } = carrera;
 
-    const data = useGrados();
+    const [grado] = useGrados().filter( (grado) => grado.id  === carrera.grado.id );
 
-    console.log(data)
+    const formIds = grado.formularios.hsFormularios.map( formulario => formulario.idFormulario);
 
-    const filtro = data.filter((item)=>  item.id  === grado.id )
-    .map((item)=>{
-        return item.formulario.formularios
-    })
+    const googleForm = grado.formularios.googleFormulario;
 
-    let ids= [];
-    for (let i of filtro[0]){
-        ids.push(i.id)
-      }     
-    
-    return (
+    return grado.formularios.tipo?(
         <BGSection spaceNone>
             <BackgroundImage fluid={imagenFormulario.localFile.childImageSharp.fluid} >
                 <Container>
@@ -38,14 +28,20 @@ const CarreraForm = ({ carrera, facultad }) =>{
                         <Col size="auto" css={css`background-color: ${colors.gray.light};`}> 
                             <Wrapper>
                                 <Title>Solicitud de admisión</Title>
-                                <Form   formIds={ids}  cardStyle={false} />
+                                {
+                                    grado.formularios.tipo === "hubspot"?(
+                                        <Form formIds={formIds} cardStyle={false} />
+                                    ) : grado.formularios.tipo === "google"?(
+                                        <Cta to={googleForm} target="_blank">Solicitar</Cta>
+                                    ): null
+                                }
                             </Wrapper>
                         </Col>
                     </Row>
                 </Container>
             </BackgroundImage>
         </BGSection>
-    );
+    ):null;
 
 }
 
@@ -61,6 +57,7 @@ const BGSection = styled(Section)`
 
 const Wrapper = styled.div`
     max-width: 40rem;
+    min-height: 50rem;
     padding: 2rem 0;
     ${mq.md}{
         padding: 4rem;

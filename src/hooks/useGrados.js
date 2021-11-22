@@ -31,10 +31,12 @@ const useGrados = () => {
               }
             }   
 
-            formularioGrados {
-              formularios{
-                id
+            formulariosGrado {
+              tipoFormulario
+              hsFormularios{
+                idFormulario
               }
+              urlFormularioGoogle
             }    
           }
         }
@@ -53,7 +55,11 @@ const useGrados = () => {
         carreras: grado.carreras.nodes || [],
         requisitos: grado?.datosRequisitos?.requisitos || [],
         type: grado.__typename,
-        formulario: grado?.formularioGrados,
+        formularios: {
+          tipo: grado?.formulariosGrado?.tipoFormulario,
+          hsFormularios: grado?.formulariosGrado?.hsFormularios,
+          googleFormulario: grado?.formulariosGrado?.urlFormularioGoogle,
+        },
     }));
 }
  

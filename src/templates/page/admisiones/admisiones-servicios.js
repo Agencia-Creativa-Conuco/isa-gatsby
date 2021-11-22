@@ -13,9 +13,6 @@ const AdmisionesServicios = () => {
 
   const [{servicios}]= useGlobalOption();
 
-
-  console.log(servicios);
-
   const 
     title="Servicios Opcionales",
     services = [

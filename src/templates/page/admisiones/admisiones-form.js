@@ -2,57 +2,59 @@ import React, { useState } from 'react';
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { graphql, useStaticQuery } from 'gatsby';
-import { Container, Row, Col, mq} from "../../../components/layout/index";
+import { Container, Row, Col, mq } from "../../../components/layout/index";
 import colors from '../../../components/styles/colors';
 import BackgroundImage from "gatsby-background-image";
 import Form from '../../../components/form';
 import ctas from "../../../components/styles/cta";
 import useGrados from '../../../hooks/useGrados';
+import useFiles from '../../../hooks/useFiles';
 
-const AdmisionesForm = ({ ...props }) =>{
+const AdmisionesForm = ({ ...props }) => {
+
+    const image = useFiles().admisiones.form;
 
     //     //Consultar y optener logo.svg
-    const { image } = useStaticQuery( graphql`
-    query {
-        image: file(relativePath: {eq: "admisiones/form.jpg"}) {
-            childImageSharp {
-                fluid( maxWidth: 1200 ) {
-                    ...GatsbyImageSharpFluid_withWebp
-                }
-            }
-        }
-    }
-    `);
-    
-    const [ active, setActive ] = useState(0);
-    
-    const data =  useGrados();
+    // const { image } = useStaticQuery( graphql`
+    // query {
+    //     image: file(relativePath: {eq: "admisiones/form.jpg"}) {
+    //         childImageSharp {
+    //             fluid( maxWidth: 1200 ) {
+    //                 ...GatsbyImageSharpFluid_withWebp
+    //             }
+    //         }
+    //     }
+    // }
+    // `);
 
-         const forms =  data.filter(
-            (item) => item.formulario.formularios !== null && item.formulario
-          )
-          .map((item, index) => {
-            item.formulario.action = () => {
-              setActive(index + 1);
+    const [active, setActive] = useState(0);
+
+    const forms = useGrados()
+        //Solo muestra los grados que tienen formulario
+        .filter((grado) => grado.formularios.tipo)
+        .map((grado, index) => {
+            grado.formularios.action = () => {
+                setActive(index + 1);
             };
-            item.formulario.name = item.nombre ;
-            return item.formulario;
-          });
-          forms.unshift({
-          name: "Regresar",
-          formularios: [],
-          action: () => {
-            setActive(0);
-          },
+            grado.formularios.name = grado.nombre;
+            return grado.formularios;
         });
-     
-    return (
+
+    forms.unshift({
+        name: "Regresar",
+        formularios: [],
+        action: () => {
+            setActive(0);
+        },
+    });
+
+    return forms.length > 1?(
         <BackgroundImage Tag="section" fluid={image?.childImageSharp.fluid} id="form">
             <Container fluid>
                 <Row>
-                    <Col 
+                    <Col
                         size={12}
-                        sizeMD="auto" 
+                        sizeMD="auto"
                         orderMD={2}
                         css={css`background-color: ${colors.gray.light};`}
                     >
@@ -60,26 +62,36 @@ const AdmisionesForm = ({ ...props }) =>{
                             <Title>Solicitud de admisión</Title>
                             <Buttons>
                                 {
-                                    forms.map( (form, index )=>{
+                                    forms.map((form, index) => {
                                         const { name, action } = form;
 
-                                        return(
+                                        return (
                                             <div key={index}>
                                                 <Grade
                                                     color={colors.primary.dark}
-                                                    hidden = { 
+                                                    hidden={
                                                         index === 0 || index !== active
                                                     }
                                                 >{name}</Grade>
-                                                <Cta 
-                                                    key={index} 
-                                                    onClick={action}
-                                                    hidden = { 
-                                                        (index === active) || (active >= 1 && index >= 1)
-                                                    }
-                                                >
-                                                    {name}
-                                                </Cta>
+                                                {
+                                                    form.tipo === "google"?(
+                                                        <Link 
+                                                            href={form.googleFormulario} 
+                                                            target="_blank"
+                                                            hidden={
+                                                                (index === active) || (active >= 1 && index >= 1)
+                                                            }    
+                                                        >{name}</Link>
+                                                    ) : (
+                                                        <Cta
+                                                            key={index}
+                                                            onClick={action}
+                                                            hidden={
+                                                                (index === active) || (active >= 1 && index >= 1)
+                                                            }
+                                                        >{name}</Cta>
+                                                    )
+                                                }
                                             </div>
                                         )
                                     })
@@ -88,31 +100,29 @@ const AdmisionesForm = ({ ...props }) =>{
                             <Displayer>
                                 {
                                     forms
-                                        .filter( (form, index) => form.formularios.length && index === active )
+                                        .filter((form, index) => index === active && form.tipo === "hubspot")
+                                        .map((form, index) => {
 
-                                        .map( (form, index) => {
-                                            const {  formularios } =  form;
-                                            let ids= [];
-                                            for (let i of formularios){
-                                                ids.push(i.id)
-                                              }              
-                                        return (
-                                            <Form
-                                                key={index} 
-                                                formIds={ids} 
-                                                cardStyle={false} 
-                                            />
+                                                const formIds = form.hsFormularios.map( item => item.idFormulario);
+
+                                                return (
+                                                    <Form
+                                                        key={index}
+                                                        formIds={formIds}
+                                                        cardStyle={false}
+                                                    />
+                                                )
+                                            }
                                         )
-                                    })
                                 }
                             </Displayer>
                         </Wrapper>
                     </Col>
-                    <Col size="auto" sizeMD="1" orderMD={1}/>
+                    <Col size="auto" sizeMD="1" orderMD={1} />
                 </Row>
             </Container>
         </BackgroundImage>
-    );
+    ) : null;
 }
 
 export default AdmisionesForm;
@@ -134,7 +144,7 @@ const Title = styled.h2`
 `;
 
 const Grade = styled.h3`
-    ${({color="darkblue"})=>css`
+    ${({ color = "darkblue" }) => css`
         text-transform: uppercase;
         /* background-color: #F0F0F0; */
         padding: .5rem;
@@ -149,6 +159,10 @@ const Cta = styled.button`
     ${ctas}
     display: block;
     margin-bottom: 2rem;
+`;
+
+const Link = styled.a`
+    ${ctas}
 `;
 
 const Buttons = styled.div``;
