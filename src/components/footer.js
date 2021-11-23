@@ -20,7 +20,7 @@ import useGlobalOption from "../hooks/useGlobalOption";
 const Footer = ({ state, libraries }) => {
 
   const images = useFiles().site;
-  //Consultar y optener logo.svg
+  // Consultar y optener logo.svg
   const { menu } = useStaticQuery(graphql`
     query {
 
@@ -44,12 +44,7 @@ const Footer = ({ state, libraries }) => {
 
   const items = getHierarchicalItems(menu.menuItems.nodes);
 
-  const [{redesSociales}] = useGlobalOption();
-
-const  dataRedes={};
-
-redesSociales.map((item)=> dataRedes[item.id] = item.url);
-
+  const [{redesSociales}]= useGlobalOption();
 
   return (
     <FooterWrapper>
@@ -93,46 +88,45 @@ redesSociales.map((item)=> dataRedes[item.id] = item.url);
             <Row>
               <Col size={12} sizeMD={4} css={StylesCol}>
                 <Title color={colors.shadow.base}> REDES SOCIALES </Title>
-                <Row>
-                  {dataRedes.url_twitter ? (
-                    <Col size="auto">
-                      <LinkIcon href={dataRedes.url_twitter} target="_blank" rel="noreferrer"  aria-label="Twitter">
-                        <TwitterIcon />
-                      </LinkIcon>
-                    </Col>
-                  ) : null}
+               <Row>
 
-                  {dataRedes.url_instagram ? (
-                    <Col size="auto">
-                      <LinkIcon href={dataRedes.url_instagram} target="_blank" rel="noreferrer"  aria-label="Instagram">
+                 {redesSociales.map((redes, index)=>{
+                   return(
+                    redes.tipoRed === "instagram" ? (
+                    <Col size="auto" key={index}>
+                      <LinkIcon href={redes.urlInstagram} target="_blank" rel="noreferrer"  aria-label="Instagram">
                         <InstagramIcon />
                       </LinkIcon>
                     </Col>
-                  ) : null}
-
-                  {dataRedes.url_facebook ? (
-                    <Col size="auto">
-                      <LinkIcon href={dataRedes.url_facebook} target="_blank" rel="noreferrer"  aria-label="Facebook">
+                  ) : redes.tipoRed === "twitter" ? (
+                    <Col size="auto"  key={index}>
+                      <LinkIcon href={redes.urlTwitter} target="_blank" rel="noreferrer"  aria-label="Twitter">
+                        <TwitterIcon />
+                      </LinkIcon>
+                    </Col>
+                  ) :  redes.tipoRed === "facebook" ? (
+                    <Col size="auto"  key={index}>
+                      <LinkIcon href={redes.urlFacebook} target="_blank" rel="noreferrer"  aria-label="Facebook">
                         <Facebook2Icon />
                       </LinkIcon>
                     </Col>
-                  ) : null}
-
-                  {dataRedes.url_linkedin ? (
-                    <Col size="auto">
-                      <LinkIcon href={dataRedes.url_linkedin} target="_blank" rel="noreferrer"  aria-label="LinkedIn">
+                  ) :  redes.tipoRed === "linkedin"? (
+                    <Col size="auto"  key={index}>
+                      <LinkIcon href={redes.urlLinkedin} target="_blank" rel="noreferrer"  aria-label="LinkedIn">
                         <LinkedInIcon />
                       </LinkIcon>
                     </Col>
-                  ) : null}
-
-                  {dataRedes.url_youtube ? (
-                    <Col size="auto">
-                      <LinkIcon href={dataRedes.url_youtube} target="_blank" rel="noreferrer"  aria-label="Youtube">
+                  ) :  redes.tipoRed === "youtube" ? (
+                    <Col size="auto"  key={index}>
+                      <LinkIcon href={redes.urlYoutube} target="_blank" rel="noreferrer"  aria-label="Youtube">
                         <YoutubeIcon />
                       </LinkIcon>
                     </Col>
-                  ) : null}
+                  ) : null
+
+                   )
+                 })
+                 }
                 </Row>
               </Col>
             </Row>

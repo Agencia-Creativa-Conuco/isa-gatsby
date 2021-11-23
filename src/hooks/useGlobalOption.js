@@ -4,36 +4,46 @@ const useGlobalOption = () => {
 
     const resultado = useStaticQuery(
         graphql `
-         {
-            allWp {
-              nodes {
-                acfOptionsServiciosOpcionales {
-                  serviciosOpcionales {
-                    servicios {
-                      id
-                      link
-                    }
-                  }
-                }
-                acfOptionsRedesSociales {
-                  redesSociales {
-                    redes {
-                      id
-                      url
-                    }
-                  }
-                }
-
-
+        {
+        allWp {
+          nodes {
+            acfOptionsIdCuentaHubspot {
+              pageTitle
+              idCuentaHubspot {
+                idCuenta
               }
             }
-          }          
+            acfOptionsRedesSociales {
+              redesSociales {
+                redes {
+                  tipoRed
+                  urlFacebook
+                  urlLinkedin
+                  urlInstagram
+                  urlTwitter
+                  urlYoutube
+                }
+              }
+            }
+            acfOptionsServiciosOpcionales {
+              serviciosOpcionales {
+                servicios {
+                  tipoServicio
+                  alojamiento
+                  alimentacion
+                }
+              }
+            }
+          }
+        }  
+      }
         `
     );
     
     return resultado.allWp.nodes.map( option => ({
-        servicios:  option.acfOptionsServiciosOpcionales?.serviciosOpcionales.servicios || [],
+        idCuentaHubspot:  option.acfOptionsIdCuentaHubspot?.idCuentaHubspot.idCuenta,
         redesSociales: option.acfOptionsRedesSociales?.redesSociales.redes || [],
+        serviciosOpcionales: option.acfOptionsServiciosOpcionales?.serviciosOpcionales.servicios
     }));
 }
  

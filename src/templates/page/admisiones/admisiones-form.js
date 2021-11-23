@@ -11,21 +11,9 @@ import useGrados from '../../../hooks/useGrados';
 import useFiles from '../../../hooks/useFiles';
 
 const AdmisionesForm = ({ ...props }) => {
-
+    
+      //Consultar y optener logo.svg
     const image = useFiles().admisiones.form;
-
-    //     //Consultar y optener logo.svg
-    // const { image } = useStaticQuery( graphql`
-    // query {
-    //     image: file(relativePath: {eq: "admisiones/form.jpg"}) {
-    //         childImageSharp {
-    //             fluid( maxWidth: 1200 ) {
-    //                 ...GatsbyImageSharpFluid_withWebp
-    //             }
-    //         }
-    //     }
-    // }
-    // `);
 
     const [active, setActive] = useState(0);
 

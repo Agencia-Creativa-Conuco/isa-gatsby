@@ -6,6 +6,7 @@ import HubspotForm from "react-hubspot-form";
 import Loading from "./loading";
 import colors from "./styles/colors";
 import scrollTo from "gatsby-plugin-smoothscroll";
+import useGlobalOption from "../hooks/useGlobalOption";
 
 const Form = ({
   formId,
@@ -22,6 +23,8 @@ const Form = ({
   const [ displayedForms, setDisplayedForms ] = useState([]);
 
   const forms = formIds.length ? formIds : [formId];
+
+  const [{idCuentaHubspot}] = useGlobalOption();
 
   const manageFormSubmit = () => {
     // const element = document.getElementById(id);
@@ -85,7 +88,7 @@ const Form = ({
                   >
                     <FormCut>
                       <HubspotForm
-                        portalId={20627890}
+                        portalId={idCuentaHubspot}
                         formId={form}
                         onReady={() => {
                           setDisplayedForms( displayedForms.concat( active));
