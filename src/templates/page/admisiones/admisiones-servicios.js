@@ -50,18 +50,18 @@ const AdmisionesServicios = () => {
           <Col>
             <Title>{title}</Title>
             <Row alignCenter>
-              {/* Agrega los lisnks d elos formularios */}
+              {/* Agrega las url de los formularios */}
               
               {services.map((service, index) => {
-                serviciosOpcionales.forEach((item) => {
-                  if ( item.alimentacion !== null &&  service.id === item.tipoServicio ) {
-                    service.url = item.alimentacion;
-                  }
+                    serviciosOpcionales.forEach((item) => {
+                      if (service.id === item.tipoServicio) {
+                        service.url = item.url;
+                      }
+                      if (service.id === item.tipoServicio) {
+                        service.url = item.url;
+                      }
+                    });
 
-                  if ( item.alojamiento !== null && service.id === item.tipoServicio ) {
-                    service.url = item.alojamiento;
-                  }
-                });
                 return (
                   <Col key={index} size={12} sizeMD={4} mxAuto>
                     <ServiceComponent {...{ service }} />
