@@ -8,20 +8,15 @@ const useGlobalOption = () => {
         allWp {
           nodes {
             acfOptionsIdCuentaHubspot {
-              pageTitle
               idCuentaHubspot {
-                idCuenta
+                idHs
               }
             }
             acfOptionsRedesSociales {
               redesSociales {
                 redes {
                   tipoRed
-                  urlFacebook
-                  urlLinkedin
-                  urlInstagram
-                  urlTwitter
-                  urlYoutube
+                  url
                 }
               }
             }
@@ -29,8 +24,7 @@ const useGlobalOption = () => {
               serviciosOpcionales {
                 servicios {
                   tipoServicio
-                  alojamiento
-                  alimentacion
+                  url
                 }
               }
             }
@@ -41,9 +35,9 @@ const useGlobalOption = () => {
     );
     
     return resultado.allWp.nodes.map( option => ({
-        idCuentaHubspot:  option.acfOptionsIdCuentaHubspot?.idCuentaHubspot.idCuenta,
-        redesSociales: option.acfOptionsRedesSociales?.redesSociales.redes || [],
-        serviciosOpcionales: option.acfOptionsServiciosOpcionales?.serviciosOpcionales.servicios
+        idCuentaHubspot:  option?.acfOptionsIdCuentaHubspot?.idCuentaHubspot?.idHs,
+        redesSociales: option?.acfOptionsRedesSociales?.redesSociales?.redes || [],
+        serviciosOpcionales: option?.acfOptionsServiciosOpcionales?.serviciosOpcionales?.servicios
     }));
 }
  

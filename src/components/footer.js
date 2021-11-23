@@ -44,9 +44,24 @@ const Footer = ({ state, libraries }) => {
 
   const items = getHierarchicalItems(menu.menuItems.nodes);
 
-  const [{redesSociales}]= useGlobalOption();
+  const [{ redesSociales }] = useGlobalOption();
 
-  return (
+  const icons = {
+    facebook: Facebook2Icon,
+    twitter: TwitterIcon,
+    youtube: YoutubeIcon,
+    linkedin: LinkedInIcon,
+    instagram: InstagramIcon,
+  }
+
+  const redes = redesSociales.map((red) => {
+    return {
+      ...red,
+      icon: icons[red.tipoRed]
+    }
+  });
+
+  return redes.length ? (
     <FooterWrapper>
       <Container fluid>
         <RowWrapper color={colors.blue.dark}>
@@ -69,7 +84,7 @@ const Footer = ({ state, libraries }) => {
                 />
               </Col>
               <Col size={12} sizeLG={3} order={1} orderLG={2}>
-                <Link to={"/"}  aria-label="Logo">
+                <Link to={"/"} aria-label="Logo">
                   <FeaturedMedia
                     media={images["logo-footer"]}
                     maxWidth="25rem"
@@ -88,45 +103,21 @@ const Footer = ({ state, libraries }) => {
             <Row>
               <Col size={12} sizeMD={4} css={StylesCol}>
                 <Title color={colors.shadow.base}> REDES SOCIALES </Title>
-               <Row>
+                <Row>
 
-                 {redesSociales.map((redes, index)=>{
-                   return(
-                    redes.tipoRed === "instagram" ? (
-                    <Col size="auto" key={index}>
-                      <LinkIcon href={redes.urlInstagram} target="_blank" rel="noreferrer"  aria-label="Instagram">
-                        <InstagramIcon />
-                      </LinkIcon>
-                    </Col>
-                  ) : redes.tipoRed === "twitter" ? (
-                    <Col size="auto"  key={index}>
-                      <LinkIcon href={redes.urlTwitter} target="_blank" rel="noreferrer"  aria-label="Twitter">
-                        <TwitterIcon />
-                      </LinkIcon>
-                    </Col>
-                  ) :  redes.tipoRed === "facebook" ? (
-                    <Col size="auto"  key={index}>
-                      <LinkIcon href={redes.urlFacebook} target="_blank" rel="noreferrer"  aria-label="Facebook">
-                        <Facebook2Icon />
-                      </LinkIcon>
-                    </Col>
-                  ) :  redes.tipoRed === "linkedin"? (
-                    <Col size="auto"  key={index}>
-                      <LinkIcon href={redes.urlLinkedin} target="_blank" rel="noreferrer"  aria-label="LinkedIn">
-                        <LinkedInIcon />
-                      </LinkIcon>
-                    </Col>
-                  ) :  redes.tipoRed === "youtube" ? (
-                    <Col size="auto"  key={index}>
-                      <LinkIcon href={redes.urlYoutube} target="_blank" rel="noreferrer"  aria-label="Youtube">
-                        <YoutubeIcon />
-                      </LinkIcon>
-                    </Col>
-                  ) : null
+                  {redes.map((red, index) => {
 
-                   )
-                 })
-                 }
+                    const Icon = red.icon;
+
+                    return (
+                      <Col size="auto" key={index}>
+                        <LinkIcon href={red.url} target="_blank" rel="noreferrer" aria-label={red.tipoRed}>
+                          <Icon />
+                        </LinkIcon>
+                      </Col>
+                    )
+                  })
+                  }
                 </Row>
               </Col>
             </Row>
@@ -134,7 +125,7 @@ const Footer = ({ state, libraries }) => {
         </RowWrapper>
       </Container>
     </FooterWrapper>
-  );
+  ) : null
 };
 
 // Connect the Header component to get access to the `state` in it's `props`
