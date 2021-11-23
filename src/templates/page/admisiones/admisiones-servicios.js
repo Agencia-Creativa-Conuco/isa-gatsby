@@ -9,17 +9,14 @@ import Cta from "../../../components/cta";
 import useGlobalOption from "../../../hooks/useGlobalOption";
 
 const AdmisionesServicios = () => {
+  const [{ serviciosOpcionales }] = useGlobalOption();
 
-
-  const [{servicios}] = useGlobalOption();
-
-  const 
-    title="Servicios Opcionales",
+  const title = "Servicios Opcionales",
     services = [
       {
         id: "alojamiento",
         name: "Alojamiento",
-        icon: HotelIcon, 
+        icon: HotelIcon,
         contenido: `
           <p>El Programa de Residencia Estudiantil, es un servicio que ofrece la Universidad ISA a sus estudiantes, principalmente a aquellos provenientes de zonas alejadas a la provincia de Santiago, con el objetivo de propiciar un ambiente que les permita la dedicación a sus estudios y a la vez, lograr un buen desempeño académico.</p>
           <p>Los estudiantes que desean conservar el derecho al servicio de residencia estudiantil, deben mantener un rendimiento académico en condición normal (2.0/4.0); y el respeto a las normas y reglamentos institucionales.</p>
@@ -32,7 +29,7 @@ const AdmisionesServicios = () => {
         `,
       },
       {
-        id:"alimentacion",
+        id: "alimentacion",
         name: "Alimentación",
         icon: FoodIcon,
         contenido: `
@@ -41,17 +38,10 @@ const AdmisionesServicios = () => {
           <p>Contar con los servicios de desayuno, almuerzo y cena durante su estancia en la Universidad.</p>
           <p>Contar con las facilidades necesarias que les permitan el acceso a los servicios de alimentación de acuerdo a sus necesidades.</p>
         `,
-      }
-    ]
+      },
+    ];
 
-  // se agregan las url que llegan desde el CMS
-    services.map((item) => {
-     return servicios.forEach((i) => {
-        if (item.id === i.id) {
-          item.url = i.link;
-        }
-      });
-    });
+
 
   return (
     <Section>
@@ -60,13 +50,24 @@ const AdmisionesServicios = () => {
           <Col>
             <Title>{title}</Title>
             <Row alignCenter>
-            {services.map((service, index) => {
-              return (
-                <Col key={index} size={12} sizeMD={4} mxAuto>
-                  <ServiceComponent {...{service}} />
-                </Col>
-              );
-            })}
+              {/* Agrega los lisnks d elos formularios */}
+              
+              {services.map((service, index) => {
+                serviciosOpcionales.forEach((item) => {
+                  if ( item.alimentacion !== null &&  service.id === item.tipoServicio ) {
+                    service.url = item.alimentacion;
+                  }
+
+                  if ( item.alojamiento !== null && service.id === item.tipoServicio ) {
+                    service.url = item.alojamiento;
+                  }
+                });
+                return (
+                  <Col key={index} size={12} sizeMD={4} mxAuto>
+                    <ServiceComponent {...{ service }} />
+                  </Col>
+                );
+              })}
             </Row>
           </Col>
         </Row>
@@ -77,31 +78,33 @@ const AdmisionesServicios = () => {
 
 export default AdmisionesServicios;
 
-const ServiceComponent = ({service}) => {
-
-  const {
-    openModal, 
-    ModalUI
-  } = useModal();
+const ServiceComponent = ({ service }) => {
+  const { openModal, ModalUI } = useModal();
 
   const Icono = service.icon;
 
   return (
     <>
       <Service onClick={openModal}>
-          <Icon css={css`color: ${colors.primary.dark};`}>
-            <Icono />
-          </Icon>
-          <h3>{service.name}</h3>
+        <Icon
+          css={css`
+            color: ${colors.primary.dark};
+          `}
+        >
+          <Icono />
+        </Icon>
+        <h3>{service.name}</h3>
       </Service>
       <ModalUI size="80rem">
         <h2>{service.name}</h2>
-        <Contenido dangerouslySetInnerHTML={{__html:service.contenido}}/>
-        <Cta to={service.url} target="_blank" aria-label={service.name}>Solicitar</Cta>
+        <Contenido dangerouslySetInnerHTML={{ __html: service.contenido }} />
+        <Cta to={service.url} target="_blank" aria-label={service.name}>
+          Solicitar
+        </Cta>
       </ModalUI>
     </>
-  )
-}
+  );
+};
 
 const Title = styled.h2`
   text-transform: uppercase;
@@ -111,13 +114,13 @@ const Title = styled.h2`
 
 const Service = styled.div`
   cursor: pointer;
-    width: 100%;
-    max-width: 25rem;
-    margin: 0 auto;
-    margin-bottom: 2rem;
-    background-color: #FAFAFA;
-    padding: 1.5rem;
-    text-align: center;
+  width: 100%;
+  max-width: 25rem;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  background-color: #fafafa;
+  padding: 1.5rem;
+  text-align: center;
 `;
 
 const Icon = styled.div`

@@ -10,7 +10,8 @@ import useGrados from '../../../hooks/useGrados';
 import useFiles from '../../../hooks/useFiles';
 
 const AdmisionesForm = ({ ...props }) => {
-
+    
+      //Consultar y optener logo.svg
     const image = useFiles().admisiones.form;
 
     const [active, setActive] = useState(0);
