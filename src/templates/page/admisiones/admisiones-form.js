@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { graphql, useStaticQuery } from 'gatsby';
 import { Container, Row, Col, mq } from "../../../components/layout/index";
 import colors from '../../../components/styles/colors';
 import BackgroundImage from "gatsby-background-image";
@@ -13,19 +12,6 @@ import useFiles from '../../../hooks/useFiles';
 const AdmisionesForm = ({ ...props }) => {
 
     const image = useFiles().admisiones.form;
-
-    //     //Consultar y optener logo.svg
-    // const { image } = useStaticQuery( graphql`
-    // query {
-    //     image: file(relativePath: {eq: "admisiones/form.jpg"}) {
-    //         childImageSharp {
-    //             fluid( maxWidth: 1200 ) {
-    //                 ...GatsbyImageSharpFluid_withWebp
-    //             }
-    //         }
-    //     }
-    // }
-    // `);
 
     const [active, setActive] = useState(0);
 
@@ -134,7 +120,7 @@ const Wrapper = styled.div`
     padding: 2rem 0;
     ${mq.md}{
         padding: 4rem;
-        min-height: 92rem;
+        min-height: 65rem;
     }
 `;
 

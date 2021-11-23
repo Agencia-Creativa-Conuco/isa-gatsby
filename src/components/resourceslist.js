@@ -7,6 +7,8 @@ import {SearchIcon} from "./icons";
 import ResourceCard from "./resource-card";
 import colors from "./styles/colors";
 import useRecursos from "../hooks/useRecursos";
+import useModal from "./hooks/useModal";
+import ctas from "./styles/cta";
 
 const ResourcesList = ({
     spaceTopNone, 
@@ -27,6 +29,11 @@ const ResourcesList = ({
     items = []
 }) => {
 
+    const {
+        openModal, 
+        ModalUI
+    } = useModal();
+
     const resources = useRecursos().filter((recurso)=>{
 
         const {
@@ -46,52 +53,62 @@ const ResourcesList = ({
     return ( resources.length || alwaysVisibile)?(
         <Section {...{spaceTopNone, spaceBottomNone, spaceNone, thin, small, medium, large}}>
             <Container>
-                <Row>
-                    <Col>
-                        <Title as={titleAs} color={titleColor}>{title}</Title>
-                    </Col>
-                </Row>
-                {
-                    searchEnable?(
                     <Row>
-                        <Col>
-                            <SearchForm role="search" aria-label="Buscar:" onSubmit={(e)=>{}}>
-                                <SearchInput type="text" placeholder="Buscar:" onInput={(e)=>{}} />
-                                <SearchButton colors={colors} ><SearchIcon /></SearchButton>
-                            </SearchForm>
+                        <Col size="auto" mxAuto>
+                            <Title as={titleAs} color={titleColor}>{title}</Title>
+                            <Button onClick={openModal}>Ver recursos</Button>
                         </Col>
                     </Row>
-                    ):null
-                }
-                <Row justifyContent="center">
-                {
-                    resources.length? resources.map((item,index) =>{
-
-                        const {
-                            nombre,
-                            imagenPortada,
-                            archivo
-                        } = item;
-
-                        return(
-                        <Col key={index} size="auto">
-                            <ResourceCard
-                                title={nombre}
-                                icon={imagenPortada}
-                                to={archivo}    
-                                color={resourceColor}
-                                item={item}
-                            />
-                        </Col>
-                        )
-                    }):(
-                        <Col>
-                            <Message color={colors.red.base}>{noResultsText}</Message>
-                        </Col>
-                    )
-                }
-                </Row>
             </Container>
+            <ModalUI>
+               <Container>
+                    <Row>
+                        <Col>
+                            <Title as={titleAs} color={titleColor}>{title}</Title>
+                        </Col>
+                    </Row>
+                    {
+                        searchEnable?(
+                        <Row>
+                            <Col>
+                                <SearchForm role="search" aria-label="Buscar:" onSubmit={(e)=>{}}>
+                                    <SearchInput type="text" placeholder="Buscar:" onInput={(e)=>{}} />
+                                    <SearchButton colors={colors} ><SearchIcon /></SearchButton>
+                                </SearchForm>
+                            </Col>
+                        </Row>
+                        ):null
+                    }
+                    <Row justifyContent="center">
+                    {
+                        resources.length? resources.map((item,index) =>{
+
+                            const {
+                                nombre,
+                                imagenPortada,
+                                archivo
+                            } = item;
+
+                            return(
+                            <Col key={index} size="auto">
+                                <ResourceCard
+                                    title={nombre}
+                                    icon={imagenPortada}
+                                    to={archivo}    
+                                    color={resourceColor}
+                                    item={item}
+                                />
+                            </Col>
+                            )
+                        }):(
+                            <Col>
+                                <Message color={colors.red.base}>{noResultsText}</Message>
+                            </Col>
+                        )
+                    }
+                    </Row>
+                </Container>
+            </ModalUI>
         </Section>
     ): null;
 }
@@ -154,4 +171,8 @@ const Message = styled.p`
         text-align: center;
         color: ${color};
     `}
+`;
+
+const Button = styled.button`
+    ${ctas}
 `;

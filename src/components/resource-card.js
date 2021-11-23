@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { DownloadIcon } from "./icons";
+import { EyeIcon, DownArrowIcon } from "./icons";
 import colors from "./styles/colors";
 import useModal from "./hooks/useModal";
 import CardInfo from "./card"
@@ -21,7 +21,7 @@ const ResourceCard = ({
 
     return (
         <>
-            <Card onClick={openModal}>
+            <Card>
                 <CardMedia>
                     <Media>
                         <FeaturedMedia media={item.imagenPortada} height="100%" fit="contain" position="center center"/>
@@ -29,10 +29,17 @@ const ResourceCard = ({
                 </CardMedia>
                 <CardBody>
                     <ResourceName color={color}>{title}</ResourceName>
+                    <ButtonBox>
+                        <Link href={item.archivo} download>
+                            <Button>
+                                <DownArrowIcon />
+                            </Button>
+                        </Link>
+                        <Button onClick={openModal}>
+                            <EyeIcon />
+                        </Button>
+                    </ButtonBox>
                 </CardBody>
-                {/* <Icon bgColor={icon?"transparent":colors.gray.light} hasIcon={false}>
-                    <DownloadIcon />
-                </Icon>        */}
             </Card>
             {/* Aca se les pasan los datos que se mostrararan en el modal */}
             <ModalUI size="80rem">
@@ -58,12 +65,6 @@ const Card = styled.div`
     ${mq.sm}{
         max-width: 32rem;
     }
-    &:hover{
-        cursor: pointer;
-        svg{
-            opacity: 0.5;          
-        }
-    }
 `;
 
 
@@ -84,12 +85,10 @@ const Media = styled.div`
 
 const CardBody = styled.div`
     flex: 2;
-    display: flex;
-    text-align: left;
-    overflow: hidden;
     border: 1.5rem solid white;
+    border-bottom: 5rem solid white;
     height: 12rem;
-    overflow: hidden;
+    position: relative;
 `;
 
 const ResourceName = styled.span`
@@ -101,15 +100,41 @@ const ResourceName = styled.span`
         line-height: 1.3;
         font-size: 1.4rem;
         display: -webkit-box;
+        height: 100%;
+        overflow: hidden;
     `}
 `;
 
-const Icon = styled.div`
-    width: 3rem;
-    margin: 0 auto;
-    svg{
-        width: 200%;
-        opacity: 0.25;
-        transition: opacity 0.2s ease-in-out;
-    }
+const ButtonBox = styled.div`
+    position: absolute;
+    bottom: -1rem;
+    transform: translate(0, 100%);
+    left: 0;
 `;
+
+const Button = styled.button`
+    background-color: ${colors.primary.base};
+    color: white;
+    height: 3rem;
+    width: 3rem;
+    padding: .5rem;
+    margin-right: 1rem;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0.75;
+    transition: 0.2s all ease-in-out;
+    &:hover{
+        opacity: 1;
+    }
+    svg{
+        color: inherit;
+        fill: currentColor;
+        width: 200%;
+        transition: opacity 0.2s ease-in-out;
+    }    
+`;
+
+const Link = styled.a`
+    text-decoration: none;
+`;
+
