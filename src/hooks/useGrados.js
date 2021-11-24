@@ -52,12 +52,12 @@ const useGrados = () => {
         uri: grado.uri.replace(grado.slug, urlSlug(grado.nombre)),
         link: grado.link.replace(grado.slug, urlSlug(grado.nombre)),
         order: grado?.orden,
-        carreras: grado.carreras.nodes || Array(),
-        requisitos: grado?.datosRequisitos?.requisitos || Array(),
+        carreras: grado.carreras.nodes || [],
+        requisitos: grado?.datosRequisitos?.requisitos || [],
         type: grado.__typename,
         formularios: {
           tipo: grado?.formulariosGrado?.tipoFormulario,
-          hsFormularios: grado?.formulariosGrado?.hsFormularios || Array(),
+          hsFormularios: grado?.formulariosGrado?.hsFormularios || [],
           googleFormulario: grado?.formulariosGrado?.urlFormularioGoogle,
         },
     }));
