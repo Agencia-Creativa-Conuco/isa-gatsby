@@ -54,7 +54,7 @@ const Event = ({ event }) => {
       <ModalUI title={event.nombre}>
         <Row>
           <Col>
-            <EventTitle>Exámentes de admisión</EventTitle>
+            <EventTitle>Fechas para tomar el examen de admisión</EventTitle>
           </Col>
         </Row>
         <Row>

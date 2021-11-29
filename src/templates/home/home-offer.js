@@ -28,7 +28,7 @@ const Item = ({ item, ...other })=>{
     return (
         <Col size={12} sizeMD={ isMain? 12 : level===2? 6 : 12 }>
             <Component>
-                <StyledLink to={url} aria-label="Click para abrir el...">
+                <StyledLink to={url}  aria-label="Click para abrir el..."  >
                     <Title 
                         color={ (level + 1) % 2 === 0 && level !== 1? colors.text.base : level >= 2? colors.primary.dark : colors.primary.dark } 
                         bgHover={colors.gray.light}
@@ -207,7 +207,7 @@ const HomeOffer = () =>{
                                     id,
                                     url,
                                     children,
-                                    target
+                                    // target
                                 } = item;
 
                                 const isActive = view === id;
@@ -218,7 +218,7 @@ const HomeOffer = () =>{
                                     </Col>
                                 ):(
                                     <Col size={6} sizeLG={3} mxAuto noGutters key={index}>
-                                        <StyledLink to={url} target={target} rel="noopener" aria-label="Click para abrir el...">
+                                        <StyledLink to={url} target="_blank" rel="noopener" aria-label="Click para abrir el..." >
                                             <NavItem {...{item, isActive, setView}}/>
                                         </StyledLink>
                                     </Col>

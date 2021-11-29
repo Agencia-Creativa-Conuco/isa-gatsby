@@ -102,7 +102,7 @@ const AdmisionesInfo = () =>{
                                         styles =>(
                                             <animated.div style={styles}>
                                                 <DisplayerSection key={index} hidden={view !== index}>
-                                                    <DisplayerSectionTitle color={colors.secondary.dark}>Requisitos de {grade.title}</DisplayerSectionTitle>
+                                                    <DisplayerSectionTitle color={colors.secondary.dark}>Requisitos de admisión {grade.title}</DisplayerSectionTitle>
                                                     
                                                     <Groups>
                                                     {

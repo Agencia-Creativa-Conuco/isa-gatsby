@@ -14,7 +14,7 @@ const OfferLabs = () =>{
     const images = useFiles();
 
     const  
-        title = "Estudiar en Universidad ISA, es aprender haciendo", 
+        title = "Estudiar en la Universidad ISA, es aprender haciendo", 
         content = `
             <p>La estrategia metodológica para la enseñanza de los programas, está basada en la técnica de  ̈ aprender haciendo¨, con un enfoque de interacción entre los estudiantes y los profesores en las aulas y la realización de investigaciones individuales y en grupo sobre temas relevantes  de los cursos.</p>
         `,
@@ -186,6 +186,7 @@ const DivTitle = styled.div``;
 const Sport = styled.p`
     font-weight: bold;
     margin-bottom: .2rem;
+    text-transform: capitalize;
 `;
 
 const Title = styled.h3`

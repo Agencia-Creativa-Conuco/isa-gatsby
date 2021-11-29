@@ -19,7 +19,7 @@ const DEPPymes = () => {
 
   const 
     title = "Centro MIPYMES", 
-    copy = "El Centro PYMES (Centro de Servicios de Apoyo Integral de las micro, pequeñas y medianas empresas) es una iniciativa por parte del Ministerio de Industria y Comercio a través del Viceministerio de Fomento a las Pymes en alianza con la Universidad ISA, el cual tiene como objetivo principal brindar los servicios y las consultorías necesarias a las micro, pequeñas y medianas empresas, de manera gratuita, para fortalecer su capacidad productiva, competitividad y eficiencia.", 
+    copy = "El Centro MIPYMES (Centro de Servicios de Apoyo Integral de las micro, pequeñas y medianas empresas) es una iniciativa por parte del Ministerio de Industria y Comercio a través del Viceministerio de Fomento a las  MIPYMES en alianza con la Universidad ISA, el cual tiene como objetivo principal brindar los servicios y las consultorías necesarias a las micro, pequeñas y medianas empresas, de manera gratuita, para fortalecer su capacidad productiva, competitividad y eficiencia.", 
     cta ={
       url: "/centro-mipymes",
       title: "Conoce más",
