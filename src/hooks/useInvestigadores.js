@@ -29,6 +29,7 @@ const useInvestigadores = () => {
                     categoria
                     anoIngreso
                     areaInvestigacion
+                    equipoInvestigacion
                   }
                 }
               }
@@ -52,6 +53,7 @@ const useInvestigadores = () => {
         esEquipo: investigador?.esEquipo,
         carreraNacionalInvestigacion: investigador?.datosInvestigador?.carreraNacionalInvestigacion,
         type: investigador.__typename,
+        equipoInvestigacion: investigador?.datosInvestigador?.carreraNacionalInvestigacion.equipoInvestigacion
     }));
 }
  

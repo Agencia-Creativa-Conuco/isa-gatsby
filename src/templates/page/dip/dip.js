@@ -7,11 +7,11 @@ import useLineasInvestigacion from "../../../hooks/useLineasInvestigacion";
 import useInvestigadores from "../../../hooks/useInvestigadores";
 import DIPCover from "./dip-cover";
 import DIPProcess from "./dip-process";
-import DIPTeam from "../../../components/team-slider";
+// import DIPTeam from "../../../components/team-slider";
 import DIPGeneral from "./dip-general";
 import DIPPhilosophy from "./dip-philosophy";
 import Layout from "../../../components/layout";
-
+import DIPTeam from "./dip-team";
 const ResearchPage = (props) => {
 
   //Obtiene los datos de las facultades.
@@ -31,12 +31,13 @@ const ResearchPage = (props) => {
   //Obtiene los datos de las Persons
   const investigadores = useInvestigadores().filter( item => item.esEquipo );
 
+
   return (
     <Layout {...props}>
       <Container>
         <DIPCover />
         <DIPPhilosophy />
-        <DIPTeam {...{ investigadores }} />
+        <DIPTeam {...{ investigadores}} />
         <DIPGeneral
           {...{ investigaciones, lineasInvestigacion, facultades, departamentos }}
         />
