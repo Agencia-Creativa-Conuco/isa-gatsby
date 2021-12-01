@@ -182,7 +182,10 @@ const Logo = styled(FeaturedMedia)``;
 const SectionTitle = styled.h2`
     margin-bottom: 2rem;
 `;
-const DivTitle = styled.div``;
+const DivTitle = styled.div`
+    margin-right: 1rem;
+
+`;
 
 // const CardMin = styled.div`
 //     margin-top: 4rem;
