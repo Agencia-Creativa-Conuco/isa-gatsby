@@ -9,6 +9,7 @@ import MobileMenu from "./menu";
 import SearchModal from "./search/search-modal";
 import SearchButton from "./search/search-button";
 import { getHierarchicalItems } from "./inc/auxiliar";
+import SocialBar from './socialbar';
 
 
 
@@ -86,6 +87,7 @@ const Header = ( {setResultsSearch}) => {
                                 </Col>
                             </Row>
                         </NavWrapper>
+                      <SocialBar/>
                     </Col>
                     </Row>
                 </Col>

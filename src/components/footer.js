@@ -141,7 +141,7 @@ const RowWrapper = styled(Row)`
 const Title = styled.h3`
   color: white;
   font-weight: bold;
-  text-shadow: ${props => props.color}
+  text-shadow: ${props => props.color};
 `;
 
 const MediaDeco = css`
