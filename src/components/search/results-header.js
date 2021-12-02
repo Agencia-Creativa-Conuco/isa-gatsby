@@ -40,7 +40,7 @@ const Header = styled.div`
 const DivBG = styled.div`
     ${({ bg, deco, deco2 })=>css`
         width: 100%;
-        height: 18rem;
+        height: 19rem;
         position: relative;
         top: 0;
         background: ${ bg };

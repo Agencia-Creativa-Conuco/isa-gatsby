@@ -105,6 +105,7 @@ const inputHeader = css`
   max-width: calc(100% + 2rem);
   padding: 0 0 0 2rem;
   width: calc(100% + 2rem);
+  height: 3rem;
   appearance: none;
 
   &::-webkit-search-decoration,
@@ -116,11 +117,11 @@ const inputHeader = css`
 
   ${mq.md} {
     border: none;
-    font-size: 3.2rem;
-    height: 8rem;
+    height: 5rem;
   }
 
   &:focus {
+    margin-left: 0.1rem;
     outline: thin dotted;
     outline-offset: -4px;
   }
