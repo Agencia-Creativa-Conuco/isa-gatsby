@@ -96,7 +96,7 @@ const ServiciosEstudiantilesDeportes = () =>{
                             ref={slider => (setSlider2(slider))}
                             slidesToShow={3}
                             pauseOnHover
-                            centerMode={true}
+                            // centerMode={true}
                         >
                         {
                             sports? sports.map((item,index)=>{

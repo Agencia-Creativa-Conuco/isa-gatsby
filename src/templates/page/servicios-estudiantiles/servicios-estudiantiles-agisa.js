@@ -222,15 +222,6 @@ const DecoMedia = styled.div`
   grid-template-columns: 100%;
   row-gap: 1.5rem;
 
-  ${mq.lg} {
-    grid-template-columns: 23.75% 73.75%;
-    column-gap: 2.5%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
 
   &:before {
     content: '';
@@ -254,6 +245,23 @@ const DecoMedia = styled.div`
     padding-bottom: 4%;
     z-index: -1;
   }
+
+  ${mq.lg} {
+    grid-template-columns: 23.75% 73.75%;
+    column-gap: 2.5%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    &::before{
+      z-index: 0;
+    }
+    &::after{
+      z-index: 0;
+    }
+  }
+
 `
 
 const VisualCarousel = styled.div`

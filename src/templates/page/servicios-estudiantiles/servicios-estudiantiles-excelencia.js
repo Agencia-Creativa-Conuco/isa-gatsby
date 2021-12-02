@@ -7,14 +7,13 @@ import {
   Row,
   Col,
   mq,
+  mqVal,
 } from "../../../components/layout/index";
 import FeaturedMedia from "../../../components/featured-media";
 import colors from "../../../components/styles/colors";
 import Cta from "../../../components/cta";
 import useFiles from "../../../hooks/useFiles";
 import Carousel from "react-slick";
-
-
 
 const ServiciosEstudiantilesExcelencia = () => {
   const images = useFiles();
@@ -64,80 +63,90 @@ const ServiciosEstudiantilesExcelencia = () => {
     <Section>
       <Container>
         <Row>
-          <Col size={12} sizeLG={7} zIndex={2} noGutters>
-            <DecoLogo decoBg={colors.blue.dark} decoBgA={colors.cta.base}>
-              <Row>
-                <Col size={12} sizeMD={10}>
-                  <Carousel
-                    asNavFor={nav2}
-                    pauseOnHover
-                    ref={(slider) => setSlider1(slider)}
-                  >
-                    {excelencia
-                      ? excelencia.map((item, index) => {
-                          return (
-                            <Logo
-                              key={index}
-                              media={item.image}
-                              size="56.25%"
-                              bgColor
-                            />
-                          );
-                        })
-                      : null}
-                  </Carousel>
-                </Col>
-                <Col sizeMD={2} alignMDSelf="center">
-                  <Carousel
-                    autoplay
-                    asNavFor={nav1}
-                    ref={(slider) => setSlider2(slider)}
-                    slidesToShow={4}
-                    pauseOnHover
-                    centerMode={true}
-                    vertical={true}
-                    verticalSwiping={true}
-                    responsive ={
-                   [
-                        {
-                          breakpoint:768,
-                          settings: {
-                            vertical:false
-                          }
-                        },
-       
+          <Col>
+            <Wrapper>
+              <MediaContainer>
+                <DecoMedia decoBg={colors.blue.dark} decoBgA={colors.cta.base}>
+                  <VisualCarousel>
+                    <Carousel
+                      asNavFor={nav2}
+                      pauseOnHover
+                      arrows={false}
+                      ref={(slider) => setSlider1(slider)}
+                    >
+                      {excelencia.map((item, index) => {
+                        return (
+                          <Logo
+                            key={index}
+                            media={item.image}
+                            size="56.25%"
+                            sizeLG="100%"
+                            bgColor
+                          />
+                        );
+                      })}
+                    </Carousel>
+                  </VisualCarousel>
 
-                      ]
-                    }
-                  >
-                    {excelencia
-                      ? excelencia.map((item, index) => {
-                          return (
-                            <Dot
-                              key={index}
-                              onClick={(e) => nav2.slickGoTo(index)}
-                            >
-                              <Logo media={item.image} size="56.25%" bgColor />
-                            </Dot>
-                          );
-                        })
-                      : null}
-                  </Carousel>
-                </Col>
-              </Row>
-            </DecoLogo>
+                  <ThumbnailCarousel>
+                    <Carousel
+                      autoplay
+                      asNavFor={nav1}
+                      ref={(slider) => setSlider2(slider)}
+                      slidesToShow={3}
+                      pauseOnHover
+                      vertical={true}
+                      verticalSwiping={true}
+                      arrows={false}
+                      responsive={[
+                        {
+                          breakpoint: mqVal.lg,
+                          settings: {
+                            vertical: false,
+                            verticalSwiping: false,
+                            slidesToShow: 4,
+                            arrows: false,
+                            dots: false,
+                            centerMode: true,
+                          },
+                        },
+                      ]}
+                    >
+                      {excelencia
+                        ? excelencia.map((item, index) => {
+                            return (
+                              <Dot
+                                key={index}
+                                onClick={(e) => nav2.slickGoTo(index)}
+                              >
+                                <Logo
+                                  media={item.image}
+                                  size="56.25%"
+                                  sizeLG="100%"
+                                  bgColor
+                                />
+                              </Dot>
+                            );
+                          })
+                        : null}
+                    </Carousel>
+                  </ThumbnailCarousel>
+                </DecoMedia>
+              </MediaContainer>
+
+              <ContentCol bgColor={colors.primary.light}>
+                <DivTitle color={colors.blue.dark}>
+                  <SectionTitle>{title}</SectionTitle>
+                  <div dangerouslySetInnerHTML={{ __html: content }} />
+                  {cta ? (
+                    <Cta to={cta.url} target={cta.target}>
+                      {cta.title}
+                    </Cta>
+                  ) : null}
+                </DivTitle>
+              </ContentCol>
+            </Wrapper>
           </Col>
-          <ContentCol bgColor={colors.primary.light}>
-            <DivTitle color={colors.blue.dark}>
-              <SectionTitle>{title}</SectionTitle>
-              <div dangerouslySetInnerHTML={{ __html: content }} />
-              {cta ? (
-                <Cta to={cta.url} target={cta.target}>
-                  {cta.title}
-                </Cta>
-              ) : null}
-            </DivTitle>
-          </ContentCol>
         </Row>
       </Container>
     </Section>
@@ -146,11 +155,21 @@ const ServiciosEstudiantilesExcelencia = () => {
 
 export default ServiciosEstudiantilesExcelencia;
 
+const Wrapper = styled.div`
+  ${mq.lg} {
+    border-radius: 50px;
+    padding: 5%;
+    display: grid;
+    grid-template-columns: 47.75% 47.75%;
+    column-gap: 5%;
+  }
+`;
+
 const ContentCol = styled(Col)`
   ${({ bgColor = "lightblue" }) => css`
     z-index: 1;
     position: relative;
-    padding-bottom: 4rem;
+    padding: 5%;
     &:before {
       content: "";
       position: absolute;
@@ -169,19 +188,7 @@ const ContentCol = styled(Col)`
   `}
 `;
 
-const Media = styled(FeaturedMedia)`
-  // ${mq.md}{
-  //     transform: translateX(2rem);
-  // }
-
-  // ${mq.lg}{
-  //     transform: translateX(4rem);
-  // }
-`;
-
-const Dot = styled.div`
-  padding: 0.5rem;
-`;
+const Dot = styled.div``;
 
 const Logo = styled(FeaturedMedia)``;
 
@@ -190,31 +197,100 @@ const DivTitle = styled.div`
 `;
 
 const SectionTitle = styled.h2`
-  margin-bottom: 2rem;
+  font-weight: 900;
+  font-size: 2rem;
+  margin-top: 0;
+  ${mq.md} {
+    font-size: 3rem;
+  }
 `;
 
-const DecoLogo = styled.div`
+
+const MediaContainer = styled.div`
   position: relative;
-  &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: -4%;
-    background: ${(props) => props.decoBg};
-    width: 15%;
-    padding-bottom: 7%;
-    z-index: 5;
-    // transform: translate(50%,0);
+  ${mq.lg} {
+    height: 0;
+    padding-bottom: 73%;
   }
-  &::after {
+`;
+
+const DecoMedia = styled.div`
+  display: grid;
+  grid-template-columns: 100%;
+  row-gap: 1.5rem;
+  
+  &:before {
     content: "";
     position: absolute;
-    left: 0;
-    top: -4%;
-    background: ${(props) => props.decoBgA};
-    width: 45%;
-    padding-bottom: 7%;
-    z-index: 4;
-    // transform: translate(50%,0);
+    left: 5%;
+    top: 0%;
+    transform: translate(0, -50%);
+    background: ${colors.primary.base};
+    width: 23%;
+    padding-bottom: 4%;
+    z-index: -1;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    left: 5%;
+    top: 0%;
+    transform: translate(0, -50%);
+    background: ${colors.primary.dark};
+    width: 12%;
+    padding-bottom: 4%;
+    z-index: -1;
+  }
+
+  ${mq.lg} {
+      grid-template-columns: 73.75% 23.75%;
+      column-gap: 2.5%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+`;
+
+const VisualCarousel = styled.div`
+  font-size: 0;
+`;
+
+const ThumbnailCarousel = styled.div`
+  font-size: 0;
+  width: 100%;
+  display: block;
+
+  .slick-list {
+    padding: 0 !important;
+  }
+
+  .slick-slide {
+    padding: 0 0.75rem;
+  }
+
+  ${mq.lg} {
+    height: 100%;
+    position: relative;
+
+    .slick-slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .slick-list {
+      height: 100% !important;
+    }
+
+    .slick-slide {
+      padding: 0;
+      padding-bottom: 10%;
+      overflow: hidden;
+    }
   }
 `;
