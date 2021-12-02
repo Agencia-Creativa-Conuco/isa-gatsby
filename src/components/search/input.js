@@ -1,4 +1,4 @@
-import React , {useEffect} from "react";
+import React , {useEffect, useRef} from "react";
 import { mq } from "../layout/index";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
@@ -30,6 +30,15 @@ const SearchForm = ({ isResults, setResultsSearch }) => {
     setResultsSearch(resultados);
   }, [resultados, setResultsSearch]);
 
+  const inputElement = useRef(null);
+
+  useEffect(() => {
+    if (inputElement.current) {
+      inputElement.current.focus();
+    }
+  }, []);
+
+
   // ComponentWillMount
   // ComponentWillUpdate
   // ComponentDidUpdate
@@ -50,6 +59,7 @@ const SearchForm = ({ isResults, setResultsSearch }) => {
           type="search"
           placeholder="Buscar:"
           name="s"
+          ref={inputElement}
         />
 
         {isResults ? (
@@ -117,11 +127,10 @@ const inputHeader = css`
 
   ${mq.md} {
     border: none;
-    height: 5rem;
+    height: 4.5rem;
   }
 
   &:focus {
-    margin-left: 0.1rem;
     outline: thin dotted;
     outline-offset: -4px;
   }

@@ -98,6 +98,7 @@ const ContainerSearch = styled.div`
   left: 0;
   margin: 0.5rem auto;
   z-index: 2000;
+
 `;
 
 const ModalInner = styled.div`
@@ -105,7 +106,7 @@ const ModalInner = styled.div`
   transform: translateY(0);
   background: #fff;
   border-radius: 5rem;
-  transition: transform 0.25s ease-in-out, box-shadow 0.1s 0.25s linear;
+  animation: animation-1oppw6c 0.4s ease-out;
   cursor: default;
 `;
 

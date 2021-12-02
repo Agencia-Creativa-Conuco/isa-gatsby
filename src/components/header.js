@@ -84,24 +84,26 @@ const Header = ({ setResultsSearch }) => {
                     </Col>
                   </Row>
                 </NavWrapper>
-                <Col>
-                  <SearchInput
-                    {...{
-                      isSearchModalOpen,
-                      toggleSearchModal,
-                      setResultsSearch,
-                    }}
-                  />
-                </Col>
               </Col>
             </Row>
           </Col>
         </Row>
+        <Col size={12} sizeLG={10} mlAuto noGutters guttersLG>
+        {/* <Col styled={{}} > */}
+          <SearchInput
+            {...{
+              isSearchModalOpen,
+              toggleSearchModal,
+              setResultsSearch,
+            }}
+          />
+        {/* </Col> */}
         <RowsocialBar>
           <Col>
             <SocialBar />
           </Col>
         </RowsocialBar>
+        </Col>
       </Container>
     </HeaderWrapper>
   );
@@ -167,12 +169,9 @@ const Gadgets = styled.div`
 `;
 
 const RowsocialBar = styled.div`
+  display: none;
 
-display: none;
-
-${mq.lg}{
-  display: initial;
-}
-
-
+  ${mq.lg} {
+    display: initial;
+  }
 `;
