@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://isa.conuco.do",
+    siteUrl: "http://localhost:9000",
     title: "isa",
   },
   plugins: [
