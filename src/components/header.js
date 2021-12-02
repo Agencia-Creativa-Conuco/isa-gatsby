@@ -97,11 +97,11 @@ const Header = ({ setResultsSearch }) => {
             </Row>
           </Col>
         </Row>
-        <Row>
-          <Col size={5} sizeMD={4} sizeLG={10} mlAuto>
+        <RowsocialBar>
+          <Col>
             <SocialBar />
           </Col>
-        </Row>
+        </RowsocialBar>
       </Container>
     </HeaderWrapper>
   );
@@ -164,4 +164,15 @@ const StyledLink = styled(Link)`
 const Gadgets = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const RowsocialBar = styled.div`
+
+display: none;
+
+${mq.lg}{
+  display: initial;
+}
+
+
 `;

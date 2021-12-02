@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
+import { Container, Section, Row, Col, mq, mqVal} from "../../../components/layout/index";
 import FeaturedMedia from "../../../components/featured-media";
 import Carousel from "react-slick";
 import colors from "../../../components/styles/colors";
@@ -97,6 +97,15 @@ const ServiciosEstudiantilesDeportes = () =>{
                             slidesToShow={3}
                             pauseOnHover
                             // centerMode={true}
+
+                            responsive={[
+                                {
+                                  breakpoint: mqVal.lg,
+                                  settings: {
+                                    centerMode: true,
+                                  },
+                                },
+                              ]}
                         >
                         {
                             sports? sports.map((item,index)=>{

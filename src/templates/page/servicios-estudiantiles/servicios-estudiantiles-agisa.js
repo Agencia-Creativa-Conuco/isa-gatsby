@@ -262,7 +262,7 @@ const DecoMedia = styled.div`
     }
   }
 
-`
+`;
 
 const VisualCarousel = styled.div`
   font-size: 0;

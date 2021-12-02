@@ -105,7 +105,7 @@ const inputHeader = css`
   max-width: calc(100% + 2rem);
   padding: 0 0 0 2rem;
   width: calc(100% + 2rem);
-  height: 3rem;
+  height: 4rem;
   appearance: none;
 
   &::-webkit-search-decoration,

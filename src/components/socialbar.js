@@ -2,6 +2,7 @@ import React,{useState, useEffect} from 'react';
 import useGlobalOption from "../hooks/useGlobalOption";
 import { Container, Row } from "./layout/index";
 import styled from '@emotion/styled';
+import colors from './styles/colors';
 import {
     InstagramIcon,
     Facebook2Icon,
@@ -9,6 +10,7 @@ import {
     YoutubeIcon,
     LinkedInIcon,
   } from "./icons";
+
 
 const SocialBar = () => {
 
@@ -56,7 +58,7 @@ const SocialBar = () => {
     return (
         isVisible && (
           <Container sizeXL="150rem">
-          <Row>  
+          <Row justifyContent="end">  
                 {redes.map((red, index) => {
                   const Icon = red.icon;
                   return (
@@ -92,7 +94,10 @@ max-width: 3.5rem;
   transition: cubic-bezier(.86,0,.07,1);
   color: white;
   &:hover {
-    opacity: 0.5;
+    /* opacity: 0.5 */
+    svg {
+    fill:${colors.primary.dark} ;
+  }
   }
   svg {
     fill:#00A4E5 ;
