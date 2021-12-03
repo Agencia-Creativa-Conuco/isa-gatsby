@@ -7,7 +7,7 @@ const useGlobalOption = () => {
         {
         allWp {
           nodes {
-            acfOptionsIdCuentaHubspot {
+            acfOptionsConfiguracionesDeHubspot {
               idCuentaHubspot {
                 idHs
               }
@@ -35,7 +35,7 @@ const useGlobalOption = () => {
     );
     
     return resultado.allWp.nodes.map( option => ({
-        idCuentaHubspot:  option?.acfOptionsIdCuentaHubspot?.idCuentaHubspot?.idHs,
+        idCuentaHubspot:  option?.acfOptionsConfiguracionesDeHubspot?.idCuentaHubspot?.idHs,
         redesSociales: option?.acfOptionsRedesSociales?.redesSociales?.redes || [],
         serviciosOpcionales: option?.acfOptionsServiciosOpcionales?.serviciosOpcionales?.servicios
     }));
