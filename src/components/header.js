@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import { Link, useStaticQuery, graphql } from "gatsby";
-import colors from "./styles/colors";
-import { Container, Row, Col, mq } from "./layout/index";
-import Nav from "./nav";
-import MobileMenu from "./menu";
-import SearchInput from "./search/search-input";
-import SearchButton from "./search/search-button";
-import { getHierarchicalItems } from "./inc/auxiliar";
-import SocialBar from "./socialbar";
+import React, { useState } from 'react'
+import { css } from '@emotion/react'
+import styled from '@emotion/styled'
+import { Link, useStaticQuery, graphql } from 'gatsby'
+import colors from './styles/colors'
+import { Container, Row, Col, mq } from './layout/index'
+import Nav from './nav'
+import MobileMenu from './menu'
+import SearchInput from './search/search-input'
+import SearchButton from './search/search-button'
+import { getHierarchicalItems } from './inc/auxiliar'
+import SocialBar from './socialbar'
 
 const Header = ({ setResultsSearch }) => {
   //Consultar y optener logo.svg
@@ -35,12 +35,12 @@ const Header = ({ setResultsSearch }) => {
         }
       }
     }
-  `);
+  `)
 
-  const menuItems = getHierarchicalItems(menu.menuItems.nodes);
+  const menuItems = getHierarchicalItems(menu.menuItems.nodes)
 
-  const [isMobileMenuOpen, toggleMobileMenu] = useState(false);
-  const [isSearchModalOpen, toggleSearchModal] = useState(false);
+  const [isMobileMenuOpen, toggleMobileMenu] = useState(false)
+  const [isSearchModalOpen, toggleSearchModal] = useState(false)
 
   return (
     <HeaderWrapper
@@ -89,7 +89,7 @@ const Header = ({ setResultsSearch }) => {
           </Col>
         </Row>
         <Col size={12} sizeLG={10} mlAuto noGutters guttersLG>
-        {/* <Col styled={{}} > */}
+          {/* <Col styled={{}} > */}
           <SearchInput
             {...{
               isSearchModalOpen,
@@ -97,19 +97,19 @@ const Header = ({ setResultsSearch }) => {
               setResultsSearch,
             }}
           />
-        {/* </Col> */}
-        <RowsocialBar>
-          <Col>
-            <SocialBar />
-          </Col>
-        </RowsocialBar>
+          {/* </Col> */}
+          <RowsocialBar>
+            <Col>
+              <SocialBar />
+            </Col>
+          </RowsocialBar>
         </Col>
       </Container>
     </HeaderWrapper>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
 
 const HeaderWrapper = styled.header`
   ${({ color, colorSticky, isSticky, isOnTop }) => css`
@@ -140,33 +140,33 @@ const HeaderWrapper = styled.header`
           /* background-color: ${color}; */
         `}
   `}
-`;
+`
 
 const Logo = styled.div`
   max-width: 9rem;
-  ${mq.md} {
+  ${mq.lg} {
+    max-width: 9rem;
+  }
+  ${mq.xl} {
     max-width: 10rem;
   }
-  ${mq.lg} {
-    max-width: 12rem;
-  }
-`;
+`
 
 const NavWrapper = styled.div`
   background-color: white;
   padding: 0.5rem;
   border-radius: 10rem;
   box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.15);
-`;
+`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-`;
+`
 
 const Gadgets = styled.div`
   display: flex;
   align-items: center;
-`;
+`
 
 const RowsocialBar = styled.div`
   display: none;
@@ -174,4 +174,4 @@ const RowsocialBar = styled.div`
   ${mq.lg} {
     display: initial;
   }
-`;
+`
