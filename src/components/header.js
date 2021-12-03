@@ -9,7 +9,7 @@ import MobileMenu from './menu'
 import SearchInput from './search/search-input'
 import SearchButton from './search/search-button'
 import { getHierarchicalItems } from './inc/auxiliar'
-import SocialBar from './socialbar'
+// import SocialBar from './socialbar'
 
 const Header = ({ setResultsSearch }) => {
   //Consultar y optener logo.svg
@@ -98,11 +98,11 @@ const Header = ({ setResultsSearch }) => {
             }}
           />
           {/* </Col> */}
-          <RowsocialBar>
+          {/* <RowsocialBar>
             <Col>
               <SocialBar />
             </Col>
-          </RowsocialBar>
+          </RowsocialBar> */}
         </Col>
       </Container>
     </HeaderWrapper>
@@ -168,10 +168,10 @@ const Gadgets = styled.div`
   align-items: center;
 `
 
-const RowsocialBar = styled.div`
-  display: none;
+// const RowsocialBar = styled.div`
+//   display: none;
 
-  ${mq.lg} {
-    display: initial;
-  }
-`
+//   ${mq.lg} {
+//     display: initial;
+//   }
+// `
