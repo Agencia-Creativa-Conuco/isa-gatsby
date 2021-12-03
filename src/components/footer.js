@@ -1,30 +1,28 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { Link, useStaticQuery, graphql } from 'gatsby';
-import { Container, Row, Col, mq } from "./layout/index";
-import FeaturedMedia from "./featured-media";
+import React from 'react'
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+import { Link, useStaticQuery, graphql } from 'gatsby'
+import { Container, Row, Col, mq } from './layout/index'
+import FeaturedMedia from './featured-media'
 import {
   InstagramIcon,
   Facebook2Icon,
   TwitterIcon,
   YoutubeIcon,
   LinkedInIcon,
-} from "./icons";
-import Navigation from "./navigation/navigation";
-import colors from "./styles/colors";
-import { getHierarchicalItems } from "./inc/auxiliar";
-import useFiles from "../hooks/useFiles";
-import useGlobalOption from "../hooks/useGlobalOption";
+} from './icons'
+import Navigation from './navigation/navigation'
+import colors from './styles/colors'
+import { getHierarchicalItems } from './inc/auxiliar'
+import useFiles from '../hooks/useFiles'
+import useGlobalOption from '../hooks/useGlobalOption'
 
 const Footer = ({ state, libraries }) => {
-
-  const images = useFiles().site;
+  const images = useFiles().site
   // Consultar y optener logo.svg
   const { menu } = useStaticQuery(graphql`
     query {
-
-      menu: wpMenu(locations: {in: FOOTER}) {
+      menu: wpMenu(locations: { in: FOOTER }) {
         id
         name
         menuItems {
@@ -40,11 +38,11 @@ const Footer = ({ state, libraries }) => {
         }
       }
     }
-  `);
+  `)
 
-  const items = getHierarchicalItems(menu.menuItems.nodes);
+  const items = getHierarchicalItems(menu.menuItems.nodes)
 
-  const [{ redesSociales }] = useGlobalOption();
+  const [{ redesSociales }] = useGlobalOption()
 
   const icons = {
     facebook: Facebook2Icon,
@@ -57,9 +55,9 @@ const Footer = ({ state, libraries }) => {
   const redes = redesSociales.map((red) => {
     return {
       ...red,
-      icon: icons[red.tipoRed]
+      icon: icons[red.tipoRed],
     }
-  });
+  })
 
   return redes.length ? (
     <FooterWrapper>
@@ -84,9 +82,9 @@ const Footer = ({ state, libraries }) => {
                 />
               </Col>
               <Col size={12} sizeLG={3} order={1} orderLG={2}>
-                <Link to={"/"} aria-label="Logo">
+                <Link to={'/'} aria-label="Logo">
                   <FeaturedMedia
-                    media={images["logo-footer"]}
+                    media={images['logo-footer']}
                     maxWidth="25rem"
                     mxAuto
                     css={MediaDeco}
@@ -103,22 +101,23 @@ const Footer = ({ state, libraries }) => {
             <Row>
               <Col size={12} sizeMD={4} css={StylesCol}>
                 <Title color={colors.shadow.base}> REDES SOCIALES </Title>
-                <Row>
-
+                <SocialBox>
                   {redes.map((red, index) => {
-
-                    const Icon = red.icon;
+                    const Icon = red.icon
 
                     return (
-                      <Col size="auto" key={index}>
-                        <LinkIcon href={red.url} target="_blank" rel="noreferrer" aria-label={red.tipoRed}>
-                          <Icon />
-                        </LinkIcon>
-                      </Col>
+                      <LinkIcon
+                        key={index}
+                        href={red.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={red.tipoRed}
+                      >
+                        <Icon />
+                      </LinkIcon>
                     )
-                  })
-                  }
-                </Row>
+                  })}
+                </SocialBox>
               </Col>
             </Row>
           </Container>
@@ -126,28 +125,28 @@ const Footer = ({ state, libraries }) => {
       </Container>
     </FooterWrapper>
   ) : null
-};
+}
 
 // Connect the Header component to get access to the `state` in it's `props`
-export default Footer;
+export default Footer
 
-const FooterWrapper = styled.footer``;
+const FooterWrapper = styled.footer``
 
 const RowWrapper = styled(Row)`
   background-color: ${(props) => props.color};
   padding: 5rem 0;
   color: white;
-`;
+`
 const Title = styled.h3`
   color: white;
   font-weight: bold;
-  text-shadow: ${props => props.color};
-`;
+  text-shadow: ${(props) => props.color};
+`
 
 const MediaDeco = css`
   margin-bottom: 6rem;
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     margin: 0 auto;
     width: 99%;
@@ -156,13 +155,15 @@ const MediaDeco = css`
     background: #666666;
     opacity: 0.5;
   }
-`;
+`
 
 const StylesCol = css`
   ${mq.md} {
     border-right: 0.1rem solid lightgray;
   }
-`;
+`
+
+const SocialBox = styled.div``
 
 const LinkIcon = styled.a`
   border-radius: 100%;
@@ -170,13 +171,23 @@ const LinkIcon = styled.a`
   border-style: solid;
   border-color: white;
   display: inline-block;
-  margin: 0 auto;
-  padding: 10px;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  width: 4.5rem;
+  height: 4.5rem;
+  line-height: 4.5rem;
   color: white;
+  text-align: center;
+  font-size: 0;
   &:hover {
     opacity: 0.5;
   }
   svg {
+    display: inline-block;
+    line-height: 4.5rem;
     fill: white;
+    width: 60%;
+    line-height: 4.5rem;
+    vertical-align: middle;
   }
-`;
+`
