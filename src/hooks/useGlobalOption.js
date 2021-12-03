@@ -28,6 +28,13 @@ const useGlobalOption = () => {
                 }
               }
             }
+            acfOptionsVideoInstitucional {
+              videoInstitucional {
+                urlVideo
+              }
+            }
+
+
           }
         }  
       }
@@ -37,7 +44,8 @@ const useGlobalOption = () => {
     return resultado.allWp.nodes.map( option => ({
         idCuentaHubspot:  option?.acfOptionsConfiguracionesDeHubspot?.idCuentaHubspot?.idHs,
         redesSociales: option?.acfOptionsRedesSociales?.redesSociales?.redes || [],
-        serviciosOpcionales: option?.acfOptionsServiciosOpcionales?.serviciosOpcionales?.servicios
+        serviciosOpcionales: option?.acfOptionsServiciosOpcionales?.serviciosOpcionales?.servicios,
+        videoInstitucional: option.acfOptionsVideoInstitucional?.videoInstitucional?.urlVideo
     }));
 }
  

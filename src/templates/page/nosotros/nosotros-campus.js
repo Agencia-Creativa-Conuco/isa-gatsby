@@ -7,6 +7,8 @@ import Carousel from "react-slick";
 import {LeftArrowIcon, RightArrowIcon} from "../../../components/icons";
 import colors from '../../../components/styles/colors';
 import { useStaticQuery, graphql } from 'gatsby';
+import useGlobalOption from '../../../hooks/useGlobalOption';
+import  ReactPlayer  from  'react-player';
 
 const Arrows = (props => {
 
@@ -66,9 +68,12 @@ const NosotrosCampus = () =>{
   }
 `);
 
+const [{videoInstitucional}] =useGlobalOption();
+
 // Convierte arreglo de imágenes en objeto cuya llave es el nómbre del archivo
 // Esto para facilitar la búsqueda de la imagenes en los componentes hijos.
 const images = allFile.nodes.reduce((obj, item) => {
+  
   return {
     ...obj,
     [item.name]: item,
@@ -100,15 +105,28 @@ const images = allFile.nodes.reduce((obj, item) => {
                         {
                             Object.values(images).filter((item) => item.name.includes("campus")).map((item, index) => {
                                 
-                                return (
-                                    <FeaturedMedia 
-                                        key={item.id}
-                                        media={item}
-                                        size="56.25%"
-                                        sizeXL="40%"
-                                        bgColor={colors.gray.light}
-                                        alt={`Campus Universidad ISA - ${index}`}
+                                return videoInstitucional && index < 1 ? (
+                                
+                                   <DivVideo key={item.id}>
+                                    <ReactPlayer
+                                      width="100%"
+                                      height= "100%"
+                                      css={reactPlayer}
+                                      controls
+                                      url={videoInstitucional}
                                     />
+                                  </DivVideo>                    
+                                ):(
+
+                                  <FeaturedMedia 
+                                  key={item.id}
+                                  media={item}
+                                  size="56.25%"
+                                  sizeXL="40%"
+                                  bgColor={colors.gray.light}
+                                  alt={`Campus Universidad ISA - ${index}`}
+                              />
+
                                 )
                         })}
                         </Carousel>
@@ -122,10 +140,6 @@ const images = allFile.nodes.reduce((obj, item) => {
 
 export default NosotrosCampus;
 
-// const colStyles = css`
-//     padding: 1.5rem;
-//     margin-top: -1.5rem;
-// `;
 
 const SectionTitle = styled.h2`
     text-align: center;
@@ -134,4 +148,21 @@ const SectionTitle = styled.h2`
         margin-top: -5rem;
         margin-bottom: 0;
     }
+`;
+
+const DivVideo = styled.div`
+  position: relative;
+
+  padding-top: 56.25%;
+
+  ${mq.xl} {
+    padding-top: 40.25%;
+  }
+
+`;
+
+const reactPlayer = css`
+  position: absolute;
+  top: 0;
+  left: 0;
 `;
