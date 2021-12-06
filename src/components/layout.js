@@ -11,6 +11,10 @@ import Footer from "./footer";
 import ResourcesList from "./resourceslist";
 import Contact from "./contact";
 import usePages from "../hooks/usePages";
+import SocialBar from "./socialbar";
+import { mq } from "./layout/index";
+
+
 
 if (typeof window !== "undefined") {
   // eslint-disable-next-line global-require
@@ -54,7 +58,7 @@ const Layout = (props) => {
     <>
       <Helmet
         htmlAttributes={{
-          lang: 'en',
+          lang: "en",
         }}
       >
         <title>{settings.title}</title>
@@ -73,6 +77,10 @@ const Layout = (props) => {
       <Header {...{ setResultsSearch }} />
 
       <Main>
+
+      <RowsocialBar>
+        <SocialBar />
+      </RowsocialBar>
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child)) {
             return React.cloneElement(child, {
@@ -85,10 +93,14 @@ const Layout = (props) => {
           Se muestran recursos relacionados con el tipo de dato 
             - Se excluye el tipo pensum para los objetos de tipo WpCarrera. Ya que los pensums se muestran de una forma distinta en las carreras
         */}
-        <ResourcesList items={ obj?.recursos || [] } exclude={ obj?.type === "WpCarrera"?["pensum"] : []} />
+        <ResourcesList
+          items={obj?.recursos || []}
+          exclude={obj?.type === "WpCarrera" ? ["pensum"] : []}
+        />
         {/* Se muestra información de contacto relacionada con el tipo de dato */}
-        <Contact data={ obj?.contacto } />
+        <Contact data={obj?.contacto} />
       </Main>
+      
       <Footer />
     </>
   );
@@ -98,4 +110,14 @@ export default Layout;
 
 const Main = styled.main`
   overflow: hidden;
+`;
+
+const RowsocialBar = styled.div`
+z-index: 2000;
+position: fixed;
+transform: translateY(96vh);
+
+${mq.lg}{
+  transform: translateY(40vh);
+}
 `;
