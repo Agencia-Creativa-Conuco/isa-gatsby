@@ -1,11 +1,11 @@
-import React, { useRef, useEffect, useState } from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import Link from "./link";
-import { mq } from "./layout/index";
-import Navigation from "./navigation/navigation";
-import colors from "./styles/colors";
-import { fadeIn, slideDown } from "./styles/animations";
+import React, { useRef, useEffect, useState } from 'react'
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+import Link from './link'
+import { mq } from './layout/index'
+import Navigation from './navigation/navigation'
+import colors from './styles/colors'
+import { fadeIn, slideDown } from './styles/animations'
 
 /**
  * Navigation Component
@@ -27,29 +27,29 @@ const Nav = ({
   showXL,
   ...other
 }) => {
-  const [itemActive, setItemActive] = useState(0);
-  const [isMenuVisible, setMenuVisible] = useState(false);
+  const [itemActive, setItemActive] = useState(0)
+  const [isMenuVisible, setMenuVisible] = useState(false)
 
   //Show submenu
   const menuToggle = (item, event) => {
     if (itemActive && item.ID === itemActive.ID) {
-      hideMenu();
+      hideMenu()
     } else if (item.children) {
-      showMenu(item);
+      showMenu(item)
     }
-  };
+  }
 
   const hideMenu = () => {
-    setMenuVisible(false);
-    setItemActive(0);
-  };
+    setMenuVisible(false)
+    setItemActive(0)
+  }
 
   const showMenu = (item) => {
-    setMenuVisible(true);
-    setItemActive(item.id);
-  };
+    setMenuVisible(true)
+    setItemActive(item.id)
+  }
 
-  const ref = useRef(null);
+  const ref = useRef(null)
 
   /**
    * Hook that handle clicks outside of the passed ref
@@ -66,17 +66,17 @@ const Nav = ({
         ref.current &&
         !ref.current.contains(event.target)
       ) {
-        hideMenu();
+        hideMenu()
       }
     }
 
     //Bind the event listener
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside)
     return () => {
       // Unbind the event listener on clean up
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [ref, isMobileMenuOpen]);
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [ref, isMobileMenuOpen])
 
   return items.length ? (
     <NavContainer
@@ -97,19 +97,24 @@ const Nav = ({
     >
       <MenuContainer>
         {items.map((item) => {
-          const { label, url, children = [] } = item;
+          const { label, url, children = [] } = item
 
           // Check if the link matched the current page url
-          const isCurrentPage = true;
+          const isCurrentPage = true
 
           return (
-            <NavItem key={item.id} align="right" color={colors.primary.base} bold>
+            <NavItem
+              key={item.id}
+              align="right"
+              color={colors.primary.base}
+              bold
+            >
               {/* If link url is the current page, add `aria-current` for a11y */}
               {children.length ? (
                 <NavItemTag
-                  aria-current={isCurrentPage ? "page" : undefined}
+                  aria-current={isCurrentPage ? 'page' : undefined}
                   onClick={(e) => {
-                    menuToggle(item, e);
+                    menuToggle(item, e)
                   }}
                 >
                   {label}
@@ -117,20 +122,20 @@ const Nav = ({
               ) : (
                 <NavItemLink
                   to={url}
-                  aria-current={isCurrentPage ? "page" : undefined}
+                  aria-current={isCurrentPage ? 'page' : undefined}
                 >
                   {label}
                 </NavItemLink>
               )}
             </NavItem>
-          );
+          )
         })}
       </MenuContainer>
 
       {/* <MenuBox hidden={state.theme.menu.isMenuVisible?false:true}> */}
       <MenuBox hidden={isMenuVisible ? false : true}>
         {items.map((item, index) => {
-          const { children = [] } = item;
+          const { children = [] } = item
 
           return children.length ? (
             <Navigation
@@ -149,14 +154,14 @@ const Nav = ({
               sizeLG={4}
               hidden={itemActive === item.id ? false : true}
             />
-          ) : null;
+          ) : null
         })}
       </MenuBox>
     </NavContainer>
-  ) : null;
-};
+  ) : null
+}
 
-export default Nav;
+export default Nav
 
 const NavContainer = styled.nav`
   ${(props) => css`
@@ -227,7 +232,7 @@ const NavContainer = styled.nav`
         `
       : css``}
   `}
-`;
+`
 
 const MenuContainer = styled.ul`
   ${({ layout }) => css`
@@ -241,37 +246,36 @@ const MenuContainer = styled.ul`
       justify-content: flex-end;
     }
   `}
-`;
+`
 
 const NavItem = styled.div`
-  ${({ color="darkblue", align, bold = false }) => css`
+  ${({ color = 'darkblue', align, bold = false }) => css`
     ${mq.lg} {
       cursor: pointer;
       flex: 0 0 auto;
       list-style: none;
       font-size: 1.6rem;
       color: ${color};
-      font-weight: ${bold ? "bold" : "normal"};
+      font-weight: 600;
       text-align: ${align};
       margin: 0;
       padding: 0;
       animation: ${slideDown} 0.3s ease-in-out;
     }
   `}
-`;
+`
 
-
-const itemStyles = ({ thin, dashColor = "yellow" }) => css`
+const itemStyles = ({ thin, dashColor = 'yellow' }) => css`
   display: block;
   padding: 0.25rem 0.8rem;
   margin: 0;
   text-decoration: none;
   position: relative;
   color: inherit;
-  ${thin ? "padding-bottom: 1rem;" : ""}
+  ${thin ? 'padding-bottom: 1rem;' : ''}
   ${mq.lg} {
     &:after {
-      content: "";
+      content: '';
       width: 60%;
       height: 0.35rem;
       background-color: transparent;
@@ -282,20 +286,20 @@ const itemStyles = ({ thin, dashColor = "yellow" }) => css`
     }
     &:hover {
       &:after {
-        content: "";
+        content: '';
         background-color: ${dashColor};
       }
     }
   }
-`;
+`
 
 const NavItemTag = styled.span`
   ${itemStyles}
-`;
+`
 
 const NavItemLink = styled(Link)`
   ${itemStyles}
-`;
+`
 
 const MenuBox = styled.section`
   ${({ hidden }) => css`
@@ -312,4 +316,4 @@ const MenuBox = styled.section`
       animation: ${fadeIn} 0.3s ease-in-out;
     }
   `}
-`;
+`

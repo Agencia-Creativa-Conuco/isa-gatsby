@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import Helmet from "react-helmet";
-import { Global } from "@emotion/react";
-import styled from "@emotion/styled";
-import { graphql, useStaticQuery } from "gatsby";
+import React, { useState } from 'react'
+import Helmet from 'react-helmet'
+import { Global } from '@emotion/react'
+import styled from '@emotion/styled'
+import { graphql, useStaticQuery } from 'gatsby'
 
 import globalStyles from "../components/styles/global-styles";
 import FontFace from "../components/styles/font-faces";
@@ -16,22 +16,18 @@ import { mq } from "./layout/index";
 
 
 
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
   // eslint-disable-next-line global-require
-  require("smooth-scroll")('a[href*="#"]');
+  require('smooth-scroll')('a[href*="#"]')
 }
 
 const Layout = (props) => {
-
   //Si obj no es pasado en props, utiliza page;
-  const [page] = usePages().filter( page => page.uri === props.path);
+  const [page] = usePages().filter((page) => page.uri === props.path)
 
-  const { 
-    children,
-    obj = page,
-  } = props;
+  const { children, obj = page } = props
 
-  const [resultsSearch, setResultsSearch] = useState();
+  const [resultsSearch, setResultsSearch] = useState()
 
   const {
     wp: { generalSettings: settings },
@@ -52,7 +48,7 @@ const Layout = (props) => {
         }
       }
     }
-  `);
+  `)
 
   return (
     <>
@@ -68,6 +64,20 @@ const Layout = (props) => {
         {/* <link rel="preconnect" href="https://fonts.googleapis.com" /> */}
         {/* <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> */}
         {/* <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap" rel="stylesheet"></link> */}
+        {/* Start of HubSpot Embed Code */}
+        <script
+          type="text/javascript"
+          id="hs-script-loader"
+          async
+          defer
+          src="//js.hs-scripts.com/20627890.js"
+        ></script>
+        {/* End of HubSpot Embed Code */}
+        <script
+          src="https://code.jquery.com/jquery-3.6.0.min.js"
+          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+          crossorigin="anonymous"
+        ></script>
       </Helmet>
 
       <FontFace />
@@ -85,9 +95,9 @@ const Layout = (props) => {
           if (React.isValidElement(child)) {
             return React.cloneElement(child, {
               ...{ resultsSearch, setResultsSearch },
-            });
+            })
           }
-          return child;
+          return child
         })}
         {/* 
           Se muestran recursos relacionados con el tipo de dato 
@@ -103,10 +113,10 @@ const Layout = (props) => {
       
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout
 
 const Main = styled.main`
   overflow: hidden;
