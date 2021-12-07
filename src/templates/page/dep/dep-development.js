@@ -57,7 +57,7 @@ const DEPDevelopment = () =>{
         `;
  
     return (
-        <Section spaceNone  >
+        <Section spaceNone id="section_2" >
             <Container fluid  >
                 <Row>
                     <Col

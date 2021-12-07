@@ -71,7 +71,7 @@ const ServiciosEstudiantilesActividades = () =>{
     }, [slider1, slider2])
 
     return actividadesExtracurriculares?(
-        <Section spaceBottomNone>
+        <Section spaceBottomNone id="section_1">
             <Container>
                 <Row>
                     <Col>

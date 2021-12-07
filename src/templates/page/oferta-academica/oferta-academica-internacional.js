@@ -83,7 +83,7 @@ const OfferInternational = () => {
     };
 
   return (
-    <Section>
+    <Section id="section_4">
       <Container fluid notFluidMD>
         <Row
           css={topRow({

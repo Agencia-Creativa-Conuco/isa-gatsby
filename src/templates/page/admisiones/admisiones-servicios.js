@@ -44,7 +44,7 @@ const AdmisionesServicios = () => {
 
 
   return (
-    <Section>
+    <Section id="section_5">
       <Container>
         <Row>
           <Col>

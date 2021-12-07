@@ -54,7 +54,7 @@ const OfferLabs = () =>{
     }, [slider1, slider2])
 
     return (
-        <Section>
+        <Section id="section_3">
             <Container>
                 <Row>
                     <Col 

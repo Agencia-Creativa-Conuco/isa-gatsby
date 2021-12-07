@@ -15,7 +15,7 @@ const DEPActivities = () =>{
  
 
     return (
-        <BGSection spaceNone bg={colors.gray.light}>
+        <BGSection spaceNone bg={colors.gray.light} id="section_1">
             <StyledContainer>
                 <Row justifyContent="center">
                     <Col size={12}>

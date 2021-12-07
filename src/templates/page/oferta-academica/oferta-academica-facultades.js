@@ -25,7 +25,7 @@ const OfferFaculties = () =>{
     const [view, setView] = useState(0);
 
     return (
-        <StyledSection spaceNone  color={colors.gray.base}>
+        <StyledSection spaceNone  color={colors.gray.base} id="section_1">
             <Container fluid>
                 <Row>
                     <StyledCol size={12} sizeLG={2} bg={colors.blue.base} mxAuto>

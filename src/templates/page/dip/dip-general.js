@@ -24,7 +24,7 @@ const DIPGeneral = ({ investigaciones, departamentos = [], facultades, lineasInv
 
 
     return (
-        <Section spaceNone>
+        <Section spaceNone  id="section_3">
             <Container fluid>
                 <Row>
                     <Col 

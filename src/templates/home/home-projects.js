@@ -18,7 +18,7 @@ const HomeProjects = () =>{
     const projectTitle = "Proyectos de investigación"
 
     return investigaciones.length?(
-        <Section spaceBottomNone >
+        <Section spaceBottomNone  id="section_3" >
             <Container fluid>
                 <Row>
                     <Col>

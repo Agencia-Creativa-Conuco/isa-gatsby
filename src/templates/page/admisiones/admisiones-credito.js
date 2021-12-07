@@ -27,7 +27,7 @@ const AdmisionesCredito = () => {
   ]
 
   return (
-    <Section>
+    <Section id="section_4">
       <Container>
         <Row>
           <Col>

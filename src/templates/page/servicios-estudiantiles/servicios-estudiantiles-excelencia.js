@@ -60,7 +60,7 @@ const ServiciosEstudiantilesExcelencia = () => {
   ];
 
   return (
-    <Section>
+    <Section id="section_6">
       <Container>
         <Row>
           <Col>

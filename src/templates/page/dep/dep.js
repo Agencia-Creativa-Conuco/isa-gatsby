@@ -11,8 +11,46 @@ import DEPCede from "./dep-cede";
 import DEPServicesMenu from "./dep-services-menu";
 import DEPPymes from "./dep-pymes";
 import DepNAF from "./dep-naf";
+import PageIndexes from "../../../components/page-indexes";
+
 
 const DEPPage = (props) => {
+
+
+  const data = [
+    {
+      name: "Actividades Que Realiza",
+      id: "#section_1",
+    },
+    {
+      name: "Proyectos En Desarrollo",
+      id: "#section_2",
+    },
+    {
+      name: "Servicios Profesionales ISA",
+      id: "#section_3",
+    },
+    {
+      name: "Centro MIPYMES",
+      id: "#section_4",
+    },
+    {
+      name: "Laboratorios",
+      id: "#section_5",
+    },
+    {
+      name: "El Centro De Emprendimiento y Desarrollo Empresarial De La Universidad ISA (CEDE)",
+      id: "#section_6",
+    },
+    {
+      name: "Clínica Veterinaria",
+      id: "#section_7",
+    },
+    {
+      name: "Centro NAF",
+      id: "#section_8",
+    }
+  ];
 
     return  (
       <Layout {...props}>
@@ -27,6 +65,7 @@ const DEPPage = (props) => {
           <DEPCede />
           <DEPVeterinary />
           <DepNAF />
+        <PageIndexes data={data}/>
         </Container>
       </Layout>
     )

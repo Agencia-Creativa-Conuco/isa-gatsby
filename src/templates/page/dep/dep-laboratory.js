@@ -29,7 +29,7 @@ const DEPLaboratory = () =>{
     ]
 
     return (
-        <Section spaceTopNone >
+        <Section spaceTopNone id="section_5">
             <Container fluid >
              {dataLaboratory.map((item,index) =>{
                  const {

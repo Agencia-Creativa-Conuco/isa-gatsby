@@ -5,8 +5,25 @@ import BibliotecaServicios from "./biblioteca-servicios";
 import BibliotecaRecursos from "./biblioteca-recursos";
 import BibliotecaHorario from "./biblioteca-horario";
 import Layout from "../../../components/layout";
+import PageIndexes from "../../../components/page-indexes";
+
 
 const Biblioteca = (props) => {
+
+    const data = [
+        {
+          name: " Servicios",
+          id: "#section_1",
+        },
+        {
+          name: "Recursos",
+          id: "#section_2",
+        },
+        {
+          name: "Horario de servicios",
+          id: "#section_3",
+        },
+      ];
 
     return (
         <Layout {...props}>
@@ -15,6 +32,8 @@ const Biblioteca = (props) => {
                 <BibliotecaServicios />
                 <BibliotecaRecursos />
                 <BibliotecaHorario />
+               <PageIndexes data={data}/>
+
             </Container>
         </Layout>
     );

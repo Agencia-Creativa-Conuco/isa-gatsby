@@ -14,7 +14,7 @@ const HomeContact = () =>{
     const title = "Contáctanos"
     
     return (
-        <Section spaceNone>
+        <Section spaceNone  id="section_5">
             <Container fluid>
                 <Row alignCenter reverseLG>
                     <Col size={12} sizeLG={6} noGutters>

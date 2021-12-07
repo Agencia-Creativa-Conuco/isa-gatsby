@@ -27,7 +27,7 @@ const DEPPymes = () => {
     };
   
   return (
-    <Section spaceBottomNone>
+    <Section spaceBottomNone id="section_4">
       <WrapperRow bg={colors.blue.base} decoBg={colors.blue.dark}>
         <Container>
           <Row>

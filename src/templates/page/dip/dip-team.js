@@ -19,7 +19,7 @@ investigadores.map((item) => {
 });
 
     return (
-        <Container>
+        <Container id="section_2">
             <TeamSlider investigadores={interno} title="EQUIPO DE INVESTIGACIÓN INTERNO"/>
             <TeamSlider investigadores={externo} title="EQUIPO DE INVESTIGACIÓN EXTERNO" />
         </Container>

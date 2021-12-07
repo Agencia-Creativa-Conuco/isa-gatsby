@@ -9,7 +9,7 @@ const AdmisionesBeca = () => {
   const images = useFiles();
   
   return (
-    <Section>
+    <Section id="section_4">
       <Container>
         <Row>
           <Col>

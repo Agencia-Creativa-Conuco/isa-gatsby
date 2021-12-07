@@ -196,6 +196,7 @@ const HomeOffer = () =>{
         <Section
             css={sectionStyles} 
             spaceNone
+            id="section_1"
         >
             <Navigation>
                 <Container>

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import styled from "@emotion/styled";
-import { css, Global } from "@emotion/react";
+import { css  } from "@emotion/react";
 import { CloseIcon } from "../icons";
 import ScreenReaderText from "../styles/screen-reader";
 import useFocusTrap from "../hooks/use-trap-focus";

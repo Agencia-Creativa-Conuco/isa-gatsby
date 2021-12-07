@@ -18,7 +18,7 @@ const DEPCede = () =>{
         cta = null;
 
     return (
-        <Section spaceTopNone>
+        <Section spaceTopNone id="section_6">
             <Container>
                 <Row>
                     <Col size={12} sizeLG={6} noGutters zIndex={2}>

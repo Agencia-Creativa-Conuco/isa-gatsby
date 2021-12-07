@@ -12,6 +12,8 @@ import DIPGeneral from "./dip-general";
 import DIPPhilosophy from "./dip-philosophy";
 import Layout from "../../../components/layout";
 import DIPTeam from "./dip-team";
+import PageIndexes from "../../../components/page-indexes";
+
 const ResearchPage = (props) => {
 
   //Obtiene los datos de las facultades.
@@ -31,6 +33,21 @@ const ResearchPage = (props) => {
   //Obtiene los datos de las Persons
   const investigadores = useInvestigadores().filter( item => item.esEquipo );
 
+  const data = [
+    {
+      name: "Departamento De Investigaciones y Publicaciones",
+      id: "#section_1",
+    },
+    {
+      name: "Equipos de Iinvestigacion",
+      id: "#section_2",
+    },
+    {
+      name: "Departamento De Investigaciones y Publicaciones General",
+      id: "#section_3",
+    }
+  ];
+
 
   return (
     <Layout {...props}>
@@ -42,6 +59,7 @@ const ResearchPage = (props) => {
           {...{ investigaciones, lineasInvestigacion, facultades, departamentos }}
         />
         <DIPProcess {...{ investigaciones }} />
+        <PageIndexes data={data}/>
       </Container>
     </Layout>
   );

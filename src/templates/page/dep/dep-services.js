@@ -37,7 +37,7 @@ const DEPServices = () =>{
         copy ="ISA ofrece una amplia cartera de servicios de asistencias técnicas, asesorías especializadas y consultorías dirigidas a los sectores empresariales y agroproductivos, con miras a fortalecer la vinculación entre ambos. A continuación, se presentan los principales servicios que ofrece la institución agrupados por segmentos:";
 
     return (
-        <BImage Tag="section" fluid={images.servicios_profesionales?.childImageSharp?.fluid}>
+        <BImage Tag="section" fluid={images.servicios_profesionales?.childImageSharp?.fluid} id="section_3">
             <BGSection as="div" spaceNone>
                 <Container  >
                     <Row>

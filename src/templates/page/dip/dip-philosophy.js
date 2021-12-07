@@ -59,6 +59,7 @@ const DIPPhilosophy = () => {
       spaceBottomNone
       bgColor={colors.blue.dark}
       decoBg={colors.blue.base}
+      id="section_1"
     >
       <Container>
         <DecoContainer bgColor={colors.gray.light} />

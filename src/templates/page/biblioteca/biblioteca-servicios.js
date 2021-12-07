@@ -28,7 +28,7 @@ const BibliotecaServicios = () =>{
         image = images.biblioteca.servicios;
 
     return(
-        <StylesSection color={colors.gray.light}>
+        <StylesSection color={colors.gray.light} id="section_1">
             <Container fluid >
                 <Row>
                 <Col size={12} sizeMD={6} noGutters>

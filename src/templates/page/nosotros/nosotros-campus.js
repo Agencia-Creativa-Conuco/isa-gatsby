@@ -83,7 +83,7 @@ const images = allFile.nodes.reduce((obj, item) => {
     const title = "Nuestro campus";
 
     return Object.values(images).length?(
-        <Section spaceNone>
+        <Section spaceNone id="section_5" >
             <Container
                 fluid 
                 noGutters

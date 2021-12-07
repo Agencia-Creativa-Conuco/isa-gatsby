@@ -24,7 +24,7 @@ const ServiciosEstudiantilesClinica = () =>{
         cta = null
 
     return (
-        <Section>
+        <Section id="section_4">
             <Container>
                 <Row>
                     <Col size={12} sizeMD={7} zIndex={2} noGutters>

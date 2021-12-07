@@ -12,16 +12,40 @@ import AdmisionesCredito from "./admisiones-credito";
 import AdmisionesBeca from "./admisiones-beca";
 import AdmisionesServicios from "./admisiones-servicios";
 import Calendar from "../../../components/calendar";
+import PageIndexes from "../../../components/page-indexes";
 import colors from "../../../components/styles/colors";
 
 // markup
 const Admissions = (props) => {
 
+  const data = [
+    {
+      name: "Períodos de admisión",
+      id: "#section_1",
+    },
+    {
+      name: "Requisitos de admisión",
+      id: "#section_2",
+    },
+    {
+      name: "Solicitud de admisión",
+      id: "#section_3",
+    },
+    {
+      name: "Crédito Educativo",
+      id: "#section_4",
+    },
+    {
+      name: "Servicios Opcionales",
+      id: "#section_5",
+    }
+  ];
+
   return (
       <Layout {...props} >
         <Container>
           <AdmisionesCover />
-          <CalendarSection bgColor={colors.gray.light} spaceNone>
+          <CalendarSection bgColor={colors.gray.light} spaceNone id="section_1">
               <Calendar />
           </CalendarSection>
           <AdmisionesInfo />
@@ -29,6 +53,7 @@ const Admissions = (props) => {
           <AdmisionesCredito />
           <AdmisionesBeca />
           <AdmisionesServicios />
+        <PageIndexes data={data}/>
         </Container>
       </Layout>
   );
