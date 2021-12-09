@@ -10,7 +10,6 @@ import ServiciosEstudiantilesDeportes from "./servicios-estudiantiles-deportes";
 import ServiciosEstudiantilesExcelencia from "./servicios-estudiantiles-excelencia";
 import ServiciosEstudiantilesActividades from "./servicios-estudiantiles-actividades";
 import Layout from "../../../components/layout";
-import PageIndexes from "../../../components/page-indexes";
 
 
 const ServiciosEstudiantilesPage = (props) => {
@@ -47,7 +46,7 @@ const ServiciosEstudiantilesPage = (props) => {
     ];
   // Load the post, but only if the data is ready.
     return (
-        <Layout {...props}>
+        <Layout {...{props, data}}>
             <Container>
                 <ServiciosEstudiantilesCover /> 
                 <ServiciosEstudiantilesActividades />
@@ -58,7 +57,6 @@ const ServiciosEstudiantilesPage = (props) => {
                 <ServiciosEstudiantilesDeportes />
                 <ServiciosEstudiantilesExcelencia />
                 <ServiciosEstudiantilesAGISA />
-                <PageIndexes data={data}/>
 
             </Container>
         </Layout>

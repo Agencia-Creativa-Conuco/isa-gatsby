@@ -31,14 +31,14 @@ const Nosotros = (props) => {
 
   // Load the post, but only if the data is ready.
   return (
-    <Layout {...props}>
+    <Layout {...{props, data}}  >
       <Container>
         <NosotrosCover  />
         <NosotrosHistory  />
         <NosotrosRector />
         <NosotrosPhilosophy />
         <NosotrosCampus />
-        <PageIndexes data={data}/>
+        {/* <PageIndexes data={data}/> */}
       </Container>
     </Layout>
   );

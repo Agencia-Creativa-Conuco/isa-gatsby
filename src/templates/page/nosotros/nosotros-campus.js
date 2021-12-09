@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
@@ -25,6 +25,7 @@ const Arrows = (props => {
         position: absolute;
         top: 50%;
         display: none !important;
+        
         ${mq.lg}{
             display: block !important;
         }
@@ -67,8 +68,21 @@ const NosotrosCampus = () =>{
     }
   }
 `);
+const [isPlaying, setIsPlaying] = useState(false);
+// const [isPause, setIsPause] = useState(false);
+
+
 
 const [{videoInstitucional}] =useGlobalOption();
+
+
+// function Player() {
+  const handleisPlaying = () => {
+    console.log("before playing?", isPlaying);
+    setIsPlaying(false);
+    console.log("after playing?", isPlaying);
+  };
+
 
 // Convierte arreglo de imágenes en objeto cuya llave es el nómbre del archivo
 // Esto para facilitar la búsqueda de la imagenes en los componentes hijos.
@@ -94,26 +108,36 @@ const images = allFile.nodes.reduce((obj, item) => {
                         mlAuto
                     >
                         <SectionTitle>{ title }</SectionTitle>
+                        <button onClick={handleisPlaying}>pause</button>
+
                     </Col>
                 </Row>
                 <Row>
                     <Col>
                         <Carousel
-                            prevArrow={<Arrows bgColor={"white"} color={colors.primary.dark}><LeftArrowIcon/></Arrows>}
+                           
+                            prevArrow={<Arrows bgColor={"white"} color={colors.primary.dark}  ><LeftArrowIcon/></Arrows>}
                             nextArrow={<Arrows bgColor={"white"} color={colors.primary.dark}><RightArrowIcon/></Arrows>}
+                            beforeChange={() =>  setIsPlaying(false) }
                         >
+
                         {
                             Object.values(images).filter((item) => item.name.includes("campus")).map((item, index) => {
                                 
                                 return videoInstitucional && index < 1 ? (
                                 
-                                   <DivVideo key={item.id}>
+                                   <DivVideo key={item.id} >
                                     <ReactPlayer
                                       width="100%"
                                       height= "100%"
                                       css={reactPlayer}
-                                      controls
+                                      // controls
                                       url={videoInstitucional}
+                                      playing={isPlaying}
+                                      onStart={() => setIsPlaying(true)}
+                                      // onPause={() => isPlaying}
+                                      onPlay={() =>  setIsPlaying(false)}
+                                      // onEnded={() => setIsPlaying(false)}
                                     />
                                   </DivVideo>                    
                                 ):(
@@ -152,6 +176,7 @@ const SectionTitle = styled.h2`
 
 const DivVideo = styled.div`
   position: relative;
+  /* z-index: -1; */
 
   padding-top: 56.25%;
 

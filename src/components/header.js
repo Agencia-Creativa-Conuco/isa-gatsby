@@ -72,9 +72,11 @@ const Header = ({ setResultsSearch }) => {
                     </Col>
                     <Col size="auto" mlAuto>
                       <Gadgets>
+                     { !isMobileMenuOpen &&
                         <SearchButton
                           {...{ isSearchModalOpen, toggleSearchModal }}
                         />
+                     }
                         <MobileMenu
                           items={menuItems}
                           {...{ isMobileMenuOpen, toggleMobileMenu }}
@@ -88,18 +90,16 @@ const Header = ({ setResultsSearch }) => {
           </Col>
         </Row>
         <Col size={12} sizeLG={10} mlAuto noGutters guttersLG>
+
           <SearchInput
             {...{
               isSearchModalOpen,
               toggleSearchModal,
               setResultsSearch,
+              isMobileMenuOpen
             }}
           />
-        {/* <RowsocialBar>
-          <Col>
-            <SocialBar />
-          </Col>
-        </RowsocialBar> */}
+
         </Col>
       </Container>
     </HeaderWrapper>
@@ -163,6 +163,11 @@ const StyledLink = styled(Link)`
 const Gadgets = styled.div`
   display: flex;
   align-items: center;
+  z-index: 2;
+
+
+
+  
 `;
 
 

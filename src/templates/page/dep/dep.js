@@ -11,7 +11,6 @@ import DEPCede from "./dep-cede";
 import DEPServicesMenu from "./dep-services-menu";
 import DEPPymes from "./dep-pymes";
 import DepNAF from "./dep-naf";
-import PageIndexes from "../../../components/page-indexes";
 
 
 const DEPPage = (props) => {
@@ -53,7 +52,7 @@ const DEPPage = (props) => {
   ];
 
     return  (
-      <Layout {...props}>
+      <Layout {...{props, data}}>
         <Container>
           <DEPCover/>
           <DEPActivities/>
@@ -65,7 +64,6 @@ const DEPPage = (props) => {
           <DEPCede />
           <DEPVeterinary />
           <DepNAF />
-        <PageIndexes data={data}/>
         </Container>
       </Layout>
     )

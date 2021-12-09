@@ -12,7 +12,6 @@ import AdmisionesCredito from "./admisiones-credito";
 import AdmisionesBeca from "./admisiones-beca";
 import AdmisionesServicios from "./admisiones-servicios";
 import Calendar from "../../../components/calendar";
-import PageIndexes from "../../../components/page-indexes";
 import colors from "../../../components/styles/colors";
 
 // markup
@@ -42,7 +41,7 @@ const Admissions = (props) => {
   ];
 
   return (
-      <Layout {...props} >
+      <Layout {...{props, data}} >
         <Container>
           <AdmisionesCover />
           <CalendarSection bgColor={colors.gray.light} spaceNone id="section_1">
@@ -53,7 +52,6 @@ const Admissions = (props) => {
           <AdmisionesCredito />
           <AdmisionesBeca />
           <AdmisionesServicios />
-        <PageIndexes data={data}/>
         </Container>
       </Layout>
   );

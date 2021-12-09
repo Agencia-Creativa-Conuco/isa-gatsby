@@ -6,7 +6,7 @@ import OfertaTecnics from "./oferta-academica-tecnics";
 import OfertaInternacional from "./oferta-academica-internacional";
 import OfertaLabs from "./oferta-academica-labs";
 import Layout from "../../../components/layout";
-import PageIndexes from "../../../components/page-indexes";
+
 
 
 const OfertaAcademica = (props) => {
@@ -33,14 +33,13 @@ const OfertaAcademica = (props) => {
 
   // Load the post, but only if the data is ready.
   return (
-    <Layout {...props}>
+    <Layout {...{props, data}}>
       <Container>
         <OfertaCover />
         <OfertaFacultades />
         <OfertaTecnics />
         <OfertaLabs />
         <OfertaInternacional />
-        <PageIndexes data={data}/>
       </Container>
     </Layout>
   );

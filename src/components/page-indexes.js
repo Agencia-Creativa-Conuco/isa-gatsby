@@ -63,13 +63,13 @@ const Wrapper = styled.div`
     padding-right: 1rem;
     position: fixed;
     bottom: 0;
-    top: 0;
     right: 0;
-    z-index: 20000;
+    z-index: 1000;
     animation: ${fadeIn} 0.2s ease-out;
 
     &[data-open="true"] {
       background-color: rgba(0, 0, 0, 0.4);
+      height: 100vh;
       left: 0;
       right: 0;
       transition: opacity 0.25s ease-out;
@@ -139,5 +139,4 @@ const StylesLI = styled.li`
     list-style: none;
     background: aliceblue;
     padding: 0.5rem;
-
 `;

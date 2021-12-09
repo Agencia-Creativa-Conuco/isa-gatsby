@@ -13,6 +13,7 @@ import Contact from "./contact";
 import usePages from "../hooks/usePages";
 import SocialBar from "./socialbar";
 import { mq } from "./layout/index";
+import PageIndexes from './page-indexes'
 
 
 
@@ -25,9 +26,12 @@ const Layout = (props) => {
   //Si obj no es pasado en props, utiliza page;
   const [page] = usePages().filter((page) => page.uri === props.path)
 
-  const { children, obj = page } = props
 
-  const [resultsSearch, setResultsSearch] = useState()
+  const { children, obj = page, data } = props
+  
+
+  const [resultsSearch, setResultsSearch] = useState();
+
 
   const {
     wp: { generalSettings: settings },
@@ -109,6 +113,9 @@ const Layout = (props) => {
         />
         {/* Se muestra información de contacto relacionada con el tipo de dato */}
         <Contact data={obj?.contacto} />
+        {data &&
+        <PageIndexes data={data}/>
+        }
       </Main>
       
       <Footer />

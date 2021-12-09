@@ -12,7 +12,7 @@ import DIPGeneral from "./dip-general";
 import DIPPhilosophy from "./dip-philosophy";
 import Layout from "../../../components/layout";
 import DIPTeam from "./dip-team";
-import PageIndexes from "../../../components/page-indexes";
+
 
 const ResearchPage = (props) => {
 
@@ -50,7 +50,7 @@ const ResearchPage = (props) => {
 
 
   return (
-    <Layout {...props}>
+    <Layout {...{props, data}}>
       <Container>
         <DIPCover />
         <DIPPhilosophy />
@@ -59,7 +59,6 @@ const ResearchPage = (props) => {
           {...{ investigaciones, lineasInvestigacion, facultades, departamentos }}
         />
         <DIPProcess {...{ investigaciones }} />
-        <PageIndexes data={data}/>
       </Container>
     </Layout>
   );

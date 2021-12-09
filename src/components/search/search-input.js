@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import styled from "@emotion/styled";
 import { css  } from "@emotion/react";
 import { CloseIcon } from "../icons";
@@ -14,11 +14,18 @@ const SearchInput = ({
   isSearchModalOpen,
   toggleSearchModal,
   setResultsSearch,
+  isMobileMenuOpen
 }) => {
 
   const closeSearchModal = () => {
     toggleSearchModal(false);
   };
+
+  useEffect(() => {
+    if(isMobileMenuOpen){
+      toggleSearchModal(false);
+    }
+  },[isMobileMenuOpen, toggleSearchModal])
 
   // Keep a reference to the input so we can grab it's value on form submission
   const inputRef = useRef();
@@ -37,14 +44,6 @@ const SearchInput = ({
       <ContainerSearch>
         {isSearchModalOpen ? (
           <>
-            {/* <Global
-              styles={css`
-                html {
-                  overflow-y: hidden;
-                }
-              `}
-            /> */}
-
             <ModalInner
               role="dialog"
               aria-modal="true"
@@ -97,7 +96,7 @@ const ContainerSearch = styled.div`
   right: 0;
   left: 0;
   margin: 0.5rem auto;
-  z-index: 2000;
+
 
 `;
 

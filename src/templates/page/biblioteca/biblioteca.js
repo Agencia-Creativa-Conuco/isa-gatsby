@@ -5,7 +5,6 @@ import BibliotecaServicios from "./biblioteca-servicios";
 import BibliotecaRecursos from "./biblioteca-recursos";
 import BibliotecaHorario from "./biblioteca-horario";
 import Layout from "../../../components/layout";
-import PageIndexes from "../../../components/page-indexes";
 
 
 const Biblioteca = (props) => {
@@ -26,14 +25,12 @@ const Biblioteca = (props) => {
       ];
 
     return (
-        <Layout {...props}>
+        <Layout {...{props, data}}>
             <Container>
                 <BibliotecaCover />
                 <BibliotecaServicios />
                 <BibliotecaRecursos />
                 <BibliotecaHorario />
-               <PageIndexes data={data}/>
-
             </Container>
         </Layout>
     );
