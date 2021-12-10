@@ -7,9 +7,9 @@ import { mq } from "./layout/index";
 import { MenuIcon } from "./icons";
 import colors from "./styles/colors";
 
-const MobileMenu = ({ items, isMobileMenuOpen, toggleMobileMenu }) => {
+const MobileMenu = ({ items, isMobileMenuOpen, toggleMobileMenu, isIndexesActive }) => {
   
-  return (
+  return  (
     <>
       <MenuToggle 
         aria-label="Click para abrir el menu..."

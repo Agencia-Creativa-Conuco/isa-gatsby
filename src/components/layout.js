@@ -88,7 +88,7 @@ const Layout = (props) => {
 
       <Global styles={globalStyles({ settings })} />
 
-      <Header {...{ setResultsSearch }} />
+      <Header {...{ setResultsSearch}} />
 
       <Main>
 
@@ -114,7 +114,7 @@ const Layout = (props) => {
         {/* Se muestra información de contacto relacionada con el tipo de dato */}
         <Contact data={obj?.contacto} />
         {data &&
-        <PageIndexes data={data}/>
+        <PageIndexes data={data} />
         }
       </Main>
       

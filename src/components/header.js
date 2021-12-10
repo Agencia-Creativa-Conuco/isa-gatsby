@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState  } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Link, useStaticQuery, graphql } from "gatsby";
@@ -11,6 +11,7 @@ import SearchButton from "./search/search-button";
 import { getHierarchicalItems } from "./inc/auxiliar";
 
 const Header = ({ setResultsSearch }) => {
+
   //Consultar y optener logo.svg
   const { logo, menu } = useStaticQuery(graphql`
     query {
@@ -45,8 +46,6 @@ const Header = ({ setResultsSearch }) => {
     <HeaderWrapper
       color={colors.header.base}
       colorSticky={colors.header.sticky}
-      // isSticky={isSticky}
-      // isOnTop={state.theme.menu.isOnTop}
     >
       <Container>
         <Row alignContent="center" alignCenter>
@@ -91,14 +90,15 @@ const Header = ({ setResultsSearch }) => {
         </Row>
         <Col size={12} sizeLG={10} mlAuto noGutters guttersLG>
 
-          <SearchInput
+            <SearchInput
             {...{
               isSearchModalOpen,
               toggleSearchModal,
               setResultsSearch,
-              isMobileMenuOpen
+              isMobileMenuOpen,
             }}
-          />
+            />
+        
 
         </Col>
       </Container>

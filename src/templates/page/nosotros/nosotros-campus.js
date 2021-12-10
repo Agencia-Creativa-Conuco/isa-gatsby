@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState } from 'react';
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
@@ -69,19 +69,9 @@ const NosotrosCampus = () =>{
   }
 `);
 const [isPlaying, setIsPlaying] = useState(false);
-// const [isPause, setIsPause] = useState(false);
-
 
 
 const [{videoInstitucional}] =useGlobalOption();
-
-
-// function Player() {
-  const handleisPlaying = () => {
-    console.log("before playing?", isPlaying);
-    setIsPlaying(false);
-    console.log("after playing?", isPlaying);
-  };
 
 
 // Convierte arreglo de imágenes en objeto cuya llave es el nómbre del archivo
@@ -107,18 +97,16 @@ const images = allFile.nodes.reduce((obj, item) => {
                         sizeLG={6}
                         mlAuto
                     >
-                        <SectionTitle>{ title }</SectionTitle>
-                        <button onClick={handleisPlaying}>pause</button>
-
+                        <SectionTitle>{ title }</SectionTitle>  
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <Carousel
-                           
-                            prevArrow={<Arrows bgColor={"white"} color={colors.primary.dark}  ><LeftArrowIcon/></Arrows>}
+                        <Carousel    
+                            prevArrow={<Arrows bgColor={"white"} color={colors.primary.dark}><LeftArrowIcon/></Arrows>}
                             nextArrow={<Arrows bgColor={"white"} color={colors.primary.dark}><RightArrowIcon/></Arrows>}
-                            beforeChange={() =>  setIsPlaying(false) }
+                            afterChange={()=>  setIsPlaying(false)}
+                            infinite={false}
                         >
 
                         {
@@ -131,12 +119,14 @@ const images = allFile.nodes.reduce((obj, item) => {
                                       width="100%"
                                       height= "100%"
                                       css={reactPlayer}
-                                      // controls
+                                      controls
                                       url={videoInstitucional}
                                       playing={isPlaying}
-                                      onStart={() => setIsPlaying(true)}
-                                      // onPause={() => isPlaying}
-                                      onPlay={() =>  setIsPlaying(false)}
+                                      // onReady={() => setIsPlaying(true)}
+                                      // onStart={() => setIsPlaying(true)}
+                                      // onBufferEnd
+                                      onPause={() => setIsPlaying(false)}
+                                      onPlay={() => setIsPlaying(true)}
                                       // onEnded={() => setIsPlaying(false)}
                                     />
                                   </DivVideo>                    
@@ -176,7 +166,7 @@ const SectionTitle = styled.h2`
 
 const DivVideo = styled.div`
   position: relative;
-  /* z-index: -1; */
+  z-index: 200;
 
   padding-top: 56.25%;
 

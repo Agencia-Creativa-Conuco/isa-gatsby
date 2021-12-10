@@ -14,18 +14,28 @@ const SearchInput = ({
   isSearchModalOpen,
   toggleSearchModal,
   setResultsSearch,
-  isMobileMenuOpen
+  isMobileMenuOpen,
+  isIndexesActive,
+  setIsIndexesActive
 }) => {
 
   const closeSearchModal = () => {
     toggleSearchModal(false);
+
+
   };
 
   useEffect(() => {
+    console.log('entro')
     if(isMobileMenuOpen){
       toggleSearchModal(false);
     }
-  },[isMobileMenuOpen, toggleSearchModal])
+    if(isIndexesActive){
+      closeSearchModal()
+      setIsIndexesActive(false)
+  }
+
+  },[isMobileMenuOpen, toggleSearchModal,isIndexesActive])
 
   // Keep a reference to the input so we can grab it's value on form submission
   const inputRef = useRef();

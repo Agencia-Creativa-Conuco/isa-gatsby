@@ -7,21 +7,28 @@ import { Global } from "@emotion/react";
 import { Container, Row, Col } from "./layout/index";
 import { fadeIn, slideUp } from "./styles/animations";
 
-const PageIndexes = ({data =[]}) => {
+const PageIndexes = ({data =[], setIsIndexesActive}) => {
+
 
   const [isVisible, setIsVisible] = useState(false);
 
+
+  const ActiveIndexes =()=>{
+
+    setIsVisible(!isVisible)
+
+    if(isVisible){
+      setIsIndexesActive(true)
+    }
+
+  }
 
   return (
     <Wrapper data-open={isVisible} onClick={() => setIsVisible(!isVisible)}>
       {isVisible && <Global styles={{ body: { overflowY: "hidden" } }} />}
 
       {isVisible ? (
-        <Card
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-        >
+        <Card>
           <Row>
             <Col>
               <ul style={{ margin: "1rem 2rem 0 0" }}>
@@ -34,7 +41,7 @@ const PageIndexes = ({data =[]}) => {
                 })}
               </ul>
               <CloseButton
-                onClick={() => setIsVisible(!isVisible)}
+                onClick={ActiveIndexes}
                 colors={colors}
               >
                 <CloseIcon />
