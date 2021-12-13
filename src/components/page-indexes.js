@@ -7,21 +7,10 @@ import { Global } from "@emotion/react";
 import { Container, Row, Col } from "./layout/index";
 import { fadeIn, slideUp } from "./styles/animations";
 
-const PageIndexes = ({data =[], setIsIndexesActive}) => {
+const PageIndexes = ({data =[]}) => {
 
 
   const [isVisible, setIsVisible] = useState(false);
-
-
-  const ActiveIndexes =()=>{
-
-    setIsVisible(!isVisible)
-
-    if(isVisible){
-      setIsIndexesActive(true)
-    }
-
-  }
 
   return (
     <Wrapper data-open={isVisible} onClick={() => setIsVisible(!isVisible)}>
@@ -41,7 +30,7 @@ const PageIndexes = ({data =[], setIsIndexesActive}) => {
                 })}
               </ul>
               <CloseButton
-                onClick={ActiveIndexes}
+                onClick={()=>setIsVisible(!isVisible)}
                 colors={colors}
               >
                 <CloseIcon />
@@ -61,7 +50,7 @@ const PageIndexes = ({data =[], setIsIndexesActive}) => {
 export default PageIndexes;
 
 const Wrapper = styled.div`
-  ${({ display }) => css`
+  ${() => css`
     display: flex;
     align-items: baseline;
     align-items: end;
@@ -71,7 +60,7 @@ const Wrapper = styled.div`
     position: fixed;
     bottom: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 2000;
     animation: ${fadeIn} 0.2s ease-out;
 
     &[data-open="true"] {
@@ -86,11 +75,14 @@ const Wrapper = styled.div`
 
 const ContainerArrow = styled.div`
   background: ${colors.primary.base};
-  border-radius: 100%;
+  border-radius: 1rem;
+  display: flex;
+  width: 3.4rem;
+  height: 3.4rem;
 
   svg {
     fill: white;
-    padding: 0.3rem;
+    margin: 0 auto;
   }
   :hover {
     cursor: pointer;

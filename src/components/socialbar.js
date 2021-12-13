@@ -8,9 +8,11 @@ import {
   TwitterIcon,
   YoutubeIcon,
   LinkedInIcon,
-  UpArrowIcon,
+  RightArrowIcon
 } from "./icons";
 import { mq } from "./layout/index";
+import { slideUp} from "./styles/animations";
+
 
 const SocialBar = () => {
 
@@ -92,7 +94,7 @@ const SocialBar = () => {
       </Container>
     ) : (
       <ContainerArrow onClick={() => setIsVisible(true)}>
-        <UpArrowIcon />
+        <RightArrowIcon bgColor={"white"}  />
       </ContainerArrow>
     )
   );
@@ -104,6 +106,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 0;
+  animation: ${slideUp} 0.4s ease-out;
+  
 
   position: absolute;
   top: -15rem;
@@ -135,12 +139,10 @@ const LinkIcon = styled.a`
 `;
 const ContainerArrow = styled.div`
   background: ${colors.primary.base};
-  border-radius: 100%;
+  border-radius: 20%;
+  color: white;
+  width: 2rem;
 
-  svg {
-    fill: white;
-    padding: 0.3rem;
-  }
   :hover {
     cursor: pointer;
   }

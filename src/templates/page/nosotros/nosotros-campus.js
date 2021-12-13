@@ -87,7 +87,7 @@ const images = allFile.nodes.reduce((obj, item) => {
     const title = "Nuestro campus";
 
     return Object.values(images).length?(
-        <Section spaceNone id="section_5" >
+        <Section spaceNone id="section_4" >
             <Container
                 fluid 
                 noGutters
@@ -113,8 +113,9 @@ const images = allFile.nodes.reduce((obj, item) => {
                             Object.values(images).filter((item) => item.name.includes("campus")).map((item, index) => {
                                 
                                 return videoInstitucional && index < 1 ? (
-                                
-                                   <DivVideo key={item.id} >
+                                  <>
+                                  <Playing key={item.id}  onClick={()=> setIsPlaying(!isPlaying)}/>
+                                   <DivVideo  >
                                     <ReactPlayer
                                       width="100%"
                                       height= "100%"
@@ -122,14 +123,11 @@ const images = allFile.nodes.reduce((obj, item) => {
                                       controls
                                       url={videoInstitucional}
                                       playing={isPlaying}
-                                      // onReady={() => setIsPlaying(true)}
-                                      // onStart={() => setIsPlaying(true)}
-                                      // onBufferEnd
                                       onPause={() => setIsPlaying(false)}
                                       onPlay={() => setIsPlaying(true)}
-                                      // onEnded={() => setIsPlaying(false)}
                                     />
-                                  </DivVideo>                    
+                                  </DivVideo>   
+                                  </>   
                                 ):(
 
                                   <FeaturedMedia 
@@ -160,16 +158,34 @@ const SectionTitle = styled.h2`
     margin-top: 4rem;
     ${mq.lg}{
         margin-top: -5rem;
-        margin-bottom: 0;
+        margin-bottom: 0;  z-index: 200;
     }
+`;
+
+const Playing = styled.div`
+  width: 5%;
+  position: absolute;
+  height: calc(100% - 23.7%);
+  z-index: 2;
+
+  ${mq.sm} {
+    height: calc(100% - 13.7%);
+  }
+  ${mq.md} {
+    height: calc(100% - 10.7%);
+  }
+
+  ${mq.lg} {
+    height: calc(100% - 12.2%);
+  }
+  ${mq.xl} {
+    height: calc(100% - 9.2%);
+  }
 `;
 
 const DivVideo = styled.div`
   position: relative;
-  z-index: 200;
-
   padding-top: 56.25%;
-
   ${mq.xl} {
     padding-top: 40.25%;
   }

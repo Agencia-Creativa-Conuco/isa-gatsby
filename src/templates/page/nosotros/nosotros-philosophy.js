@@ -75,7 +75,7 @@ const NosotrosPhilosophy = () =>{
     const handlerView = value => setView(value);
 
     return (
-        <StyledSection spaceBottomNone bgColor={colors.blue.dark} decoBg={colors.blue.base} id="section_4" >
+        <StyledSection spaceBottomNone bgColor={colors.blue.dark} decoBg={colors.blue.base} id="section_3" >
             <Container>
                 <DecoContainer bgColor={colors.gray.light} />
                 <Row>
