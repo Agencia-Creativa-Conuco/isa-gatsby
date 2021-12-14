@@ -11,7 +11,6 @@ import Footer from './footer'
 import ResourcesList from './resourceslist'
 import Contact from './contact'
 import usePages from '../hooks/usePages'
-import { mq } from './layout/index'
 import PageIndexes from './page-indexes'
 
 if (typeof window !== 'undefined') {
