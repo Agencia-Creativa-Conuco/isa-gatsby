@@ -41,7 +41,7 @@ const Admissions = (props) => {
   ];
 
   return (
-      <Layout {...{props, data}} >
+      <Layout {...{ data }} {...props} >
         <Container>
           <AdmisionesCover />
           <CalendarSection bgColor={colors.gray.light} spaceNone id="section_1">
