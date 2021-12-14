@@ -49,7 +49,7 @@ const DEPPage = (props) => {
   ]
 
   return (
-    <Layout {...{ props, data }}>
+    <Layout {...{ data }} {...props}>
       <Container>
         <DEPCover />
         <DEPActivities />

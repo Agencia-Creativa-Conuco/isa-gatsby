@@ -29,7 +29,7 @@ const OfertaAcademica = (props) => {
 
   // Load the post, but only if the data is ready.
   return (
-    <Layout {...{ props, data }}>
+    <Layout {...{ data }} {...props}>
       <Container>
         <OfertaCover />
         <OfertaFacultades />

@@ -31,7 +31,7 @@ const IndexPage = (props) => {
   ]
 
   return (
-    <Layout {...{ props, data }}>
+    <Layout {...{ data }} {...props}>
       <FrontPage {...{ page }} />
     </Layout>
   )
