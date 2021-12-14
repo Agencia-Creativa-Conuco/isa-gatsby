@@ -26,9 +26,8 @@ const Form = ({
 
   const [{ idCuentaHubspot }] = useGlobalOption()
 
-  const manageFormSubmit = (e) => {
+  const manageFormSubmit = () => {
     // const element = document.getElementById(id);
-    // e.preventDefault()
 
     if (active < forms.length - 1) {
       setActive(active + 1)
@@ -94,9 +93,11 @@ const Form = ({
                     onReady={() => {
                       setDisplayedForms(displayedForms.concat(active))
                     }}
-                    onFormSubmitted={(e) => {
-                      manageFormSubmit(e)
+                    onFormSubmitted={() => {
+                      setTimeout(manageFormSubmit, 1000)
+                      // manageFormSubmit()
                     }}
+                    inlineMessage={submitedText}
                     loading={<Loading height={loadingHeight} />}
                   />
                 </FormCut>
