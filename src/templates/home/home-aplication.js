@@ -22,6 +22,7 @@ const HomeAplication = () => {
   return (
     <Section
       spaceNone
+      id="section_4"
       css={sectionStyles({
         bgRoundDeco: colors.blue.dark,
         bgSquareDeco: colors.blue.light,

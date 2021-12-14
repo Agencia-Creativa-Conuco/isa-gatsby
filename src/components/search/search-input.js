@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import styled from "@emotion/styled";
-import { css, Global } from "@emotion/react";
+import { css  } from "@emotion/react";
 import { CloseIcon } from "../icons";
 import ScreenReaderText from "../styles/screen-reader";
 import useFocusTrap from "../hooks/use-trap-focus";
@@ -14,11 +14,19 @@ const SearchInput = ({
   isSearchModalOpen,
   toggleSearchModal,
   setResultsSearch,
+  isMobileMenuOpen,
 }) => {
 
   const closeSearchModal = () => {
     toggleSearchModal(false);
   };
+
+  useEffect(() => {
+    if(isMobileMenuOpen){
+      toggleSearchModal(false);
+    }
+
+  },[isMobileMenuOpen, toggleSearchModal])
 
   // Keep a reference to the input so we can grab it's value on form submission
   const inputRef = useRef();
@@ -37,14 +45,6 @@ const SearchInput = ({
       <ContainerSearch>
         {isSearchModalOpen ? (
           <>
-            {/* <Global
-              styles={css`
-                html {
-                  overflow-y: hidden;
-                }
-              `}
-            /> */}
-
             <ModalInner
               role="dialog"
               aria-modal="true"
@@ -72,24 +72,7 @@ const SearchInput = ({
 
 export default SearchInput;
 
-const ModalOverlay = styled.div`
-  /* background: rgba(0, 0, 0, 0.2);
-  display: none;
-  opacity: 0;
-  position: fixed;
-  bottom: 0; */
-  /* left: -9999rem; */
-  /* top: 0;
-  transition: opacity 0.2s linear, left 0s 0.2s linear; */
-  /* width: 100%;
-  z-index: 999; */
-
-  /* &[data-open="true"] {
-    display: block;
-    opacity: 1;
-    left: 0;
-  } */
-`;
+const ModalOverlay = styled.div``;
 
 const ContainerSearch = styled.div`
   position: relative;
@@ -97,7 +80,7 @@ const ContainerSearch = styled.div`
   right: 0;
   left: 0;
   margin: 0.5rem auto;
-  z-index: 2000;
+
 
 `;
 

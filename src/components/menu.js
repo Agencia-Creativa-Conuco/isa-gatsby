@@ -7,9 +7,9 @@ import { mq } from "./layout/index";
 import { MenuIcon } from "./icons";
 import colors from "./styles/colors";
 
-const MobileMenu = ({ items, isMobileMenuOpen, toggleMobileMenu }) => {
+const MobileMenu = ({ items, isMobileMenuOpen, toggleMobileMenu, isIndexesActive }) => {
   
-  return (
+  return  (
     <>
       <MenuToggle 
         aria-label="Click para abrir el menu..."
@@ -34,7 +34,7 @@ const MobileMenu = ({ items, isMobileMenuOpen, toggleMobileMenu }) => {
         )}
       </MenuToggle>
       {/* If the menu is open, render the menu modal */}
-      {isMobileMenuOpen && <MenuModal items={ items } />}
+      {isMobileMenuOpen && <MenuModal items={ items } />}  
     </>
   );
 }

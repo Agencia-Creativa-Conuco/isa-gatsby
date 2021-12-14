@@ -115,7 +115,7 @@ const NosotrosHistory = () =>{
     ]
 
     return (
-        <BgSection spaceNone bg={colors.gray.light}>
+        <BgSection spaceNone bg={colors.gray.light} id="section_1">
             <Container fluid>
                 <Row>
                     <Col>

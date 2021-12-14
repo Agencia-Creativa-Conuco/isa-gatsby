@@ -21,7 +21,7 @@ const AdmisionesInfo = () =>{
     const [view, setView] = useState(0);
 
     return grades.length ?(
-        <Section spaceNone>
+        <Section spaceNone id="section_2">
             <Container fluid>
                 <Row>
 

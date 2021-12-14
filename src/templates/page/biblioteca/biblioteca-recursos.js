@@ -58,7 +58,7 @@ const BibliotecaRecursos = () => {
     ];
 
   return (
-    <Section>
+    <Section id="section_2">
       <Container>
         <Row>
           <Col size={12} mlAuto>

@@ -9,7 +9,6 @@ import MobileMenu from './menu'
 import SearchInput from './search/search-input'
 import SearchButton from './search/search-button'
 import { getHierarchicalItems } from './inc/auxiliar'
-// import SocialBar from './socialbar'
 
 const Header = ({ setResultsSearch }) => {
   //Consultar y optener logo.svg
@@ -46,8 +45,6 @@ const Header = ({ setResultsSearch }) => {
     <HeaderWrapper
       color={colors.header.base}
       colorSticky={colors.header.sticky}
-      // isSticky={isSticky}
-      // isOnTop={state.theme.menu.isOnTop}
     >
       <Container>
         <Row alignContent="center" alignCenter>
@@ -73,9 +70,11 @@ const Header = ({ setResultsSearch }) => {
                     </Col>
                     <Col size="auto" mlAuto>
                       <Gadgets>
-                        <SearchButton
-                          {...{ isSearchModalOpen, toggleSearchModal }}
-                        />
+                        {!isMobileMenuOpen && (
+                          <SearchButton
+                            {...{ isSearchModalOpen, toggleSearchModal }}
+                          />
+                        )}
                         <MobileMenu
                           items={menuItems}
                           {...{ isMobileMenuOpen, toggleMobileMenu }}
@@ -89,20 +88,14 @@ const Header = ({ setResultsSearch }) => {
           </Col>
         </Row>
         <Col size={12} sizeLG={10} mlAuto noGutters guttersLG>
-          {/* <Col styled={{}} > */}
           <SearchInput
             {...{
               isSearchModalOpen,
               toggleSearchModal,
               setResultsSearch,
+              isMobileMenuOpen,
             }}
           />
-          {/* </Col> */}
-          {/* <RowsocialBar>
-            <Col>
-              <SocialBar />
-            </Col>
-          </RowsocialBar> */}
         </Col>
       </Container>
     </HeaderWrapper>
@@ -144,11 +137,11 @@ const HeaderWrapper = styled.header`
 
 const Logo = styled.div`
   max-width: 9rem;
-  ${mq.lg} {
-    max-width: 9rem;
-  }
-  ${mq.xl} {
+  ${mq.md} {
     max-width: 10rem;
+  }
+  ${mq.lg} {
+    max-width: 12rem;
   }
 `
 
@@ -166,12 +159,5 @@ const StyledLink = styled(Link)`
 const Gadgets = styled.div`
   display: flex;
   align-items: center;
+  z-index: 2;
 `
-
-// const RowsocialBar = styled.div`
-//   display: none;
-
-//   ${mq.lg} {
-//     display: initial;
-//   }
-// `

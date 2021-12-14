@@ -37,7 +37,7 @@ const AdmisionesForm = ({ ...props }) => {
 
     return forms.length > 1?(
         <BackgroundImage Tag="section" fluid={image?.childImageSharp.fluid} id="form">
-            <Container fluid>
+            <Container fluid id="section_3">
                 <Row>
                     <Col
                         size={12}

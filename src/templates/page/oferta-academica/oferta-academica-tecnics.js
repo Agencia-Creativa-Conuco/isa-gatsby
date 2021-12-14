@@ -19,7 +19,7 @@ const OfferTecnics = () =>{
         `;
 
     return (
-        <StyledSection spaceNone css={css`background: ${colors.gray.light};`}>
+        <StyledSection spaceNone css={css`background: ${colors.gray.light};`} id="section_2">
             <Container fluid>
                 <Row>
                     <Col 

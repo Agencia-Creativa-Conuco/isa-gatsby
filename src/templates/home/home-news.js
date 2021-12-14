@@ -16,7 +16,7 @@ const HomeNews = () =>{
     const news = posts.filter( post => post.tipoPublicacion === "post");
 
     return news.length > 0?(
-        <Section>
+        <Section  id="section_2">
             <Container>
                 <Row>
                     <Col>

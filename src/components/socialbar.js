@@ -1,15 +1,17 @@
-import React,{useState, useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 import useGlobalOption from "../hooks/useGlobalOption";
-import { Container, Row } from "./layout/index";
-import styled from '@emotion/styled';
-import colors from './styles/colors';
+import styled from "@emotion/styled";
+import colors from "./styles/colors";
 import {
-    InstagramIcon,
-    Facebook2Icon,
-    TwitterIcon,
-    YoutubeIcon,
-    LinkedInIcon,
-  } from "./icons";
+  InstagramIcon,
+  Facebook2Icon,
+  TwitterIcon,
+  YoutubeIcon,
+  LinkedInIcon,
+  RightArrowIcon
+} from "./icons";
+import { mq } from "./layout/index";
+import { slideUp} from "./styles/animations";
 
 
 const SocialBar = () => {
@@ -17,89 +19,131 @@ const SocialBar = () => {
   const [{ redesSociales }] = useGlobalOption();
   const [isVisible, setIsVisible] = useState(true);
 
-
   const listenToScroll = () => {
-
     let heightToHideFrom = 100;
-    const winScroll = document.body.scrollTop || 
-    document.documentElement.scrollTop;
-    if( winScroll > heightToHideFrom){
-      isVisible &&
-      setIsVisible(false);
-    }else{
-      setIsVisible(true)
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    if (winScroll > heightToHideFrom) {
+      isVisible && setIsVisible(false);
+    } else {
+      setIsVisible(true);
     }
-
-  }
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", listenToScroll);
-    return (()=>{
+    return () => {
       window.removeEventListener("scroll", listenToScroll);
-    })
-  })
-
+    };
+  });
 
   const icons = {
-    facebook: Facebook2Icon,
-    twitter: TwitterIcon,
-    youtube: YoutubeIcon,
-    linkedin: LinkedInIcon,
-    instagram: InstagramIcon,
-  }
+    facebook: {
+      Icon: Facebook2Icon,
+      color: "#3b5998",
+    },
 
+    twitter: {
+      Icon: TwitterIcon,
+      color: "#00abf0",
+    },
+    youtube: {
+      Icon: YoutubeIcon,
+      color: "#bb0000",
+    },
+    linkedin: {
+      Icon: LinkedInIcon,
+      color: "#007bb5",
+    },
+    instagram: {
+      Icon: InstagramIcon,
+      color:
+        "linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)",
+    },
+  };
 
   const redes = redesSociales.map((red) => {
     return {
       ...red,
-      icon: icons[red.tipoRed]
-    }
+      icon: icons[red.tipoRed],
+    };
   });
-    return (
-        isVisible && (
-          <Container sizeXL="150rem">
-          <Row justifyContent="end">  
-                {redes.map((red, index) => {
-                  const Icon = red.icon;
-                  return (
-                    <div  key={index}>
-                      <LinkIcon href={red.url} target="_blank" rel="noreferrer" aria-label={red.tipoRed}>
-                        <Icon />
-                      </LinkIcon>
-                    </div>
-                  )
-                })
-                }
-          </Row>
-        </Container>
 
-        )
-      
+  return (
+    isVisible ? (
+      <Container>
+        {redes.map((red, index) => {
+          const {
+            icon: { Icon, color },
+          } = red;
 
+          return (
+            <div key={index}>
+              <LinkIcon
+                bgColor={color}
+                href={red.url}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={red.tipoRed}
+              >
+                <Icon />
+              </LinkIcon>
+            </div>
+          );
+        })}
+      </Container>
+    ) : (
+      <ContainerArrow onClick={() => setIsVisible(true)}>
+        <RightArrowIcon bgColor={"white"}  />
+      </ContainerArrow>
     )
-}
+  );
+};
 
-export default SocialBar
+export default SocialBar;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 0;
+  animation: ${slideUp} 0.4s ease-out;
+  
+
+  position: absolute;
+  top: -15rem;
+
+  ${mq.lg} {
+    top: 0;
+  }
+`;
 
 const LinkIcon = styled.a`
-max-width: 3.5rem;
-  border-radius: 100%;
-  border-width: 1px;
-  border-style: solid;
+  width: 3.6rem;
   display: inline-block;
   background-color: white;
-  margin:0.3rem  0.2rem;
-  padding: 4px;
-  box-shadow: 0.1rem .1rem .5rem rgba(0,0,0,.15);
-  transition: cubic-bezier(.86,0,.07,1);
+  padding: 0.4rem;
+  transition: cubic-bezier(0.86, 0, 0.07, 1);
+  background: ${(props) => props.bgColor};
   color: white;
   &:hover {
-    /* opacity: 0.5 */
+    ${mq.lg} {
+      min-width: 4.5rem;
+    }
     svg {
-    fill:${colors.primary.dark} ;
-  }
+      fill: ${colors.primary.dark};
+    }
   }
   svg {
-    fill:#00A4E5 ;
+    fill: white;
+  }
+`;
+const ContainerArrow = styled.div`
+  background: ${colors.primary.base};
+  border-radius: 20%;
+  color: white;
+  width: 2rem;
+
+  :hover {
+    cursor: pointer;
   }
 `;

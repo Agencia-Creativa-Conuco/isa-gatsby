@@ -38,7 +38,7 @@ const DEPCover = () =>{
         copy = "La Dirección de Extensión y Proyectos es una dependencia de la Vicerrectoría de Investigación, Extensión y Postgrado (VIEP), la misma ha sido como un instrumento para la difusión del conocimiento, la aplicación de la ciencia, el apoyo a los sectores productivos y empresariales, el mejoramiento de la competitividad, así como el intercambio cultural y deportivo, todo ello visto como fundamento para el desarrollo integral de la sociedad y el cumplimiento de la labor de la Universidad.";
     
     return (
-        <Section spaceNone>
+        <Section spaceNone >
             <Container fluid noGutters>
                 <Row alignCenter>
                     <Col size={12} sizeLG={7}>

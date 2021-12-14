@@ -42,7 +42,7 @@ const DEPVeterinary = ({ page }) => {
     image = images["direccion-extension-y-proyectos"].clinica_veterinaria;
 
   return (
-    <Section>
+    <Section  id="section_7">
       <Container>
         <WrapperRow>
           <Row>

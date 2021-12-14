@@ -62,7 +62,7 @@ const ServiciosEstudiantilesDeportes = () =>{
     }, [slider1, slider2])
 
     return (
-        <Section spaceNone>
+        <Section spaceNone id="section_5">
             <Container>
                 <Row>
                     <Col 

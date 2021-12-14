@@ -45,8 +45,8 @@ const images = allFile.nodes.reduce((obj, item) => {
         `;
 
     return (
-        <BgSection id="rector" decoBg={colors.blue.base} spaceTopNone>
-            <Container >
+        <BgSection id="rector" decoBg={colors.blue.base} spaceTopNone  >
+            <Container id="section_2" >
                 <Row alignCenter>
                     <Col 
                     size={12} 

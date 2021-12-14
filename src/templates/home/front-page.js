@@ -12,6 +12,8 @@ import useSlides from "../../hooks/useSlides";
 
 const FrontPage = ({ page}) => {
 
+
+
   //Obtiene los datos de los slides
   const slides = useSlides();
 
@@ -20,7 +22,7 @@ const FrontPage = ({ page}) => {
     <>
       <HomeCover {...{ slides }} />
       <HomeOffer />
-      <Calendar />
+      <Calendar/>
       <HomeNews />
       <HomeProjects />
       <HomeAplication />

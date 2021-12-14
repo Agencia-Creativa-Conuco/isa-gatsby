@@ -20,7 +20,7 @@ const ServiciosEstudiantilesBienestar = ({ page }) =>{
         cta = null
 
     return (
-        <Section spaceNone zIndex={20}>
+        <Section spaceNone zIndex={20} id="section_2">
             <Container fluid>
                 <Row>
                 <Col size={12} sizeMD={6} noGutters>

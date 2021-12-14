@@ -8,7 +8,7 @@ import {   ClockIcon  } from "../../../components/icons";
 const BibliotecaHorario = () =>{
 
     return (
-        <SectionStyles color={colors.blue.dark}>
+        <SectionStyles color={colors.blue.dark} id="section_3">
             <Row>
                 <Icon bgColor={colors.cta.base} >
                         <ClockIcon />

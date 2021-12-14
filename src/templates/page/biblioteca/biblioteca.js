@@ -6,10 +6,26 @@ import BibliotecaRecursos from "./biblioteca-recursos";
 import BibliotecaHorario from "./biblioteca-horario";
 import Layout from "../../../components/layout";
 
+
 const Biblioteca = (props) => {
 
+    const data = [
+        {
+          name: " Servicios",
+          id: "#section_1",
+        },
+        {
+          name: "Recursos",
+          id: "#section_2",
+        },
+        {
+          name: "Horario de servicios",
+          id: "#section_3",
+        },
+      ];
+
     return (
-        <Layout {...props}>
+        <Layout {...{props, data}}>
             <Container>
                 <BibliotecaCover />
                 <BibliotecaServicios />

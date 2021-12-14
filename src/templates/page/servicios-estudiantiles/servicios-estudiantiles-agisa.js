@@ -60,7 +60,7 @@ const ServiciosEstudiantilesAGISA = () => {
   ]
 
   return (
-    <Section>
+    <Section id="section_7">
       <Container>
         <Row>
           <Col>
