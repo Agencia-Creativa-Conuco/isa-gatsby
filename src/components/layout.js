@@ -11,7 +11,6 @@ import Footer from './footer'
 import ResourcesList from './resourceslist'
 import Contact from './contact'
 import usePages from '../hooks/usePages'
-// import SocialBar from './socialbar'
 import { mq } from './layout/index'
 import PageIndexes from './page-indexes'
 
@@ -87,9 +86,6 @@ const Layout = (props) => {
       <Header {...{ setResultsSearch }} />
 
       <Main>
-        {/* <RowsocialBar>
-          <SocialBar />
-        </RowsocialBar> */}
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child)) {
             return React.cloneElement(child, {
@@ -120,14 +116,4 @@ export default Layout
 
 const Main = styled.main`
   overflow: hidden;
-`
-
-const RowsocialBar = styled.div`
-  z-index: 2000;
-  position: fixed;
-  transform: translateY(96vh);
-
-  ${mq.lg} {
-    transform: translateY(40vh);
-  }
 `
