@@ -50,7 +50,7 @@ const Wrapper = styled.div`
     position: fixed;
     bottom: 0;
     right: 0;
-    z-index: 2000;
+    z-index: 99;
     animation: ${fadeIn} 0.2s ease-out;
 
     &[data-open='true'] {
@@ -59,6 +59,7 @@ const Wrapper = styled.div`
       left: 0;
       right: 0;
       transition: opacity 0.25s ease-out;
+      z-index:2000;
     }
   `}
 `
