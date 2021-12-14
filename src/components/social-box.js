@@ -11,12 +11,8 @@ import {
 
 import useGlobalOption from '../hooks/useGlobalOption'
 
-
-
-
 const SocialBox = () => {
-
-  const [{ redesSociales }] = useGlobalOption();
+  const [{ redesSociales }] = useGlobalOption()
 
   const icons = {
     facebook: Facebook2Icon,
@@ -24,54 +20,49 @@ const SocialBox = () => {
     youtube: YoutubeIcon,
     linkedin: LinkedInIcon,
     instagram: InstagramIcon,
-  };
+  }
 
   const redes = redesSociales.map((red) => {
     return {
       ...red,
       icon: icons[red.tipoRed],
-    };
-  });
-    return (
-        <Container noGutters>
-          <Row>
-            <Col>
-
-            <Box>
-          {redes.map((red, index) => {
-            const Icon = red.icon;
-            return (
-              <LinkIcon
-                key={index}
-                href={red.url}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={red.tipoRed}
-              >
-                <Icon />
-              </LinkIcon>
-            );
-          })}
-        </Box>
-            
-            
-            </Col>
-          </Row>
-        </Container>
-    )
+    }
+  })
+  return (
+    <Container noGutters>
+      <Row>
+        <Col>
+          <Box>
+            {redes.map((red, index) => {
+              const Icon = red.icon
+              return (
+                <LinkIcon
+                  key={index}
+                  href={red.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={red.tipoRed}
+                >
+                  <Icon />
+                </LinkIcon>
+              )
+            })}
+          </Box>
+        </Col>
+      </Row>
+    </Container>
+  )
 }
 
-export default SocialBox;
-
-
+export default SocialBox
 
 const Box = styled.div`
 
 /* ${mq.sm}{ */
-  margin-top: 3rem;
+  /* margin-top: 3rem; */
 
 /* } */
-`;
+`
 
 const LinkIcon = styled.a`
   border-radius: 100%;
@@ -98,4 +89,4 @@ const LinkIcon = styled.a`
     line-height: 4.5rem;
     vertical-align: middle;
   }
-`;
+`
