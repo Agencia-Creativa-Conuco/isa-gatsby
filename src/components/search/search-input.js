@@ -15,27 +15,18 @@ const SearchInput = ({
   toggleSearchModal,
   setResultsSearch,
   isMobileMenuOpen,
-  isIndexesActive,
-  setIsIndexesActive
 }) => {
 
   const closeSearchModal = () => {
     toggleSearchModal(false);
-
-
   };
 
   useEffect(() => {
-    console.log('entro')
     if(isMobileMenuOpen){
       toggleSearchModal(false);
     }
-    if(isIndexesActive){
-      closeSearchModal()
-      setIsIndexesActive(false)
-  }
 
-  },[isMobileMenuOpen, toggleSearchModal,isIndexesActive])
+  },[isMobileMenuOpen, toggleSearchModal])
 
   // Keep a reference to the input so we can grab it's value on form submission
   const inputRef = useRef();
@@ -81,24 +72,7 @@ const SearchInput = ({
 
 export default SearchInput;
 
-const ModalOverlay = styled.div`
-  /* background: rgba(0, 0, 0, 0.2);
-  display: none;
-  opacity: 0;
-  position: fixed;
-  bottom: 0; */
-  /* left: -9999rem; */
-  /* top: 0;
-  transition: opacity 0.2s linear, left 0s 0.2s linear; */
-  /* width: 100%;
-  z-index: 999; */
-
-  /* &[data-open="true"] {
-    display: block;
-    opacity: 1;
-    left: 0;
-  } */
-`;
+const ModalOverlay = styled.div``;
 
 const ContainerSearch = styled.div`
   position: relative;
