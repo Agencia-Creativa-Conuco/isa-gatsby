@@ -44,7 +44,7 @@ const MenuOverlay = styled.div`
     height: 100vh;
     overflow: hidden auto;
     position: fixed;
-    z-index: 2;
+    z-index: 200;
     top: 0;
     left: 0;
     padding: 8rem 2rem;

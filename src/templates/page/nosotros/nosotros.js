@@ -6,7 +6,7 @@ import NosotrosHistory from './nosotros-history'
 import NosotrosRector from './nosotros-rector'
 import NosotrosCampus from './nosotros-campus'
 import NosotrosPhilosophy from './nosotros-philosophy'
-import PageIndexes from '../../../components/page-indexes'
+// import PageIndexes from '../../../components/page-indexes'
 
 const Nosotros = (props) => {
   const data = [
