@@ -36,13 +36,3 @@ exports.createPages = async (gatsbyUtilities) => {
     await _category.createArchives({ categories, gatsbyUtilities })
   }
 }
-
-//gatsby-node.js
-// exports.onCreateWebpackConfig = ({ actions }) => {
-//   const { setWebpackConfig } = actions
-//   setWebpackConfig({
-//     externals: {
-//       jquery: 'jQuery', // important: 'Q' capitalized
-//     },
-//   })
-// }
