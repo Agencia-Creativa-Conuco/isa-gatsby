@@ -94,8 +94,7 @@ const Form = ({
                       setDisplayedForms(displayedForms.concat(active))
                     }}
                     onFormSubmitted={() => {
-                      setTimeout(manageFormSubmit, 1000)
-                      // manageFormSubmit()
+                      manageFormSubmit()
                     }}
                     inlineMessage={submitedText}
                     loading={<Loading height={loadingHeight} />}
