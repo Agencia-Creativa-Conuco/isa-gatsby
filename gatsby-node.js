@@ -38,11 +38,11 @@ exports.createPages = async (gatsbyUtilities) => {
 }
 
 //gatsby-node.js
-exports.onCreateWebpackConfig = ({ actions }) => {
-  const { setWebpackConfig } = actions
-  setWebpackConfig({
-    externals: {
-      jquery: 'jQuery', // important: 'Q' capitalized
-    },
-  })
-}
+// exports.onCreateWebpackConfig = ({ actions }) => {
+//   const { setWebpackConfig } = actions
+//   setWebpackConfig({
+//     externals: {
+//       jquery: 'jQuery', // important: 'Q' capitalized
+//     },
+//   })
+// }
