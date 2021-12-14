@@ -1,36 +1,34 @@
-import React, { useState } from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import colors from "./styles/colors";
-import { UpArrowIcon, CloseIcon } from "./icons";
-import { Global } from "@emotion/react";
-import { Container, Row, Col } from "./layout/index";
-import { fadeIn, slideUp } from "./styles/animations";
+import React, { useState } from 'react'
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+import colors from './styles/colors'
+import { ListIcon, CloseIcon } from './icons'
+import { Global } from '@emotion/react'
+import { Container, Row, Col } from './layout/index'
+import { fadeIn, slideUp } from './styles/animations'
 
-const PageIndexes = ({data =[]}) => {
-
-
-  const [isVisible, setIsVisible] = useState(false);
+const PageIndexes = ({ data = [] }) => {
+  const [isVisible, setIsVisible] = useState(false)
 
   return (
     <Wrapper data-open={isVisible} onClick={() => setIsVisible(!isVisible)}>
-      {isVisible && <Global styles={{ body: { overflowY: "hidden" } }} />}
+      {isVisible && <Global styles={{ body: { overflowY: 'hidden' } }} />}
 
       {isVisible ? (
         <Card>
           <Row>
             <Col>
-              <ul style={{ margin: "1rem 2rem 0 0" }}>
+              <ul style={{ margin: '1rem 2rem 0 0' }}>
                 {data.map((item) => {
                   return (
                     <StylesLink href={item.id} key={item.id}>
                       <StylesLI>{item.name}</StylesLI>
                     </StylesLink>
-                  );
+                  )
                 })}
               </ul>
               <CloseButton
-                onClick={()=>setIsVisible(!isVisible)}
+                onClick={() => setIsVisible(!isVisible)}
                 colors={colors}
               >
                 <CloseIcon />
@@ -40,14 +38,14 @@ const PageIndexes = ({data =[]}) => {
         </Card>
       ) : (
         <ContainerArrow>
-          <UpArrowIcon />
+          <ListIcon />
         </ContainerArrow>
       )}
     </Wrapper>
-  );
-};
+  )
+}
 
-export default PageIndexes;
+export default PageIndexes
 
 const Wrapper = styled.div`
   ${() => css`
@@ -55,7 +53,7 @@ const Wrapper = styled.div`
     align-items: baseline;
     align-items: end;
     justify-content: end;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
     padding-right: 1rem;
     position: fixed;
     bottom: 0;
@@ -63,7 +61,7 @@ const Wrapper = styled.div`
     z-index: 2000;
     animation: ${fadeIn} 0.2s ease-out;
 
-    &[data-open="true"] {
+    &[data-open='true'] {
       background-color: rgba(0, 0, 0, 0.4);
       height: 100vh;
       left: 0;
@@ -71,14 +69,16 @@ const Wrapper = styled.div`
       transition: opacity 0.25s ease-out;
     }
   `}
-`;
+`
 
 const ContainerArrow = styled.div`
   background: ${colors.primary.base};
   border-radius: 1rem;
   display: flex;
-  width: 3.4rem;
-  height: 3.4rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  color: white;
+  padding: 0.8rem;
 
   svg {
     fill: white;
@@ -87,7 +87,7 @@ const ContainerArrow = styled.div`
   :hover {
     cursor: pointer;
   }
-`;
+`
 
 const Card = styled(Container)`
   background: #fff;
@@ -98,7 +98,7 @@ const Card = styled(Container)`
   animation: ${slideUp} 0.4s ease-out;
   width: auto;
   padding: 1.5rem;
-`;
+`
 
 const CloseButton = styled.button`
   ${({ colors }) => css`
@@ -106,7 +106,7 @@ const CloseButton = styled.button`
     border: none;
     box-shadow: none;
     position: absolute;
-    color: ${colors ? colors.gray.dark : "#555552"};
+    color: ${colors ? colors.gray.dark : '#555552'};
     right: 0rem;
     top: 0rem;
     padding: 1rem;
@@ -128,14 +128,14 @@ const CloseButton = styled.button`
       width: 1.5rem;
     }
   `}
-`;
+`
 
 const StylesLink = styled.a`
   text-decoration: none;
-`;
+`
 
 const StylesLI = styled.li`
-    list-style: none;
-    background: aliceblue;
-    padding: 0.5rem;
-`;
+  list-style: none;
+  background: aliceblue;
+  padding: 0.5rem;
+`
