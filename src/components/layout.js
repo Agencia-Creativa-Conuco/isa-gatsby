@@ -64,6 +64,7 @@ const Layout = (props) => {
         {/* <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> */}
         {/* <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap" rel="stylesheet"></link> */}
         {/* Start of HubSpot Embed Code */}
+        <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/shell-legacy.js"></script>
         <script
           type="text/javascript"
           id="hs-script-loader"

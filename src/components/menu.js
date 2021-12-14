@@ -34,7 +34,7 @@ const MobileMenu = ({ items, isMobileMenuOpen, toggleMobileMenu, isIndexesActive
         )}
       </MenuToggle>
       {/* If the menu is open, render the menu modal */}
-      {isMobileMenuOpen && <MenuModal items={ items } />}
+      {isMobileMenuOpen && <MenuModal items={ items } />}  
     </>
   );
 }
