@@ -4,7 +4,6 @@ import { css } from '@emotion/react'
 import colors from './styles/colors'
 import { ListIcon, CloseIcon } from './icons'
 import { Global } from '@emotion/react'
-import { Container, Row, Col } from './layout/index'
 import { fadeIn, slideUp } from './styles/animations'
 
 const PageIndexes = ({ data = [] }) => {
@@ -16,25 +15,18 @@ const PageIndexes = ({ data = [] }) => {
 
       {isVisible ? (
         <Card>
-          <Row>
-            <Col>
-              <ul style={{ margin: '1rem 2rem 0 0' }}>
-                {data.map((item) => {
-                  return (
-                    <StylesLink href={item.id} key={item.id}>
-                      <StylesLI>{item.name}</StylesLI>
-                    </StylesLink>
-                  )
-                })}
-              </ul>
-              <CloseButton
-                onClick={() => setIsVisible(!isVisible)}
-                colors={colors}
-              >
-                <CloseIcon />
-              </CloseButton>
-            </Col>
-          </Row>
+          <ul style={{ margin: '1rem 2rem 0 0' }}>
+            {data.map((item) => {
+              return (
+                <StylesLink href={item.id} key={item.id}>
+                  <StylesLI>{item.name}</StylesLI>
+                </StylesLink>
+              )
+            })}
+          </ul>
+          <CloseButton onClick={() => setIsVisible(!isVisible)} colors={colors}>
+            <CloseIcon />
+          </CloseButton>
         </Card>
       ) : (
         <ContainerArrow>
@@ -89,7 +81,7 @@ const ContainerArrow = styled.div`
   }
 `
 
-const Card = styled(Container)`
+const Card = styled.div`
   background: #fff;
   margin: 0 1rem;
   margin-top: 15vh;
@@ -97,7 +89,8 @@ const Card = styled(Container)`
   border-radius: 5px;
   animation: ${slideUp} 0.4s ease-out;
   width: auto;
-  padding: 1.5rem;
+  padding: 3rem 1.5rem;
+  position: relative;
 `
 
 const CloseButton = styled.button`
@@ -110,7 +103,6 @@ const CloseButton = styled.button`
     right: 0rem;
     top: 0rem;
     padding: 1rem;
-    transform: translate(0, -1rem);
     z-index: 6;
     &:hover {
       cursor: pointer;
