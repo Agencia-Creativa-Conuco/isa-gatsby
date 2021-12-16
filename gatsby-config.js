@@ -6,7 +6,7 @@ module.exports = {
     description:
       'Entra y descubre todas las ofertas académicas que tenemos disponibles para ti e inicia a aprender para servir y a servir para construir.',
     url: 'https://isa.edu.do', // No trailing slash allowed!
-    image: '/images/site/icon.png', // Path to the image placed in the 'static' folder, in the project's root directory.
+    image: '/src/images/site/icon.png', // Path to the image placed in the 'static' folder, in the project's root directory.
     twitterUsername: '@occlumency',
   },
   plugins: [
@@ -163,5 +163,17 @@ module.exports = {
     },
     'gatsby-plugin-use-query-params',
     'gatsby-plugin-smoothscroll',
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `UNIVERSIDAD ISA`,
+        short_name: `ISA`,
+        start_url: `/`,
+        background_color: `#f7f0eb`,
+        theme_color: `#a2466c`,
+        display: `standalone`,
+        icon: `src/images/site/logo.svg`,
+      },
+    },
   ],
 }
