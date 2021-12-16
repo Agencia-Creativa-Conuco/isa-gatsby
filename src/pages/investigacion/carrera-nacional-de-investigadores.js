@@ -1,18 +1,25 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { Section, Container, Row, Col } from "../../components/layout/index";
-import Layout from "../../components/layout";
-import colors from "../../components/styles/colors";
-import useInvestigadores from "../../hooks/useInvestigadores";
+import React from 'react'
+import styled from '@emotion/styled'
+import { Section, Container, Row, Col } from '../../components/layout/index'
+import Layout from '../../components/layout'
+import colors from '../../components/styles/colors'
+import useInvestigadores from '../../hooks/useInvestigadores'
 
 const CarreraNacionalDeInvestigadores = (props) => {
+  const investigadores = useInvestigadores().filter(
+    (investigador) => investigador.esCarrera,
+  )
 
-  const investigadores = useInvestigadores().filter( investigador => investigador.esCarrera)
+  const title = 'Miembros De La Carrera Nacional De Investigadores UNISA'
 
-  const title = "Miembros De La Carrera Nacional De Investigadores UNISA";
-  
+  const metaData = {
+    title: 'Carrera nacional de investigadores',
+    description:
+      'Investigadores que apoyan a Universidad ISA en sus investigaciones y que pertenecen a la carrera nacional de investigadores',
+  }
+
   return (
-    <Layout {...props}>
+    <Layout {...props} {...metaData}>
       <Section as="article" spaceNone>
         <Cover bgColor={colors.primary.base} spaceNone>
           <Section as="div" spaceBottomNone>
@@ -35,34 +42,52 @@ const CarreraNacionalDeInvestigadores = (props) => {
               </Row>
               <Row>
                 {investigadores.map((investigador, index) => {
-
                   const {
                     nombre,
                     puestoTrabajo,
                     tituloAcademico,
-                    carreraNacionalInvestigacion
-                  } = investigador;
+                    carreraNacionalInvestigacion,
+                  } = investigador
 
                   const {
                     anoIngreso,
                     area,
                     areaInvestigacion,
                     categoria,
-                  } = carreraNacionalInvestigacion;
+                  } = carreraNacionalInvestigacion
 
                   return (
                     <Col key={index} size={12} sizeMD={6}>
                       <Card>
                         <Name>{nombre}</Name>
-                        <Line><Label>Formación académica:</Label> <Value>{tituloAcademico}</Value></Line>
-                        <Line><Label>Posición en UNISA:</Label> <Value>{puestoTrabajo}</Value></Line>
-                        <Line><Label>Área de investigación / Departamento UNISA:</Label> <Value>{area}</Value></Line>
-                        <Line><Label>Categoría: </Label> <Value>{categoria}</Value></Line>
-                        <Line><Label>Año de Ingreso:</Label> <Value>{anoIngreso}</Value></Line>
-                        <Line><Label>Área de Investigación:</Label> <Value>{areaInvestigacion}</Value></Line>
+                        <Line>
+                          <Label>Formación académica:</Label>{' '}
+                          <Value>{tituloAcademico}</Value>
+                        </Line>
+                        <Line>
+                          <Label>Posición en UNISA:</Label>{' '}
+                          <Value>{puestoTrabajo}</Value>
+                        </Line>
+                        <Line>
+                          <Label>
+                            Área de investigación / Departamento UNISA:
+                          </Label>{' '}
+                          <Value>{area}</Value>
+                        </Line>
+                        <Line>
+                          <Label>Categoría: </Label> <Value>{categoria}</Value>
+                        </Line>
+                        <Line>
+                          <Label>Año de Ingreso:</Label>{' '}
+                          <Value>{anoIngreso}</Value>
+                        </Line>
+                        <Line>
+                          <Label>Área de Investigación:</Label>{' '}
+                          <Value>{areaInvestigacion}</Value>
+                        </Line>
                       </Card>
                     </Col>
-                  );
+                  )
                 })}
               </Row>
             </Container>
@@ -70,16 +95,16 @@ const CarreraNacionalDeInvestigadores = (props) => {
         </Facilidades>
       </Section>
     </Layout>
-  );
-};
+  )
+}
 
-export default CarreraNacionalDeInvestigadores;
+export default CarreraNacionalDeInvestigadores
 
 const Cover = styled(Section)`
   overflow: hidden;
-`;
+`
 
-const List = styled(Section)``;
+const List = styled(Section)``
 
 const Title = styled.h1`
   text-align: center;
@@ -87,9 +112,9 @@ const Title = styled.h1`
   text-shadow: ${colors.shadow.base};
   margin-bottom: 4rem;
   margin-top: 4rem;
-`;
+`
 
-const Facilidades = styled.div``;
+const Facilidades = styled.div``
 
 const Card = styled.article`
   font-weight: normal;
@@ -100,26 +125,26 @@ const Card = styled.article`
   &:hover {
     background-color: #f5f5f5;
   }
-`;
+`
 
-const STitle = styled.h2``;
+const STitle = styled.h2``
 
 const Name = styled.h3`
   /* text-transform: uppercase; */
   margin: 0;
-  margin-bottom: .5rem;
-  padding-bottom: .5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
   border-bottom: 0.2rem solid #606060;
-`;
+`
 
 const Line = styled.p`
   margin: 0;
-`;
+`
 
 const Label = styled.span`
   font-weight: 300;
-`;
+`
 
 const Value = styled.span`
   font-weight: 600;
-`;
+`

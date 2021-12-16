@@ -1,32 +1,38 @@
-import * as React from "react";
-import Layout from "../../components/layout";
-import { graphql } from "gatsby";
-import FacultadSingle from "../../templates/facultad/facultad-single";
-import useFacultades from "../../hooks/useFacultades";
+import * as React from 'react'
+import Layout from '../../components/layout'
+import { graphql } from 'gatsby'
+import FacultadSingle from '../../templates/facultad/facultad-single'
+import useFacultades from '../../hooks/useFacultades'
 
 export const query = graphql`
-  query ($id: String!) {
+  query($id: String!) {
     allWpFacultad(filter: { id: { eq: $id } }) {
       nodes {
         id
       }
     }
   }
-`;
+`
 
 // markup
 const Facultad = ({ data, ...props }) => {
-
   const {
     allWpFacultad: { nodes: facultades },
-  } = data;
+  } = data
 
-  const [facultad] = useFacultades().filter( facultad => facultades.map( item => item.id).includes( facultad.id ) );
-  
+  const [facultad] = useFacultades().filter((facultad) =>
+    facultades.map((item) => item.id).includes(facultad.id),
+  )
+
+  const metaData = {
+    title: facultad.nombre,
+    description: facultad.copy,
+  }
+
   return (
-    <Layout {...props} obj={facultad}>
-      <FacultadSingle {...{facultad}} />
+    <Layout {...props} {...metaData} obj={facultad}>
+      <FacultadSingle {...{ facultad }} />
     </Layout>
-  );
-};
-export default Facultad;
+  )
+}
+export default Facultad

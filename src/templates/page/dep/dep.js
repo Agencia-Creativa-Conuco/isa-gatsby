@@ -48,8 +48,14 @@ const DEPPage = (props) => {
     },
   ]
 
+  const metaData = {
+    title: 'Dirección Extensión y Proyectos',
+    description:
+      'La Dirección de Extensión y Proyectos es una dependencia de la Vicerrectoría de Investigación, Extensión y Postgrado (VIEP), la misma ha sido como un instrumento para la difusión del conocimiento, la aplicación de la ciencia, el apoyo a los sectores productivos y empresariales, el mejoramiento de la competitividad, así como el intercambio cultural y deportivo, todo ello visto como fundamento para el desarrollo integral de la sociedad y el cumplimiento de la labor de la Universidad.',
+  }
+
   return (
-    <Layout {...{ data }} {...props}>
+    <Layout {...{ data }} {...props} {...metaData}>
       <Container>
         <DEPCover />
         <DEPActivities />

@@ -28,9 +28,15 @@ const Nosotros = (props) => {
     },
   ]
 
+  const metaData = {
+    title: 'NOSOTROS',
+    description:
+      'La Universidad ISA propicia en sus aulas el desarrollo de líderes visionarios, guiados por los valores de honestidad, responsabilidad, respeto, compromiso social y calidad.',
+  }
+
   // Load the post, but only if the data is ready.
   return (
-    <Layout {...{ data }} {...props}>
+    <Layout {...{ data }} {...props} {...metaData}>
       <Container>
         <NosotrosCover />
         <NosotrosHistory />

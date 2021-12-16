@@ -1,72 +1,75 @@
-import React from "react";
-import styled from "@emotion/styled";
-import ServiciosEstudiantilesCover from "./servicios-estudiantiles-cover";
-import ServiciosEstudiantilesPsicologia from "./servicios-estudiantiles-psicologia";
-import ServiciosEstudiantilesBienestar from "./servicios-estudiantiles-bienestar";
+import React from 'react'
+import styled from '@emotion/styled'
+import ServiciosEstudiantilesCover from './servicios-estudiantiles-cover'
+import ServiciosEstudiantilesPsicologia from './servicios-estudiantiles-psicologia'
+import ServiciosEstudiantilesBienestar from './servicios-estudiantiles-bienestar'
 // import ServiciosEstudiantilesResidencia from "./servicios-estudiantiles-residencia";
-import ServiciosEstudiantilesAGISA from "./servicios-estudiantiles-agisa";
-import ServiciosEstudiantilesClinica from "./servicios-estudiantiles-clinica";
-import ServiciosEstudiantilesDeportes from "./servicios-estudiantiles-deportes";
-import ServiciosEstudiantilesExcelencia from "./servicios-estudiantiles-excelencia";
-import ServiciosEstudiantilesActividades from "./servicios-estudiantiles-actividades";
-import Layout from "../../../components/layout";
-
+import ServiciosEstudiantilesAGISA from './servicios-estudiantiles-agisa'
+import ServiciosEstudiantilesClinica from './servicios-estudiantiles-clinica'
+import ServiciosEstudiantilesDeportes from './servicios-estudiantiles-deportes'
+import ServiciosEstudiantilesExcelencia from './servicios-estudiantiles-excelencia'
+import ServiciosEstudiantilesActividades from './servicios-estudiantiles-actividades'
+import Layout from '../../../components/layout'
 
 const ServiciosEstudiantilesPage = (props) => {
+  const data = [
+    {
+      name: 'Activiades Extracurriculares',
+      id: '#section_1',
+    },
+    {
+      name: 'Departamento de  Desarrollo y Bienestar Estudiantil',
+      id: '#section_2',
+    },
+    {
+      name: 'Orientación e Inclusión Estudiantil',
+      id: '#section_3',
+    },
+    {
+      name: 'Servicio de Enfermería',
+      id: '#section_4',
+    },
+    {
+      name: 'Unidad de Deporte',
+      id: '#section_5',
+    },
+    {
+      name: 'Programa de Premiación a la Exelencia',
+      id: '#section_6',
+    },
+    {
+      name: 'Asociación De Graduados De ISA (AGISA)',
+      id: '#section_7',
+    },
+  ]
 
-    const data = [
-      {
-        name: "Activiades Extracurriculares",
-        id: "#section_1",
-      },
-      {
-        name: "Departamento de  Desarrollo y Bienestar Estudiantil",
-        id: "#section_2",
-      },
-      {
-        name: "Orientación e Inclusión Estudiantil",
-        id: "#section_3",
-      },
-      {
-        name: "Servicio de Enfermería",
-        id: "#section_4",
-      },
-      {
-        name: "Unidad de Deporte",
-        id: "#section_5",
-      },
-      {
-        name: "Programa de Premiación a la Exelencia",
-        id: "#section_6",
-      },
-      {
-        name: "Asociación De Graduados De ISA (AGISA)",
-        id: "#section_7",
-      },
-    ];
+  const metaData = {
+    title: 'Decanato de estudiantes',
+    description:
+      'Junto a nuestra oferta académica, tenemos disponible diversos servicios que cubren las diferentes necesidades de los estudiantes durante su paso por la universidad. Descubre aquí cuáles son e iniciemos esta aventura juntos.',
+  }
   // Load the post, but only if the data is ready.
-    return (
-        <Layout  {...{ data }} {...props}>
-            <Container>
-                <ServiciosEstudiantilesCover /> 
-                <ServiciosEstudiantilesActividades />
-                <ServiciosEstudiantilesBienestar />
-                <ServiciosEstudiantilesPsicologia />
-                {/* <ServiciosEstudiantilesResidencia /> */}
-                <ServiciosEstudiantilesClinica />
-                <ServiciosEstudiantilesDeportes />
-                <ServiciosEstudiantilesExcelencia />
-                <ServiciosEstudiantilesAGISA />
+  return (
+    <Layout {...{ data }} {...props} {...metaData}>
+      <Container>
+        <ServiciosEstudiantilesCover />
+        <ServiciosEstudiantilesActividades />
+        <ServiciosEstudiantilesBienestar />
+        <ServiciosEstudiantilesPsicologia />
+        {/* <ServiciosEstudiantilesResidencia /> */}
+        <ServiciosEstudiantilesClinica />
+        <ServiciosEstudiantilesDeportes />
+        <ServiciosEstudiantilesExcelencia />
+        <ServiciosEstudiantilesAGISA />
+      </Container>
+    </Layout>
+  )
+}
 
-            </Container>
-        </Layout>
-    );
-};
-
-export default ServiciosEstudiantilesPage;
+export default ServiciosEstudiantilesPage
 
 const Container = styled.div`
-    width: 100%;
-    margin: 0;
-    overflow: hidden;
-`;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+`

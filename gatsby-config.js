@@ -1,13 +1,19 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "http://localhost:9000",
-    title: "isa",
+    siteUrl: 'https://isa.edu.do',
+    title: 'ISA',
+    titleTemplate: '%s · Universidad ISA',
+    description:
+      'Entra y descubre todas las ofertas académicas que tenemos disponibles para ti e inicia a aprender para servir y a servir para construir.',
+    url: 'https://isa.edu.do', // No trailing slash allowed!
+    image: '/images/site/icon.png', // Path to the image placed in the 'static' folder, in the project's root directory.
+    twitterUsername: '@occlumency',
   },
   plugins: [
     {
-      resolve: "gatsby-source-wordpress",
+      resolve: 'gatsby-source-wordpress',
       options: {
-        url: "https://prueba.conuco.do/graphql",
+        url: 'https://prueba.conuco.do/graphql',
         schema: {
           timeout: 120000,
           perPage: 25, // currently set to 100
@@ -17,10 +23,10 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-local-search",
+      resolve: 'gatsby-plugin-local-search',
       options: {
-        name: "pages",
-        engine: "flexsearch",
+        name: 'pages',
+        engine: 'flexsearch',
         query: `
           {
             allWpPost {
@@ -114,14 +120,14 @@ module.exports = {
               }
           }
           `,
-        ref: "slug",
-        index: ["title", "nombre", "slug"],
-        store: ["id", "title", "nombre", "slug", "type", "uri"],
+        ref: 'slug',
+        index: ['title', 'nombre', 'slug'],
+        store: ['id', 'title', 'nombre', 'slug', 'type', 'uri'],
         normalizer: ({ data }) => {
           return Object.values(data)
             .map((type) => type.nodes)
             .reduce((acumulador, currentValue) =>
-              acumulador.concat(currentValue)
+              acumulador.concat(currentValue),
             )
             .map((node) => ({
               id: node.id,
@@ -130,32 +136,32 @@ module.exports = {
               slug: node.slug,
               type: node.__typename,
               uri: node.uri,
-            }));
+            }))
         },
       },
     },
-    "gatsby-plugin-emotion",
-    "gatsby-plugin-gatsby-cloud",
-    "gatsby-plugin-image",
+    'gatsby-plugin-emotion',
+    'gatsby-plugin-gatsby-cloud',
+    'gatsby-plugin-image',
     {
-      resolve: "gatsby-plugin-google-analytics",
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: "234567890",
+        trackingId: '234567890',
       },
     },
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sitemap",
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sitemap',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "images",
-        path: "./src/images/",
+        name: 'images',
+        path: './src/images/',
       },
-      __key: "images",
+      __key: 'images',
     },
-    "gatsby-plugin-use-query-params",
-    "gatsby-plugin-smoothscroll"
+    'gatsby-plugin-use-query-params',
+    'gatsby-plugin-smoothscroll',
   ],
-};
+}

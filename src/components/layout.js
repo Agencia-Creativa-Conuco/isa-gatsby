@@ -12,6 +12,7 @@ import ResourcesList from './resourceslist'
 import Contact from './contact'
 import usePages from '../hooks/usePages'
 import PageIndexes from './page-indexes'
+import Seo from '../components/seo'
 
 if (typeof window !== 'undefined') {
   // eslint-disable-next-line global-require
@@ -77,6 +78,8 @@ const Layout = (props) => {
           crossorigin="anonymous"
         ></script>
       </Helmet>
+
+      <Seo {...props} />
 
       <FontFace />
 
