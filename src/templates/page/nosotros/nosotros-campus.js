@@ -107,29 +107,38 @@ const NosotrosCampus = () => {
               afterChange={() => setIsPlaying(false)}
               infinite={false}
             >
+              {videoInstitucional ? (
+                <>
+                  <Playing onClick={() => setIsPlaying(!isPlaying)} />
+                  <DivVideo>
+                    <ReactPlayer
+                      width="100%"
+                      height="100%"
+                      css={reactPlayer}
+                      controls
+                      url={videoInstitucional}
+                      playing={isPlaying}
+                      onPause={() => setIsPlaying(false)}
+                      onPlay={() => setIsPlaying(true)}
+                    />
+                  </DivVideo>
+                </>
+              ) : null}
+
               {Object.values(images)
                 .filter((item) => item.name.includes('campus'))
+                .sort((a, b) => {
+                  if (a.name > b.name) {
+                    return 1
+                  }
+                  if (a.name < b.name) {
+                    return -1
+                  }
+                  // a must be equal to b
+                  return 0
+                })
                 .map((item, index) => {
-                  return videoInstitucional && index < 1 ? (
-                    <Fragment key={index}>
-                      <Playing
-                        key={index}
-                        onClick={() => setIsPlaying(!isPlaying)}
-                      />
-                      <DivVideo>
-                        <ReactPlayer
-                          width="100%"
-                          height="100%"
-                          css={reactPlayer}
-                          controls
-                          url={videoInstitucional}
-                          playing={isPlaying}
-                          onPause={() => setIsPlaying(false)}
-                          onPlay={() => setIsPlaying(true)}
-                        />
-                      </DivVideo>
-                    </Fragment>
-                  ) : (
+                  return (
                     <FeaturedMedia
                       key={index}
                       media={item}
