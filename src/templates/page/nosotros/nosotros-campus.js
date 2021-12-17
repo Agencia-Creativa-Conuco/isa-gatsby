@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState} from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import {
@@ -108,7 +108,7 @@ const NosotrosCampus = () => {
               infinite={false}
             >
               {videoInstitucional ? (
-                <>
+                <ContainerVideo>
                   <Playing onClick={() => setIsPlaying(!isPlaying)} />
                   <DivVideo>
                     <ReactPlayer
@@ -122,7 +122,7 @@ const NosotrosCampus = () => {
                       onPlay={() => setIsPlaying(true)}
                     />
                   </DivVideo>
-                </>
+                </ContainerVideo>
               ) : null}
 
               {Object.values(images)
@@ -169,8 +169,12 @@ const SectionTitle = styled.h2`
   }
 `
 
+const ContainerVideo = styled.div`
+  position: relative;
+`;
+
 const Playing = styled.div`
-  width: 5%;
+  width: 100%;
   position: absolute;
   height: calc(100% - 23.7%);
   z-index: 2;
