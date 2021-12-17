@@ -170,7 +170,7 @@ const SectionTitle = styled.h2`
 `
 
 const Playing = styled.div`
-  width: 5%;
+  width: 25%;
   position: absolute;
   height: calc(100% - 23.7%);
   z-index: 2;
