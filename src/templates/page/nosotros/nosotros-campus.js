@@ -18,7 +18,7 @@ import ReactPlayer from 'react-player'
 
 const Arrows = (props) => {
   const Arrow = styled.div`
-    ${({ bgColor = 'blue', color = 'white' }) => css`
+    ${({ bgColor = "blue", color = "white" }) => css`
       border-radius: 50%;
       background-color: ${bgColor};
       color: ${color};
@@ -26,10 +26,12 @@ const Arrows = (props) => {
       z-index: 2;
       position: absolute;
       top: 50%;
+
       ${mq.md} {
         display: block !important;
         width: 5rem;
         height: 5rem;
+        padding: 1rem;
       }
       &:focus {
         background-color: ${bgColor};
@@ -43,7 +45,7 @@ const Arrows = (props) => {
         content: initial;
       }
     `}
-  `
+  `;
 
   return <Arrow {...props} />
 }
