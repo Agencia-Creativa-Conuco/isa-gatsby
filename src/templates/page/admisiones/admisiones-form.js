@@ -35,11 +35,7 @@ const AdmisionesForm = ({ ...props }) => {
   })
 
   return forms.length > 1 ? (
-    <BackgroundImage
-      Tag="section"
-      fluid={image?.childImageSharp.fluid}
-      id="form"
-    >
+    <BGImagen Tag="section" fluid={image?.childImageSharp.fluid} id="form">
       <Container fluid id="section_3">
         <Row>
           <Col
@@ -110,11 +106,17 @@ const AdmisionesForm = ({ ...props }) => {
           <Col size="auto" sizeMD="1" orderMD={1} />
         </Row>
       </Container>
-    </BackgroundImage>
+    </BGImagen>
   ) : null
 }
 
 export default AdmisionesForm
+
+const BGImagen = styled(BackgroundImage)`
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 25%;
+`
 
 const Wrapper = styled.div`
   width: 100%;
