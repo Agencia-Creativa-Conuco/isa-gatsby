@@ -91,4 +91,4 @@ const Galeria = () =>{
 
 }
 
-export default Galeria;
+export default Galeria

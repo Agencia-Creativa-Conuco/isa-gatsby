@@ -18,8 +18,8 @@ const CentroHuascar = (props) => {
       <Cover />
       <Filosofia />
       <Galeria />
-      <DatosRelevantes />
       <OfertaTecnica />
+      <DatosRelevantes />
     </Layout>
   )
 }
