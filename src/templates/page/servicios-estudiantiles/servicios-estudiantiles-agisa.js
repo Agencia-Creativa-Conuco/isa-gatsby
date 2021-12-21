@@ -15,7 +15,10 @@ import useFiles from '../../../hooks/useFiles'
 import Carousel from 'react-slick'
 
 const ServiciosEstudiantilesAGISA = () => {
-  const images = useFiles()
+  const images =
+    Object.values(useFiles()['servicios-estudiantiles']).filter((imagen) =>
+      imagen.name.includes('agisa'),
+    ) || []
 
   const [nav1, setNav1] = useState(null)
   const [nav2, setNav2] = useState(null)
@@ -41,24 +44,6 @@ const ServiciosEstudiantilesAGISA = () => {
   `
   const cta = null
 
-  const agisa = [
-    {
-      image: images['servicios-estudiantiles'].agisa,
-    },
-    {
-      image: images['servicios-estudiantiles'].agisa,
-    },
-    {
-      image: images['servicios-estudiantiles'].agisa,
-    },
-    {
-      image: images['servicios-estudiantiles'].agisa,
-    },
-    {
-      image: images['servicios-estudiantiles'].agisa,
-    },
-  ]
-
   return (
     <Section id="section_7">
       <Container>
@@ -74,11 +59,11 @@ const ServiciosEstudiantilesAGISA = () => {
                       arrows={false}
                       ref={(slider) => setSlider1(slider)}
                     >
-                      {agisa.map((item, index) => {
+                      {images.map((item, index) => {
                         return (
                           <Logo
                             key={index}
-                            media={item.image}
+                            media={item}
                             size="56.25%"
                             sizeLG="100%"
                             bgColor
@@ -111,23 +96,21 @@ const ServiciosEstudiantilesAGISA = () => {
                         },
                       ]}
                     >
-                      {agisa
-                        ? agisa.map((item, index) => {
-                            return (
-                              <Dot
-                                key={index}
-                                onClick={(e) => nav2.slickGoTo(index)}
-                              >
-                                <Logo
-                                  media={item.image}
-                                  size="56.25%"
-                                  sizeLG="100%"
-                                  bgColor
-                                />
-                              </Dot>
-                            )
-                          })
-                        : null}
+                      {images.map((item, index) => {
+                        return (
+                          <Dot
+                            key={index}
+                            onClick={(e) => nav2.slickGoTo(index)}
+                          >
+                            <Logo
+                              media={item}
+                              size="56.25%"
+                              sizeLG="100%"
+                              bgColor
+                            />
+                          </Dot>
+                        )
+                      })}
                     </Carousel>
                   </ThumbnailCarousel>
                   {/* <Row>
@@ -222,7 +205,6 @@ const DecoMedia = styled.div`
   grid-template-columns: 100%;
   row-gap: 1.5rem;
 
-
   &:before {
     content: '';
     position: absolute;
@@ -254,15 +236,14 @@ const DecoMedia = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    &::before{
+    &::before {
       z-index: 0;
     }
-    &::after{
+    &::after {
       z-index: 0;
     }
   }
-
-`;
+`
 
 const VisualCarousel = styled.div`
   font-size: 0;
