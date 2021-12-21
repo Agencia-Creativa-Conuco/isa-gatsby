@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import {
@@ -19,20 +19,19 @@ import ReactPlayer from 'react-player'
 const Arrows = (props) => {
   const Arrow = styled.div`
     ${({ bgColor = 'blue', color = 'white' }) => css`
-      padding: 1rem;
       border-radius: 50%;
       background-color: ${bgColor};
       color: ${color};
-      width: 5rem;
-      height: 5rem;
       margin: 0 3rem;
       z-index: 2;
       position: absolute;
       top: 50%;
-      display: none !important;
 
-      ${mq.lg} {
+      ${mq.md} {
         display: block !important;
+        width: 5rem;
+        height: 5rem;
+        padding: 1rem;
       }
       &:focus {
         background-color: ${bgColor};
@@ -143,7 +142,7 @@ const NosotrosCampus = () => {
                       key={index}
                       media={item}
                       size="56.25%"
-                      sizeXL="40%"
+                      sizeXL="45%"
                       bgColor={colors.gray.light}
                       alt={`Campus Universidad ISA - ${index}`}
                     />
@@ -171,7 +170,7 @@ const SectionTitle = styled.h2`
 
 const ContainerVideo = styled.div`
   position: relative;
-`;
+`
 
 const Playing = styled.div`
   width: 100%;
@@ -198,7 +197,7 @@ const DivVideo = styled.div`
   position: relative;
   padding-top: 56.25%;
   ${mq.xl} {
-    padding-top: 40.25%;
+    padding-top: 45%;
   }
 `
 
