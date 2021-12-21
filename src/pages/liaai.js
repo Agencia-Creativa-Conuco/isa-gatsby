@@ -1,13 +1,72 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
+import Carousel from "react-slick";
 import { Section, Container, Row, Col, mq } from '../components/layout/index'
 import Layout from '../components/layout'
 import FeaturedMedia from '../components/featured-media'
 import useFiles from '../hooks/useFiles'
 import colors from '../components/styles/colors'
+import { LeftArrowIcon, RightArrowIcon } from '../components/icons'
+import { useStaticQuery, graphql } from 'gatsby'
+
+
+const Arrows = (props) => {
+  const Arrow = styled.div`
+    ${({ bgColor ="white", color=colors.primary.dark }) => css`
+      border-radius: 50%;
+      background-color: ${bgColor};
+      color:${color};
+      margin: 0 3rem;
+      z-index: 2;
+      position: absolute;
+      top: 50%;
+
+      ${mq.md} {
+        display: block !important;
+        width: 5rem;
+        height: 5rem;
+        padding: 1rem;
+        margin: 0;
+        box-shadow: 0px 0px 1px #b7b8b9
+      }
+      &:focus {
+        background-color: ${bgColor};
+        color: ${color};
+      }
+      &:hover {
+        background-color: ${bgColor};
+        color: ${color};
+      }
+      &:before {
+        content: initial;
+      }
+    `}
+  `;
+
+  return <Arrow {...props} />
+}
+
 
 const LIAAI = () => {
+
+  const { allFile } = useStaticQuery(graphql`
+    query {
+      allFile(filter: { relativeDirectory: { in: ["liaai"] } }) {
+        nodes {
+          id
+          name
+          childImageSharp {
+            fluid(maxWidth: 1200) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }
+    }
+  `)
+
+
   const images = useFiles()['liaai']
 
   const metaData = {
@@ -16,6 +75,14 @@ const LIAAI = () => {
       'El Laboratorio de Inocuidad de Alimentos y Análisis Industrial (LIAAI), es una dependencia de carácter científico y tecnológico, con autonomía administrativa, adscrito a la Universidad ISA.  El LIAAI nace con la intención de responder a la necesidad del sector agrícola e industrial de tener a la  disposición un laboratorio, con personal altamente capacitado, tecnología especializada, capaz de ofrecer servicios de análisis destinados a confirmar la calidad de los productos según los requerimientos nacionales e internacionales.',
   }
 
+  const imagesSlider = allFile.nodes.reduce((obj, item) => {
+    return {
+      ...obj,
+      [item.name]: item,
+    }
+  }, {})
+
+  console.log(imagesSlider)
   return (
     <Layout {...metaData}>
       <Section medium spaceBottomNone zIndex={3}>
@@ -46,7 +113,7 @@ const LIAAI = () => {
           </Overlay>
         </Container>
       </Section>
-      <SPoliticas>
+      <SPoliticas spaceBottomNone>
         <SSection
           as="div"
           bgColor={colors.primary.dark}
@@ -56,7 +123,7 @@ const LIAAI = () => {
             padding-top: 5%;
           `}
         >
-          <Section as="div">
+          <Section as="div" spaceBottomNone>
             <Container>
               <Row>
                 <Col>
@@ -93,6 +160,41 @@ const LIAAI = () => {
           </Section>
         </SSection>
       </SPoliticas>
+      <SectionSlider spaceTopNone>
+        <Container>
+          <Row>
+            <Col noGutters size={12}>
+              <Carousel
+                prevArrow={
+                  <Arrows>
+                    <LeftArrowIcon />
+                  </Arrows>
+                }
+                nextArrow={
+                  <Arrows>
+                    <RightArrowIcon />
+                  </Arrows>
+                }
+                autoplay={false}
+                pauseOnHover
+              >
+                {Object.values(imagesSlider)
+                  .filter((image) => image.name.includes("galeria"))
+                  .map((image, index) => {
+                    return (
+                      <FeaturedMedia
+                        key={index}
+                        media={image}
+                        size="56.25%"
+                        bgColor
+                      />
+                    );
+                  })}
+              </Carousel>
+            </Col>
+          </Row>
+        </Container>
+      </SectionSlider>
       <SSection>
         <Container>
           <Row>
@@ -154,6 +256,32 @@ const Overlay = styled.div`
     z-index: -1;
   }
 `
+const SectionSlider = styled(Section)`
+position: relative;
+&:before{
+  content:'';
+  position: absolute;
+  top:-50%;
+  left: 0;
+  background: ${colors.primary.dark};
+  width: 100%;
+  height: 100%;
+z-index:-1;
+}
+
+&:after {
+    content: '';
+    position: absolute;
+    bottom: 50%;
+    right: 0;
+    width: 10%;
+    padding-bottom: 10%;
+    height: 0;
+    background-color: ${colors.primary.base};
+    transform: translate(50%, 50%);
+    z-index: -1;
+  }
+`;
 
 const SPoliticas = styled.section`
   position: relative;
@@ -169,7 +297,7 @@ const SPoliticas = styled.section`
     transform: translate(50%, -50%);
     z-index: 1;
   }
-  &:after {
+  /* &:after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -180,7 +308,7 @@ const SPoliticas = styled.section`
     background-color: ${colors.primary.base};
     transform: translate(50%, 50%);
     z-index: 1;
-  }
+  } */
 `
 
 const Logo = styled.div`
