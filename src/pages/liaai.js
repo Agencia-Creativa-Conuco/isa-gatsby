@@ -28,6 +28,7 @@ const Arrows = (props) => {
         height: 5rem;
         padding: 1rem;
         margin: 0;
+        box-shadow: 0px 0px 1px #b7b8b9
       }
       &:focus {
         background-color: ${bgColor};
