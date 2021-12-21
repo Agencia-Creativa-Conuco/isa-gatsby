@@ -1,13 +1,71 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
+import Carousel from "react-slick";
 import { Section, Container, Row, Col, mq } from '../components/layout/index'
 import Layout from '../components/layout'
 import FeaturedMedia from '../components/featured-media'
 import useFiles from '../hooks/useFiles'
 import colors from '../components/styles/colors'
+import { LeftArrowIcon, RightArrowIcon } from '../components/icons'
+import { useStaticQuery, graphql } from 'gatsby'
+
+
+const Arrows = (props) => {
+  const Arrow = styled.div`
+    ${({ bgColor = colors.primary.base, color="white" }) => css`
+      border-radius: 50%;
+      background-color: ${bgColor};
+      color:white;
+      margin: 0 3rem;
+      z-index: 2;
+      position: absolute;
+      top: 50%;
+
+      ${mq.md} {
+        display: block !important;
+        width: 5rem;
+        height: 5rem;
+        padding: 1rem;
+        margin: 0;
+      }
+      &:focus {
+        background-color: ${bgColor};
+        color: ${color};
+      }
+      &:hover {
+        background-color: ${bgColor};
+        color: ${color};
+      }
+      &:before {
+        content: initial;
+      }
+    `}
+  `;
+
+  return <Arrow {...props} />
+}
+
 
 const LIAAI = () => {
+
+  const { allFile } = useStaticQuery(graphql`
+    query {
+      allFile(filter: { relativeDirectory: { in: ["liaai"] } }) {
+        nodes {
+          id
+          name
+          childImageSharp {
+            fluid(maxWidth: 1200) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }
+    }
+  `)
+
+
   const images = useFiles()['liaai']
 
   const metaData = {
@@ -16,6 +74,14 @@ const LIAAI = () => {
       'El Laboratorio de Inocuidad de Alimentos y Análisis Industrial (LIAAI), es una dependencia de carácter científico y tecnológico, con autonomía administrativa, adscrito a la Universidad ISA.  El LIAAI nace con la intención de responder a la necesidad del sector agrícola e industrial de tener a la  disposición un laboratorio, con personal altamente capacitado, tecnología especializada, capaz de ofrecer servicios de análisis destinados a confirmar la calidad de los productos según los requerimientos nacionales e internacionales.',
   }
 
+  const imagesSlider = allFile.nodes.reduce((obj, item) => {
+    return {
+      ...obj,
+      [item.name]: item,
+    }
+  }, {})
+
+  console.log(imagesSlider)
   return (
     <Layout {...metaData}>
       <Section medium spaceBottomNone zIndex={3}>
@@ -94,6 +160,43 @@ const LIAAI = () => {
         </SSection>
       </SPoliticas>
       <SSection>
+      <Section spaceTopNone>
+        <Container>
+          <Row>
+            <Col noGutters size={12}>
+              <Carousel
+                prevArrow={
+                  <Arrows>
+                    <LeftArrowIcon />
+                  </Arrows>
+                }
+                nextArrow={
+                  <Arrows>
+                    <RightArrowIcon />
+                  </Arrows>
+                }
+                autoplay={false}
+                pauseOnHover
+              >
+                {Object.values(imagesSlider)
+                  .filter((image) => image.name.includes("galeria"))
+                  .map((image, index) => {
+                    return (
+                      <FeaturedMedia
+                        key={index}
+                        media={image}
+                        size="56.25%"
+                        sizeMD="40%"
+                        bgColor
+                      />
+                    );
+                  })}
+              </Carousel>
+            </Col>
+          </Row>
+        </Container>
+      </Section>
+
         <Container>
           <Row>
             <Col>
