@@ -93,6 +93,7 @@ const ServiciosEstudiantilesActividades = () => {
             arrows={false}
             asNavFor={nav2}
             autoplay
+            autoplaySpeed={5000}
             pauseOnHover
             ref={(slider) => setSlider1(slider)}
           >
