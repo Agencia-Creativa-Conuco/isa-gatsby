@@ -13,10 +13,10 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 const Arrows = (props) => {
   const Arrow = styled.div`
-    ${({ bgColor = colors.primary.base, color="white" }) => css`
+    ${({ bgColor ="white", color=colors.primary.dark }) => css`
       border-radius: 50%;
       background-color: ${bgColor};
-      color:white;
+      color:${color};
       margin: 0 3rem;
       z-index: 2;
       position: absolute;
@@ -112,7 +112,7 @@ const LIAAI = () => {
           </Overlay>
         </Container>
       </Section>
-      <SPoliticas>
+      <SPoliticas spaceBottomNone>
         <SSection
           as="div"
           bgColor={colors.primary.dark}
@@ -122,7 +122,7 @@ const LIAAI = () => {
             padding-top: 5%;
           `}
         >
-          <Section as="div">
+          <Section as="div" spaceBottomNone>
             <Container>
               <Row>
                 <Col>
@@ -159,8 +159,7 @@ const LIAAI = () => {
           </Section>
         </SSection>
       </SPoliticas>
-      <SSection>
-      <Section spaceTopNone>
+      <SectionSlider spaceTopNone>
         <Container>
           <Row>
             <Col noGutters size={12}>
@@ -186,7 +185,6 @@ const LIAAI = () => {
                         key={index}
                         media={image}
                         size="56.25%"
-                        sizeMD="40%"
                         bgColor
                       />
                     );
@@ -195,8 +193,8 @@ const LIAAI = () => {
             </Col>
           </Row>
         </Container>
-      </Section>
-
+      </SectionSlider>
+      <SSection>
         <Container>
           <Row>
             <Col>
@@ -257,6 +255,32 @@ const Overlay = styled.div`
     z-index: -1;
   }
 `
+const SectionSlider = styled(Section)`
+position: relative;
+&:before{
+  content:'';
+  position: absolute;
+  top:-50%;
+  left: 0;
+  background: ${colors.primary.dark};
+  width: 100%;
+  height: 100%;
+z-index:-1;
+}
+
+&:after {
+    content: '';
+    position: absolute;
+    bottom: 50%;
+    right: 0;
+    width: 10%;
+    padding-bottom: 10%;
+    height: 0;
+    background-color: ${colors.primary.base};
+    transform: translate(50%, 50%);
+    z-index: -1;
+  }
+`;
 
 const SPoliticas = styled.section`
   position: relative;
@@ -272,7 +296,7 @@ const SPoliticas = styled.section`
     transform: translate(50%, -50%);
     z-index: 1;
   }
-  &:after {
+  /* &:after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -283,7 +307,7 @@ const SPoliticas = styled.section`
     background-color: ${colors.primary.base};
     transform: translate(50%, 50%);
     z-index: 1;
-  }
+  } */
 `
 
 const Logo = styled.div`
