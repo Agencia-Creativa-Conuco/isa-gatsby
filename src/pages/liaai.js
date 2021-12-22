@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
-import Carousel from "react-slick";
+import Carousel from 'react-slick'
 import { Section, Container, Row, Col, mq } from '../components/layout/index'
 import Layout from '../components/layout'
 import FeaturedMedia from '../components/featured-media'
@@ -10,13 +10,12 @@ import colors from '../components/styles/colors'
 import { LeftArrowIcon, RightArrowIcon } from '../components/icons'
 import { useStaticQuery, graphql } from 'gatsby'
 
-
 const Arrows = (props) => {
   const Arrow = styled.div`
-    ${({ bgColor ="white", color=colors.primary.dark }) => css`
+    ${({ bgColor = 'white', color = colors.primary.dark }) => css`
       border-radius: 50%;
       background-color: ${bgColor};
-      color:${color};
+      color: ${color};
       margin: 0 3rem;
       z-index: 2;
       position: absolute;
@@ -28,7 +27,7 @@ const Arrows = (props) => {
         height: 5rem;
         padding: 1rem;
         margin: 0;
-        box-shadow: 0px 0px 1px #b7b8b9
+        box-shadow: 0px 0px 1px #b7b8b9;
       }
       &:focus {
         background-color: ${bgColor};
@@ -42,14 +41,12 @@ const Arrows = (props) => {
         content: initial;
       }
     `}
-  `;
+  `
 
   return <Arrow {...props} />
 }
 
-
 const LIAAI = () => {
-
   const { allFile } = useStaticQuery(graphql`
     query {
       allFile(filter: { relativeDirectory: { in: ["liaai"] } }) {
@@ -66,7 +63,6 @@ const LIAAI = () => {
     }
   `)
 
-
   const images = useFiles()['liaai']
 
   const metaData = {
@@ -82,7 +78,6 @@ const LIAAI = () => {
     }
   }, {})
 
-  console.log(imagesSlider)
   return (
     <Layout {...metaData}>
       <Section medium spaceBottomNone zIndex={3}>
@@ -179,7 +174,7 @@ const LIAAI = () => {
                 pauseOnHover
               >
                 {Object.values(imagesSlider)
-                  .filter((image) => image.name.includes("galeria"))
+                  .filter((image) => image.name.includes('liaai'))
                   .map((image, index) => {
                     return (
                       <FeaturedMedia
@@ -188,7 +183,7 @@ const LIAAI = () => {
                         size="56.25%"
                         bgColor
                       />
-                    );
+                    )
                   })}
               </Carousel>
             </Col>
@@ -257,19 +252,19 @@ const Overlay = styled.div`
   }
 `
 const SectionSlider = styled(Section)`
-position: relative;
-&:before{
-  content:'';
-  position: absolute;
-  top:-50%;
-  left: 0;
-  background: ${colors.primary.dark};
-  width: 100%;
-  height: 100%;
-z-index:-1;
-}
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 0;
+    background: ${colors.primary.dark};
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
 
-&:after {
+  &:after {
     content: '';
     position: absolute;
     bottom: 50%;
@@ -281,7 +276,7 @@ z-index:-1;
     transform: translate(50%, 50%);
     z-index: -1;
   }
-`;
+`
 
 const SPoliticas = styled.section`
   position: relative;
