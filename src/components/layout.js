@@ -102,6 +102,7 @@ const Layout = (props) => {
         async
         defer
         src="//js.hs-scripts.com/20627890.js"
+        // crossOrigin="anonymous"
       ></script>
       {/* End of HubSpot Embed Code */}
       <script
@@ -109,7 +110,7 @@ const Layout = (props) => {
         defer
         src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-        crossorigin="anonymous"
+        crossOrigin="anonymous"
       ></script>
     </>
   )
