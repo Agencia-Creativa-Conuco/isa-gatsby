@@ -63,20 +63,6 @@ const Layout = (props) => {
         {/* <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> */}
         {/* <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap" rel="stylesheet"></link> */}
         {/* Start of HubSpot Embed Code */}
-
-        <script
-          type="text/javascript"
-          id="hs-script-loader"
-          async
-          defer
-          src="//js.hs-scripts.com/20627890.js"
-        ></script>
-        {/* End of HubSpot Embed Code */}
-        <script
-          src="https://code.jquery.com/jquery-3.6.0.min.js"
-          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-          crossorigin="anonymous"
-        ></script>
       </Helmet>
 
       <Seo {...props} />
@@ -110,6 +96,21 @@ const Layout = (props) => {
       </Main>
 
       <Footer />
+      <script
+        type="text/javascript"
+        id="hs-script-loader"
+        async
+        defer
+        src="//js.hs-scripts.com/20627890.js"
+      ></script>
+      {/* End of HubSpot Embed Code */}
+      <script
+        async
+        defer
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"
+      ></script>
     </>
   )
 }

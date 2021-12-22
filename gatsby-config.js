@@ -143,12 +143,12 @@ module.exports = {
     'gatsby-plugin-emotion',
     'gatsby-plugin-gatsby-cloud',
     'gatsby-plugin-image',
-    {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: {
-        trackingId: '234567890',
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-google-analytics',
+    //   options: {
+    //     trackingId: '234567890',
+    //   },
+    // },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-sharp',

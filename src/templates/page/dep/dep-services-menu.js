@@ -1,19 +1,25 @@
-import React,{useState} from 'react';
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { Container, Section, Row, Col} from "../../../components/layout/index";
+import React, { useState } from 'react'
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+import { Container, Section, Row, Col } from '../../../components/layout/index'
 // import FeaturedMedia from "../../../components/featured-media";
-import colors from '../../../components/styles/colors';
+import colors from '../../../components/styles/colors'
+import {
+  GerencialesYMercadologicos,
+  CienciaAnimal,
+  Agronomia,
+  GestionMedioambiental,
+  TecnologiaDeAlimentos,
+} from '../../../components/icons'
 
+const DEPServicesMenu = () => {
+  const [view, setView] = useState(0)
 
-const DEPServicesMenu = () =>{
- 
-    const [view, setView] = useState(0);
-
-    const servicesMenu = [
-        {
-            title : "Gerenciales y Mercadológicos",
-            content: `
+  const servicesMenu = [
+    {
+      title: 'Gerenciales y Mercadológicos',
+      Icon: GerencialesYMercadologicos,
+      content: `
                 <ul>
                     <li>Planes de mercadeo</li>
                     <li>Planes estratégicos</li>
@@ -30,10 +36,11 @@ const DEPServicesMenu = () =>{
                     <li>Administración de fincas</li>
                 </ul>
             `,
-        },
-        {
-            title : "Gestión Medioambiental y Recursos Naturales",
-            content: `
+    },
+    {
+      title: 'Gestión Medioambiental y Recursos Naturales',
+      Icon: GestionMedioambiental,
+      content: `
                 <ul>
                     <li>Servicios de Laboratorio Especializados en Madera</li>
                     <li>Consultorías Ambientales en General</li>
@@ -43,10 +50,11 @@ const DEPServicesMenu = () =>{
                     <li>Capacitaciones para la mitigación y adaptación al cambio climático</li>
                 </ul>
             `,
-        },
-        {
-            title : "Ciencia Animal",
-            content: `
+    },
+    {
+      title: 'Ciencia Animal',
+      Icon: CienciaAnimal,
+      content: `
                 <ul>
                     <li>Consultas en general</li>
                     <li>Vacunas ( Felinos, Caninos)</li>
@@ -57,10 +65,11 @@ const DEPServicesMenu = () =>{
                     <li>Rayos X</li>
                 </ul>
             `,
-        },
-        {
-            title : "Agronomía",
-            content: `
+    },
+    {
+      title: 'Agronomía',
+      Icon: Agronomia,
+      content: `
                 <ul>
                     <li>Extracción de ADN</li>
                     <li>Análisis por PCR y electroforesis</li>
@@ -71,10 +80,11 @@ const DEPServicesMenu = () =>{
                     <li>Diagnóstico de plagas insectiles y ácaros.</li>
                 </ul>
             `,
-        },
-        {
-            title : "Tecnología de Alimentos",
-            content: `
+    },
+    {
+      title: 'Tecnología de Alimentos',
+      Icon: TecnologiaDeAlimentos,
+      content: `
                 <ul>
                     <li>Servicios de soporte y seguimiento en Gestión de Calidad.</li>
                     <li>Capacitación en Buenas Prácticas Agrícolas de banano, mango y aguacate.</li>
@@ -86,166 +96,160 @@ const DEPServicesMenu = () =>{
                     <li>Correcto manejo de almacenes y materias primas.</li>
                 </ul>
             `,
-        },
-    ]
+    },
+  ]
 
-    return (
-        <SSection spaceTopNone>
-            <Container>
-                <Row justifyContent="center">
-                    <Col noGutters>
-                        <Menu>
-                            <Row justifyContent="center">
-                            {
-                                servicesMenu.map((item, index)=>{
-                                    
-                                    const {
-                                        title,
-                                    } = item;
-                                    
-                                    return(
-                                        <Col size={6} sizeMD={4} sizeXL={2} key={index} > 
-                                            {/* <Link to={stringify({path:parse(state.router.link).path, hash:"#contenido"})} > */}
-                                           
-                                            <ImtemUl>
-                                                <Option 
-                                                    decoBG={colors.blue.base}    
-                                                    onClick={ (e) => setView( view === index ? view : index ) }
-                                                    active={view === index} 
-                                                    color={view === index ? colors.blue.base : colors.white}                                        
-                                                >
-                                                    <OptionIcon
-                                                        bgColor={view === index ? colors.blue.base : colors.white}                                      
-                                                    >
-                                                        {/* <FeaturedMedia media={icon} /> */}
-                                                    </OptionIcon>
-                                                    <OptionName>{title}</OptionName>
-                                                </Option> 
-                                                    </ImtemUl>
-                                               
-                                            {/* </Link> */}
-                                        </Col>
-                                    )
-                                })
-                            }
-                            </Row>
-                        </Menu>
+  return (
+    <SSection spaceTopNone>
+      <Container>
+        <Row justifyContent="center">
+          <Col noGutters>
+            <Menu>
+              <Row justifyContent="center">
+                {servicesMenu.map((item, index) => {
+                  const { title, Icon } = item
+
+                  return (
+                    <Col size={6} sizeMD={4} sizeXL={2} key={index}>
+                      {/* <Link to={stringify({path:parse(state.router.link).path, hash:"#contenido"})} > */}
+
+                      <ImtemUl>
+                        <Option
+                          decoBG={'#A0E4F9'}
+                          onClick={(e) =>
+                            setView(view === index ? view : index)
+                          }
+                          active={view === index}
+                          color={view === index ? '#A0E4F9' : colors.white}
+                        >
+                          <OptionIcon
+                            bgColor={view === index ? '#A0E4F9' : colors.white}
+                          >
+                            <Icon />
+                            {/* <FeaturedMedia media={icon} /> */}
+                          </OptionIcon>
+                          <OptionName>{title}</OptionName>
+                        </Option>
+                      </ImtemUl>
+
+                      {/* </Link> */}
                     </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Content  bg={colors.gray.light} id="contenido">
-                        { 
-                            servicesMenu.map( (item,index) => {
+                  )
+                })}
+              </Row>
+            </Menu>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Content bg={colors.gray.light} id="contenido">
+              {servicesMenu.map((item, index) => {
+                const { content } = item
 
-                                const {
-                                    content
-                                } = item;
-
-                                return(
-                                    <Copy 
-                                        key={index} 
-                                        noGutters
-                                        active={view === index} 
-                                        hidden={index!==view}
-                                        dangerouslySetInnerHTML={{__html: content }} 
-                                    />
-                                )  
-                                
-                            })
-                        }
-                        </Content>
-                    </Col>
-                </Row>
-            </Container>
-        </SSection>
-    );
+                return (
+                  <Copy
+                    key={index}
+                    noGutters
+                    active={view === index}
+                    hidden={index !== view}
+                    dangerouslySetInnerHTML={{ __html: content }}
+                  />
+                )
+              })}
+            </Content>
+          </Col>
+        </Row>
+      </Container>
+    </SSection>
+  )
 }
 
-export default DEPServicesMenu;
+export default DEPServicesMenu
 
 const SSection = styled(Section)`
-    margin-top: -8rem !important;
-`;
+  margin-top: -8rem !important;
+`
 
 const Menu = styled.div`
-    position:relative;
-    padding-top: 4rem;
-    padding-bottom: 6rem;
+  position: relative;
+  padding-top: 4rem;
+  padding-bottom: 6rem;
+  margin: 0;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    width: 110%;
+    background: #0a214f;
     margin: 0;
-    &:before{
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 50%;
-        height: 100%;
-        width: 110%;
-        background: #0A214F;
-        margin: 0;
-        transform: translate( -50%, 0); 
-        border-radius: 0 0 5rem 5rem;
-    }
-`;
+    transform: translate(-50%, 0);
+    border-radius: 0 0 15rem 15rem;
+  }
+`
 
 const Option = styled.li`
-    ${({ active, color="white"})=>css`
-        margin: 0 auto;
-        padding: 0;
-        list-style: none;
-        position:relative;
-        /* font-size:1.4rem; */
-        font-weight: 600;
-        text-align:center;
-        transition: all 0.45s ease-in-out;
-        color: ${color};
-        cursor: pointer;    
-        max-width: 20rem;
-        margin-bottom: 2rem;
-    `}
-`;
+  ${({ active, color = 'white' }) => css`
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    /* font-size:1.4rem; */
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.45s ease-in-out;
+    color: ${color};
+    cursor: pointer;
+    max-width: 20rem;
+    margin-bottom: 2rem;
+  `}
+`
 
 const OptionName = styled.p`
-    color: inherit;
-    margin: 0;
-`;
+  color: inherit;
+  margin: 0;
+`
 const ImtemUl = styled.ul`
-    margin:0;
-    padding: 0;
-`;
-
+  margin: 0;
+  padding: 0;
+`
 
 const OptionIcon = styled.div`
-    ${({bgColor="white"})=>css`
-        width: 5rem;
-        height: 5rem;
-        padding: 1.2rem;
-        border-radius: 50%;
-        background-color: ${bgColor};
-        margin: 0 auto;
-        margin-bottom: 1rem;
-    `}
-`;
+  ${({ bgColor = 'white' }) => css`
+    width: 5rem;
+    height: 5rem;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: ${bgColor};
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    color: ${colors.primary.dark};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `}
+`
 
 const Content = styled.div`
-    position:relative;
-    width: 80%;
-    margin: 0 auto;
-    margin-top: -4rem;
-    z-index:1;
-    padding: 4rem 0;
-    &:before{
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translate(-50%, 0);
-        width: 110%;
-        height: 100%;
-        background: ${props => props.bg};
-        border-radius: 2rem;
-        z-index: -1;
-    }
-`;
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: -4rem;
+  z-index: 1;
+  padding: 4rem 0;
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 110%;
+    height: 100%;
+    background: ${(props) => props.bg};
+    border-radius: 2rem;
+    z-index: -1;
+  }
+`
 
-const Copy = styled.div``;
-
+const Copy = styled.div``
