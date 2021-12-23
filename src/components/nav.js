@@ -248,7 +248,7 @@ const MenuContainer = styled.ul`
   `}
 `
 
-const NavItem = styled.div`
+const NavItem = styled.li`
   ${({ color = 'darkblue', align, bold = false }) => css`
     ${mq.lg} {
       cursor: pointer;
