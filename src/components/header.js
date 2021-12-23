@@ -106,7 +106,7 @@ export default Header
 
 const HeaderWrapper = styled.header`
   ${({ color, colorSticky, isSticky, isOnTop }) => css`
-    padding: 1rem 0;
+    padding: 0.15rem 0;
     position: relative;
     z-index: 100;
     transition: background 0.2s ease-in-out;
