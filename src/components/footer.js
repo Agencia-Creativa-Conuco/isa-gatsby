@@ -88,6 +88,7 @@ const Footer = ({ state, libraries }) => {
                     maxWidth="25rem"
                     mxAuto
                     css={MediaDeco}
+                    alt="Logo Universidad ISA Blanco"
                   />
                 </Link>
               </Col>

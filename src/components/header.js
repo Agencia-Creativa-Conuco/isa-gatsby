@@ -9,15 +9,13 @@ import MobileMenu from './menu'
 import SearchInput from './search/search-input'
 import SearchButton from './search/search-button'
 import { getHierarchicalItems } from './inc/auxiliar'
+import FeaturedMedia from './featured-media'
+import useFiles from '../hooks/useFiles'
 
 const Header = ({ setResultsSearch }) => {
   //Consultar y optener logo.svg
-  const { logo, menu } = useStaticQuery(graphql`
+  const { menu } = useStaticQuery(graphql`
     query {
-      logo: file(relativePath: { eq: "site/logo.svg" }) {
-        publicURL
-      }
-
       menu: wpMenu(locations: { in: PRIMARY }) {
         id
         name
@@ -36,6 +34,8 @@ const Header = ({ setResultsSearch }) => {
     }
   `)
 
+  const logo = useFiles().site.logo
+
   const menuItems = getHierarchicalItems(menu.menuItems.nodes)
 
   const [isMobileMenuOpen, toggleMobileMenu] = useState(false)
@@ -51,7 +51,7 @@ const Header = ({ setResultsSearch }) => {
           <Col size="auto">
             <StyledLink to="/">
               <Logo>
-                <img src={logo.publicURL} alt="Logo universidad ISA" />
+                <FeaturedMedia media={logo} alt="Logo universidad ISA" />
               </Logo>
             </StyledLink>
           </Col>
