@@ -1,7 +1,13 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
-import { Container, Section, Row, Col } from '../../../components/layout/index'
+import {
+  Container,
+  Section,
+  Row,
+  Col,
+  mq,
+} from '../../../components/layout/index'
 // import FeaturedMedia from "../../../components/featured-media";
 import colors from '../../../components/styles/colors'
 import {
@@ -105,11 +111,18 @@ const DEPServicesMenu = () => {
         <Row justifyContent="center">
           <Col noGutters>
             <Menu>
-              <Row justifyContent="center">
+              <Row justifyContent="space-around">
                 {servicesMenu.map((item, index) => {
                   const { title, Icon } = item
                   return (
-                    <Col size={6} sizeMD={4} sizeXL={2} key={index}>
+                    <Col
+                      size="auto"
+                      sizeMD={4}
+                      sizeXL={2}
+                      key={index}
+                      noGutters
+                      guttersMD
+                    >
                       {/* <Link to={stringify({path:parse(state.router.link).path, hash:"#contenido"})} > */}
 
                       <ImtemUl>
@@ -140,16 +153,19 @@ const DEPServicesMenu = () => {
           <Col>
             <Content bg={colors.gray.light} id="contenido">
               {servicesMenu.map((item, index) => {
-                const { content } = item
+                const { content, title } = item
 
                 return (
-                  <Copy
-                    key={index}
-                    noGutters
-                    active={view === index}
-                    hidden={index !== view}
-                    dangerouslySetInnerHTML={{ __html: content }}
-                  />
+                  <Fragment>
+                    <ContentTitle hidden={index !== view}>{title}</ContentTitle>
+                    <Copy
+                      key={index}
+                      noGutters
+                      active={view === index}
+                      hidden={index !== view}
+                      dangerouslySetInnerHTML={{ __html: content }}
+                    />
+                  </Fragment>
                 )
               })}
             </Content>
@@ -170,7 +186,13 @@ const Menu = styled.div`
   position: relative;
   padding-top: 4rem;
   padding-bottom: 6rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
   margin: 0;
+  ${mq.md} {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
   &:before {
     content: '';
     position: absolute;
@@ -204,6 +226,10 @@ const Option = styled.li`
 const OptionName = styled.p`
   color: inherit;
   margin: 0;
+  display: none;
+  ${mq.md} {
+    display: block;
+  }
 `
 const ImtemUl = styled.ul`
   text-decoration: none;
@@ -224,6 +250,10 @@ const OptionIcon = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    ${mq.md} {
+      width: 5rem;
+      height: 5rem;
+    }
   `}
 `
 
@@ -233,7 +263,10 @@ const Content = styled.div`
   margin: 0 auto;
   margin-top: -4rem;
   z-index: 1;
-  padding: 4rem 0;
+  padding: 1rem 0;
+  ${mq.md} {
+    padding: 4rem 0;
+  }
   &:before {
     content: '';
     position: absolute;
@@ -246,6 +279,11 @@ const Content = styled.div`
     border-radius: 2rem;
     z-index: -1;
   }
+`
+
+const ContentTitle = styled.h3`
+  text-align: center;
+  margin-bottom: 3rem;
 `
 
 const Copy = styled.div``
