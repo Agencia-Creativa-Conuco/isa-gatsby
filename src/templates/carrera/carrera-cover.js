@@ -50,6 +50,7 @@ const CarreraCover = ({ carrera, facultad }) => {
                 // sizeLG="60%"
                 heightLG="100%"
                 bgColor
+                loading="eager"
               />
             </Media>
           </Col>

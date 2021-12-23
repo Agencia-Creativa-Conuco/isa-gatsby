@@ -63,7 +63,6 @@ const FeaturedMedia = ({
   const normalMedia =
     media?.publicURL || media?.localFile?.publicURL || media.full_url
 
-  console.log(media)
   return (
     <Wrapper {...{ maxWidth, mxAuto, rounded, ...props }}>
       <Container

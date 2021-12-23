@@ -1,29 +1,29 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { Container, Section, Row, Col } from "../../../components/layout/index";
-import FeaturedMedia from "../../../components/featured-media";
-import colors from "../../../components/styles/colors";
-import Cta from "../../../components/cta";
-import { useStaticQuery, graphql } from "gatsby";
+import React from 'react'
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+import { Container, Section, Row, Col } from '../../../components/layout/index'
+import FeaturedMedia from '../../../components/featured-media'
+import colors from '../../../components/styles/colors'
+import Cta from '../../../components/cta'
+import { useStaticQuery, graphql } from 'gatsby'
 
 const NosotrosCover = () => {
   //Obtiene las imágenes localmente desde la ruta "images/home"
   const { allFile } = useStaticQuery(graphql`
     query {
-         allFile(filter: { relativeDirectory: { in: ["nosotros"] } }) {
+      allFile(filter: { relativeDirectory: { in: ["nosotros"] } }) {
         nodes {
           id
           name
           childImageSharp {
             fluid(maxWidth: 1200) {
-                  ...GatsbyImageSharpFluid_withWebp
+              ...GatsbyImageSharpFluid_withWebp
             }
           }
         }
       }
     }
-  `);
+  `)
 
   // Convierte arreglo de imágenes en objeto cuya llave es el nómbre del archivo
   // Esto para facilitar la búsqueda de la imagenes en los componentes hijos.
@@ -31,17 +31,17 @@ const NosotrosCover = () => {
     return {
       ...obj,
       [item.name]: item,
-    };
-  }, {});
+    }
+  }, {})
 
-  const title = "UNIVERSIDAD ISA";
+  const title = 'UNIVERSIDAD ISA'
   const copy =
-    "La Universidad ISA propicia en sus aulas el desarrollo de líderes visionarios, guiados por los valores de honestidad, responsabilidad, respeto, compromiso social y calidad.";
+    'La Universidad ISA propicia en sus aulas el desarrollo de líderes visionarios, guiados por los valores de honestidad, responsabilidad, respeto, compromiso social y calidad.'
   const cta = {
-    title: "Estudia con nosotros",
-    url: "/admisiones",
+    title: 'Estudia con nosotros',
+    url: '/admisiones',
     target: null,
-  };
+  }
 
   return (
     <Section spaceNone css={sectionStyles}>
@@ -76,6 +76,7 @@ const NosotrosCover = () => {
                 size="100%"
                 sizeXL="90%"
                 bgColor
+                loading="eager"
               />
               <DivCube
                 decoBg={colors.primary.base}
@@ -87,21 +88,21 @@ const NosotrosCover = () => {
         </Row>
       </Container>
     </Section>
-  );
-};
+  )
+}
 
-export default NosotrosCover;
+export default NosotrosCover
 
 const sectionStyles = css`
   overflow: hidden;
-`;
+`
 
 const Content = styled.div`
   margin: 4rem auto;
   max-width: 57rem;
   position: relative;
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     width: 25%;
     padding-bottom: 25%;
@@ -112,20 +113,20 @@ const Content = styled.div`
     transform: translate(-50%, 50%);
     z-index: -1;
   }
-`;
+`
 
 const SectionTitle = styled.h1`
   margin-bottom: 2rem;
-`;
+`
 
 const Copy = styled.p`
   margin-bottom: 3rem;
-`;
+`
 
 const Media = styled.div`
   position: relative;
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     width: 10%;
     padding-bottom: 10%;
@@ -135,15 +136,15 @@ const Media = styled.div`
     top: 10%;
     box-shadow: 0 2.5rem 2.5rem rgba(0, 0, 0, 0.15);
   }
-`;
+`
 
 const Logo = styled(FeaturedMedia)`
   clip-path: ellipse(100% 100% at right 73%);
   z-index: 4;
-`;
+`
 
 const DivCube = styled.div`
-  ${({ decoBg = "#4B84E9", decoBgA = "#CCEDFA", decoBgB = "#4B84E9" }) => css`
+  ${({ decoBg = '#4B84E9', decoBgA = '#CCEDFA', decoBgB = '#4B84E9' }) => css`
     position: absolute;
     left: 0;
     bottom: 12%;
@@ -154,7 +155,7 @@ const DivCube = styled.div`
     transform: translate(-75%, 0);
     z-index: 2;
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       width: 35%;
       padding-bottom: 70%;
@@ -165,7 +166,7 @@ const DivCube = styled.div`
       z-index: 3;
     }
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       left: 35%;
       top: 0;
@@ -177,4 +178,4 @@ const DivCube = styled.div`
       z-index: 1;
     }
   `}
-`;
+`
