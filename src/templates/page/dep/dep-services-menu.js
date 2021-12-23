@@ -154,18 +154,17 @@ const DEPServicesMenu = () => {
             <Content bg={colors.gray.light} id="contenido">
               {servicesMenu.map((item, index) => {
                 const { content, title } = item
+                const active = index === view
 
                 return (
-                  <Fragment>
-                    <ContentTitle hidden={index !== view}>{title}</ContentTitle>
+                  <ContentWrapper key={index} active={active}>
+                    <ContentTitle>{title}</ContentTitle>
                     <Copy
                       key={index}
                       noGutters
-                      active={view === index}
-                      hidden={index !== view}
                       dangerouslySetInnerHTML={{ __html: content }}
                     />
-                  </Fragment>
+                  </ContentWrapper>
                 )
               })}
             </Content>
@@ -279,6 +278,20 @@ const Content = styled.div`
     border-radius: 2rem;
     z-index: -1;
   }
+`
+
+const ContentWrapper = styled.div`
+  ${({ active }) => css`
+    ${active
+      ? css`
+          opacity: 1;
+        `
+      : css`
+          opacity: 0;
+        `}
+    transition: all 0.45s ease-in-out;
+    cursor: default;
+  `}
 `
 
 const ContentTitle = styled.h3`
