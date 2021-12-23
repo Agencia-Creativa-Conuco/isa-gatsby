@@ -1,14 +1,14 @@
-import React, { useRef, useEffect } from "react";
-import styled from "@emotion/styled";
-import { css  } from "@emotion/react";
-import { CloseIcon } from "../icons";
-import ScreenReaderText from "../styles/screen-reader";
-import useFocusTrap from "../hooks/use-trap-focus";
-import useFocusEffect from "../hooks/use-focus-effect";
-import SearchForm from "./input";
+import React, { useRef, useEffect } from 'react'
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+import { CloseIcon } from '../icons'
+import ScreenReaderText from '../styles/screen-reader'
+import useFocusTrap from '../hooks/use-trap-focus'
+import useFocusEffect from '../hooks/use-focus-effect'
+import SearchForm from './input'
 
-import { mq } from "../layout/index";
-import colors from "../styles/colors";
+import { mq } from '../layout/index'
+import colors from '../styles/colors'
 
 const SearchInput = ({
   isSearchModalOpen,
@@ -16,24 +16,22 @@ const SearchInput = ({
   setResultsSearch,
   isMobileMenuOpen,
 }) => {
-
   const closeSearchModal = () => {
-    toggleSearchModal(false);
-  };
+    toggleSearchModal(false)
+  }
 
   useEffect(() => {
-    if(isMobileMenuOpen){
-      toggleSearchModal(false);
+    if (isMobileMenuOpen) {
+      toggleSearchModal(false)
     }
-
-  },[isMobileMenuOpen, toggleSearchModal])
+  }, [isMobileMenuOpen, toggleSearchModal])
 
   // Keep a reference to the input so we can grab it's value on form submission
-  const inputRef = useRef();
-  const containerRef = useRef();
+  const inputRef = useRef()
+  const containerRef = useRef()
 
-  useFocusEffect(inputRef, isSearchModalOpen);
-  useFocusTrap(containerRef, isSearchModalOpen);
+  useFocusEffect(inputRef, isSearchModalOpen)
+  useFocusTrap(containerRef, isSearchModalOpen)
 
   return (
     <>
@@ -43,36 +41,33 @@ const SearchInput = ({
         onClick={closeSearchModal}
       />
       <ContainerSearch>
-        {isSearchModalOpen ? (
-          <>
-            <ModalInner
-              role="dialog"
-              aria-modal="true"
-              onClick={(event) => {
-                // prevent clicks within the content from propagating to the ModalOverlay
-                event.stopPropagation();
-              }}
-            >
-              <SectionInner ref={containerRef}>
-                {/* Input */}
-                <SearchForm {...{setResultsSearch}} />
+        <ModalInner
+          role="dialog"
+          aria-modal="true"
+          active={isSearchModalOpen}
+          onClick={(event) => {
+            // prevent clicks within the content from propagating to the ModalOverlay
+            event.stopPropagation()
+          }}
+        >
+          <SectionInner ref={containerRef}>
+            {/* Input */}
+            <SearchForm {...{ setResultsSearch }} />
 
-                <CloseButton onClick={closeSearchModal} colors={colors}>
-                  <ScreenReaderText>Cerrar búsqueda</ScreenReaderText>
-                  <CloseIcon />
-                </CloseButton>
-              </SectionInner>
-            </ModalInner>
-          </>
-        ) : null}
+            <CloseButton onClick={closeSearchModal} colors={colors}>
+              <ScreenReaderText>Cerrar búsqueda</ScreenReaderText>
+              <CloseIcon />
+            </CloseButton>
+          </SectionInner>
+        </ModalInner>
       </ContainerSearch>
     </>
-  );
-};
+  )
+}
 
-export default SearchInput;
+export default SearchInput
 
-const ModalOverlay = styled.div``;
+const ModalOverlay = styled.div``
 
 const ContainerSearch = styled.div`
   position: relative;
@@ -80,18 +75,26 @@ const ContainerSearch = styled.div`
   right: 0;
   left: 0;
   margin: 0.5rem auto;
-
-
-`;
+`
 
 const ModalInner = styled.div`
-  box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.08);
-  transform: translateY(0);
-  background: #fff;
-  border-radius: 5rem;
-  animation: animation-1oppw6c 0.4s ease-out;
-  cursor: default;
-`;
+  ${({ active }) => css`
+    box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.08);
+    ${active
+      ? css`
+          transform: translateY(0);
+          opacity: 1;
+        `
+      : css`
+          transform: translateY(-20px);
+          opacity: 0;
+        `}
+    transition: all 0.25s ease-in-out;
+    background: #fff;
+    border-radius: 5rem;
+    cursor: default;
+  `}
+`
 
 const SectionInner = styled.div`
   margin-left: auto;
@@ -105,7 +108,7 @@ const SectionInner = styled.div`
   ${mq.md} {
     width: calc(100% - 8rem);
   }
-`;
+`
 
 const CloseButton = styled.button`
   ${({ colors }) => css`
@@ -118,7 +121,7 @@ const CloseButton = styled.button`
     letter-spacing: inherit;
     padding: 0;
     text-transform: none;
-    color: ${colors ? colors.gray.dark : "#555552"};
+    color: ${colors ? colors.gray.dark : '#555552'};
     align-items: center;
     display: flex;
     flex-shrink: 0;
@@ -127,7 +130,7 @@ const CloseButton = styled.button`
     padding: 0 2.5rem;
 
     &:hover {
-        cursor: pointer;
+      cursor: pointer;
       svg {
         transform: scale(1.2);
       }
@@ -135,7 +138,6 @@ const CloseButton = styled.button`
 
     svg {
       height: 1.2rem;
-      transition: transform 0.15s ease-in-out;
       width: 1.2rem;
       fill: currentColor;
       ${mq.md} {
@@ -144,4 +146,4 @@ const CloseButton = styled.button`
       }
     }
   `}
-`;
+`
