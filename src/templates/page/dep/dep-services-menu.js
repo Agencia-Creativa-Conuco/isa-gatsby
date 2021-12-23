@@ -4,8 +4,6 @@ import { css } from '@emotion/react'
 import { Container, Section, Row, Col } from '../../../components/layout/index'
 // import FeaturedMedia from "../../../components/featured-media";
 import colors from '../../../components/styles/colors'
-import urlSlug from 'url-slug'
-
 import {
   GerencialesYMercadologicos,
   CienciaAnimal,
@@ -13,14 +11,12 @@ import {
   GestionMedioambiental,
   TecnologiaDeAlimentos,
 } from '../../../components/icons'
-import Link from '../../../components/link'
 
 const DEPServicesMenu = () => {
   const [view, setView] = useState(0)
 
   const servicesMenu = [
     {
-      id: urlSlug(GerencialesYMercadologicos.name),
       title: 'Gerenciales y Mercadológicos',
       Icon: GerencialesYMercadologicos,
       content: `
@@ -42,7 +38,6 @@ const DEPServicesMenu = () => {
             `,
     },
     {
-      id: urlSlug(GestionMedioambiental.name),
       title: 'Gestión Medioambiental y Recursos Naturales',
       Icon: GestionMedioambiental,
       content: `
@@ -57,7 +52,6 @@ const DEPServicesMenu = () => {
             `,
     },
     {
-      id: urlSlug(CienciaAnimal.name),
       title: 'Ciencia Animal',
       Icon: CienciaAnimal,
       content: `
@@ -73,7 +67,6 @@ const DEPServicesMenu = () => {
             `,
     },
     {
-      id: urlSlug(Agronomia.name),
       title: 'Agronomía',
       Icon: Agronomia,
       content: `
@@ -89,7 +82,6 @@ const DEPServicesMenu = () => {
             `,
     },
     {
-      id: urlSlug(TecnologiaDeAlimentos.name),
       title: 'Tecnología de Alimentos',
       Icon: TecnologiaDeAlimentos,
       content: `
@@ -115,12 +107,12 @@ const DEPServicesMenu = () => {
             <Menu>
               <Row justifyContent="center">
                 {servicesMenu.map((item, index) => {
-                  const { title, Icon, id } = item
+                  const { title, Icon } = item
                   return (
                     <Col size={6} sizeMD={4} sizeXL={2} key={index}>
                       {/* <Link to={stringify({path:parse(state.router.link).path, hash:"#contenido"})} > */}
 
-                      <ImtemUl to={`#${id}`} as="ul">
+                      <ImtemUl>
                         <Option
                           decoBG={'#A0E4F9'}
                           onClick={(e) =>
@@ -135,7 +127,6 @@ const DEPServicesMenu = () => {
                             <Icon />
                           </OptionIcon>
                           <OptionName>{title}</OptionName>
-                          <div id={id} />
                         </Option>
                       </ImtemUl>
                     </Col>
@@ -200,7 +191,6 @@ const Option = styled.li`
     padding: 0;
     list-style: none;
     position: relative;
-    /* font-size:1.4rem; */
     font-weight: 600;
     text-align: center;
     transition: all 0.45s ease-in-out;
@@ -215,7 +205,7 @@ const OptionName = styled.p`
   color: inherit;
   margin: 0;
 `
-const ImtemUl = styled(Link)`
+const ImtemUl = styled.ul`
   text-decoration: none;
   margin: 0;
   padding: 0;
