@@ -40,27 +40,25 @@ const SearchInput = ({
         data-open={isSearchModalOpen}
         onClick={closeSearchModal}
       />
-      <ContainerSearch>
-        <ModalInner
-          role="dialog"
-          aria-modal="true"
-          active={isSearchModalOpen}
-          onClick={(event) => {
-            // prevent clicks within the content from propagating to the ModalOverlay
-            event.stopPropagation()
-          }}
-        >
-          <SectionInner ref={containerRef}>
-            {/* Input */}
-            <SearchForm {...{ setResultsSearch }} />
+      <ModalInner
+        role="dialog"
+        aria-modal="true"
+        active={isSearchModalOpen}
+        onClick={(event) => {
+          // prevent clicks within the content from propagating to the ModalOverlay
+          event.stopPropagation()
+        }}
+      >
+        <SectionInner ref={containerRef}>
+          {/* Input */}
+          <SearchForm {...{ setResultsSearch }} />
 
-            <CloseButton onClick={closeSearchModal} colors={colors}>
-              <ScreenReaderText>Cerrar búsqueda</ScreenReaderText>
-              <CloseIcon />
-            </CloseButton>
-          </SectionInner>
-        </ModalInner>
-      </ContainerSearch>
+          <CloseButton onClick={closeSearchModal} colors={colors}>
+            <ScreenReaderText>Cerrar búsqueda</ScreenReaderText>
+            <CloseIcon />
+          </CloseButton>
+        </SectionInner>
+      </ModalInner>
     </>
   )
 }
@@ -69,30 +67,27 @@ export default SearchInput
 
 const ModalOverlay = styled.div``
 
-const ContainerSearch = styled.div`
-  position: relative;
-  top: 0;
-  right: 0;
-  left: 0;
-  margin: 0.5rem auto;
-`
-
 const ModalInner = styled.div`
   ${({ active }) => css`
     box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.08);
-    ${active
-      ? css`
-          transform: translateY(0);
-          opacity: 1;
-        `
-      : css`
-          transform: translateY(-20px);
-          opacity: 0;
-        `}
+    position: absolute;
+    right: 1.5rem;
+    left: 1.5rem;
     transition: all 0.25s ease-in-out;
     background: #fff;
     border-radius: 5rem;
     cursor: default;
+    ${active
+      ? css`
+          top: 0.25rem;
+          opacity: 1;
+          height: auto;
+        `
+      : css`
+          top: -2rem;
+          opacity: 0;
+          visibility: hidden;
+        `}
   `}
 `
 

@@ -87,16 +87,18 @@ const Header = ({ setResultsSearch }) => {
             </Row>
           </Col>
         </Row>
-        <Col size={12} sizeLG={10} mlAuto noGutters guttersLG>
-          <SearchInput
-            {...{
-              isSearchModalOpen,
-              toggleSearchModal,
-              setResultsSearch,
-              isMobileMenuOpen,
-            }}
-          />
-        </Col>
+        <Row>
+          <Col size={12} sizeLG={9} mlAuto>
+            <SearchInput
+              {...{
+                isSearchModalOpen,
+                toggleSearchModal,
+                setResultsSearch,
+                isMobileMenuOpen,
+              }}
+            />
+          </Col>
+        </Row>
       </Container>
     </HeaderWrapper>
   )

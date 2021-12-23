@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import {
@@ -285,11 +285,14 @@ const ContentWrapper = styled.div`
     ${active
       ? css`
           opacity: 1;
+          display: auto;
         `
       : css`
           opacity: 0;
+          height: 0;
         `}
     transition: all 0.45s ease-in-out;
+    overflow: hidden;
     cursor: default;
   `}
 `
