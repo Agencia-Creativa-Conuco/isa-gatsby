@@ -1,23 +1,17 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import {
-  Container,
-  Section,
-  Row,
-  Col,
-  mq,
-} from "../../components/layout/index";
-import FeaturedMedia from "../../components/featured-media";
-import colors from "../../components/styles/colors";
-import Cta from "../../components/cta";
-import useFiles from "../../hooks/useFiles";
+import React from 'react'
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+import { Container, Section, Row, Col, mq } from '../../components/layout/index'
+import FeaturedMedia from '../../components/featured-media'
+import colors from '../../components/styles/colors'
+import Cta from '../../components/cta'
+import useFiles from '../../hooks/useFiles'
 
 const HomeAplication = () => {
-
-  const images = useFiles();
-  const title = "Expande tu horizonte profesional con nosotros"
-  const copy = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem cum, voluptatum architecto sint, quasi totam sequi aliquam porro explicabo aspernatur nam distinctio esse asperiores repellat dolore reiciendis voluptate unde vel?"
+  const images = useFiles()
+  const title = 'Expande tu horizonte profesional con nosotros'
+  const copy =
+    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem cum, voluptatum architecto sint, quasi totam sequi aliquam porro explicabo aspernatur nam distinctio esse asperiores repellat dolore reiciendis voluptate unde vel?'
 
   return (
     <Section
@@ -38,32 +32,43 @@ const HomeAplication = () => {
           <Row alignCenter>
             <Col size={12} sizeSM={10} sizeLG={6} mxAuto>
               <Media bgDeco={colors.primary.dark}>
-                <Image media={images.home.application} size="125%" position="50% 10%" />
+                <Image
+                  media={images.home.application}
+                  size="75%"
+                  sizeLG="155%"
+                  position="50% 10%"
+                />
               </Media>
             </Col>
             <Col size={12} sizeLG={6} mlAuto>
               <Content bg={colors.white} decoBg={colors.blue.dark}>
                 <Title>{title}</Title>
                 <p>{copy}</p>
-                <Cta to="/admisiones"  aria-label="Click para abrir el..." shadowColor="black">Estudia con nosotros</Cta>
+                <Cta
+                  to="/admisiones"
+                  aria-label="Click para abrir el..."
+                  shadowColor="black"
+                >
+                  Estudia con nosotros
+                </Cta>
               </Content>
             </Col>
           </Row>
         </Wrapper>
       </Container>
     </Section>
-  );
-};
+  )
+}
 
-export default HomeAplication;
+export default HomeAplication
 
 const sectionStyles = ({
-  bgSquareDeco = "blue",
-  bgRoundDeco = "lightblue",
+  bgSquareDeco = 'blue',
+  bgRoundDeco = 'lightblue',
 }) => css`
   overflow: hidden;
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -76,7 +81,7 @@ const sectionStyles = ({
     }
   }
   &:after {
-    content: "";
+    content: '';
     background: ${bgRoundDeco};
     position: absolute;
     border-radius: 50%;
@@ -90,10 +95,10 @@ const sectionStyles = ({
       left: 50%;
     }
   }
-`;
+`
 
 const Deco = styled.div`
-  ${({ bgColor = "lightgray" }) => css`
+  ${({ bgColor = 'lightgray' }) => css`
     position: absolute;
     top: 0;
     left: 50%;
@@ -102,12 +107,12 @@ const Deco = styled.div`
     background-color: ${bgColor};
     z-index: 1;
   `}
-`;
+`
 
 const Wrapper = styled.div`
   position: relative;
   z-index: 3;
-`;
+`
 
 const Content = styled.div`
   border-radius: 2rem;
@@ -126,23 +131,23 @@ const Content = styled.div`
     padding-left: 25%;
     margin-left: -35%;
   }
-`;
+`
 
 const Title = styled.h2`
   margin-top: 0;
-`;
+`
 
 // const Description = styled.p``;
 
 const Media = styled.div`
-  ${({ bgDeco = "lightblue" }) => css`
+  ${({ bgDeco = 'lightblue' }) => css`
     position: relative;
     padding-top: 4rem;
     ${mq.md} {
       z-index: 2;
     }
     &::before {
-      content: "";
+      content: '';
       background: ${bgDeco};
       position: absolute;
       border-radius: 50%;
@@ -153,6 +158,6 @@ const Media = styled.div`
       transform: translate(4rem, 10rem);
     }
   `}
-`;
+`
 
-const Image = styled(FeaturedMedia)``;
+const Image = styled(FeaturedMedia)``
