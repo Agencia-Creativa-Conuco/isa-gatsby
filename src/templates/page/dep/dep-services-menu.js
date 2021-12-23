@@ -12,12 +12,11 @@ import {
   Agronomia,
   GestionMedioambiental,
   TecnologiaDeAlimentos,
-} from '../../../components/icons';
+} from '../../../components/icons'
 import Link from '../../../components/link'
 
 const DEPServicesMenu = () => {
-
-  const [view, setView] = useState(0);
+  const [view, setView] = useState(0)
 
   const servicesMenu = [
     {
@@ -116,7 +115,7 @@ const DEPServicesMenu = () => {
             <Menu>
               <Row justifyContent="center">
                 {servicesMenu.map((item, index) => {
-                  const { title, Icon,id } = item
+                  const { title, Icon, id } = item
                   return (
                     <Col size={6} sizeMD={4} sizeXL={2} key={index}>
                       {/* <Link to={stringify({path:parse(state.router.link).path, hash:"#contenido"})} > */}
@@ -125,22 +124,20 @@ const DEPServicesMenu = () => {
                         <Option
                           decoBG={'#A0E4F9'}
                           onClick={(e) =>
-                            
                             setView(view === index ? view : index)
                           }
                           active={view === index}
                           color={view === index ? '#A0E4F9' : colors.white}
-                          >
+                        >
                           <OptionIcon
                             bgColor={view === index ? '#A0E4F9' : colors.white}
-                            >
+                          >
                             <Icon />
                           </OptionIcon>
                           <OptionName>{title}</OptionName>
-                          <div id={id}/>
+                          <div id={id} />
                         </Option>
                       </ImtemUl>
-
                     </Col>
                   )
                 })}
@@ -150,18 +147,17 @@ const DEPServicesMenu = () => {
         </Row>
         <Row>
           <Col>
-                  
-            <Content bg={colors.gray.light} id="contenido" >
+            <Content bg={colors.gray.light} id="contenido">
               {servicesMenu.map((item, index) => {
                 const { content } = item
 
                 return (
                   <Copy
-                  key={index}
-                  noGutters
-                  active={view === index}
-                  hidden={index !== view}
-                  dangerouslySetInnerHTML={{ __html: content }}
+                    key={index}
+                    noGutters
+                    active={view === index}
+                    hidden={index !== view}
+                    dangerouslySetInnerHTML={{ __html: content }}
                   />
                 )
               })}
@@ -220,7 +216,7 @@ const OptionName = styled.p`
   margin: 0;
 `
 const ImtemUl = styled(Link)`
-text-decoration: none;
+  text-decoration: none;
   margin: 0;
   padding: 0;
 `
