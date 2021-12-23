@@ -183,7 +183,7 @@ const ContentWrapper = styled.div`
     width: 100%;
     height: 100%;
     ${mq.lg} {
-      opacity: 0.95;
+      opacity: 0.75;
     }
   }
   ${mq.lg} {
