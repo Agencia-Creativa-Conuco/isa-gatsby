@@ -58,6 +58,17 @@ const Layout = (props) => {
         <title>{settings.title}</title>
         <meta name="description" content={settings.description} />
 
+        <link
+          rel="preload"
+          href="//js.hs-scripts.com/20627890.js"
+          as="script"
+        ></link>
+        <link
+          rel="preload"
+          href="https://code.jquery.com/jquery-3.6.0.min.js"
+          as="script"
+        ></link>
+
         {/* FONTS */}
         {/* <link rel="preconnect" href="https://fonts.googleapis.com" /> */}
         {/* <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> */}
@@ -96,21 +107,6 @@ const Layout = (props) => {
       </Main>
 
       <Footer />
-      <script
-        type="text/javascript"
-        id="hs-script-loader"
-        async
-        defer
-        src="//js.hs-scripts.com/20627890.js"
-      ></script>
-      {/* End of HubSpot Embed Code */}
-      <script
-        async
-        defer
-        src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-        crossorigin="anonymous"
-      ></script>
     </>
   )
 }

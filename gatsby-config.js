@@ -13,7 +13,10 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress',
       options: {
-        url: 'https://prueba.conuco.do/graphql',
+        url:
+          process.env.NODE_ENV === `development`
+            ? 'http://isa.local/graphql'
+            : 'https://prueba.conuco.do/graphql',
         schema: {
           timeout: 120000,
           perPage: 25, // currently set to 100

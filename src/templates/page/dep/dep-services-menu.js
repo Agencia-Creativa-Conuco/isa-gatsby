@@ -4,19 +4,24 @@ import { css } from '@emotion/react'
 import { Container, Section, Row, Col } from '../../../components/layout/index'
 // import FeaturedMedia from "../../../components/featured-media";
 import colors from '../../../components/styles/colors'
+import urlSlug from 'url-slug'
+
 import {
   GerencialesYMercadologicos,
   CienciaAnimal,
   Agronomia,
   GestionMedioambiental,
   TecnologiaDeAlimentos,
-} from '../../../components/icons'
+} from '../../../components/icons';
+import Link from '../../../components/link'
 
 const DEPServicesMenu = () => {
-  const [view, setView] = useState(0)
+
+  const [view, setView] = useState(0);
 
   const servicesMenu = [
     {
+      id: urlSlug(GerencialesYMercadologicos.name),
       title: 'Gerenciales y Mercadológicos',
       Icon: GerencialesYMercadologicos,
       content: `
@@ -38,6 +43,7 @@ const DEPServicesMenu = () => {
             `,
     },
     {
+      id: urlSlug(GestionMedioambiental.name),
       title: 'Gestión Medioambiental y Recursos Naturales',
       Icon: GestionMedioambiental,
       content: `
@@ -52,6 +58,7 @@ const DEPServicesMenu = () => {
             `,
     },
     {
+      id: urlSlug(CienciaAnimal.name),
       title: 'Ciencia Animal',
       Icon: CienciaAnimal,
       content: `
@@ -67,6 +74,7 @@ const DEPServicesMenu = () => {
             `,
     },
     {
+      id: urlSlug(Agronomia.name),
       title: 'Agronomía',
       Icon: Agronomia,
       content: `
@@ -82,6 +90,7 @@ const DEPServicesMenu = () => {
             `,
     },
     {
+      id: urlSlug(TecnologiaDeAlimentos.name),
       title: 'Tecnología de Alimentos',
       Icon: TecnologiaDeAlimentos,
       content: `
@@ -107,32 +116,31 @@ const DEPServicesMenu = () => {
             <Menu>
               <Row justifyContent="center">
                 {servicesMenu.map((item, index) => {
-                  const { title, Icon } = item
-
+                  const { title, Icon,id } = item
                   return (
                     <Col size={6} sizeMD={4} sizeXL={2} key={index}>
                       {/* <Link to={stringify({path:parse(state.router.link).path, hash:"#contenido"})} > */}
 
-                      <ImtemUl>
+                      <ImtemUl to={`#${id}`} as="ul">
                         <Option
                           decoBG={'#A0E4F9'}
                           onClick={(e) =>
+                            
                             setView(view === index ? view : index)
                           }
                           active={view === index}
                           color={view === index ? '#A0E4F9' : colors.white}
-                        >
+                          >
                           <OptionIcon
                             bgColor={view === index ? '#A0E4F9' : colors.white}
-                          >
+                            >
                             <Icon />
-                            {/* <FeaturedMedia media={icon} /> */}
                           </OptionIcon>
                           <OptionName>{title}</OptionName>
+                          <div id={id}/>
                         </Option>
                       </ImtemUl>
 
-                      {/* </Link> */}
                     </Col>
                   )
                 })}
@@ -142,17 +150,18 @@ const DEPServicesMenu = () => {
         </Row>
         <Row>
           <Col>
-            <Content bg={colors.gray.light} id="contenido">
+                  
+            <Content bg={colors.gray.light} id="contenido" >
               {servicesMenu.map((item, index) => {
                 const { content } = item
 
                 return (
                   <Copy
-                    key={index}
-                    noGutters
-                    active={view === index}
-                    hidden={index !== view}
-                    dangerouslySetInnerHTML={{ __html: content }}
+                  key={index}
+                  noGutters
+                  active={view === index}
+                  hidden={index !== view}
+                  dangerouslySetInnerHTML={{ __html: content }}
                   />
                 )
               })}
@@ -210,7 +219,8 @@ const OptionName = styled.p`
   color: inherit;
   margin: 0;
 `
-const ImtemUl = styled.ul`
+const ImtemUl = styled(Link)`
+text-decoration: none;
   margin: 0;
   padding: 0;
 `

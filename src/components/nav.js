@@ -106,7 +106,7 @@ const Nav = ({
             <NavItem
               key={item.id}
               align="right"
-              color={colors.primary.base}
+              color={colors.primary.dark}
               bold
             >
               {/* If link url is the current page, add `aria-current` for a11y */}
@@ -248,7 +248,7 @@ const MenuContainer = styled.ul`
   `}
 `
 
-const NavItem = styled.div`
+const NavItem = styled.li`
   ${({ color = 'darkblue', align, bold = false }) => css`
     ${mq.lg} {
       cursor: pointer;
