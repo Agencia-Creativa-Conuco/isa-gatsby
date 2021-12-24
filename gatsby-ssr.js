@@ -1,12 +1,11 @@
 import React from 'react'
 
 const HeadComponents = [
-  <script
-    key="jquery"
-    src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-    crossOrigin="anonymous"
-  />,
+  <link
+    rel="preload"
+    href="https://code.jquery.com/jquery-3.6.0.min.js"
+    as="script"
+  ></link>,
 ]
 
 const onRenderBody = ({ setHeadComponents }) => {

@@ -1,42 +1,48 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { css, Global } from "@emotion/react";
-import { CloseIcon } from "./menu-icon";
-import MenuModal from "./menu-modal";
-import { mq } from "./layout/index";
-import { MenuIcon } from "./icons";
-import colors from "./styles/colors";
+import React from 'react'
+import styled from '@emotion/styled'
+import { css, Global } from '@emotion/react'
+import { CloseIcon } from './menu-icon'
+import MenuModal from './menu-modal'
+import { mq } from './layout/index'
+import { MenuIcon } from './icons'
+import colors from './styles/colors'
 
-const MobileMenu = ({ items, isMobileMenuOpen, toggleMobileMenu, isIndexesActive }) => {
-  
-  return  (
+const MobileMenu = ({
+  items,
+  isMobileMenuOpen,
+  toggleMobileMenu,
+  toggleSearchModal,
+}) => {
+  return (
     <>
-      <MenuToggle 
+      <MenuToggle
         aria-label="Click para abrir el menu..."
-        onClick={(e)=>{
-        e.stopPropagation();
-        toggleMobileMenu(!isMobileMenuOpen);     
-      }}>
+        onClick={(e) => {
+          e.stopPropagation()
+          toggleMobileMenu(!isMobileMenuOpen)
+          toggleSearchModal(false)
+        }}
+      >
         {isMobileMenuOpen ? (
           <>
             {/* Add some style to the body when menu is open,
             to prevent body scroll */}
-            <Global styles={{ body: { overflowY: "hidden" } }} />
-            
-            <IconContainer colors={ colors }> 
+            <Global styles={{ body: { overflowY: 'hidden' } }} />
+
+            <IconContainer colors={colors}>
               <CloseIcon />
             </IconContainer>
           </>
         ) : (
-          <IconContainer colors={ colors }>
+          <IconContainer colors={colors}>
             <MenuIcon />
           </IconContainer>
         )}
       </MenuToggle>
       {/* If the menu is open, render the menu modal */}
-      {isMobileMenuOpen && <MenuModal items={ items } />}  
+      {isMobileMenuOpen && <MenuModal items={items} />}
     </>
-  );
+  )
 }
 
 const MenuToggle = styled.button`
@@ -53,10 +59,10 @@ const MenuToggle = styled.button`
   ${mq.lg} {
     display: none;
   }
-`;
+`
 const IconContainer = styled.div`
-  ${({colors})=>css`
-    color: ${colors? colors.blue.base: "white"};
+  ${({ colors }) => css`
+    color: ${colors ? colors.blue.base : 'white'};
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -65,7 +71,7 @@ const IconContainer = styled.div`
     border-radius: 50%;
     overflow: hidden;
     position: relative;
-    svg{
+    svg {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -73,6 +79,6 @@ const IconContainer = styled.div`
       width: 50%;
     }
   `}
-`;
+`
 
-export default MobileMenu;
+export default MobileMenu

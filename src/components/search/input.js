@@ -1,16 +1,15 @@
-import React , {useEffect, useRef} from "react";
-import { mq } from "../layout/index";
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import Input from "../styles/input";
-import { SearchIcon } from "../icons";
-import { BaseToggle } from "../navigation/nav-toggle";
-import { useFlexSearch } from "react-use-flexsearch";
-import { useQueryParam, StringParam } from "use-query-params";
-import { graphql, useStaticQuery } from "gatsby";
+import React, { useEffect, useRef } from 'react'
+import { mq } from '../layout/index'
+import { css } from '@emotion/react'
+import styled from '@emotion/styled'
+import Input from '../styles/input'
+import { SearchIcon } from '../icons'
+import { BaseToggle } from '../navigation/nav-toggle'
+import { useFlexSearch } from 'react-use-flexsearch'
+import { useQueryParam, StringParam } from 'use-query-params'
+import { graphql, useStaticQuery } from 'gatsby'
 
 const SearchForm = ({ isResults, setResultsSearch }) => {
-
   const resultado = useStaticQuery(graphql`
     {
       localSearchPages {
@@ -18,31 +17,25 @@ const SearchForm = ({ isResults, setResultsSearch }) => {
         index
       }
     }
-  `);
+  `)
 
-  const { index: resultsIndex, store: resultsStore } = resultado.localSearchPages;
+  const {
+    index: resultsIndex,
+    store: resultsStore,
+  } = resultado.localSearchPages
 
-  const [query] = useQueryParam("s", StringParam);
+  const [query] = useQueryParam('s', StringParam)
 
-  const resultados = useFlexSearch(query, resultsIndex, resultsStore);
-
-  useEffect( () => {
-    setResultsSearch(resultados);
-  }, [resultados, setResultsSearch]);
-
-  const inputElement = useRef(null);
+  const resultados = useFlexSearch(query, resultsIndex, resultsStore)
 
   useEffect(() => {
+    setResultsSearch(resultados)
     if (inputElement.current) {
-      inputElement.current.focus();
+      inputElement.current.focus()
     }
-  }, []);
+  }, [resultados, setResultsSearch])
 
-
-  // ComponentWillMount
-  // ComponentWillUpdate
-  // ComponentDidUpdate
-  // ComponentDidMount
+  const inputElement = useRef(null)
 
   return (
     <>
@@ -51,7 +44,9 @@ const SearchForm = ({ isResults, setResultsSearch }) => {
         aria-label="Buscar:"
         method="get"
         action={`/search/?s=`}
-        onSubmit={ () => { setResultsSearch(resultados) }}
+        onSubmit={() => {
+          setResultsSearch(resultados)
+        }}
       >
         <Input
           defaultValue={query}
@@ -73,10 +68,10 @@ const SearchForm = ({ isResults, setResultsSearch }) => {
         ) : null}
       </Form>
     </>
-  );
-};
+  )
+}
 
-export default SearchForm;
+export default SearchForm
 
 const Form = styled.form`
   margin: 0;
@@ -90,7 +85,7 @@ const Form = styled.form`
     position: relative;
     width: 100%;
   }
-`;
+`
 
 const HeaderToggle = styled.div`
   display: flex;
@@ -99,9 +94,9 @@ const HeaderToggle = styled.div`
   margin: 0 15px;
   position: relative;
   z-index: 5;
-`;
+`
 
-const Icon = styled.div``;
+const Icon = styled.div``
 
 const inputHeader = css`
   background: none;
@@ -134,11 +129,11 @@ const inputHeader = css`
     outline: thin dotted;
     outline-offset: -4px;
   }
-`;
+`
 
 const inputResults = css`
   background: white;
   border-radius: 4rem;
   padding: 1rem 1.8rem;
   border: none;
-`;
+`

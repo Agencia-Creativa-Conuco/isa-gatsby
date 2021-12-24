@@ -77,7 +77,11 @@ const Header = ({ setResultsSearch }) => {
                         )}
                         <MobileMenu
                           items={menuItems}
-                          {...{ isMobileMenuOpen, toggleMobileMenu }}
+                          {...{
+                            isMobileMenuOpen,
+                            toggleMobileMenu,
+                            toggleSearchModal,
+                          }}
                         />
                       </Gadgets>
                     </Col>
@@ -118,22 +122,16 @@ const HeaderWrapper = styled.header`
           left: 0;
           top: 0;
           width: 100%;
-          /* background-color: ${colorSticky}; */
         `
-      : css`
-          /* background-color: ${color}; */
-        `}
+      : css``}
     ${!isOnTop
       ? css`
           position: fixed;
           left: 0;
           top: 0;
           width: 100%;
-          /* background-color: ${colorSticky}; */
         `
-      : css`
-          /* background-color: ${color}; */
-        `}
+      : css``}
   `}
 `
 

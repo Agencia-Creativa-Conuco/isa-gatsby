@@ -1,94 +1,69 @@
-import React, { useRef, useEffect } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
-import { css } from '@emotion/react'
 import { CloseIcon } from '../icons'
 import ScreenReaderText from '../styles/screen-reader'
-import useFocusTrap from '../hooks/use-trap-focus'
-import useFocusEffect from '../hooks/use-focus-effect'
 import SearchForm from './input'
 
 import { mq } from '../layout/index'
 import colors from '../styles/colors'
 
+import { useTransition, animated, config } from '@react-spring/web'
+
 const SearchInput = ({
   isSearchModalOpen,
   toggleSearchModal,
   setResultsSearch,
-  isMobileMenuOpen,
 }) => {
   const closeSearchModal = () => {
     toggleSearchModal(false)
   }
 
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      toggleSearchModal(false)
-    }
-  }, [isMobileMenuOpen, toggleSearchModal])
+  const transitions = useTransition(isSearchModalOpen, {
+    from: { opacity: 0, top: -50 },
+    enter: { opacity: 1, top: 1 },
+    leave: { opacity: 0, top: -50 },
+    reverse: isSearchModalOpen,
+    delay: 0,
+    config: config.wobbly,
+  })
 
-  // Keep a reference to the input so we can grab it's value on form submission
-  const inputRef = useRef()
-  const containerRef = useRef()
+  return transitions((styles, item) =>
+    item ? (
+      <AWrapper style={styles}>
+        <ModalOverlay
+          role="presentation"
+          data-open={isSearchModalOpen}
+          onClick={closeSearchModal}
+        />
+        <ModalInner role="dialog" aria-modal="true">
+          <SectionInner>
+            {/* Input */}
+            <SearchForm {...{ setResultsSearch }} />
 
-  useFocusEffect(inputRef, isSearchModalOpen)
-  useFocusTrap(containerRef, isSearchModalOpen)
-
-  return (
-    <>
-      <ModalOverlay
-        role="presentation"
-        data-open={isSearchModalOpen}
-        onClick={closeSearchModal}
-      />
-      <ModalInner
-        role="dialog"
-        aria-modal="true"
-        active={isSearchModalOpen}
-        onClick={(event) => {
-          // prevent clicks within the content from propagating to the ModalOverlay
-          event.stopPropagation()
-        }}
-      >
-        <SectionInner ref={containerRef}>
-          {/* Input */}
-          <SearchForm {...{ setResultsSearch }} />
-
-          <CloseButton onClick={closeSearchModal} colors={colors}>
-            <ScreenReaderText>Cerrar búsqueda</ScreenReaderText>
-            <CloseIcon />
-          </CloseButton>
-        </SectionInner>
-      </ModalInner>
-    </>
+            <CloseButton onClick={closeSearchModal}>
+              <ScreenReaderText>Cerrar búsqueda</ScreenReaderText>
+              <CloseIcon />
+            </CloseButton>
+          </SectionInner>
+        </ModalInner>
+      </AWrapper>
+    ) : null,
   )
 }
 
 export default SearchInput
 
+const AWrapper = styled(animated.div)`
+  position: relative;
+`
+
 const ModalOverlay = styled.div``
 
 const ModalInner = styled.div`
-  ${({ active }) => css`
-    box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.08);
-    position: absolute;
-    right: 1.5rem;
-    left: 1.5rem;
-    transition: all 0.25s ease-in-out;
-    background: #fff;
-    border-radius: 5rem;
-    cursor: default;
-    ${active
-      ? css`
-          top: 0.25rem;
-          opacity: 1;
-          height: auto;
-        `
-      : css`
-          top: -2rem;
-          opacity: 0;
-          visibility: hidden;
-        `}
-  `}
+  box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.15);
+  background: #fff;
+  border-radius: 5rem;
+  cursor: default;
 `
 
 const SectionInner = styled.div`
@@ -106,39 +81,37 @@ const SectionInner = styled.div`
 `
 
 const CloseButton = styled.button`
-  ${({ colors }) => css`
-    background: none;
-    border: none;
-    box-shadow: none;
-    border-radius: 0;
-    font-size: inherit;
-    font-weight: 400;
-    letter-spacing: inherit;
-    padding: 0;
-    text-transform: none;
-    color: ${colors ? colors.gray.dark : '#555552'};
-    align-items: center;
-    display: flex;
-    flex-shrink: 0;
-    justify-content: center;
-    margin-right: -2.5rem;
-    padding: 0 2.5rem;
+  background: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  font-size: inherit;
+  font-weight: 400;
+  letter-spacing: inherit;
+  padding: 0;
+  text-transform: none;
+  color: ${colors.gray.dark || '#555552'};
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  margin-right: -2.5rem;
+  padding: 0 2.5rem;
 
-    &:hover {
-      cursor: pointer;
-      svg {
-        transform: scale(1.2);
-      }
-    }
-
+  &:hover {
+    cursor: pointer;
     svg {
+      transform: scale(1.2);
+    }
+  }
+
+  svg {
+    height: 1.2rem;
+    width: 1.2rem;
+    fill: currentColor;
+    ${mq.md} {
       height: 1.2rem;
       width: 1.2rem;
-      fill: currentColor;
-      ${mq.md} {
-        height: 1.2rem;
-        width: 1.2rem;
-      }
     }
-  `}
+  }
 `
