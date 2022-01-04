@@ -10,7 +10,7 @@ import useRecursos from '../../hooks/useRecursos'
 import Loading from '../loading'
 import { useQueryParam, StringParam } from 'use-query-params'
 import { useFlexSearch } from 'react-use-flexsearch'
-import { useStaticQuery } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
 
 const ResultsBody = (props) => {
   const searchData = useStaticQuery(graphql`

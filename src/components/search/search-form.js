@@ -5,69 +5,48 @@ import styled from '@emotion/styled'
 import Input from '../styles/input'
 import { SearchIcon } from '../icons'
 import { BaseToggle } from '../navigation/nav-toggle'
-import { useFlexSearch } from 'react-use-flexsearch'
 import { useQueryParam, StringParam } from 'use-query-params'
-import { graphql, useStaticQuery } from 'gatsby'
+import { navigate } from 'gatsby'
 
-const SearchForm = ({ isResults, setResultsSearch }) => {
-  const resultado = useStaticQuery(graphql`
-    {
-      localSearchPages {
-        store
-        index
-      }
-    }
-  `)
-
-  const {
-    index: resultsIndex,
-    store: resultsStore,
-  } = resultado.localSearchPages
-
+const SearchForm = ({ searchButton = true }) => {
   const [query] = useQueryParam('s', StringParam)
 
-  const resultados = useFlexSearch(query, resultsIndex, resultsStore)
+  const ref = useRef(null)
 
   useEffect(() => {
-    setResultsSearch(resultados)
-    if (inputElement.current) {
-      inputElement.current.focus()
+    if (ref.current) {
+      ref.current.focus()
     }
-  }, [resultados, setResultsSearch])
-
-  const inputElement = useRef(null)
+  }, [])
 
   return (
-    <>
-      <Form
-        role="search"
-        aria-label="Buscar:"
-        method="get"
-        action={`/search/?s=`}
-        onSubmit={() => {
-          setResultsSearch(resultados)
-        }}
-      >
-        <Input
-          defaultValue={query}
-          css={isResults ? inputResults : inputHeader}
-          type="search"
-          placeholder="Buscar:"
-          name="s"
-          ref={inputElement}
-        />
+    <Form
+      role="search"
+      aria-label="Buscar:"
+      onSubmit={(e) => {
+        e.preventDefault()
+        navigate(`/search/?s=${ref.current.value}`)
+      }}
+    >
+      <Input
+        defaultValue={query}
+        css={inputStyles(searchButton)}
+        type="search"
+        placeholder="Buscar:"
+        name="search"
+        ref={ref}
+      />
 
-        {isResults ? (
-          <HeaderToggle>
-            <BaseToggle>
-              <Icon>
-                <SearchIcon />
-              </Icon>
-            </BaseToggle>
-          </HeaderToggle>
-        ) : null}
-      </Form>
-    </>
+      {searchButton ? (
+        <HeaderToggle>
+          <BaseToggle>
+            <Icon>
+              <SearchIcon />
+            </Icon>
+          </BaseToggle>
+        </HeaderToggle>
+      ) : null}
+    </Form>
   )
 }
 
@@ -98,7 +77,7 @@ const HeaderToggle = styled.div`
 
 const Icon = styled.div``
 
-const inputHeader = css`
+const inputStyles = (searchButton) => css`
   background: none;
   border: none;
   border-radius: 0;
@@ -129,11 +108,16 @@ const inputHeader = css`
     outline: thin dotted;
     outline-offset: -4px;
   }
+  ${searchButton
+    ? css`
+        background: white;
+        border-radius: 4rem;
+        padding: 1rem 1.8rem;
+        border: none;
+      `
+    : css``}
 `
 
-const inputResults = css`
-  background: white;
-  border-radius: 4rem;
-  padding: 1rem 1.8rem;
-  border: none;
-`
+// const inputResults = css`
+//
+// `

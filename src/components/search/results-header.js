@@ -2,9 +2,12 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { Container, Section, Row, Col } from '../layout/index'
 import colors from '../styles/colors'
-import SearchForm from './input'
+// import SearchForm from './search-form'
+import useSearch from '../hooks/useSearch'
 
 const ResultsHeader = (props) => {
+  const { SearchForm } = useSearch()
+
   return (
     <Section spaceNone>
       <Background />

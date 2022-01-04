@@ -1,11 +1,12 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { CloseIcon } from '../icons'
-import ScreenReaderText from '../styles/screen-reader'
-import SearchForm from './input'
+import { CloseIcon } from './icons'
+import ScreenReaderText from './styles/screen-reader'
+// import SearchForm from './search/search-form'
+import useSearch from './hooks/useSearch'
 
-import { mq } from '../layout/index'
-import colors from '../styles/colors'
+import { mq } from './layout/index'
+import colors from './styles/colors'
 
 import { useTransition, animated, config } from '@react-spring/web'
 
@@ -14,8 +15,15 @@ const SearchInput = ({
   toggleSearchModal,
   setResultsSearch,
 }) => {
+  const { SearchForm, searching, setSearching } = useSearch()
+
   const closeSearchModal = () => {
     toggleSearchModal(false)
+  }
+
+  if (searching) {
+    closeSearchModal()
+    setSearching(false)
   }
 
   const transitions = useTransition(isSearchModalOpen, {
@@ -38,7 +46,7 @@ const SearchInput = ({
         <ModalInner role="dialog" aria-modal="true">
           <SectionInner>
             {/* Input */}
-            <SearchForm {...{ setResultsSearch }} />
+            <SearchForm searchButton={false} />
 
             <CloseButton onClick={closeSearchModal}>
               <ScreenReaderText>Cerrar búsqueda</ScreenReaderText>
