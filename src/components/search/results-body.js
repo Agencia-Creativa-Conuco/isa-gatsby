@@ -8,9 +8,25 @@ import CardBody from './card-body'
 import urlSlug from 'url-slug'
 import useRecursos from '../../hooks/useRecursos'
 import Loading from '../loading'
+import { useQueryParam, StringParam } from 'use-query-params'
+import { useFlexSearch } from 'react-use-flexsearch'
+import { useStaticQuery } from 'gatsby'
 
-const ResultsBody = ({ props }) => {
-  const { resultsSearch } = props
+const ResultsBody = (props) => {
+  const searchData = useStaticQuery(graphql`
+    {
+      localSearchPages {
+        store
+        index
+      }
+    }
+  `)
+
+  const { index, store } = searchData.localSearchPages
+
+  const [query] = useQueryParam('s', StringParam)
+
+  const resultados = useFlexSearch(query, index, store)
 
   const recursos = useRecursos()
 
@@ -30,20 +46,20 @@ const ResultsBody = ({ props }) => {
   // Filtrando valor del select
   let hash = {}
 
-  resultsSearch?.filter((current) => (hash[current.type] = current.type))
+  // resultados?.filter((current) => (hash[current.type] = current.type))
 
   const optionsFilter = options.filter((item) =>
     hash[item.value] ? item : null,
   )
 
   // Filtrando el Contenido a mostrar
-  const filtros = resultsSearch?.filter((item) =>
+  const filtros = resultados?.filter((item) =>
     item.type.includes(selectedOption?.value),
   )
 
-  const results = filtros?.length !== 0 ? filtros : resultsSearch
+  const results = filtros?.length !== 0 ? filtros : resultados
 
-  return resultsSearch?.length ? (
+  return resultados.length ? (
     <Section>
       <Container>
         <Row>
@@ -111,7 +127,7 @@ const ResultsBody = ({ props }) => {
         </Row>
       </Container>
     </Section>
-  ) : resultsSearch?.length !== 0 ? (
+  ) : resultados?.length !== 0 ? (
     <Loading />
   ) : (
     <Title> Sin Resultados 😔 </Title>

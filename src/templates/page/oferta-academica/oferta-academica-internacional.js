@@ -85,7 +85,7 @@ const OfferInternational = () => {
       <Container fluid notFluidMD>
         <Row
           css={topRow({
-            bg: colors.primary.light,
+            bg: colors.blue.light,
           })}
         >
           <Row alignItems="flex-end">

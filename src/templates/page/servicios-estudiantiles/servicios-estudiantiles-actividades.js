@@ -25,18 +25,21 @@ const ServiciosEstudiantilesActividades = () => {
           'El Club Ambiental del ISA (CAISA) es un voluntariado que promueve la conservación, preservación y estudio del medio ambiente; conformado por estudiantes, profesores y personal de apoyo de la Institución, interesados en realizar actividades en fomento y conservación de los recursos naturales en la República Dominicana.',
         cta: null,
         image: images['servicios-estudiantiles'].caisa,
+        position: '50% 50%',
       },
       {
         title: 'Club de Astronomía',
         copy: '',
         cta: null,
         image: images['servicios-estudiantiles'].astronomia,
+        position: '50% 70%',
       },
       {
         title: 'Club de Lectura',
         copy: '',
         cta: null,
         image: images['servicios-estudiantiles'].lectura,
+        position: '50% 50%',
       },
       {
         title: 'Pastoral Juvenil',
@@ -44,6 +47,7 @@ const ServiciosEstudiantilesActividades = () => {
           'La Pastoral Juvenil desarrolla acciones encaminadas a fomentar valores, así como la actividad y crecimiento espiritual, contribuyendo a la formación integral de los universitarios.',
         cta: null,
         image: images['servicios-estudiantiles'].pastoral_juvenil,
+        position: '50% 40%',
       },
       {
         title: 'Club De Danza',
@@ -51,6 +55,7 @@ const ServiciosEstudiantilesActividades = () => {
           'En períodos de tiempo razonables (una vez a la semana, cada quince días, mensual) los participantes se exponen a películas de contenido relevante y al final generan un debate.',
         cta: null,
         image: images['servicios-estudiantiles'].club_de_danza,
+        position: '50% 30%',
       },
       {
         title: 'Club De Ciencias',
@@ -58,6 +63,7 @@ const ServiciosEstudiantilesActividades = () => {
           'El Club de Ciencias identificado con el logo   tiene como misión el contribuir con el fortalecimiento de la enseñanza/ aprendizaje de las ciencias en la República Dominicana a través del desarrollo intelectual, científico, cultural y social de las/os profesores/as de ciencias de la naturaleza en el país.',
         cta: null,
         image: images['servicios-estudiantiles'].club_de_ciencias,
+        position: '50% 30%',
       },
       {
         title: 'Cine Foro',
@@ -65,6 +71,7 @@ const ServiciosEstudiantilesActividades = () => {
           'En períodos de tiempo razonables (una vez a la semana, cada quince días, mensual) los participantes se exponen a películas de contenido relevante y al final generan un debate.',
         cta: null,
         image: images['servicios-estudiantiles'].cine_foro,
+        position: '50% 50%',
       },
     ]
 
@@ -98,7 +105,7 @@ const ServiciosEstudiantilesActividades = () => {
             ref={(slider) => setSlider1(slider)}
           >
             {actividadesExtracurriculares.map((item, index) => {
-              const { image } = item
+              const { image, position } = item
 
               return (
                 <FeaturedMedia
@@ -106,6 +113,7 @@ const ServiciosEstudiantilesActividades = () => {
                   media={image}
                   size="56.25%"
                   sizeXL="35%"
+                  position={position}
                   bgColor
                 />
               )

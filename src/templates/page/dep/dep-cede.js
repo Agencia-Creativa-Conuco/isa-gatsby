@@ -79,6 +79,7 @@ const Copy = styled.p``
 
 const Media = styled.div`
   ${mq.md} {
-    transform: translate(3rem, 3rem);
+    /* transform: translate(3rem, 3rem); */
   }
+  padding: 10%;
 `
