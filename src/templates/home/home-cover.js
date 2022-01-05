@@ -53,6 +53,7 @@ const HomeCover = ({ slides }) => {
                         size="100%"
                         sizeMD="100%"
                         sizeXL="80%"
+                        position="30% 0%"
                         loading={index > 0 ? 'lazy' : 'eager'}
                       />
                     </Media>

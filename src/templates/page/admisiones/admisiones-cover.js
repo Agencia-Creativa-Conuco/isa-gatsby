@@ -59,6 +59,7 @@ const AdmisionesCover = () => {
                   size="100%"
                   sizeXL="90%"
                   bgColor
+                  position="35% 50%"
                   loading="eager"
                 />
               </DecoLogo>
