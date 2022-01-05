@@ -166,12 +166,12 @@ const HomeOffer = () => {
         menuItems {
           nodes {
             id
+            parentId
             label
             description
             url
             target
             path
-            parentId
             order
             datosMenu {
               icono {
@@ -196,12 +196,9 @@ const HomeOffer = () => {
         <Container>
           <Row>
             {menuItems.map((item, index) => {
-              const {
-                id,
-                url,
-                children,
-                // target
-              } = item
+              const { id, url, children, parentId, datosMenu, ...props } = item
+
+              console.log(item)
 
               const isActive = view === id
 
@@ -213,7 +210,7 @@ const HomeOffer = () => {
                 <Col size={6} sizeLG={3} mxAuto noGutters key={index}>
                   <StyledLink
                     to={url}
-                    target="_blank"
+                    {...props}
                     rel="noopener"
                     aria-label="Click para abrir el..."
                   >

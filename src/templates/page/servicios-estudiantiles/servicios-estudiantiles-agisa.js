@@ -125,7 +125,7 @@ const ServiciosEstudiantilesAGISA = () => {
                                           /> */}
                 </DecoMedia>
               </MediaContainer>
-              <Content color={colors.blue.dark}>
+              <Content>
                 <SectionTitle> {title} </SectionTitle>
                 <div dangerouslySetInnerHTML={{ __html: content }} />
                 {cta ? (

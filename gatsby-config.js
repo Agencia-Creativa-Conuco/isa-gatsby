@@ -15,7 +15,7 @@ module.exports = {
       options: {
         url:
           process.env.NODE_ENV === `development`
-            ? 'http://isa.local/graphql'
+            ? 'https://prueba.conuco.do/graphql'
             : 'https://prueba.conuco.do/graphql',
         schema: {
           timeout: 120000,

@@ -15,9 +15,8 @@ const HomeCover = ({ slides }) => {
     ? slides
     : [
         {
-          titulo: '¡Bienvenidos a UNIVERSIDAD ISA!',
-          copy:
-            'Entra y descubre todas las ofertas académicas que tenemos disponibles para ti e inicia a aprender para servir y a servir para construir.',
+          titulo: '¡Bienvenidos a la UNIVERSIDAD ISA!',
+          copy: 'Estudiar en la Universidad ISA es aprender haciendo.',
           imagenPortada: images.home.cover,
           cta: {
             url: '/admisiones',
