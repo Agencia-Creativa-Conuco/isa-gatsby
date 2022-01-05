@@ -124,9 +124,12 @@ module.exports = {
           }
           `,
         ref: 'slug',
-        index: ['title', 'nombre', 'slug'],
+        index: ['title','titleIdx', 'nombre','nombreIdx', 'slug'],
         store: ['id', 'title', 'nombre', 'slug', 'type', 'uri'],
         normalizer: ({ data }) => {
+
+          const regex = /([^n\u0300-\u036f]|n(?!\u0303(?![\ -\u036f])))[\u0300-\u036f]+/gi;
+
           return Object.values(data)
             .map((type) => type.nodes)
             .reduce((acumulador, currentValue) =>
@@ -136,6 +139,8 @@ module.exports = {
               id: node.id,
               title: node.title,
               nombre: node.nombre,
+              titleIdx: node.title?.normalize("NFD").replace(regex, "$1"),
+              nombreIdx: node.nombre?.normalize("NFD").replace(regex, "$1"),
               slug: node.slug,
               type: node.__typename,
               uri: node.uri,

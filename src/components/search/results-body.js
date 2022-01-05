@@ -26,8 +26,17 @@ const ResultsBody = (props) => {
 
   const [query] = useQueryParam('s', StringParam)
 
-  const resultados = useFlexSearch(query, index, store)
+let dataQuery;
+if (query !== undefined) {
+  const removeAccents = (str) => {
+    const regex = /([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi;
+    return str.normalize("NFD").replace(regex, "$1");
+  };
+  dataQuery = removeAccents(query);
+}
 
+  const resultados = useFlexSearch(dataQuery, index, store)
+  
   const recursos = useRecursos()
 
   const { SelectUI, selectedOption } = useFilter()
