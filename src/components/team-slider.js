@@ -11,7 +11,7 @@ import colors from './styles/colors';
 const TeamSlider = ({ investigadores = [], title = "Equipo de investigación" }) =>{
 
 
-
+  //Aseguro que la  priimera letra del nombre empiece con mayúscula.
   investigadores.map((item) => {
     item.nombre = item.nombre.charAt(0).toUpperCase() + item.nombre.slice(1);
     return item;
@@ -106,8 +106,8 @@ const TeamSlider = ({ investigadores = [], title = "Equipo de investigación" })
                                         imagenPortada,
                                         puestoTrabajo,
                                         tituloAcademicoAbreviado,
+                                        inicialesTitituloAcademico,
                                     } = item;
-
                                     return(
                                         <Card key={index}>
                                             <Media>
@@ -118,7 +118,7 @@ const TeamSlider = ({ investigadores = [], title = "Equipo de investigación" })
                                                 />
                                             </Media>
                                             <DivTitle>
-                                                <Name>{tituloAcademicoAbreviado? `${tituloAcademicoAbreviado} `: ""}{nombre}</Name>
+                                                <Name>{inicialesTitituloAcademico? `${inicialesTitituloAcademico} `: ""} {nombre}, {tituloAcademicoAbreviado}</Name>
                                                 <JobTitle>{ puestoTrabajo }</JobTitle>
                                             </DivTitle>
                                         </Card>

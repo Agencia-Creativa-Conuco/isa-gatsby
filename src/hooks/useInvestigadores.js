@@ -16,6 +16,7 @@ const useInvestigadores = () => {
                 }
                 puestoTrabajo
                 tituloAcademico
+                inicialesTituloAcademico
                 tituloAcademicoAbreviado
                 esEquipo
                 date
@@ -53,7 +54,9 @@ const useInvestigadores = () => {
         esEquipo: investigador?.esEquipo,
         carreraNacionalInvestigacion: investigador?.datosInvestigador?.carreraNacionalInvestigacion,
         type: investigador.__typename,
-        equipoInvestigacion: investigador?.datosInvestigador?.carreraNacionalInvestigacion.equipoInvestigacion
+        equipoInvestigacion: investigador?.datosInvestigador?.carreraNacionalInvestigacion.equipoInvestigacion,
+        inicialesTitituloAcademico: investigador?.inicialesTituloAcademico
+
     }));
 }
  
