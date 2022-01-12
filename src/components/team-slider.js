@@ -10,8 +10,20 @@ import colors from './styles/colors';
 
 const TeamSlider = ({ investigadores = [], title = "Equipo de investigación" }) =>{
 
-    const researchers = investigadores;
 
+
+  investigadores.map((item) => {
+    item.nombre = item.nombre.charAt(0).toUpperCase() + item.nombre.slice(1);
+    return item;
+  });
+
+  //ordena de forma alfabética
+  const researchers = investigadores.sort((a, b) => {
+    if (a.nombre < b.nombre) return -1;
+    if (a.nombre > b.nombre) return 1;
+    return 0;
+  });
+    
     const Arrows = (props => {
   
         const Arrow = styled.div`

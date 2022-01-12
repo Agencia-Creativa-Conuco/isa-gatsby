@@ -11,7 +11,7 @@ const HomeAplication = () => {
   const images = useFiles()
   const title = 'Expande tu horizonte profesional con nosotros'
   const copy =
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem cum, voluptatum architecto sint, quasi totam sequi aliquam porro explicabo aspernatur nam distinctio esse asperiores repellat dolore reiciendis voluptate unde vel?'
+    'La Universidad ISA propicia en sus aulas el desarrollo de líderes visionarios, guiados por los valores de honestidad, responsabilidad, respeto, compromiso social y calidad. Forma hombres y mujeres pragmáticos, disciplinados, con capacidad de emprender iniciativas empresariales, poseedores de una fuerte sensibilidad social y de espíritu de servicio.'
 
   return (
     <Section

@@ -12,8 +12,8 @@ const OfferTecnics = () => {
 
   const title = 'Centro de Educación Técnica Huáscar Rodríguez Herrera',
     content = `
-            <p>El Centro surge como una iniciativa conjunta entre Cementos Cibao, la Familia Rodríguez Herrera, la República China (Taiwán), la empresa Taiwanesa K&H y la Universidad ISA, para dar respuesta a las debilidades existentes en el sector de la construcción y apoyar su desarrollo en el país.</p>
-            <p>Nace como una iniciativa de Cementos Cibao con el objetivo de formar y capacitar los recursos humanos demandados por el sector construcción. En la actualidad, se han implementado nuevos programas técnicos y de capacitación en las áreas: Empresariales, Agrícola y Animal. El Centro apoya y garantiza la capacitación del talento humano que labora en dichos sectores, contribuyendo en la formación de las nuevas generaciones de técnicos el país.</p>
+            <p>El Centro Huáscar Rodríguez tiene la finalidad de potenciar el dinamismo y crecimiento socio-económico nacional, a través de las capacitaciones técnicas de recursos humanos en los sectores más productivos del país, como son: Sector Construcción, Sector Empresarial y Sector Agropecuario.</p>
+            <p>Desde nuestro Centro de Educación Técnica, apoyamos al personal que se dedica a ofrecer estos servicios, para que obtenga la debida certificación que los acredite como entes capacitados en sus respectivas áreas.</p>
         `
 
   return (
