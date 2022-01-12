@@ -55,6 +55,7 @@ const DEPCover = () => {
               <Logo
                 media={images.cover}
                 size="80%"
+                position="100% 50%"
                 alt="Dirección Extensión y Proyectos"
                 bgColor
                 loading="eager"

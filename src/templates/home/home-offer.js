@@ -198,8 +198,6 @@ const HomeOffer = () => {
             {menuItems.map((item, index) => {
               const { id, url, children, parentId, datosMenu, ...props } = item
 
-              console.log(item)
-
               const isActive = view === id
 
               return children.length ? (
