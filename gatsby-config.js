@@ -15,7 +15,7 @@ module.exports = {
       options: {
         url:
           process.env.NODE_ENV === `development`
-            ? 'https://prueba.conuco.do/graphql'
+            ? 'http://isa.local/graphql'
             : 'https://prueba.conuco.do/graphql',
         schema: {
           timeout: 120000,
@@ -124,11 +124,10 @@ module.exports = {
           }
           `,
         ref: 'slug',
-        index: ['title','titleIdx', 'nombre','nombreIdx', 'slug'],
+        index: ['title', 'titleIdx', 'nombre', 'nombreIdx', 'slug'],
         store: ['id', 'title', 'nombre', 'slug', 'type', 'uri'],
         normalizer: ({ data }) => {
-
-          const regex = /([^n\u0300-\u036f]|n(?!\u0303(?![\ -\u036f])))[\u0300-\u036f]+/gi;
+          const regex = /([^n\u0300-\u036f]|n(?!\u0303(?![\ -\u036f])))[\u0300-\u036f]+/gi
 
           return Object.values(data)
             .map((type) => type.nodes)
@@ -139,8 +138,8 @@ module.exports = {
               id: node.id,
               title: node.title,
               nombre: node.nombre,
-              titleIdx: node.title?.normalize("NFD").replace(regex, "$1"),
-              nombreIdx: node.nombre?.normalize("NFD").replace(regex, "$1"),
+              titleIdx: node.title?.normalize('NFD').replace(regex, '$1'),
+              nombreIdx: node.nombre?.normalize('NFD').replace(regex, '$1'),
               slug: node.slug,
               type: node.__typename,
               uri: node.uri,
@@ -159,7 +158,31 @@ module.exports = {
     // },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
-    'gatsby-plugin-sharp',
+    {
+      resolve: 'gatsby-plugin-sharp',
+      options: {
+        defaults: {
+          formats: [`auto`, `webp`],
+          placeholder: `dominantColor`,
+          quality: 100,
+          breakpoints: [750, 1080, 1366, 1920],
+          backgroundColor: `transparent`,
+          tracedSVGOptions: {},
+          blurredOptions: {},
+          jpgOptions: {
+            quality: 100,
+          },
+          pngOptions: {
+            quality: 100,
+          },
+          webpOptions: {
+            quality: 100,
+          },
+          avifOptions: {},
+        },
+      },
+      __key: 'images',
+    },
     'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-source-filesystem',
