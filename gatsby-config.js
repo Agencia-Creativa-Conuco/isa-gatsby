@@ -161,25 +161,9 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-sharp',
       options: {
-        defaults: {
-          formats: [`auto`, `webp`],
-          placeholder: `dominantColor`,
-          quality: 100,
-          breakpoints: [750, 1080, 1366, 1920],
-          backgroundColor: `transparent`,
-          tracedSVGOptions: {},
-          blurredOptions: {},
-          jpgOptions: {
-            quality: 100,
-          },
-          pngOptions: {
-            quality: 100,
-          },
-          webpOptions: {
-            quality: 100,
-          },
-          avifOptions: {},
-        },
+        useMozJpeg: false,
+        stripMetadata: true,
+        defaultQuality: 100,
       },
       __key: 'images',
     },

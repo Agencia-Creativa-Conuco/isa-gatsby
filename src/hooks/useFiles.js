@@ -12,7 +12,7 @@ const useFiles = () => {
           relativeDirectory
           sourceInstanceName
           childImageSharp {
-            fluid(maxWidth: 1200) {
+            fluid(maxWidth: 1200, quality:100) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }
