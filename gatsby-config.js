@@ -161,9 +161,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-sharp',
       options: {
-        useMozJpeg: false,
-        stripMetadata: true,
-        defaultQuality: 100,
+        defaultQuality: 60,
       },
       __key: 'images',
     },
