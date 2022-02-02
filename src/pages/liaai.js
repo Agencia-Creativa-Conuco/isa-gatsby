@@ -46,7 +46,7 @@ const Arrows = (props) => {
   return <Arrow {...props} />
 }
 
-const LIAAI = ({ props }) => {
+const LIAAI = (props) => {
   const { allFile } = useStaticQuery(graphql`
     query {
       allFile(filter: { relativeDirectory: { in: ["liaai"] } }) {
@@ -211,6 +211,28 @@ const LIAAI = ({ props }) => {
                 <li>Recuent E.c</li>
                 <li>Salmonella</li>
                 <li>Staphylococcus aureus</li>
+                <li>CPP Aerobios Mesófilos</li>
+                <li>CPP E. coli</li>
+                <li>CPP Enterobacterias</li>
+                <li>CPP Coliformes Totales</li>
+                <li>CPP Salmonella</li>
+                <li>CPP Staphylococcus aureus</li>
+                <li>NMP E. coli</li>
+                <li>NMP Coliformes Fecales</li>
+                <li>NMP Coliformes Totales</li>
+                <li>NMP Pseudomonas</li>
+              </ul>
+            </Col>
+            <Col size={12} sizeMD={6}>
+              <h3>Análisis Físicos, Químicos y Fisico-Químicos</h3>
+              <ul>
+                <li>Pesticidas en frutas y vegetales.</li>
+                <li>
+                  Fisico-Quimicos: pH, conductividad eléctrica, turbidez,
+                  salinidad, dureza y sólidos totales disueltos.
+                </li>
+                <li>Nitritos.</li>
+                <li>% Ceniza total.</li>
                 <li>Residuos de pesticidas (frutas, vegetales, suelos) </li>
                 <li>pH en alimentos </li>
                 <li>pH en agua </li>
@@ -251,28 +273,6 @@ const LIAAI = ({ props }) => {
                 <li>
                   Pectina soluble en agua y pectina total Ácidos Grasos Libres
                 </li>
-              </ul>
-            </Col>
-            <Col size={12} sizeMD={6}>
-              <h3>Análisis Físicos, Químicos y Fisico-Químicos</h3>
-              <ul>
-                <li>Pesticidas en frutas y vegetales.</li>
-                <li>
-                  Fisico-Quimicos: pH, conductividad eléctrica, turbidez,
-                  salinidad, dureza y sólidos totales disueltos.
-                </li>
-                <li>Nitritos.</li>
-                <li>% Ceniza total.</li>
-                <li>CPP Aerobios Mesófilos</li>
-                <li>CPP E. coli</li>
-                <li>CPP Enterobacterias</li>
-                <li>CPP Coliformes Totales</li>
-                <li>CPP Salmonella</li>
-                <li>CPP Staphylococcus aureus</li>
-                <li>NMP E. coli</li>
-                <li>NMP Coliformes Fecales</li>
-                <li>NMP Coliformes Totales</li>
-                <li>NMP Pseudomonas</li>
               </ul>
             </Col>
           </Row>
@@ -360,6 +360,9 @@ const Logo = styled.div`
   max-width: 25rem;
   margin: 0 auto;
   margin-bottom: 3rem;
+  ${mq.md} {
+    max-width: 35rem;
+  }
 `
 
 const Title = styled.h1`
