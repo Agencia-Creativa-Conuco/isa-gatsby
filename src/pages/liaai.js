@@ -46,7 +46,7 @@ const Arrows = (props) => {
   return <Arrow {...props} />
 }
 
-const LIAAI = () => {
+const LIAAI = ({ props }) => {
   const { allFile } = useStaticQuery(graphql`
     query {
       allFile(filter: { relativeDirectory: { in: ["liaai"] } }) {
@@ -79,7 +79,7 @@ const LIAAI = () => {
   }, {})
 
   return (
-    <Layout {...metaData}>
+    <Layout {...props} {...metaData}>
       <Section medium spaceBottomNone zIndex={3}>
         <Container>
           <Overlay>
@@ -89,7 +89,7 @@ const LIAAI = () => {
                   <FeaturedMedia media={images.logo} />
                 </Logo>
                 <Title>
-                  Laboratorioa de Análisis Industrial e Inocuidad de los
+                  Laboratorio de Análisis Industrial e Inocuidad de los
                   Alimentos
                 </Title>
                 <p>
@@ -100,7 +100,7 @@ const LIAAI = () => {
                   la necesidad del sector agrícola e industrial de tener a la
                   disposición un laboratorio, con personal altamente capacitado,
                   tecnología especializada, capaz de ofrecer servicios de
-                  análisis destinados a confirmar la calidad de los productos
+                  análisis destinados a determinar la calidad de los productos
                   según los requerimientos nacionales e internacionales.
                 </p>
               </Col>
@@ -122,33 +122,33 @@ const LIAAI = () => {
             <Container>
               <Row>
                 <Col>
-                  <SubTitle color="white">Políticas de Calidad LIAAI</SubTitle>
+                  <SubTitle color="white">Políticas de Gestión LIAAI</SubTitle>
                 </Col>
               </Row>
               <ListPolíticas>
                 <li>
                   El Laboratorio de Inocuidad de Alimentos y Análisis Industrial
-                  (LIAAI) tiene como política cumplir de manera íntegra su
-                  misión, valores y objetivos de calidad, aplicando las Buenas
-                  Prácticas de Laboratorio (BPL) para garantizar la calidad de
-                  los ensayos microbiológicos, químicos, físicos y
-                  físico-químicos cumpliendo siempre con los requisitos y
-                  expectativas de nuestros clientes.
+                  (LIAAI) tiene como política garantizar la competencia técnica
+                  en sus actividades, así como la validez técnica de los
+                  resultados de ensayos microbiológicos, químicos, físicos y
+                  físicoquímicos, cumpliendo, permanentemente, los
+                  requerimientos de nuestros clientes, las reglamentaciones
+                  aplicables de los organismos normativos en el ámbito nacional
+                  e internacional y los requisitos de las organizaciones que
+                  otorgan reconocimiento.
                 </li>
                 <li>
-                  La alta Gerencia asegura que todo el personal está
-                  familiarizado con la documentación del Sistema de Gestión de
-                  Calidad y está comprometido con su implementación,
-                  mantenimiento y mejora, aplicando las políticas y
-                  procedimientos establecidos de manera correcta en todas las
-                  actividades que desarrolla para estos fines.
+                  La Alta Gerencia asegura la provisión de los recursos
+                  necesarios (personal, equipos, instalaciones, trazabilidad
+                  metrológica, información y seguridad) para gestionar riesgos y
+                  lograr que las operaciones se desarrollen en forma coherente,
+                  confiable, imparcial y confidencial.
                 </li>
                 <li>
-                  El LIAAI está comprometido con la mejora y el cumplimiento de
-                  los procesos, proporcionando un servicio de la más alta
-                  calidad, puntualidad y confiabilidad, acorde a los estándares
-                  internacionales, basados en los requisitos de las Normas
-                  ISO/9001 e ISO/IEC/17025.
+                  El personal y la Alta Gerencia del LIAAI están totalmente
+                  comprometidos con el cumplimiento del sistema de gestión y la
+                  implementación de mejoras e innovación de todos los procesos,
+                  según la Norma ISO/IEC/17025.
                 </li>
               </ListPolíticas>
             </Container>
@@ -211,6 +211,46 @@ const LIAAI = () => {
                 <li>Recuent E.c</li>
                 <li>Salmonella</li>
                 <li>Staphylococcus aureus</li>
+                <li>Residuos de pesticidas (frutas, vegetales, suelos) </li>
+                <li>pH en alimentos </li>
+                <li>pH en agua </li>
+                <li>pH en suelos </li>
+                <li>Turbidez </li>
+                <li>Sólidos Totales Disueltos ( STD) </li>
+                <li>Conductividad eléctrica (CE) </li>
+                <li>Demanda Bioquímica de Oxígeno (DBO) </li>
+                <li>Demanda Química de Oxígeno (DQO) </li>
+                <li>Fosfato reactivo (ortofosfato) </li>
+                <li>Dureza Salinidad </li>
+                <li>Porcentaje de Cenizas Totales </li>
+                <li>Humedad </li>
+                <li>Actividad de Agua </li>
+                <li>Materia Seca </li>
+                <li>Sólidos Solubles</li>
+                <li>Nitritos (En Embutidos) </li>
+                <li>Acidez Titulable </li>
+                <li>Viscosidad </li>
+                <li>Consistencia</li>
+                <li>Índice de solubilidad en agua </li>
+                <li>Índice de absorción de agua </li>
+                <li>Poder de hinchamiento </li>
+                <li>Densidad aparente (alimentos y forraje)</li>
+                <li>Granulometría/tamaño de partículas Materia volátil </li>
+                <li>Poder calorífico superior </li>
+                <li>Carbono fijado </li>
+                <li>Carbono orgánico total (suelos) </li>
+                <li>Materia orgánica total (suelos) </li>
+                <li>Textura (suelos)</li>
+                <li>Materia grasa en leche (Gerber) </li>
+                <li>Materia grasa en carne y embutidos (Soxhlet) </li>
+                <li>Índice de refracción </li>
+                <li>Capacidad de retención de agua (carne y embutidos) </li>
+                <li>Contenido de metoxilos (pectinas)</li>
+                <li>Contenido Ácido galacturónico (pectinas) </li>
+                <li>Grado de Esterificación (pectinas) </li>
+                <li>
+                  Pectina soluble en agua y pectina total Ácidos Grasos Libres
+                </li>
               </ul>
             </Col>
             <Col size={12} sizeMD={6}>
@@ -223,6 +263,16 @@ const LIAAI = () => {
                 </li>
                 <li>Nitritos.</li>
                 <li>% Ceniza total.</li>
+                <li>CPP Aerobios Mesófilos</li>
+                <li>CPP E. coli</li>
+                <li>CPP Enterobacterias</li>
+                <li>CPP Coliformes Totales</li>
+                <li>CPP Salmonella</li>
+                <li>CPP Staphylococcus aureus</li>
+                <li>NMP E. coli</li>
+                <li>NMP Coliformes Fecales</li>
+                <li>NMP Coliformes Totales</li>
+                <li>NMP Pseudomonas</li>
               </ul>
             </Col>
           </Row>
