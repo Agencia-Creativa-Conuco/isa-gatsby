@@ -23,8 +23,6 @@ const Layout = (props) => {
   //Si obj no es pasado en props, utiliza page;
   const [page] = usePages().filter((page) => page.uri === props.path)
 
-  console.log(props, props.path)
-
   const { children, obj = page, data } = props
 
   const [resultsSearch, setResultsSearch] = useState()
