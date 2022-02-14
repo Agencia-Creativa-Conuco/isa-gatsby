@@ -17,7 +17,7 @@ import useFiles from '../../../hooks/useFiles'
 const ServiciosEstudiantilesActividades = () => {
   const images = useFiles()
 
-  const title = 'Actividades Extracurriculares',
+  const title = 'Grupos y clubes estudiantiles',
     actividadesExtracurriculares = [
       {
         title: 'CAISA',
@@ -29,14 +29,14 @@ const ServiciosEstudiantilesActividades = () => {
       },
       {
         title: 'Club de Astronomía',
-        copy: '',
+        copy: 'Es un club integrado por estudiantes de múltiples disciplinas con el interés en común por conocer y divulgar los conocimientos sobre astronomía. En el club se proporciona un ambiente y los materiales adecuados para desarrollar las aptitudes relacionadas con las ciencias espaciales.',
         cta: null,
         image: images['servicios-estudiantiles'].astronomia,
         position: '50% 70%',
       },
       {
         title: 'Club de Lectura',
-        copy: '',
+        copy: 'Es un espacio donde los miembros tienen la oportunidad de reunirse con personas que comparten su pasión por la literatura, con el fin de fortalecer a la comunidad lectora para explotar el máximo potencial de cada uno de los integrantes.',
         cta: null,
         image: images['servicios-estudiantiles'].lectura,
         position: '50% 50%',
@@ -44,23 +44,23 @@ const ServiciosEstudiantilesActividades = () => {
       {
         title: 'Pastoral Juvenil',
         copy:
-          'La Pastoral Juvenil desarrolla acciones encaminadas a fomentar valores, así como la actividad y crecimiento espiritual, contribuyendo a la formación integral de los universitarios.',
+          'Desarrolla acciones encaminadas a fomentar valores, permitiendo a los jóvenes descubrir habilidades de crecimiento personal, fomentar la solidaridad y el respeto, comprometiéndose con Jesucristo y su mensaje.',
         cta: null,
         image: images['servicios-estudiantiles'].pastoral_juvenil,
         position: '50% 40%',
       },
-      {
-        title: 'Club De Danza',
-        copy:
-          'En períodos de tiempo razonables (una vez a la semana, cada quince días, mensual) los participantes se exponen a películas de contenido relevante y al final generan un debate.',
-        cta: null,
-        image: images['servicios-estudiantiles'].club_de_danza,
-        position: '50% 30%',
-      },
+      // {
+      //   title: 'Club De Danza',
+      //   copy:
+      //     'En períodos de tiempo razonables (una vez a la semana, cada quince días, mensual) los participantes se exponen a películas de contenido relevante y al final generan un debate.',
+      //   cta: null,
+      //   image: images['servicios-estudiantiles'].club_de_danza,
+      //   position: '50% 30%',
+      // },
       {
         title: 'Club De Ciencias',
         copy:
-          'El Club de Ciencias identificado con el logo   tiene como misión el contribuir con el fortalecimiento de la enseñanza/ aprendizaje de las ciencias en la República Dominicana a través del desarrollo intelectual, científico, cultural y social de las/os profesores/as de ciencias de la naturaleza en el país.',
+          'Tiene como misión el contribuir con el fortalecimiento de la enseñanza- aprendizaje de las ciencias en la República Dominicana a través del desarrollo intelectual, científico, cultural y social de los profesores de ciencias de la naturaleza en el país.',
         cta: null,
         image: images['servicios-estudiantiles'].club_de_ciencias,
         position: '50% 30%',
@@ -69,6 +69,22 @@ const ServiciosEstudiantilesActividades = () => {
         title: 'Cine Foro',
         copy:
           'En períodos de tiempo razonables (una vez a la semana, cada quince días, mensual) los participantes se exponen a películas de contenido relevante y al final generan un debate.',
+        cta: null,
+        image: images['servicios-estudiantiles'].cine_foro,
+        position: '50% 50%',
+      },
+      {
+        title: 'Club de fotografía',
+        copy:
+          'Es un grupo formado por estudiantes apasionados por la fotografía, con el objetivo de aprender más acerca del mundo de este fantástico arte y poder desarrollar sus habilidades sin importar que equipo tenga.',
+        cta: null,
+        image: images['servicios-estudiantiles'].cine_foro,
+        position: '50% 50%',
+      },
+      {
+        title: 'CINECLUB',
+        copy:
+          'Pretende vincular experiencias compartidas a través de un diálogo con el cine, descubrir, observar y debatir de forma crítica la representación cinematográfica. Además de ofrecer un espacio dinámico y creativo que más allá del rol del espectador pasivo, potencie una reflexión colectiva entre compañeros.',
         cta: null,
         image: images['servicios-estudiantiles'].cine_foro,
         position: '50% 50%',
