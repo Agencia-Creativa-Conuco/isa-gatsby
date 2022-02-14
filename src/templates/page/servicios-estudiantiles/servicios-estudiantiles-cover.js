@@ -9,9 +9,11 @@ import useFiles from '../../../hooks/useFiles'
 const ServiciosEstudiantilesCover = () => {
   const images = useFiles()
 
-  const title = 'Servicios al Estudiante',
+  const title = 'Decanato de Estudiantes',
     copy =
-      'Junto a nuestra oferta académica, tenemos disponible diversos servicios que cubren las diferentes necesidades de los estudiantes durante su paso por la universidad. Descubre aquí cuáles son e iniciemos esta aventura juntos.',
+      `<p>El Decanato de Estudiantes es la instancia responsable de concebir e implementar estrategias institucionales dirigidas a viabilizar el desarrollo integral del estudiante durante su vida universitaria, sirviendo de enlace entre los/las estudiantes, los egresados y los distintos estamentos de la institución para la interacción y sana convivencia.</p>
+       <p>El Decanato de Estudiantes va dirigido a toda la comunidad actual de estudiantes, así como a todos aquellos interesados en ingresar y a los egresados de las diferentes facultades académicas que componen la institución.</p>
+      `,
     featuredImage = images['servicios-estudiantiles'].cover
 
   return (
@@ -21,7 +23,7 @@ const ServiciosEstudiantilesCover = () => {
           <Col size={12} sizeMD order={2} orderMD={1}>
             <Content as="div">
               <SectionTitle> {title} </SectionTitle>
-              <Copy>{copy}</Copy>
+              <div dangerouslySetInnerHTML={{ __html: copy }} />
             </Content>
           </Col>
           <Col size={12} sizeMD={6} noGutters zIndex={1} order={1}>
@@ -58,8 +60,6 @@ const Content = styled(Section)`
 `
 
 const SectionTitle = styled.h1``
-
-const Copy = styled.p``
 
 const Media = styled.div`
   z-index: 4;
