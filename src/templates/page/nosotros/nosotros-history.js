@@ -72,7 +72,7 @@ const NosotrosHistory = () =>{
 
     const history = [
         {
-            title: "Fundación del Instituto Superior de Agricultura",
+            title: "Fundación de la Institución",
             year: "1962",
             content: `
                 <p>La Universidad ISA surgió en 1962 como instituto vocacional, por iniciativa de la Asociación para el Desarrollo, Inc. (APEDI), respondiendo a las necesidades propias de una economía esencialmente agrícola y de una sociedad de origen básicamente rural.</p>

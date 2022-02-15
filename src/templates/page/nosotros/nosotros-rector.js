@@ -34,7 +34,7 @@ const images = allFile.nodes.reduce((obj, item) => {
 }, {});
 
     const 
-        name= "Ingeniero Benito A. Ferreiras",
+        name= "Benito A. Ferreiras",
         jobtitle= "Rector",
         content= `
             <p>En nombre de la Universidad ISA, les doy la bienvenida a este portal a través del cual podrán obtener información relevante sobre nuestra institución, además de todas las opciones que tiene la Universidad para ofrecerles como alternativa al momento de elegir una alma máter para su educación.</p>
