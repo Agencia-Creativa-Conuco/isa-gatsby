@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
-import { Link, useStaticQuery, graphql } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
 import { Container, Row, Col, mq } from './layout/index'
 import FeaturedMedia from './featured-media'
 import {
@@ -16,6 +16,8 @@ import colors from './styles/colors'
 import { getHierarchicalItems } from './inc/auxiliar'
 import useFiles from '../hooks/useFiles'
 import useGlobalOption from '../hooks/useGlobalOption'
+
+import Link from "../components/link";
 
 const Footer = ({ state, libraries }) => {
   const images = useFiles().site
@@ -82,9 +84,9 @@ const Footer = ({ state, libraries }) => {
                 />
               </Col>
               <Col size={12} sizeLG={3} order={1} orderLG={2}>
-                <Link to={'/'} aria-label="Logo">
+                <Link to={"/"} aria-label="Logo">
                   <FeaturedMedia
-                    media={images['logo-footer']}
+                    media={images["logo-footer"]}
                     maxWidth="25rem"
                     mxAuto
                     css={MediaDeco}
@@ -104,7 +106,7 @@ const Footer = ({ state, libraries }) => {
                 <Title color={colors.shadow.base}> REDES SOCIALES </Title>
                 <SocialBox>
                   {redes.map((red, index) => {
-                    const Icon = red.icon
+                    const Icon = red.icon;
 
                     return (
                       <LinkIcon
@@ -116,16 +118,35 @@ const Footer = ({ state, libraries }) => {
                       >
                         <Icon />
                       </LinkIcon>
-                    )
+                    );
                   })}
                 </SocialBox>
+              </Col>
+              <Col>
+                <Title>Contacto</Title>
+                <BoxContact>
+                  <span>Teléfono: </span>
+                  <Link to={"tel:8092472000"} target="_blank">
+                    809-247-2000
+                  </Link>
+                </BoxContact>
+                <BoxContact>
+                  <span>Email: </span>
+                  <Link to={"mailto:info@isa.edu.do"} target="_blank">
+                    info@isa.edu.do
+                  </Link>
+                </BoxContact>
+                <BoxContact>
+                  <span>Dirección: </span>
+                  Ave. Pres. Antonio Guzmán Km. 5 1/2, La Herradura, Santiago. Apartado Postal 166
+                </BoxContact>
               </Col>
             </Row>
           </Container>
         </RowWrapper>
       </Container>
     </FooterWrapper>
-  ) : null
+  ) : null;
 }
 
 // Connect the Header component to get access to the `state` in it's `props`
@@ -192,3 +213,14 @@ const LinkIcon = styled.a`
     vertical-align: middle;
   }
 `
+const BoxContact =  styled.div`
+
+& > a {
+  text-decoration: none;
+  color: white;
+}
+& > span {
+  font-weight: bold;
+}
+
+`;
