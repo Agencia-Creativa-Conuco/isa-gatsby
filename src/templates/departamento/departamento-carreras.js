@@ -14,11 +14,15 @@ const DepartamentoCarreras = ({ facultad, carreras, grados }) => {
           <Row>
             <Col>
               <Title color={facultad.color} main={index ? false : true}>
-                Programa{carreras.length > 1 ? 's' : ''} de {grado.nombre}
+              Programas académicos
               </Title>
             </Col>
           </Row>
+
           <Row>
+              <Col size={12}  alignCenter>
+                <SubTitle color={facultad.color}>{grado.nombre}</SubTitle>
+              </Col>
             {carreras
               .filter((carrera) => carrera.grado.id === grado.id)
               .map((carrera, index) => {
@@ -99,4 +103,11 @@ const Title = styled.h2`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
+`
+const SubTitle = styled.h3`
+  ${({ color = 'inherit' }) => css`
+    text-align: center;
+    margin-bottom: 4rem;
+    color: ${color};
+`}
 `
