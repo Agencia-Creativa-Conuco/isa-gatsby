@@ -10,8 +10,7 @@ const ServiciosEstudiantilesCover = () => {
   const images = useFiles()
 
   const title = 'Decanato de Estudiantes',
-    copy =
-      `<p>El Decanato de Estudiantes es la instancia responsable de concebir e implementar estrategias institucionales dirigidas a viabilizar el desarrollo integral del estudiante durante su vida universitaria, sirviendo de enlace entre los/las estudiantes, los egresados y los distintos estamentos de la institución para la interacción y sana convivencia.</p>
+    copy = `<p>El Decanato de Estudiantes es la instancia responsable de concebir e implementar estrategias institucionales dirigidas a viabilizar el desarrollo integral del estudiante durante su vida universitaria, sirviendo de enlace entre los/las estudiantes, los egresados y los distintos estamentos de la institución para la interacción y sana convivencia.</p>
        <p>El Decanato de Estudiantes va dirigido a toda la comunidad actual de estudiantes, así como a todos aquellos interesados en ingresar y a los egresados de las diferentes facultades académicas que componen la institución.</p>
       `,
     featuredImage = images['servicios-estudiantiles'].cover

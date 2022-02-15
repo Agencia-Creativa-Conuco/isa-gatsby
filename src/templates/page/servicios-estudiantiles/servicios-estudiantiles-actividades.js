@@ -29,14 +29,16 @@ const ServiciosEstudiantilesActividades = () => {
       },
       {
         title: 'Club de Astronomía',
-        copy: 'Es un club integrado por estudiantes de múltiples disciplinas con el interés en común por conocer y divulgar los conocimientos sobre astronomía. En el club se proporciona un ambiente y los materiales adecuados para desarrollar las aptitudes relacionadas con las ciencias espaciales.',
+        copy:
+          'Es un club integrado por estudiantes de múltiples disciplinas con el interés en común por conocer y divulgar los conocimientos sobre astronomía. En el club se proporciona un ambiente y los materiales adecuados para desarrollar las aptitudes relacionadas con las ciencias espaciales.',
         cta: null,
         image: images['servicios-estudiantiles'].astronomia,
         position: '50% 70%',
       },
       {
         title: 'Club de Lectura',
-        copy: 'Es un espacio donde los miembros tienen la oportunidad de reunirse con personas que comparten su pasión por la literatura, con el fin de fortalecer a la comunidad lectora para explotar el máximo potencial de cada uno de los integrantes.',
+        copy:
+          'Es un espacio donde los miembros tienen la oportunidad de reunirse con personas que comparten su pasión por la literatura, con el fin de fortalecer a la comunidad lectora para explotar el máximo potencial de cada uno de los integrantes.',
         cta: null,
         image: images['servicios-estudiantiles'].lectura,
         position: '50% 50%',
@@ -65,14 +67,14 @@ const ServiciosEstudiantilesActividades = () => {
         image: images['servicios-estudiantiles'].club_de_ciencias,
         position: '50% 30%',
       },
-      {
-        title: 'Cine Foro',
-        copy:
-          'En períodos de tiempo razonables (una vez a la semana, cada quince días, mensual) los participantes se exponen a películas de contenido relevante y al final generan un debate.',
-        cta: null,
-        image: images['servicios-estudiantiles'].cine_foro,
-        position: '50% 50%',
-      },
+      // {
+      //   title: 'Cine Foro',
+      //   copy:
+      //     'En períodos de tiempo razonables (una vez a la semana, cada quince días, mensual) los participantes se exponen a películas de contenido relevante y al final generan un debate.',
+      //   cta: null,
+      //   image: images['servicios-estudiantiles'].cine_foro,
+      //   position: '50% 50%',
+      // },
       {
         title: 'Club de fotografía',
         copy:
