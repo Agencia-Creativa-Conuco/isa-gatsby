@@ -10,7 +10,7 @@ import DEPVeterinary from './dep-veterinary'
 import DEPCede from './dep-cede'
 import DEPServicesMenu from './dep-services-menu'
 import DEPPymes from './dep-pymes'
-import DepNAF from './dep-naf'
+// import DepNAF from './dep-naf'
 
 const DEPPage = (props) => {
   const data = [
@@ -66,7 +66,7 @@ const DEPPage = (props) => {
         <DEPLaboratory />
         <DEPCede />
         <DEPVeterinary />
-        <DepNAF />
+        {/* <DepNAF /> */}
       </Container>
     </Layout>
   )
