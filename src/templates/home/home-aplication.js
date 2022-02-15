@@ -9,9 +9,9 @@ import useFiles from '../../hooks/useFiles'
 
 const HomeAplication = () => {
   const images = useFiles()
-  const title = 'Expande tu horizonte profesional con nosotros'
+  const title = 'Te invitamos a descubrir y vivir la experiencia ISA'
   const copy =
-    'La Universidad ISA propicia en sus aulas el desarrollo de líderes visionarios, guiados por los valores de honestidad, responsabilidad, respeto, compromiso social y calidad. Forma hombres y mujeres pragmáticos, disciplinados, con capacidad de emprender iniciativas empresariales, poseedores de una fuerte sensibilidad social y de espíritu de servicio.'
+    'Estudia en uno de los  campus universitarios más  verdes y funcional del país, rodeado de un ecosistema diseñado para aprender haciendo, desarrollar al máximo tu potencial y vivir en comunidad. ¡Súmate a la Familia ISA!  '
 
   return (
     <Section
