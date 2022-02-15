@@ -8,6 +8,7 @@ import DayPicker from "react-day-picker";
 import "react-day-picker/lib/style.css";
 import useModal from "./hooks/useModal";
 import usePeriodosAdmision from "../hooks/usePeriodosAdmision";
+import Link from "./link"
 
 const Event = ({ event }) => {
   const { openModal, ModalUI } = useModal();
@@ -66,6 +67,22 @@ const Event = ({ event }) => {
               weekdaysShort={WEEKDAYS_SHORT}
             />
           </Col>
+        </Row>
+        <Row>
+          <ColStyles>
+            <BoxContact>
+              <span>Haz tu cita en: </span>
+              <Link to={"mailto:admisiones@isa.edu.do"} target="_blank">
+                admisiones@isa.edu.do
+              </Link>
+            </BoxContact>
+            <BoxContact>
+              <span>Whatsapp: </span>
+              <Link to={"https://wa.me/8295209209"} target="_blank">
+                829-520-9209
+              </Link>
+            </BoxContact>
+          </ColStyles>
         </Row>
       </ModalUI>
     </>
@@ -213,4 +230,19 @@ const birthdayStyle = css`
       font-weight: inherit;
     }
   }
+`;
+
+const BoxContact = styled.div`
+  & > a {
+    text-decoration: none;
+    color: black;
+  }
+  & > span {
+    font-weight: bold;
+    color: #001f56;
+  }
+`;
+
+const ColStyles = styled(Col)`
+  margin-top: 2rem;
 `;

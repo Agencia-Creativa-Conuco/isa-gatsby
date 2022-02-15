@@ -16,7 +16,7 @@ const HomeCover = ({ slides }) => {
     : [
         {
           titulo: '¡Bienvenidos a la UNIVERSIDAD ISA!',
-          copy: 'La Universidad ISA propicia en sus aulas el desarrollo de líderes visionarios, guiados por los valores de honestidad, responsabilidad, respeto, compromiso social y calidad. Forma hombres y mujeres pragmáticos, disciplinados, con capacidad de emprender iniciativas empresariales, poseedores de una fuerte sensibilidad social y de espíritu de servicio..',
+          copy: 'La Universidad ISA propicia en sus aulas el desarrollo de líderes visionarios, guiados por los valores de honestidad, responsabilidad, respeto, compromiso social y calidad. Forma hombres y mujeres pragmáticos, disciplinados, con capacidad de emprender iniciativas empresariales, poseedores de una fuerte sensibilidad social y de espíritu de servicio.',
           imagenPortada: images.home.cover,
           cta: {
             url: '/admisiones',
