@@ -1,47 +1,48 @@
-import React, { useState } from "react";
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
+import React, { useState } from 'react'
+import { css } from '@emotion/react'
+import styled from '@emotion/styled'
 import {
   Section,
   Container,
   Row,
   Col,
   mq,
-} from "../../../components/layout/index";
-import colors from "../../../components/styles/colors";
-import Form from "../../../components/form";
-import ctas from "../../../components/styles/cta";
-import useGrados from "../../../hooks/useGrados";
-import useFiles from "../../../hooks/useFiles";
-import FeaturedMedia from "../../../components/featured-media";
+} from '../../../components/layout/index'
+import colors from '../../../components/styles/colors'
+import Form from '../../../components/form'
+import ctas from '../../../components/styles/cta'
+import useGrados from '../../../hooks/useGrados'
+import useFiles from '../../../hooks/useFiles'
+import FeaturedMedia from '../../../components/featured-media'
 
 const AdmisionesForm = ({ ...props }) => {
   //Consultar y optener logo.svg
-  const image = useFiles().admisiones.form;
+  const image = useFiles().admisiones.form
 
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(0)
 
   const forms = useGrados()
     //Solo muestra los grados que tienen formulario
+    .sort((a, b) => a.order - b.order)
     .filter((grado) => grado.formularios.tipo)
     .map((grado, index) => {
       grado.formularios.action = () => {
-        setActive(index + 1);
-      };
-      grado.formularios.name = grado.nombre;
-      return grado.formularios;
-    });
+        setActive(index + 1)
+      }
+      grado.formularios.name = grado.nombre
+      return grado.formularios
+    })
 
   forms.unshift({
-    name: "Regresar",
+    name: 'Regresar',
     formularios: [],
     action: () => {
-      setActive(0);
+      setActive(0)
     },
-  });
+  })
 
   return forms.length > 1 ? (
-    <Section id="form" spaceNone style={{ overflow: "hidden" }}>
+    <Section id="form" spaceNone style={{ overflow: 'hidden' }}>
       <Container fluid id="section_3">
         <Row>
           <BgCol size={12} noGutters>
@@ -66,7 +67,7 @@ const AdmisionesForm = ({ ...props }) => {
               <Title>Solicitud de admisión</Title>
               <Buttons>
                 {forms.map((form, index) => {
-                  const { name, action } = form;
+                  const { name, action } = form
 
                   return (
                     <div key={index}>
@@ -76,7 +77,7 @@ const AdmisionesForm = ({ ...props }) => {
                       >
                         {name}
                       </Grade>
-                      {form.tipo === "google" ? (
+                      {form.tipo === 'google' ? (
                         <Link
                           href={form.googleFormulario}
                           target="_blank"
@@ -98,22 +99,23 @@ const AdmisionesForm = ({ ...props }) => {
                         </Cta>
                       )}
                     </div>
-                  );
+                  )
                 })}
               </Buttons>
               <Displayer>
                 {forms
                   .filter(
-                    (form, index) => index === active && form.tipo === "hubspot"
+                    (form, index) =>
+                      index === active && form.tipo === 'hubspot',
                   )
                   .map((form, index) => {
                     const formIds = form.hsFormularios.map(
-                      (item) => item.idFormulario
-                    );
+                      (item) => item.idFormulario,
+                    )
 
                     return (
                       <Form key={index} formIds={formIds} cardStyle={false} />
-                    );
+                    )
                   })}
               </Displayer>
             </Wrapper>
@@ -122,17 +124,16 @@ const AdmisionesForm = ({ ...props }) => {
         </Row>
       </Container>
     </Section>
-  ) : null;
-};
+  ) : null
+}
 
-export default AdmisionesForm;
+export default AdmisionesForm
 
 const BgCol = styled(Col)`
-  ${mq.md}{
-  position: absolute;
-
-}
-`;
+  ${mq.md} {
+    position: absolute;
+  }
+`
 
 const Wrapper = styled.div`
   width: 100%;
@@ -144,16 +145,15 @@ const Wrapper = styled.div`
     padding: 4rem;
     min-height: 65rem;
   }
-`;
-
+`
 
 const Title = styled.h2`
   text-transform: uppercase;
   margin-bottom: 3rem;
-`;
+`
 
 const Grade = styled.h3`
-  ${({ color = "darkblue" }) => css`
+  ${({ color = 'darkblue' }) => css`
     text-transform: uppercase;
     /* background-color: #F0F0F0; */
     padding: 0.5rem;
@@ -162,18 +162,18 @@ const Grade = styled.h3`
     border-top: 0.2rem solid ${color};
     border-bottom: 0.2rem solid ${color};
   `}
-`;
+`
 
 const Cta = styled.button`
   ${ctas}
   display: block;
   margin-bottom: 2rem;
-`;
+`
 
 const Link = styled.a`
   ${ctas}
-`;
+`
 
-const Buttons = styled.div``;
+const Buttons = styled.div``
 
-const Displayer = styled.div``;
+const Displayer = styled.div``
