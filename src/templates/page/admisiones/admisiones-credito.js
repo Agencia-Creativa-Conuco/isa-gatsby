@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { Section, Container, Row, Col } from '../../../components/layout/index'
 import FeaturedMedia from '../../../components/featured-media'
 import useFiles from '../../../hooks/useFiles'
+import Link from '../../../components/link'
 
 const AdmisionesCredito = () => {
   const images = useFiles()
@@ -25,16 +26,15 @@ const AdmisionesCredito = () => {
     },
   ]
 
-  const contacto = {
-    content: `
-   <p>
-    <span><strong>CONTACTOS</strong></span><br/>
-    <span>Correo: </span> <a href="mailto: asistenciaeconomica@isa.edu.do">asistenciaeconomica@isa.edu.do</a>  <br/>
-    <span>Teléfono:</span> <a href="tel:+18092472000">809-247-2000. Ext.: 235, 236 y 237.</a>
-   <p>   
-   
-   `,
-  }
+  // const contacto = {
+  //   content: `
+  //  <p>
+  //   <span><strong>CONTACTOS</strong></span><br/>
+  //   <span>Correo: </span> <a href="mailto: asistenciaeconomica@isa.edu.do">asistenciaeconomica@isa.edu.do</a>  <br/>
+  //   <span>Teléfono:</span> <a href="tel:+18092472000">809-247-2000. Ext.: 235, 236 y 237.</a>
+  //  <p>   
+  //  `}
+
 
   return (
     <Section id="section_4">
@@ -62,7 +62,21 @@ const AdmisionesCredito = () => {
                   </Col>
                 )
               })}
-              <div dangerouslySetInnerHTML={{ __html: contacto.content }} />
+             <Col>
+              <h5>CONTACTOS</h5>
+             <BoxContact>
+               <span>Email: </span>
+                  <Link to={"mailto:asistenciaeconomica@isa.edu.do"} target="_blank">
+                  asistenciaeconomica@isa.edu.do
+                  </Link>
+             </BoxContact>
+             <BoxContact>
+                  <span>Teléfono: </span>
+                  <Link to={"tel:8092472000"} target="_blank">
+                  809-247-2000. Ext.: 235, 236 y 237
+                  </Link>
+                </BoxContact>
+             </Col>
             </Row>
           </Col>
         </Row>
@@ -93,3 +107,16 @@ const Institution = styled.div`
 const Media = styled.div`
   flex: 1;
 `
+
+const BoxContact =  styled.div`
+
+& > a {
+  text-decoration: none;
+  color: black;
+}
+& > span {
+  font-weight: bold;
+  color: #001F56;
+}
+
+`;
