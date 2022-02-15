@@ -29,7 +29,7 @@ const ServiciosEstudiantilesDeportes = () =>{
                 image: images['servicios-estudiantiles'].voleibol,
             },
             {
-                name: "Futbol",
+                name: "Fútbol",
                 image: images['servicios-estudiantiles'].futbol,
             },
             {

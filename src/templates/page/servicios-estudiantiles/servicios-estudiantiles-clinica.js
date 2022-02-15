@@ -16,10 +16,11 @@ import useFiles from '../../../hooks/useFiles'
 const ServiciosEstudiantilesClinica = () => {
   const images = useFiles()
 
-  const title = 'Servicio de Enfermería',
+  const title = 'Salud y Enfermería',
     content = `
-            <p>En la unidad de servicios de enfermería, está enfocada atender y orientar las necesidades de salud y emergencias que puedan surgir durante el desarrollo de la actividad académica y administrativa de la Universidad, ofreciendo un servicio de apoyo oportuno y de alta calidad en la atención de primeros auxilios ambulatorios y de urgencia.</p>
-            <p>Esta unidad promueve además, campañas orientadas a fomentar hábitos de conductas sanas y evitar riesgos de enfermedades, con el objetivo primordial de contribuir al desarrollo integral, tanto de los estudiantes, como de los empleados, mediante la prevención, mantenimiento y promoción de la salud.</p>
+            <p>Incentiva la salud y ofrece servicios de atención primaria a la comunidad universitaria. </p>
+            <p>La Unidad de Salud y Enfermería se enfoca en atender y orientar las necesidades de salud y emergencias que puedan surgir durante el desarrollo de la actividad académica y administrativa de la Universidad, ofreciendo servicios de atención primaria, primeros auxilios ambulatorios y de urgencia a la comunidad universitaria.</p>
+            <p>Esta unidad promueve además, campañas orientadas a fomentar hábitos de conductas sanas y riesgos de enfermedades, con el objetivo primordial de contribuir al desarrollo integral, tanto de los estudiantes, como de los empleados, mediante la prevención, mantenimiento y promoción de la salud. </p>
             <p><strong>Horarios</strong><br>
             Lunes a viernes de 8:00 a.m. a 7:00 p.m.<br>
             Sábados de 8:00 a.m. a 5:00 p.m.</p>

@@ -11,7 +11,7 @@ const ServiciosEstudiantilesBienestar = ({ page }) =>{
     const images = useFiles();
     
     const   
-        title = "Departamento de Desarrollo y Bienestar Estudiantil",
+        title = "Bienestar Estudiantil",
         content = `
             <p>El departamento de Desarrollo y Bienestar Estudiantil está orientado a facilitar y eficientizar el avance académico y personal de los estudiantes, mediante los servicios que ofrece, liderados por un equipo especializado que pone en acción sus conocimientos, destrezas, y empeño con el propósito de contribuir al crecimiento intelectual, académico, espiritual, emocional, social y vocacional del estudiante, así como también a la plena realización de sus potencialidades.</p>
             <p>Desarrollo y Bienestar Estudiantil, es un canal activo y de relación con los estudiantes y sus actividades, brinda el apoyo necesario en la concretización de sus iniciativas, promoviendo el liderazgo e incentivando el desarrollo de servicios de apoyo social, educacional, deportivo y cultural.</p>

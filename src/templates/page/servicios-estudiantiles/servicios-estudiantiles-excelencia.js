@@ -31,7 +31,7 @@ const ServiciosEstudiantilesExcelencia = () => {
     setNav2(slider2)
   }, [slider1, slider2])
 
-  const title = 'Programa Premiación a la Excelencia',
+  const title = 'Programa Premiación a la Excelencia Académica.',
     content = `
             <p>El programa de premiación a la excelencia académica, es una actividad donde la institución, a través de la implementación de un proceso de reconocimiento periódico, público y continuo, exalta los esfuerzos exitosos logrados por los estudiantes al final del período académico cursado y al cierre del año académico. Esta celebración se realiza una vez al año.</p>
             <p><b>Objetivos</b></p>
