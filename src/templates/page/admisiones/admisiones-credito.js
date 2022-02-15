@@ -26,12 +26,23 @@ const AdmisionesCredito = () => {
     },    
   ]
 
+  const contacto = {
+   content: `
+   <p>
+    <b>CONTACTOS</b><br/>
+    <b>Correo: </b> asistenciaeconomica@isa.edu.do <br/>
+    <b>Teléfono:</b> 809-247-2000. Ext.: 235, 236 y 237.
+   <p>   
+   
+   `,
+  }
+
   return (
     <Section id="section_4">
       <Container>
         <Row>
           <Col>
-            <Title>Crédito Educativo</Title>
+            <Title>Asistencia para la gestión del crédito educativo</Title>
             <Copy>
               Financiamiento disponible a través de:
             </Copy>
@@ -49,6 +60,7 @@ const AdmisionesCredito = () => {
                 </Col>
               );
             })}
+              <div dangerouslySetInnerHTML={{ __html: contacto.content }} />
             </Row>
           </Col>
         </Row>

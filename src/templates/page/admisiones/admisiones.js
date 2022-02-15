@@ -9,7 +9,6 @@ import AdmisionesCover from './admisiones-cover'
 import AdmisionesInfo from './admisiones-info'
 import AdmisionesForm from './admisiones-form'
 import AdmisionesCredito from './admisiones-credito'
-import AdmisionesBeca from './admisiones-beca'
 import AdmisionesServicios from './admisiones-servicios'
 import Calendar from '../../../components/calendar'
 import colors from '../../../components/styles/colors'
@@ -55,7 +54,6 @@ const Admissions = (props) => {
         <AdmisionesInfo />
         <AdmisionesForm />
         <AdmisionesCredito />
-        <AdmisionesBeca />
         <AdmisionesServicios />
       </Container>
     </Layout>
