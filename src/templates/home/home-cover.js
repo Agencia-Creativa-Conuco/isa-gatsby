@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import { Container, Section, Row, Col, mq } from '../../components/layout/index'
 import Carousel from 'react-slick'
 import colors from '../../components/styles/colors'
-import Cta from '../../components/cta'
+// import Cta from '../../components/cta'
 import useFiles from '../../hooks/useFiles'
 import FeaturedMedia from '../../components/featured-media'
 
@@ -30,7 +30,7 @@ const HomeCover = ({ slides }) => {
     <StyledSection spaceNone bgDeco={colors.primary.dark}>
       <Carousel fade autoplay pauseOnHover>
         {items.map((item, index) => {
-          const { titulo, copy, imagenPortada, cta } = item
+          const { titulo, copy, imagenPortada  } = item
 
           return (
             <Slide key={index}>
@@ -68,13 +68,13 @@ const HomeCover = ({ slides }) => {
                     <Content bg={colors.blue.dark}>
                       <Title>{titulo}</Title>
                       <Copy>{copy}</Copy>
-                      {cta ? (
+                      {/* {cta ? (
                         <LinkBox>
                           <Cta to={cta.url} target={cta.target}>
                             {cta.title}
                           </Cta>
                         </LinkBox>
-                      ) : null}
+                      ) : null} */}
                     </Content>
                   </Col>
                 </Row>
@@ -151,9 +151,9 @@ const Title = styled.h2`
 
 const Copy = styled.div``
 
-const LinkBox = styled.div`
-  margin: 3rem 0;
-`
+// const LinkBox = styled.div`
+//   margin: 3rem 0;
+// `
 
 const Media = styled.div`
   ${({ bgColorBefore = '#CCEDFA', bgColorAfter = '#001F56' }) => css`
