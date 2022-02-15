@@ -19,6 +19,17 @@ const ServiciosEstudiantilesPsicologia = () => {
     content = `
             <p>Orientación e inclusión estudiantil es un servicio orientado a propiciar el bienestar estudiantil y potenciar, en todas sus dimensiones, el desarrollo integral del estudiante mediante los servicios de orientación académica, personal, social y profesional.</p>
             <p>Su objetivo principal es valorar y propugnar por el desarrollo integral de los estudiantes, aportándole la asesoría y respaldo en su proceso de formación académica, personal y social, contribuyendo a la formación de agentes autónomos que se integrarán a la sociedad.</p>
+            <p>
+            <b> Horario de Asistencia </b>
+              <br/></br>
+              <b> Lunes a Viernes.  </b> <br/>
+              8:00 a.m.-12:00 m. / 1:00 a 5:00 p.m.
+              <br/>
+             <b> Contactos </b>
+              <br/>
+              Tel: 809.247.2000 <br/>
+              Edificio Kellogg, 2do. Nivel. Universidad ISA.             
+            </p>
         `,
     image = images['servicios-estudiantiles'].orientacion_estudiantil,
     cta = null
