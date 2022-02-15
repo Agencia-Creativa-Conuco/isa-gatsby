@@ -3,6 +3,7 @@ const colors = {
   white: '#FFFFFF',
   text: {
     base: '#555555',
+    light: '#777777',
   },
   cta: {
     base: '#00A4E5',

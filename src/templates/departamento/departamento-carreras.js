@@ -43,9 +43,7 @@ const DepartamentoCarreras = ({ facultad, carreras, grados }) => {
                             </CardMedia>
                           </Col>
                           <Col>
-                            <CardTitle
-                              color={facultad.color || colors.primary.dark}
-                            >
+                            <CardTitle color={colors.text.light}>
                               {nombre}
                             </CardTitle>
                           </Col>
@@ -73,6 +71,7 @@ const Card = styled.div`
   background-color: #fafafa;
   transition: all 0.25s ease-in-out;
   margin: 0.5rem 0;
+  border-radius: 2rem;
   &:hover {
     background-color: #f5f5f5;
   }
