@@ -73,7 +73,7 @@ const Event = ({ event }) => {
 };
 
 const Calendar = ({
-  title = "Períodos de admisión",
+  title = "FECHAS PARA TOMAR EL EXAMEN DE ADMISIÓN POMA",
   noEventsTitle,
 }) => {
     
