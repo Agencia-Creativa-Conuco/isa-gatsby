@@ -35,6 +35,10 @@ const usePages = () => {
                 #}
 
                 contacto {
+                  horarios {
+                    dias
+                    horas
+                  }
                   telefonos {
                     telefono
                     extensiones {
