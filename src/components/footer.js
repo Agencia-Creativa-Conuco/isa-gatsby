@@ -102,7 +102,7 @@ const Footer = ({ state, libraries }) => {
         <RowWrapper color={colors.blue.base}>
           <Container sizeXL="150rem">
             <Row>
-              <Col size={12} sizeMD={4} css={StylesCol}>
+              <Col size={12} sizeMD={4} sizeLG={3} css={StylesCol} noGutters>
                 <Title color={colors.shadow.base}> REDES SOCIALES </Title>
                 <SocialBox>
                   {redes.map((red, index) => {
@@ -138,7 +138,9 @@ const Footer = ({ state, libraries }) => {
                 </BoxContact>
                 <BoxContact>
                   <span>Dirección: </span>
+                  <Link to={"https://goo.gl/maps/kjucmUrxqEWdxS7c7"} target="_blank">
                   Ave. Pres. Antonio Guzmán Km. 5 1/2, La Herradura, Santiago. Apartado Postal 166
+                  </Link>
                 </BoxContact>
               </Col>
             </Row>

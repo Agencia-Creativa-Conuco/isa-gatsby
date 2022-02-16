@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { Section, Container, Row, Col, mq } from "../components/layout/index";
-import {  PhoneIcon, MailIcon, WhatsappIcon  } from "../components/icons";
+import {  PhoneIcon, MailIcon, WhatsappIcon, ClockIcon  } from "../components/icons";
 import Link from "../components/link";
 import colors from "./styles/colors";
 
@@ -13,6 +13,7 @@ const Contact = ({ data = {}, color = colors.primary.base , bgColor= colors.gray
         telefonos = [],
         emails = [],
         whatsapp = [],
+        horarios
     } = data;
 
     return telefonos?.length || emails?.length?  
@@ -24,10 +25,11 @@ const Contact = ({ data = {}, color = colors.primary.base , bgColor= colors.gray
                         <Col size={12}>
                             <Title color={colors.text.base}>{title}</Title>
                         </Col>
+
                         {
                             telefonos?.length?(
                                 <Col size={12}>
-                                    <PhoneList> 
+                                    <ListItem> 
                                         <Row>
                                             <Col size="auto">
                                                 <Icon color={color}>
@@ -60,14 +62,14 @@ const Contact = ({ data = {}, color = colors.primary.base , bgColor= colors.gray
                                                 </List>
                                             </Col>
                                         </Row> 
-                                    </PhoneList> 
+                                    </ListItem> 
                                 </Col>
                             ):null
                         }
-                        {
+{
                             whatsapp?.length?(
                                 <Col size={12}>
-                                    <PhoneList> 
+                                    <ListItem> 
                                         <Row>
                                             <Col size="auto">
                                                 <Icon color={color}>
@@ -95,14 +97,51 @@ const Contact = ({ data = {}, color = colors.primary.base , bgColor= colors.gray
                                                 </List>
                                             </Col>
                                         </Row> 
-                                    </PhoneList> 
+                                    </ListItem> 
                                 </Col>
                             ):null
                         }
+                        { horarios?.length ?  (
+                            
+                            <Col size={12}>
+                                  <ListItem>
+                                    <Row>
+                                  <Col size="auto">
+                                         <Icon color={color}>
+                                                <ClockIcon/>
+                                         </Icon>
+                                         </Col>
+                                         <Col noLGutters>
+                                         <List>
+                                             {
+
+                                                 horarios.map((item, index)=>{
+
+                                                    return(
+                                                        <Item key={index} color={colors.text.base}>
+                                                        <Email>{`${item.dias}: ${item.horas}`} </Email>
+                                                        </Item>
+                                                    
+                        
+                                                        )
+                                                    })
+                                          
+                                             }
+                                              </List>
+                                             </Col>
+                                             </Row>
+                                       </ListItem>
+                      
+                                </Col>
+                        ):null
+                          
+                        }
+                        
+                        
                         {
                             emails?.length?(
                                 <Col size={12}>
-                                    <MailList> 
+                                    <ListItem> 
                                         <Row>
                                             <Col size="auto">
                                                 <Icon color={color}>
@@ -128,7 +167,7 @@ const Contact = ({ data = {}, color = colors.primary.base , bgColor= colors.gray
                                                 </List>
                                             </Col>
                                         </Row> 
-                                    </MailList> 
+                                    </ListItem> 
                                 </Col>
                             ):null
                         }
@@ -166,9 +205,8 @@ const Title = styled.h2`
     `}
 `;
 
-const PhoneList =  styled.div``;
+const ListItem =  styled.div``;
 
-const MailList =  styled.div``;
 
 const Icon = styled.div`
     ${({color="darkblue"})=>css`
