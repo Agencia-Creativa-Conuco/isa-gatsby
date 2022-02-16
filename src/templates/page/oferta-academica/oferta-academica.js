@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import OfertaCover from './oferta-academica-cover'
-import OfertaFacultades from './oferta-academica-facultades'
+// import OfertaFacultades from './oferta-academica-facultades'
 import OfertaTecnics from './oferta-academica-tecnics'
 import OfertaInternacional from './oferta-academica-internacional'
 import OfertaLabs from './oferta-academica-labs'

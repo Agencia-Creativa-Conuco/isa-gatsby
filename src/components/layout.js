@@ -61,6 +61,8 @@ const Layout = (props) => {
       if (src.length === 0) {
         document.body.appendChild(script)
       }
+
+      return url
     })
   }, [])
 

@@ -55,6 +55,8 @@ const Form = ({
       if (src.length === 0) {
         document.body.appendChild(script)
       }
+
+      return url
     })
   }, [])
 
