@@ -19,7 +19,7 @@ import useDepartamentos from '../../../hooks/useDepartamentos'
 
 const OfferFaculties = () => {
   //Obtiene y ordena los grados a mostrar en el menú
-  const grados = useGrados().sort((a, b) => a.order - b.order)
+  const grados = useGrados().sort((a, b) => a.locations - b.locations)
 
   const facultades = useFacultades()
 

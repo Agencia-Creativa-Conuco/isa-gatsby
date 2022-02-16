@@ -9,20 +9,23 @@ import { css } from '@emotion/react'
 const DepartamentoCarreras = ({ facultad, carreras, grados }) => {
   return grados.length ? (
     <BGSection thin bg={colors.green.base}>
-      {grados.map((grado, index) => (
-        <Container key={grado.id}>
-          <Row>
-            <Col>
-              <Title color={facultad.color} main={index ? false : true}>
-              Programas académicos
-              </Title>
-            </Col>
-          </Row>
+      <Container>
+        <Row>
+          <Col>
+            <Title color={facultad.color}>Programas académicos</Title>
+          </Col>
+        </Row>
 
-          <Row>
-              <Col size={12}  alignCenter>
-                <SubTitle color={facultad.color}>{grado.nombre}</SubTitle>
-              </Col>
+        {grados.map((grado, index) => (
+          <Row
+            key={grado.id}
+            css={css`
+              margin-bottom: 3rem;
+            `}
+          >
+            <Col size={12} alignCenter>
+              <SubTitle color={facultad.color}>{grado.nombre}</SubTitle>
+            </Col>
             {carreras
               .filter((carrera) => carrera.grado.id === grado.id)
               .map((carrera, index) => {
@@ -54,8 +57,8 @@ const DepartamentoCarreras = ({ facultad, carreras, grados }) => {
                 )
               })}
           </Row>
-        </Container>
-      ))}
+        ))}
+      </Container>
     </BGSection>
   ) : null
 }
@@ -92,11 +95,8 @@ const Title = styled.h2`
     text-align: center;
     margin-bottom: 4rem;
     color: ${color};
-    ${main
-      ? css``
-      : css`
-          margin-top: 10rem;
-        `}
+    font-weight: 900;
+    margin-top: 10rem;
   `}
 `
 
@@ -107,7 +107,9 @@ const StyledLink = styled(Link)`
 const SubTitle = styled.h3`
   ${({ color = 'inherit' }) => css`
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
     color: ${color};
-`}
+    text-transform: uppercase;
+  `}
 `

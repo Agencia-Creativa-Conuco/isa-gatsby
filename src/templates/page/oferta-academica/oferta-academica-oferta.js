@@ -1,15 +1,21 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
-import { Container, Section, Row, Col, mq } from '../../components/layout/index'
-import FeaturedMedia from '../../components/featured-media'
-import Link from '../../components/link'
-import { LeftArrowIcon } from '../../components/icons'
+import {
+  Container,
+  Section,
+  Row,
+  Col,
+  mq,
+} from '../../../components/layout/index'
+import FeaturedMedia from '../../../components/featured-media'
+import Link from '../../../components/link'
+import { LeftArrowIcon } from '../../../components/icons'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import { Spring, animated } from '@react-spring/web'
-import colors from '../../components/styles/colors'
-import { getHierarchicalItems } from '../../components/inc/auxiliar'
+import colors from '../../../components/styles/colors'
+import { getHierarchicalItems } from '../../../components/inc/auxiliar'
 
 const Item = ({ item, ...other }) => {
   const { label, url, children = [] } = item
@@ -154,14 +160,14 @@ const NavItem = ({ item, isActive, setView }) => {
   )
 }
 
-const HomeOffer = () => {
-  const [view, setView] = useState()
+const OfertaAcademicaList = () => {
+  const [view, setView] = useState(0)
 
   //Consultar y optener logo.svg
   const { menu } = useStaticQuery(graphql`
     query {
       menu: allWpMenuItem(
-        filter: { locations: { in: [HOME, OFFER] } }
+        filter: { locations: { in: [OFFER] } }
         sort: { order: [ASC, ASC], fields: [locations, order] }
       ) {
         nodes {
@@ -191,9 +197,11 @@ const HomeOffer = () => {
 
   // Solo se muestran los elementos del menu que son seleccionados como visibles en el home page
   const menuItems =
-    getHierarchicalItems(menu?.nodes).filter(
-      (item) => item.datosMenu.visibleInicio,
-    ) || []
+    getHierarchicalItems(menu?.nodes).map((item, index) => {
+      item.id = index
+
+      return item
+    }) || []
 
   return menuItems.length ? (
     <Section css={sectionStyles} spaceNone id="section_1">
@@ -252,7 +260,7 @@ const HomeOffer = () => {
   ) : null
 }
 
-export default HomeOffer
+export default OfertaAcademicaList
 
 const Anim = styled(animated.div)`
   padding: 5rem 0;

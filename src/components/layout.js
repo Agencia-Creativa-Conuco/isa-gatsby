@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Helmet from 'react-helmet'
 import { Global } from '@emotion/react'
 import styled from '@emotion/styled'
@@ -48,6 +48,22 @@ const Layout = (props) => {
     }
   `)
 
+  useEffect(() => {
+    const scripts = ['//js-na1.hs-scripts.com/20627890.js']
+
+    scripts.map((url) => {
+      const script = document.createElement('script')
+      script.src = url
+      let jqueryScript = document.getElementsByTagName('script')
+      let src = Array.from(jqueryScript).filter(
+        (item) => item.src === script.src,
+      )
+      if (src.length === 0) {
+        document.body.appendChild(script)
+      }
+    })
+  }, [])
+
   return (
     <>
       <Helmet
@@ -63,11 +79,11 @@ const Layout = (props) => {
           href="//js.hs-scripts.com/20627890.js"
           as="script"
         ></link>
-        <link
+        {/* <link
           rel="preload"
           href="https://code.jquery.com/jquery-3.6.0.min.js"
           as="script"
-        ></link>
+        ></link> */}
 
         {/* FONTS */}
         {/* <link rel="preconnect" href="https://fonts.googleapis.com" /> */}
