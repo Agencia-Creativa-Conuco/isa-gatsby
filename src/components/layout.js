@@ -122,7 +122,7 @@ const Layout = (props) => {
         {/* Se muestra información de contacto relacionada con el tipo de dato */}
         <Contact data={obj?.contacto} />
         {data && <PageIndexes data={data} />}
-      </Main>
+      </Main> 
 
       <Footer />
     </>

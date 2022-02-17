@@ -51,6 +51,9 @@ const usePages = () => {
                   emails {
                     email
                   }
+                  direcciones {
+                    direccion
+                  }
                 }
         
                 datosRecursos {
