@@ -6,7 +6,7 @@ import OfertaTecnics from './oferta-academica-tecnics'
 import OfertaInternacional from './oferta-academica-internacional'
 import OfertaLabs from './oferta-academica-labs'
 import Layout from '../../../components/layout'
-import OfertaAcademicaLista from './oferta-academica-oferta'
+import OfertaAcademicaList from './oferta-academica-oferta'
 
 const OfertaAcademica = (props) => {
   const data = [
@@ -39,7 +39,7 @@ const OfertaAcademica = (props) => {
     <Layout {...{ data }} {...props} {...metaData}>
       <Container>
         <OfertaCover />
-        <OfertaAcademicaLista />
+        <OfertaAcademicaList />
         {/* <OfertaFacultades /> */}
         <OfertaTecnics />
         <OfertaLabs />
