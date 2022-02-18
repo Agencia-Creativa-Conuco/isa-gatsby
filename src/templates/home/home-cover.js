@@ -1,12 +1,13 @@
 import React from 'react'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { Container, Section, Row, Col, mq } from '../../components/layout/index'
 import Carousel from 'react-slick'
 import colors from '../../components/styles/colors'
 // import Cta from '../../components/cta'
 import useFiles from '../../hooks/useFiles'
 import FeaturedMedia from '../../components/featured-media'
+import  container,{ gap }  from '../../components/layout/new/container'
+import mq from '../../components/layout/new/mq'
 
 const HomeCover = ({ slides }) => {
   const images = useFiles()
@@ -27,94 +28,58 @@ const HomeCover = ({ slides }) => {
       ]
 
   return (
-    <StyledSection spaceNone bgDeco={colors.primary.dark}>
-      <Carousel fade autoplay pauseOnHover>
+   <Carousel fade autoplay pauseOnHover>
         {items.map((item, index) => {
           const { titulo, copy, imagenPortada  } = item
-
+          
           return (
             <Slide key={index}>
-              <Container fluid>
-                <Row alignCenter>
-                  <Col
-                    size={10}
-                    sizeMD={6}
-                    sizeLG={6}
-                    orderMD={2}
-                    noGutters
-                    css={mediaColStyles}
-                  >
-                    <Media>
+              <Cover spaceNone fluid bgDeco={colors.primary.dark}>
+                    <Media   >
                       <SlideImage
                         media={imagenPortada}
                         alt={titulo}
                         bgColor
                         size="100%"
-                        sizeMD="100%"
                         sizeXL="80%"
                         position="30% 0%"
                         loading={index > 0 ? 'lazy' : 'eager'}
+                        height="50%"
                       />
                     </Media>
-                  </Col>
-                  <Col
-                    size={12}
-                    sizeMD={6}
-                    sizeLG={6}
-                    orderMD={1}
-                    mxAuto
-                    css={contentColStyles}
-                  >
-                    <Content bg={colors.blue.dark}>
+                    <Content bg={colors.blue.dark} >
                       <Title>{titulo}</Title>
                       <Copy>{copy}</Copy>
-                      {/* {cta ? (
-                        <LinkBox>
-                          <Cta to={cta.url} target={cta.target}>
-                            {cta.title}
-                          </Cta>
-                        </LinkBox>
-                      ) : null} */}
+     
                     </Content>
-                  </Col>
-                </Row>
-              </Container>
+              </Cover>
             </Slide>
           )
         })}
-      </Carousel>
-    </StyledSection>
+       </Carousel>
+
   )
 }
 
 export default HomeCover
 
-const mediaColStyles = css`
-  margin-left: auto;
-  ${mq.md} {
-    margin-left: initial;
-  }
-`
 
-const contentColStyles = css`
-  max-width: 54rem;
-  ${mq.md} {
-    max-width: 36rem;
-  }
-  ${mq.lg} {
-    max-width: 48rem;
-  }
-  ${mq.xl} {
-    max-width: 57rem;
-  }
-`
 
-const StyledSection = styled(Section)`
+const Cover = styled.section`
   ${({ bgDeco = 'darkblue' }) => css`
-    position: relative;
-    overflow: hidden;
+    ${container}
+    display: grid;
+    justify-content: end;
+    grid-template-columns: 17% 1fr 1fr;
+    grid-template-areas: "col col_1 col_1"
+                         "col_2  col_2  col_2";
+    ${mq.md} {
+    align-items: center;
+    grid-template-columns: 50% 1fr;
+    grid-template-areas: "col_2 col_1";
 
-    &:before {
+  }
+  &:before {
       content: '';
       background: ${bgDeco};
       width: 8%;
@@ -126,8 +91,10 @@ const StyledSection = styled(Section)`
       transform: translate(-50%, 50%);
       z-index: 2;
     }
+
   `}
-`
+  `;
+
 
 const Slide = styled.div`
   position: relative;
@@ -137,27 +104,46 @@ const Slide = styled.div`
 `
 
 const Content = styled.div`
-  padding: 4rem 0;
+  padding: 4rem ${gap};
   position: relative;
   z-index: 1;
+  justify-self: center;
+  grid-area: col_2;
+  max-width: 54rem;
+
+  ${mq.md} {
+    order: 1;
+    max-width: 36rem;
+  }
+  ${mq.lg} {
+    order: 1;
+    max-width: 48rem;
+
+  }
+  ${mq.lg} {
+    order: 1;
+    max-width: 57rem;
+
+  }
+
+
 `
 
 const Title = styled.h2`
   margin-top: 0;
   ${mq.lg} {
-    /* font-size: 2vw; */
   }
 `
 
-const Copy = styled.div``
+const Copy = styled.div``;
 
-// const LinkBox = styled.div`
-//   margin: 3rem 0;
-// `
+
 
 const Media = styled.div`
   ${({ bgColorBefore = '#CCEDFA', bgColorAfter = '#001F56' }) => css`
     position: relative;
+    grid-area: col_1;
+
     &:before {
       content: '';
       position: absolute;
