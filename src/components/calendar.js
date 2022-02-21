@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css, Global } from "@emotion/react";
-import { Container, Row, Col, mq, Section } from "./layout/index";
 import colors from "./styles/colors";
 import moment from "moment";
 import DayPicker from "react-day-picker";
 import "react-day-picker/lib/style.css";
 import useModal from "./hooks/useModal";
 import usePeriodosAdmision from "../hooks/usePeriodosAdmision";
-import Link from "./link"
+import Link from "./link";
+import container from "./layout/new/container";
+import mq from "./layout/new/mq";
 
 const Event = ({ event }) => {
   const { openModal, ModalUI } = useModal();
@@ -53,37 +54,28 @@ const Event = ({ event }) => {
         <EventName>{event.nombre}</EventName>
       </EventCard>
       <ModalUI title={event.nombre}>
-        <Row>
-          <Col>
-            <EventTitle>Fechas para tomar el examen de admisión</EventTitle>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <DayPicker
-              modifiers={modifiers}
-              months={MONTHS}
-              weekdaysLong={WEEKDAYS_LONG}
-              weekdaysShort={WEEKDAYS_SHORT}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <ColStyles>
-            <BoxContact>
-              <span>Haz tu cita en: </span>
-              <Link to={"mailto:admisiones@isa.edu.do"} target="_blank">
-                admisiones@isa.edu.do
-              </Link>
-            </BoxContact>
-            <BoxContact>
-              <span>Whatsapp: </span>
-              <Link to={"https://wa.me/8295209209"} target="_blank">
-                829-520-9209
-              </Link>
-            </BoxContact>
-          </ColStyles>
-        </Row>
+        <EventTitle>Fechas para tomar el examen de admisión</EventTitle>
+
+        <DayPicker
+          modifiers={modifiers}
+          months={MONTHS}
+          weekdaysLong={WEEKDAYS_LONG}
+          weekdaysShort={WEEKDAYS_SHORT}
+        />
+        <ColStyles>
+          <BoxContact>
+            <span>Haz tu cita en: </span>
+            <Link to={"mailto:admisiones@isa.edu.do"} target="_blank">
+              admisiones@isa.edu.do
+            </Link>
+          </BoxContact>
+          <BoxContact>
+            <span>Whatsapp: </span>
+            <Link to={"https://wa.me/8295209209"} target="_blank">
+              829-520-9209
+            </Link>
+          </BoxContact>
+        </ColStyles>
       </ModalUI>
     </>
   );
@@ -93,14 +85,13 @@ const Calendar = ({
   title = "FECHAS PARA TOMAR EL EXAMEN DE ADMISIÓN POMA",
   noEventsTitle,
 }) => {
-    
   //Obtiene los datos de los Eventos
-  const events = usePeriodosAdmision()
+  const events = usePeriodosAdmision();
 
   //Ordena los eventos de menor a mayor
   const eventList = events
     //Ordena por el campo orden de wordpress
-    .sort( (a,b) => a.order - b.order )
+    .sort((a, b) => a.order - b.order);
 
   // Load the post, but only if the data is ready.
   return noEventsTitle || eventList.length ? (
@@ -108,29 +99,15 @@ const Calendar = ({
       <Global styles={birthdayStyle} />
 
       <Container>
-        {title ? (
-          <Row>
-            <Col>
-              <Title>{title}</Title>
-            </Col>
-          </Row>
-        ) : null}
+        {title ? <Title>{title}</Title> : null}
         {eventList.length ? (
-          <Row>
-            <Col size="auto" mxAuto>
-              <EventList>
-                {eventList.map((event, index) => {
-                return <Event key={index} event={event} />;
-                })}
-              </EventList>
-            </Col>
-          </Row>
+          <EventList>
+            {eventList.map((event, index) => {
+              return <Event key={index} event={event} />;
+            })}
+          </EventList>
         ) : (
-          <Row>
-            <Col>
-              <NoEventsText>{noEventsTitle}</NoEventsText>
-            </Col>
-          </Row>
+          <NoEventsText>{noEventsTitle}</NoEventsText>
         )}
       </Container>
     </Section>
@@ -139,11 +116,23 @@ const Calendar = ({
 
 export default Calendar;
 
+const Section = styled.section`
+margin-bottom: 9.6rem;
+margin-top: 9.6rem;
+
+`;  
+
+const Container = styled.div`
+  ${container}
+`;
+
 const Title = styled.h2`
   text-align: center;
 `;
 
 const EventList = styled.div`
+  max-width: fit-content;
+  margin: 0 auto;
   ${mq.md} {
     border-radius: 10rem;
     padding: 1.5rem;
@@ -153,7 +142,7 @@ const EventList = styled.div`
     columns: 32rem 3;
     column-rule-style: solid;
     column-rule-color: lightgray;
-    column-rule-width: .25rem;
+    column-rule-width: 0.25rem;
   }
 `;
 
@@ -243,6 +232,6 @@ const BoxContact = styled.div`
   }
 `;
 
-const ColStyles = styled(Col)`
+const ColStyles = styled.div`
   margin-top: 2rem;
 `;
