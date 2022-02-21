@@ -13,7 +13,7 @@ const EgresadosCover = (props) => {
   const data = {
     titulo: "Egresados",
     copy: "Mantiene una comunicación permanente con los egresados facilitando su actualización profesional y el fortalecimiento de su vínculo con la Universidad.",
-    imagenPortada: images.investigacion.cover,
+    imagenPortada: images.egresados.cover,
   };
 
 
