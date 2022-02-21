@@ -26,8 +26,16 @@ const EgresadosBody = (props) => {
 
   const title = "Asociación De Graduados De ISA (AGISA)";
   const content = `
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae mattis nunc. Nunc volutpat non turpis ut tempus. Nulla volutpat, nisl quis euismod condimentum, nulla sem convallis ligula, sed finibus nibh libero et libero. Aenean eu dolor porta quam facilisis sodales vel vel nisi. Sed a lectus id nisi laoreet dapibus venenatis non urna. </p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae mattis nunc. Nunc volutpat non turpis ut tempus. Nulla volutpat, nisl quis euismod condimentum, nulla sem convallis ligula, sed finibus nibh libero et libero. Aenean eu dolor porta quam facilisis sodales vel vel nisi. Sed a lectus id nisi laoreet dapibus venenatis non urna. </p>
+      <p>Es una institución privada, sin fines de lucro que agrupa y promueve el mejoramiento de los profesionales graduados de los diversos programas de estudios de ISA.</p>
+      <p>AGISA surge mediante el decreto número 455 del año 1990 con los objetivos de promover: </p>
+      <ul>
+      <li>El desarrollo institucional del Instituto Superior de Agricultura, y el acercamiento entre  ISA y sus egresados.</li>
+      <li>El desarrollo social, cultural, científico y económico de sus miembros.</li>
+      <li>El establecimiento de lazos de amistad, cooperación y compañerismo entre los miembros de la asociación.</li>
+      <li>La Cooperación y acercamiento entre las instituciones cívico culturales, del sector agropecuario y asociaciones que tengan relación o afinidad con AGISA.</li>
+      <li>La divulgación de informaciones científicas del sector agropecuario entre sus miembros y a nivel público.</li>
+      <li>La difusión de ideas no comprometidas con el orden político-partidista, que conlleven a la búsqueda de soluciones a los grandes problemas de la agricultura dominicana</li>
+      </ul>
 
       `;
 

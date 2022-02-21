@@ -11,8 +11,8 @@ const EgresadosCover = (props) => {
   const images = useFiles();
 
   const data = {
-    titulo: "Sobre Nosotros",
-    copy: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae mattis nunc. Nunc volutpat non turpis ut tempus. Nulla volutpat, nisl quis euismod condimentum, nulla sem convallis ligula, sed finibus nibh libero et libero. Aenean eu dolor porta quam facilisis sodales vel vel nisi. Sed a lectus id nisi laoreet dapibus venenatis non urna. ",
+    titulo: "Egresados",
+    copy: "Mantiene una comunicación permanente con los egresados facilitando su actualización profesional y el fortalecimiento de su vínculo con la Universidad.",
     imagenPortada: images.investigacion.cover,
   };
 
