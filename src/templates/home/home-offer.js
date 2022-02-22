@@ -54,4 +54,7 @@ const HomeOffer = () => {
 
 export default HomeOffer
 
-const Section = styled.section``
+const Section = styled.section`
+background: white;
+
+`

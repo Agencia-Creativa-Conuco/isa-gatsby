@@ -17,7 +17,7 @@ const FrontPage = ({ page }) => {
   // Load the post, but only if the data is ready.
   return (
     <>
-      <HomeCover {...{ slides }} />
+      <HomeCover />
       <HomeOffer />
       <Calendar />
       <HomeNews />
