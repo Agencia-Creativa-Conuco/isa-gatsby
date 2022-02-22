@@ -49,6 +49,7 @@ const Layout = (props) => {
   `)
 
   useEffect(() => {
+    // Carga el script de hubspot
     const scripts = ['//js-na1.hs-scripts.com/20627890.js']
 
     scripts.map((url) => {
@@ -64,6 +65,10 @@ const Layout = (props) => {
 
       return url
     })
+
+    //Verifica si existen secciones con la propiedad indice para agregarlos al componente indice
+    const indexes = document.querySelectorAll('[name]')
+    console.log(indexes)
   }, [])
 
   return (
@@ -122,7 +127,7 @@ const Layout = (props) => {
         {/* Se muestra información de contacto relacionada con el tipo de dato */}
         <Contact data={obj?.contacto} />
         {data && <PageIndexes data={data} />}
-      </Main> 
+      </Main>
 
       <Footer />
     </>

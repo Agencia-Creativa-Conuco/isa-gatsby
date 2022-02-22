@@ -11,7 +11,7 @@ const DepartamentoCover = ({ departamento, facultad }) => {
     <Section spaceNone>
       <Container fluid>
         <Row>
-          <Col size={12} sizeLG={6} noGutters>
+          {/* <Col size={12} sizeLG={6} noGutters>
             <FeaturedMedia
               media={imagenPortada}
               size="56.25%"
@@ -20,18 +20,20 @@ const DepartamentoCover = ({ departamento, facultad }) => {
               bgColor
               loading="eager"
             />
-          </Col>
+          </Col> */}
           <ColStyles
             size={12}
-            sizeLG={6}
+            // sizeLG={6}
             color={facultad.color || colors.primary.dark}
           >
             <Container noGutters>
               <Row>
                 <Col>
                   <Wrapper as="div">
+                    <br />
                     <Title color={colors.white}> {nombre}</Title>
                     <Content dangerouslySetInnerHTML={{ __html: copy }} />
+                    <br />
                   </Wrapper>
                 </Col>
               </Row>
@@ -51,13 +53,10 @@ const ColStyles = styled(Col)`
 
 const Wrapper = styled(Section)`
   ${mq.lg} {
-    padding: 4rem 0;
-  }
-  ${mq.xl} {
-    max-width: 57rem;
+    max-width: 70rem;
     margin-left: auto;
     margin-right: auto;
-    padding: rem 0;
+    padding: 4rem 0;
   }
 `
 

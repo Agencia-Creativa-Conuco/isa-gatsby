@@ -1,36 +1,37 @@
-import React from "react";
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import Carousel from "react-slick";
-import colors from "../../components/styles/colors";
+import React from 'react'
+import { css } from '@emotion/react'
+import styled from '@emotion/styled'
+import Carousel from 'react-slick'
+import colors from '../../components/styles/colors'
 // import Cta from '../../components/cta'
-import useFiles from "../../hooks/useFiles";
-import FeaturedMedia from "../../components/featured-media";
-import container, { gap } from "../../components/layout/new/container";
-import mq from "../../components/layout/new/mq";
+import useFiles from '../../hooks/useFiles'
+import FeaturedMedia from '../../components/featured-media'
+import container, { gap } from '../../components/layout/new/container'
+import mq from '../../components/layout/new/mq'
 
 const HomeCover = ({ slides }) => {
-  const images = useFiles();
+  const images = useFiles()
 
   const items = slides.length
     ? slides
     : [
         {
-          titulo: "¡Bienvenidos a la UNIVERSIDAD ISA!",
-          copy: "La Universidad ISA propicia en sus aulas el desarrollo de líderes visionarios, guiados por los valores de honestidad, responsabilidad, respeto, compromiso social y calidad. Forma hombres y mujeres pragmáticos, disciplinados, con capacidad de emprender iniciativas empresariales, poseedores de una fuerte sensibilidad social y de espíritu de servicio.",
+          titulo: '¡Bienvenidos a la UNIVERSIDAD ISA!',
+          copy:
+            'La Universidad ISA propicia en sus aulas el desarrollo de líderes visionarios, guiados por los valores de honestidad, responsabilidad, respeto, compromiso social y calidad. Forma hombres y mujeres pragmáticos, disciplinados, con capacidad de emprender iniciativas empresariales, poseedores de una fuerte sensibilidad social y de espíritu de servicio.',
           imagenPortada: images.home.cover,
           cta: {
-            url: "/admisiones",
+            url: '/admisiones',
             target: null,
-            title: "Estudia con nosotros",
+            title: 'Estudia con nosotros',
           },
         },
-      ];
+      ]
 
   return (
     <Carousel fade autoplay pauseOnHover>
       {items.map((item, index) => {
-        const { titulo, copy, imagenPortada } = item;
+        const { titulo, copy, imagenPortada } = item
 
         return (
           <Slide key={index}>
@@ -43,7 +44,7 @@ const HomeCover = ({ slides }) => {
                   size="100%"
                   sizeXL="80%"
                   position="30% 0%"
-                  loading={index > 0 ? "lazy" : "eager"}
+                  loading={index > 0 ? 'lazy' : 'eager'}
                   height="50%"
                 />
               </Media>
@@ -53,30 +54,30 @@ const HomeCover = ({ slides }) => {
               </Content>
             </Cover>
           </Slide>
-        );
+        )
       })}
     </Carousel>
-  );
-};
+  )
+}
 
-export default HomeCover;
+export default HomeCover
 
 const Cover = styled.section`
-  ${({ bgDeco = "darkblue" }) => css`
+  ${({ bgDeco = 'darkblue' }) => css`
     ${container}
     display: grid;
     justify-content: end;
     grid-template-columns: 17% 1fr 1fr;
     grid-template-areas:
-      "col col_1 col_1"
-      "col_2  col_2  col_2";
+      'col col_1 col_1'
+      'col_2  col_2  col_2';
     ${mq.md} {
       align-items: center;
       grid-template-columns: 50% 1fr;
-      grid-template-areas: "col_2 col_1";
+      grid-template-areas: 'col_2 col_1';
     }
     &:before {
-      content: "";
+      content: '';
       background: ${bgDeco};
       width: 8%;
       padding: 8%;
@@ -88,14 +89,14 @@ const Cover = styled.section`
       z-index: 2;
     }
   `}
-`;
+`
 
 const Slide = styled.div`
   position: relative;
   /* list-style-type: none;
     overflow: hidden;
     position: relative; */
-`;
+`
 
 const Content = styled.div`
   padding: 4rem ${gap};
@@ -117,23 +118,23 @@ const Content = styled.div`
     order: 1;
     max-width: 57rem;
   }
-`;
+`
 
 const Title = styled.h2`
   margin-top: 0;
   ${mq.lg} {
   }
-`;
+`
 
-const Copy = styled.div``;
+const Copy = styled.div``
 
 const Media = styled.div`
-  ${({ bgColorBefore = "#CCEDFA", bgColorAfter = "#001F56" }) => css`
+  ${({ bgColorBefore = '#CCEDFA', bgColorAfter = '#001F56' }) => css`
     position: relative;
     grid-area: col_1;
 
     &:before {
-      content: "";
+      content: '';
       position: absolute;
       left: 0;
       bottom: 0;
@@ -145,7 +146,7 @@ const Media = styled.div`
       clip-path: ellipse(100% 100% at 100% 100%);
     }
     &:after {
-      content: "";
+      content: '';
       position: absolute;
       left: 0;
       bottom: 0;
@@ -156,9 +157,9 @@ const Media = styled.div`
       z-index: 1;
     }
   `}
-`;
+`
 
 const SlideImage = styled(FeaturedMedia)`
   z-index: 2;
   clip-path: ellipse(100% 100% at right);
-`;
+`

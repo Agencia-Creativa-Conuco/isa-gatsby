@@ -1,6 +1,5 @@
 import React from 'react'
-import { css } from '@emotion/react'
-import { Section } from '../../components/layout/index'
+import styled from '@emotion/styled'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import { getHierarchicalItems } from '../../components/inc/auxiliar'
@@ -47,7 +46,7 @@ const HomeOffer = () => {
     ) || []
 
   return menuItems.length ? (
-    <Section css={sectionStyles} spaceNone id="section_1">
+    <Section spaceNone id="section" indexTitle="Oferta Académica">
       <StyledNavigation items={menuItems} />
     </Section>
   ) : null
@@ -55,4 +54,4 @@ const HomeOffer = () => {
 
 export default HomeOffer
 
-const sectionStyles = css``
+const Section = styled.section``

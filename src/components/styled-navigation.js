@@ -187,7 +187,7 @@ const StyledNavigation = ({ items = [] }) => {
     }) || []
 
   return menuItems.length ? (
-    <Section css={sectionStyles} spaceNone id="section_1" zIndex={5}>
+    <Section as="div" css={sectionStyles} spaceNone zIndex={5}>
       <Navigation>
         <Container>
           <Row>
