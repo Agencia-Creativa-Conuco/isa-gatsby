@@ -8,7 +8,6 @@ import HomeOffer from './home-offer'
 import HomeNews from './home-news'
 import Calendar from '../../components/calendar'
 
-import useSlides from '../../hooks/useSlides'
 
 const FrontPage = ({ page }) => {
 
