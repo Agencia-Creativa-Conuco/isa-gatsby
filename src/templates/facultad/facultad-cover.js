@@ -15,13 +15,14 @@ const FacultyCover = ({ facultad }) => {
             order={2}
             orderLG={1}
             size={12}
-            sizeLG={6}
+            // sizeLG={6}
             color={color || colors.primary.dark}
           >
             <Container noGutters>
               <Row>
                 <Col>
                   <Wrapper as="div">
+                    <br />
                     <Title color={colors.white}> {nombre}</Title>
                     <Content dangerouslySetInnerHTML={{ __html: copy }} />
                     {mision ? (
@@ -30,13 +31,14 @@ const FacultyCover = ({ facultad }) => {
                         <Paragraph>{mision}</Paragraph>
                       </>
                     ) : null}
+                    <br />
                   </Wrapper>
                 </Col>
               </Row>
             </Container>
           </ColStyles>
 
-          <Col size={12} sizeLG={6} order={1} orderLG={2} noGutters>
+          {/* <Col size={12} sizeLG={6} order={1} orderLG={2} noGutters>
             <FeaturedMedia
               media={imagenPortada}
               size="56.25%"
@@ -45,7 +47,7 @@ const FacultyCover = ({ facultad }) => {
               bgColor
               loading="eager"
             />
-          </Col>
+          </Col> */}
         </Row>
       </Container>
     </Section>
@@ -63,7 +65,7 @@ const Wrapper = styled(Section)`
     padding: 4rem 0;
   }
   ${mq.xl} {
-    max-width: 57rem;
+    max-width: 70rem;
     margin-left: auto;
     margin-right: auto;
     padding: rem 0;
