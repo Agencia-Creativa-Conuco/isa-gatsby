@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "@emotion/styled";
 import Layout from "../../components/layout";
 import EgresadosCover from "./egresados-cover";
 import EgresadosBody from "./egresados-body";
@@ -24,4 +23,3 @@ const EgresadosSingle = (props)=>{
 
 export default EgresadosSingle;
 
-const Section = styled.section``;

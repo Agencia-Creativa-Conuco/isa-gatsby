@@ -11,8 +11,6 @@ import Calendar from '../../components/calendar'
 import useSlides from '../../hooks/useSlides'
 
 const FrontPage = ({ page }) => {
-  //Obtiene los datos de los slides
-  const slides = useSlides()
 
   // Load the post, but only if the data is ready.
   return (

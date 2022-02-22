@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-// import Carousel from 'react-slick'
 import colors from "../../components/styles/colors";
-// import Cta from '../../components/cta'
 import useFiles from "../../hooks/useFiles";
 import FeaturedMedia from "../../components/featured-media";
 import container, { gap } from "../../components/layout/new/container";
@@ -48,6 +46,7 @@ export default HomeCover;
 
 const Cover = styled.section`
   ${container}
+  padding: 0;
   display: grid;
   justify-content: end;
   grid-template-columns: 17% 1fr 1fr;
