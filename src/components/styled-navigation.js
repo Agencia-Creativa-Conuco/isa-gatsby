@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
-import styled from '@emotion/styled'
-import { css } from '@emotion/react'
-import { Container, Section, Row, Col, mq } from './layout/index'
-import FeaturedMedia from './featured-media'
-import Link from './link'
-import { LeftArrowIcon } from './icons'
-
-import { Spring, animated } from '@react-spring/web'
-import colors from './styles/colors'
+import React, { useState } from "react";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import FeaturedMedia from "./featured-media";
+import Link from "./link";
+import { LeftArrowIcon } from "./icons";
+import { Spring, animated } from "@react-spring/web";
+import colors from "./styles/colors";
+import { container, mq } from "./layout/new";
 
 const Item = ({ item, ...other }) => {
   const {
@@ -15,64 +14,75 @@ const Item = ({ item, ...other }) => {
     url,
     datosMenu: { etiqueta },
     children = [],
-  } = item
+  } = item;
 
-  const { level = 1 } = other
+  const { level = 1 } = other;
 
-  const isMain = level === 1
+  const isMain = level === 1;
 
   return (
-    <Col size={12} sizeMD={isMain ? 12 : level === 2 ? 6 : 12}>
-      <Component>
-        {etiqueta ? (
-          <Etiqueta>
-            <Title
-              color={
-                (level + 1) % 2 === 0 && level !== 1
-                  ? colors.text.base
-                  : level >= 2
-                  ? colors.primary.dark
-                  : colors.primary.dark
-              }
-              bgHover={colors.gray.light}
-              {...{ isMain, level }}
-            >
-              {label}
-            </Title>
-          </Etiqueta>
-        ) : (
-          <StyledLink to={url} aria-label="Click para abrir el...">
-            <Title
-              color={
-                (level + 1) % 2 === 0 && level !== 1
-                  ? colors.text.base
-                  : level >= 2
-                  ? colors.primary.dark
-                  : colors.primary.dark
-              }
-              bgHover={colors.gray.light}
-              {...{ isMain, level }}
-            >
-              {label}
-            </Title>
-          </StyledLink>
-        )}
-        {children.length ? (
-          <ItemList items={children} level={level + 1} />
-        ) : null}
-      </Component>
-    </Col>
-  )
-}
+    <Component>
+      {etiqueta ? (
+        <Etiqueta>
+          <Title
+            color={
+              (level + 1) % 2 === 0 && level !== 1
+                ? colors.text.base
+                : level >= 2
+                ? colors.primary.dark
+                : colors.primary.dark
+            }
+            bgHover={colors.gray.light}
+            {...{ isMain, level }}
+          >
+            {label}
+          </Title>
+        </Etiqueta>
+      ) : (
+        <StyledLink to={url} aria-label="Click para abrir el...">
+          <Title
+            color={
+              (level + 1) % 2 === 0 && level !== 1
+                ? colors.text.base
+                : level >= 2
+                ? colors.primary.dark
+                : colors.primary.dark
+            }
+            bgHover={colors.gray.light}
+            {...{ isMain, level }}
+          >
+            {label}
+          </Title>
+        </StyledLink>
+      )}
+      {children.length ? <ItemList items={children} level={level + 1} /> : null}
+    </Component>
+  );
+};
 
 const Component = styled.li`
   list-style: none;
   padding: 0;
   margin: 0;
-`
+
+  ul {
+
+    display: grid;
+    margin: 1rem 0 0 0;
+    ${mq.md}{
+      grid-template-columns: 1fr 1fr;
+
+}
+  }
+
+  li ul:first-of-type {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+`;
 
 const Title = styled.span`
-  ${({ isMain, level, color = 'blue', bgHover = 'lightgray' }) => css`
+  ${({ isMain, level, color = "blue", bgHover = "lightgray" }) => css`
     color: ${color};
     padding: 0.5rem 1.5rem;
     text-transform: uppercase;
@@ -98,23 +108,23 @@ const Title = styled.span`
           text-transform: initial;
         `}
   `}
-`
+`;
 
 const ItemList = ({ items, ...other }) => {
-  const { level = 1 } = other
+  const { level = 1 } = other;
 
   return (
-    <Container noGutters>
-      <StyledRow as="ul" {...{ level }}>
-        {items.map((item, index) => {
-          return <Item key={item.id} item={item} {...other} />
-        })}
-      </StyledRow>
-    </Container>
-  )
-}
+    <StyledRow as="ul" {...{ level }}>
+      {items.map((item, index) => {
+        return <Item key={item.id} item={item} {...other} />;
+      })}
+    </StyledRow>
+  );
+};
 
-const StyledRow = styled(Row)`
+
+const StyledRow = styled.div`
+  ${container}
   ${({ level }) => css`
     padding: 0;
     ${level === 2
@@ -132,7 +142,7 @@ const StyledRow = styled(Row)`
           padding-left: 1rem;
         `}
   `}
-`
+`;
 
 const NavItem = ({ item, isActive, setView }) => {
   const {
@@ -141,7 +151,7 @@ const NavItem = ({ item, isActive, setView }) => {
     description,
     datosMenu: { icono },
     children,
-  } = item
+  } = item;
 
   return (
     <MenuItem
@@ -164,70 +174,63 @@ const NavItem = ({ item, isActive, setView }) => {
       </MenuItemBody>
       {children.length ? (
         <ExpandIcon
-          bgColor={isActive ? 'white' : colors.primary.dark}
-          color={isActive ? colors.primary.dark : 'white'}
+          bgColor={isActive ? "white" : colors.primary.dark}
+          color={isActive ? colors.primary.dark : "white"}
           {...{ isActive }}
         >
           <LeftArrowIcon />
         </ExpandIcon>
       ) : null}
     </MenuItem>
-  )
-}
+  );
+};
 
 const StyledNavigation = ({ items = [] }) => {
-  const [view, setView] = useState(0)
+  const [view, setView] = useState(0);
 
   // Solo se muestran los elementos del menu que son seleccionados como visibles en el home page
   const menuItems =
     items.map((item, index) => {
-      item.id = index
+      item.id = index;
 
-      return item
-    }) || []
+      return item;
+    }) || [];
 
   return menuItems.length ? (
-    <Section as="div" css={sectionStyles} spaceNone zIndex={5}>
-      <Navigation>
-        <Container>
-          <Row>
-            {menuItems.map((item, index) => {
-              const { id, url, children, parentId, datosMenu, ...props } = item
+    <Navigation>
+      <Container as="div" css={sectionStyles} spaceNone zIndex={5}>
+        {menuItems.map((item, index) => {
+          const { id, url, children, parentId, datosMenu, ...props } = item;
 
-              const isActive = view === id
+          const isActive = view === id;
 
-              return children.length ? (
-                <Col size={6} sizeLG={3} mxAuto noGutters key={index}>
-                  <NavItem {...{ item, isActive, setView }} />
-                </Col>
-              ) : (
-                <Col size={6} sizeLG={3} mxAuto noGutters key={index}>
-                  <StyledLink
-                    to={url}
-                    {...props}
-                    rel="noopener"
-                    aria-label="Click para abrir el..."
-                  >
-                    <NavItem {...{ item, isActive, setView }} />
-                  </StyledLink>
-                </Col>
-              )
-            })}
-          </Row>
-        </Container>
-      </Navigation>
+          return children.length ? (
+            <NavItem {...{ item, isActive, setView }} />
+          ) : (
+            <StyledLink
+              to={url}
+              {...props}
+              rel="noopener"
+              aria-label="Click para abrir el..."
+            >
+              <NavItem {...{ item, isActive, setView }} />
+            </StyledLink>
+          );
+        })}
+      </Container>
+
       <Displayer as="div">
         {menuItems.map((item, index) => {
-          const { id, children } = item
+          const { id, children } = item;
 
-          const isActive = view === id
+          const isActive = view === id;
 
           return children.length > 0 ? (
             <DisplayerSection key={id} hidden={!isActive}>
               <Spring
                 reset={isActive}
-                from={{ marginTop: '-100%', opacity: 0 }}
-                to={[{ marginTop: '0', opacity: 1 }]}
+                from={{ marginTop: "-100%", opacity: 0 }}
+                to={[{ marginTop: "0", opacity: 1 }]}
               >
                 {(styles) => (
                   <Anim style={styles}>
@@ -236,37 +239,46 @@ const StyledNavigation = ({ items = [] }) => {
                 )}
               </Spring>
             </DisplayerSection>
-          ) : null
+          ) : null;
         })}
       </Displayer>
-    </Section>
-  ) : null
-}
+    </Navigation>
+  ) : null;
+};
 
-export default StyledNavigation
+export default StyledNavigation;
+
+const Container = styled.div`
+  ${container}
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  ${mq.lg} {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+`;
 
 const Anim = styled(animated.div)`
   padding: 5rem 0;
-`
+`;
 
-const sectionStyles = css``
+const sectionStyles = css``;
 
 const Navigation = styled.div`
   box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.15);
-`
+`;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
-`
+`;
 
 const Etiqueta = styled.span`
   text-decoration: none;
   color: inherit;
-`
+`;
 
 const MenuItem = styled.div`
-  ${({ active, bg = 'lightblue', bgHover = 'lightgray' }) => css`
+  ${({ active, bg = "lightblue", bgHover = "lightgray" }) => css`
     padding: 1.5rem;
     text-align: center;
     transition: all 200ms ease-in-out;
@@ -301,9 +313,9 @@ const MenuItem = styled.div`
           }
         `}
   `}
-`
+`;
 
-const MenuItemBody = styled.div``
+const MenuItemBody = styled.div``;
 
 const OfferTitle = styled.h3`
   margin-top: 0;
@@ -314,7 +326,7 @@ const OfferTitle = styled.h3`
   ${mq.md} {
     margin-bottom: 1rem;
   }
-`
+`;
 
 const OfferCopy = styled.p`
   display: none;
@@ -324,10 +336,10 @@ const OfferCopy = styled.p`
   ${mq.md} {
     margin-bottom: 2rem;
   }
-`
+`;
 
 const ExpandIcon = styled.div`
-  ${({ color = 'white', bgColor = 'blue', isActive }) => css`
+  ${({ color = "white", bgColor = "blue", isActive }) => css`
     width: 1.5rem;
     height: 1.5rem;
     margin: 0 auto;
@@ -352,10 +364,10 @@ const ExpandIcon = styled.div`
       height: 2.5rem;
     }
   `}
-`
+`;
 
 const IconWrapper = styled.div`
-  ${({ bgColor = 'lightgray' }) => css`
+  ${({ bgColor = "lightgray" }) => css`
     padding: 1.7rem;
     border-radius: 50%;
     background-color: ${bgColor};
@@ -364,13 +376,13 @@ const IconWrapper = styled.div`
     margin: 0 auto;
     margin-bottom: 1rem;
   `}
-`
+`;
 
-const Icon = styled(FeaturedMedia)``
+const Icon = styled(FeaturedMedia)``;
 
-const Displayer = styled.div``
+const Displayer = styled.div``;
 
 const DisplayerSection = styled.div`
   box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.15) inset;
   overflow: hidden;
-`
+`;

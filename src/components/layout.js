@@ -67,8 +67,8 @@ const Layout = (props) => {
     })
 
     //Verifica si existen secciones con la propiedad indice para agregarlos al componente indice
-    const indexes = document.querySelectorAll('[name]')
-    console.log(indexes)
+    // const indexes = document.querySelectorAll('[name]')
+    // console.log(indexes)
   }, [])
 
   return (
