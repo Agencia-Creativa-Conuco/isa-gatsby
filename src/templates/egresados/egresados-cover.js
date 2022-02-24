@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { css } from '@emotion/react'
 import container, { gap } from '../../components/layout/new/container'
 import colors from '../../components/styles/colors'
 import useFiles from '../../hooks/useFiles'
@@ -89,33 +88,20 @@ const Title = styled.h2`
 const Copy = styled.div``
 
 const Media = styled.div`
-  ${({ bgColorAfter = ' #001F56', bgColorBefore = '#CCEDFA' }) => css`
-    position: relative;
-    grid-area: col_1;
-
-    &:before {
-      content: '';
-      position: absolute;
-      left: 1rem;
-      bottom: 0;
-      background-color: ${bgColorAfter};
-      width: 17%;
-      padding-bottom: 17%;
-      z-index: 1;
-    }
-    &:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      transform: translate(-88%, 0);
-      background-color: ${bgColorBefore};
-      width: 17%;
-      padding-bottom: 17%;
-      z-index: 1;
-      clip-path: ellipse(100% 100% at 100% 100%);
-    }
-  `}
+  position: relative;
+  grid-area: col_1;
+  &:after {
+    content: '';
+    position: absolute;
+    left: 2%;
+    bottom: 0;
+    transform: translate(-88%, 0);
+    background-color: ${colors.primary.light};
+    width: 17%;
+    padding-bottom: 17%;
+    z-index: 1;
+    clip-path: ellipse(100% 100% at 100% 100%);
+  }
 `
 
 const CoverImage = styled(FeaturedMedia)`
@@ -124,19 +110,34 @@ const CoverImage = styled(FeaturedMedia)`
 `
 
 const Deco = styled.div`
-  ${({ bgColorAfter = ' #001F56', bgColorBefore = '#CCEDFA' }) => css`
-    position: relative;
+  position: absolute;
+  left: 3.5%;
+  bottom: 0;
+  background-color: ${colors.primary.dark};
+  width: 17%;
+  padding-bottom: 17%;
+  z-index: 1;
+  /* position: relative; */
 
-    &:before {
-      content: '';
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      background-color: ${bgColorAfter};
-      width: 8%;
-      padding-bottom: 8%;
-      z-index: 2;
-      transform: translate(0, -100%);
-    }
-  `}
+  &:before {
+    content: '';
+    position: absolute;
+    left: -40%;
+    top: -40%;
+    background-color: ${colors.primary.dark};
+    width: 40%;
+    padding-bottom: 40%;
+    z-index: 2;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    left: -65%;
+    top: -65%;
+    background-color: ${colors.primary.light};
+    width: 30%;
+    padding-bottom: 30%;
+    z-index: 2;
+    border-radius: 50%;
+  }
 `
