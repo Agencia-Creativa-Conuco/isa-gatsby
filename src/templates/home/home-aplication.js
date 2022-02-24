@@ -1,88 +1,69 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { css } from '@emotion/react'
-import { Container, Section, Row, Col, mq } from '../../components/layout/index'
-import FeaturedMedia from '../../components/featured-media'
-import colors from '../../components/styles/colors'
-import Cta from '../../components/cta'
-import useFiles from '../../hooks/useFiles'
+import React from "react";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import FeaturedMedia from "../../components/featured-media";
+import colors from "../../components/styles/colors";
+import Cta from "../../components/cta";
+import useFiles from "../../hooks/useFiles";
+import { container, mq } from "../../components/layout/new";
 
 const HomeAplication = () => {
-  const images = useFiles()
-  const title = 'Te invitamos a descubrir y vivir la experiencia ISA'
+  const images = useFiles();
+  const title = "Te invitamos a descubrir y vivir la experiencia ISA";
   const copy =
-    'Estudia en uno de los  campus universitarios más  verdes y funcional del país, rodeado de un ecosistema diseñado para aprender haciendo, desarrollar al máximo tu potencial y vivir en comunidad. ¡Súmate a la Familia ISA!  '
+    "Estudia en uno de los  campus universitarios más  verdes y funcional del país, rodeado de un ecosistema diseñado para aprender haciendo, desarrollar al máximo tu potencial y vivir en comunidad. ¡Súmate a la Familia ISA!  ";
 
   return (
-    <Section
-      spaceNone
-      id="section_4"
-      css={sectionStyles({
-        bgRoundDeco: colors.blue.dark,
-        bgSquareDeco: colors.blue.light,
-      })}
-    >
+    <Section id="section_4" fluid>
       <Deco bgColor={colors.gray.light} />
-      <Container
-        css={css`
-          overflow: hidden;
-        `}
-      >
-        <Wrapper>
-          <Row alignCenter>
-            <Col size={12} sizeSM={10} sizeLG={6} mxAuto>
-              <Media bgDeco={colors.primary.dark}>
-                <Image
-                  media={images.home.application}
-                  size="75%"
-                  sizeLG="155%"
-                  position="50% 10%"
-                />
-              </Media>
-            </Col>
-            <Col size={12} sizeLG={6} mlAuto>
-              <Content bg={colors.white} decoBg={colors.blue.dark}>
-                <Title>{title}</Title>
-                <p>{copy}</p>
-                <Cta
-                  to="/admisiones"
-                  aria-label="Click para abrir el..."
-                  shadowColor="black"
-                >
-                  Estudia con nosotros
-                </Cta>
-              </Content>
-            </Col>
-          </Row>
-        </Wrapper>
-      </Container>
+
+      <Wrapper>
+        <Media bgDeco={colors.primary.dark}>
+          <Image
+            media={images.home.application}
+            size="75%"
+            sizeLG="155%"
+            position="50% 10%"
+          />
+        </Media>
+        <Content bg={colors.white} decoBg={colors.blue.dark}>
+          <Title>{title}</Title>
+          <p>{copy}</p>
+          <Cta
+            to="/admisiones"
+            aria-label="Click para abrir el..."
+            shadowColor="black"
+          >
+            Estudia con nosotros
+          </Cta>
+        </Content>
+      </Wrapper>
     </Section>
-  )
-}
+  );
+};
 
-export default HomeAplication
+export default HomeAplication;
 
-const sectionStyles = ({
-  bgSquareDeco = 'blue',
-  bgRoundDeco = 'lightblue',
-}) => css`
+const Section = styled.section`
+  ${container}
+
   overflow: hidden;
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 80%;
     height: 100%;
-    background-color: ${bgSquareDeco};
+    background-color: ${colors.blue.light};
     z-index: 2;
     ${mq.lg} {
       width: 50%;
     }
   }
   &:after {
-    content: '';
-    background: ${bgRoundDeco};
+    content: "";
+    background: ${colors.blue.dark};
     position: absolute;
     border-radius: 50%;
     width: 20%;
@@ -95,10 +76,10 @@ const sectionStyles = ({
       left: 50%;
     }
   }
-`
+`;
 
 const Deco = styled.div`
-  ${({ bgColor = 'lightgray' }) => css`
+  ${({ bgColor = "lightgray" }) => css`
     position: absolute;
     top: 0;
     left: 50%;
@@ -107,14 +88,22 @@ const Deco = styled.div`
     background-color: ${bgColor};
     z-index: 1;
   `}
-`
+`;
 
 const Wrapper = styled.div`
   position: relative;
+  ${container}
   z-index: 3;
-`
+  display: grid;
+  grid-template-columns: 1fr;
+
+  ${mq.lg} {
+    grid-template-columns: 1fr 1fr;
+  }
+`;
 
 const Content = styled.div`
+  position: relative;
   border-radius: 2rem;
   box-shadow: lightGray 0 0 10px;
   background-color: white;
@@ -126,28 +115,27 @@ const Content = styled.div`
   ${mq.lg} {
     box-sizing: content-box;
     width: 100%;
+    height: fit-content;
     margin: 25% 0;
     padding: 10%;
     padding-left: 25%;
     margin-left: -35%;
   }
-`
+`;
 
 const Title = styled.h2`
   margin-top: 0;
-`
-
-// const Description = styled.p``;
+`;
 
 const Media = styled.div`
-  ${({ bgDeco = 'lightblue' }) => css`
+  ${({ bgDeco = "lightblue" }) => css`
     position: relative;
     padding-top: 4rem;
     ${mq.md} {
       z-index: 2;
     }
     &::before {
-      content: '';
+      content: "";
       background: ${bgDeco};
       position: absolute;
       border-radius: 50%;
@@ -158,6 +146,6 @@ const Media = styled.div`
       transform: translate(4rem, 10rem);
     }
   `}
-`
+`;
 
-const Image = styled(FeaturedMedia)``
+const Image = styled(FeaturedMedia)``;
