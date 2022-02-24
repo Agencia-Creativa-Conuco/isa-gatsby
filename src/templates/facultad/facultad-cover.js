@@ -1,11 +1,12 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { Section, Container, Row, Col, mq } from '../../components/layout/index'
-import FeaturedMedia from '../../components/featured-media'
+// import FeaturedMedia from '../../components/featured-media'
 import colors from '../../components/styles/colors'
 
 const FacultyCover = ({ facultad }) => {
-  const { nombre, imagenPortada, color, mision, copy } = facultad
+  // const { nombre, imagenPortada, color, mision, copy } = facultad
+  const { nombre, color, mision, copy } = facultad
 
   return (
     <Section spaceNone>

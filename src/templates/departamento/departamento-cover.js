@@ -1,11 +1,12 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { Section, Container, Row, Col, mq } from '../../components/layout/index'
-import FeaturedMedia from '../../components/featured-media'
+// import FeaturedMedia from '../../components/featured-media'
 import colors from '../../components/styles/colors'
 
 const DepartamentoCover = ({ departamento, facultad }) => {
-  const { imagenPortada, nombre, copy } = departamento
+  // const { imagenPortada, nombre, copy } = departamento
+  const { nombre, copy } = departamento
 
   return (
     <Section spaceNone>
