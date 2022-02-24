@@ -14,25 +14,23 @@ const HomeContact = () => {
   return (
     <Section spaceNone id="section_5" fluid>
       <Media>
-
-      <Image
-        media={images.home.contacto}
-        alt={title}
-        size="56.25%"
-        sizeLG="120%"
-        sizeXL="100%"
-        bg={colors.blue.base}
-        bgColor={colors.gray.light}
-        position="95% 50%"
+        <Image
+          media={images.home.contacto}
+          alt={title}
+          size="56.25%"
+          sizeLG="120%"
+          sizeXL="100%"
+          bg={colors.blue.base}
+          bgColor={colors.gray.light}
+          position="95% 50%"
         />
-        </Media>
+      </Media>
       <Container>
-      <Content>
-        <SectionTitle> {title} </SectionTitle>
-        <Form formId="386740ac-0068-4408-b0ad-1b7b62a5c417" />
-      </Content>
+        <Content>
+          <SectionTitle> {title} </SectionTitle>
+          <Form formId="386740ac-0068-4408-b0ad-1b7b62a5c417" />
+        </Content>
       </Container>
-
     </Section>
   );
 };
@@ -54,26 +52,17 @@ const Section = styled.section`
   }
 `;
 const Container = styled.div`
-position: relative;
-/* padding-left: 15px;
-padding-right: 15px; */
-
-grid-area: col_2;
+  position: relative;
+  grid-area: col_2;
 `;
 
 const Media = styled.div`
-display: flex;
-align-self: center;
+  display: flex;
+  align-self: center;
 `;
 
-
-
 const Content = styled.div`
-margin: 3rem 1.5rem;
-  /* ${mq.lg}{
-    margin: 0;
-
-  } */
+  margin: 3rem 1.5rem;
   &::after {
     content: "";
     background: ${colors.primary.light};
@@ -92,7 +81,6 @@ const SectionTitle = styled.h2`
 
 const Image = styled(FeaturedMedia)`
   grid-area: col_1;
-  
   ${mq.md} {
     margin-top: 10%;
     &::after {

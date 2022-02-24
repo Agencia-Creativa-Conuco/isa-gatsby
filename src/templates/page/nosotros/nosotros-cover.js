@@ -1,11 +1,11 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { css } from '@emotion/react'
-import { Container, Section, Row, Col } from '../../../components/layout/index'
-import FeaturedMedia from '../../../components/featured-media'
-import colors from '../../../components/styles/colors'
-import Cta from '../../../components/cta'
-import { useStaticQuery, graphql } from 'gatsby'
+import React from "react";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from "../../../components/styles/colors";
+import Cta from "../../../components/cta";
+import { useStaticQuery, graphql } from "gatsby";
+import { container, mq } from "../../../components/layout/new/";
 
 const NosotrosCover = () => {
   //Obtiene las imágenes localmente desde la ruta "images/home"
@@ -23,7 +23,7 @@ const NosotrosCover = () => {
         }
       }
     }
-  `)
+  `);
 
   // Convierte arreglo de imágenes en objeto cuya llave es el nómbre del archivo
   // Esto para facilitar la búsqueda de la imagenes en los componentes hijos.
@@ -31,78 +31,78 @@ const NosotrosCover = () => {
     return {
       ...obj,
       [item.name]: item,
-    }
-  }, {})
+    };
+  }, {});
 
-  const title = 'UNIVERSIDAD ISA'
+  const title = "UNIVERSIDAD ISA";
   const copy =
-    'La Universidad ISA propicia en sus aulas el desarrollo de líderes visionarios, guiados por los valores de honestidad, responsabilidad, respeto, compromiso social y calidad.'
+    "La Universidad ISA propicia en sus aulas el desarrollo de líderes visionarios, guiados por los valores de honestidad, responsabilidad, respeto, compromiso social y calidad.";
   const cta = {
-    title: 'Estudia con nosotros',
-    url: '/admisiones',
+    title: "Estudia con nosotros",
+    url: "/admisiones",
     target: null,
-  }
+  };
 
   return (
-    <Section spaceNone css={sectionStyles}>
-      <Container fluid>
-        <Row alignCenter>
-          <Col size={12} sizeMD={5} sizeLG={6} zIndex={2} order={2} orderMD={1}>
-            <Content decoBg={colors.blue.base}>
-              <SectionTitle> {title} </SectionTitle>
-              <Copy>{copy} </Copy>
+    <Container fluid spaceNone css={sectionStyles}>
+      <Content decoBg={colors.blue.base}>
+        <SectionTitle> {title} </SectionTitle>
+        <Copy>{copy} </Copy>
 
-              {cta.url && cta.title ? (
-                <Cta to={cta.url} target={cta.target}>
-                  {cta.title}
-                </Cta>
-              ) : null}
-            </Content>
-          </Col>
-          <Col
-            size={11}
-            sizeSM={10}
-            sizeMD={7}
-            sizeLG={6}
-            order={1}
-            orderMD={2}
-            mlAuto
-            noGutters
-          >
-            <Media decoBg={colors.blue.base}>
-              <Logo
-                media={images.cover}
-                alt="Sobre Universidad ISA"
-                size="100%"
-                sizeXL="90%"
-                bgColor
-                loading="eager"
-              />
-              <DivCube
-                decoBg={colors.primary.base}
-                decoBgA={colors.primary.light}
-                decoBgB={colors.primary.base}
-              />
-            </Media>
-          </Col>
-        </Row>
-      </Container>
-    </Section>
-  )
-}
+        {cta.url && cta.title ? (
+          <Cta to={cta.url} target={cta.target}>
+            {cta.title}
+          </Cta>
+        ) : null}
+      </Content>
+      <Media decoBg={colors.blue.base}>
+        <Logo
+          media={images.cover}
+          alt="Sobre Universidad ISA"
+          size="100%"
+          sizeXL="90%"
+          bgColor
+          loading="eager"
+        />
+        <DivCube
+          decoBg={colors.primary.base}
+          decoBgA={colors.primary.light}
+          decoBgB={colors.primary.base}
+        />
+      </Media>
 
-export default NosotrosCover
+    </Container>
+  );
+};
+
+export default NosotrosCover;
 
 const sectionStyles = css`
   overflow: hidden;
-`
+`;
+const Container = styled.section`
+  ${container}
+  padding: 0;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-areas: 'col_2'
+                        'col_1';
+
+  ${mq.md} {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'col_1 col_2';
+  }
+`;
 
 const Content = styled.div`
-  margin: 4rem auto;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
   max-width: 57rem;
   position: relative;
+  align-self: center;
+  grid-area: col_1;
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     width: 25%;
     padding-bottom: 25%;
@@ -113,20 +113,25 @@ const Content = styled.div`
     transform: translate(-50%, 50%);
     z-index: -1;
   }
-`
+`;
 
 const SectionTitle = styled.h1`
   margin-bottom: 2rem;
-`
+`;
 
 const Copy = styled.p`
   margin-bottom: 3rem;
-`
+`;
 
 const Media = styled.div`
   position: relative;
+  grid-area: col_2;
+  margin-left: 10%;
+  ${mq.md}{
+    margin: 0;
+  }
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     width: 10%;
     padding-bottom: 10%;
@@ -136,15 +141,15 @@ const Media = styled.div`
     top: 10%;
     box-shadow: 0 2.5rem 2.5rem rgba(0, 0, 0, 0.15);
   }
-`
+`;
 
 const Logo = styled(FeaturedMedia)`
   clip-path: ellipse(100% 100% at right 73%);
   z-index: 4;
-`
+`;
 
 const DivCube = styled.div`
-  ${({ decoBg = '#4B84E9', decoBgA = '#CCEDFA', decoBgB = '#4B84E9' }) => css`
+  ${({ decoBg = "#4B84E9", decoBgA = "#CCEDFA", decoBgB = "#4B84E9" }) => css`
     position: absolute;
     left: 0;
     bottom: 12%;
@@ -155,7 +160,7 @@ const DivCube = styled.div`
     transform: translate(-75%, 0);
     z-index: 2;
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       width: 35%;
       padding-bottom: 70%;
@@ -166,7 +171,7 @@ const DivCube = styled.div`
       z-index: 3;
     }
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       left: 35%;
       top: 0;
@@ -178,4 +183,4 @@ const DivCube = styled.div`
       z-index: 1;
     }
   `}
-`
+`;

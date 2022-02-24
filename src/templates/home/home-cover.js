@@ -3,8 +3,7 @@ import styled from "@emotion/styled";
 import colors from "../../components/styles/colors";
 import useFiles from "../../hooks/useFiles";
 import FeaturedMedia from "../../components/featured-media";
-import container, { gap } from "../../components/layout/new/container";
-import mq from "../../components/layout/new/mq";
+import  {container,mq, gap } from "../../components/layout/new/";
 
 const HomeCover = (props) => {
   const images = useFiles();
