@@ -1,16 +1,16 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import {
-  Container,
-  Section,
+
   Row,
   Col,
-  mq,
 } from '../../../components/layout/index'
 import FeaturedMedia from '../../../components/featured-media'
 import colors from '../../../components/styles/colors'
 import Cta from '../../../components/cta'
 import { useStaticQuery, graphql } from 'gatsby'
+import { container, mq } from "../../../components/layout/new/";
+
 
 const AdmisionesCover = () => {
   //Obtiene las imágenes localmente desde la ruta "images/home"
@@ -47,10 +47,9 @@ const AdmisionesCover = () => {
       title: 'Aplicar',
     }
   return (
-    <Section spaceNone>
-      <Container fluid>
-        <Row alignCenter>
-          <Col size={12} sizeMD={7} sizeLG={6} noGutters>
+    <Section spaceNone fluid>
+        {/* <Row alignCenter>
+          <Col size={12} sizeMD={7} sizeLG={6} noGutters> */}
             <DivLogo decoBg={colors.secondary.light}>
               <DecoLogo decoBg={colors.secondary.light}>
                 <Logo
@@ -64,8 +63,8 @@ const AdmisionesCover = () => {
                 />
               </DecoLogo>
             </DivLogo>
-          </Col>
-          <Col size={12} sizeMD={5} sizeLG={6}>
+          {/* </Col>
+          <Col size={12} sizeMD={5} sizeLG={6}> */}
             <Content as="div" decoBg={colors.secondary.light}>
               <SectionTitle>{title}</SectionTitle>
               <Copy>{copy}</Copy>
@@ -73,32 +72,51 @@ const AdmisionesCover = () => {
                 {cta.title}
               </StyledCTA>
             </Content>
-          </Col>
-        </Row>
-      </Container>
+          {/* </Col>
+        </Row> */}
     </Section>
   )
 }
 
 export default AdmisionesCover
 
-const Content = styled(Section)`
+const Section = styled.section `
+${container}
+padding: 0;
+
+display:grid;
+grid-template-columns: 100%;
+
+${mq.md}{
+  grid-template-columns: 50% 50%;
+
+}
+
+`;
+
+const Content = styled.div`
+  align-self:center;
   position: relative;
-  max-width: 57rem;
+  max-width: 58rem;
+  padding: 7% 1.5rem ;
   margin-left: auto;
   margin-right: auto;
   z-index: 1;
+
+  ${mq.md}{
+
   &:after {
     content: '';
     position: absolute;
     top: 0%;
     right: 0%;
-    transform: translate(100%, -100%);
+    transform: translate(90%, -40%);
     background-color: ${(props) => props.decoBg};
     padding: 5%;
     opacity: 0.7;
     z-index: -1;
   }
+}
 `
 
 const SectionTitle = styled.h1`
