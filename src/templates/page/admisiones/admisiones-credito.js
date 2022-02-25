@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Section, Container, Row, Col } from '../../../components/layout/index'
 import FeaturedMedia from '../../../components/featured-media'
 import useFiles from '../../../hooks/useFiles'
 import Link from '../../../components/link'
+import { container, mq } from "../../../components/layout/new/";
+
 
 const AdmisionesCredito = () => {
   const images = useFiles()
@@ -38,15 +39,13 @@ const AdmisionesCredito = () => {
 
   return (
     <Section id="section_4">
-      <Container>
-        <Row>
-          <Col>
+
             <Title>Asistencia para la gestión del crédito educativo</Title>
             <Copy>Financiamiento disponible a través de:</Copy>
-            <Row alignCenter>
+            <Container>
               {data.map((item, key) => {
                 return (
-                  <Col key={key} size={12} sizeMD={4}>
+                  <ItemCol>
                     <a
                       href={item.url}
                       target="_blank"
@@ -59,10 +58,13 @@ const AdmisionesCredito = () => {
                         </Media>
                       </Institution>
                     </a>
-                  </Col>
+                  </ItemCol>
                 )
               })}
-             <Col>
+              </Container>
+              <ContainerContact>
+
+
               <h5>CONTACTOS</h5>
              <BoxContact>
                <span>Email: </span>
@@ -76,17 +78,40 @@ const AdmisionesCredito = () => {
                   809-247-2000. Ext.: 235, 236 y 237
                   </Link>
                 </BoxContact>
-             </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Container>
+              </ContainerContact>
     </Section>
   )
 }
 
 export default AdmisionesCredito
 
+
+
+const Section = styled.section`
+  ${container}
+  margin: 9.6rem auto;
+`;
+
+
+const Container = styled.div`
+
+${mq.md}{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);;
+}
+`;
+
+const ItemCol = styled.div`
+padding: 0 1.5rem 0 0;
+align-self: center;
+
+`;
+
+const ContainerContact = styled.div`
+margin-top: 4rem;
+
+
+`;
 const Title = styled.h2`
   text-transform: uppercase;
   text-align: center;
