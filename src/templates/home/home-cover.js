@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import colors from "../../components/styles/colors";
 import useFiles from "../../hooks/useFiles";
 import FeaturedMedia from "../../components/featured-media";
-import  {container,mq, gap } from "../../components/layout/new/";
+import  {container,mq } from "../../components/layout/new/";
 
 const HomeCover = (props) => {
   const images = useFiles();
@@ -74,7 +74,7 @@ const Cover = styled.section`
 
 
 const Content = styled.div`
-  padding: 4rem ${gap};
+  padding: 4rem 1.5rem;
   position: relative;
   z-index: 1;
   justify-self: center;
