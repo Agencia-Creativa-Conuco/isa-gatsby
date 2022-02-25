@@ -45,7 +45,7 @@ const AdmisionesCredito = () => {
             <Container>
               {data.map((item, key) => {
                 return (
-                  <ItemCol>
+                  <ItemCol key={key}>
                     <a
                       href={item.url}
                       target="_blank"

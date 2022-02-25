@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Section, Container, Row, Col } from "../../../components/layout/index";
 import { HotelIcon, FoodIcon } from "../../../components/icons";
 import { css } from "@emotion/react";
 import colors from "../../../components/styles/colors";
 import useModal from "../../../components/hooks/useModal";
 import Cta from "../../../components/cta";
 import useGlobalOption from "../../../hooks/useGlobalOption";
+import { container, mq } from "../../../components/layout/new/";
 
 const AdmisionesServicios = () => {
   const [{ serviciosOpcionales }] = useGlobalOption();
@@ -41,36 +41,23 @@ const AdmisionesServicios = () => {
       },
     ];
 
-
-
   return (
     <Section id="section_5">
+      <Title>{title}</Title>
+      {/* Agrega las url de los formularios */}
       <Container>
-        <Row>
-          <Col>
-            <Title>{title}</Title>
-            <Row alignCenter>
-              {/* Agrega las url de los formularios */}
-              
-              {services.map((service, index) => {
-                    serviciosOpcionales.forEach((item) => {
-                      if (service.id === item.tipoServicio) {
-                        service.url = item.url;
-                      }
-                      if (service.id === item.tipoServicio) {
-                        service.url = item.url;
-                      }
-                    });
+        {services.map((service, index) => {
+          serviciosOpcionales.forEach((item) => {
+            if (service.id === item.tipoServicio) {
+              service.url = item.url;
+            }
+            if (service.id === item.tipoServicio) {
+              service.url = item.url;
+            }
+          });
 
-                return (
-                  <Col key={index} size={12} sizeMD={4} mxAuto>
-                    <ServiceComponent {...{ service }} />
-                  </Col>
-                );
-              })}
-            </Row>
-          </Col>
-        </Row>
+          return <ServiceComponent key={index} {...{ service }} />;
+        })}
       </Container>
     </Section>
   );
@@ -105,6 +92,19 @@ const ServiceComponent = ({ service }) => {
     </>
   );
 };
+
+const Section = styled.section`
+  ${container}
+  margin: 9.6rem auto;
+`;
+
+const Container = styled.div`
+  ${mq.md}{
+    display: flex; 
+  }
+
+}
+`;
 
 const Title = styled.h2`
   text-transform: uppercase;
