@@ -38,16 +38,7 @@ const AdmisionesForm = ({ ...props }) => {
   return forms.length > 1 ? (
     <Section id="form" style={{ overflow: "hidden" }}>
       <Container fluid id="section_3">
-        <BgCol>
-          <FeaturedMedia
-            media={image}
-            size="56.25%"
-            sizeMD="85.25%"
-            sizeLG="65.25%"
-            sizeXL="58.25%"
-            position="40% 81%"
-          />
-        </BgCol>
+        <Media media={image} size="56.25%" position="40% 40%"></Media>
 
         <Wrapper
           css={css`
@@ -119,19 +110,23 @@ const Container = styled.div`
   justify-content: flex-start;
 `;
 
-const BgCol = styled.div`
+const Media = styled(FeaturedMedia)`
   width: 100%;
+  height: 100%;
   ${mq.md} {
+    height: 100%;
+
     position: absolute;
   }
 `;
 
 const Wrapper = styled.div`
   background-color: ${colors.gray.light};
+  position: relative;
   width: 100%;
   margin: 0 auto;
-  position: relative;
   padding: 2rem 4rem 2rem 8rem;
+  z-index: 5;
   ${mq.md} {
     padding: 4rem;
     max-width: 40rem;
