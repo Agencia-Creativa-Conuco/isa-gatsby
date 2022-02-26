@@ -113,8 +113,8 @@ export default OfferLabs;
 const Section = styled.section`
   ${container}
   padding: 0;
-  margin: 9.6rem auto;
   display: grid;
+  margin: 9.6rem auto;
   grid-template-columns: 100%;
   ${mq.md} {
     grid-template-columns: 50% 50%;
