@@ -45,7 +45,7 @@ const OfferCover = () => {
           size="100%"
           sizeMD="124%"
           sizeLG="100%"
-          sizeXL="80%"
+          sizeXL="85%"
           position="90% 50%"
           bgColor
           loading="eager"

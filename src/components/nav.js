@@ -169,6 +169,8 @@ const NavContainer = styled.nav`
     flex-flow: row wrap;
     justify-content: flex-end;
     height: 100%;
+    margin: 0 1rem;
+
     ${props.hideXS
       ? css`
           ${mq.xs} {
