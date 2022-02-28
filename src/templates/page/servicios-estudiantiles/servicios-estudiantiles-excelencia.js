@@ -1,37 +1,29 @@
-import React, { useState, useEffect } from 'react'
-import styled from '@emotion/styled'
-import { css } from '@emotion/react'
-import {
-  Container,
-  Section,
-  Row,
-  Col,
-  mq,
-  mqVal,
-} from '../../../components/layout/index'
-import FeaturedMedia from '../../../components/featured-media'
-import colors from '../../../components/styles/colors'
-import Cta from '../../../components/cta'
-import useFiles from '../../../hooks/useFiles'
-import Carousel from 'react-slick'
+import React, { useState, useEffect } from "react";
+import styled from "@emotion/styled";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from "../../../components/styles/colors";
+import Cta from "../../../components/cta";
+import useFiles from "../../../hooks/useFiles";
+import Carousel from "react-slick";
+import { container, mq } from "../../../components/layout/new/";
 
 const ServiciosEstudiantilesExcelencia = () => {
   const images =
-    Object.values(useFiles()['servicios-estudiantiles']).filter((imagen) =>
-      imagen.name.includes('excelencia'),
-    ) || []
+    Object.values(useFiles()["servicios-estudiantiles"]).filter((imagen) =>
+      imagen.name.includes("excelencia")
+    ) || [];
 
-  const [nav1, setNav1] = useState(null)
-  const [nav2, setNav2] = useState(null)
-  const [slider1, setSlider1] = useState([])
-  const [slider2, setSlider2] = useState([])
+  const [nav1, setNav1] = useState(null);
+  const [nav2, setNav2] = useState(null);
+  const [slider1, setSlider1] = useState([]);
+  const [slider2, setSlider2] = useState([]);
 
   useEffect(() => {
-    setNav1(slider1)
-    setNav2(slider2)
-  }, [slider1, slider2])
+    setNav1(slider1);
+    setNav2(slider2);
+  }, [slider1, slider2]);
 
-  const title = 'Programa Premiación a la Excelencia Académica.',
+  const title = "Programa Premiación a la Excelencia Académica.",
     content = `
             <p>El programa de premiación a la excelencia académica, es una actividad donde la institución, a través de la implementación de un proceso de reconocimiento periódico, público y continuo, exalta los esfuerzos exitosos logrados por los estudiantes al final del período académico cursado y al cierre del año académico. Esta celebración se realiza una vez al año.</p>
             <p><b>Objetivos</b></p>
@@ -42,101 +34,98 @@ const ServiciosEstudiantilesExcelencia = () => {
             </ul>
         `,
     // image = images["servicios-estudiantiles"].excelencia,
-    cta = null
+    cta = null;
 
   return (
     <Section id="section_6">
-      <Container>
-        <Row>
-          <Col>
-            <Wrapper>
-              <MediaContainer>
-                <DecoMedia decoBg={colors.blue.dark} decoBgA={colors.cta.base}>
-                  <VisualCarousel>
-                    <Carousel
-                      asNavFor={nav2}
-                      pauseOnHover
-                      arrows={false}
-                      ref={(slider) => setSlider1(slider)}
-                    >
-                      {images.map((item, index) => {
-                        return (
-                          <Logo
-                            key={index}
-                            media={item}
-                            size="56.25%"
-                            sizeLG="100%"
-                            bgColor
-                          />
-                        )
-                      })}
-                    </Carousel>
-                  </VisualCarousel>
+      <Wrapper>
+        <MediaContainer>
+          <DecoMedia decoBg={colors.blue.dark} decoBgA={colors.cta.base}>
+            <VisualCarousel>
+              <Carousel
+                asNavFor={nav2}
+                pauseOnHover
+                arrows={false}
+                ref={(slider) => setSlider1(slider)}
+              >
+                {images.map((item, index) => {
+                  return (
+                    <Logo
+                      key={index}
+                      media={item}
+                      size="56.25%"
+                      sizeLG="100%"
+                      bgColor
+                    />
+                  );
+                })}
+              </Carousel>
+            </VisualCarousel>
 
-                  <ThumbnailCarousel>
-                    <Carousel
-                      autoplay
-                      asNavFor={nav1}
-                      ref={(slider) => setSlider2(slider)}
-                      slidesToShow={3}
-                      pauseOnHover
-                      vertical={true}
-                      verticalSwiping={true}
-                      arrows={false}
-                      responsive={[
-                        {
-                          breakpoint: mqVal.lg,
-                          settings: {
-                            vertical: false,
-                            verticalSwiping: false,
-                            slidesToShow: 4,
-                            arrows: false,
-                            dots: false,
-                            centerMode: true,
-                          },
-                        },
-                      ]}
-                    >
-                      {images.map((item, index) => {
-                        return (
-                          <Dot
-                            key={index}
-                            onClick={(e) => nav2.slickGoTo(index)}
-                          >
-                            <Logo
-                              media={item}
-                              size="56.25%"
-                              sizeLG="100%"
-                              bgColor
-                            />
-                          </Dot>
-                        )
-                      })}
-                    </Carousel>
-                  </ThumbnailCarousel>
-                </DecoMedia>
-              </MediaContainer>
+            <ThumbnailCarousel>
+              <Carousel
+                autoplay
+                asNavFor={nav1}
+                ref={(slider) => setSlider2(slider)}
+                slidesToShow={3}
+                pauseOnHover
+                vertical={true}
+                verticalSwiping={true}
+                arrows={false}
+                responsive={[
+                  {
+                    breakpoint: mq.lgv,
+                    settings: {
+                      vertical: false,
+                      verticalSwiping: false,
+                      slidesToShow: 4,
+                      arrows: false,
+                      dots: false,
+                      centerMode: true,
+                    },
+                  },
+                ]}
+              >
+                {images.map((item, index) => {
+                  return (
+                    <Dot key={index} onClick={(e) => nav2.slickGoTo(index)}>
+                      <Logo media={item} size="56.25%" sizeLG="100%" bgColor />
+                    </Dot>
+                  );
+                })}
+              </Carousel>
+            </ThumbnailCarousel>
+          </DecoMedia>
+        </MediaContainer>
 
-              <ContentCol bgColor={colors.primary.light}>
-                <DivTitle color={colors.blue.dark}>
-                  <SectionTitle>{title}</SectionTitle>
-                  <div dangerouslySetInnerHTML={{ __html: content }} />
-                  {cta ? (
-                    <Cta to={cta.url} target={cta.target}>
-                      {cta.title}
-                    </Cta>
-                  ) : null}
-                </DivTitle>
-              </ContentCol>
-            </Wrapper>
-          </Col>
-        </Row>
-      </Container>
+        <ContentCol>
+          <DivTitle>
+            <SectionTitle>{title}</SectionTitle>
+            <div dangerouslySetInnerHTML={{ __html: content }} />
+            {cta ? (
+              <Cta to={cta.url} target={cta.target}>
+                {cta.title}
+              </Cta>
+            ) : null}
+          </DivTitle>
+        </ContentCol>
+      </Wrapper>
     </Section>
-  )
-}
+  );
+};
 
-export default ServiciosEstudiantilesExcelencia
+export default ServiciosEstudiantilesExcelencia;
+
+const Section = styled.section`
+  ${container}
+  padding: 0;
+  margin-top: 5.5rem;
+
+  ${mq.md} {
+    margin-top: 9.6rem;
+    margin-bottom: 9.6rem;
+  }
+`;
 
 const Wrapper = styled.div`
   ${mq.lg} {
@@ -146,38 +135,36 @@ const Wrapper = styled.div`
     grid-template-columns: 47.75% 47.75%;
     column-gap: 5%;
   }
-`
+`;
 
-const ContentCol = styled(Col)`
-  ${({ bgColor = 'lightblue' }) => css`
-    z-index: 1;
-    position: relative;
-    padding: 5%;
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: ${bgColor};
-      opacity: 0.3;
-      z-index: -1;
-      transform-origin: 50% 100%;
-      ${mq.lg} {
-        transform: scale(1.2, 2);
-      }
+const ContentCol = styled.div`
+  z-index: 1;
+  position: relative;
+  padding: 5%;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: ${colors.primary.light};
+    opacity: 0.3;
+    z-index: -1;
+    transform-origin: 50% 100%;
+    ${mq.lg} {
+      transform: scale(1.2, 2);
     }
-  `}
-`
+  }
+`;
 
-const Dot = styled.div``
+const Dot = styled.div``;
 
-const Logo = styled(FeaturedMedia)``
+const Logo = styled(FeaturedMedia)``;
 
 const DivTitle = styled.div`
   margin-left: 1rem;
-`
+`;
 
 const SectionTitle = styled.h2`
   font-weight: 900;
@@ -186,7 +173,7 @@ const SectionTitle = styled.h2`
   ${mq.md} {
     font-size: 3rem;
   }
-`
+`;
 
 const MediaContainer = styled.div`
   position: relative;
@@ -194,7 +181,7 @@ const MediaContainer = styled.div`
     height: 0;
     padding-bottom: 73%;
   }
-`
+`;
 
 const DecoMedia = styled.div`
   display: grid;
@@ -202,7 +189,7 @@ const DecoMedia = styled.div`
   row-gap: 1.5rem;
 
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     left: 5%;
     top: 0%;
@@ -213,7 +200,7 @@ const DecoMedia = styled.div`
     z-index: -1;
   }
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     left: 5%;
     top: 0%;
@@ -233,11 +220,11 @@ const DecoMedia = styled.div`
     width: 100%;
     height: 100%;
   }
-`
+`;
 
 const VisualCarousel = styled.div`
   font-size: 0;
-`
+`;
 
 const ThumbnailCarousel = styled.div`
   font-size: 0;
@@ -275,4 +262,4 @@ const ThumbnailCarousel = styled.div`
       overflow: hidden;
     }
   }
-`
+`;
