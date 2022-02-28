@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
 import colors from "../../../components/styles/colors";
 import { container, mq } from "../../../components/layout/new/";
 
@@ -103,7 +102,7 @@ const NosotrosPhilosophy = () => {
           })}
         </ColumnOne>
         <ColumnTwo>
-          <List bgColor={colors.gray.light} decoBg={colors.blue.dark}>
+          <List>
             {tabs.map((item, i) => {
               const { title } = item;
 
@@ -174,7 +173,7 @@ const Container = styled.div`
 const DecoContainer = styled.div`
   position: relative;
   z-index: -1;
-  background: ${(props) => props.bgColor};
+  background: ${colors.gray.light};
   width: 100%;
   padding-bottom: 13%;
   position: absolute;
@@ -189,7 +188,6 @@ const DecoContainer = styled.div`
 
 const ColumnOne = styled.div`
   background-color: ${colors.blue.dark};
-  padding: 0 1.5rem;
   grid-area: col_1;
   z-index: 3;
 `;
@@ -225,12 +223,11 @@ const CardTitle = styled.h2`
 `;
 
 const List = styled.ul`
-  ${({ bgColor = "lightgray", decoBg = "blue" }) => css`
     padding: 1rem 0;
     max-width: 75rem;
     margin: 0 auto;
     text-align: center;
-    background-color: ${bgColor};
+    background-color: ${colors.gray.light};
     margin-top: -4rem;
     position: relative;
     ${mq.lg} {
@@ -247,7 +244,7 @@ const List = styled.ul`
       right: 0;
       width: 3rem;
       padding-bottom: 3rem;
-      background-color: ${decoBg};
+      background-color: ${colors.blue.dark};
       border-radius: 50%;
       transform: translate(-50%, -50%);
       ${mq.lg} {
@@ -256,7 +253,6 @@ const List = styled.ul`
         transform: translate(0%, -120%);
       }
     }
-  `}
 `;
 
 const Item = styled.li`
