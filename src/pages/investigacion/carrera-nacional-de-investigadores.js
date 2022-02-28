@@ -21,7 +21,7 @@ const CarreraNacionalDeInvestigadores = (props) => {
   return (
     <Layout {...props} {...metaData}>
       <Section as="article" spaceNone>
-        <Cover bgColor={colors.primary.base} spaceNone>
+        <Cover spaceNone>
           <Container>
             <Title>{title}</Title>
           </Container>
@@ -31,7 +31,7 @@ const CarreraNacionalDeInvestigadores = (props) => {
             <Container>
               <STitle>Listado de miembros</STitle>
 
-              <ContainerInveestigador>
+              <ContainerInvestigador>
                 {investigadores.map((investigador, index) => {
                   const {
                     nombre,
@@ -74,7 +74,7 @@ const CarreraNacionalDeInvestigadores = (props) => {
                     </Card>
                   );
                 })}
-              </ContainerInveestigador>
+              </ContainerInvestigador>
             </Container>
           </List>
         </Facilidades>
@@ -108,7 +108,7 @@ const Container = styled.div`
   ${container}
 `;
 
-const ContainerInveestigador = styled.div`
+const ContainerInvestigador = styled.div`
   display: grid;
   grid-template-columns: 100%;
   grid-column-gap: 2.8rem;
