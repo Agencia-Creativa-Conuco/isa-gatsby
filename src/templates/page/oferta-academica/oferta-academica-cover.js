@@ -68,9 +68,6 @@ const Section = styled.section`
   display: grid;
   grid-template-columns: 100%;
   ${mq.md} {
-    grid-template-columns: 50% 50%;
-  }
-  ${mq.md} {
     grid-template-columns: 55% 45%;
   }
 `;
