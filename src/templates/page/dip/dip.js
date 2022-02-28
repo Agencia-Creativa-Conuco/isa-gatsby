@@ -66,7 +66,7 @@ const ResearchPage = (props) => {
             departamentos,
           }}
         />
-        <DIPProcess {...{ investigaciones }} />
+        {/* <DIPProcess {...{ investigaciones }} /> */}
       </Container>
     </Layout>
   )
