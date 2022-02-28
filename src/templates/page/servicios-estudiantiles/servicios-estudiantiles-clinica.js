@@ -1,22 +1,16 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { css } from '@emotion/react'
-import {
-  Container,
-  Section,
-  Row,
-  Col,
-  mq,
-} from '../../../components/layout/index'
-import FeaturedMedia from '../../../components/featured-media'
-import colors from '../../../components/styles/colors'
-import Cta from '../../../components/cta'
-import useFiles from '../../../hooks/useFiles'
+import React from "react";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import FeaturedMedia from "../../../components/featured-media";
+import colors from "../../../components/styles/colors";
+import Cta from "../../../components/cta";
+import useFiles from "../../../hooks/useFiles";
+import { container, mq } from "../../../components/layout/new/";
 
 const ServiciosEstudiantilesClinica = () => {
-  const images = useFiles()
+  const images = useFiles();
 
-  const title = 'Salud y Enfermería',
+  const title = "Salud y Enfermería",
     content = `
             <p>Incentiva la salud y ofrece servicios de atención primaria a la comunidad universitaria. </p>
             <p>La Unidad de Salud y Enfermería se enfoca en atender y orientar las necesidades de salud y emergencias que puedan surgir durante el desarrollo de la actividad académica y administrativa de la Universidad, ofreciendo servicios de atención primaria, primeros auxilios ambulatorios y de urgencia a la comunidad universitaria.</p>
@@ -25,104 +19,107 @@ const ServiciosEstudiantilesClinica = () => {
             Lunes a viernes de 8:00 a.m. a 7:00 p.m.<br>
             Sábados de 8:00 a.m. a 5:00 p.m.</p>
         `,
-    image = images['servicios-estudiantiles'].enfermeria,
-    cta = null
+    image = images["servicios-estudiantiles"].enfermeria,
+    cta = null;
 
   return (
     <Section id="section_4">
-      <Container>
-        <Row>
-          <Col size={12} sizeMD={7} zIndex={2} noGutters>
-            <DecoLogo decoBg={colors.blue.dark} decoBgA={colors.cta.base}>
-              <Media
-                media={image}
-                size="56.25%"
-                sizeMD="135%"
-                sizeLG="70%"
-                bgColor
-              />
-            </DecoLogo>
-          </Col>
-          <ContentCol bgColor={colors.primary.light}>
-            <DivTitle color={colors.blue.dark}>
-              <SectionTitle>{title}</SectionTitle>
-              <div dangerouslySetInnerHTML={{ __html: content }} />
-              {cta ? (
-                <Cta to={cta.url} target={cta.target}>
-                  {cta.title}
-                </Cta>
-              ) : null}
-            </DivTitle>
-          </ContentCol>
-        </Row>
-      </Container>
+      <DecoLogo>
+        <Media media={image} size="56.25%" sizeMD="135%" sizeLG="70%" bgColor />
+      </DecoLogo>
+
+      <ContentCol>
+        <DivTitle>
+          <SectionTitle>{title}</SectionTitle>
+          <div dangerouslySetInnerHTML={{ __html: content }} />
+          {cta ? (
+            <Cta to={cta.url} target={cta.target}>
+              {cta.title}
+            </Cta>
+          ) : null}
+        </DivTitle>
+      </ContentCol>
     </Section>
-  )
-}
+  );
+};
 
-export default ServiciosEstudiantilesClinica
+export default ServiciosEstudiantilesClinica;
 
-const ContentCol = styled(Col)`
-  ${({ bgColor = 'lightblue' }) => css`
-    z-index: 1;
-    position: relative;
-    padding-bottom: 4rem;
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: ${bgColor};
-      opacity: 0.3;
-      z-index: -1;
-      transform-origin: 50% 100%;
-      ${mq.md} {
-        transform: scale(1.2, 2);
-      }
+const Section = styled.section`
+  ${container}
+  padding: 0;
+  margin-top: 5.5rem;
+  display: grid;
+  grid-template-columns: 100%;
+  ${mq.md} {
+    margin-top: 9.6rem;
+    margin-bottom: 9.6rem;
+    grid-template-columns: 59% 46%;
+  }
+`;
+
+const ContentCol = styled.div`
+  z-index: 1;
+  position: relative;
+  /* padding-bottom: 4rem; */
+  padding: 0 1.5rem 4rem 1.5rem;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: ${colors.primary.light};
+    opacity: 0.3;
+    z-index: -1;
+    transform-origin: 50% 100%;
+    ${mq.md} {
+      transform: scale(1.2, 2);
     }
-  `}
-`
+  }
+`;
 
 const Media = styled(FeaturedMedia)`
-    // ${mq.md}{
-    //     transform: translateX(2rem);
-    // }
+  z-index: 2;
 
-    // ${mq.lg}{
-    //     transform: translateX(4rem);
-    // }
-`
+  // ${mq.md}{
+  //     transform: translateX(2rem);
+  // }
 
-const DivTitle = styled.div``
+  // ${mq.lg}{
+  //     transform: translateX(4rem);
+  // }
+`;
+
+const DivTitle = styled.div``;
 
 const SectionTitle = styled.h2`
   margin-bottom: 2rem;
-`
+`;
 
 const DecoLogo = styled.div`
   position: relative;
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: -4%;
-    background: ${(props) => props.decoBg};
+    background: ${colors.blue.dark};
     width: 15%;
     padding-bottom: 7%;
     z-index: 5;
     // transform: translate(50%,0);
   }
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: -4%;
-    background: ${(props) => props.decoBgA};
+    background: ${colors.cta.base};
     width: 45%;
     padding-bottom: 7%;
     z-index: 4;
     // transform: translate(50%,0);
   }
-`
+`;
