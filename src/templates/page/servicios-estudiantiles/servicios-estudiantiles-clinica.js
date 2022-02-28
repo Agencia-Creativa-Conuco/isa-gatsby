@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
 import FeaturedMedia from "../../../components/featured-media";
 import colors from "../../../components/styles/colors";
 import Cta from "../../../components/cta";

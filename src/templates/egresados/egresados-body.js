@@ -6,7 +6,6 @@ import useFiles from "../../hooks/useFiles";
 import FeaturedMedia from "../../components/featured-media";
 import mq from "../../components/layout/new/mq";
 import Carousel from "react-slick";
-import { mqVal } from "../../components/layout/index";
 
 const EgresadosBody = (props) => {
   const images =
@@ -81,7 +80,7 @@ const EgresadosBody = (props) => {
                 arrows={false}
                 responsive={[
                   {
-                    breakpoint: mqVal.lg,
+                    breakpoint: mq.lgv,
                     settings: {
                       vertical: false,
                       verticalSwiping: false,
