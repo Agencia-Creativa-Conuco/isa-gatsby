@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
 import colors from "../../../components/styles/colors";
 import { container, mq } from "../../../components/layout/new/";
 
@@ -132,6 +131,7 @@ const StyledSection = styled.section`
     border-radius: 50%;
     transform: translate(50%, 50%);
     opacity: 0.8;
+    z-index: 3;
   }
 `;
 
