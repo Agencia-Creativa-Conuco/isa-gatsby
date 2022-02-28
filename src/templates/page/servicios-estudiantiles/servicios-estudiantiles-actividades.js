@@ -170,11 +170,6 @@ const Section = styled.section`
 
 `;
 
-const Container = styled.div`
-  ${container}
-  padding: 0;
-`;
-
 const SectionTitle = styled.h2`
   text-align: center;
   margin-bottom: 4rem;

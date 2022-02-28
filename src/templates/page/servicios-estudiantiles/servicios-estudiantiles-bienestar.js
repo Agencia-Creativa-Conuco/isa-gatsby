@@ -58,7 +58,7 @@ const DivTitle = styled.div`
   &::before {
     content: "";
     position: absolute;
-    padding: 1.2%;
+    padding: 1.3%;
     top: 0;
     right: 0;
     background: ${colors.blue.dark};
