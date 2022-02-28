@@ -1,124 +1,136 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { Section, Container, Row, Col } from '../../../components/layout/index'
-import Link from '../../../components/link'
-import Layout from '../../../components/layout'
-import useFacultades from '../../../hooks/useFacultades'
-import useLineasInvestigacion from '../../../hooks/useLineasInvestigacion'
-import useDepartamentos from '../../../hooks/useDepartamentos'
-import colors from '../../../components/styles/colors'
+import React from "react";
+import styled from "@emotion/styled";
+import Link from "../../../components/link";
+import Layout from "../../../components/layout";
+import useFacultades from "../../../hooks/useFacultades";
+import useLineasInvestigacion from "../../../hooks/useLineasInvestigacion";
+import useDepartamentos from "../../../hooks/useDepartamentos";
+import colors from "../../../components/styles/colors";
+import { container, mq } from "../../../components/layout/new";
 
 const ProjectLines = (props) => {
-  const lineasDeInvestigacion = useLineasInvestigacion()
+  const lineasDeInvestigacion = useLineasInvestigacion();
 
   const departamentos = useDepartamentos().filter((departamento) =>
     lineasDeInvestigacion
       .map((line) => line.departamento.id)
-      .includes(departamento.id),
-  )
+      .includes(departamento.id)
+  );
 
   const facultades = useFacultades().filter((facultad) =>
     departamentos
       .map((departamento) => departamento.facultad.id)
-      .includes(facultad.id),
-  )
+      .includes(facultad.id)
+  );
 
   const metaData = {
-    title: 'Líneas de investigación',
-    description: 'Líneas de investigación',
-  }
+    title: "Líneas de investigación",
+    description: "Líneas de investigación",
+  };
 
   return (
     <Layout {...props} {...metaData}>
-      <Section as="article" spaceNone>
-        <Cover bgColor={colors.primary.base} spaceNone>
-          <Section as="div" spaceBottomNone>
-            <Container>
-              <Row>
-                <Col>
-                  <Title color={colors.shadow.base}>
-                    Líneas de investigación
-                  </Title>
-                </Col>
-              </Row>
-            </Container>
-          </Section>
+      <Section>
+        <Cover spaceNone>
+          <Container>
+            <Title>Líneas de investigación</Title>
+          </Container>
         </Cover>
         <List thin>
           <Container>
-            <Row>
-              {facultades.map((facultad) => {
-                return (
-                  <Col key={facultad.id} size={12}>
-                    <Section as="div" spaceTopNone>
-                      <Faculty>{facultad.nombre}</Faculty>
-                      <Row>
-                        {departamentos
-                          .filter(
-                            (departamento) =>
-                              departamento.facultad.id === facultad.id,
-                          )
-                          .map((departamento) => {
-                            return (
-                              <Col key={departamento.id} size={12}>
-                                <Departament>{departamento.nombre}</Departament>
-                                <Row>
-                                  {lineasDeInvestigacion
-                                    .filter(
-                                      (line) =>
-                                        line.departamento.id ===
-                                        departamento.id,
-                                    )
-                                    .map((line) => {
-                                      return (
-                                        <Col key={line.id} size={12} sizeMD={6}>
-                                          <SLink to={line.uri}>
-                                            <Line>{line.nombre}</Line>
-                                          </SLink>
-                                        </Col>
-                                      )
-                                    })}
-                                </Row>
-                              </Col>
-                            )
-                          })}
-                      </Row>
-                    </Section>
-                  </Col>
-                )
-              })}
-            </Row>
+            {facultades.map((facultad) => {
+              return (
+                <Section as="div" spaceTopNone>
+                  <Faculty key={facultad.id}>{facultad.nombre}</Faculty>
+                  {departamentos
+                    .filter(
+                      (departamento) => departamento.facultad.id === facultad.id
+                    )
+                    .map((departamento) => {
+                      return (
+                        <div>
+                          <Departament>{departamento.nombre}</Departament>
+                          <ContainerLine>
+                            {lineasDeInvestigacion
+                              .filter(
+                                (line) =>
+                                  line.departamento.id === departamento.id
+                              )
+                              .map((line) => {
+                                return (
+                                  <SLink to={line.uri} key={line.id}>
+                                    <Line>{line.nombre}</Line>
+                                  </SLink>
+                                );
+                              })}
+                          </ContainerLine>
+                        </div>
+                      );
+                    })}
+                </Section>
+              );
+            })}
           </Container>
         </List>
       </Section>
     </Layout>
-  )
-}
+  );
+};
 
-export default ProjectLines
+export default ProjectLines;
 
-const Cover = styled(Section)`
+const Section = styled.article`
+  margin-bottom: 5.5rem;
+  ${mq.md} {
+    margin-bottom: 9.5rem;
+  }
+`;
+
+const Cover = styled.section`
   overflow: hidden;
-`
+  background: ${colors.primary.base};
 
-const List = styled(Section)``
+  padding-top: 5.6rem;
+  margin-bottom: 5.6rem;
+  ${mq.md} {
+    padding-top: 9.6rem;
+    margin-bottom: 9.5rem;
+  }
+`;
+
+const Container = styled.div`
+  ${container}
+`;
+const ContainerLine = styled.div`
+  display: grid;
+  grid-template-columns: 100%;
+  grid-column-gap: 2.8rem;
+
+  ${mq.md} {
+    grid-template-columns: 48% 48%;
+  }
+`;
+
+const List = styled(Section)``;
 
 const Title = styled.h1`
   text-align: center;
   color: white;
   margin-bottom: 4rem;
   margin-top: 4rem;
-  text-shadow: ${(props) => props.color};
-`
+  text-shadow: ${colors.shadow.base};
+`;
 
 const Faculty = styled.h2`
   text-align: center;
   font-weight: 300;
-`
+  padding: 0 0 1rem;
+
+`;
 
 const Departament = styled.h3`
   text-transform: uppercase;
-`
+`;
 
 const Line = styled.h4`
   font-weight: normal;
@@ -129,9 +141,9 @@ const Line = styled.h4`
   &:hover {
     background-color: #f5f5f5;
   }
-`
+`;
 
 const SLink = styled(Link)`
   text-decoration: none;
   color: inherit;
-`
+`;
