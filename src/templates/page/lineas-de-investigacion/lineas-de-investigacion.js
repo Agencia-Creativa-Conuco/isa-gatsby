@@ -125,7 +125,6 @@ const Faculty = styled.h2`
   text-align: center;
   font-weight: 300;
   padding: 0 0 1rem;
-
 `;
 
 const Departament = styled.h3`
