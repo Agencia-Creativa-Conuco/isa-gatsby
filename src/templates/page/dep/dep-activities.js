@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import colors from "../../../components/styles/colors";
-import { container, mq } from "../../../components/layout/new";
+import { container } from "../../../components/layout/new";
 
 const DEPActivities = () => {
   const title = "Actividades Que Realiza",
@@ -11,7 +11,7 @@ const DEPActivities = () => {
         `;
 
   return (
-    <Section spaceNone  id="section_1">
+    <Section spaceNone id="section_1">
       <Container>
         <DivTitle>
           <SectionTitle>{title}</SectionTitle>
@@ -36,7 +36,6 @@ const Container = styled.div`
   padding-bottom: 6em;
   display: grid;
   grid-template-columns: 100%;
-
 `;
 
 const DivTitle = styled.div`

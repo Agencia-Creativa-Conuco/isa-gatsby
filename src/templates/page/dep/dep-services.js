@@ -1,8 +1,8 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { Container, Section, Row, Col } from '../../../components/layout/index'
-import BackgroundImage from 'gatsby-background-image'
-import { useStaticQuery, graphql } from 'gatsby'
+import React from "react";
+import styled from "@emotion/styled";
+import BackgroundImage from "gatsby-background-image";
+import { useStaticQuery, graphql } from "gatsby";
+import { container, mq } from "../../../components/layout/new";
 
 const DEPServices = () => {
   //Obtiene las imágenes localmente desde la ruta "images/home"
@@ -24,7 +24,7 @@ const DEPServices = () => {
         }
       }
     }
-  `)
+  `);
 
   // Convierte arreglo de imágenes en objeto cuya llave es el nómbre del archivo
   // Esto para facilitar la búsqueda de la imagenes en los componentes hijos.
@@ -32,12 +32,12 @@ const DEPServices = () => {
     return {
       ...obj,
       [item.name]: item,
-    }
-  }, {})
+    };
+  }, {});
 
-  const title = 'Servicios Profesionales ISA',
+  const title = "Servicios Profesionales ISA",
     copy =
-      'ISA ofrece una amplia cartera de servicios de asistencias técnicas, asesorías especializadas y consultorías dirigidas a los sectores empresariales y agroproductivos, con miras a fortalecer la vinculación entre ambos. A continuación, se presentan los principales servicios que ofrece la institución agrupados por segmentos:'
+      "ISA ofrece una amplia cartera de servicios de asistencias técnicas, asesorías especializadas y consultorías dirigidas a los sectores empresariales y agroproductivos, con miras a fortalecer la vinculación entre ambos. A continuación, se presentan los principales servicios que ofrece la institución agrupados por segmentos:";
 
   return (
     <BImage
@@ -45,29 +45,25 @@ const DEPServices = () => {
       fluid={images.servicios_profesionales?.childImageSharp?.fluid}
       id="section_3"
     >
-      <BGSection as="div" spaceNone>
+      <Section as="div">
         <Container>
-          <Row>
-            <Col size={12} sizeMD={8} sizeLG={6} mlAuto>
-              <Content>
-                <Title>{title} </Title>
-                <Copy>{copy} </Copy>
-              </Content>
-            </Col>
-          </Row>
+          <Content>
+            <Title>{title} </Title>
+            <Copy>{copy} </Copy>
+          </Content>
         </Container>
-      </BGSection>
+      </Section>
     </BImage>
-  )
-}
+  );
+};
 
-export default DEPServices
+export default DEPServices;
 
 const BImage = styled(BackgroundImage)`
   overflow: hidden;
-`
+`;
 
-const BGSection = styled(Section)`
+const Section = styled.section`
   background: rgba(0, 0, 0, 0.55);
   background-size: cover;
   background-repeat: no-repeat;
@@ -75,22 +71,36 @@ const BGSection = styled(Section)`
   min-height: 45rem;
   padding-top: 5rem;
   padding-bottom: 10rem;
-`
+`;
+
+const Container = styled.div`
+  ${container}
+  padding: 0;
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content: end;
+  ${mq.md} {
+    grid-template-columns: 70%;
+  }
+  ${mq.lg} {
+    grid-template-columns: 50%;
+  }
+`;
 
 const Content = styled.div`
-  padding: 3rem 0;
+  padding: 3rem 1.5rem;
   text-align: right;
   position: relative;
 
   * {
     color: white;
   }
-`
+`;
 
 const Title = styled.h2`
   margin-bottom: 4rem;
-`
+`;
 
 const Copy = styled.p`
   margin-bottom: 4rem;
-`
+`;
