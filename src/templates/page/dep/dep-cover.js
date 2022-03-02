@@ -73,7 +73,7 @@ const Section = styled.section`
   grid-template-columns: 100%;
 
   ${mq.lg} {
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 55% 45%;
   }
 `;
 
@@ -81,7 +81,6 @@ const DivTitle = styled.div`
   max-width: 60rem;
 
   ${mq.lg} {
-    max-width: 57rem;
     margin: 0 auto;
   }
 `;
@@ -102,6 +101,10 @@ const Content = styled.div`
   max-width: 50rem;
   position: relative;
   align-self: center;
+
+  ${mq.lg} {
+    padding: 0 auto;
+  }
 `;
 const DecoLogo = styled.div`
   position: relative;
