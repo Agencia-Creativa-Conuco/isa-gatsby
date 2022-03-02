@@ -9,9 +9,8 @@ const BibliotecaServicios = () =>{
 
     const images = useFiles();
 
-    const 
-        title = "Servicios",
-        content = `
+    const title = "Servicios",
+      content = `
             <ul>
                 <li>Préstamo de materiales: libros, revistas, enciclopedias, diccionarios, atlas, entre otros.</li>
                 <li>Sala de lectura con capacidad para 60 usuarios simultáneamente y ambiente propicio para el estudio.</li>
@@ -25,7 +24,7 @@ const BibliotecaServicios = () =>{
                 <li>Servicio de Internet Wifi</li>
             </ul>
         `,
-        image = images.biblioteca.servicios;
+      image = images.biblioteca.servicios;
 
     return (
       <Section id="section_1" fluid>
@@ -51,22 +50,27 @@ const Section = styled.section`
   padding: 0;
   display: grid;
   grid-template-columns: 100%;
+
+
+  margin-bottom: 5.5rem;
+    margin-top: 5.5rem;
   ${mq.md} {
     grid-template-columns: 50% 50%;
+    margin-bottom: 9.6rem;
+  margin-top: 9.6rem;
+
   }
 
-&::before{
+  &::before {
     content: "";
     position: absolute;
     background: ${colors.gray.light};
     width: 100%;
     height: 100%;
-    ${mq.md}{
-        width: 97%;
+    ${mq.md} {
+      width: 97%;
     }
-
-}
-
+  }
 `;
 
 

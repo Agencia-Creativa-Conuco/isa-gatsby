@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Container, Section, Row, Col } from "../../../components/layout/index";
 import colors from "../../../components/styles/colors";
+import { container, mq } from "../../../components/layout/new";
+
 
 const BibliotecaRecursos = () => {
   const title = "Recursos",
@@ -59,38 +60,55 @@ const BibliotecaRecursos = () => {
 
   return (
     <Section id="section_2">
-      <Container>
-        <Row>
-          <Col size={12} mlAuto>
-            <Title>{title}</Title>
-          </Col>
+      <Title>{title}</Title>
+      <ColStyles color={colors.blue.base}>
+        <Copy dangerouslySetInnerHTML={{ __html: copy }} />
+      </ColStyles>
 
-          <ColStyles size={12} color={colors.blue.base}>
-            <Copy dangerouslySetInnerHTML={{ __html: copy }} />
-          </ColStyles>
-
-          <ColStyles size={12} color={colors.blue.dark}>
-            <SectionTitle>{titlecontent}</SectionTitle>
-            <Row>
-              {content.map((item, index) => {
-                const { cloneContent } = item;
-                return (
-                  <Col size={12} sizeMD={6} key={index}>
-                    <p dangerouslySetInnerHTML={{ __html: cloneContent }} />
-                  </Col>
-                );
-              })}
-            </Row>
-          </ColStyles>
-        </Row>
-      </Container>
+      <ColStyles color={colors.blue.dark}>
+        <SectionTitle>{titlecontent}</SectionTitle>
+        <Container>
+          {content.map((item, index) => {
+            const { cloneContent } = item;
+            return (
+              <p
+                key={index}
+                dangerouslySetInnerHTML={{ __html: cloneContent }}
+              />
+            );
+          })}
+        </Container>
+      </ColStyles>
     </Section>
   );
 };
 
 export default BibliotecaRecursos;
 
-const ColStyles = styled(Col)`
+
+const Section = styled.section`
+  ${container}
+  padding: 0;
+  margin-bottom: 5.5rem;
+    margin-top: 5.5rem;
+  ${mq.md}{
+    margin-bottom: 9.6rem;
+  margin-top: 9.6rem;
+  }
+`;
+
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: 100%;
+  grid-column-gap:1.5rem;
+  ${mq.md} {
+    grid-template-columns: 50% 50%;
+  }
+
+
+`; 
+
+const ColStyles = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
