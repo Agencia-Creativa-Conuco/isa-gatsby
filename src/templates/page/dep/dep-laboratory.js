@@ -54,9 +54,9 @@ export default DEPLaboratory;
 
 const Section = styled.section`
   margin-bottom: 5.5rem;
-${mq.md}{
-  margin-bottom: 9.6rem;
-}
+  ${mq.md} {
+    margin-bottom: 9.6rem;
+  }
 `;
 
 const Container = styled.div`
