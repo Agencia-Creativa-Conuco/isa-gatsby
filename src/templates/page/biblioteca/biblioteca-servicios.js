@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from "@emotion/styled";
-import { Container, Section, Row, Col, mq} from "../../../components/layout/index";
 import FeaturedMedia from "../../../components/featured-media"
 import colors from "../../../components/styles/colors";
 import useFiles from '../../../hooks/useFiles';
+import { container, mq } from "../../../components/layout/new";
 
 const BibliotecaServicios = () =>{
 
@@ -27,35 +27,17 @@ const BibliotecaServicios = () =>{
         `,
         image = images.biblioteca.servicios;
 
-    return(
-        <StylesSection color={colors.gray.light} id="section_1">
-            <Container fluid >
-                <Row>
-                <Col size={12} sizeMD={6} noGutters>
-
-                <Media 
-                        decoBg={colors.blue.base}
-                        decoBgB={colors.blue.dark}>
-                        <DecoMedia 
-                        decoBg={colors.blue.base}
-                        decoBgB={colors.blue.dark}/> 
-                        <FeaturedMedia
-                            media={ image }
-                            size="60.25%"
-                            heightMD="100%"
-                            />   
-                        </Media>
-                    </Col>
-                <Col size={12} sizeMD={6} noGutters>
-                        <DivTitle decoBg = {colors.blue.dark}>
-                            <SectionTitle > { title } </SectionTitle>
-                            <div dangerouslySetInnerHTML={{__html: content}} />
-                        </DivTitle>
-                    </Col>
-     
-                </Row>
-            </Container>
-        </StylesSection>
+    return (
+      <Section id="section_1" fluid>
+        <Media>
+          <DecoMedia />
+          <FeaturedMedia media={image} size="60.25%" heightLG="100%" />
+        </Media>
+        <DivTitle>
+          <SectionTitle> {title} </SectionTitle>
+          <div dangerouslySetInnerHTML={{ __html: content }} />
+        </DivTitle>
+      </Section>
     );
 
 }
@@ -63,32 +45,41 @@ const BibliotecaServicios = () =>{
 export default BibliotecaServicios;
 
 
-
-const StylesSection = styled(Section)`
+const Section = styled.section`
+  ${container}
+  overflow: hidden;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 100%;
+  ${mq.md} {
+    grid-template-columns: 50% 50%;
+  }
 
 &::before{
     content: "";
     position: absolute;
-    background: ${props => props.color};
+    background: ${colors.gray.light};
     width: 100%;
     height: 100%;
     ${mq.md}{
         width: 97%;
     }
 
-
 }
-`
+
+`;
+
 
 const DivTitle = styled.div`
         margin: 6rem; 
         position: relative;
 
         ${mq.md}{
-            margin: 2rem 6rem 0rem 6rem;
+            margin: 2rem 6rem 0rem 4rem;
         }
-        ${mq.lg}{
-            margin: 4rem 8rem 6rem 15rem;
+
+        ${mq.xl}{
+            margin: 4rem 8rem 6rem 12rem;
         }
 `;
 
@@ -103,7 +94,7 @@ position: relative;
     position: absolute;
     padding:3%;
     padding-bottom:53.2%;
-    background: ${props => props.decoBgB};
+    background: ${colors.blue.dark};
     z-index: 1;
     left: 0;
     top: 0;
@@ -117,33 +108,33 @@ position: relative;
         left: 0;
         padding:3%;
         padding-bottom:15%;
-        background-color:${props => props.decoBg};
+        background-color:${colors.blue.base};
         z-index: 2;
     }
 
 `;
 const DecoMedia = styled.div`
-&::before{
-    content: "";
-    position: absolute;
-    padding:3%;
-    padding-bottom:25%;
-    background: ${props => props.decoBg};
-    z-index: 1;
-    left: 100%;
-    bottom: 0;
-    box-shadow: 0 2.5rem 2.5rem rgba(0,0,0,0.15);
-
-}
-    &::after{
-        content: "";
-        position: absolute;
-        bottom:0 ;
-        left: 100%;
-        padding:3%;
-        padding-bottom:10%;
-        background-color:${props => props.decoBgB};
-        z-index: 2;
+  ${mq.lg} {
+    &::before {
+      content: "";
+      position: absolute;
+      padding: 3%;
+      padding-bottom: 25%;
+      background: ${colors.blue.base};
+      z-index: 1;
+      left: 100%;
+      bottom: 0;
+      box-shadow: 0 2.5rem 2.5rem rgba(0, 0, 0, 0.15);
     }
-
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 100%;
+      padding: 3%;
+      padding-bottom: 10%;
+      background-color: ${colors.blue.dark};
+      z-index: 2;
+    }
+  }
 `;
