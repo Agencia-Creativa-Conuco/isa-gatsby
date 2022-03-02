@@ -1,21 +1,20 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { css } from '@emotion/react'
-import Carousel from 'react-slick'
-import { Section, Container, Row, Col, mq } from '../components/layout/index'
-import Layout from '../components/layout'
-import FeaturedMedia from '../components/featured-media'
-import useFiles from '../hooks/useFiles'
-import colors from '../components/styles/colors'
-import { LeftArrowIcon, RightArrowIcon } from '../components/icons'
-import { useStaticQuery, graphql } from 'gatsby'
+import React from "react";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import Carousel from "react-slick";
+import Layout from "../components/layout";
+import FeaturedMedia from "../components/featured-media";
+import useFiles from "../hooks/useFiles";
+import colors from "../components/styles/colors";
+import { LeftArrowIcon, RightArrowIcon } from "../components/icons";
+import { useStaticQuery, graphql } from "gatsby";
+import { container, mq } from "../components/layout/new";
 
 const Arrows = (props) => {
   const Arrow = styled.div`
-    ${({ bgColor = 'white', color = colors.primary.dark }) => css`
       border-radius: 50%;
-      background-color: ${bgColor};
-      color: ${color};
+      background-color: white;
+      color: ${colors.primary.dark};
       margin: 0 3rem;
       z-index: 2;
       position: absolute;
@@ -30,21 +29,20 @@ const Arrows = (props) => {
         box-shadow: 0px 0px 1px #b7b8b9;
       }
       &:focus {
-        background-color: ${bgColor};
-        color: ${color};
+        background-color: white;
+        color: white;
       }
       &:hover {
-        background-color: ${bgColor};
-        color: ${color};
+        background-color: white;
+        color: white;
       }
       &:before {
         content: initial;
       }
-    `}
-  `
+  `;
 
-  return <Arrow {...props} />
-}
+  return <Arrow {...props} />;
+};
 
 const LIAAI = (props) => {
   const { allFile } = useStaticQuery(graphql`
@@ -61,70 +59,59 @@ const LIAAI = (props) => {
         }
       }
     }
-  `)
+  `);
 
-  const images = useFiles()['liaai']
+  const images = useFiles()["liaai"];
 
   const metaData = {
-    title: 'LIAAI',
+    title: "LIAAI",
     description:
-      'El Laboratorio de Inocuidad de Alimentos y Análisis Industrial (LIAAI), es una dependencia de carácter científico y tecnológico, con autonomía administrativa, adscrito a la Universidad ISA.  El LIAAI nace con la intención de responder a la necesidad del sector agrícola e industrial de tener a la  disposición un laboratorio, con personal altamente capacitado, tecnología especializada, capaz de ofrecer servicios de análisis destinados a confirmar la calidad de los productos según los requerimientos nacionales e internacionales.',
-  }
+      "El Laboratorio de Inocuidad de Alimentos y Análisis Industrial (LIAAI), es una dependencia de carácter científico y tecnológico, con autonomía administrativa, adscrito a la Universidad ISA.  El LIAAI nace con la intención de responder a la necesidad del sector agrícola e industrial de tener a la  disposición un laboratorio, con personal altamente capacitado, tecnología especializada, capaz de ofrecer servicios de análisis destinados a confirmar la calidad de los productos según los requerimientos nacionales e internacionales.",
+  };
 
   const imagesSlider = allFile.nodes.reduce((obj, item) => {
     return {
       ...obj,
       [item.name]: item,
-    }
-  }, {})
+    };
+  }, {});
 
   return (
     <Layout {...props} {...metaData}>
-      <Section medium spaceBottomNone zIndex={3}>
+      <Section>
         <Container>
           <Overlay>
-            <Row>
-              <Col>
-                <Logo>
-                  <FeaturedMedia media={images.logo} />
-                </Logo>
-                <Title>
-                  Laboratorio de Análisis Industrial e Inocuidad de los
-                  Alimentos
-                </Title>
-                <p>
-                  El Laboratorio de Inocuidad de Alimentos y Análisis Industrial
-                  (LIAAI), es una dependencia de carácter científico y
-                  tecnológico, con autonomía administrativa, adscrito a la
-                  Universidad ISA. El LIAAI nace con la intención de responder a
-                  la necesidad del sector agrícola e industrial de tener a la
-                  disposición un laboratorio, con personal altamente capacitado,
-                  tecnología especializada, capaz de ofrecer servicios de
-                  análisis destinados a determinar la calidad de los productos
-                  según los requerimientos nacionales e internacionales.
-                </p>
-              </Col>
-            </Row>
+            <Logo>
+              <FeaturedMedia media={images.logo} />
+            </Logo>
+            <Title>
+              Laboratorio de Análisis Industrial e Inocuidad de los Alimentos
+            </Title>
+            <p>
+              El Laboratorio de Inocuidad de Alimentos y Análisis Industrial
+              (LIAAI), es una dependencia de carácter científico y tecnológico,
+              con autonomía administrativa, adscrito a la Universidad ISA. El
+              LIAAI nace con la intención de responder a la necesidad del sector
+              agrícola e industrial de tener a la disposición un laboratorio,
+              con personal altamente capacitado, tecnología especializada, capaz
+              de ofrecer servicios de análisis destinados a determinar la
+              calidad de los productos según los requerimientos nacionales e
+              internacionales.
+            </p>
           </Overlay>
         </Container>
       </Section>
-      <SPoliticas spaceBottomNone>
+
+      <SPoliticas>
         <SSection
           as="div"
-          bgColor={colors.primary.dark}
-          color="white"
-          spaceTopNone
           css={css`
             padding-top: 5%;
           `}
         >
-          <Section as="div" spaceBottomNone>
-            <Container>
-              <Row>
-                <Col>
-                  <SubTitle color="white">Políticas de Gestión LIAAI</SubTitle>
-                </Col>
-              </Row>
+          <Container>
+            <Section>
+              <SubTitle>Políticas de Gestión LIAAI</SubTitle>
               <ListPolíticas>
                 <li>
                   El Laboratorio de Inocuidad de Alimentos y Análisis Industrial
@@ -151,54 +138,49 @@ const LIAAI = (props) => {
                   según la Norma ISO/IEC/17025.
                 </li>
               </ListPolíticas>
-            </Container>
-          </Section>
+            </Section>
+          </Container>
         </SSection>
       </SPoliticas>
-      <SectionSlider spaceTopNone>
+
+      <SectionSlider>
         <Container>
-          <Row>
-            <Col noGutters size={12}>
-              <Carousel
-                prevArrow={
-                  <Arrows>
-                    <LeftArrowIcon />
-                  </Arrows>
-                }
-                nextArrow={
-                  <Arrows>
-                    <RightArrowIcon />
-                  </Arrows>
-                }
-                autoplay={false}
-                pauseOnHover
-              >
-                {Object.values(imagesSlider)
-                  .filter((image) => image.name.includes('liaai'))
-                  .map((image, index) => {
-                    return (
-                      <FeaturedMedia
-                        key={index}
-                        media={image}
-                        size="56.25%"
-                        bgColor
-                      />
-                    )
-                  })}
-              </Carousel>
-            </Col>
-          </Row>
+          <Carousel
+            prevArrow={
+              <Arrows>
+                <LeftArrowIcon />
+              </Arrows>
+            }
+            nextArrow={
+              <Arrows>
+                <RightArrowIcon />
+              </Arrows>
+            }
+            autoplay={false}
+            pauseOnHover
+          >
+            {Object.values(imagesSlider)
+              .filter((image) => image.name.includes("liaai"))
+              .map((image, index) => {
+                return (
+                  <FeaturedMedia
+                    key={index}
+                    media={image}
+                    size="56.25%"
+                    bgColor
+                  />
+                );
+              })}
+          </Carousel>
         </Container>
       </SectionSlider>
-      <SSection>
+
+      <SectionServicios>
         <Container>
-          <Row>
-            <Col>
-              <SubTitle>Servicios que ofrece</SubTitle>
-            </Col>
-          </Row>
-          <Row>
-            <Col size={12} sizeMD={6}>
+          <SubTitle>Servicios que ofrece</SubTitle>
+
+          <CotainerServices>
+            <div>
               <h3>Análisis Microbiológicos</h3>
               <ul>
                 <li>Aerobio Mesófilos</li>
@@ -222,8 +204,8 @@ const LIAAI = (props) => {
                 <li>NMP Coliformes Totales</li>
                 <li>NMP Pseudomonas</li>
               </ul>
-            </Col>
-            <Col size={12} sizeMD={6}>
+            </div>
+            <div>
               <h3>Análisis Físicos, Químicos y Fisico-Químicos</h3>
               <ul>
                 <li>Pesticidas en frutas y vegetales.</li>
@@ -274,15 +256,29 @@ const LIAAI = (props) => {
                   Pectina soluble en agua y pectina total Ácidos Grasos Libres
                 </li>
               </ul>
-            </Col>
-          </Row>
+            </div>
+          </CotainerServices>
         </Container>
-      </SSection>
+      </SectionServicios>
     </Layout>
-  )
-}
+  );
+};
 
-export default LIAAI
+export default LIAAI;
+
+const Section = styled.section`
+  position: relative;
+  z-index: 3;
+  margin-top: 6.4rem;
+
+  ${mq.md} {
+    margin-top: 12.8rem;
+  }
+`;
+
+const Container = styled.div`
+  ${container};
+`;
 
 const Overlay = styled.div`
   padding: 5%;
@@ -291,8 +287,9 @@ const Overlay = styled.div`
   margin-bottom: -10%;
   border-radius: 2rem;
   &:before {
-    content: '';
+    content: "";
     position: absolute;
+    border-radius: 2rem;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -300,38 +297,14 @@ const Overlay = styled.div`
     box-shadow: 0 0 3.5rem rgba(0, 0, 0, 0.3);
     z-index: -1;
   }
-`
-const SectionSlider = styled(Section)`
-  position: relative;
-  &:before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: 0;
-    background: ${colors.primary.dark};
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-  }
-
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: 50%;
-    right: 0;
-    width: 10%;
-    padding-bottom: 10%;
-    height: 0;
-    background-color: ${colors.primary.base};
-    transform: translate(50%, 50%);
-    z-index: -1;
-  }
-`
-
+`;
 const SPoliticas = styled.section`
   position: relative;
+  margin-top: 0;
+  z-index: 2;
+
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -354,7 +327,39 @@ const SPoliticas = styled.section`
     transform: translate(50%, 50%);
     z-index: 1;
   } */
-`
+`;
+
+const SectionSlider = styled.section`
+  position: relative;
+  margin-top: 0;
+  margin-bottom: 5.5rem;
+  ${mq.md} {
+    margin-bottom: 9.6rem;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: 0;
+    background: ${colors.primary.dark};
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 50%;
+    right: 0;
+    width: 10%;
+    padding-bottom: 10%;
+    height: 0;
+    background-color: ${colors.primary.base};
+    transform: translate(50%, 50%);
+    z-index: -1;
+  }
+`;
 
 const Logo = styled.div`
   max-width: 25rem;
@@ -363,28 +368,41 @@ const Logo = styled.div`
   ${mq.md} {
     max-width: 35rem;
   }
-`
+`;
 
 const Title = styled.h1`
+
   text-align: center;
   margin-bottom: 4rem;
-`
+`;
 
-const SSection = styled(Section)`
-  ${({ bgColor = 'initial', color }) => css`
-    background-color: ${bgColor};
-    color: ${color};
-    overflow: hidden;
-  `}
-`
+const SSection = styled.div`
+  margin-bottom: 5.5rem;
+  ${mq.md} {
+    margin-bottom: 9.6rem;
+  }
+  background-color: ${colors.primary.dark};
+  color: white;
+  overflow: hidden;
+`;
+
+const SectionServicios = styled.div`
+  margin-bottom: 5.5rem;
+
+  h2{
+    color: ${colors.primary.dark}
+  }
+  ${mq.md} {
+    margin-bottom: 9.6rem;
+  }
+  overflow: hidden;
+`;
 
 const SubTitle = styled.h2`
-  ${({ color }) => css`
-    color: ${color};
-    margin-top: 0;
-    margin-bottom: 3rem;
-  `}
-`
+color: white;
+  margin-top: 0;
+  margin-bottom: 3rem;
+`;
 
 const ListPolíticas = styled.ul`
   display: grid;
@@ -397,4 +415,11 @@ const ListPolíticas = styled.ul`
   ${mq.lg} {
     grid-template-columns: 1fr 1fr;
   }
-`
+`;
+const CotainerServices = styled.div`
+  display: grid;
+  grid-template-columns: 100%;
+  ${mq.md} {
+    grid-template-columns: 50% 50%;
+  }
+`;
