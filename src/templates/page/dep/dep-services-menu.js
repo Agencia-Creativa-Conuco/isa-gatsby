@@ -1,29 +1,22 @@
-import React, { useState } from 'react'
-import styled from '@emotion/styled'
-import { css } from '@emotion/react'
-import {
-  Container,
-  Section,
-  Row,
-  Col,
-  mq,
-} from '../../../components/layout/index'
-// import FeaturedMedia from "../../../components/featured-media";
-import colors from '../../../components/styles/colors'
+import React, { useState } from "react";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import colors from "../../../components/styles/colors";
 import {
   GerencialesYMercadologicos,
   CienciaAnimal,
   Agronomia,
   GestionMedioambiental,
   TecnologiaDeAlimentos,
-} from '../../../components/icons'
+} from "../../../components/icons";
+import { container, mq } from "../../../components/layout/new";
 
 const DEPServicesMenu = () => {
-  const [view, setView] = useState(0)
+  const [view, setView] = useState(0);
 
   const servicesMenu = [
     {
-      title: 'Gerenciales y Mercadológicos',
+      title: "Gerenciales y Mercadológicos",
       Icon: GerencialesYMercadologicos,
       content: `
                 <ul>
@@ -44,7 +37,7 @@ const DEPServicesMenu = () => {
             `,
     },
     {
-      title: 'Gestión Medioambiental y Recursos Naturales',
+      title: "Gestión Medioambiental y Recursos Naturales",
       Icon: GestionMedioambiental,
       content: `
                 <ul>
@@ -58,7 +51,7 @@ const DEPServicesMenu = () => {
             `,
     },
     {
-      title: 'Ciencia Animal',
+      title: "Ciencia Animal",
       Icon: CienciaAnimal,
       content: `
                 <ul>
@@ -73,7 +66,7 @@ const DEPServicesMenu = () => {
             `,
     },
     {
-      title: 'Agronomía',
+      title: "Agronomía",
       Icon: Agronomia,
       content: `
                 <ul>
@@ -88,7 +81,7 @@ const DEPServicesMenu = () => {
             `,
     },
     {
-      title: 'Tecnología de Alimentos',
+      title: "Tecnología de Alimentos",
       Icon: TecnologiaDeAlimentos,
       content: `
                 <ul>
@@ -103,86 +96,73 @@ const DEPServicesMenu = () => {
                 </ul>
             `,
     },
-  ]
+  ];
 
   return (
-    <SSection spaceTopNone>
+    <Section>
       <Container>
-        <Row justifyContent="center">
-          <Col noGutters>
-            <Menu>
-              <Row justifyContent="space-around">
-                {servicesMenu.map((item, index) => {
-                  const { title, Icon } = item
-                  return (
-                    <Col
-                      size="auto"
-                      sizeMD={4}
-                      sizeXL={2}
-                      key={index}
-                      noGutters
-                      guttersMD
-                    >
-                      {/* <Link to={stringify({path:parse(state.router.link).path, hash:"#contenido"})} > */}
+        <Menu>
+          {servicesMenu.map((item, index) => {
+            const { title, Icon } = item;
+            return (
+              <ImtemUl>
+                <Option
+                  decoBG={"#A0E4F9"}
+                  onClick={(e) => setView(view === index ? view : index)}
+                  active={view === index}
+                  color={view === index ? "#A0E4F9" : colors.white}
+                >
+                  <OptionIcon
+                    bgColor={view === index ? "#A0E4F9" : colors.white}
+                  >
+                    <Icon />
+                  </OptionIcon>
+                  <OptionName>{title}</OptionName>
+                </Option>
+              </ImtemUl>
+            );
+          })}
+        </Menu>
+        <Content id="contenido">
+          {servicesMenu.map((item, index) => {
+            const { content, title } = item;
+            const active = index === view;
 
-                      <ImtemUl>
-                        <Option
-                          decoBG={'#A0E4F9'}
-                          onClick={(e) =>
-                            setView(view === index ? view : index)
-                          }
-                          active={view === index}
-                          color={view === index ? '#A0E4F9' : colors.white}
-                        >
-                          <OptionIcon
-                            bgColor={view === index ? '#A0E4F9' : colors.white}
-                          >
-                            <Icon />
-                          </OptionIcon>
-                          <OptionName>{title}</OptionName>
-                        </Option>
-                      </ImtemUl>
-                    </Col>
-                  )
-                })}
-              </Row>
-            </Menu>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Content bg={colors.gray.light} id="contenido">
-              {servicesMenu.map((item, index) => {
-                const { content, title } = item
-                const active = index === view
-
-                return (
-                  <ContentWrapper key={index} active={active}>
-                    <ContentTitle>{title}</ContentTitle>
-                    <Copy
-                      key={index}
-                      noGutters
-                      dangerouslySetInnerHTML={{ __html: content }}
-                    />
-                  </ContentWrapper>
-                )
-              })}
-            </Content>
-          </Col>
-        </Row>
+            return (
+              <ContentWrapper key={index} active={active}>
+                <ContentTitle>{title}</ContentTitle>
+                <Copy
+                  key={index}
+                  noGutters
+                  dangerouslySetInnerHTML={{ __html: content }}
+                />
+              </ContentWrapper>
+            );
+          })}
+        </Content>
       </Container>
-    </SSection>
-  )
-}
+    </Section>
+  );
+};
 
-export default DEPServicesMenu
+export default DEPServicesMenu;
 
-const SSection = styled(Section)`
+const Section = styled.section`
   margin-top: -8rem !important;
-`
+`;
+
+const Container = styled.div`
+  ${container}
+  padding: 0;
+`;
 
 const Menu = styled.div`
   position: relative;
+  justify-content: center;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
   padding-top: 4rem;
   padding-bottom: 6rem;
   padding-left: 2.5rem;
@@ -193,7 +173,7 @@ const Menu = styled.div`
     padding-right: 1.5rem;
   }
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 50%;
@@ -204,10 +184,10 @@ const Menu = styled.div`
     transform: translate(-50%, 0);
     border-radius: 0 0 15rem 15rem;
   }
-`
+`;
 
 const Option = styled.li`
-  ${({ active, color = 'white' }) => css`
+  ${({ active, color = "white" }) => css`
     margin: 0 auto;
     padding: 0;
     list-style: none;
@@ -220,7 +200,7 @@ const Option = styled.li`
     max-width: 20rem;
     margin-bottom: 2rem;
   `}
-`
+`;
 
 const OptionName = styled.p`
   color: inherit;
@@ -229,15 +209,23 @@ const OptionName = styled.p`
   ${mq.md} {
     display: block;
   }
-`
+`;
 const ImtemUl = styled.ul`
   text-decoration: none;
   margin: 0;
   padding: 0;
-`
+  width: 20%;
+
+  ${mq.md} {
+    width: 33.3333%;
+  }
+  ${mq.xl} {
+    width: 20%;
+  }
+`;
 
 const OptionIcon = styled.div`
-  ${({ bgColor = 'white' }) => css`
+  ${({ bgColor = "white" }) => css`
     width: 5rem;
     height: 5rem;
     padding: 1rem;
@@ -254,7 +242,7 @@ const OptionIcon = styled.div`
       height: 5rem;
     }
   `}
-`
+`;
 
 const Content = styled.div`
   position: relative;
@@ -267,18 +255,18 @@ const Content = styled.div`
     padding: 4rem 0;
   }
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 0);
     width: 110%;
     height: 100%;
-    background: ${(props) => props.bg};
+    background: ${colors.gray.light};
     border-radius: 2rem;
     z-index: -1;
   }
-`
+`;
 
 const ContentWrapper = styled.div`
   ${({ active }) => css`
@@ -295,11 +283,11 @@ const ContentWrapper = styled.div`
     overflow: hidden;
     cursor: default;
   `}
-`
+`;
 
 const ContentTitle = styled.h3`
   text-align: center;
   margin-bottom: 3rem;
-`
+`;
 
-const Copy = styled.div``
+const Copy = styled.div``;
