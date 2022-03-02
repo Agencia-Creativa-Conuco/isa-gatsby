@@ -45,7 +45,7 @@ const NosotrosCover = () => {
 
   return (
     <Container fluid spaceNone css={sectionStyles}>
-      <Content decoBg={colors.blue.base}>
+      <Content>
         <SectionTitle> {title} </SectionTitle>
         <Copy>{copy} </Copy>
 
@@ -55,7 +55,7 @@ const NosotrosCover = () => {
           </Cta>
         ) : null}
       </Content>
-      <Media decoBg={colors.blue.base}>
+      <Media>
         <Logo
           media={images.cover}
           alt="Sobre Universidad ISA"
@@ -64,13 +64,8 @@ const NosotrosCover = () => {
           bgColor
           loading="eager"
         />
-        <DivCube
-          decoBg={colors.primary.base}
-          decoBgA={colors.primary.light}
-          decoBgB={colors.primary.base}
-        />
+        <DivCube />
       </Media>
-
     </Container>
   );
 };
@@ -85,12 +80,16 @@ const Container = styled.section`
   padding: 0;
   display: grid;
   grid-template-columns: 100%;
-  grid-template-areas: 'col_2'
-                        'col_1';
 
+                        div:first-of-type{
+      order:2
+    }
   ${mq.md} {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: 'col_1 col_2';
+    grid-template-columns: 50% 50%;
+
+    div:last-of-type{
+      order:2
+    }
   }
 `;
 
@@ -100,7 +99,6 @@ const Content = styled.div`
   max-width: 57rem;
   position: relative;
   align-self: center;
-  grid-area: col_1;
   &::before {
     content: "";
     position: absolute;
@@ -108,7 +106,7 @@ const Content = styled.div`
     padding-bottom: 25%;
     left: 0;
     bottom: 0;
-    background-color: ${(props) => props.decoBg};
+    background-color: ${colors.blue.base};
     opacity: 20%;
     transform: translate(-50%, 50%);
     z-index: -1;
@@ -125,7 +123,6 @@ const Copy = styled.p`
 
 const Media = styled.div`
   position: relative;
-  grid-area: col_2;
   margin-left: 10%;
   ${mq.md}{
     margin: 0;
@@ -135,7 +132,7 @@ const Media = styled.div`
     position: absolute;
     width: 10%;
     padding-bottom: 10%;
-    background: ${(props) => props.decoBg};
+    background: ${colors.blue.base};
     z-index: 10;
     left: 10%;
     top: 10%;
@@ -149,13 +146,12 @@ const Logo = styled(FeaturedMedia)`
 `;
 
 const DivCube = styled.div`
-  ${({ decoBg = "#4B84E9", decoBgA = "#CCEDFA", decoBgB = "#4B84E9" }) => css`
     position: absolute;
     left: 0;
     bottom: 12%;
     width: 40%;
     padding-bottom: 15%;
-    background: ${decoBg};
+    background: ${colors.primary.base};
     opacity: 80%;
     transform: translate(-75%, 0);
     z-index: 2;
@@ -166,7 +162,7 @@ const DivCube = styled.div`
       padding-bottom: 70%;
       top: 0;
       left: 0;
-      background: ${decoBgB};
+      background: ${colors.primary.base};
       opacity: 80%;
       z-index: 3;
     }
@@ -177,10 +173,9 @@ const DivCube = styled.div`
       top: 0;
       width: 65%;
       padding-bottom: 100%;
-      background: ${decoBgA};
+      background: ${colors.primary.light};
       opacity: 70%;
       transform: translate(0, -30%);
       z-index: 1;
     }
-  `}
 `;
