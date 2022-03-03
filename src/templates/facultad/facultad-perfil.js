@@ -115,6 +115,7 @@ const CubeDecano = styled.div`
   margin: 0 auto;
   margin-top: 4rem;
   margin-bottom: 2rem;
+  align-self: center;
   &::before {
     content: "";
     position: absolute;

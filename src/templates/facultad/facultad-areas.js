@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Container, Section, Row, Col } from '../../components/layout/index'
 import Link from '../../components/link'
 import colors from '../../components/styles/colors'
 import useDepartamentos from '../../hooks/useDepartamentos'
+import {container,mq} from '../../components/layout/new/'
+
 
 const FacultadAreas = ({ facultad }) => {
   const { color = colors.primary.base } = facultad
@@ -13,52 +14,49 @@ const FacultadAreas = ({ facultad }) => {
   )
 
   return departamentos.length ? (
-    <SectionStyles spaceTopNone>
+    <Section>
       <Container>
-        <Row>
-          <Col>
-            <Card>
-              <Row>
-                <Col size={12} noGutters>
-                  <SectionTitle color={color}> Áreas Académicas </SectionTitle>
-                </Col>
-                <Col size={10} sizeMD={7} mxAuto>
-                  <List>
-                    {departamentos
-                      .filter((departament) => {
-                        return departament.carreras.length
-                      })
-                      .map((departament, index) => {
-                        const { nombre, uri } = departament
+        <Card>
+          <SectionTitle color={color}> Áreas Académicas </SectionTitle>
+          <List>
+            {departamentos
+              .filter((departament) => {
+                return departament.carreras.length;
+              })
+              .map((departament, index) => {
+                const { nombre, uri } = departament;
 
-                        return (
-                          <Item key={index}>
-                            <SLink
-                              to={uri}
-                              color={color}
-                              color2={colors.text.base}
-                            >
-                              {nombre}
-                            </SLink>
-                          </Item>
-                        )
-                      })}
-                  </List>
-                </Col>
-              </Row>
-            </Card>
-          </Col>
-        </Row>
+                return (
+                  <Item key={index}>
+                    <SLink to={uri} color={color} color2={colors.text.base}>
+                      {nombre}
+                    </SLink>
+                  </Item>
+                );
+              })}
+          </List>
+        </Card>
       </Container>
-    </SectionStyles>
-  ) : null
+    </Section>
+  ) : null;
 }
 
 export default FacultadAreas
 
-const SectionStyles = styled(Section)`
+const Section = styled.section`
   margin-top: -10rem !important;
-`
+  margin-bottom: 5.5rem;
+  ${mq.md}{
+    margin-bottom: 9.6rem;
+  }
+`;
+
+
+const Container = styled.div`
+  ${container}
+  display:grid;
+  grid-template-columns: 100%;
+`;
 
 const Card = styled.div`
   box-shadow: 0 0.7rem 2rem rgba(0, 0, 0, 0.15);
@@ -98,8 +96,15 @@ const SLink = styled(Link)`
 `
 
 const List = styled.ul`
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
+  display:grid;
+  grid-template-columns: 90%;
+  justify-content: center;
+
+  ${mq.md}{
+    grid-template-columns: 60%;
+  }
 `
 
 const Item = styled.li`
