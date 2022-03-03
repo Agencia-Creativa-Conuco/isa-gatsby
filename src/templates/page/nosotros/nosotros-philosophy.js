@@ -73,9 +73,9 @@ const NosotrosPhilosophy = () => {
   const handlerView = (value) => setView(value);
 
   return (
-    <StyledSection fluid spaceBottomNone id="section_3">
+    <StyledSection fluid  id="section_3">
       <Container>
-        <DecoContainer bgColor={colors.gray.light} />
+        <DecoContainer />
         <ColumnOne>
           {tabs.map((item, i) => {
             const { title, content } = item;
@@ -91,7 +91,7 @@ const NosotrosPhilosophy = () => {
               >
                 {(styles) => (
                   <animated.div style={styles}>
-                    <CardInfo key={i} bg={colors.blue.dark} active={isActive}>
+                    <CardInfo key={i}  active={isActive}>
                       <CardTitle>{title}</CardTitle>
                       <div dangerouslySetInnerHTML={{ __html: content }} />
                     </CardInfo>
@@ -113,9 +113,6 @@ const NosotrosPhilosophy = () => {
                   key={i}
                   onClick={() => handlerView(i)}
                   active={isActive}
-                  bg={colors.gray.light}
-                  bgA={colors.secondary.base}
-                  decoBg={colors.blue.dark}
                 >
                   {title}
                 </Item>
@@ -190,6 +187,7 @@ const ColumnOne = styled.div`
   background-color: ${colors.blue.dark};
   grid-area: col_1;
   z-index: 3;
+padding: 0 1.5rem;
 `;
 
 const ColumnTwo = styled.div`
@@ -273,7 +271,7 @@ const Item = styled.li`
       ? `
         font-weight: 600;
         text-decoration: underline;
-        text-decoration-color: ${props.bgA};
+        text-decoration-color: ${colors.secondary.base};
         text-decoration-thickness: 0.3rem;
         transition: padding 900ms  ease-out;
     `

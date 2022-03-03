@@ -34,7 +34,10 @@ const NosotrosCover = () => {
     <Container fluid spaceNone css={sectionStyles}>
       <Content>
         <SectionTitle> {title} </SectionTitle>
-        <Copy>{copy}</Copy>
+        <Copy  dangerouslySetInnerHTML={{ __html: copy }}/>
+        <Infotep>
+          <FeaturedMedia media={images.infotep_logo} loading="eager" />
+        </Infotep>
       </Content>
       <div>
         <Media>
@@ -42,15 +45,14 @@ const NosotrosCover = () => {
             media={images.cover}
             alt="Sobre Universidad ISA"
             size="100%"
+            sizeLG="120%"
             sizeXL="90%"
             bgColor
             loading="eager"
           />
           <DivCube />
         </Media>
-        <Infotep>
-          <FeaturedMedia media={images.infotep_logo} loading="eager" />
-        </Infotep>
+
       </div>
     </Container>
   );
@@ -67,24 +69,25 @@ const Container = styled.section`
   display: grid;
   grid-template-columns: 100%;
 
-                        div:first-of-type{
-      order:2
-    }
-  ${mq.md} {
+  div:first-of-type {
+    order: 2;
+  }
+  ${mq.lg} {
     grid-template-columns: 50% 50%;
 
-    div:last-of-type{
-      order:2
+    div:last-of-type {
+      order: 2;
     }
   }
 `;
 
 const Content = styled.div`
-  margin: 3rem auto;
+  margin: 4rem auto;
   padding: 0 1.5rem;
-  max-width: 57rem;
+  max-width: 60rem;
   position: relative;
   align-self: center;
+  z-index: 5;
   &::before {
     content: "";
     position: absolute;
@@ -112,8 +115,12 @@ const Infotep = styled.div`
 
 const Media = styled.div`
   position: relative;
-  margin-left: 10%;
+  margin-left: 20%;
+
   ${mq.md}{
+    margin-left: 25%;
+  }
+  ${mq.lg}{
     margin: 0;
   }
   &::before {
