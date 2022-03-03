@@ -1,75 +1,73 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Section, Container, Row, Col, mq } from '../../components/layout/index'
 // import FeaturedMedia from '../../components/featured-media'
 import colors from '../../components/styles/colors'
+import {container,mq} from '../../components/layout/new/'
 
 const FacultyCover = ({ facultad }) => {
   // const { nombre, imagenPortada, color, mision, copy } = facultad
   const { nombre, color, mision, copy } = facultad
 
   return (
-    <Section spaceNone>
-      <Container fluid>
-        <Row>
-          <ColStyles
-            order={2}
-            orderLG={1}
-            size={12}
-            // sizeLG={6}
-            color={color || colors.primary.dark}
-          >
-            <Container noGutters>
-              <Row>
-                <Col>
-                  <Wrapper as="div">
-                    <br />
-                    <Title color={colors.white}> {nombre}</Title>
-                    <Content dangerouslySetInnerHTML={{ __html: copy }} />
-                    {mision ? (
-                      <>
-                        <SubTitle>Misión</SubTitle>
-                        <Paragraph>{mision}</Paragraph>
-                      </>
-                    ) : null}
-                    <br />
-                  </Wrapper>
-                </Col>
-              </Row>
-            </Container>
-          </ColStyles>
-
-          {/* <Col size={12} sizeLG={6} order={1} orderLG={2} noGutters>
-            <FeaturedMedia
-              media={imagenPortada}
-              size="56.25%"
-              sizeLG="80%"
-              heightLG="100%"
-              bgColor
-              loading="eager"
-            />
-          </Col> */}
-        </Row>
-      </Container>
+    <Section fluid>
+        <Container fluid>
+      <ColStyles color={color || colors.primary.dark}>
+        <Container>
+          <Wrapper as="div">
+            <br />
+            <Title color={colors.white}> {nombre}</Title>
+            <Content dangerouslySetInnerHTML={{ __html: copy }} />
+            {mision ? (
+              <>
+                <SubTitle>Misión</SubTitle>
+                <Paragraph>{mision}</Paragraph>
+              </>
+            ) : null}
+            <br />
+          </Wrapper>
+          </Container>
+      </ColStyles>
+        </Container>
     </Section>
-  )
+  );
 }
 
 export default FacultyCover
 
-const ColStyles = styled(Col)`
+
+const Section = styled.section`
+
+
+`;
+
+
+
+
+const ColStyles = styled.div`
   background-color: ${(props) => props.color};
 `
 
-const Wrapper = styled(Section)`
-  ${mq.lg} {
-    padding: 4rem 0;
-  }
+const Container = styled.div`
+${container}
+padding: 0;
+
+
+`;
+
+
+
+const Wrapper = styled.div`
+
+padding: 5.5rem 1.5rem;
+${mq.lg}{
+  padding-bottom: 9.6rem;
+  padding-top: 12.6rem;
+}
+
   ${mq.xl} {
     max-width: 70rem;
     margin-left: auto;
     margin-right: auto;
-    padding: rem 0;
   }
 `
 
