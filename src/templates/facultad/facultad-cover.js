@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from '@emotion/styled'
-// import FeaturedMedia from '../../components/featured-media'
 import colors from '../../components/styles/colors'
 import {container,mq} from '../../components/layout/new/'
 
@@ -35,12 +34,7 @@ const FacultyCover = ({ facultad }) => {
 export default FacultyCover
 
 
-const Section = styled.section`
-
-
-`;
-
-
+const Section = styled.section``;
 
 
 const ColStyles = styled.div`
@@ -50,11 +44,7 @@ const ColStyles = styled.div`
 const Container = styled.div`
 ${container}
 padding: 0;
-
-
 `;
-
-
 
 const Wrapper = styled.div`
 
