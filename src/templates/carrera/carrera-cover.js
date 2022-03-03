@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Row, Col } from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
 import { darken, lighten } from "polished";
 import { container, mq } from "../../components/layout/new/";
@@ -118,24 +117,6 @@ const OtherSection = styled.div`
   }
 `;
 
-// const sectionStyles = ({ bgColor = "green", decoBgColor = "green" }) => css`
-//   background-color: ${bgColor};
-//   position: relative;
-//   &:before {
-//     content: "";
-//     background-color: ${decoBgColor};
-//     width: 20%;
-//     padding-bottom: 20%;
-//     position: absolute;
-//     right: 0;
-//     top: 0;
-//     transform: translate(50%, -50%);
-//     border-radius: 50%;
-//     box-shadow: 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.15);
-//     z-index: 1;
-//   }
-// `;
-
 const Media = styled.div`
   ${({ decoBgColor = "green" }) => css`
     position: relative;
@@ -173,7 +154,7 @@ const ColStyles = styled.div`
     margin: initial;
   }
   ${mq.xl} {
-    max-width: 58rem;
+    max-width: 56.4rem;
   }
 `;
 
