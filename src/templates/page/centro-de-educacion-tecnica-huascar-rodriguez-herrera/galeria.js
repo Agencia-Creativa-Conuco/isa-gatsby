@@ -84,7 +84,7 @@ const Galeria = () => {
 
 export default Galeria
 
-const Section = styled.div`
+const Section = styled.section`
 ${container}
 padding: 0;
 display: grid;
