@@ -150,21 +150,21 @@ grid-area: col_2;
 `;
 
 const CardInfo = styled.div`
-display: none;
-margin-top: 4rem;
+  display: none;
+  margin-top: 4rem;
 
-color: white;
-padding-bottom: 4rem;
+  color: white;
+  padding-bottom: 4rem;
 
-${mq.lg} {
-  margin-top: 6rem;
-}
-${(props) =>
-  props.active
-    ? `
+  ${mq.lg} {
+    margin-top: 6rem;
+  }
+  ${(props) =>
+    props.active
+      ? `
       display: block;
   `
-    : ""};
+      : ""};
 `;
 
 const CardTitle = styled.h2`

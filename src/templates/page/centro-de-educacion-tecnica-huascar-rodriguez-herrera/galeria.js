@@ -1,25 +1,19 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
-import {
-  Container,
-  Row,
-  Col,
-  Section,
-  mq,
-} from '../../../components/layout/index'
 import Carousel from 'react-slick'
 import FeaturedMedia from '../../../components/featured-media'
 import useFiles from '../../../hooks/useFiles'
 import colors from '../../../components/styles/colors'
 import { LeftArrowIcon, RightArrowIcon } from '../../../components/icons'
+import { container,mq } from '../../../components/layout/new';
+
 
 const Arrows = (props) => {
   const Arrow = styled.div`
-    ${({ bgColor = 'blue', color = 'white' }) => css`
       border-radius: 50%;
-      background-color: ${bgColor};
-      color: ${color};
+      background-color: white;
+      color: ${colors.primary.dark};
       margin: 0 3rem;
       z-index: 2;
       position: absolute;
@@ -32,17 +26,16 @@ const Arrows = (props) => {
         padding: 1rem;
       }
       &:focus {
-        background-color: ${bgColor};
-        color: ${color};
+        background-color: white;
+        color: ${colors.primary.dark};
       }
       &:hover {
-        background-color: ${bgColor};
-        color: ${color};
+        background-color: white;
+        color: ${colors.primary.dark};
       }
       &:before {
         content: initial;
       }
-    `}
   `
 
   return <Arrow {...props} />
@@ -54,18 +47,15 @@ const Galeria = () => {
   ]
 
   return (
-    <Section spaceNone>
-      <Container fluid>
-        <Row>
-          <Col noGutters size={12}>
+    <Section fluid>
             <Carousel
               prevArrow={
-                <Arrows bgColor={'white'} color={colors.primary.dark}>
+                <Arrows>
                   <LeftArrowIcon />
                 </Arrows>
               }
               nextArrow={
-                <Arrows bgColor={'white'} color={colors.primary.dark}>
+                <Arrows>
                   <RightArrowIcon />
                 </Arrows>
               }
@@ -84,14 +74,19 @@ const Galeria = () => {
                       sizeXL="40%"
                       bgColor
                     />
-                  )
+                  );
                 })}
             </Carousel>
-          </Col>
-        </Row>
-      </Container>
+
     </Section>
   )
 }
 
 export default Galeria
+
+const Section = styled.div`
+${container}
+padding: 0;
+display: grid;
+grid-template-columns: 100%;
+`;
