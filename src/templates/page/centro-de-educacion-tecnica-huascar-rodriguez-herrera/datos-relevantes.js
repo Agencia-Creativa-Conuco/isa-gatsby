@@ -1,38 +1,37 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Container,Row, Col, Section, mq, mqVal} from "../../../components/layout/index";
 import Carousel from "react-slick";
 import {LeftArrowIcon, RightArrowIcon} from "../../../components/icons";
 import colors from "../../../components/styles/colors";
+import { container,mq } from '../../../components/layout/new'
+
 
 const Arrows = (props => {
   
     const Arrow = styled.div`
-      ${({bgColor="blue"})=>css`
-        padding: 1rem;
-        border-radius: 50%;
-        background-color: ${bgColor};
-        color: white;
-        width: 5rem;
-        height: 5rem;
-        margin: 0 3rem;
-        z-index: 2;
-        position: absolute;
-        top: 15rem;
-        &:focus{
-          background-color: ${bgColor};
-          color: white;
-        }
-        &:hover{
-          background-color: ${bgColor};
-          color: white;
-        }
-        &:before{
-          content: initial;
-        }
-      `}
-    `;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: ${colors.primary.base};
+    color: white;
+    width: 5rem;
+    height: 5rem;
+    margin: 0 3rem;
+    z-index: 2;
+    position: absolute;
+    top: 15rem;
+    &:focus {
+      background-color: ${colors.primary.base};
+      color: white;
+    }
+    &:hover {
+      background-color: ${colors.primary.base};
+      color: white;
+    }
+    &:before {
+      content: initial;
+    }
+  `;
   
     return(
       <Arrow {...props}/>
@@ -79,144 +78,142 @@ const DatosRelevantes = () =>{
     ]
 
     return (
-        <BgSection spaceNone bg={colors.gray.light}>
-            <Container fluid>
-                <Row>
-                    <Col>
-                        <SectionTitle>Datos Relevantes</SectionTitle>   
-                    </Col>
-                </Row>
-                <Row>
-                    <Col noGutters>
-                        <Carousel
-                            centerMode
-                            infinite={false}
-                            variableWidth
-                            prevArrow={<Arrows bgColor={colors.primary.base}><LeftArrowIcon/></Arrows>}
-                            nextArrow={<Arrows bgColor={colors.primary.base}><RightArrowIcon/></Arrows>}
-                            responsive={[
-                                {
-                                    breakpoint:mqVal.sm,
-                                    settings:{
-                                        slidesToShow:1,
-                                        centerMode: false,
-                                        variableWidth: false
-                                    }
-                                }
-                            ]}
-                        >
-                        {
-                            history.map((item,index)=>{
+        <Section spaceNone fluid bg={colors.gray.light} id="section_1">
+      <SectionTitle>Datos Relevantes</SectionTitle>
 
-                                const {
-                                    year,
-                                    content,
-                                } = item;
+      <Carousel
+        centerMode
+        infinite={false}
+        variableWidth
+        prevArrow={
+          <Arrows>
+            <LeftArrowIcon />
+          </Arrows>
+        }
+        nextArrow={
+          <Arrows>
+            <RightArrowIcon />
+          </Arrows>
+        }
+        responsive={[
+          {
+            breakpoint: mq.smv,
+            settings: {
+              slidesToShow: 1,
+              centerMode: false,
+              variableWidth: false,
+            },
+          },
+        ]}
+      >
+        {history.map((item, index) => {
+          const {  year, content } = item;
 
-                                return(
-                                    <Item key={index}>
-                                        <CardYear 
-                                            color={colors.blue.dark} 
-                                            bg={colors.secondary.base}
-                                            bgLine={colors.text_main}
-                                        >
-                                            {year}
-                                        </CardYear>
+          return (
+            <Item key={index}>
+              <CardYear>
+                {index === history.length - 1 ? "ACTUALIDAD" : year}
+              </CardYear>
 
-                                        <Card bg={colors.white}>
-                                            <CardDescription dangerouslySetInnerHTML={{__html:content}}/>
-                                        </Card>
-                                    </Item>                        
-                                )
-                            })
-                        }
-                        </Carousel>
-                    </Col>
-                </Row>
-            </Container>
-        </BgSection>
+              <Card>
+                <CardDescription
+                  dangerouslySetInnerHTML={{ __html: content }}
+                />
+              </Card>
+            </Item>
+          );
+        })}
+      </Carousel>
+    </Section>
     );
 
 }
 
 export default DatosRelevantes;
 
+
+const CardDescription = styled.div`
+  text-align: justify;
+  /* display: none; */
+  max-height: 12rem;
+
+`;
+
+const Section = styled.section`
+  ${container}
+  background: ${colors.gray.light};
+  padding:  4rem 0;
+
+  .slick-current {
+    ${CardDescription} {
+  max-height: 100%;
+      
+    }
+  }
+`;
+
 const SectionTitle = styled.h2`
-    text-align: center;
-    margin-bottom: 4rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  
 `;
 
 const Item = styled.div`
-    padding: 5rem 0;
-    position: relative;
-    ${mq.sm}{
-        padding: 5rem;
-    }
-
+  padding: 5rem 0;
+  position: relative;
+  ${mq.sm} {
+    padding: 5rem;
+  }
 `;
 
 const CardYear = styled.span`
-    ${({color="darkblue", bgDecoRounded = "green", bgDecoLine = "gray"})=>css`
-        display: block;
-        text-align: center;
-        font-size: 3rem;
-        font-weight: 900;
-        color: ${color};
-        position: relative;
-        &:before{
-            content: '';
-            width: 1rem;
-            height: 1rem;
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translate(-50%, 1rem);
-            background-color: ${bgDecoRounded};
-            border-radius: 50%;
-            z-index: 1;
-        }
-        &:after{
-            content: '';
-            width: 200%;
-            height: .2rem;
-            position: absolute;
-            bottom: -1rem;
-            left: 50%;
-            transform: translate(-50%, -.5rem);
-            background-color: ${bgDecoLine};
-            border-radius: 50%;
-            z-index: 0;
-        }
-    `}
+  ${({
+    bgDecoRounded = "green",
+    bgDecoLine = "gray",
+  }) => css`
+    display: block;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 900;
+    color: ${colors.blue.dark};
+    position: relative;
+    &:before {
+      content: "";
+      width: 1rem;
+      height: 1rem;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 1rem);
+      background-color: ${bgDecoRounded};
+      border-radius: 50%;
+      z-index: 1;
+    }
+    &:after {
+      content: "";
+      width: 200%;
+      height: 0.2rem;
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translate(-50%, -0.5rem);
+      background-color: ${bgDecoLine};
+      border-radius: 50%;
+      z-index: 0;
+    }
+  `}
 `;
 
 const Card = styled.div`
-    background: ${props => props.bg};
-    width: 100rem;
-    max-width: 29rem;
+  background: ${colors.white};
+  width: 100rem;
+  max-width: 29rem;
     border: 2rem solid transparent;
-    border-radius: 15px;
-    box-shadow: silver 0 10px 30px;
-    margin: 0 auto;
+  border-radius: 15px;
+  box-shadow: silver 0 10px 30px;
+  margin: 0 auto;
     overflow: hidden;
     ${mq.md}{
         max-width: 40rem;
-    }
-`;
-
-const CardDescription = styled.div`
-    text-align: justify;
-    max-height: 12rem;
-`;
-
-const BgSection = styled(Section)`
-    background: ${props => props.bg};
-    padding-top: 4em;
-    padding-bottom: 4em;
-
-    .slick-current{
-        ${CardDescription}{
-            max-height: initial;
-        }
     }
 `;

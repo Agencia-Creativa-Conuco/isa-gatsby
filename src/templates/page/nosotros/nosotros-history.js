@@ -10,29 +10,27 @@ import { container, mq } from "../../../components/layout/new";
 
 const Arrows = (props) => {
   const Arrow = styled.div`
-    ${({ bgColor = "blue" }) => css`
-      padding: 1rem;
-      border-radius: 50%;
-      background-color: ${bgColor};
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: ${colors.primary.base};
+    color: white;
+    width: 5rem;
+    height: 5rem;
+    margin: 0 3rem;
+    z-index: 2;
+    position: absolute;
+    top: 15rem;
+    &:focus {
+      background-color: ${colors.primary.base};
       color: white;
-      width: 5rem;
-      height: 5rem;
-      margin: 0 3rem;
-      z-index: 2;
-      position: absolute;
-      top: 15rem;
-      &:focus {
-        background-color: ${bgColor};
-        color: white;
-      }
-      &:hover {
-        background-color: ${bgColor};
-        color: white;
-      }
-      &:before {
-        content: initial;
-      }
-    `}
+    }
+    &:hover {
+      background-color: ${colors.primary.base};
+      color: white;
+    }
+    &:before {
+      content: initial;
+    }
   `;
 
   return <Arrow {...props} />;
@@ -118,12 +116,12 @@ const NosotrosHistory = () => {
         infinite={false}
         variableWidth
         prevArrow={
-          <Arrows bgColor={colors.primary.base}>
+          <Arrows>
             <LeftArrowIcon />
           </Arrows>
         }
         nextArrow={
-          <Arrows bgColor={colors.primary.base}>
+          <Arrows>
             <RightArrowIcon />
           </Arrows>
         }
@@ -143,15 +141,11 @@ const NosotrosHistory = () => {
 
           return (
             <Item key={index}>
-              <CardYear
-                color={colors.blue.dark}
-                bg={colors.secondary.base}
-                bgLine={colors.text_main}
-              >
+              <CardYear>
                 {index === history.length - 1 ? "ACTUALIDAD" : year}
               </CardYear>
 
-              <Card bg={colors.white}>
+              <Card>
                 {image && (
                   <CardMedia>
                     <FeaturedMedia
@@ -162,7 +156,7 @@ const NosotrosHistory = () => {
                     />
                   </CardMedia>
                 )}
-                <CardTitle color={colors.blue.dark}>{title}</CardTitle>
+                <CardTitle>{title}</CardTitle>
                 <CardDescription
                   dangerouslySetInnerHTML={{ __html: content }}
                 />
@@ -184,7 +178,7 @@ const CardDescription = styled.div`
 
 const Section = styled.section`
   ${container}
-  background: ${(props) => props.bg};
+  background: ${colors.gray.light};
   padding:  4rem 0;
 
   .slick-current {
@@ -209,7 +203,6 @@ const Item = styled.div`
 
 const CardYear = styled.span`
   ${({
-    color = "darkblue",
     bgDecoRounded = "green",
     bgDecoLine = "gray",
   }) => css`
@@ -218,7 +211,7 @@ const CardYear = styled.span`
     margin-bottom: 10rem;
     font-size: 3rem;
     font-weight: 900;
-    color: ${color};
+    color: ${colors.blue.dark};
     position: relative;
     &:before {
       content: "";
@@ -248,7 +241,7 @@ const CardYear = styled.span`
 `;
 
 const Card = styled.div`
-  background: ${(props) => props.bg};
+  background: ${colors.white};
   width: 100rem;
   max-width: 29rem;
   padding: 1rem;
@@ -260,7 +253,7 @@ const Card = styled.div`
 const CardTitle = styled.h3`
   text-align: center;
   font-size: 2rem;
-  color: ${(props) => props.color};
+  color: ${colors.blue.dark};
   font-weight: bold;
 `;
 

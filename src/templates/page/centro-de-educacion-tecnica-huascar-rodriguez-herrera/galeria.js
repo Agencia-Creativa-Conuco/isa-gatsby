@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { css } from '@emotion/react'
 import Carousel from 'react-slick'
 import FeaturedMedia from '../../../components/featured-media'
 import useFiles from '../../../hooks/useFiles'
