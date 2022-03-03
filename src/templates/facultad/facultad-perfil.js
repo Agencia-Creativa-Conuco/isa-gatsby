@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from "@emotion/styled";
-import { Container, Section, Row, Col} from "../../components/layout/index";
 import FeaturedMedia from "../../components/featured-media";
 import colors from "../../components/styles/colors";
+import {container,mq} from '../../components/layout/new/'
+
 
 const FacultyPerfil = ({ facultad }) =>{
 
@@ -15,55 +16,75 @@ const FacultyPerfil = ({ facultad }) =>{
     } = facultad;
 
     return (
-        <BgSection color={colors.gray.light} spaceNone>
-            <Section as="div">
-                <Container>
-                    <Row alignCenter>
-                        <Col 
-                        size={10} 
-                        sizeLG={5} 
-                        mxAuto
-                        >
-                            <CubeDecano  decoBg={ color || colors.primary.dark }>
-                                <FeaturedMedia
-                                    media={ fotoDecano }
-                                    size="100%"
-                                    rounded
-                                    zIndex="1"
-                                    bgColor
-                                />
-                                <CubeDecano2 decoBg={ color || colors.primary.dark }/>
-                            </CubeDecano>
-                        </Col>
-                        <Col
-                            size={12} 
-                            sizeLG={6}
-                        >
-                            <Content>
-                                <Title color={ color || colors.primary.dark }>
-                                    <JobTitle>{puestoDecano}</JobTitle>
-                                    <Name>{nombreDecano}</Name>
-                                </Title>
-                                <div dangerouslySetInnerHTML={{__html: biografiaDecano}} />
-                            </Content>
-                        </Col>
-                    </Row>
-                </Container>
-            </Section>
-        </BgSection>
+      <Section>
+        <SpercialSection>
+          <Container>
+            <CubeDecano decoBg={color || colors.primary.dark}>
+              <FeaturedMedia
+                media={fotoDecano}
+                size="100%"
+                rounded
+                zIndex="1"
+                bgColor
+              />
+              <CubeDecano2 decoBg={color || colors.primary.dark} />
+            </CubeDecano>
+
+            <Content>
+              <Title color={color || colors.primary.dark}>
+                <JobTitle>{puestoDecano}</JobTitle>
+                <Name>{nombreDecano}</Name>
+              </Title>
+              <div dangerouslySetInnerHTML={{ __html: biografiaDecano }} />
+            </Content>
+          </Container>
+        </SpercialSection>
+      </Section>
     );
 
 }
 
 export default FacultyPerfil;
 
-const BgSection = styled(Section)`
-    background: ${props => props.color};
+
+
+
+const Section = styled.section`
+    background: ${colors.gray.light};
     overflow: hidden;
     padding-bottom: 10rem;
 `;
 
-const Content = styled.div``;
+
+const SpercialSection = styled.section`
+margin: 5.5rem auto;
+${mq.md}{
+  margin-bottom: 9.6rem;
+  margin-top: 12.6rem;
+}
+
+`;
+
+const Container = styled.div`
+${container}
+display:grid;
+grid-template-columns: 100%;
+
+${mq.lg}{
+    grid-template-columns:50% 50%;;
+}
+
+`;
+
+const Content = styled.div`
+        padding: 0 1.5rem;
+        align-self: center;
+        ${mq.md}{
+        padding: 0 2rem;
+
+        }
+
+`;
 
 const Title = styled.h2`
     color: ${props => props.color};
@@ -87,22 +108,24 @@ const Name = styled.span`
 `;
 
 const CubeDecano = styled.div`
-        position: relative;
-        max-width: 50rem;
-        margin: 0 auto;
-        margin-top: 4rem;
-        margin-bottom: 2rem;
-        &::before{
-            content: "";
-            position: absolute;
-            left: -7%;
-            top: 16%;
-            padding: 11%;
-            background: ${props => props.decoBg};
-            z-index: 1;
-            box-shadow: 0 2.5rem 2.5rem rgba(0,0,0,0.5);
-            opacity: 0.5;
-        }  
+  position: relative;
+  width: 80%;
+  height: fit-content;
+  max-width: 50rem;
+  margin: 0 auto;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  &::before {
+    content: "";
+    position: absolute;
+    left: -7%;
+    top: 16%;
+    padding: 10%;
+    background: ${(props) => props.decoBg};
+    z-index: 1;
+    box-shadow: 0 2.5rem 2.5rem rgba(0, 0, 0, 0.5);
+    opacity: 0.5;
+  }
 `;
 
 const CubeDecano2 = styled.div`
