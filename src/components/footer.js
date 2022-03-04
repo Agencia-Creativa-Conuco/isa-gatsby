@@ -168,7 +168,7 @@ const ContainerLayoutOne = styled.div`
     order: 1;
   }
   ${mq.lg} {
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 77% 23%;
     a:first-of-type {
       order: 2;
     }
@@ -181,7 +181,7 @@ const ContainerLayoutTwo = styled.div`
   grid-template-columns: 100%;
   max-width: 150rem;
   ${mq.md} {
-    grid-template-columns: 32% 68%;
+    grid-template-columns: 30% 70%;
   }
   ${mq.lg} {
     grid-template-columns: 25% 70%;
@@ -207,6 +207,10 @@ const Title = styled.h3`
 
 const MediaDeco = css`
   margin-bottom: 6rem;
+  padding: 0 1.5rem;
+  ${mq.xl} {
+    padding: 0;
+  }
   &:after {
     content: "";
     position: absolute;
@@ -219,7 +223,6 @@ const MediaDeco = css`
   }
 `;
 
-const StylesCol = css``;
 
 const SocialBox = styled.div``;
 
