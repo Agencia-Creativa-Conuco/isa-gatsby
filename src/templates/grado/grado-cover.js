@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "@emotion/styled";
-import { Container, Section, Row, Col} from "../../components/layout/index";
 import colors from '../../components/styles/colors';
+import { container,mq } from '../../components/layout/new';
 
 const GradeCover = ({ grado }) =>{
 
@@ -10,24 +10,39 @@ const GradeCover = ({ grado }) =>{
     } = grado;
 
     return (
-        <Section spaceNone bgColor={colors.primary.base} overflow="hidden">
-            <Section as="div" mediumTop spaceBottomNone>
-                <Container fluid>
-                    <Row alignCenter>
-                        <Col size={12}>
-                            <SectionTitle> {nombre} </SectionTitle>
-                        </Col>
-                    </Row>
-                </Container>
-            </Section>
+        <Section>
+        <Cover spaceNone>
+          <Container>
+            <Title>{nombre}</Title>
+          </Container>
+        </Cover>
         </Section>
-    );
+    )
 
 }
 
 export default GradeCover;
 
-const SectionTitle = styled.h1`
+
+
+const Section = styled.article`
+
+`;
+
+const Cover = styled.section`
+  overflow: hidden;
+  background: ${colors.primary.base};
+
+  padding-top: 6.4rem;
+  ${mq.md} {
+    padding-top: 12.8rem;
+  }
+`;
+
+const Container = styled.div`
+  ${container}
+`;
+const Title = styled.h1`
     text-align: center;
     color: white;
 `;
