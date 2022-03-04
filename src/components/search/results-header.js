@@ -1,36 +1,44 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { Container, Section, Row, Col } from '../layout/index'
-import colors from '../styles/colors'
+import React from "react";
+import styled from "@emotion/styled";
+import colors from "../styles/colors";
 // import SearchForm from './search-form'
-import useSearch from '../hooks/useSearch'
+import useSearch from "../hooks/useSearch";
+import { container, mq } from "../layout/new";
 
 const ResultsHeader = (props) => {
-  const { SearchForm } = useSearch()
+  const { SearchForm } = useSearch();
 
   return (
-    <Section spaceNone>
+    <Section>
       <Background />
       <Container>
-        <Row>
-          <Col size={10} sizeMD={7}>
-            <Header>
-              <Label>
-                <SearchForm isResults={true} {...props} />
-              </Label>
-            </Header>
-          </Col>
-        </Row>
+        <Header>
+          <Label>
+            <SearchForm isResults={true} {...props} />
+          </Label>
+        </Header>
       </Container>
     </Section>
-  )
-}
+  );
+};
 
-export default ResultsHeader
+export default ResultsHeader;
 
+const Section = styled.div``;
+
+const Container = styled.div`
+  ${container}
+  display:grid;
+  grid-template-columns: 90%;
+
+  ${mq.md} {
+    grid-template-columns: 59%;
+  }
+`;
 const Header = styled.div`
   margin-top: -6rem;
-`
+  padding: 0 1.5rem;
+`;
 
 const Background = styled.div`
   width: 100%;
@@ -39,7 +47,7 @@ const Background = styled.div`
   top: 0;
   background: ${colors.gray.light};
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -2rem;
     right: -4rem;
@@ -47,7 +55,7 @@ const Background = styled.div`
     clip-path: circle(50% at 100% 50%);
     padding: 9rem;
   }
-`
+`;
 
 const Label = styled.label`
   align-items: stretch;
@@ -55,4 +63,4 @@ const Label = styled.label`
   font-size: inherit;
   margin: 0;
   width: 100%;
-`
+`;

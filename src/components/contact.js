@@ -251,6 +251,9 @@ const Icon = styled.div`
   ${({ color = "darkblue" }) => css`
     max-width: 3rem;
     color: ${color};
+    svg{
+      fill:${color};
+    }
   `}
 `;
 

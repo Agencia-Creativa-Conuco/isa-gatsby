@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Container, Section, Row, Col } from '../layout/index'
+// import { Container, Section, Row, Col } from '../layout/index'
 import colors from '../styles/colors'
 import { css } from '@emotion/react'
 import useFilter from '../hooks/useFilter'
@@ -11,6 +11,7 @@ import Loading from '../loading'
 import { useQueryParam, StringParam } from 'use-query-params'
 import { useFlexSearch } from 'react-use-flexsearch'
 import { useStaticQuery, graphql } from 'gatsby'
+import { container, mq } from '../layout/new/'
 
 const ResultsBody = (props) => {
   const searchData = useStaticQuery(graphql`
@@ -70,17 +71,9 @@ if (query !== undefined) {
 
   return resultados.length ? (
     <Section>
-      <Container>
-        <Row>
-          <Col
-            size={12}
-            css={css`
-              text-align: center;
-            `}
-          >
+
             <h1>Resultados</h1>
-          </Col>
-          <Col size={12}>
+
             <h3>
               Total:{' '}
               <span
@@ -91,12 +84,9 @@ if (query !== undefined) {
                 {results.length} Resultados
               </span>
             </h3>
-          </Col>
-          <Col size={12} sizeMD={5}>
-            <SelectUI options={optionsFilter} />
-          </Col>
-        </Row>
-        <Row>
+
+      <Container>
+
           {results?.map((item, index) => {
             const { title, nombre, type, uri, id, slug } = item
 
@@ -133,7 +123,6 @@ if (query !== undefined) {
               />
             )
           })}
-        </Row>
       </Container>
     </Section>
   ) : resultados?.length !== 0 ? (
@@ -144,6 +133,44 @@ if (query !== undefined) {
 }
 
 export default ResultsBody
+
+
+
+const Section = styled.section `
+${container}
+padding:0 ;
+margin-bottom: 5.5rem;
+margin-top: 5.5rem;
+
+
+h1:first-of-type{
+  text-align:center;
+}
+
+h3:first-of-type{
+  padding:1.5rem;
+}
+${mq.md}{
+  margin-bottom: 9.6rem;
+  margin-top: 9.6rem;
+}
+
+}
+
+`
+
+const Container = styled.div`
+/* ${container} */
+display:grid;
+grid-template-columns: 100%;
+
+${mq.md}{
+grid-template-columns: 50% 50%;
+
+}
+
+
+`;
 
 const Title = styled.h1`
   margin: 5rem;
