@@ -1,45 +1,69 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { Section, Container, Row, Col, mq } from '../../components/layout/index'
-import FeaturedMedia from '../../components/featured-media'
+import React from "react";
+import styled from "@emotion/styled";
+import FeaturedMedia from "../../components/featured-media";
+import { container, mq } from "../../components/layout/new";
 
 const PostCover = ({ post }) => {
-  const { title, featuredImage } = post
+  const { title, featuredImage } = post;
 
   return (
-    <Section spaceNone>
+    <Section>
       <Container fluid>
-        <Row alignItems="flex-end">
-          <Col size={12} sizeLG={10} sizeXL={9} orderLG={2} noGutters>
-            <ImageContainer>
-              <Image>
-                <FeaturedMedia
-                  media={featuredImage}
-                  height="100%"
-                  bgColor
-                  loading="eager"
-                />
-              </Image>
-            </ImageContainer>
-          </Col>
-          <Col size={12} sizeLG={1} mlLGAuto>
-            <Container noGutters>
-              <Row>
-                <Col sizeSM={7} sizeLG={12}>
-                  <Content>
-                    <Title>{title}</Title>
-                  </Content>
-                </Col>
-              </Row>
-            </Container>
-          </Col>
-        </Row>
+        <ImageContainer>
+          <Image>
+            <FeaturedMedia
+              media={featuredImage}
+              height="100%"
+              bgColor
+              loading="eager"
+            />
+          </Image>
+        </ImageContainer>
+        <SubContainer noGutters>
+          <Content>
+            <Title>{title}</Title>
+          </Content>
+        </SubContainer>
       </Container>
     </Section>
-  )
-}
+  );
+};
 
-export default PostCover
+export default PostCover;
+
+const Section = styled.section``;
+const Container = styled.div`
+  ${container}
+  display:grid;
+  padding: 0;
+  grid-template-columns: 100%;
+  justify-content: end;
+
+  ${mq.lg} {
+    grid-template-columns: 6% 84%;
+    div:first-of-type {
+      order: 2;
+    }
+  }
+  ${mq.xl} {
+    grid-template-columns: 7.5% 75%;
+  }
+`;
+
+const SubContainer = styled.div`
+  ${container}
+  display:grid;
+  padding: 0;
+  grid-template-columns: 100%;
+  /* justify-content: end; */
+  ${mq.sm} {
+    grid-template-columns: 60%;
+  }
+
+  ${mq.lg} {
+    grid-template-columns: 100%;
+  }
+`;
 
 const ImageContainer = styled.div`
   position: relative;
@@ -49,7 +73,7 @@ const ImageContainer = styled.div`
   ${mq.lg} {
     padding-bottom: 56.25%;
   }
-`
+`;
 
 const Image = styled.div`
   position: absolute;
@@ -57,16 +81,18 @@ const Image = styled.div`
   right: 0;
   width: 100%;
   height: 100%;
-`
+`;
 
 const Content = styled.div`
+  align-self: end;
+  padding: 0 1.5rem;
   margin-bottom: 4rem;
   margin-top: -2rem;
   ${mq.lg} {
     margin: 10rem 0;
     width: 57rem;
   }
-`
+`;
 
 const Title = styled.h1`
   position: relative;
@@ -77,4 +103,4 @@ const Title = styled.h1`
   background-color: white;
   display: inline;
   z-index: 2;
-`
+`;

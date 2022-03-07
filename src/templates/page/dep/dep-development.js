@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-// import { Container, Section, Row, Col,mq} from "../../../components/layout/index";
 import FeaturedMedia from "../../../components/featured-media";
 import colors from "../../../components/styles/colors";
 import { useStaticQuery, graphql } from "gatsby";
