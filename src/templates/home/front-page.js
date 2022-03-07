@@ -2,7 +2,7 @@ import React from 'react'
 
 import HomeCover from './home-cover'
 import HomeContact from './home-contact'
-import HomeProjects from './home-projects'
+// import HomeProjects from './home-projects'
 import HomeAplication from './home-aplication'
 import HomeOffer from './home-offer'
 import HomeNews from './home-news'
@@ -18,7 +18,7 @@ const FrontPage = ({ page }) => {
       <HomeOffer />
       <Calendar />
       <HomeNews />
-      <HomeProjects />
+      {/* <HomeProjects /> */}
       <HomeAplication />
       <HomeContact />
     </>

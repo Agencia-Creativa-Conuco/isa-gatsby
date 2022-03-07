@@ -111,10 +111,11 @@ const Menu = styled.div`
 
 const Container = styled.div`
   ${container}
-  /* padding:0 ; */
+  padding:0 ;
 display:grid;
   grid-template-columns: 100%;
-  ${mq.md} {
+ 
+  ${mq.lg} {
     grid-template-columns: 48% 48%;
   }
   ${mq.xl} {
