@@ -19,7 +19,6 @@ const useModal = () => {
   };
 
   const ModalUI = ({ title, children, size }) => {
-    console.log(size);
     return (
       <ModalWrapper data-open={isModalOpen} onClick={closeModal}>
         {isModalOpen && <Global styles={{ body: { overflowY: "hidden" } }} />}
