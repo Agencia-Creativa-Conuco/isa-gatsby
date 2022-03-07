@@ -54,18 +54,11 @@ const Container = styled.div`
 
 const SubContainer = styled.div`
   position: relative;
-  display: grid;
+  display: flex;
   padding: 0;
-  grid-template-columns: 100%;
+  gap:1rem ;
+  flex-wrap: wrap;
   justify-content: center;
-
-  ${mq.md} {
-    grid-template-columns: 50% 50%;
-  }
-
-  ${mq.lg} {
-    grid-template-columns: 33.3333% 33.3333% 33.3333%;
-  }
 `;
 
 const SectionTitle = styled.h2`
@@ -76,7 +69,15 @@ const SectionTitle = styled.h2`
 const Card = styled.div`
   position: relative;
   padding: 0 1.5rem;
-  margin: 0rem 2rem 4rem auto;
+  margin: 0rem auto 4rem auto;
+  width:100% ;
+  ${mq.md} {
+    width: 46%;
+  }
+
+  ${mq.lg} {
+    width: 32%;
+  }
   &::before {
     content: "";
     background: ${colors.secondary.lighter};
