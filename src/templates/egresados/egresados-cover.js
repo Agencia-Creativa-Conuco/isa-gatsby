@@ -26,9 +26,8 @@ const EgresadosCover = (props) => {
           bgColor
           size="100%"
           sizeXL="80%"
-          position="30% 0%"
+          position="50% 100%"
           loading="eager"
-          height="50%"
         />
       </Media>
       <Content bg={colors.blue.dark}>
@@ -106,7 +105,7 @@ const Media = styled.div`
 
 const CoverImage = styled(FeaturedMedia)`
   z-index: 2;
-  clip-path: ellipse(100% 100% at right);
+  clip-path: ellipse(100% 100% at right);  
 `
 
 const Deco = styled.div`
