@@ -30,7 +30,7 @@ const ServiciosEstudiantilesPsicologia = () => {
 
   return (
     <Section spaceNone zIndex={2} id="section_3" fluid>
-      <FeaturedMedia media={image} size="56.25%" heightMD="100%" bgColor />
+      <FeaturedMedia media={image} size="56.25%" bgColor />
       <DivTitle>
         <SectionTitle> {title} </SectionTitle>
         <div dangerouslySetInnerHTML={{ __html: content }} />

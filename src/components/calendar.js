@@ -11,6 +11,12 @@ import Link from "./link";
 import container from "./layout/new/container";
 import mq from "./layout/new/mq";
 
+var getClass = document.getElementsByClassName("DayPicker-Day--highlighted")
+
+const r =  getClass.item.length
+console.log(getClass)
+
+
 const Event = ({ event }) => {
   const { openModal, ModalUI } = useModal();
 
@@ -22,6 +28,7 @@ const Event = ({ event }) => {
     highlighted: examDates,
   };
 
+  console.log(new Date())
   const MONTHS = [
     "Enero",
     "Febrero",
@@ -46,6 +53,8 @@ const Event = ({ event }) => {
     "Sábado",
   ];
   const WEEKDAYS_SHORT = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
+
+
 
   return (
     <>
@@ -81,12 +90,16 @@ const Event = ({ event }) => {
   );
 };
 
+// var isEmpty = (".DayPicker-Month").html() === "";
+// var getid= document.getElementById("identificador_del_div").hasChildNodes();
+
 const Calendar = ({
   title = "FECHAS PARA TOMAR EL EXAMEN DE ADMISIÓN POMA",
   noEventsTitle,
 }) => {
   //Obtiene los datos de los Eventos
   const events = usePeriodosAdmision();
+
 
   //Ordena los eventos de menor a mayor
   const eventList = events
@@ -103,6 +116,7 @@ const Calendar = ({
         {eventList.length ? (
           <EventList>
             {eventList.map((event, index) => {
+              console.log(event)
               return <Event key={index} event={event} />;
             })}
           </EventList>
@@ -203,12 +217,19 @@ const birthdayStyle = css`
     width: 100%;
   }
   .DayPicker-Day {
-    border-radius: initial;
     font-size: 1.7rem;
+    border-radius: 0  !important;
   }
-  .DayPicker-Day--highlighted {
-    background-color: ${colors.primary.base};
+  .DayPicker-Day.DayPicker-Day--highlighted.DayPicker-Day {
     color: white;
+      background-color:${colors.primary.base};
+      position: relative;
+
+ 
+  }
+
+  .DayPicker-Day.DayPicker-Day--highlighted.DayPicker-Day--outside {
+      background-color: inherit;
   }
   .DayPicker-Caption {
     font-weight: 400;
