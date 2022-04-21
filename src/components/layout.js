@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from 'react'
-import Helmet from 'react-helmet'
-import { Global } from '@emotion/react'
-import styled from '@emotion/styled'
-import { graphql, useStaticQuery } from 'gatsby'
+import React, { useState, useEffect } from "react";
+import Helmet from "react-helmet";
+import { Global } from "@emotion/react";
+import styled from "@emotion/styled";
+import { graphql, useStaticQuery } from "gatsby";
 
-import globalStyles from '../components/styles/global-styles'
-import FontFace from '../components/styles/font-faces'
-import Header from './header'
-import Footer from './footer'
-import ResourcesList from './resourceslist'
-import Contact from './contact'
-import usePages from '../hooks/usePages'
-import PageIndexes from './page-indexes'
-import Seo from '../components/seo'
+import globalStyles from "../components/styles/global-styles";
+import FontFace from "../components/styles/font-faces";
+import Header from "./header";
+import Footer from "./footer";
+import ResourcesList from "./resourceslist";
+import Contact from "./contact";
+import usePages from "../hooks/usePages";
+import PageIndexes from "./page-indexes";
+import Seo from "../components/seo";
 
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   // eslint-disable-next-line global-require
-  require('smooth-scroll')('a[href*="#"]')
+  require("smooth-scroll")('a[href*="#"]');
 }
 
 const Layout = (props) => {
   //Si obj no es pasado en props, utiliza page;
-  const [page] = usePages().filter((page) => page.uri === props.path)
+  const [page] = usePages().filter((page) => page.uri === props.path);
 
-  const { children, obj = page, data } = props
+  const { children, obj = page, data } = props;
 
-  const [resultsSearch, setResultsSearch] = useState()
+  const [resultsSearch, setResultsSearch] = useState();
 
   const {
     wp: { generalSettings: settings },
@@ -46,36 +46,36 @@ const Layout = (props) => {
         }
       }
     }
-  `)
+  `);
 
   useEffect(() => {
     // Carga el script de hubspot
-    const scripts = ['//js-na1.hs-scripts.com/20627890.js']
+    const scripts = ["//js-na1.hs-scripts.com/20627890.js"];
 
     scripts.map((url) => {
-      const script = document.createElement('script')
-      script.src = url
-      let jqueryScript = document.getElementsByTagName('script')
+      const script = document.createElement("script");
+      script.src = url;
+      let jqueryScript = document.getElementsByTagName("script");
       let src = Array.from(jqueryScript).filter(
-        (item) => item.src === script.src,
-      )
+        (item) => item.src === script.src
+      );
       if (src.length === 0) {
-        document.body.appendChild(script)
+        document.body.appendChild(script);
       }
 
-      return url
-    })
+      return url;
+    });
 
     //Verifica si existen secciones con la propiedad indice para agregarlos al componente indice
     // const indexes = document.querySelectorAll('[name]')
     // console.log(indexes)
-  }, [])
+  }, []);
 
   return (
     <>
       <Helmet
         htmlAttributes={{
-          lang: 'en',
+          lang: "en",
         }}
       >
         <title>{settings.title}</title>
@@ -112,9 +112,9 @@ const Layout = (props) => {
           if (React.isValidElement(child)) {
             return React.cloneElement(child, {
               ...{ resultsSearch, setResultsSearch },
-            })
+            });
           }
-          return child
+          return child;
         })}
         {/* 
           Se muestran recursos relacionados con el tipo de dato 
@@ -122,7 +122,7 @@ const Layout = (props) => {
         */}
         <ResourcesList
           items={obj?.recursos || []}
-          exclude={obj?.type === 'WpCarrera' ? ['pensum'] : []}
+          exclude={obj?.type === "WpCarrera" ? ["pensum"] : []}
         />
         {/* Se muestra información de contacto relacionada con el tipo de dato */}
         <Contact data={obj?.contacto} />
@@ -131,11 +131,11 @@ const Layout = (props) => {
 
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
 
 const Main = styled.main`
   overflow: hidden;
-`
+`;

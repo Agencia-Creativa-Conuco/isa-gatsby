@@ -11,10 +11,6 @@ import Link from "./link";
 import container from "./layout/new/container";
 import mq from "./layout/new/mq";
 
-var getClass = document.getElementsByClassName("DayPicker-Day--highlighted")
-
-const r =  getClass.item.length
-console.log(getClass)
 
 
 const Event = ({ event }) => {

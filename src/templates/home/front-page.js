@@ -16,7 +16,7 @@ const FrontPage = ({ page }) => {
     <>
       <HomeCover />
       <HomeOffer />
-      <Calendar />
+      <Calendar id="section_2" />
       <HomeNews />
       {/* <HomeProjects /> */}
       <HomeAplication />

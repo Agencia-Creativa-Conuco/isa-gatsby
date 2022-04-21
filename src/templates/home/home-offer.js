@@ -1,9 +1,9 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { useStaticQuery, graphql } from 'gatsby'
+import React from "react";
+import styled from "@emotion/styled";
+import { useStaticQuery, graphql } from "gatsby";
 
-import { getHierarchicalItems } from '../../components/inc/auxiliar'
-import StyledNavigation from '../../components/styled-navigation'
+import { getHierarchicalItems } from "../../components/inc/auxiliar";
+import StyledNavigation from "../../components/styled-navigation";
 
 const HomeOffer = () => {
   //Consultar y optener logo.svg
@@ -37,24 +37,23 @@ const HomeOffer = () => {
         }
       }
     }
-  `)
+  `);
 
   // Solo se muestran los elementos del menu que son seleccionados como visibles en el home page
   const menuItems =
     getHierarchicalItems(menu?.nodes).filter(
-      (item) => item.datosMenu.visibleInicio,
-    ) || []
+      (item) => item.datosMenu.visibleInicio
+    ) || [];
 
   return menuItems.length ? (
-    <Section spaceNone id="section" indexTitle="Oferta Académica">
+    <Section spaceNone id="section_2" indexTitle="Oferta Académica">
       <StyledNavigation items={menuItems} />
     </Section>
-  ) : null
-}
+  ) : null;
+};
 
-export default HomeOffer
+export default HomeOffer;
 
 const Section = styled.section`
-background: white;
-
-`
+  background: white;
+`;

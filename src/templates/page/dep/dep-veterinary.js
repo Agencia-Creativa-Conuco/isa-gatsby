@@ -5,8 +5,6 @@ import colors from "../../../components/styles/colors";
 import useFiles from "../../../hooks/useFiles";
 import { container, mq } from "../../../components/layout/new";
 
-
-
 const DEPVeterinary = ({ page }) => {
   const images = useFiles();
 
