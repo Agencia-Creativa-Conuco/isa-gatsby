@@ -27,17 +27,17 @@ const ResultsBody = (props) => {
 
   const [query] = useQueryParam('s', StringParam)
 
-let dataQuery;
-if (query !== undefined) {
-  const removeAccents = (str) => {
-    const regex = /([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi;
-    return str.normalize("NFD").replace(regex, "$1");
-  };
-  dataQuery = removeAccents(query);
-}
+  let dataQuery
+  if (query !== undefined) {
+    const removeAccents = (str) => {
+      const regex = /([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi
+      return str.normalize('NFD').replace(regex, '$1')
+    }
+    dataQuery = removeAccents(query)
+  }
 
   const resultados = useFlexSearch(dataQuery, index, store)
-  
+
   const recursos = useRecursos()
 
   const { SelectUI, selectedOption } = useFilter()
@@ -49,6 +49,7 @@ if (query !== undefined) {
     { value: 'WpPost', label: 'Publicaciones' },
     { value: 'WpFacultad', label: 'Facultades' },
     { value: 'WpInvestigacion', label: 'Investigaciones' },
+    { value: 'WpDepartamento', label: 'Departamentos' },
     { value: 'WpLineaDeInvestigacion', label: 'Líneas de investigación' },
     { value: 'WpGrado', label: 'Oferta académica' },
   ]
@@ -56,7 +57,7 @@ if (query !== undefined) {
   // Filtrando valor del select
   let hash = {}
 
-  // resultados?.filter((current) => (hash[current.type] = current.type))
+  resultados?.filter((current) => (hash[current.type] = current.type))
 
   const optionsFilter = options.filter((item) =>
     hash[item.value] ? item : null,
@@ -71,58 +72,58 @@ if (query !== undefined) {
 
   return resultados.length ? (
     <Section>
+      <h1>Resultados</h1>
 
-            <h1>Resultados</h1>
+      <h3>
+        Total:{' '}
+        <span
+          css={css`
+            color: ${colors.secondary.base};
+          `}
+        >
+          {results.length} Resultados
+        </span>
+      </h3>
 
-            <h3>
-              Total:{' '}
-              <span
-                css={css`
-                  color: ${colors.secondary.base};
-                `}
-              >
-                {results.length} Resultados
-              </span>
-            </h3>
+      <SelectUI options={optionsFilter} />
 
       <Container>
+        {results?.map((item, index) => {
+          const { title, nombre, type, uri, id, slug } = item
 
-          {results?.map((item, index) => {
-            const { title, nombre, type, uri, id, slug } = item
+          const uriParsed = nombre ? uri.replace(slug, urlSlug(nombre)) : uri
 
-            const uriParsed = nombre ? uri.replace(slug, urlSlug(nombre)) : uri
+          const objecTypes = {
+            WpPage: 'Página',
+            WpRecurso: 'Recurso',
+            WpDepartamento: 'Departamento',
+            WpCarrera: 'Carrera',
+            WpPost: 'Publicación',
+            WpFacultad: 'Facultad',
+            WpInvestigacion: 'Investigación',
+            WpLineaDeInvestigacion: 'Línea de investigación',
+            WpGrado: 'Oferta académica',
+          }
 
-            const objecTypes = {
-              WpPage: 'Página',
-              WpRecurso: 'Recurso',
-              WpDepartamento: 'Departamento',
-              WpCarrera: 'Carrera',
-              WpPost: 'Publicación',
-              WpFacultad: 'Facultad',
-              WpInvestigacion: 'Investigación',
-              WpLineaDeInvestigacion: 'Línea de investigación',
-              WpGrado: 'Oferta académica',
-            }
+          const translateTypes = objecTypes[type] || title
 
-            const translateTypes = objecTypes[type] || title
+          //Obtener los datos del  recurso
+          const [recurso] = recursos.filter((item) => {
+            return item.id === id
+          })
 
-            //Obtener los datos del  recurso
-            const [recurso] = recursos.filter((item) => {
-              return item.id === id
-            })
-
-            return (
-              <CardBody
-                key={index}
-                title={nombre || title}
-                type={type}
-                uri={uriParsed}
-                id={id}
-                translateTypes={translateTypes}
-                item={recurso}
-              />
-            )
-          })}
+          return (
+            <CardBody
+              key={index}
+              title={nombre || title}
+              type={type}
+              uri={uriParsed}
+              id={id}
+              translateTypes={translateTypes}
+              item={recurso}
+            />
+          )
+        })}
       </Container>
     </Section>
   ) : resultados?.length !== 0 ? (
@@ -134,9 +135,7 @@ if (query !== undefined) {
 
 export default ResultsBody
 
-
-
-const Section = styled.section `
+const Section = styled.section`
 ${container}
 padding:0 ;
 margin-bottom: 5.5rem;
@@ -170,7 +169,7 @@ grid-template-columns: 50% 50%;
 }
 
 
-`;
+`
 
 const Title = styled.h1`
   margin: 5rem;
