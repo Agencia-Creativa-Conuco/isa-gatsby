@@ -48,7 +48,7 @@ const OfertaAcademicaList = () => {
     }) || []
 
   return menuItems.length ? (
-    <Section css={sectionStyles} spaceNone id="section_1" zIndex={5}>
+    <Section css={sectionStyles} spaceNone id="section_1"  zIndex={5}>
       <StyledNavigation items={menuItems} />
     </Section>
   ) : null

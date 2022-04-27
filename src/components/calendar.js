@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { css, Global } from "@emotion/react";
 import colors from "./styles/colors";
 import moment from "moment";
-import DayPicker from "react-day-picker";
+import {DayPicker} from "react-day-picker";
 import "react-day-picker/lib/style.css";
 import useModal from "./hooks/useModal";
 import usePeriodosAdmision from "../hooks/usePeriodosAdmision";
@@ -11,20 +11,20 @@ import Link from "./link";
 import container from "./layout/new/container";
 import mq from "./layout/new/mq";
 
-
-
 const Event = ({ event }) => {
   const { openModal, ModalUI } = useModal();
-
   const examDates = event.fechasExamenesAdmision.map((date) =>
-    moment(date.fechaExamen, "", "es").toDate()
+  moment(date.fechaExamen, "", "es").toDate()
   );
+  // console.log(examDates[examDates.length-1])
 
   const modifiers = {
     highlighted: examDates,
   };
 
-  console.log(new Date())
+
+  const pastMonth = examDates[examDates.length-1]
+
   const MONTHS = [
     "Enero",
     "Febrero",
@@ -50,8 +50,6 @@ const Event = ({ event }) => {
   ];
   const WEEKDAYS_SHORT = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
 
-
-
   return (
     <>
       <EventCard size="auto" noGutters onClick={openModal}>
@@ -63,6 +61,7 @@ const Event = ({ event }) => {
 
         <DayPicker
           modifiers={modifiers}
+          defaultMonth={pastMonth}
           months={MONTHS}
           weekdaysLong={WEEKDAYS_LONG}
           weekdaysShort={WEEKDAYS_SHORT}
@@ -96,7 +95,6 @@ const Calendar = ({
   //Obtiene los datos de los Eventos
   const events = usePeriodosAdmision();
 
-
   //Ordena los eventos de menor a mayor
   const eventList = events
     //Ordena por el campo orden de wordpress
@@ -112,7 +110,6 @@ const Calendar = ({
         {eventList.length ? (
           <EventList>
             {eventList.map((event, index) => {
-              console.log(event)
               return <Event key={index} event={event} />;
             })}
           </EventList>
@@ -127,10 +124,9 @@ const Calendar = ({
 export default Calendar;
 
 const Section = styled.section`
-margin-bottom: 9.6rem;
-margin-top: 9.6rem;
-
-`;  
+  margin-bottom: 9.6rem;
+  margin-top: 9.6rem;
+`;
 
 const Container = styled.div`
   ${container}
@@ -214,18 +210,16 @@ const birthdayStyle = css`
   }
   .DayPicker-Day {
     font-size: 1.7rem;
-    border-radius: 0  !important;
+    border-radius: 0 !important;
   }
   .DayPicker-Day.DayPicker-Day--highlighted.DayPicker-Day {
     color: white;
-      background-color:${colors.primary.base};
-      position: relative;
-
- 
+    background-color: ${colors.primary.base};
+    position: relative;
   }
 
   .DayPicker-Day.DayPicker-Day--highlighted.DayPicker-Day--outside {
-      background-color: inherit;
+    background-color: inherit;
   }
   .DayPicker-Caption {
     font-weight: 400;
