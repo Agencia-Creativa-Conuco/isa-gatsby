@@ -4,7 +4,6 @@ import { css, Global } from '@emotion/react'
 import colors from './styles/colors'
 import moment from 'moment'
 import { DayPicker } from 'react-day-picker'
-// import dayPickerStyles from 'react-day-picker/dist/style.css'
 import useModal from './hooks/useModal'
 import usePeriodosAdmision from '../hooks/usePeriodosAdmision'
 import Link from './link'
@@ -16,11 +15,6 @@ const Event = ({ event }) => {
   const examDates = event.fechasExamenesAdmision.map((date) =>
     moment(date.fechaExamen, '', 'es').toDate(),
   )
-  console.log(examDates)
-
-  const modifiers = {
-    highlighted: examDates,
-  }
 
   const pastMonth = examDates[examDates.length - 1]
 
@@ -61,7 +55,6 @@ const Event = ({ event }) => {
         <DayPicker
           mode="multiple"
           selected={examDates}
-          // modifiers={modifiers}
           defaultMonth={pastMonth}
           months={MONTHS}
           weekdaysLong={WEEKDAYS_LONG}
