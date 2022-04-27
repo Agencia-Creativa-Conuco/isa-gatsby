@@ -1,54 +1,53 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { css, Global } from "@emotion/react";
-import colors from "./styles/colors";
-import moment from "moment";
-import {DayPicker} from "react-day-picker";
-import "react-day-picker/lib/style.css";
-import useModal from "./hooks/useModal";
-import usePeriodosAdmision from "../hooks/usePeriodosAdmision";
-import Link from "./link";
-import container from "./layout/new/container";
-import mq from "./layout/new/mq";
+import React from 'react'
+import styled from '@emotion/styled'
+import { css, Global } from '@emotion/react'
+import colors from './styles/colors'
+import moment from 'moment'
+import { DayPicker } from 'react-day-picker'
+// import dayPickerStyles from 'react-day-picker/dist/style.css'
+import useModal from './hooks/useModal'
+import usePeriodosAdmision from '../hooks/usePeriodosAdmision'
+import Link from './link'
+import container from './layout/new/container'
+import mq from './layout/new/mq'
 
 const Event = ({ event }) => {
-  const { openModal, ModalUI } = useModal();
+  const { openModal, ModalUI } = useModal()
   const examDates = event.fechasExamenesAdmision.map((date) =>
-  moment(date.fechaExamen, "", "es").toDate()
-  );
-  // console.log(examDates[examDates.length-1])
+    moment(date.fechaExamen, '', 'es').toDate(),
+  )
+  console.log(examDates)
 
   const modifiers = {
     highlighted: examDates,
-  };
+  }
 
-
-  const pastMonth = examDates[examDates.length-1]
+  const pastMonth = examDates[examDates.length - 1]
 
   const MONTHS = [
-    "Enero",
-    "Febrero",
-    "Marzo",
-    "Abril",
-    "Mayo",
-    "Junio",
-    "Julio",
-    "Agosto",
-    "Septiembre",
-    "Octubre",
-    "Noviembre",
-    "Diciembre",
-  ];
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio',
+    'Agosto',
+    'Septiembre',
+    'Octubre',
+    'Noviembre',
+    'Diciembre',
+  ]
   const WEEKDAYS_LONG = [
-    "Domingo",
-    "Lunes",
-    "Martes",
-    "Miércoles",
-    "Jueves",
-    "Viernes",
-    "Sábado",
-  ];
-  const WEEKDAYS_SHORT = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
+    'Domingo',
+    'Lunes',
+    'Martes',
+    'Miércoles',
+    'Jueves',
+    'Viernes',
+    'Sábado',
+  ]
+  const WEEKDAYS_SHORT = ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa']
 
   return (
     <>
@@ -60,7 +59,9 @@ const Event = ({ event }) => {
         <EventTitle>Fechas para tomar el examen de admisión</EventTitle>
 
         <DayPicker
-          modifiers={modifiers}
+          mode="multiple"
+          selected={examDates}
+          // modifiers={modifiers}
           defaultMonth={pastMonth}
           months={MONTHS}
           weekdaysLong={WEEKDAYS_LONG}
@@ -69,36 +70,36 @@ const Event = ({ event }) => {
         <ColStyles>
           <BoxContact>
             <span>Haz tu cita en: </span>
-            <Link to={"mailto:admisiones@isa.edu.do"} target="_blank">
+            <Link to={'mailto:admisiones@isa.edu.do'} target="_blank">
               admisiones@isa.edu.do
             </Link>
           </BoxContact>
           <BoxContact>
             <span>Whatsapp: </span>
-            <Link to={"https://wa.me/8295209209"} target="_blank">
+            <Link to={'https://wa.me/8295209209'} target="_blank">
               829-520-9209
             </Link>
           </BoxContact>
         </ColStyles>
       </ModalUI>
     </>
-  );
-};
+  )
+}
 
 // var isEmpty = (".DayPicker-Month").html() === "";
 // var getid= document.getElementById("identificador_del_div").hasChildNodes();
 
 const Calendar = ({
-  title = "FECHAS PARA TOMAR EL EXAMEN DE ADMISIÓN POMA",
+  title = 'FECHAS PARA TOMAR EL EXAMEN DE ADMISIÓN POMA',
   noEventsTitle,
 }) => {
   //Obtiene los datos de los Eventos
-  const events = usePeriodosAdmision();
+  const events = usePeriodosAdmision()
 
   //Ordena los eventos de menor a mayor
   const eventList = events
     //Ordena por el campo orden de wordpress
-    .sort((a, b) => a.order - b.order);
+    .sort((a, b) => a.order - b.order)
 
   // Load the post, but only if the data is ready.
   return noEventsTitle || eventList.length ? (
@@ -110,7 +111,7 @@ const Calendar = ({
         {eventList.length ? (
           <EventList>
             {eventList.map((event, index) => {
-              return <Event key={index} event={event} />;
+              return <Event key={index} event={event} />
             })}
           </EventList>
         ) : (
@@ -118,23 +119,23 @@ const Calendar = ({
         )}
       </Container>
     </Section>
-  ) : null;
-};
+  ) : null
+}
 
-export default Calendar;
+export default Calendar
 
 const Section = styled.section`
   margin-bottom: 9.6rem;
   margin-top: 9.6rem;
-`;
+`
 
 const Container = styled.div`
   ${container}
-`;
+`
 
 const Title = styled.h2`
   text-align: center;
-`;
+`
 
 const EventList = styled.div`
   max-width: fit-content;
@@ -150,7 +151,7 @@ const EventList = styled.div`
     column-rule-color: lightgray;
     column-rule-width: 0.25rem;
   }
-`;
+`
 
 const EventCard = styled.div`
   cursor: pointer;
@@ -174,17 +175,17 @@ const EventCard = styled.div`
   &:first-of-type {
     /* border: initial; */
   }
-`;
+`
 
 const EventName = styled.span`
   text-align: center;
   font-size: 18px;
   font-weight: bold;
-`;
+`
 
 const NoEventsText = styled.p`
   text-align: center;
-`;
+`
 
 const EventTitle = styled.h3`
   color: ${colors.primary.dark};
@@ -192,45 +193,57 @@ const EventTitle = styled.h3`
   text-align: left;
   margin-bottom: 2rem;
   margin-top: 0;
-`;
+`
 
 const birthdayStyle = css`
-  .DayPicker {
-    width: 100%;
+  .rdp-caption {
+    text-align: center;
+  }
+
+  .rdp-caption_label {
+    font-size: 1.8rem;
+    color: ${colors.text.base};
+  }
+
+  .rdp-nav_button {
+    padding: 0.5rem;
+    margin: 1rem;
+  }
+
+  .rdp-table {
+    margin-top: 1rem;
+  }
+
+  .rdp-head {
+    background-color: ${colors.primary.dark};
+    text-align: center;
+    color: white;
+  }
+
+  .rdp-cell {
+    padding: 1rem;
     background-color: ${colors.gray.light};
   }
-  .DayPicker-wrapper {
+
+  .rdp-day {
+    background-color: ${colors.gray.light};
     width: 100%;
+    text-align: center;
+    padding: 0.8rem;
+    box-sizing: content-box;
+    margin-left: -0.8rem;
   }
-  .DayPicker-Months {
-    width: 100%;
-  }
-  .DayPicker-Month {
-    width: 100%;
-  }
-  .DayPicker-Day {
-    font-size: 1.7rem;
-    border-radius: 0 !important;
-  }
-  .DayPicker-Day.DayPicker-Day--highlighted.DayPicker-Day {
+
+  .rdp-day_selected {
     color: white;
     background-color: ${colors.primary.base};
     position: relative;
   }
 
-  .DayPicker-Day.DayPicker-Day--highlighted.DayPicker-Day--outside {
-    background-color: inherit;
+  .rdp-vhidden {
+    display: none;
   }
-  .DayPicker-Caption {
-    font-weight: 400;
-    text-align: center;
-    font-size: 2rem;
-    div {
-      font-size: inherit;
-      font-weight: inherit;
-    }
-  }
-`;
+`
 
 const BoxContact = styled.div`
   & > a {
@@ -241,8 +254,8 @@ const BoxContact = styled.div`
     font-weight: bold;
     color: #001f56;
   }
-`;
+`
 
 const ColStyles = styled.div`
   margin-top: 2rem;
-`;
+`
