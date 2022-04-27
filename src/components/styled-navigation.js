@@ -205,13 +205,14 @@ const StyledNavigation = ({ items = [] }) => {
           const isActive = view === id;
 
           return children.length ? (
-            <NavItem {...{ item, isActive, setView }} />
+            <NavItem key={index} {...{ item, isActive, setView }} />
           ) : (
             <StyledLink
               to={url}
               {...props}
               rel="noopener"
               aria-label="Click para abrir el..."
+              key={index}
             >
               <NavItem {...{ item, isActive, setView }} />
             </StyledLink>
