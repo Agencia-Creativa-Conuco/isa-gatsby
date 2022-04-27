@@ -161,7 +161,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-sharp',
       options: {
-        defaultQuality: 60,
+        defaultQuality: 50,
       },
       __key: 'images',
     },
