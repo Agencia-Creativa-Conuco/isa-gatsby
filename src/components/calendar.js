@@ -3,45 +3,22 @@ import styled from '@emotion/styled'
 import { css, Global } from '@emotion/react'
 import colors from './styles/colors'
 import moment from 'moment'
-import { DayPicker } from 'react-day-picker'
+import { DayPicker} from 'react-day-picker'
 import useModal from './hooks/useModal'
 import usePeriodosAdmision from '../hooks/usePeriodosAdmision'
 import Link from './link'
 import container from './layout/new/container'
 import mq from './layout/new/mq'
+import es from 'date-fns/locale/es'
 
 const Event = ({ event }) => {
   const { openModal, ModalUI } = useModal()
   const examDates = event.fechasExamenesAdmision.map((date) =>
-    moment(date.fechaExamen, '', 'es').toDate(),
+  moment(date.fechaExamen, '', "es").toDate(),
   )
-
+  
   const pastMonth = examDates[examDates.length - 1]
 
-  const MONTHS = [
-    'Enero',
-    'Febrero',
-    'Marzo',
-    'Abril',
-    'Mayo',
-    'Junio',
-    'Julio',
-    'Agosto',
-    'Septiembre',
-    'Octubre',
-    'Noviembre',
-    'Diciembre',
-  ]
-  const WEEKDAYS_LONG = [
-    'Domingo',
-    'Lunes',
-    'Martes',
-    'Miércoles',
-    'Jueves',
-    'Viernes',
-    'Sábado',
-  ]
-  const WEEKDAYS_SHORT = ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa']
 
   return (
     <>
@@ -56,9 +33,7 @@ const Event = ({ event }) => {
           mode="multiple"
           selected={examDates}
           defaultMonth={pastMonth}
-          months={MONTHS}
-          weekdaysLong={WEEKDAYS_LONG}
-          weekdaysShort={WEEKDAYS_SHORT}
+          locale={es}
         />
         <ColStyles>
           <BoxContact>
