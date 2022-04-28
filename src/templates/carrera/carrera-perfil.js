@@ -1,17 +1,18 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import FeaturedMedia from "../../components/featured-media";
-import { container, mq } from "../../components/layout/new/";
+import React from 'react'
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+import FeaturedMedia from '../../components/featured-media'
+import { container, mq } from '../../components/layout/new/'
+import colors from '../../components/styles/colors'
 
-const CarreraPerfil = ({ carrera, faculty }) => {
+const CarreraPerfil = ({ carrera, facultad }) => {
   const {
     imagenPerfilEgresado,
     contenidoPerfilEgresado,
-    tituloPerfilEgresado = "Perfil del egresado",
-  } = carrera;
+    tituloPerfilEgresado = 'Perfil del egresado',
+  } = carrera
 
-  const facultyColor = faculty?.color;
+  const facultyColor = facultad?.color || colors.primary.base
 
   return (
     <Section>
@@ -32,10 +33,10 @@ const CarreraPerfil = ({ carrera, faculty }) => {
         </Content>
       </Container>
     </Section>
-  );
-};
+  )
+}
 
-export default CarreraPerfil;
+export default CarreraPerfil
 
 const Section = styled.div`
   margin-bottom: 5.5rem;
@@ -44,7 +45,7 @@ const Section = styled.div`
     margin-bottom: 9.6rem;
     margin-top: 9.6rem;
   }
-`;
+`
 
 const Container = styled.div`
   ${container}
@@ -54,14 +55,11 @@ const Container = styled.div`
   grid-template-columns: 100%;
 
   ${mq.lg} {
-    div: first-of-type {
-      order: 2;
-    }
     grid-template-columns: 51% 49%;
   }
-`;
+`
 const Media = styled.div`
-  ${({ decoBgColor = "green" }) => css`
+  ${({ decoBgColor = 'green' }) => css`
     width: 100%;
     position: relative;
     max-width: 40rem;
@@ -71,9 +69,10 @@ const Media = styled.div`
     margin-top: -25%;
     ${mq.lg} {
       max-width: 75%;
+      order: 2;
     }
     &:before {
-      content: "";
+      content: '';
       background-color: ${decoBgColor};
       width: 15%;
       padding-bottom: 15%;
@@ -85,22 +84,22 @@ const Media = styled.div`
       z-index: 1;
     }
   `}
-`;
+`
 
 const Content = styled.div`
   margin: 0 auto;
   padding: 4rem 1.5rem;
   position: relative;
   z-index: 2;
-`;
+`
 
 const Title = styled.h2`
-  ${({ color = "green" }) => css`
+  ${({ color = 'green' }) => css`
     color: ${color};
     text-transform: uppercase;
     margin-top: 0;
     margin-bottom: 3rem;
   `}
-`;
+`
 
-const Description = styled.div``;
+const Description = styled.div``

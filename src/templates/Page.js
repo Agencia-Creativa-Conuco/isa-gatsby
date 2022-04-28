@@ -19,7 +19,6 @@ export const query = graphql`
 
 // markup
 const Post = ({ data, ...props }) => {
-  console.log('ADENTRO')
   const {
     allWpPage: { nodes: pages },
   } = data

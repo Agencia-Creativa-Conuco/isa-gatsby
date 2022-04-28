@@ -1,30 +1,37 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import FeaturedMedia from "../../components/featured-media";
-import { darken, lighten } from "polished";
-import { container, mq } from "../../components/layout/new/";
+import React from 'react'
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+import FeaturedMedia from '../../components/featured-media'
+import { darken, lighten } from 'polished'
+import { container, mq } from '../../components/layout/new/'
+import colors from '../../components/styles/colors'
 
-const CarreraCover = ({ carrera, facultad }) => {
-  const { nombre, imagenPortada, copy, duracion, creditos, duracionPasantia } =
-    carrera;
+const CarreraCover = ({ carrera, facultad, grado }) => {
+  const {
+    nombre,
+    imagenPortada,
+    copy,
+    duracion,
+    creditos,
+    duracionPasantia,
+  } = carrera
 
   const metadata = [
     {
-      name: "Créditos",
+      name: 'Créditos',
       value: creditos,
     },
     {
-      name: "Duración",
+      name: 'Duración',
       value: duracion,
     },
     {
-      name: "Pasantía",
+      name: 'Pasantía',
       value: duracionPasantia,
     },
-  ];
+  ]
 
-  const facultyColor = facultad.color;
+  const facultyColor = facultad?.color || colors.primary.base
 
   return (
     <Section bgColor={facultyColor} decoBgColor={darken(0.15, facultyColor)}>
@@ -43,14 +50,16 @@ const CarreraCover = ({ carrera, facultad }) => {
           <OtherSection>
             <Container>
               <Content>
-                <Faculty color="#FFFFFF">{facultad?.nombre}</Faculty>
+                <Faculty color="#FFFFFF">
+                  {facultad?.nombre || grado.nombre}
+                </Faculty>
                 <Title>{nombre}</Title>
                 <Copy dangerouslySetInnerHTML={{ __html: copy }} />
                 <RowStyles>
                   {metadata
                     .filter((item) => item.value)
                     .map((item, index) => {
-                      const { name, value } = item;
+                      const { name, value } = item
 
                       return (
                         <Gadgets key={index}>
@@ -59,7 +68,7 @@ const CarreraCover = ({ carrera, facultad }) => {
                             <GadgetValue>{value}</GadgetValue>
                           </Gadget>
                         </Gadgets>
-                      );
+                      )
                     })}
                 </RowStyles>
               </Content>
@@ -68,18 +77,18 @@ const CarreraCover = ({ carrera, facultad }) => {
         </ColStyles>
       </ContainerLayout>
     </Section>
-  );
-};
+  )
+}
 
-export default CarreraCover;
+export default CarreraCover
 
 const Section = styled.section`
-  ${({ bgColor = "green", decoBgColor = "green" }) => css`
+  ${({ bgColor = 'green', decoBgColor = 'green' }) => css`
     background-color: ${bgColor};
     position: relative;
 
     &:before {
-      content: "";
+      content: '';
       background-color: ${decoBgColor};
       width: 20%;
       padding-bottom: 20%;
@@ -92,7 +101,7 @@ const Section = styled.section`
       z-index: 1;
     }
   `}
-`;
+`
 
 const ContainerLayout = styled.div`
   ${container}
@@ -102,11 +111,11 @@ const ContainerLayout = styled.div`
   ${mq.lg} {
     grid-template-columns: 50% 50%;
   }
-`;
+`
 const Container = styled.div`
   ${container}
   padding: 0;
-`;
+`
 
 const OtherSection = styled.div`
   margin-bottom: 5.5rem;
@@ -115,14 +124,14 @@ const OtherSection = styled.div`
     margin-bottom: 9.6rem;
     margin-top: 9.6rem;
   }
-`;
+`
 
 const Media = styled.div`
-  ${({ decoBgColor = "green" }) => css`
+  ${({ decoBgColor = 'green' }) => css`
     position: relative;
     height: 100%;
     &:before {
-      content: "";
+      content: '';
       background-color: ${decoBgColor};
       width: 10%;
       padding-bottom: 10%;
@@ -139,7 +148,7 @@ const Media = styled.div`
       }
     }
   `}
-`;
+`
 
 const ColStyles = styled.div`
   background-color: ${(props) => props.bgColor};
@@ -156,7 +165,7 @@ const ColStyles = styled.div`
   ${mq.xl} {
     max-width: 56.4rem;
   }
-`;
+`
 
 const Content = styled.div`
   margin: 0 auto;
@@ -167,41 +176,39 @@ const Content = styled.div`
   ${mq.lg} {
     padding-left: 12%;
   }
-`;
+`
 
 const Faculty = styled.h3`
-  ${({ color = "white" }) => css`
+  ${({ color = 'white' }) => css`
     text-transform: uppercase;
     margin: 0;
     color: ${color};
     font-weight: 300;
   `}
-`;
+`
 
 const Title = styled.h1`
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 3rem;
   color: white;
-`;
+`
 
 const Copy = styled.div`
   margin-bottom: 3rem;
   white-space: break-spaces;
-`;
+`
 
 const RowStyles = styled.div`
   display: flex;
   justify-content: space-around;
   gap: 1rem;
   flex-wrap: wrap;
-
-
-`;
+`
 const Gadgets = styled.ul`
   margin: 0;
   padding: 0;
-`;
+`
 
 const Gadget = styled.li`
   width: 15rem;
@@ -209,14 +216,13 @@ const Gadget = styled.li`
   margin-bottom: 2rem;
   padding: 0;
   list-style: none;
-
-`;
+`
 
 const GadgetName = styled.span`
   display: block;
   text-align: center;
   text-transform: uppercase;
-`;
+`
 
 const GadgetValue = styled.span`
   display: block;
@@ -225,4 +231,4 @@ const GadgetValue = styled.span`
   text-align: center;
   font-weight: 900;
   font-size: 2rem;
-`;
+`

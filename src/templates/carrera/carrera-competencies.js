@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { lighten, darken } from "polished";
-import colors from "../../components/styles/colors";
-import { container, mq } from "../../components/layout/new/";
+import React, { useState } from 'react'
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+import { lighten, darken } from 'polished'
+import colors from '../../components/styles/colors'
+import { container, mq } from '../../components/layout/new/'
 
 const CarreraCompetencias = ({ carrera, facultad }) => {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(0)
 
-  const { tabs = [] } = carrera;
+  const { tabs = [] } = carrera
 
-  const facultyColor = facultad.color;
+  const facultyColor = facultad?.color || colors.primary.base
 
   return tabs.length ? (
     <Section>
@@ -24,9 +24,9 @@ const CarreraCompetencias = ({ carrera, facultad }) => {
         <Container>
           <Navigation>
             {tabs.map((item, index) => {
-              const { titulo } = item;
+              const { titulo } = item
 
-              const isActive = index === active;
+              const isActive = index === active
 
               return (
                 <NanUl key={index}>
@@ -37,22 +37,22 @@ const CarreraCompetencias = ({ carrera, facultad }) => {
                       activeColor={darken(0.15, facultyColor)}
                       activeBgColor={lighten(0.52, facultyColor)}
                       onClick={(e) => {
-                        setActive(index);
+                        setActive(index)
                       }}
                     >
                       {titulo}
                     </Tab>
                   </NavItem>
                 </NanUl>
-              );
+              )
             })}
           </Navigation>
 
           <Displayer>
             {tabs.map((item, index) => {
-              const { contenido } = item;
+              const { contenido } = item
 
-              const isActive = index === active;
+              const isActive = index === active
 
               return (
                 <Content key={index} hidden={!isActive}>
@@ -60,16 +60,16 @@ const CarreraCompetencias = ({ carrera, facultad }) => {
                     dangerouslySetInnerHTML={{ __html: contenido }}
                   />
                 </Content>
-              );
+              )
             })}
           </Displayer>
         </Container>
       </div>
     </Section>
-  ) : null;
-};
+  ) : null
+}
 
-export default CarreraCompetencias;
+export default CarreraCompetencias
 
 const Section = styled.section`
     margin-bottom: 5.5rem;
@@ -79,17 +79,17 @@ ${mq.md}{
     margin-top: 9.6rem;
 }
 }
-`;
+`
 
 const displayerSectionStyles = ({
-  bgColor = "#F0F0F0",
-  bgDecoBig = "green",
-  bgDecoSmall = "lightgreen",
+  bgColor = '#F0F0F0',
+  bgDecoBig = 'green',
+  bgDecoSmall = 'lightgreen',
 }) => css`
   background-color: ${bgColor};
   position: relative;
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     bottom: 0;
     right: 0;
@@ -99,7 +99,7 @@ const displayerSectionStyles = ({
     transform: translate(25%, 50%);
   }
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     bottom: 0;
     right: 0;
@@ -109,11 +109,11 @@ const displayerSectionStyles = ({
     transform: translate(-100%, 50%);
     opacity: 0.5;
   }
-`;
+`
 
 const Container = styled.div`
   ${container}
-`;
+`
 const Navigation = styled.div`
   display: flex;
   justify-content: center;
@@ -126,18 +126,18 @@ const Navigation = styled.div`
   background-color: white;
   border-radius: 1.5rem;
   overflow: hidden;
-`;
+`
 
 const NavItem = styled.li`
   list-style: none;
   margin: 0;
-`;
+`
 
 const Tab = styled.button`
   ${({
-    color = "darkgray",
-    activeColor = "green",
-    activeBgColor = "lightgreen",
+    color = 'darkgray',
+    activeColor = 'green',
+    activeBgColor = 'lightgreen',
   }) => css`
     text-transform: uppercase;
     padding: 1.5rem;
@@ -155,9 +155,9 @@ const Tab = styled.button`
       background-color: ${activeBgColor};
     }
   `}
-`;
+`
 
-const Displayer = styled.div``;
+const Displayer = styled.div``
 
 const Content = styled.div`
   max-width: 75rem;
@@ -171,7 +171,7 @@ const Content = styled.div`
     padding: 4rem 4rem;
     padding-bottom: 10rem;
   }
-`;
+`
 
 // const Title = styled.h2`
 //     ${({color="green"})=>css`
@@ -184,9 +184,9 @@ const Content = styled.div`
 
 const Description = styled.div`
   margin-bottom: 3rem;
-`;
+`
 
 const NanUl = styled.ul`
   margin: 0;
   padding: 0;
-`;
+`

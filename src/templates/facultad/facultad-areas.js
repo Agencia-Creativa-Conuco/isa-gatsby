@@ -3,14 +3,13 @@ import styled from '@emotion/styled'
 import Link from '../../components/link'
 import colors from '../../components/styles/colors'
 import useDepartamentos from '../../hooks/useDepartamentos'
-import {container,mq} from '../../components/layout/new/'
-
+import { container, mq } from '../../components/layout/new/'
 
 const FacultadAreas = ({ facultad }) => {
   const { color = colors.primary.base } = facultad
 
   const departamentos = useDepartamentos().filter(
-    (departament) => departament.facultad.id === facultad.id,
+    (departament) => departament.facultad?.id === facultad.id,
   )
 
   return departamentos.length ? (
@@ -21,10 +20,10 @@ const FacultadAreas = ({ facultad }) => {
           <List>
             {departamentos
               .filter((departament) => {
-                return departament.carreras.length;
+                return departament.carreras.length
               })
               .map((departament, index) => {
-                const { nombre, uri } = departament;
+                const { nombre, uri } = departament
 
                 return (
                   <Item key={index}>
@@ -32,13 +31,13 @@ const FacultadAreas = ({ facultad }) => {
                       {nombre}
                     </SLink>
                   </Item>
-                );
+                )
               })}
           </List>
         </Card>
       </Container>
     </Section>
-  ) : null;
+  ) : null
 }
 
 export default FacultadAreas
@@ -46,17 +45,16 @@ export default FacultadAreas
 const Section = styled.section`
   margin-top: -10rem !important;
   margin-bottom: 5.5rem;
-  ${mq.md}{
+  ${mq.md} {
     margin-bottom: 9.6rem;
   }
-`;
-
+`
 
 const Container = styled.div`
   ${container}
   display:grid;
   grid-template-columns: 100%;
-`;
+`
 
 const Card = styled.div`
   box-shadow: 0 0.7rem 2rem rgba(0, 0, 0, 0.15);
@@ -98,11 +96,11 @@ const SLink = styled(Link)`
 const List = styled.ul`
   margin: 0 auto;
   padding: 0;
-  display:grid;
+  display: grid;
   grid-template-columns: 90%;
   justify-content: center;
 
-  ${mq.md}{
+  ${mq.md} {
     grid-template-columns: 60%;
   }
 `
