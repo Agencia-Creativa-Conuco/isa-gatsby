@@ -2,6 +2,7 @@ import React from 'react'
 import Layout from '../../../components/layout'
 import CentroMipymesBenefits from './centro-mipymes-benefits';
 import CentroMipymesCover from './centro-mipymes-cover';
+import CentroMipymesEconomic from './centro-mipymes-economic';
 import CentroMipymesPhilosophy from './centro-mipymes-philosophy';
 import CentroMipymesServices from './centro-mipymes-services';
 const CentroMipymes = (props) => {
@@ -22,6 +23,7 @@ const CentroMipymes = (props) => {
       <CentroMipymesPhilosophy />
       <CentroMipymesServices />
       <CentroMipymesBenefits/>
+      <CentroMipymesEconomic/>
     </Layout>
   );
 }

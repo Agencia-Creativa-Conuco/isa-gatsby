@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import styled from "@emotion/styled";
 import { container, mq } from "../../../components/layout/new/";
 
@@ -45,8 +45,7 @@ const Data = {
   ],
 };
 
-
- const CentroMipymesServices = () => {
+const CentroMipymesServices = () => {
   return (
     <Section fluid>
       <SectionTitle>{Data.title}</SectionTitle>
@@ -62,18 +61,14 @@ const Data = {
       </Container>
     </Section>
   );
-}
+};
 
-
-export default CentroMipymesServices
-
-
+export default CentroMipymesServices;
 
 const Section = styled.section`
   ${container}
   margin-bottom: 5.5rem;
   margin-top: 5.5rem;
-
 `;
 
 const Container = styled.div`
@@ -86,17 +81,13 @@ const Container = styled.div`
   ${mq.md} {
     grid-template-columns: 1fr 1fr;
   }
-
 `;
 
 const SectionTitle = styled.h2`
-text-align:center;
+  text-align: center;
 `;
 
-
-
-const Content = styled.div`
-`;
+const Content = styled.div``;
 
 const Deco = styled.div`
   position: relative;
@@ -106,7 +97,7 @@ const Title = styled.h3`
   font-weight: 900;
   padding: 0 0 2rem;
 
-  &:before{
+  &:before {
     content: "";
     width: 30%;
     border-top-width: 2px;
@@ -115,9 +106,8 @@ const Title = styled.h3`
     position: absolute;
     background: red;
     z-index: 3445445;
-     bottom: 0
-}
+    bottom: 0;
+  }
 `;
-
 
 const Copy = styled.p``;

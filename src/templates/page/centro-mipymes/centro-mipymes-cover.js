@@ -1,14 +1,11 @@
-import React from 'react'
+import React from "react";
 import styled from "@emotion/styled";
 import FeaturedMedia from "../../../components/featured-media";
 import { useStaticQuery, graphql } from "gatsby";
 import { container, mq } from "../../../components/layout/new/";
 
 const CentroMipymesCover = () => {
-
-
-
-    const { allFile } = useStaticQuery(graphql`
+  const { allFile } = useStaticQuery(graphql`
     query {
       allFile(filter: { relativeDirectory: { in: ["centro-mipymes"] } }) {
         nodes {
@@ -31,31 +28,25 @@ const CentroMipymesCover = () => {
     };
   }, {});
 
-const data = {
-  title: "CENTRO MIPYMES",
-  copy: "El Centro MIPYMES (Centro de Servicios de Apoyo Integral de las micro, pequeñas y medianas empresas) es una iniciativa por parte del Ministerio de Industria y Comercio a través del Viceministerio de Fomento a las MIPYMES en alianza con la Universidad ISA, el cual tiene como objetivo principal brindar los servicios y las consultorías necesarias a las micro, pequeñas y medianas empresas, de manera gratuita, para fortalecer su capacidad productiva, competitividad y eficienci",
-  logo: images.logo,
-};
-
+  const data = {
+    title: "CENTRO MIPYMES",
+    copy: "El Centro MIPYMES (Centro de Servicios de Apoyo Integral de las micro, pequeñas y medianas empresas) es una iniciativa por parte del Ministerio de Industria y Comercio a través del Viceministerio de Fomento a las MIPYMES en alianza con la Universidad ISA, el cual tiene como objetivo principal brindar los servicios y las consultorías necesarias a las micro, pequeñas y medianas empresas, de manera gratuita, para fortalecer su capacidad productiva, competitividad y eficienci",
+    logo: images.logo,
+  };
 
   return (
     <Section>
       <Logo>
-      
-          <FeaturedMedia
-            media={data.logo}
-            alt="CENTRO MIPYMES"
-            loading="eager"
-            />
-            </Logo>
-          <SectionTitle>{data.title}</SectionTitle>
+        <FeaturedMedia media={data.logo} alt="CENTRO MIPYMES" loading="eager" />
+      </Logo>
+      <SectionTitle>{data.title}</SectionTitle>
 
-        <Copy>{data.copy}</Copy>
+      <Copy>{data.copy}</Copy>
     </Section>
-  )
-}
+  );
+};
 
-export default CentroMipymesCover
+export default CentroMipymesCover;
 
 const Section = styled.section`
   ${container}
@@ -63,23 +54,19 @@ const Section = styled.section`
   display: grid;
   grid-template-columns: 100%;
   justify-items: center;
-
 `;
-
 
 const Logo = styled.div`
-position: relative;
-width: 35rem;
-margin-top: 5.5rem;
+  position: relative;
+  width: 35rem;
+  margin-top: 5.5rem;
 
-${mq.md}{
-  /* width: 35%; */
+  ${mq.md} {
+    /* width: 35%; */
 
-  margin-top: 11.5rem;
-}
-
+    margin-top: 11.5rem;
+  }
 `;
-
 
 const SectionTitle = styled.h1`
   margin-top: 2rem;
@@ -91,6 +78,4 @@ const SectionTitle = styled.h1`
   }
 `;
 
-
 const Copy = styled.p``;
-
