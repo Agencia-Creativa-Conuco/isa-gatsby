@@ -1,9 +1,6 @@
 import React from 'react'
-
 import styled from "@emotion/styled";
 import FeaturedMedia from "../../../components/featured-media";
-import colors from "../../../components/styles/colors";
-import Cta from "../../../components/cta";
 import { useStaticQuery, graphql } from "gatsby";
 import { container, mq } from "../../../components/layout/new/";
 
@@ -62,34 +59,31 @@ export default CentroMipymesCover
 
 const Section = styled.section`
   ${container}
-  /* padding: 0; */
 
   display: grid;
   grid-template-columns: 100%;
   justify-items: center;
-/* 
-  ${mq.md} {
-    grid-template-columns: 50% 50%;
-  } */
+
 `;
 
 
 const Logo = styled.div`
 position: relative;
-width: 35%;
+width: 35rem;
 margin-top: 5.5rem;
 
 ${mq.md}{
+  /* width: 35%; */
 
-  margin-top: 9.5rem;
+  margin-top: 11.5rem;
 }
 
 `;
 
 
 const SectionTitle = styled.h1`
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   text-align: center;
 
   ${mq.md} {
