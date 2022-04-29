@@ -47,9 +47,9 @@ const Data = {
 
 const CentroMipymesServices = () => {
   return (
-    <Section fluid>
+    <Section fluid >
       <SectionTitle>{Data.title}</SectionTitle>
-      <Container>
+      <Container >
         {Data.content.map((data, index) => (
           <Content key={index}>
             <Deco>

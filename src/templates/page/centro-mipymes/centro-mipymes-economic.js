@@ -43,10 +43,8 @@ const CentroMipymesEconomic = () => {
 
   return (
     <Section>
-      {/* <Conatiner> */}
-
       <Content>
-        <Title>{data.title}</Title>
+        <Title >{data.title}</Title>
         <Copy dangerouslySetInnerHTML={{ __html: data.copy }} />
       </Content>
 
@@ -57,7 +55,6 @@ const CentroMipymesEconomic = () => {
           loading="eager"
         />
       </Image>
-      {/* </Conatiner> */}
     </Section>
   );
 };

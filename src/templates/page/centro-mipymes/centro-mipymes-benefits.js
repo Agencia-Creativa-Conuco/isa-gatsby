@@ -98,4 +98,6 @@ const Title = styled.h3`
   padding-bottom: 2.5rem;
 `;
 
-const Copy = styled.p``;
+const Copy = styled.p`
+  color: white;
+`;
