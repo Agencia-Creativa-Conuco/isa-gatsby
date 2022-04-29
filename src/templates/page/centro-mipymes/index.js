@@ -2,6 +2,7 @@ import React from 'react'
 import Layout from '../../../components/layout'
 import CentroMipymesCover from './centro-mipymes-cover';
 import CentroMipymesPhilosophy from './centro-mipymes-philosophy';
+import CentroMipymesServices from './centro-mipymes-services';
 const CentroMipymes = (props) => {
 
 
@@ -17,9 +18,9 @@ const CentroMipymes = (props) => {
   return (
     <Layout {...props} {...metaData}>
       <CentroMipymesCover />
-      <CentroMipymesPhilosophy/>
+      <CentroMipymesPhilosophy />
+      <CentroMipymesServices />
     </Layout>
-  
   );
 }
 
